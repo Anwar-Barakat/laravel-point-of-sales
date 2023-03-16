@@ -12,15 +12,3 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('backend.auth.login');
-});
-
-Route::get('/forget', function () {
-    return view('backend.auth.forget');
-});
-
-Route::get('/home', function () {
-    return view('backend.pages.dashboard');
-});
