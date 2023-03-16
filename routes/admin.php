@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('backend.auth.login');
-});
+Route::name('admin.')->group(function () {
 
-Route::get('/forget', function () {
-    return view('backend.auth.forget');
-});
+    Route::get('/login',            LoginController::class)->name('login.show');
 
-Route::get('/home', function () {
-    return view('backend.pages.dashboard');
+    // Route::view('/dashboard',       'backend.pages.dashboard')->name('dashboard');
 });

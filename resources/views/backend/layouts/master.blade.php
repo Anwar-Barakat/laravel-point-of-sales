@@ -16,6 +16,7 @@
     <title>@yield('pageTitle')</title>
     <!-- CSS files -->
     @include('backend.layouts.inc.head')
+    <livewire:styles />
 </head>
 
 <body>

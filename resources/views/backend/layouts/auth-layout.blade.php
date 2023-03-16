@@ -21,6 +21,7 @@
     <link href="{{ asset('backend/dist/css/tabler-payments.min.css?1674944402') }}" rel="stylesheet" />
     <link href="{{ asset('backend/dist/css/tabler-vendors.min.css?1674944402') }}" rel="stylesheet" />
     @stack('stylesheets')
+    <livewire:styles />
     <link href="{{ asset('backend/dist/css/demo.min.css?1674944402') }}" rel="stylesheet" />
     <style>
         @import url('https://rsms.me/inter/inter.css');
@@ -42,6 +43,7 @@
     <!-- Tabler Core -->
     <script src="{{ asset('backend/dist/js/tabler.min.js?1674944402') }}" defer></script>
     @stack('scripts')
+    <livewire:scripts />
     <script src="{{ asset('backend/dist/js/demo.min.js?1674944402') }}" defer></script>
 </body>
 
