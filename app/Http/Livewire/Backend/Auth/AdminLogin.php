@@ -23,11 +23,17 @@ class AdminLogin extends Component
 
     public function login(Request $request)
     {
-        // $this->validate();
-        if (Auth::guard('admin')->attempt(['email' => $this->email, 'password' => $this->password])) {
-            toastr()->error('Email or Password Invalid');
-            return redirect()->route('admin.dashboard');
-        }
+        $this->validate();
+
+        if (!Auth::guard('admin')->attempt(['email' => $this->email, 'password' => $this->password])) :
+            toastr()->error('Email or Password is not Valid');
+            return redirect()->route('admin.login.show');
+        else :
+            toastr()->error('Email or Password is not Valid');
+            return redirect()->route('admin.login.show');
+        endif;
+
+
     }
     public function render()
     {
