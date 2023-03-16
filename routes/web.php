@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('backend.auth.login');
+});
+
+Route::get('/forget', function () {
+    return view('backend.auth.forget');
 });
