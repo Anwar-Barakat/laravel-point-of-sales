@@ -6,7 +6,7 @@
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <a href="{{ route('admin.login.show') }}" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('backend/static/logo.svg') }}" height="36" alt=""></a>
+                <a href="" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('backend/static/logo.svg') }}" height="36" alt=""></a>
             </div>
             <div class="card card-md">
                 <div class="card-body">

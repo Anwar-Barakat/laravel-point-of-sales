@@ -7,7 +7,7 @@
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('backend/static/logo.svg') }}" height="36" alt=""></a>
+                <a href="" class="navbar-brand navbar-brand-autodark"><img src="{{ asset('backend/static/logo.svg') }}" height="36" alt=""></a>
             </div>
             <form class="card card-md" action="./" method="get" autocomplete="off" novalidate>
                 <div class="card-body">
@@ -31,7 +31,7 @@
                 </div>
             </form>
             <div class="text-center text-muted mt-3">
-                Forget it, <a href="./sign-in.html">send me back</a> to the sign in screen.
+                Forget it, <a href="{{ route('admin.login.show') }}">send me back</a> to the sign in screen.
             </div>
         </div>
     </div>

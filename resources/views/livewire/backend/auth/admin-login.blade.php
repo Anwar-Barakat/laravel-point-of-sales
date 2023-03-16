@@ -1,8 +1,8 @@
 <div>
-    <form wire:submit.prevent="login" autocomplete="">
+    <form wire:submit.prevent="login">
         <div class="mb-3">
             <label class="form-label">Email address</label>
-            <input type="email" class="form-control" placeholder="Your Email" autocomplete="" wire:model="email">
+            <input type="email" class="form-control" placeholder="Your Email" required wire:model="email">
             @error('email')
                 <small class="text text-danger">{{ $message }}</small>
             @enderror
@@ -11,11 +11,11 @@
             <label class="form-label">
                 Password
                 <span class="form-label-description">
-                    <a href="{{ url('/forget') }}">I forgot password</a>
+                    <a href="">I forgot password</a>
                 </span>
             </label>
             <div class="input-group input-group-flat">
-                <input type="password" class="form-control" placeholder="Your password" autocomplete="" wire:model="password">
+                <input type="password" class="form-control" placeholder="Your password" required  wire:model="password">
             </div>
             @error('password')
                 <small class="text text-danger">{{ $message }}</small>
