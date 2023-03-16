@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/forget', function () {
     return view('backend.auth.forget');
 });
+
+Route::get('/home', function () {
+    return view('backend.pages.dashboard');
+});
