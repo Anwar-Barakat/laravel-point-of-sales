@@ -5,4 +5,5 @@
 <!-- Tabler Core -->
 <script src="{{ asset('backend/dist/js/tabler.min.js?1674944402') }}" defer></script>
 @stack('scripts')
+@livewireScripts
 <script src="{{ asset('backend/dist/js/demo.min.js?1674944402') }}" defer></script>
