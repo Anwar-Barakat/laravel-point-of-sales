@@ -19,6 +19,7 @@
     <link href="{{ asset('backend/dist/css/tabler-payments.min.css?1674944402') }}" rel="stylesheet" />
     <link href="{{ asset('backend/dist/css/tabler-vendors.min.css?1674944402') }}" rel="stylesheet" />
     <link href="{{ asset('backend/dist/css/demo.min.css?1674944402') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('backend/dist/css/custom.css') }}">
 </head>
 
 <body class="font-sans text-gray-900 antialiased">

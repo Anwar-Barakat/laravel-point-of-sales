@@ -8,3 +8,4 @@
 
 
 <link href="{{ asset('backend/dist/css/demo.min.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="{{ asset('backend/dist/css/custom.css') }}">

@@ -140,7 +140,10 @@
                     <a href="#" class="dropdown-item">Feedback</a>
                     <div class="dropdown-divider"></div>
                     <a href="./settings.html" class="dropdown-item">Settings</a>
-                    <a href="" class="dropdown-item">Logout</a>
+                    <form id="admin-logout" action="{{ route('admin.logout') }}" style="display: none;">
+                        @csrf
+                    </form>
+                    <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('admin-logout').submit();">Logout</a>
                 </div>
             </div>
         </div>

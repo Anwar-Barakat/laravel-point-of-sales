@@ -6,17 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
     public function show()
     {
+        if (Auth::guard('admin')->check())
+            return redirect()->route('admin.dashboard');
+
         return view('admin.auth.login');
     }
 
     public function login(Request $request)
     {
-        $credentials    = $request->only(['email', 'password']);
+        $credentials = $this->validate($request, [
+            'email'     => ['required', 'email', 'max:100'],
+            'password'  => ['required', 'min:6']
+        ]);
+
+        if (Auth::guard('admin')->check())
+            return redirect()->route('admin.dashboard');
 
         if (!Auth::guard('admin')->attempt($credentials)) {
             toastr()->error('Oops, Invalid Email or Password');
