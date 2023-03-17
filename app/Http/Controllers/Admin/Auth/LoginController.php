@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function show()
+    public function show(): View
     {
         if (Auth::guard('admin')->check())
             return redirect()->route('admin.dashboard');
