@@ -23,15 +23,16 @@ class AdminLogin extends Component
 
     public function login(Request $request)
     {
-        $this->validate();
+        $credentials = $this->validate();
 
-        if (Auth::guard('admin')->attempt(['email' => $this->email, 'password' => $this->password])) {
-            toastr()->success(__('msg.welcome_back'));
-            return redirect()->route('admin.dashboard');
-        } else {
+        if (!Auth::guard('admin')->attempt($credentials)) {
             toastr()->error(__('msg.email_pass_not_valid'));
             return redirect()->route('admin.login.show');
         }
+
+        Auth::guard('admin')->attempt($credentials);
+        toastr()->success(__('msg.welcome_back'));
+        return redirect()->route('admin.dashboard');
     }
     public function render()
     {

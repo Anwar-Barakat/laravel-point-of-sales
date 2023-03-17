@@ -15,16 +15,3 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "admin" middleware group. Make something great!
 |
 */
-
-
-Route::group(['as' => 'admin.'], function () {
-
-    Route::get('/login',            LoginController::class)->name('login.show');
-
-    Route::group(['middleware' => 'auth:admin'], function () {
-
-        Route::get('/dashboard',       DashboardController::class)->name('dashboard');
-
-        Route::get('/logout',           LogoutController::class)->name('logout');
-    });
-});
