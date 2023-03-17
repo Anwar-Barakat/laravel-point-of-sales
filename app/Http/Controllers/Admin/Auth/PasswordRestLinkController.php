@@ -31,7 +31,7 @@ class PasswordRestLinkController extends Controller
             'created_at'    => Carbon::now()
         ]);
 
-        $action_link    = route('admin.password.reset', ['token' => $token, 'email' => $request->email]);
+        $action_link    = route('admin.password.reset.link', ['token' => $token, 'email' => $request->email]);
 
         $mailData       = [
             'link'  => $action_link,

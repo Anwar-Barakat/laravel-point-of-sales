@@ -5,7 +5,7 @@ We are received a request to reset the password for {{ env('APP_NAME', 'Laravel 
 with {{ $mailData['email'] }}.
 You can reset your passowrd by clicking the link below:
 
-<x-mail::button url="{{ route('admin.password.reset',['token'=>$mailData['link']]) }}">
+<x-mail::button url="{{ $mailData['link'] }}">
 Reset Password
 </x-mail::button>
 

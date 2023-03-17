@@ -9,7 +9,7 @@ use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function show(): View
+    public function show()
     {
         if (Auth::guard('admin')->check())
             return redirect()->route('admin.dashboard');

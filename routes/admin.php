@@ -19,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/login',                    [LoginController::class, 'show'])->name('login.show');
-    Route::post('/login',                   [LoginController::class, 'login'])->name('login');
+    Route::get('/login',                        [LoginController::class, 'show'])->name('login.show');
+    Route::post('/login',                       [LoginController::class, 'login'])->name('login');
 
-    Route::get('/password/forget',          [PasswordRestLinkController::class, 'create'])->name('forget.password.form');
-    Route::post('/password/forget',         [PasswordRestLinkController::class, 'store'])->name('forget.password.store');
+    Route::get('/password/forget',              [PasswordRestLinkController::class, 'create'])->name('forget.password.form');
+    Route::post('/password/forget',             [PasswordRestLinkController::class, 'store'])->name('forget.password.store');
+
+    Route::get('/reset/password/{token}',       [NewPasswordController::class, 'create'])->name('password.reset.link');
+    Route::post('reset-password',               [NewPasswordController::class, 'store'])->name('password.reset');
 
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('/logout',                   LogoutController::class)->name('logout');
-        Route::get('/dashboard',                DashboardController::class)->name('dashboard');
+        Route::get('/logout',                       LogoutController::class)->name('logout');
+        Route::get('/dashboard',                    DashboardController::class)->name('dashboard');
     });
 });
