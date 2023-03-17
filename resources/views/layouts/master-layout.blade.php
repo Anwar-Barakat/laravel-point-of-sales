@@ -13,10 +13,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="csrf_token" value="{{ csrf_token() }}"/>
+    <meta name="csrf_token" value="{{ csrf_token() }}" />
     <title>@yield('pageTitle')</title>
     <!-- CSS files -->
-    @include('backend.layouts.inc.head')
+    @include('layouts.inc.head')
     <livewire:styles />
 </head>
 
@@ -24,7 +24,7 @@
     <script src="{{ asset('backend/dist/js/demo-theme.min.js?1674944402') }}"></script>
     <div class="page">
         <!-- Navbar -->
-        @include('backend.layouts.inc.header')
+        @include('layouts.inc.header')
         <div class="page-wrapper">
             <!-- Page header -->
             <div class="page-header d-print-none">
@@ -75,12 +75,12 @@
                     @yield('content')
                 </div>
             </div>
-            @include('backend.layouts.inc.footer')
+            @include('layouts.inc.footer')
         </div>
     </div>
 
     <!-- Libs JS -->
-    @include('backend.layouts.inc.footer-scripts')
+    @include('layouts.inc.footer-scripts')
 </body>
 
 </html>
