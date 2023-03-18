@@ -7,7 +7,7 @@
 * Copyright 2018-2023 codecalm.net Paweł Kuna
 * Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
 -->
-<html lang="en">
+<html @if (App::getLocale() == 'ar') dir="rtl" @else dir="ltr" @endif>
 
 <head>
     <meta charset="utf-8" />

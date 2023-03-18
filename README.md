@@ -6,3 +6,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - Livewire
 - Toastr
 - Breeze
+
+#### Important Points : 
+- Multiple Authentication using breeze (users, admins tables).
+
