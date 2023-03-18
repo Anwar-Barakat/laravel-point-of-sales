@@ -7,10 +7,10 @@ return [
 
 
     //? Login Page :
-    'admin_login'               => 'Admin Login',
-    'login'                     => 'Login',
-    'remember_me'               => 'Remember me',
-    'login_to_your_account'     => 'Login to your account',
+    'admin_login'           => 'Admin Login',
+    'login'                 => 'Login',
+    'remember_me'           => 'Remember me',
+    'login_to_your_account' => 'Login to your account',
 
 
     //? Register Page :
