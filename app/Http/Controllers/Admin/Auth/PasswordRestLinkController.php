@@ -40,7 +40,7 @@ class PasswordRestLinkController extends Controller
 
         Mail::to($request->email)->send(new AdminResetPassword($mailData));
 
-        toastr()->info('We have e-mailed your password reset link!');
+        toastr()->info(__('msgs.password_reset_link'));
         return back();
     }
 }

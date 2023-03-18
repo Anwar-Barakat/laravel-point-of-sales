@@ -31,7 +31,7 @@ class NewPasswordController extends Controller
         ])->first();
 
         if (!$check_token) {
-            toastr()->error('Oops, Please try again');
+            toastr()->error(__('msgs.try_again'));
             return redirect()->back()->withInput();
         }
 
@@ -41,7 +41,7 @@ class NewPasswordController extends Controller
             'email'     => $request->email
         ])->delete();
 
-        toastr()->success('Password Has Updated Successfully');
+        toastr()->success(__('msgs.updated', ['name' => __('auth.password')]));
         return redirect()->route('admin.login.show');
     }
 }

@@ -16,7 +16,6 @@ class LogoutController extends Controller
     {
         Session::flush();
         Auth::guard('admin')->logout();
-        toastr()->info('Admin Logout Successfully');
         return redirect()->route('admin.login');
     }
 }

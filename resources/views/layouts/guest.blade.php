@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html @if(App::getLocale()=='ar') dir="ltr" @else dir="ltr" @endif>
+<html @if (App::getLocale() == 'ar') dir="rtl" @else dir="ltr" @endif>
 
 <head>
     <meta charset="utf-8">
@@ -14,11 +14,21 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="{{ asset('backend/dist/css/tabler.min.css?1674944402') }}" rel="stylesheet" />
-    <link href="{{ asset('backend/dist/css/tabler-flags.min.css?1674944402') }}" rel="stylesheet" />
-    <link href="{{ asset('backend/dist/css/tabler-payments.min.css?1674944402') }}" rel="stylesheet" />
-    <link href="{{ asset('backend/dist/css/tabler-vendors.min.css?1674944402') }}" rel="stylesheet" />
-    <link href="{{ asset('backend/dist/css/demo.min.css?1674944402') }}" rel="stylesheet" />
+
+    @if (App::getLocale() == 'ar')
+        <link href="{{ asset('backend/dist/css/tabler.rtl.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/tabler-flags.rtl.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/tabler-payments.rtl.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/tabler-vendors.rtl.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/demo.rtl.min.css') }}" rel="stylesheet" />
+    @else
+        <link href="{{ asset('backend/dist/css/tabler.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/tabler-flags.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/dist/css/demo.min.css') }}" rel="stylesheet" />
+    @endif
+
     <link rel="stylesheet" href="{{ asset('backend/dist/css/custom.css') }}">
 </head>
 

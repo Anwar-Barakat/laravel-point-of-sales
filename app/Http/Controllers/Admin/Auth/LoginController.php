@@ -28,12 +28,12 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
 
         if (!Auth::guard('admin')->attempt($credentials)) {
-            toastr()->error('Oops, Invalid Email or Password');
+            toastr()->error(__('msgs.email_pass_not_valid'));
             return redirect()->back();
         }
 
         Auth::guard('admin')->attempt($credentials);
-        toastr()->success('Welcome Back');
+        toastr()->success(__('msgs.welcome_back'));
         return redirect()->route('admin.dashboard');
     }
 }
