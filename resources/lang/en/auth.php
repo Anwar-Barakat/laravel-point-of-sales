@@ -6,9 +6,17 @@ return [
     'name'          => 'Name',
 
 
-    //? Login Password Page :
-    'admin_login'   => 'Admin Login',
-    'login'         => 'Login',
+    //? Login Page :
+    'admin_login'               => 'Admin Login',
+    'login'                     => 'Login',
+    'remember_me'               => 'Remember me',
+    'login_to_your_account'     => 'Login to your account',
+
+
+    //? Register Page :
+    'register'                  => 'Register',
+    'register_page'             => 'Create a new Account',
+    'already_registered'        => 'Already registered?',
 
     //? Forget Password Page :
     'confirm_password'          => 'Confirm Password',
