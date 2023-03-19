@@ -32,11 +32,11 @@
                     <div class="row g-2 align-items-center">
                         <div class="col">
                             <!-- Page pre-title -->
-                            <div class="page-pretitle">
-                                @yield('breadcrumbTitle')
-                            </div>
-                            <h2 class="page-title">
+                            <a href="{{ route('admin.dashboard') }}" class="page-pretitle">
                                 @yield('breadcrumbSubtitle')
+                            </a>
+                            <h2 class="page-title">
+                                @yield('breadcrumbTitle')
                             </h2>
                         </div>
                         <!-- Page title actions -->
@@ -44,7 +44,7 @@
                             <div class="btn-list">
                                 <span class="d-none d-sm-inline">
                                     <a href="#" class="btn">
-                                        New view
+                                        {{ __('msgs.create', ['name' => __('dash.invoice')]) }}
                                     </a>
                                 </span>
                                 <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
@@ -72,7 +72,7 @@
             <!-- Page body -->
             <div class="page-body">
                 <div class="container-xl">
-                    @yield('content')
+                    {{ $slot }}
                 </div>
             </div>
             @include('layouts.inc.footer')

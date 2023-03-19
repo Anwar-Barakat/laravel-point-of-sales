@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Setting\SettingController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -39,6 +40,11 @@ Route::group(
             Route::group(['middleware' => 'admin'], function () {
                 Route::get('/logout',                       LogoutController::class)->name('logout');
                 Route::get('/dashboard',                    DashboardController::class)->name('dashboard');
+
+                //!_______________________
+                //! Setting
+                //!_______________________
+                Route::resource('settings',                 SettingController::class);
             });
         });
     }

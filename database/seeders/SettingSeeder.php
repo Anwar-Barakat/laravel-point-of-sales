@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Setting;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,20 +18,22 @@ class SettingSeeder extends Seeder
         $faker      = Factory::create();
         $settings   = [
             [
-                'system_name'       => [
+                'company_name'      => [
                     'ar'    => 'حلول للكمبيوتر',
                     'en'    => 'Computer Solving',
                 ],
-                'general_alert'     => $faker->sentence(10),
+                'company_code'      => 1,
+                'alert_msg'         => $faker->sentence(10),
                 'address'           => $faker->address(),
                 'mobile'            => $faker->phoneNumber(),
-                'company_code'      => 1,
+                'added_by'          => Admin::inRandomOrder()->first()->id,
+                'updated_by'        => Admin::inRandomOrder()->first()->id,
                 'is_active'         => true
             ]
         ];
 
         foreach ($settings as $setting) {
-            if (is_null(Setting::where('system_name->en', $setting['system_name']['en'])->first()))
+            if (is_null(Setting::where('company_name->en', $setting['company_name']['en'])->first()))
                 Setting::create($setting);
         }
     }

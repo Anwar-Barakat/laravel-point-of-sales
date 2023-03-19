@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'report'    => 'report'
+    //? Index Page :
+    'report'    => 'report',
+    'invoice'   => 'Invoice',
 ];

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('system_name');
-            $table->string('general_alert');
+            $table->string('company_name');
+            $table->integer('company_code');
+            $table->string('alert_msg');
             $table->string('address');
             $table->string('mobile');
-            $table->integer('company_code');
-            $table->integer('added_by')->nullable();
-            $table->integer('updated_by')->nullable();
+            $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
+            $table->foreignId('updated_by')->constrained('admins')->cascadeOnUpdate();
             $table->boolean('is_active');
             $table->timestamps();
         });
