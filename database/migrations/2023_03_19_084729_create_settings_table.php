@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('address');
             $table->string('mobile');
             $table->integer('company_code');
-            $table->integer('added_by');
-            $table->integer('updated_by');
+            $table->integer('added_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->boolean('is_active');
             $table->timestamps();
         });

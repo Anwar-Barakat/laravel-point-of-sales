@@ -8,20 +8,24 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 class Setting extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, HasTranslations;
 
     protected $fillable = [
-        'general_alert',
         'system_name',
+        'general_alert',
         'address',
         'mobile',
         'company_code',
         'added_by',
         'updated_by',
+        'is_active',
     ];
+
+    public $translatable = ['system_name'];
 
     public function registerMediaConversions(Media $media = null): void
     {
