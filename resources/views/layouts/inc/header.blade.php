@@ -77,11 +77,11 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="#" class="dropdown-item">{{ __('navbar.status') }}</a>
-                    <a href="./profile.html" class="dropdown-item">{{ __('navbar.profile') }}</a>
+                    <a href="#" class="dropdown-item">{{ __('partials.status') }}</a>
+                    <a href="./profile.html" class="dropdown-item">{{ __('partials.profile') }}</a>
                     <div class="dropdown-divider"></div>
-                    <a href="./settings.html" class="dropdown-item">{{ __('navbar.settings') }}</a>
-                    <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('admin-logout').submit();">{{ __('navbar.logout') }}</a>
+                    <a href="./settings.html" class="dropdown-item">{{ __('partials.settings') }}</a>
+                    <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('admin-logout').submit();">{{ __('partials.logout') }}</a>
                     <form id="admin-logout" action="{{ route('admin.logout') }}" style="display: none;">
                         @csrf
                     </form>
@@ -103,7 +103,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('navbar.home') }}
+                                {{ __('partials.home') }}
                             </span>
                         </a>
                     </li>
@@ -505,13 +505,18 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('navbar.languages') }}
+                                {{ __('partials.languages') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
                             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                 <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    {{ $properties['native'] }}
+                                    @if ($properties['native'] == 'العربية')
+                                        <span class="flag flag-country-sy me-1"></span>
+                                    @else
+                                        <span class="flag flag-country-um me-1"></span>
+                                    @endif
+                                    <span> {{ $properties['native'] }}</span>
                                 </a>
                             @endforeach
                         </div>
