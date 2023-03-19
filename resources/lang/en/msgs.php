@@ -2,6 +2,8 @@
 
 return [
 
+    'create'                => 'create new :name',
+
     'updated'               => ':name Has Been Updated Successfuly',
 
     'email_pass_not_valid'  => 'Oops, Email or Password not Valid',

@@ -2,6 +2,8 @@
 
 return [
 
+    'create'                => 'إضافة :name جديد',
+
     'updated'               => 'تم تحديث :name بنجاج',
 
 
