@@ -5,7 +5,11 @@
             <h3 class="card-title">{{ __('setting.details') }}</h3>
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <img src="{{ asset('backend/static/avatars/000m.jpg') }}" alt="">
+                    @if ($setting->getFirstMediaUrl('global_setting'))
+                        <img src="{{ $setting->getFirstMediaUrl('global_setting') }}" alt="{{ $setting->company_code }}" class="img img-thumbnail">
+                    @else
+                        <img src="{{ asset('backend/static/avatars/default-logo.jpg.webp') }}" alt="">
+                    @endif
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.business_profile') }}</h3>
@@ -23,8 +27,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <x-input-label class="form-label" :value="__('setting.company_code')" />
-                    <x-text-input type="text" class="form-control" wire:model="company_code" required />
-                    <x-input-error :messages="$errors->get('company_code')" class="mt-2" />
+                    <x-text-input type="text" class="form-control" readonly="readonly" :value="$setting->company_code" />
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <x-input-label class="form-label" :value="__('setting.mobile')" />

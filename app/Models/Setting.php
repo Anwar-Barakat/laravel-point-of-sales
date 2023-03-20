@@ -15,21 +15,17 @@ class Setting extends Model implements HasMedia
     use HasFactory, InteractsWithMedia, HasTranslations;
 
     protected $fillable = [
-        'company_name',
-        'company_code',
+        'company_name', 'company_code',
         'alert_msg',
-        'address',
-        'mobile',
-        'added_by',
-        'updated_by',
-        'is_active',
+        'address', 'mobile',
+        'added_by', 'updated_by', 'is_active',
     ];
 
     public $translatable = ['company_name'];
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('preview')
+        $this->addMediaConversion('global_setting')
             ->fit(Manipulations::FIT_CROP, 300, 300)
             ->nonQueued();
     }
