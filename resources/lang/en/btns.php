@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'confirm'       => 'Confirm'
+    'confirm'       => 'Confirm',
+    'cancel'        => 'Cancel',
+    'submit'        => 'Submit',
 ];

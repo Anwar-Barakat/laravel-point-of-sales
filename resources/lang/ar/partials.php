@@ -14,4 +14,6 @@ return [
     //? Footer :
     'copyright'             => 'حقوق النشر',
     'all_rights_reserved'   => 'جميع الحقوق محفوظة',
+    'sales_management'      => 'إدارة المبيعات',
+
 ];

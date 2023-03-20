@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'confirm'       => 'تأكيد'
+    'confirm'       => 'تأكيد',
+    'cancel'        => 'إالغاء',
+    'submit'        => 'حفظ البيانات',
 ];

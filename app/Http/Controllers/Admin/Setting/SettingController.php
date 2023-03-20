@@ -14,9 +14,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $settings   = Setting::with(['addedBy:id,name,email', 'updatedBy:id,name,email'])
+        $setting   = Setting::with(['addedBy:id,name,email', 'updatedBy:id,name,email'])
             ->where('company_code', auth()->guard('admin')->user()->company_code)->first();
-        return view('admin.settings.index', ['settings' => $settings]);
+        return view('admin.settings.index', ['setting' => $setting]);
     }
 
     /**

@@ -6,6 +6,7 @@ return [
     'general_setting'   => 'الضبط العام',
     'profile_details'   =>'تفاصيل الملف الشخصي',
     'business_profile'  => 'ملف الأعمال الشخصي',
+    'details'           => 'تفاصيل',
 
     'settings'          => 'الأعدادات',
     'company_name_ar'   => 'اسم الشركة بالعربي',
@@ -17,4 +18,5 @@ return [
     'alert_msg'         => 'رسالة التنبيه',
     'logo'              => 'الشعار',
     'updated_by'        => 'حُدث من قبل',
+    'on_the_date'       => 'بتاريخ',
 ];

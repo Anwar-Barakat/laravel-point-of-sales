@@ -14,4 +14,5 @@ return [
     //? Footer :
     'copyright'             => 'Copyright',
     'all_rights_reserved'   => 'All rights reserved',
+    'sales_management'      => 'Sales management',
 ];

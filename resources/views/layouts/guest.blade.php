@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('backend/dist/css/custom.css') }}">
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
+<body class="text-gray-900 antialiased">
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
