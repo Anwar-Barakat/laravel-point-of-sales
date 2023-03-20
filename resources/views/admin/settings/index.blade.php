@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h4 class="subheader">{{ __('setting.general_setting') }}</h4>
                     <div class="list-group list-group-transparent">
-                        <a href="{{ route('admin.settings.index') }}" class="list-group-item list-group-item-action d-flex align-items-center active">{{ __('setting.general_setting') }}</a>
+                        <a href="{{ route('admin.setting.index') }}" class="list-group-item list-group-item-action d-flex align-items-center active">{{ __('setting.general_setting') }}</a>
                         <a href="" class="list-group-item list-group-item-action d-flex align-items-center">{{ __('partials.profile') }}</a>
                     </div>
                 </div>

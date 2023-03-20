@@ -44,7 +44,7 @@ Route::group(
                 //!_______________________
                 //! Setting
                 //!_______________________
-                Route::resource('settings',                 SettingController::class);
+                Route::resource('setting',                 SettingController::class);
             });
         });
     }

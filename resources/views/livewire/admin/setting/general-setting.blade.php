@@ -11,32 +11,39 @@
             <h3 class="card-title mt-4">{{ __('setting.business_profile') }}</h3>
             <div class="row g-3">
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="form-label">{{ __('setting.company_name_ar') }}</div>
-                    <input type="text" class="form-control" wire:model="company_name_ar">
+                    <x-input-label class="form-label" :value="__('setting.company_name_ar')" />
+                    <x-text-input type="text" class="form-control" wire:model="company_name_ar" required />
+                    <x-input-error :messages="$errors->get('company_name_ar')" class="mt-2" />
+
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="form-label">{{ __('setting.company_name_en') }}</div>
-                    <input type="text" class="form-control" wire:model="company_name_en">
+                    <x-input-label class="form-label" :value="__('setting.company_name_en')" />
+                    <x-text-input type="text" class="form-control" wire:model="company_name_en" required />
+                    <x-input-error :messages="$errors->get('company_name_en')" class="mt-2" />
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="form-label">{{ __('setting.company_code') }}</div>
-                    <input type="text" class="form-control" wire:model="company_code">
+                    <x-input-label class="form-label" :value="__('setting.company_code')" />
+                    <x-text-input type="text" class="form-control" wire:model="company_code" required />
+                    <x-input-error :messages="$errors->get('company_code')" class="mt-2" />
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="form-label">{{ __('setting.mobile') }}</div>
-                    <input type="text" class="form-control" wire:model="mobile">
+                    <x-input-label class="form-label" :value="__('setting.mobile')" />
+                    <x-text-input type="text" class="form-control" wire:model="mobile" required />
+                    <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.address') }}</h3>
             <div class="row g-3">
                 <div class="col-md-12 col-lg-6">
-                    <input type="text" class="form-control" wire:model="address">
+                    <x-text-input type="text" class="form-control" wire:model="address" required />
+                    <x-input-error :messages="$errors->get('address')" class="mt-2" />
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.alert_msg') }}</h3>
             <div class="row g-3">
                 <div class="col-md-12 col-lg-6">
-                    <input type="text" class="form-control" wire:model="alert_msg">
+                    <x-text-input type="text" class="form-control" wire:model="alert_msg" required />
+                    <x-input-error :messages="$errors->get('alert_msg')" class="mt-2" />
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.updated_by') }}</h3>
@@ -54,7 +61,8 @@
 
             <h3 class="card-title mt-4">{{ __('setting.logo') }}</h3>
             <div class="row col-sm-12 col-lg-6">
-                <input type="file" class="form-control" wire:model=logo />
+                <x-text-input type="file" class="form-control" wire:model="logo" />
+                <x-input-error :messages="$errors->get('logo')" class="mt-2" />
             </div>
         </div>
         <div class="card-footer bg-transparent mt-auto">
