@@ -63,9 +63,11 @@
             </div>
 
             <h3 class="card-title mt-4">{{ __('setting.logo') }}</h3>
-            <div class="row col-sm-12 col-lg-6">
-                <x-text-input type="file" class="form-control" wire:model="logo" />
-                <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <x-text-input type="file" class="form-control" wire:model="logo" />
+                    <x-input-error :messages="$errors->get('logo')" class="mt-2" />
+                </div>
             </div>
         </div>
         <div class="card-footer bg-transparent mt-auto">

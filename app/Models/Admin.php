@@ -23,6 +23,8 @@ class Admin extends Authenticatable implements HasMedia
         'email',
         'password',
         'status',
+        'address',
+        'bio',
         'company_code'
     ];
 
@@ -36,8 +38,8 @@ class Admin extends Authenticatable implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('preview')
-            ->fit(Manipulations::FIT_CROP, 300, 300)
+        $this->addMediaConversion('admin_avatar')
+            ->fit(Manipulations::FIT_CROP, 300)
             ->nonQueued();
     }
 }

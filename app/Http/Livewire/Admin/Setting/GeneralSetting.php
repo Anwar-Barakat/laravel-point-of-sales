@@ -54,6 +54,7 @@ class GeneralSetting extends Component
 
             toastr()->success(__('msgs.updated', ['name' => __('setting.settings')]));
         } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
         }
     }
 

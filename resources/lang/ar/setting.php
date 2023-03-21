@@ -21,4 +21,5 @@ return [
     'logo'              => 'الشعار',
     'updated_by'        => 'حُدث من قبل',
     'on_the_date'       => 'بتاريخ',
+    'avatar'            => 'الأفتار',
 ];

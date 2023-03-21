@@ -21,4 +21,5 @@ return [
     'logo'              => 'Logo',
     'updated_by'        => 'Updated By',
     'on_the_date'       => 'On the date',
+    'avatar'            => 'Avatar',
 ];
