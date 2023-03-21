@@ -3,6 +3,8 @@
 return [
 
     'create'                => 'إضافة :name جديد',
+    'edit'                  => 'تعديل :name',
+    'update'                => 'تحديث :name',
 
     'updated'               => 'تم تحديث :name بنجاج',
 

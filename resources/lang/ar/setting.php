@@ -4,7 +4,7 @@ return [
 
     'my_account'        => 'الملف الشخصي',
     'general_setting'   => 'الضبط العام',
-    'profile_details'   =>'تفاصيل الملف الشخصي',
+    'profile_details'   => 'تفاصيل الملف الشخصي',
     'business_profile'  => 'ملف الأعمال الشخصي',
     'details'           => 'تفاصيل',
 
@@ -12,6 +12,8 @@ return [
     'company_name_ar'   => 'اسم الشركة بالعربي',
     'company_name_en'   => 'اسم الشركة بالأنكليزي',
     'company_code'      => 'رمز الشركة',
+    'company'           => 'الشركة',
+    'bio'               => 'السيرة الذاتية',
     'status'            => 'الحالة',
     'mobile'            => 'الهاتف',
     'address'           => 'العنوان',

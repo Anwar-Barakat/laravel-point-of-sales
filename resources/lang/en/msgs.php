@@ -1,8 +1,9 @@
 <?php
 
 return [
-
-    'create'                => 'create new :name',
+    'create'                => 'Create new :name',
+    'edit'                  => 'Edit :name',
+    'update'                => 'Update :name',
 
     'updated'               => ':name Has Been Updated Successfuly',
 

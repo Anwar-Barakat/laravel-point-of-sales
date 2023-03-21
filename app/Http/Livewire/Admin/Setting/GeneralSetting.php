@@ -21,7 +21,7 @@ class GeneralSetting extends Component
         'address'           => ['required', 'min:3'],
         'mobile'            => ['required'],
         'alert_msg'         => ['required'],
-        'logo'              => ['nullable', 'image', 'max:1024', 'mimes:jpeg,png,jpg']
+        'logo'              => ['nullable', 'image', 'max:1024', 'mimes:jpeg,png,jpg,svg']
     ];
 
     public function mount()
@@ -33,8 +33,12 @@ class GeneralSetting extends Component
         $this->alert_msg        = $this->setting->alert_msg;
     }
 
+    public function updated($fields)
+    {
+        $this->validateOnly($fields, $this->rules);
+    }
 
-    public function update(Request $request)
+    public function updateSetting()
     {
         try {
             $validation                         = $this->validate();

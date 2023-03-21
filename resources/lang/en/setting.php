@@ -11,6 +11,8 @@ return [
     'settings'          => 'Settings',
     'company_name_ar'   => 'Arabic Company name',
     'company_name_en'   => 'English Company name',
+    'company'           => 'Company',
+    'bio'               => 'About me',
     'company_code'      => 'Company code',
     'status'            => 'Status',
     'mobile'            => 'Mobile',

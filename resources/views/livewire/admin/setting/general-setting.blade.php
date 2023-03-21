@@ -1,12 +1,12 @@
 <div class="col d-flex flex-column">
-    <form wire:submit.prevent='update'>
+    <form wire:submit.prevent='updateSetting'>
         <div class="card-body">
             <h2 class="mb-4">{{ __('setting.general_setting') }}</h2>
             <h3 class="card-title">{{ __('setting.details') }}</h3>
             <div class="row align-items-center">
                 <div class="col-auto">
                     @if ($setting->getFirstMediaUrl('global_setting'))
-                        <img src="{{ $setting->getFirstMediaUrl('global_setting') }}" alt="{{ $setting->company_code }}" class="img img-thumbnail">
+                        <img src="{{ $setting->getFirstMediaUrl('global_setting') }}" alt="{{ $setting->company_code }}" class="img img-thumbnail" width="200">
                     @else
                         <img src="{{ asset('backend/static/avatars/default-logo.jpg.webp') }}" alt="">
                     @endif
@@ -51,12 +51,12 @@
             </div>
             <h3 class="card-title mt-4">{{ __('setting.updated_by') }}</h3>
             <div class="row g-3">
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-12">
                     @if (!$setting->updated_by)
                         {{ __('msgs.not_found') }}
                     @else
                         {{ $setting->updatedBy->name ?? '' }}
-                        {{ __('setting.on_the_date') }}
+                        <b>{{ __('setting.on_the_date') }}</b>
                         ( {{ Carbon\Carbon::parse($setting->updated_at)->format('Y-m-d H:m A') }} )
                     @endif
                 </div>
@@ -74,6 +74,9 @@
                     {{ __('btns.cancel') }}
                 </a>
                 <button type="subnit" class="btn btn-primary">
+                    <div wire:loading.delay wire:key='updateSetting' wire:target='updateSetting'>
+                        <i class="fa fa-spinner fa-spin text-lg"></i>
+                    </div>
                     {{ __('btns.submit') }}
                 </button>
             </div>

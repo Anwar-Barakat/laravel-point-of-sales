@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Profile\ProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -41,10 +42,16 @@ Route::group(
                 Route::get('/logout',                       LogoutController::class)->name('logout');
                 Route::get('/dashboard',                    DashboardController::class)->name('dashboard');
 
+
+                //!_______________________
+                //! Profile
+                //!_______________________
+                Route::resource('profile',                  ProfileController::class)->only('index');
+
                 //!_______________________
                 //! Setting
                 //!_______________________
-                Route::resource('setting',                 SettingController::class);
+                Route::resource('setting',                 SettingController::class)->only(['index']);
             });
         });
     }

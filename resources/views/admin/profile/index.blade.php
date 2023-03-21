@@ -9,14 +9,15 @@
         <div class="row g-0">
             <div class="col-3 d-none d-md-block border-end">
                 <div class="card-body">
-                    <h4 class="subheader">{{ __('setting.general_setting') }}</h4>
+                    <h4 class="subheader">{{ __('partials.profile') }}</h4>
                     <div class="list-group list-group-transparent">
                         <a href="{{ route('admin.setting.index') }}" class="list-group-item list-group-item-action d-flex align-items-center active">{{ __('setting.general_setting') }}</a>
                         <a href="{{ route('admin.profile.index') }}" class="list-group-item list-group-item-action d-flex align-items-center">{{ __('partials.profile') }}</a>
                     </div>
                 </div>
             </div>
-            @livewire('admin.setting.general-setting', ['setting' => $setting])
+
+            @livewire('admin.profile.admin-profile')
         </div>
     </div>
 </x-master-layout>

@@ -7,6 +7,5 @@
 <script src="{{ asset('backend/dist/js/tabler.min.js') }}" defer></script>
 @stack('scripts')
 
-
 <livewire:scripts />
 <script src="{{ asset('backend/dist/js/demo.min.js') }}" defer></script>
