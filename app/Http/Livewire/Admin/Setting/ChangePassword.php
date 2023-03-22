@@ -31,7 +31,8 @@ class ChangePassword extends Component
                 $this->reset();
                 return false;
             }
-            $admin  =  Admin::findOrFail(auth()->guard('admin')->id());
+
+            $admin  = Admin::findOrFail(auth()->guard('admin')->id());
             $admin->update(['password' => Hash::make($this->password)]);
             toastr()->success(__('msgs.updated', ['name' => __('auth.password')]));
             $this->reset();
