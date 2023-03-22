@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Profile;
+namespace App\Http\Livewire\Admin\Setting;
 
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +11,7 @@ class AdminProfile extends Component
 {
     use WithFileUploads;
 
-    protected $auth;
+    public $auth;
 
     public $email, $name, $address, $bio, $avatar;
 
@@ -19,7 +19,7 @@ class AdminProfile extends Component
         'name'      => ['required', 'min:3'],
         'bio'       => ['required', 'min:10'],
         'address'   => ['required', 'min:10'],
-        'avatar'    => ['nullable', 'image', 'max:1024']
+        'avatar'    => ['nullable', 'image', 'max:2048']
     ];
 
     public function mount()
@@ -47,7 +47,6 @@ class AdminProfile extends Component
                 $admin->clearMediaCollection('admin_avatar');
                 $admin->addMedia($this->avatar)->toMediaCollection('admin_avatar');
             }
-
             toastr()->success(__('msgs.updated', ['name' => __('partials.profile')]));
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors(['error' => $th->getMessage()]);
@@ -56,6 +55,6 @@ class AdminProfile extends Component
 
     public function render()
     {
-        return view('livewire.admin.profile.admin-profile');
+        return view('livewire.admin.setting.admin-profile');
     }
 }

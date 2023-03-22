@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Admin\Setting;
 
-use App\Models\Setting;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;

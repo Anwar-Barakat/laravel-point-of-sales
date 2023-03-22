@@ -2,9 +2,9 @@
 <div class="col d-flex flex-column">
     <form wire:submit.prevent='updateInfo'>
         <div class="card-body">
-            @if ($errors->any())
+            {{-- @if ($errors->any())
                 <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="close" data    -dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Close</span>
                     </button>
@@ -14,8 +14,19 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
-            <h3 class="card-title">{{ __('msgs.edit', ['name' => __('partials.profile')]) }}</h3>
+            @endif --}}
+            <h2 class="mb-4">{{ __('msgs.edit', ['name' => __('partials.profile')]) }}</h2>
+            <div class="row row-cards">
+                <div class="col-sm-12 col-md-6">
+                    <div class="mb-3">
+                        @if (auth()->guard('admin')->user()->getFirstMediaUrl('admin_avatar'))
+                            <img src="{{ auth()->guard('admin')->user()->getFirstMediaUrl('admin_avatar') }}" alt="{{ auth()->guard('admin')->user()->company_code }}" class="img img-thumbnail" width="200">
+                        @else
+                            <img src="{{ asset('backend/static/avatars/default-logo.jpg.webp') }}" alt="">
+                        @endif
+                    </div>
+                </div>
+            </div>
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">

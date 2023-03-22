@@ -18,7 +18,6 @@
                     <x-input-label class="form-label" :value="__('setting.company_name_ar')" />
                     <x-text-input type="text" class="form-control" wire:model="company_name_ar" required />
                     <x-input-error :messages="$errors->get('company_name_ar')" class="mt-2" />
-
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <x-input-label class="form-label" :value="__('setting.company_name_en')" />
