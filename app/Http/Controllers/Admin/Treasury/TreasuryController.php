@@ -14,7 +14,8 @@ class TreasuryController extends Controller
      */
     public function index()
     {
-       
+        $treasuries = Treasury::with(['addedBy:id,name', 'updatedBy:id,name'])->latest()->paginate(PAGINATION_COUNT);
+        return view('admin.treasuries.index', ['treasuries' => $treasuries]);
     }
 
     /**
