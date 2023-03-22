@@ -58,27 +58,16 @@
                                     {{ $treasury->last_payment_collect }}
                                 </td>
                                 <td class="sort-quantity">
-                                    @if (!$setting->updated_by)
+                                    @if (!$treasury->updated_by)
                                         {{ __('msgs.not_found') }}
                                     @else
-                                        {{ $setting->updatedBy->name ?? '' }}
+                                        {{ $treasury->updatedBy->name ?? '' }}
                                         <b>{{ __('setting.on_the_date') }}</b>
-                                        ({{ Carbon\Carbon::parse($setting->updated_at)->format('Y-m-d H:m A') }})
+                                        ({{ Carbon\Carbon::parse($treasury->updated_at)->format('Y-m-d H:m A') }})
                                     @endif
                                 </td>
                                 <td class="sort-progress" data-progress="30">
-                                    <div class="row align-items-center">
-                                        <div class="col-12 col-lg-auto">
-                                            30%
-                                        </div>
-                                        <div class="col">
-                                            <div class="progress" style="width: 5rem">
-                                                <div class="progress-bar" style="width: 30%" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="30% Complete">
-                                                    <span class="visually-hidden">30% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {{ $treasury->created_at }}
                                 </td>
                             </tr>
                         @empty

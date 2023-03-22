@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Treasury extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'name',
@@ -22,12 +23,14 @@ class Treasury extends Model
         'is_active',
     ];
 
+    public $translatable = ['name'];
+
 
     protected $casts = [
         'created_at'    => 'date:Y-m-d h:i',
     ];
 
-    public function createdAt(): Attribute
+    public function isMaster(): Attribute
     {
         $isMaster = $this->attributes['is_master'];
         return new Attribute(fn (string $value) => $isMaster ? __('treasury.master') : __('treasury.branch'));
