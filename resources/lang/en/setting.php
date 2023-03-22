@@ -25,5 +25,5 @@ return [
     'change_password'       => 'Change password',
     'password'              => 'Password',
     'current_password'      => 'Current password',
-    'confirmation_password' => 'Confirmation password',
+    'password_confirmation' => 'Password confirmation',
 ];

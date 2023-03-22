@@ -15,4 +15,5 @@ return [
 
     //? Public Masseges :
     'not_found'             => 'لا يوجد',
+    'not_valid'             => ':name not valid',
 ];

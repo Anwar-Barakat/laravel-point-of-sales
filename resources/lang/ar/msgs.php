@@ -17,4 +17,5 @@ return [
 
     //? Public Masseges :
     'not_found'             => 'Not found',
+    'not_valid'             => ':name غير صالح',
 ];

@@ -26,5 +26,5 @@ return [
     'password'              => 'كلمة المرور',
     'new_password'          => 'كلمة المرور الجديدة',
     'current_password'      => 'كلمة المرور الحالية',
-    'confirmation_password' => 'تأكيد كلمة المرور',
+    'password_confirmation' => 'تأكيد كلمة المرور',
 ];
