@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('treasuries', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->integer('company_code');
-            $table->string('alert_msg');
-            $table->string('address');
-            $table->string('mobile');
+            $table->string('name');
+            $table->boolean('is_master')->default(0)->comment('1 => is master');
+            $table->bigInteger('last_payment_receipt');
+            $table->bigInteger('last_payment_collect');
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->constrained('admins')->cascadeOnUpdate();
+            $table->integer('company_code');
+            $table->date('date')->comment('for searching');
             $table->boolean('is_active')->default(true)->comment('1 => is active');
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('treasuries');
     }
 };
