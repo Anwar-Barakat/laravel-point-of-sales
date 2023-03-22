@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Treasury;
 
-use App\Http\Requests\StoreTreasuryRequest;
-use App\Http\Requests\UpdateTreasuryRequest;
 use App\Models\Treasury;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreTreasuryRequest;
+use App\Http\Requests\Admin\UpdateTreasuryRequest;
 
 class TreasuryController extends Controller
 {
@@ -13,7 +14,7 @@ class TreasuryController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**

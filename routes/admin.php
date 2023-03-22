@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
+use App\Http\Controllers\Admin\Treasury\TreasuryController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -21,6 +22,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | be assigned to the "admin" middleware group. Make something great!
 |
 */
+
+define('PAGINATION_COUNT', 10);
 
 Route::group(
     [
@@ -47,9 +50,14 @@ Route::group(
                 //!_______________________
                 //! Setting
                 //!_______________________
-                Route::resource('/setting',                 SettingController::class)->only(['index']);
+                Route::resource('/settings',                SettingController::class)->only(['index']);
                 Route::get('/profile',                      AdminProfileController::class)->name('setting.profile');
                 Route::get('/change-password',              AdminChangePasswordController::class)->name('setting.change-password');
+
+                //!_______________________
+                //! Treasuries
+                //!_______________________
+                Route::resource('treasuries',               TreasuryController::class);
             });
         });
     }

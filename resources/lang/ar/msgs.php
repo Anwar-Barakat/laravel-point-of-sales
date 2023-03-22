@@ -18,4 +18,6 @@ return [
     //? Public Masseges :
     'not_found'             => 'Not found',
     'not_valid'             => ':name غير صالح',
+    'created_at'            => 'تاريخ الإضافة',
+    'updated_at'            => 'تاريخ التحديث',
 ];

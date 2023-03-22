@@ -16,4 +16,7 @@ return [
     //? Public Masseges :
     'not_found'             => 'لا يوجد',
     'not_valid'             => ':name not valid',
+    'created_at'            => 'Created at',
+    'updated_at'            => 'Updated at',
+
 ];
