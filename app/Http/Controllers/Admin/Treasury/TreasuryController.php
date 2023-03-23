@@ -47,7 +47,7 @@ class TreasuryController extends Controller
      */
     public function edit(Treasury $treasury)
     {
-        //
+        return view('admin.treasuries.edit', ['treasury' => $treasury]);
     }
 
     /**

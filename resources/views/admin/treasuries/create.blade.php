@@ -5,5 +5,4 @@
 
 
     @livewire('admin.treasury.store-treasury')
-
 </x-master-layout>

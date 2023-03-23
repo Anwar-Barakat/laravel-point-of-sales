@@ -2,7 +2,8 @@
 
 return [
     //? Navbar :
-    'home'          => 'Home',
+    'home'          => 'Dashboard',
+    'main_elements' => 'Main Elements',
     'languages'     => 'Languages',
     'status'        => 'Status',
     'profile'       => 'Profile',

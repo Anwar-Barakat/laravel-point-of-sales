@@ -3,6 +3,7 @@
 return [
     //? Actions :
     'all'                   => 'All :name',
+    'list'                  => ':name List',
     'create'                => 'Create new :name',
     'edit'                  => 'Edit :name',
     'update'                => 'Update :name',

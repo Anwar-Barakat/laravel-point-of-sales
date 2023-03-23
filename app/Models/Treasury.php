@@ -30,19 +30,19 @@ class Treasury extends Model
         'created_at'    => 'date:Y-m-d h:i',
     ];
 
-    protected function isMaster(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->attributes['is_master'] ? __('treasury.master') : __('treasury.branch'),
-        );
-    }
+    // protected function isMaster(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn () => $this->attributes['is_master'] ? __('treasury.master') : __('treasury.branch'),
+    //     );
+    // }
 
-    protected function isActive(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->attributes['is_active'] ? __('treasury.active') : __('treasury.not_active'),
-        );
-    }
+    // protected function isActive(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn () => $this->attributes['is_active'] ? __('treasury.active') : __('treasury.not_active'),
+    //     );
+    // }
 
     public function addedBy()
     {

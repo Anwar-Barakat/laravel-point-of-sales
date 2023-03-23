@@ -3,6 +3,7 @@
 return [
     //? Actions :
     'all'                   => 'جميع :name',
+    'list'                  => 'قائمة :name',
     'create'                => 'إضافة :name جديد',
     'edit'                  => 'تعديل :name',
     'update'                => 'تحديث :name',
