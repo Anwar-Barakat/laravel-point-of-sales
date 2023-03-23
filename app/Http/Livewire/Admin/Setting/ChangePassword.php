@@ -18,7 +18,7 @@ class ChangePassword extends Component
 
     public function updated($fields)
     {
-        return $this->validateOnly($fields, $this->rules);
+        return $this->validateOnly($fields);
     }
 
     public function updatePassword()

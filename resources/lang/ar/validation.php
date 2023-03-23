@@ -157,12 +157,20 @@ return [
         'current_password'          => 'كلمة المرور الحالية',
         'password_confirmation'     => 'تأكيد كلمة المرور',
 
-        //? admins table :
+        //? admins table
         'name'          => 'الاسم',
         'bio'           => 'السيرة الذاتية',
         'email'         => 'البريد الألكتروني',
         'password'      => 'كلمة المرو',
         'status'        => 'الحالة',
+
+        //? treasuries table
+        'is_master'             => 'رئيسية',
+        'is_active'             => 'مُفعلة',
+        'last_payment_receipt'  => 'آخر إيصال دفع',
+        'last_payment_collect'  => 'آخر إيصال تجميع',
+        'treasury_name_ar'      => 'اسم الخزنة بالعربي',
+        'treasury_name_en'      => 'اسم الخزنة بالأنكليزي',
     ],
 
 ];

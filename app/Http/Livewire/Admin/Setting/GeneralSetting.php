@@ -34,7 +34,7 @@ class GeneralSetting extends Component
 
     public function updated($fields)
     {
-        $this->validateOnly($fields, $this->rules);
+        $this->validateOnly($fields);
     }
 
     public function updateSetting()

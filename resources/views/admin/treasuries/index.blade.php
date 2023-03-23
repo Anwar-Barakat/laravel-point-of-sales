@@ -22,13 +22,13 @@
                                 <button class="table-sort" data-sort="sort-city"> {{ __('treasury.is_master') }}</button>
                             </th>
                             <th>
+                                <button class="table-sort" data-sort="sort-quantity"> {{ __('treasury.is_active') }}</button>
+                            </th>
+                            <th>
                                 <button class="table-sort" data-sort="sort-type"> {{ __('treasury.last_payment_receipt') }}</button>
                             </th>
                             <th>
                                 <button class="table-sort" data-sort="sort-score"> {{ __('treasury.last_payment_receipt') }}</button>
-                            </th>
-                            <th>
-                                <button class="table-sort" data-sort="sort-quantity"> {{ __('treasury.is_active') }}</button>
                             </th>
                             <th>
                                 <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.created_at') }}</button>
@@ -41,9 +41,9 @@
                                 <td class="sort-name">{{ $loop->iteration }}</td>
                                 <td class="sort-city">{{ $treasury->name }}</td>
                                 <td class="sort-type">{{ $treasury->is_master }}</td>
+                                <td class="sort-quantity"> {{ $treasury->is_active }}</td>
                                 <td class="sort-score">{{ $treasury->last_payment_receipt }}</td>
                                 <td class="sort-date"> {{ $treasury->last_payment_collect }}</td>
-                                <td class="sort-quantity"> {{ $treasury->is_active }}</td>
                                 <td class="sort-progress"> {{ $treasury->created_at }} </td>
                             </tr>
                         @empty

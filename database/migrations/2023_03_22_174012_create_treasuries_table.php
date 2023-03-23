@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('treasuries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->boolean('is_master')->default(0)->comment('1 => is master');
+            $table->boolean('is_active')->default(1)->comment('1 => is active');
             $table->bigInteger('last_payment_receipt');
             $table->bigInteger('last_payment_collect');
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
-            $table->foreignId('updated_by')->constrained('admins')->cascadeOnUpdate();
+            $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
             $table->date('date')->comment('for searching');
-            $table->boolean('is_active')->default(true)->comment('1 => is active');
             $table->timestamps();
         });
     }

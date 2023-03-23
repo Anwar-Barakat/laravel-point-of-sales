@@ -157,12 +157,22 @@ return [
         'current_password'          => 'Current password',
         'password_confirmation'     => 'Password Confirmation',
 
-        //? admins table :
+        //? admins table
         'name'          => 'Name',
         'bio'           => 'Bio',
         'email'         => 'Email',
         'password'      => 'Password',
         'status'        => 'Status',
+
+
+        //? treasuries table
+        'is_master'             => 'Is master',
+        'is_active'             => 'Is active',
+        'last_payment_receipt'  => 'Last payment receipt',
+        'last_payment_collect'  => 'Last payment collect',
+        'treasury_name_ar'      => 'Arabic treasury name',
+        'treasury_name_en'      => 'English treasury name',
+
     ],
 
 ];

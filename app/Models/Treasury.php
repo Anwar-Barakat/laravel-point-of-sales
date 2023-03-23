@@ -14,13 +14,13 @@ class Treasury extends Model
     protected $fillable = [
         'name',
         'is_master',
+        'is_active',
         'last_payment_receipt',
         'last_payment_collect',
         'added_by',
         'updated_by',
         'company_code',
         'date',
-        'is_active',
     ];
 
     public $translatable = ['name'];
@@ -30,16 +30,18 @@ class Treasury extends Model
         'created_at'    => 'date:Y-m-d h:i',
     ];
 
-    public function isMaster(): Attribute
+    protected function isMaster(): Attribute
     {
-        $isMaster = $this->attributes['is_master'];
-        return new Attribute(fn () => $isMaster ? __('treasury.master') : __('treasury.branch'));
+        return Attribute::make(
+            get: fn () => $this->attributes['is_master'] ? __('treasury.master') : __('treasury.branch'),
+        );
     }
 
-    public function isActive(): Attribute
+    protected function isActive(): Attribute
     {
-        $isMaster = $this->attributes['is_active'];
-        return new Attribute(fn () => $isMaster ? __('treasury.active') : __('treasury.not_active'));
+        return Attribute::make(
+            get: fn () => $this->attributes['is_active'] ? __('treasury.active') : __('treasury.not_active'),
+        );
     }
 
     public function addedBy()
