@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(1)->comment('1 => is active');
             $table->bigInteger('last_payment_receipt');
             $table->bigInteger('last_payment_collect');
-            $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
+            $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
             $table->date('date')->comment('for searching');

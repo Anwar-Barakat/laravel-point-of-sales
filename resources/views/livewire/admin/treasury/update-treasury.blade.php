@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row g-0">
         <div class="col d-flex flex-column">
-            <form wire:submit.prevent='store'>
+            <form wire:submit.prevent='update'>
                 <div class="card-body">
                     <h3 class="mb-4">{{ __('msgs.main_info') }}</h3>
                     <div class="row row-cards">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-primary">{{ __('btns.submit') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ __('btns.update') }}</button>
                 </div>
             </form>
         </div>

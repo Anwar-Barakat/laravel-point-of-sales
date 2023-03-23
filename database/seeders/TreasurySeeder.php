@@ -18,10 +18,7 @@ class TreasurySeeder extends Seeder
         $faker  = Factory::create();
         $treasuries = [
             [
-                'name'                  => [
-                    'ar'    => 'كاشير ١',
-                    'en'    => 'Casher 1'
-                ],
+                'name'                  => 'Casher 1',
                 'is_master'             => rand(1, 0),
                 'is_active'             => rand(1, 0),
                 'last_payment_receipt'  => 1,
@@ -34,7 +31,7 @@ class TreasurySeeder extends Seeder
         ];
 
         foreach ($treasuries as $treasury) {
-            if (is_null(Treasury::where('name->en', $treasury['name']['en'])->first()))
+            if (is_null(Treasury::where('name', $treasury['name'])->first()))
                 Treasury::create($treasury);
         }
     }

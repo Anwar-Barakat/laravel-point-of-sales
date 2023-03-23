@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class Treasury extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -22,9 +21,6 @@ class Treasury extends Model
         'company_code',
         'date',
     ];
-
-    public $translatable = ['name'];
-
 
     protected $casts = [
         'created_at'    => 'date:Y-m-d h:i',

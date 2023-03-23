@@ -23,7 +23,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-define('PAGINATION_COUNT', 1);
+define('PAGINATION_COUNT', 10);
 
 Route::group(
     [

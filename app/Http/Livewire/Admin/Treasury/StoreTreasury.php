@@ -8,15 +8,14 @@ use Livewire\Component;
 
 class StoreTreasury extends Component
 {
-    public $treasury_name_ar, $treasury_name_en,
+    public $name,
         $is_master,
         $is_active,
         $last_payment_receipt,
         $last_payment_collect;
 
     protected $rules = [
-        'treasury_name_ar'      => ['required', 'string', 'min:3'],
-        'treasury_name_en'      => ['required', 'string', 'min:3'],
+        'name'                  => ['required', 'string', 'min:3'],
         'is_master'             => ['required', 'in:0,1'],
         'is_active'             => ['required', 'in:0,1'],
         'last_payment_receipt'  => ['required', 'integer', 'min:1'],
@@ -39,23 +38,21 @@ class StoreTreasury extends Component
                 1- check if the treasury exists for auth company code
                 2-  check if a master treasury exists for auth company code
             */
-            $masterExists   = Treasury::where(['company_code' => $authComp, 'name->en' => $this->treasury_name_en, 'is_master' => '1'])->first();
-            if ($masterExists) {
-                toastr()->error(__('msgs.exists', ['name' => __('treasury.master_treasury')]));
-                return false;
-            }
 
-            $TreasuryExists = Treasury::where(['company_code' => $authComp, 'name->en' => $this->treasury_name_en])->first();
+            $TreasuryExists = Treasury::where(['company_code' => $authComp, 'name' => $this->name])->first();
             if ($TreasuryExists) {
                 toastr()->error(__('msgs.exists', ['name' => __('treasury.treasury')]));
                 return false;
             }
 
+            $masterExists   = Treasury::where(['company_code' => $authComp, 'is_master' => '1'])->first();
+            if ($masterExists) {
+                toastr()->error(__('msgs.exists', ['name' => __('treasury.master_treasury')]));
+                return false;
+            }
+
             Treasury::create([
-                'name'                  => [
-                    'ar'                => $this->treasury_name_ar,
-                    'en'                => $this->treasury_name_en,
-                ],
+                'name'                  => $this->name,
                 'is_master'             => $this->is_master,
                 'is_active'             => $this->is_active,
                 'last_payment_receipt'  => $this->last_payment_receipt,

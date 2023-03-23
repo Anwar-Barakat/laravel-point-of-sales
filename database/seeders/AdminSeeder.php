@@ -23,13 +23,13 @@ class AdminSeeder extends Seeder
                 'status'            => true,
                 'company_code'      => 1
             ],
-            [
-                'name'              => fake()->name(),
-                'email'             => 'brkatanwar0@gmail.com',
-                'password'          => Hash::make('adminadmin'),
-                'status'            => true,
-                'company_code'      => 1
-            ],
+            // [
+            //     'name'              => fake()->name(),
+            //     'email'             => 'brkatanwar0@gmail.com',
+            //     'password'          => Hash::make('adminadmin'),
+            //     'status'            => true,
+            //     'company_code'      => 1
+            // ],
         ];
 
         foreach ($admins as $admin) {

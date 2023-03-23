@@ -3,6 +3,7 @@
 return [
     'confirm'       => 'تأكيد',
     'edit'          => 'تعديل',
+    'update'        => 'تحديث',
     'cancel'        => 'إالغاء',
     'submit'        => 'حفظ البيانات',
     'select'        => 'أختر',
