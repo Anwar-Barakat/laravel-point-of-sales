@@ -9,4 +9,10 @@ return [
     'last_payment_collect'  => 'Last payment collect',
     'master'                => 'Master',
     'branch'                => 'Branch',
+    'active'                => 'Active',
+    'not_active'            => 'Not active',
+    'name_ar'               => 'Arabic treasury name',
+    'name_en'               => 'English treasury name',
+    'yes'                   => 'Yes',
+    'no'                    => 'No',
 ];

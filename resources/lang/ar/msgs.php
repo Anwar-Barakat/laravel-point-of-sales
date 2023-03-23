@@ -1,11 +1,13 @@
 <?php
 
 return [
-
+    //? Actions :
+    'all'                   => 'جميع :name',
     'create'                => 'إضافة :name جديد',
     'edit'                  => 'تعديل :name',
     'update'                => 'تحديث :name',
 
+    //? Results :
     'updated'               => 'تم تحديث :name بنجاج',
 
 
@@ -20,4 +22,5 @@ return [
     'not_valid'             => ':name غير صالح',
     'created_at'            => 'تاريخ الإضافة',
     'updated_at'            => 'تاريخ التحديث',
+    'main_info'             => 'المعلومات الأساسية',
 ];

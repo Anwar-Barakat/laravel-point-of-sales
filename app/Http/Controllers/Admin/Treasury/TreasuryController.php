@@ -23,7 +23,7 @@ class TreasuryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.treasuries.create');
     }
 
     /**

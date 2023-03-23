@@ -1,10 +1,14 @@
 <?php
 
 return [
+    //? Actions :
+    'all'                   => 'All :name',
     'create'                => 'Create new :name',
     'edit'                  => 'Edit :name',
     'update'                => 'Update :name',
 
+
+    //? Results :
     'updated'               => ':name Has Been Updated Successfuly',
 
     'email_pass_not_valid'  => 'Oops, Email or Password not Valid',
@@ -18,5 +22,5 @@ return [
     'not_valid'             => ':name not valid',
     'created_at'            => 'Created at',
     'updated_at'            => 'Updated at',
-
+    'main_info'             => 'Main Information',
 ];

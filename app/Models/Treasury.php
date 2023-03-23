@@ -33,7 +33,13 @@ class Treasury extends Model
     public function isMaster(): Attribute
     {
         $isMaster = $this->attributes['is_master'];
-        return new Attribute(fn (string $value) => $isMaster ? __('treasury.master') : __('treasury.branch'));
+        return new Attribute(fn () => $isMaster ? __('treasury.master') : __('treasury.branch'));
+    }
+
+    public function isActive(): Attribute
+    {
+        $isMaster = $this->attributes['is_active'];
+        return new Attribute(fn () => $isMaster ? __('treasury.active') : __('treasury.not_active'));
     }
 
     public function addedBy()

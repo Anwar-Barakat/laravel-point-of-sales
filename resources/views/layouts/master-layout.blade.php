@@ -33,7 +33,7 @@
                         <div class="col">
                             <!-- Page pre-title -->
                             <a href="{{ route('admin.dashboard') }}" class="page-pretitle">
-                                {{ __('partials.home') }}
+                                @yield('breadcrumbSubtitle', __('partials.home'))
                             </a>
                             <h2 class="page-title">
                                 @yield('breadcrumbTitle')
