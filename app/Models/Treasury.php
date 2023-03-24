@@ -26,6 +26,14 @@ class Treasury extends Model
         'created_at'    => 'date:Y-m-d h:i',
     ];
 
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'LIKE', $term);
+        });
+    }
+
     // protected function isMaster(): Attribute
     // {
     //     return Attribute::make(

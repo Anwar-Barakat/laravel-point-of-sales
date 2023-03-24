@@ -20,4 +20,5 @@ return [
     'no'                    => 'No',
 
     'master_treasury'       => 'Master treasury',
+    'added_by'              => 'Added by',
 ];

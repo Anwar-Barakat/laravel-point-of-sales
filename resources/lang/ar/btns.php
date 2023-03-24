@@ -7,5 +7,7 @@ return [
     'cancel'        => 'إالغاء',
     'submit'        => 'حفظ البيانات',
     'select'        => 'أختر',
-    'actions'       => 'العمليات'
+    'actions'       => 'العمليات',
+
+    'search'        => 'بحث',
 ];

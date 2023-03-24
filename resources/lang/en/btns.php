@@ -8,4 +8,6 @@ return [
     'submit'        => 'Submit',
     'select'        => 'Select',
     'actions'       => 'Actions',
+
+    'search'        => 'Search',
 ];

@@ -20,4 +20,5 @@ return [
     'no'                    => 'لا',
 
     'master_treasury'       => 'خزنة رئيسية',
+    'added_by'              => 'أُضيفت من قبل',
 ];

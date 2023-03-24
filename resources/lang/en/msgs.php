@@ -23,9 +23,15 @@ return [
 
 
     //? Public Masseges :
-    'not_found'             => 'لا يوجد',
+    'not_found'             => 'Not found',
     'not_valid'             => ':name not valid',
     'created_at'            => 'Created at',
     'updated_at'            => 'Updated at',
     'main_info'             => 'Main Information',
+    'search_by_name'        => 'Search by name',
+    'per_page'              => 'Per page',
+    'order_by'              => 'Order by',
+    'sort_by'               => 'Sort by',
+    'asc'                   => 'Ascending',
+    'desc'                  => 'Descending',
 ];

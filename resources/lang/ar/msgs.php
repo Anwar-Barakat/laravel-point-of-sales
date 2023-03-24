@@ -23,9 +23,16 @@ return [
 
 
     //? Public Masseges :
-    'not_found'             => 'Not found',
+    'not_found'             => 'لا يوجد',
     'not_valid'             => ':name غير صالح',
     'created_at'            => 'تاريخ الإضافة',
     'updated_at'            => 'تاريخ التحديث',
     'main_info'             => 'المعلومات الأساسية',
+    'search_by_name'        => 'بحث بواسطة الاسم',
+    'per_page'              => 'لكل صفحة',
+    'order_by'              => 'ترتيب حسب',
+    'sort_by'               => 'فرز حسب',
+    'asc'                   => 'تصاعدي',
+    'desc'                  => 'تنازلي',
+
 ];
