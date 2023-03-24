@@ -7,18 +7,13 @@
                     <div class="row row-cards">
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('treasury.treasury_name_ar')" />
-                                <x-text-input type="text" class="form-control" placeholder="{{ __('treasury.treasury_name_ar') }}" wire:model='treasury_name_ar' required />
-                                <x-input-error :messages="$errors->get('treasury_name_ar')" class="mt-2" />
+                                <x-input-label class="form-label" :value="__('treasury.treasury_name')" />
+                                <x-text-input type="text" class="form-control" placeholder="{{ __('treasury.treasury_name') }}" wire:model='name' required />
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('treasury.treasury_name_en')" />
-                                <x-text-input type="text" class="form-control" placeholder="{{ __('treasury.treasury_name_en') }}" wire:model='treasury_name_en' required />
-                                <x-input-error :messages="$errors->get('treasury_name_en')" class="mt-2" />
-                            </div>
-                        </div>
+                    </div>
+                    <div class="row row-cards">
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('treasury.is_master')" />
