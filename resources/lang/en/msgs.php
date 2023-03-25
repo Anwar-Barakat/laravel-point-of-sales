@@ -7,6 +7,7 @@ return [
     'create'                => 'Create new :name',
     'edit'                  => 'Edit :name',
     'update'                => 'Update :name',
+    'details'               => ':name details',
 
 
     //? Results :
@@ -34,4 +35,5 @@ return [
     'sort_by'               => 'Sort by',
     'asc'                   => 'Ascending',
     'desc'                  => 'Descending',
+    'column'                => 'Column',
 ];

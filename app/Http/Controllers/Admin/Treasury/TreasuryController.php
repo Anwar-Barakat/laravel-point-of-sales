@@ -38,7 +38,8 @@ class TreasuryController extends Controller
      */
     public function show(Treasury $treasury)
     {
-        //
+        $treasury->load(['addedBy', 'updatedBy', 'treasuriesDelivery']);
+        return view('admin.treasuries.show', ['treasury' => $treasury]);
     }
 
     /**

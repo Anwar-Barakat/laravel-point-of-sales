@@ -16,6 +16,7 @@ class TreasurySeeder extends Seeder
      */
     public function run(): void
     {
+        $admin      = Admin::inRandomOrder()->first();
         $treasuries = [
             [
                 'name'                  => 'Casher 1',
@@ -23,11 +24,22 @@ class TreasurySeeder extends Seeder
                 'is_active'             => rand(1, 0),
                 'last_payment_receipt'  => 1,
                 'last_payment_collect'  => 1,
-                'added_by'              => Admin::inRandomOrder()->first()->id,
-                'updated_by'            => Admin::inRandomOrder()->first()->id,
-                'company_code'          => 1,
+                'added_by'              => $admin->id,
+                'updated_by'            => $admin->id,
+                'company_code'          => $admin->company_code,
                 'date'                  => Carbon::now(),
-            ]
+            ],
+            [
+                'name'                  => 'Casher 2',
+                'is_master'             => 0,
+                'is_active'             => rand(1, 0),
+                'last_payment_receipt'  => 1,
+                'last_payment_collect'  => 1,
+                'added_by'              => $admin->id,
+                'updated_by'            => $admin->id,
+                'company_code'          => $admin->company_code,
+                'date'                  => Carbon::now(),
+            ],
         ];
 
         foreach ($treasuries as $treasury) {

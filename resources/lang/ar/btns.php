@@ -10,4 +10,5 @@ return [
     'actions'       => 'العمليات',
 
     'search'        => 'بحث',
+    'details'       => 'تفاصيل',
 ];

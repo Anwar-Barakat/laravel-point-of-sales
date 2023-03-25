@@ -7,6 +7,7 @@ return [
     'create'                => 'إضافة :name جديد',
     'edit'                  => 'تعديل :name',
     'update'                => 'تحديث :name',
+    'details'               => 'تفاصيل :name',
 
     //? Results :
     'updated'               => 'تم تحديث :name بنجاج',
@@ -34,5 +35,7 @@ return [
     'sort_by'               => 'فرز حسب',
     'asc'                   => 'تصاعدي',
     'desc'                  => 'تنازلي',
+    'column'                => 'الحقل',
+
 
 ];

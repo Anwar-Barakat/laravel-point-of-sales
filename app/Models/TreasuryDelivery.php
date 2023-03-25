@@ -8,4 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class TreasuryDelivery extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'company_code',
+        'treasury_id',
+        'treasury_delivery_id',
+        'added_by',
+        'updated_by',
+    ];
+
+    public function treasury()
+    {
+        return $this->belongsTo(Treasury::class, 'treasury_id');
+    }
+
+    public function treasuryDelivered()
+    {
+        return $this->belongsTo(Treasury::class, 'treasury_delivery_id');
+    }
+
+    public function addedBy()
+    {
+        return $this->belongsTo(Admin::class, 'added_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
 }

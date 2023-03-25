@@ -10,4 +10,5 @@ return [
     'actions'       => 'Actions',
 
     'search'        => 'Search',
+    'details'       => 'Details',
 ];

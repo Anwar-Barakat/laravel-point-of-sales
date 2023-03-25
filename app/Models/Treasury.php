@@ -57,4 +57,9 @@ class Treasury extends Model
     {
         return $this->belongsTo(Admin::class, 'updated_by');
     }
+
+    public function treasuriesDelivery()
+    {
+        return $this->hasMany(TreasuryDelivery::class);
+    }
 }

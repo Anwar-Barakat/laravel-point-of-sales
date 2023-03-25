@@ -7,8 +7,10 @@ return [
     'is_active'             => 'Is active',
     'last_payment_receipt'  => 'Last payment receipt',
     'last_payment_collect'  => 'Last payment collect',
+    'is_it_master'          => 'Is it master?',
     'master'                => 'Master',
     'branch'                => 'Branch',
+    'is_it_active'          => 'Is it active?',
     'active'                => 'Active',
     'not_active'            => 'Not active',
     'name_ar'               => 'Arabic name',
@@ -21,4 +23,8 @@ return [
 
     'master_treasury'       => 'Master treasury',
     'added_by'              => 'Added by',
+
+
+
+    'treasury_will_delivery_to_master'  => 'Subtreasuries that will be delivered to the treasury',
 ];

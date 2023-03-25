@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
 
             TreasurySeeder::class,
+            TreasuryDeliverySeeder::class,
         ]);
     }
 }
