@@ -24,7 +24,7 @@ return [
 
 
     //? Public Masseges :
-    'not_found'             => 'Not found',
+    'not_found'             => 'No results found',
     'not_valid'             => ':name not valid',
     'created_at'            => 'Created at',
     'updated_at'            => 'Updated at',

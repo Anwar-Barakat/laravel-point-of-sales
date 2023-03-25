@@ -139,6 +139,11 @@
                         </td>
                     </tr>
                 @empty
+                    <tr>
+                        <td colspan="8">
+                            <x-blank-section :content="__('treasury.treasury')" :url="route('admin.treasuries.create')" />
+                        </td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
