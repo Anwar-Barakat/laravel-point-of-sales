@@ -16,5 +16,21 @@ class TreasuryDeliverySeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('treasury_deliveries')->truncate();
+
+        $admin      = Admin::inRandomOrder()->first();
+        $treasuries = [
+            [
+                'treasury_id'           => Treasury::where('is_master', 1)->first()->id,
+                'treasury_delivery_id'  => Treasury::where('is_master', 0)->first()->id,
+                'added_by'              => $admin->id,
+                'updated_by'            => $admin->id,
+                'company_code'          => $admin->company_code,
+            ]
+        ];
+
+        foreach ($treasuries as $treasury) {
+            TreasuryDelivery::create($treasury);
+        }
     }
 }
