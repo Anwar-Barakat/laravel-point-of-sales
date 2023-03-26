@@ -1,8 +1,7 @@
 <div class="col d-flex flex-column">
     <form wire:submit.prevent='updateSetting'>
         <div class="card-body">
-            <h2 class="mb-4">{{ __('setting.general_setting') }}</h2>
-            <h3 class="card-title">{{ __('setting.details') }}</h3>
+            <h2 class="mb-4">{{ __('setting.settings') }}</h2>
             <div class="row align-items-center">
                 <div class="col-auto">
                     @if ($setting->getFirstMediaUrl('global_setting'))

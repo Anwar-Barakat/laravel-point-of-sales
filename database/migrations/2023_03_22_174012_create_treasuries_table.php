@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
-            $table->date('date')->comment('for searching');
             $table->timestamps();
         });
     }

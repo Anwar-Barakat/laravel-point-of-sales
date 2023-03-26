@@ -27,7 +27,6 @@ class TreasurySeeder extends Seeder
                 'added_by'              => $admin->id,
                 'updated_by'            => $admin->id,
                 'company_code'          => $admin->company_code,
-                'date'                  => Carbon::now(),
             ],
             [
                 'name'                  => 'Casher 2',
@@ -38,7 +37,6 @@ class TreasurySeeder extends Seeder
                 'added_by'              => $admin->id,
                 'updated_by'            => $admin->id,
                 'company_code'          => $admin->company_code,
-                'date'                  => Carbon::now(),
             ],
         ];
 
