@@ -7,6 +7,7 @@ return [
     'create'                => 'إضافة :name جديد',
     'edit'                  => 'تعديل :name',
     'update'                => 'تحديث :name',
+    'delete'                => 'حذف :name',
     'details'               => 'تفاصيل :name',
 
     //? Results :
@@ -50,5 +51,7 @@ return [
     'no'                    => 'لا',
     'added_by'              => 'أُضيفت من قبل',
 
+
+    'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف'
 
 ];

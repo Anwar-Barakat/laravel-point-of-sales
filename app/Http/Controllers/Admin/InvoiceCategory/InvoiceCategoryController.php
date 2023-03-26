@@ -87,6 +87,8 @@ class InvoiceCategoryController extends Controller
      */
     public function destroy(InvoiceCategory $invoiceCategory)
     {
-        //
+        $invoiceCategory->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('invoiceCat.invoice_category')]));
+        return redirect()->route('admin.invoice-categories.index');
     }
 }
