@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Treasury\TreasuryController;
+use App\Http\Controllers\InvoiceCategoryController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -57,7 +58,13 @@ Route::group(
                 //!_______________________
                 //! Treasuries
                 //!_______________________
-                Route::resource('treasuries',               TreasuryController::class);
+                Route::resource('treasuries',               TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
+
+
+                //!_______________________
+                //! Invoice categories
+                //!_______________________
+                Route::resource('invoice-categories',       InvoiceCategoryController::class);
             });
         });
     }

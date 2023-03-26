@@ -121,12 +121,13 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('partials.main_elements') }}
+                                {{ __('setting.general_setting') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
+                                    <!-- treasuries -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                             {{ __('treasury.treasuries') }}
@@ -139,10 +140,23 @@
                                                 {{ __('msgs.create', ['name' => __('treasury.treasury')]) }}
                                             </a>
                                         </div>
+
                                     </div>
-                                    <a class="dropdown-item" href="./colors.html">
+
+                                    <!-- invoice categories -->
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                            {{ __('invoiceCat.invoice_categories') }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ route('admin.treasuries.index') }}" class="dropdown-item">
+                                                {{ __('msgs.list', ['name' => __('invoiceCat.invoice_categories')]) }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {{-- <a class="dropdown-item" href="./colors.html">
                                         Colors
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
