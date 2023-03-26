@@ -25,6 +25,10 @@ return [
     'added_by'              => 'أُضيفت من قبل',
 
 
-    'treasury_will_delivery_to_master'  => 'الخزائن الفرعية التي سيتم تسليمها إلى الخزينة الخزنة',
+    //? treasury delivery :
+    'treasury_delivery'     => 'خزنة مُسلم',
+
+
+    'treasury_will_delivery_to_master'  => 'الخزائن الفرعية التي سيتم تسليمها إلى الخزينة',
 
 ];

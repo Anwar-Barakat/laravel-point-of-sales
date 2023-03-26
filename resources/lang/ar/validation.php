@@ -171,6 +171,9 @@ return [
         'last_payment_collect'  => 'آخر إيصال تجميع',
         'treasury_name_ar'      => 'اسم الخزنة بالعربي',
         'treasury_name_en'      => 'اسم الخزنة بالأنكليزي',
+
+        //? treasuries delivery table
+        'treasury_delivery_id'  => 'الخزنة المسلم',
     ],
 
 ];

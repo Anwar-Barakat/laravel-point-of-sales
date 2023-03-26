@@ -25,6 +25,10 @@ return [
     'added_by'              => 'Added by',
 
 
+    //? treasury delivery :
+    'treasury_delivery'     => 'Treasury delivery',
+
+
 
     'treasury_will_delivery_to_master'  => 'Subtreasuries that will be delivered to the treasury',
 ];

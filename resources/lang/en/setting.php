@@ -24,6 +24,7 @@ return [
     'avatar'                => 'Avatar',
     'change_password'       => 'Change password',
     'password'              => 'Password',
+    'new_password'          => 'New password',
     'current_password'      => 'Current password',
     'password_confirmation' => 'Password confirmation',
 ];

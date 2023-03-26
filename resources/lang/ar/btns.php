@@ -8,7 +8,7 @@ return [
     'submit'        => 'حفظ البيانات',
     'select'        => 'أختر',
     'actions'       => 'العمليات',
-
+    'close'         => 'إغلاق',
     'search'        => 'بحث',
     'details'       => 'تفاصيل',
 ];

@@ -173,6 +173,9 @@ return [
         'treasury_name_ar'      => 'Arabic treasury name',
         'treasury_name_en'      => 'English treasury name',
 
+        //? treasuries delivery table
+        'treasury_delivery_id'  => 'Treasury delivery',
+
     ],
 
 ];

@@ -63,7 +63,7 @@
 
             <h3 class="card-title mt-4">{{ __('setting.logo') }}</h3>
             <div class="row g-3">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <x-text-input type="file" class="form-control" wire:model="logo" />
                     <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                 </div>
@@ -75,9 +75,6 @@
                     {{ __('btns.cancel') }}
                 </a>
                 <button type="subnit" class="btn btn-primary">
-                    <div wire:loading.delay wire:key='updateSetting' wire:target='updateSetting'>
-                        <i class="fa fa-spinner fa-spin text-lg"></i>
-                    </div>
                     {{ __('btns.submit') }}
                 </button>
             </div>
