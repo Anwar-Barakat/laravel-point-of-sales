@@ -2,19 +2,6 @@
 <div class="col d-flex flex-column">
     <form wire:submit.prevent='updateInfo'>
         <div class="card-body">
-            {{-- @if ($errors->any())
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data    -dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <ul class="p-0 m-0 list-unstyled">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif --}}
             <h2 class="mb-4">{{ __('msgs.edit', ['name' => __('partials.profile')]) }}</h2>
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6">

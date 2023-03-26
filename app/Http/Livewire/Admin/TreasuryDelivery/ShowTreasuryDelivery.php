@@ -8,9 +8,14 @@ use Livewire\Component;
 
 class ShowTreasuryDelivery extends Component
 {
-    public $treasury;
+    public $treasuries, $treasury;
 
     public $treasury_delivery_id;
+
+    public function mount()
+    {
+        $this->treasuries = Treasury::select('id', 'name')->active()->get();
+    }
 
     public function store()
     {
@@ -36,10 +41,15 @@ class ShowTreasuryDelivery extends Component
         $this->reset(['treasury_delivery_id']);
     }
 
+    public function delete($id)
+    {
+        $treasury = TreasuryDelivery::findOrFail($id);
+        $treasury->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('treasury.treasury_delivery')]));
+    }
+
     public function render()
     {
-        return view('livewire.admin.treasury-delivery.show-treasury-delivery', [
-            'treasuries'    => Treasury::select('id', 'name')->active()->get(),
-        ]);
+        return view('livewire.admin.treasury-delivery.show-treasury-delivery');
     }
 }

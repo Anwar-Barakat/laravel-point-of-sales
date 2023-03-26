@@ -9,6 +9,7 @@ return [
     'select'        => 'Select',
     'actions'       => 'Actions',
     'close'         => 'Close',
+    'delete'        => 'Delete',
 
     'search'        => 'Search',
     'details'       => 'Details',

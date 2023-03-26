@@ -56,16 +56,13 @@
         <div class="card">
             <div class="card-header d-grid">
                 @if ($errors->any())
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        <button type="button" class="close" data -dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">{{ __('btns.close') }}</span>
-                        </button>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <ul class="p-0 m-0 list-unstyled">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
                 <div class="w-100 d-flex align-items-center justify-content-between">
@@ -76,7 +73,7 @@
                 </div>
             </div>
             <div class="card-table table-responsive">
-                <table class="table table-vcenter">
+                <table class="table table-vcenter" wire:key='store'>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -92,7 +89,19 @@
                             <td>{{ $branch->treasuryDelivered->name }}</td>
                             <td>{{ $branch->treasuryDelivered->addedBy->name }}</td>
                             <td>{{ $branch->treasuryDelivered->addedBy->created_at }}</td>
-                            <th></th>
+                            <th>
+                                <button wire:click='delete({{ $branch->id }})' type="button" class="btn btn-outline-danger d-flex align-items-center justify-content-center" title="{{ __('btns.delete') }}">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/trash -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M4 7l16 0" />
+                                        <path d="M10 11l0 6" />
+                                        <path d="M14 11l0 6" />
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                    </svg>
+                                </button>
+                            </th>
                         </tr>
                     @empty
                         <tr>
@@ -103,44 +112,43 @@
                     @endforelse
                 </table>
             </div>
-
-            {{-- Add treasury delivery modal --}}
-            <div class="modal modal-blur fade" wire:ignore id="add-treasury-delivery" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"> {{ __('msgs.create', ['name' => __('treasury.treasury_delivery')]) }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form wire:submit.prevent='store'>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('treasury.treasury')" />
-                                    <select class="form-control" wire:model='treasury_delivery_id'>
-                                        <option value="">{{ __('btns.select') }}</option>
-                                        @foreach ($treasuries as $treasury)
-                                            <option value="{{ $treasury->id }}">{{ $treasury->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <hr class="mt-0">
-                            <div class="modal-footer">
-                                <button type="button" class="btn" data-bs-dismiss="modal">
-                                    {{ __('btns.cancel') }}
-                                </button>
-                                <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M12 5l0 14" />
-                                        <path d="M5 12l14 0" />
-                                    </svg>
-                                    {{ __('btns.submit') }}
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+        </div>
+    </div>
+    {{-- Add treasury delivery modal --}}
+    <div class="modal modal-blur fade" wire:ignore.self id="add-treasury-delivery" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> {{ __('msgs.create', ['name' => __('treasury.treasury_delivery')]) }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form wire:submit.prevent='store'>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('treasury.treasury')" />
+                            <select class="form-control" wire:model='treasury_delivery_id'>
+                                <option value="">{{ __('btns.select') }}</option>
+                                @foreach ($treasuries as $treasury)
+                                    <option value="{{ $treasury->id }}">{{ $treasury->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <hr class="mt-0">
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            {{ __('btns.cancel') }}
+                        </button>
+                        <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 5l0 14" />
+                                <path d="M5 12l14 0" />
+                            </svg>
+                            {{ __('btns.submit') }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

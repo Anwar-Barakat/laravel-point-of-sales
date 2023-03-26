@@ -9,6 +9,7 @@ return [
     'select'        => 'أختر',
     'actions'       => 'العمليات',
     'close'         => 'إغلاق',
+    'delete'        => 'حذف',
     'search'        => 'بحث',
     'details'       => 'تفاصيل',
 ];
