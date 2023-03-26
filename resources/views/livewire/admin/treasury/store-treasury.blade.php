@@ -5,16 +5,14 @@
                 <div class="card-body">
                     <h3 class="mb-4">{{ __('msgs.main_info') }}</h3>
                     <div class="row row-cards">
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('treasury.treasury_name')" />
                                 <x-text-input type="text" class="form-control" placeholder="{{ __('treasury.treasury_name') }}" wire:model='name' required />
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
                         </div>
-                    </div>
-                    <div class="row row-cards">
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.is_master')" />
                                 <select id="" class="form-control" wire:model='is_master'>
@@ -25,7 +23,7 @@
                                 <x-input-error :messages="$errors->get('is_master')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.is_active')" />
                                 <select id="" class="form-control" wire:model='is_active'>
@@ -37,7 +35,6 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
                     <div class="row row-cards">
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
