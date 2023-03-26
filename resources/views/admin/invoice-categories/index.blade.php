@@ -52,7 +52,7 @@
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item d-flex align-items-center gap-1" href="">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-invoice-category-{{ $cat->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -64,6 +64,8 @@
                                         </div>
                                     </span>
                                 </td>
+                                <!-- edit invoice category modal -->
+                                @include('admin.invoice-categories.edit')
                             </tr>
                         @empty
                             <tr>
@@ -81,53 +83,6 @@
         </div>
 
         <!-- Add invoice category modal -->
-        <div class="modal modal-blur fade" wire:ignore.self id="add-invoice-category" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"> {{ __('msgs.create', ['name' => __('invoiceCat.invoice_category')]) }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form method="POST" action="{{ route('admin.invoice-categories.store') }}">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('invoiceCat.invoice_category_ar')" />
-                                <x-text-input type="text" name="name_ar" class="form-control" placeholder="{{ __('msgs.name_ar') }}" :value="old('name_ar')" required />
-                                <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
-                            </div>
-                            <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('invoiceCat.invoice_category_en')" />
-                                <x-text-input type="text" name="name_en" class="form-control" placeholder="{{ __('msgs.name_en') }}" :value="old('name_en')" required />
-                                <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
-                            </div>
-                            <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('msgs.is_it_active')" />
-                                <select class="form-control" name="is_active">
-                                    <option value="">{{ __('btns.select') }}</option>
-                                    <option value="1" {{ old('is_active') ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
-                                    <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>
-                                </select>
-                                <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
-                            </div>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="modal-footer">
-                            <button type="button" class="btn" data-bs-dismiss="modal">
-                                {{ __('btns.cancel') }}
-                            </button>
-                            <button type="submit" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M12 5l0 14" />
-                                    <path d="M5 12l14 0" />
-                                </svg>
-                                {{ __('btns.submit') }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        @include('admin.invoice-categories.create')
     </div>
 </x-master-layout>

@@ -25,6 +25,7 @@ class InvoiceCategorySeeder extends Seeder
                 'company_code'  => $admin->company_code,
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
+                'is_active'     => true
             ]
         ];
 

@@ -67,7 +67,19 @@ class InvoiceCategoryController extends Controller
      */
     public function update(UpdateInvoiceCategoryRequest $request, InvoiceCategory $invoiceCategory)
     {
-        //
+        $data   = $request->only(['name_ar', 'name_en', 'is_active']);
+        $auth   = auth()->guard('admin')->user();
+        $invoiceCategory->update([
+            'name'          => [
+                'ar'    => $data['name_ar'],
+                'en'    => $data['name_en'],
+            ],
+            'is_active'     => $data['is_active'],
+            'added_by'      => $auth->id,
+            'company_code'  => $auth->company_code,
+        ]);
+        toastr()->success(__('msgs.updated', ['name' => __('invoiceCat.invoice_category')]));
+        return redirect()->route('admin.invoice-categories.index');
     }
 
     /**

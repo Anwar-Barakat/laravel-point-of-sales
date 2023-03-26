@@ -15,6 +15,7 @@ class InvoiceCategory extends Model
         'company_code',
         'added_by',
         'updated_by',
+        'is_active'
     ];
 
     public $translatable = ['name'];
