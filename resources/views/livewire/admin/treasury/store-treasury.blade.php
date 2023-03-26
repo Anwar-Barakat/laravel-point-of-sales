@@ -16,22 +16,22 @@
                     <div class="row row-cards">
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('treasury.is_master')" />
+                                <x-input-label class="form-label" :value="__('msgs.is_master')" />
                                 <select id="" class="form-control" wire:model='is_master'>
                                     <option value="">{{ __('btns.select') }}</option>
-                                    <option value="1">{{ __('treasury.yes') }}</option>
-                                    <option value="0">{{ __('treasury.no') }}</option>
+                                    <option value="1">{{ __('msgs.yes') }}</option>
+                                    <option value="0">{{ __('msgs.no') }}</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('is_master')" class="mt-2" />
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('treasury.is_active')" />
+                                <x-input-label class="form-label" :value="__('msgs.is_active')" />
                                 <select id="" class="form-control" wire:model='is_active'>
                                     <option value="">{{ __('btns.select') }}</option>
-                                    <option value="1">{{ __('treasury.yes') }}</option>
-                                    <option value="0">{{ __('treasury.no') }}</option>
+                                    <option value="1">{{ __('msgs.yes') }}</option>
+                                    <option value="0">{{ __('msgs.no') }}</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                             </div>

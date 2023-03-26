@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-12 col-md-4 col-lg-2">
                 <div class="mb-3">
-                    <x-input-label class="form-label" :value="__('treasury.added_by')" />
+                    <x-input-label class="form-label" :value="__('msgs.added_by')" />
                     <select id="" class="form-control" wire:model='added_by'>
                         <option value="">{{ __('btns.select') }}</option>
                         @foreach (App\Models\Admin::all() as $admin)
@@ -65,10 +65,10 @@
                         <button class="table-sort" data-sort="sort-name"> {{ __('treasury.treasury') }}</button>
                     </th>
                     <th>
-                        <button class="table-sort" data-sort="sort-city"> {{ __('treasury.is_master') }}</button>
+                        <button class="table-sort" data-sort="sort-city"> {{ __('msgs.is_master') }}</button>
                     </th>
                     <th>
-                        <button class="table-sort" data-sort="sort-quantity"> {{ __('treasury.is_active') }}</button>
+                        <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.is_active') }}</button>
                     </th>
                     <th>
                         <button class="table-sort" data-sort="sort-type"> {{ __('treasury.last_payment_receipt') }}</button>
@@ -89,19 +89,19 @@
                         <td class="sort-city">{{ $treasury->name }}</td>
                         <td class="sort-quantity">
                             @if ($treasury->is_master)
-                                <span class="badge badge-outline text-green">{{ __('treasury.master') }}</span>
+                                <span class="badge badge-outline text-green">{{ __('msgs.master') }}</span>
                             @else
-                                <span class="badge badge-outline text-blue">{{ __('treasury.branch') }}</span>
+                                <span class="badge badge-outline text-blue">{{ __('msgs.branch') }}</span>
                             @endif
 
                         </td>
                         <td class="sort-type">
                             @if ($treasury->is_active)
-                                <button class="btn position-relative">{{ __('treasury.active') }}
+                                <button class="btn position-relative">{{ __('msgs.active') }}
                                     <span class="badge bg-green badge-notification badge-blink"></span>
                                 </button>
                             @else
-                                <button class="btn position-relative">{{ __('treasury.not_active') }}
+                                <button class="btn position-relative">{{ __('msgs.not_active') }}
                                     <span class="badge bg-red badge-notification badge-blink"></span>
                                 </button>
                             @endif

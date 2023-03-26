@@ -175,7 +175,8 @@ return [
 
         //? treasuries delivery table
         'treasury_delivery_id'  => 'Treasury delivery',
-
+        'name_ar'               => 'Arabic name',
+        'name_en'               => 'English name',
     ],
 
 ];

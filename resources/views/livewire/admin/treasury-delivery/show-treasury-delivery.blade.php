@@ -17,12 +17,12 @@
                         <td>{{ $treasury->name }}</td>
                     </tr>
                     <tr>
-                        <th>{{ __('treasury.is_it_master') }}</th>
-                        <td>{{ $treasury->is_master ? __('treasury.master') : __('treasury.branch') }}</td>
+                        <th>{{ __('msgs.is_it_master') }}</th>
+                        <td>{{ $treasury->is_master ? __('msgs.master') : __('msgs.branch') }}</td>
                     </tr>
                     <tr>
-                        <th>{{ __('treasury.is_it_active') }}</th>
-                        <td>{{ $treasury->is_active ? __('treasury.active') : __('treasury.not_active') }}</td>
+                        <th>{{ __('msgs.is_it_active') }}</th>
+                        <td>{{ $treasury->is_active ? __('msgs.active') : __('msgs.not_active') }}</td>
                     </tr>
                     <tr>
                         <th>{{ __('treasury.last_payment_receipt') }}</th>
@@ -37,7 +37,7 @@
                         <td>{{ \Carbon\Carbon::parse($treasury->created_at)->format('Y-m-d') }}</td>
                     </tr>
                     <tr>
-                        <th>{{ __('treasury.added_by') }}</th>
+                        <th>{{ __('msgs.added_by') }}</th>
                         <td>{{ $treasury->addedBy->name }}</td>
                     </tr>
                     <tr>
@@ -78,7 +78,7 @@
                         <tr>
                             <th>#</th>
                             <th>{{ __('treasury.treasury_name') }}</th>
-                            <th>{{ __('treasury.added_by') }}</th>
+                            <th>{{ __('msgs.added_by') }}</th>
                             <th>{{ __('msgs.created_at') }}</th>
                             <th></th>
                         </tr>
@@ -114,7 +114,7 @@
             </div>
         </div>
     </div>
-    {{-- Add treasury delivery modal --}}
+    <!-- Add treasury delivery modal -->
     <div class="modal modal-blur fade" wire:ignore.self id="add-treasury-delivery" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">

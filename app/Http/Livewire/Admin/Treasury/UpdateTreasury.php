@@ -56,7 +56,7 @@ class UpdateTreasury extends Component
 
         $masterExists = Treasury::where(['company_code' => $authComp, 'is_master' => 1])->first();
         if ($masterExists && $masterExists->is_master == $this->is_master && $masterExists->id != $id) {
-            toastr()->error(__('msgs.exists', ['name' => __('treasury.master_treasury')]));
+            toastr()->error(__('msgs.exists', ['name' => __('msgs.master_treasury')]));
             return;
         }
 

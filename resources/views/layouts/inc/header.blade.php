@@ -149,7 +149,7 @@
                                             {{ __('invoiceCat.invoice_categories') }}
                                         </a>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('admin.treasuries.index') }}" class="dropdown-item">
+                                            <a href="{{ route('admin.invoice-categories.index') }}" class="dropdown-item">
                                                 {{ __('msgs.list', ['name' => __('invoiceCat.invoice_categories')]) }}
                                             </a>
                                         </div>

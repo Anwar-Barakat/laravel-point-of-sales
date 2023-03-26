@@ -174,6 +174,8 @@ return [
 
         //? treasuries delivery table
         'treasury_delivery_id'  => 'الخزنة المسلم',
+        'name_ar'               => 'الاسم بالعربي',
+        'name_en'               => 'الاسم بالأنكليزي',
     ],
 
 ];

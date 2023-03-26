@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\InvoiceCategory;
 
 use App\Models\InvoiceCategory;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreInvoiceCategoryRequest;
+use App\Http\Requests\Admin\UpdateInvoiceCategoryRequest;
 
 class InvoiceCategoryController extends Controller
 {
@@ -12,7 +14,8 @@ class InvoiceCategoryController extends Controller
      */
     public function index()
     {
-
+        $invoiceCategories  = InvoiceCategory::latest()->paginate(PAGINATION_COUNT);
+        return view('admin.invoice-categories.index', ['invoiceCategories' => $invoiceCategories]);
     }
 
     /**
@@ -26,9 +29,21 @@ class InvoiceCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreInvoiceCategoryRequest $request)
     {
-        //
+        $data   = $request->only(['name_ar', 'name_en', 'is_active']);
+        $auth   = auth()->guard('admin')->user();
+        InvoiceCategory::create([
+            'name'          => [
+                'ar'    => $data['name_ar'],
+                'en'    => $data['name_en'],
+            ],
+            'is_active'     => $data['is_active'],
+            'added_by'      => $auth->id,
+            'company_code'  => $auth->company_code,
+        ]);
+        toastr()->success(__('msgs.created', ['name' => __('invoiceCat.invoice_category')]));
+        return redirect()->route('admin.invoice-categories.index');
     }
 
     /**
@@ -50,7 +65,7 @@ class InvoiceCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, InvoiceCategory $invoiceCategory)
+    public function update(UpdateInvoiceCategoryRequest $request, InvoiceCategory $invoiceCategory)
     {
         //
     }

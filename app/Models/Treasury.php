@@ -42,14 +42,14 @@ class Treasury extends Model
     // protected function isMaster(): Attribute
     // {
     //     return Attribute::make(
-    //         get: fn () => $this->attributes['is_master'] ? __('treasury.master') : __('treasury.branch'),
+    //         get: fn () => $this->attributes['is_master'] ? __('msgs.master') : __('msgs.branch'),
     //     );
     // }
 
     // protected function isActive(): Attribute
     // {
     //     return Attribute::make(
-    //         get: fn () => $this->attributes['is_active'] ? __('treasury.active') : __('treasury.not_active'),
+    //         get: fn () => $this->attributes['is_active'] ? __('msgs.active') : __('msgs.not_active'),
     //     );
     // }
 
