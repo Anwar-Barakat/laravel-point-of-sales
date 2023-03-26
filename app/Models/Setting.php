@@ -15,7 +15,8 @@ class Setting extends Model implements HasMedia
     use HasFactory, InteractsWithMedia, HasTranslations;
 
     protected $fillable = [
-        'company_name', 'company_code',
+        'company_name',
+        'company_code',
         'alert_msg',
         'address', 'mobile',
         'added_by', 'updated_by', 'is_active',

@@ -33,7 +33,7 @@ class SettingSeeder extends Seeder
         ];
 
         foreach ($settings as $setting) {
-            if (is_null(Setting::where('company_name->en', $setting['company_name']['en'])->first()))
+            if (is_null(Setting::where('company_name->en', $setting['company_name']['en'])->orWhere('company_name->ar', $setting['company_name']['ar'])->first()))
                 Setting::create($setting);
         }
     }
