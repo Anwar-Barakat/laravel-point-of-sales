@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
-use App\Models\InvoiceCategory;
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
 
-class InvoiceCategorySeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -38,8 +38,8 @@ class InvoiceCategorySeeder extends Seeder
         ];
 
         foreach ($categories as $cat) {
-            if (is_null(InvoiceCategory::where('name->en', $cat['name']['en'])->orWhere('name->ar', $cat['name']['ar'])->first()))
-                InvoiceCategory::create($cat);
+            if (is_null(Category::where('name->en', $cat['name']['en'])->orWhere('name->ar', $cat['name']['ar'])->first()))
+                Category::create($cat);
         }
     }
 }

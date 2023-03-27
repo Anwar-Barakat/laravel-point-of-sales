@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\InvoiceCategory\InvoiceCategoryController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
@@ -63,9 +63,9 @@ Route::group(
                 Route::resource('treasury-deliveries',      TreasuryDeliveryController::class)->only(['store', 'destroy']);
 
                 //!_______________________
-                //! Invoice categories
+                //! Categories
                 //!_______________________
-                Route::resource('invoice-categories',       InvoiceCategoryController::class)->except(['create', 'show', 'edit']);
+                Route::resource('categories',               CategoryController::class)->except(['create', 'show', 'edit']);
             });
         });
     }

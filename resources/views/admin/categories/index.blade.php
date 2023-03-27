@@ -1,12 +1,12 @@
 <x-master-layout>
-    @section('pageTitle', __('invoiceCat.invoice_categories'))
-    @section('breadcrumbTitle', __('invoiceCat.invoice_categories'))
+    @section('pageTitle', __('category.categories'))
+    @section('breadcrumbTitle', __('category.categories'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h3 class="card-title">{{ __('msgs.all', ['name' => __('invoiceCat.invoice_categories')]) }}</h3>
-            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-invoice-category">
-                {{ __('msgs.create', ['name' => __('invoiceCat.invoice_category')]) }}
+            <h3 class="card-title">{{ __('msgs.all', ['name' => __('category.categories')]) }}</h3>
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-category">
+                {{ __('msgs.create', ['name' => __('category.category')]) }}
             </a>
         </div>
 
@@ -19,7 +19,7 @@
                                 <button class="table-sort" data-sort="sort-name">#</button>
                             </th>
                             <th>
-                                <button class="table-sort" data-sort="sort-name"> {{ __('invoiceCat.invoice_category') }}</button>
+                                <button class="table-sort" data-sort="sort-name"> {{ __('category.category') }}</button>
                             </th>
                             <th>
                                 <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.is_active') }}</button>
@@ -31,7 +31,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-tbody">
-                        @forelse ($invoiceCategories as $cat)
+                        @forelse ($categoryegories as $cat)
                             <tr>
                                 <td class="sort-name">{{ $loop->iteration }}</td>
                                 <td class="sort-city">{{ $cat->name }}</td>
@@ -52,7 +52,7 @@
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-invoice-category-{{ $cat->id }}">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{ $cat->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -75,28 +75,28 @@
                                         </div>
                                     </span>
 
-                                    <x-modal-delete :id="$cat->id" :action="route('admin.invoice-categories.destroy', ['invoice_category' => $cat])" />
+                                    <x-modal-delete :id="$cat->id" :action="route('admin.categories.destroy', ['category' => $cat])" />
 
                                 </td>
                                 <!-- edit invoice category modal -->
-                                @include('admin.invoice-categories.edit')
+                                @include('admin.categories.edit')
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="8">
-                                    <x-blank-section :content="__('invoiceCat.invoice_category')" :url="route('admin.invoice-categories.create')" />
+                                    <x-blank-section :content="__('category.category')" :url="route('admin.categories.create')" />
                                 </td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
                 <div class="mt-3">
-                    {{ $invoiceCategories->links() }}
+                    {{ $categoryegories->links() }}
                 </div>
             </div>
         </div>
 
         <!-- Add invoice category modal -->
-        @include('admin.invoice-categories.create')
+        @include('admin.categories.create')
     </div>
 </x-master-layout>

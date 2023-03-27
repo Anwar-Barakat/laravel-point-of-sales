@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             TreasurySeeder::class,
             TreasuryDeliverySeeder::class,
 
-            InvoiceCategorySeeder::class,
+            CategorySeeder::class,
             StoreSeeder::class,
         ]);
     }

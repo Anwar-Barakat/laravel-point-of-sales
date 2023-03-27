@@ -144,17 +144,17 @@
                                     </div>
 
                                     <!-- invoice categories -->
-                                    <a class="dropdown-item" href="{{ route('admin.invoice-categories.index') }}">
-                                        {{ __('invoiceCat.invoice_categories') }}
+                                    <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
+                                        {{ __('category.categories') }}
                                     </a>
                                     <!-- invoice categories -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                            {{ __('invoiceCat.invoice_categories') }}
+                                            {{ __('category.categories') }}
                                         </a>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('admin.invoice-categories.index') }}" class="dropdown-item">
-                                                {{ __('msgs.list', ['name' => __('invoiceCat.invoice_categories')]) }}
+                                            <a href="{{ route('admin.categories.index') }}" class="dropdown-item">
+                                                {{ __('msgs.list', ['name' => __('category.categories')]) }}
                                             </a>
                                         </div>
                                     </div>

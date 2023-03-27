@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin\InvoiceCategory;
+namespace App\Http\Controllers\Admin\Category;
 
-use App\Models\InvoiceCategory;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreInvoiceCategoryRequest;
-use App\Http\Requests\Admin\UpdateInvoiceCategoryRequest;
+use App\Http\Requests\Admin\StoreCategoryRequest;
+use App\Http\Requests\Admin\UpdateCategoryRequest;
 
-class InvoiceCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $invoiceCategories  = InvoiceCategory::latest()->paginate(PAGINATION_COUNT);
-        return view('admin.invoice-categories.index', ['invoiceCategories' => $invoiceCategories]);
+        $categoryegories  = Category::latest()->paginate(PAGINATION_COUNT);
+        return view('admin.categories.index', ['categoryegories' => $categoryegories]);
     }
 
     /**
@@ -29,11 +29,11 @@ class InvoiceCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInvoiceCategoryRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         $data   = $request->only(['name_ar', 'name_en', 'is_active']);
         $auth   = auth()->guard('admin')->user();
-        InvoiceCategory::create([
+        Category::create([
             'name'          => [
                 'ar'    => $data['name_ar'],
                 'en'    => $data['name_en'],
@@ -42,14 +42,14 @@ class InvoiceCategoryController extends Controller
             'added_by'      => $auth->id,
             'company_code'  => $auth->company_code,
         ]);
-        toastr()->success(__('msgs.created', ['name' => __('invoiceCat.invoice_category')]));
-        return redirect()->route('admin.invoice-categories.index');
+        toastr()->success(__('msgs.created', ['name' => __('category.category')]));
+        return redirect()->route('admin.categories.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(InvoiceCategory $invoiceCategory)
+    public function show(Category $Category)
     {
         //
     }
@@ -57,7 +57,7 @@ class InvoiceCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(InvoiceCategory $invoiceCategory)
+    public function edit(Category $Category)
     {
         //
     }
@@ -65,11 +65,11 @@ class InvoiceCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInvoiceCategoryRequest $request, InvoiceCategory $invoiceCategory)
+    public function update(UpdateCategoryRequest $request, Category $Category)
     {
         $data   = $request->only(['name_ar', 'name_en', 'is_active']);
         $auth   = auth()->guard('admin')->user();
-        $invoiceCategory->update([
+        $Category->update([
             'name'          => [
                 'ar'    => $data['name_ar'],
                 'en'    => $data['name_en'],
@@ -78,17 +78,17 @@ class InvoiceCategoryController extends Controller
             'added_by'      => $auth->id,
             'company_code'  => $auth->company_code,
         ]);
-        toastr()->success(__('msgs.updated', ['name' => __('invoiceCat.invoice_category')]));
-        return redirect()->route('admin.invoice-categories.index');
+        toastr()->success(__('msgs.updated', ['name' => __('category.category')]));
+        return redirect()->route('admin.categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(InvoiceCategory $invoiceCategory)
+    public function destroy(Category $Category)
     {
-        $invoiceCategory->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('invoiceCat.invoice_category')]));
-        return redirect()->route('admin.invoice-categories.index');
+        $Category->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('category.category')]));
+        return redirect()->route('admin.categories.index');
     }
 }
