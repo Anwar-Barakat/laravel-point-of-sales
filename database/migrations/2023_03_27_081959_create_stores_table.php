@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('mobile');
             $table->string('address');
             $table->boolean('is_active')->default(true)->comment('1 => is active');
             $table->integer('company_code');
