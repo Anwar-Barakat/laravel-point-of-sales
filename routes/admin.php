@@ -9,9 +9,9 @@ use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
+use App\Http\Controllers\Admin\Store\StoreController;
 use App\Http\Controllers\Admin\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\Treasury\TreasuryDelivery\TreasuryDeliveryController;
-use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 

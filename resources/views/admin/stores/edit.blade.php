@@ -7,6 +7,7 @@
             </div>
             <form method="POST" action="{{ route('admin.stores.update', ['store' => $store]) }}">
                 @csrf
+                @method('PUT')
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12 col-lg-6 mb-3">

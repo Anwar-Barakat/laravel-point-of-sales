@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class StoreStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name_ar'   => ['required', 'string', 'min:3'],
+            'name_en'   => ['required', 'string', 'min:3'],
+            'address'   => ['required', 'string', 'min:10'],
+            'mobile'    => ['required', 'min:10', 'max:10'],
+            'is_active' => ['required', 'boolean']
         ];
     }
 }

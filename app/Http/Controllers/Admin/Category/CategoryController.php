@@ -49,7 +49,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $Category)
+    public function show(Category $category)
     {
         //
     }
@@ -57,7 +57,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $Category)
+    public function edit(Category $category)
     {
         //
     }
@@ -65,11 +65,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $Category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         $data   = $request->only(['name_ar', 'name_en', 'is_active']);
         $auth   = auth()->guard('admin')->user();
-        $Category->update([
+        $category->update([
             'name'          => [
                 'ar'    => $data['name_ar'],
                 'en'    => $data['name_en'],
@@ -85,9 +85,9 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $Category)
+    public function destroy(Category $category)
     {
-        $Category->delete();
+        $category->delete();
         toastr()->info(__('msgs.deleted', ['name' => __('category.category')]));
         return redirect()->route('admin.categories.index');
     }
