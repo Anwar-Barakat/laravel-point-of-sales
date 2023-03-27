@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('alert_msg');
             $table->string('address');
             $table->string('mobile');
+            $table->boolean('is_active')->default(true)->comment('1 => is active');
+
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->constrained('admins')->cascadeOnUpdate();
-            $table->boolean('is_active')->default(true)->comment('1 => is active');
             $table->timestamps();
         });
     }

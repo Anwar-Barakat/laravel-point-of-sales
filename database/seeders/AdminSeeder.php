@@ -20,7 +20,6 @@ class AdminSeeder extends Seeder
                 'name'              => fake()->name(),
                 'email'             => 'admin@admin.com',
                 'password'          => Hash::make('adminadmin'),
-                'status'            => true,
                 'company_code'      => 1
             ],
             // [

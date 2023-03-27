@@ -19,14 +19,24 @@ class InvoiceCategorySeeder extends Seeder
         $categories = [
             [
                 'name'          => [
-                    'ar'    => 'لحوم مثلجة',
-                    'en'    => 'Refrigerated meat',
+                    'ar'    => 'احذية',
+                    'en'    => 'Shoes',
                 ],
                 'company_code'  => $admin->company_code,
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
                 'is_active'     => true
-            ]
+            ],
+            [
+                'name'          => [
+                    'ar'    => 'قمصان',
+                    'en'    => 'Shirts',
+                ],
+                'company_code'  => $admin->company_code,
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+                'is_active'     => true
+            ],
         ];
 
         foreach ($categories as $cat) {

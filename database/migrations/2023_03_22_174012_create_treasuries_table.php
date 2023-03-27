@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->boolean('is_master')->default(0)->comment('1 => is master');
-            $table->boolean('is_active')->default(1)->comment('1 => is active');
+            $table->boolean('is_active')->default(true)->comment('1 => is active');
+            $table->integer('company_code');
             $table->bigInteger('last_payment_receipt');
             $table->bigInteger('last_payment_collect');
+
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();
-            $table->integer('company_code');
             $table->timestamps();
         });
     }

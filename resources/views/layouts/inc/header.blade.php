@@ -144,6 +144,10 @@
                                     </div>
 
                                     <!-- invoice categories -->
+                                    <a class="dropdown-item" href="{{ route('admin.invoice-categories.index') }}">
+                                        {{ __('invoiceCat.invoice_categories') }}
+                                    </a>
+                                    <!-- invoice categories -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                             {{ __('invoiceCat.invoice_categories') }}
@@ -154,9 +158,6 @@
                                             </a>
                                         </div>
                                     </div>
-                                    {{-- <a class="dropdown-item" href="./colors.html">
-                                        Colors
-                                    </a> --}}
                                 </div>
                             </div>
                         </div>

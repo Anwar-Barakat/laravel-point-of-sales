@@ -22,7 +22,7 @@ class Admin extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
-        'status',
+        'is_active',
         'address',
         'bio',
         'company_code'
