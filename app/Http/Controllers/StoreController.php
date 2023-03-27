@@ -13,7 +13,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        $stores = Store::latest()->paginate(PAGINATION_COUNT);
+        return view('admin.stores.index', ['stores' => $stores]);
     }
 
     /**

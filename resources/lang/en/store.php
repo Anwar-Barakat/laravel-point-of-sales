@@ -2,5 +2,7 @@
 
 return [
     'store'     => 'Store',
-    'stores'    => 'Stores'
+    'stores'    => 'Stores',
+    'store_ar'  => 'Arabic name store',
+    'store_en'  => 'English name store',
 ];

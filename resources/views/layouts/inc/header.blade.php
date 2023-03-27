@@ -143,12 +143,17 @@
 
                                     </div>
 
-                                    <!-- invoice categories -->
+                                    <!-- categories -->
                                     <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
                                         {{ __('category.categories') }}
                                     </a>
-                                    <!-- invoice categories -->
-                                    <div class="dropend">
+
+                                    <!-- stores -->
+                                    <a class="dropdown-item" href="{{ route('admin.stores.index') }}">
+                                        {{ __('store.stores') }}
+                                    </a>
+
+                                    {{-- <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                             {{ __('category.categories') }}
                                         </a>
@@ -157,7 +162,7 @@
                                                 {{ __('msgs.list', ['name' => __('category.categories')]) }}
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\Treasury\TreasuryDelivery\TreasuryDeliveryController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -66,6 +67,11 @@ Route::group(
                 //! Categories
                 //!_______________________
                 Route::resource('categories',               CategoryController::class)->except(['create', 'show', 'edit']);
+
+                //!_______________________
+                //! Stoes
+                //!_______________________
+                Route::resource('stores',                   StoreController::class)->except(['create', 'show', 'edit']);
             });
         });
     }
