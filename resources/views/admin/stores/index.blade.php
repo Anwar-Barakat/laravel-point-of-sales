@@ -18,8 +18,8 @@
                             <th>#</th>
                             <th> {{ __('store.store') }}</th>
                             <th> {{ __('msgs.is_active') }}</th>
-                            <th> {{ __('msgs.added_by') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
+                            <th> {{ __('msgs.added_by') }}</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -31,8 +31,10 @@
                                 <td>
                                     @livewire('admin.store.update-status', ['store_id' => $store->id, 'is_active' => $store->is_active])
                                 </td>
-                                <td> {{ $store->addedBy->name }} </td>
                                 <td> {{ $store->created_at }} </td>
+                                <td>
+                                    <span class="badge bg-blue-lt">{{ $store->addedBy->name }}</span>
+                                </td>
                                 <td>
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>

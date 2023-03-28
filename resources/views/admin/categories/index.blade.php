@@ -17,8 +17,11 @@
                         <tr>
                             <th>#</th>
                             <th> {{ __('category.category') }}</th>
+                            <th>{{ __('section.section') }}</th>
+                            <th>{{ __('msgs.is_it_parent') }}</th>
                             <th> {{ __('msgs.is_active') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
+                            <th> {{ __('msgs.added_by') }}</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -28,9 +31,22 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>
+                                    <span class="badge badge-outline text-blue">{{ $category->section->name }}</span>
+                                </td>
+                                <td>
+                                    @if ($category->parent_id == 0)
+                                        <span class="badge badge-outline text-green">{{ __('msgs.parent') }}</span>
+                                    @else
+                                        <span class="badge badge-outline text-purple">{{ __('msgs.branch') }}</span>
+                                    @endif
+                                </td>
+                                <td>
                                     @livewire('admin.category.update-status', ['category_id' => $category->id, 'is_active' => $category->is_active])
                                 </td>
                                 <td> {{ $category->created_at }} </td>
+                                <td>
+                                    <span class="badge bg-blue-lt">{{ $category->addedBy->name }}</span>
+                                </td>
                                 <td>
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>

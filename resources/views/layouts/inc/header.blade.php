@@ -133,10 +133,10 @@
                                             {{ __('treasury.treasuries') }}
                                         </a>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('admin.treasuries.index') }}" class="dropdown-item">
+                                            <a href="{{ route('admin.treasuries.index') }}" class="dropdown-item {{ request()->routeIs('admin.treasuries.index') ? 'active' : '' }}"">
                                                 {{ __('msgs.list', ['name' => __('treasury.treasuries')]) }}
                                             </a>
-                                            <a href="{{ route('admin.treasuries.create') }}" class="dropdown-item">
+                                            <a href="{{ route('admin.treasuries.create') }}" class="dropdown-item {{ request()->routeIs('admin.treasuries.create') ? 'active' : '' }}"">
                                                 {{ __('msgs.create', ['name' => __('treasury.treasury')]) }}
                                             </a>
                                         </div>
@@ -145,17 +145,17 @@
 
 
                                     <!-- sections -->
-                                    <a class="dropdown-item" href="{{ route('admin.sections.index') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.sections.index') ? 'active' : '' }}"" href="{{ route('admin.sections.index') }}">
                                         {{ __('section.sections') }}
                                     </a>
 
                                     <!-- categories -->
-                                    <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}"" href="{{ route('admin.categories.index') }}">
                                         {{ __('category.categories') }}
                                     </a>
 
                                     <!-- stores -->
-                                    <a class="dropdown-item" href="{{ route('admin.stores.index') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.stores.index') ? 'active' : '' }}"" href="{{ route('admin.stores.index') }}">
                                         {{ __('store.stores') }}
                                     </a>
                                 </div>

@@ -65,6 +65,7 @@
                     <th> {{ __('treasury.last_payment_receipt') }}</th>
                     <th> {{ __('treasury.last_payment_receipt') }}</th>
                     <th> {{ __('msgs.created_at') }}</th>
+                    <th>{{ __('msgs.added_by') }}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -77,9 +78,8 @@
                             @if ($treasury->is_master)
                                 <span class="badge badge-outline text-green">{{ __('msgs.master') }}</span>
                             @else
-                                <span class="badge badge-outline text-blue">{{ __('msgs.branch') }}</span>
+                                <span class="badge badge-outline text-purple">{{ __('msgs.branch') }}</span>
                             @endif
-
                         </td>
                         <td>
                             @livewire('admin.treasury.update-status', ['treasury_id' => $treasury->id, 'is_active' => $treasury->is_active])
@@ -87,6 +87,9 @@
                         <td>{{ $treasury->last_payment_receipt }}</td>
                         <td> {{ $treasury->last_payment_collect }}</td>
                         <td> {{ $treasury->created_at }} </td>
+                        <td>
+                            <span class="badge bg-blue-lt">{{ $treasury->addedBy->name }}</span>
+                        </td>
                         <td>
                             <span class="dropdown">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>

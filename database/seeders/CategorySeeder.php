@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Section;
+use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +17,9 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        $faker      = Factory::create();
         $admin      = Admin::inRandomOrder()->first();
+        $sectionId  = Section::where('name->en', 'Clothes')->first()->id;
         $categories = [
             [
                 'name'          => [
@@ -23,6 +27,9 @@ class CategorySeeder extends Seeder
                     'en'    => 'Shoes',
                 ],
                 'company_code'  => $admin->company_code,
+                'description'   => $faker->sentence(20),
+                'parent_id'     => 0,
+                'section_id'    => $sectionId,
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
             ],
@@ -32,6 +39,9 @@ class CategorySeeder extends Seeder
                     'en'    => 'Shirts',
                 ],
                 'company_code'  => $admin->company_code,
+                'description'   => $faker->sentence(20),
+                'parent_id'     => 0,
+                'section_id'    => $sectionId,
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
             ],
