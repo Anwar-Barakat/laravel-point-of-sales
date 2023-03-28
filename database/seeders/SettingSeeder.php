@@ -16,6 +16,8 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $faker      = Factory::create();
+        $admin      = Admin::inRandomOrder()->first();
+
         $settings   = [
             [
                 'company_name'      => [
@@ -26,9 +28,8 @@ class SettingSeeder extends Seeder
                 'alert_msg'         => $faker->sentence(10),
                 'address'           => $faker->address(),
                 'mobile'            => $faker->phoneNumber(),
-                'added_by'          => Admin::inRandomOrder()->first()->id,
-                'updated_by'        => Admin::inRandomOrder()->first()->id,
-                'is_active'         => true
+                'added_by'          => $admin->id,
+                'updated_by'        => $admin->id,
             ]
         ];
 

@@ -81,7 +81,7 @@ class StoreController extends Controller
             'address'       => $data['address'],
             'mobile'        => $data['mobile'],
             'is_active'     => $data['is_active'],
-            'added_by'      => $auth->id,
+            'updated_by'    => $auth->id,
             'company_code'  => $auth->company_code,
         ]);
         toastr()->success(__('msgs.updated', ['name' => __('store.store')]));

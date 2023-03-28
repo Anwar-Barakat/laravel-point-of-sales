@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Section\SectionController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
@@ -62,6 +63,11 @@ Route::group(
                 //!_______________________
                 Route::resource('treasuries',               TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
                 Route::resource('treasury-deliveries',      TreasuryDeliveryController::class)->only(['store', 'destroy']);
+
+                //!_______________________
+                //! Sections
+                //!_______________________
+                Route::resource('sections',                 SectionController::class)->except(['create', 'show', 'edit']);
 
                 //!_______________________
                 //! Categories
