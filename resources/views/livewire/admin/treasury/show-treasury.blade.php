@@ -96,15 +96,7 @@
 
                         </td>
                         <td class="sort-type">
-                            @if ($treasury->is_active)
-                                <button class="btn position-relative">{{ __('msgs.active') }}
-                                    <span class="badge bg-green badge-notification badge-blink"></span>
-                                </button>
-                            @else
-                                <button class="btn position-relative">{{ __('msgs.not_active') }}
-                                    <span class="badge bg-red badge-notification badge-blink"></span>
-                                </button>
-                            @endif
+                            @livewire('admin.treasury.update-status', ['treasury_id' => $treasury->id, 'is_active' => $treasury->is_active])
                         </td>
                         <td class="sort-score">{{ $treasury->last_payment_receipt }}</td>
                         <td class="sort-date"> {{ $treasury->last_payment_collect }}</td>

@@ -37,15 +37,7 @@
                                 <td> {{ $section->name }}</td>
 
                                 <td>
-                                    @if ($section->is_active)
-                                        <button class="btn position-relative">{{ __('msgs.active') }}
-                                            <span class="badge bg-green badge-notification badge-blink"></span>
-                                        </button>
-                                    @else
-                                        <button class="btn position-relative">{{ __('msgs.not_active') }}
-                                            <span class="badge bg-red badge-notification badge-blink"></span>
-                                        </button>
-                                    @endif
+                                    @livewire('admin.section.update-status', ['section_id' => $section->id, 'is_active' => $section->is_active])
                                 </td>
                                 <td> {{ $section->created_at }} </td>
                                 <td>

@@ -35,17 +35,9 @@
                             <tr>
                                 <td class="sort-name">{{ $loop->iteration }}</td>
                                 <td class="sort-city">{{ $store->name }}</td>
-
                                 <td class="sort-type">
-                                    @if ($store->is_active)
-                                        <button class="btn position-relative">{{ __('msgs.active') }}
-                                            <span class="badge bg-green badge-notification badge-blink"></span>
-                                        </button>
-                                    @else
-                                        <button class="btn position-relative">{{ __('msgs.not_active') }}
-                                            <span class="badge bg-red badge-notification badge-blink"></span>
-                                        </button>
-                                    @endif
+                                    @livewire('admin.store.update-status', ['store_id' => $store->id, 'is_active' => $store->is_active])
+
                                 </td>
                                 <td class="sort-progress"> {{ $store->created_at }} </td>
                                 <td>

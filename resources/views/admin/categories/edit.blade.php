@@ -1,30 +1,30 @@
-<div class="modal modal-blur fade" id="edit-category-{{ $cat->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-blur fade" id="edit-category-{{ $category ->id }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"> {{ __('msgs.edit', ['name' => __('category.category')]) }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('admin.categories.update', ['category' => $cat]) }}">
+            <form method="POST" action="{{ route('admin.categories.update', ['category' => $category  ]) }}">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('category.category_ar')" />
-                        <x-text-input type="text" name="name_ar" class="form-control" placeholder="{{ __('msgs.name_ar') }}" :value="old('name_ar', $cat->getTranslation('name', 'ar'))" required />
+                        <x-text-input type="text" name="name_ar" class="form-control" placeholder="{{ __('msgs.name_ar') }}" :value="old('name_ar', $category ->getTranslation('name', 'ar'))" required />
                         <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                     </div>
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('category.category_en')" />
-                        <x-text-input type="text" name="name_en" class="form-control" placeholder="{{ __('msgs.name_en') }}" :value="old('name_en', $cat->getTranslation('name', 'en'))" required />
+                        <x-text-input type="text" name="name_en" class="form-control" placeholder="{{ __('msgs.name_en') }}" :value="old('name_en', $category ->getTranslation('name', 'en'))" required />
                         <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                     </div>
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.is_it_active')" />
                         <select class="form-control" name="is_active">
                             <option value="">{{ __('btns.select') }}</option>
-                            <option value="1" {{ $cat->is_active ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
-                            <option value="0" {{ $cat->is_active == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>
+                            <option value="1" {{ $category->is_active ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
+                            <option value="0" {{ $category->is_active == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>
                         </select>
                         <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                     </div>

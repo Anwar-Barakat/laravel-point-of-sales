@@ -31,28 +31,20 @@
                         </tr>
                     </thead>
                     <tbody class="table-tbody">
-                        @forelse ($categories as $cat)
+                        @forelse ($categories as $category)
                             <tr>
                                 <td class="sort-name">{{ $loop->iteration }}</td>
-                                <td class="sort-city">{{ $cat->name }}</td>
+                                <td class="sort-city">{{ $category->name }}</td>
 
                                 <td class="sort-type">
-                                    @if ($cat->is_active)
-                                        <button class="btn position-relative">{{ __('msgs.active') }}
-                                            <span class="badge bg-green badge-notification badge-blink"></span>
-                                        </button>
-                                    @else
-                                        <button class="btn position-relative">{{ __('msgs.not_active') }}
-                                            <span class="badge bg-red badge-notification badge-blink"></span>
-                                        </button>
-                                    @endif
+                                    @livewire('admin.category.update-status', ['category_id' => $category->id, 'is_active' => $category->is_active])
                                 </td>
-                                <td class="sort-progress"> {{ $cat->created_at }} </td>
+                                <td class="sort-progress"> {{ $category->created_at }} </td>
                                 <td>
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{ $cat->id }}">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{ $category->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -61,7 +53,7 @@
                                                 </svg>
                                                 <span>{{ __('btns.edit') }}</span>
                                             </a>
-                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $cat->id }}">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $category->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M4 7l16 0" />
@@ -75,7 +67,7 @@
                                         </div>
                                     </span>
 
-                                    <x-modal-delete :id="$cat->id" :action="route('admin.categories.destroy', ['category' => $cat])" />
+                                    <x-modal-delete :id="$category->id" :action="route('admin.categories.destroy', ['category' => $category])" />
 
                                 </td>
                                 <!-- edit category modal -->
