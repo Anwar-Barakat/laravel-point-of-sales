@@ -18,5 +18,6 @@ class Section extends Model
         'updated_by',
     ];
 
-    public $translatable = ['name'];
+    public $translatable    = ['name'];
+    protected $casts        = ['created_at' => 'date:Y-m-d',];
 }

@@ -16,8 +16,6 @@ class Admin extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
-    protected $guard = 'admin';
-
     protected $fillable = [
         'name',
         'email',
@@ -28,13 +26,9 @@ class Admin extends Authenticatable implements HasMedia
         'company_code'
     ];
 
-    protected $hidden = [
-        'password',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $guard    = 'admin';
+    protected $hidden   = ['password',];
+    protected $casts    = ['email_verified_at' => 'datetime',];
 
     public function registerMediaConversions(Media $media = null): void
     {

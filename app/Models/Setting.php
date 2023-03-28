@@ -22,7 +22,9 @@ class Setting extends Model implements HasMedia
         'added_by', 'updated_by', 'is_active',
     ];
 
-    public $translatable = ['company_name'];
+    public $translatable    = ['company_name'];
+    protected $casts        = ['created_at' => 'date:Y-m-d',];
+
 
     public function registerMediaConversions(Media $media = null): void
     {

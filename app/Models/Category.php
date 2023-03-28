@@ -18,5 +18,7 @@ class Category extends Model
         'is_active'
     ];
 
-    public $translatable = ['name'];
+    public $translatable    = ['name'];
+    protected $casts        = ['created_at'    => 'date:Y-m-d',];
+
 }

@@ -12,34 +12,27 @@
 
         <div class="card-body">
             <div id="table-default" class="table-responsive">
-                <table class="table table-vcenter table-mobile-md card-table">
+                <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                     <thead>
                         <tr>
-                            <th>
-                                <button class="table-sort" data-sort="sort-name">#</button>
-                            </th>
-                            <th>
-                                <button class="table-sort" data-sort="sort-name"> {{ __('store.store') }}</button>
-                            </th>
-                            <th>
-                                <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.is_active') }}</button>
-                            </th>
-                            <th>
-                                <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.created_at') }}</button>
-                            </th>
+                            <th>#</th>
+                            <th> {{ __('store.store') }}</th>
+                            <th> {{ __('msgs.is_active') }}</th>
+                            <th> {{ __('msgs.added_by') }}</th>
+                            <th> {{ __('msgs.created_at') }}</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody class="table-tbody">
                         @forelse ($stores as $store)
                             <tr>
-                                <td class="sort-name">{{ $loop->iteration }}</td>
-                                <td class="sort-city">{{ $store->name }}</td>
-                                <td class="sort-type">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $store->name }}</td>
+                                <td>
                                     @livewire('admin.store.update-status', ['store_id' => $store->id, 'is_active' => $store->is_active])
-
                                 </td>
-                                <td class="sort-progress"> {{ $store->created_at }} </td>
+                                <td> {{ $store->addedBy->name }} </td>
+                                <td> {{ $store->created_at }} </td>
                                 <td>
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>

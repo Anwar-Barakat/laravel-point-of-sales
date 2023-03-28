@@ -17,6 +17,8 @@ class TreasuryDelivery extends Model
         'updated_by',
     ];
 
+    protected $casts        = ['created_at' => 'date:Y-m-d',];
+
     public function treasury()
     {
         return $this->belongsTo(Treasury::class, 'treasury_id');

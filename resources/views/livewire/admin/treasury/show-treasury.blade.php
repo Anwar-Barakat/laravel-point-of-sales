@@ -55,39 +55,25 @@
             </div>
         </div>
         <br>
-        <table class="table table-vcenter table-mobile-md card-table">
+        <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
             <thead>
                 <tr>
-                    <th>
-                        <button class="table-sort" data-sort="sort-name">#</button>
-                    </th>
-                    <th>
-                        <button class="table-sort" data-sort="sort-name"> {{ __('treasury.treasury') }}</button>
-                    </th>
-                    <th>
-                        <button class="table-sort" data-sort="sort-city"> {{ __('msgs.is_master') }}</button>
-                    </th>
-                    <th>
-                        <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.is_active') }}</button>
-                    </th>
-                    <th>
-                        <button class="table-sort" data-sort="sort-type"> {{ __('treasury.last_payment_receipt') }}</button>
-                    </th>
-                    <th>
-                        <button class="table-sort" data-sort="sort-score"> {{ __('treasury.last_payment_receipt') }}</button>
-                    </th>
-                    <th>
-                        <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.created_at') }}</button>
-                    </th>
+                    <th>#</th>
+                    <th> {{ __('treasury.treasury') }}</th>
+                    <th> {{ __('msgs.is_master') }}</th>
+                    <th> {{ __('msgs.is_active') }}</th>
+                    <th> {{ __('treasury.last_payment_receipt') }}</th>
+                    <th> {{ __('treasury.last_payment_receipt') }}</th>
+                    <th> {{ __('msgs.created_at') }}</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody class="table-tbody">
                 @forelse ($treasuries as $treasury)
                     <tr>
-                        <td class="sort-name">{{ $loop->iteration }}</td>
-                        <td class="sort-city">{{ $treasury->name }}</td>
-                        <td class="sort-quantity">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $treasury->name }}</td>
+                        <td>
                             @if ($treasury->is_master)
                                 <span class="badge badge-outline text-green">{{ __('msgs.master') }}</span>
                             @else
@@ -95,12 +81,12 @@
                             @endif
 
                         </td>
-                        <td class="sort-type">
+                        <td>
                             @livewire('admin.treasury.update-status', ['treasury_id' => $treasury->id, 'is_active' => $treasury->is_active])
                         </td>
-                        <td class="sort-score">{{ $treasury->last_payment_receipt }}</td>
-                        <td class="sort-date"> {{ $treasury->last_payment_collect }}</td>
-                        <td class="sort-progress"> {{ $treasury->created_at }} </td>
+                        <td>{{ $treasury->last_payment_receipt }}</td>
+                        <td> {{ $treasury->last_payment_collect }}</td>
+                        <td> {{ $treasury->created_at }} </td>
                         <td>
                             <span class="dropdown">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>

@@ -20,5 +20,16 @@ class Store extends Model
         'updated_by',
     ];
 
-    public $translatable = ['name'];
+    public $translatable    = ['name'];
+    protected $casts        = ['created_at' => 'date:Y-m-d',];
+
+    public function addedBy()
+    {
+        return $this->belongsTo(Admin::class, 'added_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
 }

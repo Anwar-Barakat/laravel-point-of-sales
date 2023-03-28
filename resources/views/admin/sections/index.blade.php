@@ -12,21 +12,13 @@
 
         <div class="card-body">
             <div id="table-default" class="table-responsive">
-                <table class="table table-vcenter table-mobile-md card-table">
+                <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                     <thead>
                         <tr>
-                            <th>
-                                <button class="table-sort" data-sort="sort-name">#</button>
-                            </th>
-                            <th>
-                                <button class="table-sort" data-sort="sort-name"> {{ __('section.section') }}</button>
-                            </th>
-                            <th>
-                                <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.is_active') }}</button>
-                            </th>
-                            <th>
-                                <button class="table-sort" data-sort="sort-quantity"> {{ __('msgs.created_at') }}</button>
-                            </th>
+                            <th>#</th>
+                            <th>{{ __('section.section') }}</th>
+                            <th>{{ __('msgs.is_active') }}</th>
+                            <th>{{ __('msgs.created_at') }}</th>
                             <th></th>
                         </tr>
                     </thead>

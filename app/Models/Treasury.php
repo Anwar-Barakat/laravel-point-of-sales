@@ -19,12 +19,9 @@ class Treasury extends Model
         'added_by',
         'updated_by',
         'company_code',
-        'date',
     ];
 
-    protected $casts = [
-        'created_at'    => 'date:Y-m-d h:i',
-    ];
+    protected $casts        = ['created_at' => 'date:Y-m-d',];
 
     public function scopeSearch($query, $term)
     {
