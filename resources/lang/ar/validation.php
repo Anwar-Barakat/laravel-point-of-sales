@@ -176,6 +176,12 @@ return [
         'treasury_delivery_id'  => 'الخزنة المسلم',
         'name_ar'               => 'الاسم بالعربي',
         'name_en'               => 'الاسم بالأنكليزي',
+
+        //? categories
+        'section_id'            => 'القسم',
+        'parent_id'             => 'فئة الأب',
+        'description'           => 'الوصف',
+        'photo'                 => 'صورة',
     ],
 
 ];

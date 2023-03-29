@@ -140,7 +140,6 @@
                                                 {{ __('msgs.create', ['name' => __('treasury.treasury')]) }}
                                             </a>
                                         </div>
-
                                     </div>
 
 
@@ -150,9 +149,19 @@
                                     </a>
 
                                     <!-- categories -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}"" href="{{ route('admin.categories.index') }}">
-                                        {{ __('category.categories') }}
-                                    </a>
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                            {{ __('category.categories') }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ route('admin.categories.index') }}" class="dropdown-item {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}"">
+                                                {{ __('msgs.list', ['name' => __('category.categories')]) }}
+                                            </a>
+                                            <a href="{{ route('admin.categories.create') }}" class="dropdown-item {{ request()->routeIs('admin.categories.create') ? 'active' : '' }}"">
+                                                {{ __('msgs.create', ['name' => __('category.category')]) }}
+                                            </a>
+                                        </div>
+                                    </div>
 
                                     <!-- stores -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.stores.index') ? 'active' : '' }}"" href="{{ route('admin.stores.index') }}">

@@ -72,7 +72,7 @@ Route::group(
                 //!_______________________
                 //! Categories
                 //!_______________________
-                Route::resource('categories',               CategoryController::class)->except(['create', 'show', 'edit']);
+                Route::resource('categories',               CategoryController::class);
 
                 //!_______________________
                 //! Stoes

@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
             <h3 class="card-title">{{ __('msgs.all', ['name' => __('category.categories')]) }}</h3>
-            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-category">
+            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">
                 {{ __('msgs.create', ['name' => __('category.category')]) }}
             </a>
         </div>
@@ -34,10 +34,12 @@
                                     <span class="badge badge-outline text-blue">{{ $category->section->name }}</span>
                                 </td>
                                 <td>
-                                    @if ($category->parent_id == 0)
+                                    @if ($category->parent_id == '0')
                                         <span class="badge badge-outline text-green">{{ __('msgs.parent') }}</span>
                                     @else
-                                        <span class="badge badge-outline text-purple">{{ __('msgs.branch') }}</span>
+                                        <span class="badge badge-outline text-purple">
+                                            {{ $category->parentCategory->name }}
+                                        </span>
                                     @endif
                                 </td>
                                 <td>
@@ -51,7 +53,7 @@
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-category-{{ $category->id }}">
+                                            <a href="{{ route('admin.categories.edit', ['category' => $category]) }}" class="dropdown-item d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -73,16 +75,12 @@
                                             </a>
                                         </div>
                                     </span>
-
                                     <x-modal-delete :id="$category->id" :action="route('admin.categories.destroy', ['category' => $category])" />
-
                                 </td>
-                                <!-- edit category modal -->
-                                @include('admin.categories.edit')
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8">
+                                <td colspan="0">
                                     <x-blank-section :content="__('category.category')" :url="route('admin.categories.create')" />
                                 </td>
                             </tr>
@@ -94,8 +92,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- Add category modal -->
-        @include('admin.categories.create')
     </div>
 </x-master-layout>

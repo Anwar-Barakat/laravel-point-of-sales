@@ -52,7 +52,8 @@ return [
     'is_it_active'          => 'Is it active?',
     'not_active'            => 'Not active',
     'added_by'              => 'Added by',
-
+    'photo'                 => 'Photo',
+    'description'           => 'Description',
 
     'are_you_sure_about_deleting'   => 'Are you sure about deleting ?'
 ];

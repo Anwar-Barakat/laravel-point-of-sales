@@ -21,10 +21,6 @@ class StoreCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name_ar'       => ['required', 'string', 'min:3'],
-            'name_en'       => ['required', 'string', 'min:3'],
-            'is_active'     => ['required', 'boolean']
-        ];
+        return [];
     }
 }

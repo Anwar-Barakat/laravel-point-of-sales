@@ -177,6 +177,13 @@ return [
         'treasury_delivery_id'  => 'Treasury delivery',
         'name_ar'               => 'Arabic name',
         'name_en'               => 'English name',
+
+
+    //? categories
+    'section_id'            => 'Section',
+    'parent_id'             => 'Category parent',
+    'description'           => 'Description',
+    'photo'                 => 'Photo',
     ],
 
 ];

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
+use App\Models\Section;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories  = Category::with(['addedBy'])->latest()->paginate(PAGINATION_COUNT);
+        $categories = Category::with(['addedBy', 'section', 'parentCategory'])->latest()->paginate(PAGINATION_COUNT);
         return view('admin.categories.index', ['categories' => $categories]);
     }
 
@@ -23,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -31,19 +32,20 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $data   = $request->only(['name_ar', 'name_en', 'is_active']);
-        $auth   = auth()->guard('admin')->user();
-        Category::create([
-            'name'          => [
-                'ar'    => $data['name_ar'],
-                'en'    => $data['name_en'],
-            ],
-            'is_active'     => $data['is_active'],
-            'added_by'      => $auth->id,
-            'company_code'  => $auth->company_code,
-        ]);
-        toastr()->success(__('msgs.created', ['name' => __('category.category')]));
-        return redirect()->route('admin.categories.index');
+        // dd('hi');
+        // $auth   = auth()->guard('admin')->user();
+
+        // if ($request->isMethod('post')) {
+        //     $data                   = $request->only(['name', 'is_active', 'section_id', 'parent_id', 'description']);
+        //     $data['company_code']   = $auth->company_code;
+        //     $data['added_by']       = $auth->id;
+
+        //     dd($data);
+
+        //     Category::create($data);
+        //     toastr()->success(__('msgs.created', ['name' => __('category.category')]));
+        //     return redirect()->route('admin.categories.index');
+        // }
     }
 
     /**
@@ -59,7 +61,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', ['category' => $category]);
     }
 
     /**

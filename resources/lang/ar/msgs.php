@@ -52,7 +52,8 @@ return [
     'yes'                   => 'نعم',
     'no'                    => 'لا',
     'added_by'              => 'أُضيفت من قبل',
-
+    'photo'                 => 'الصورة',
+    'descriprion'           => 'الوصف',
 
     'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف'
 
