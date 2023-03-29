@@ -18,16 +18,16 @@ class SectionSeeder extends Seeder
         $sections   = [
             [
                 'name'          => [
-                    'en'        => 'Clothes',
-                    'ar'        => "ملابس",
+                    'en'        => 'Men',
+                    'ar'        => "رجال",
                 ],
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
             ],
             [
                 'name'          => [
-                    'en'        => 'Electronic',
-                    'ar'        => 'ألكترونيات',
+                    'en'        => 'Women',
+                    'ar'        => 'نساء',
                 ],
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,

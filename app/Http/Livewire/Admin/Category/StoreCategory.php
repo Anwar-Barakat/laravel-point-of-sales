@@ -12,11 +12,12 @@ class StoreCategory extends Component
 {
     use WithFileUploads;
 
-    public $name, $is_active, $image, $description,
+    public $name_ar, $name_en, $is_active, $image, $description,
         $section_id, $parent_id, $categories;
 
     protected $rules = [
-        'name'          => ['required', 'string', 'min:3'],
+        'name_ar'       => ['required', 'string', 'min:3'],
+        'name_en'       => ['required', 'string', 'min:3'],
         'is_active'     => ['required', 'boolean'],
         'parent_id'     => ['required', 'integer'],
         'section_id'    => ['required', 'integer'],
@@ -38,6 +39,8 @@ class StoreCategory extends Component
         $auth   = Auth::guard('admin')->user();
 
         $validation                 = $this->validate();
+        $validation['name']['ar']   = $this->name_ar;
+        $validation['name']['en']   = $this->name_en;
         $validation['added_by']     = $auth->id;
         $validation['company_code'] = $auth->company_code;
 

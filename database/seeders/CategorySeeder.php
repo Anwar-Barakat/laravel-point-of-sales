@@ -19,7 +19,8 @@ class CategorySeeder extends Seeder
     {
         $faker      = Factory::create();
         $admin      = Admin::inRandomOrder()->first();
-        $sectionId  = Section::where('name->en', 'Clothes')->first()->id;
+        $sectionId  = Section::where('name->en', 'Men')->first()->id;
+
         $categories = [
             [
                 'name'          => [

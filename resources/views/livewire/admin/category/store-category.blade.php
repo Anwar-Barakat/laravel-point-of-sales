@@ -3,7 +3,7 @@
         <div class="card-body">
             <h3 class="mb-4">{{ __('msgs.main_info') }}</h3>
             <div class="row">
-                <div class="col-sm-12 col-md-6 m-auto mb-2">
+                <div class="col-sm-12 col-md-6 m-auto mb-3">
                     @if ($image)
                         <img src="{{ $image->temporaryUrl() }}" class="img img-thumbnail" height="300">
                     @endif
@@ -12,9 +12,16 @@
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('auth.name')" />
-                        <x-text-input type="text" class="form-control" placeholder="{{ __('category.category_name') }}" wire:model='name' required />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-input-label class="form-label" :value="__('msgs.name_ar')" />
+                        <x-text-input type="text" class="form-control" placeholder="{{ __('category.category_ar') }}" wire:model='name_ar' required />
+                        <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.name_en')" />
+                        <x-text-input type="text" class="form-control" placeholder="{{ __('category.category_en') }}" wire:model='name_en' required />
+                        <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4">
@@ -27,11 +34,6 @@
                         </select>
                         <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <x-input-label class="form-label" :value="__('msgs.photo')" />
-                    <x-text-input type="file" class="form-control" wire:model='image' />
-                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
             </div>
 
@@ -62,6 +64,11 @@
                         </select>
                         <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
                     </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <x-input-label class="form-label" :value="__('msgs.photo')" />
+                    <x-text-input type="file" class="form-control" wire:model='image' />
+                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
             </div>
 

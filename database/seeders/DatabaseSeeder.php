@@ -17,11 +17,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SettingSeeder::class,
 
-            SectionSeeder::class,
-
             TreasurySeeder::class,
             TreasuryDeliverySeeder::class,
 
+            SectionSeeder::class,
             CategorySeeder::class,
             StoreSeeder::class,
         ]);
