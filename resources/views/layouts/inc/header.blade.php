@@ -167,6 +167,21 @@
                                     <a class="dropdown-item {{ request()->routeIs('admin.stores.index') ? 'active' : '' }}"" href="{{ route('admin.stores.index') }}">
                                         {{ __('store.stores') }}
                                     </a>
+
+                                    <!-- units -->
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                            {{ __('unit.units') }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ route('admin.units.index') }}" class="dropdown-item {{ request()->routeIs('admin.units.index') ? 'active' : '' }}"">
+                                                {{ __('msgs.list', ['name' => __('unit.units')]) }}
+                                            </a>
+                                            <a href="" class="dropdown-item {{ request()->routeIs('admin.categories.create') ? 'active' : '' }}"">
+                                                {{ __('msgs.create', ['name' => __('unit.unit')]) }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

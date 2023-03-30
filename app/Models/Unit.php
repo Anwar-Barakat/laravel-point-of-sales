@@ -20,4 +20,9 @@ class Unit extends Model
     ];
 
     protected $translatable = ['name'];
+
+    public function addedBy()
+    {
+        return $this->belongsTo(Admin::class, 'added_by');
+    }
 }

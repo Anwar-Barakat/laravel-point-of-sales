@@ -8,6 +8,5 @@ return [
     'category_name'         => 'اسم الفئة',
     'category_level'        => 'مستوى الفئة',
     'parent_category'       => 'الفئة الأب',
-
     'category_has_cats'     => 'هذه الفئة تحوي على فئات فرعية',
 ];
