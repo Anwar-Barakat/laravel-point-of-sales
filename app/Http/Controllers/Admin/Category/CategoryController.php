@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
 use App\Models\Section;
+use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CategoryController extends Controller
 {
@@ -30,22 +32,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(Request $request)
     {
-        // dd('hi');
-        // $auth   = auth()->guard('admin')->user();
-
-        // if ($request->isMethod('post')) {
-        //     $data                   = $request->only(['name', 'is_active', 'section_id', 'parent_id', 'description']);
-        //     $data['company_code']   = $auth->company_code;
-        //     $data['added_by']       = $auth->id;
-
-        //     dd($data);
-
-        //     Category::create($data);
-        //     toastr()->success(__('msgs.created', ['name' => __('category.category')]));
-        //     return redirect()->route('admin.categories.index');
-        // }
+        //
     }
 
     /**
@@ -67,21 +56,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(Request $request, Category $category)
     {
-        $data   = $request->only(['name_ar', 'name_en', 'is_active']);
-        $auth   = auth()->guard('admin')->user();
-        $category->update([
-            'name'          => [
-                'ar'    => $data['name_ar'],
-                'en'    => $data['name_en'],
-            ],
-            'is_active'     => $data['is_active'],
-            'added_by'      => $auth->id,
-            'company_code'  => $auth->company_code,
-        ]);
-        toastr()->success(__('msgs.updated', ['name' => __('category.category')]));
-        return redirect()->route('admin.categories.index');
+        //
     }
 
     /**
@@ -89,6 +66,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->subCategories()->count() > 0) {
+            toastr()->error(__('category.category_has_cats'));
+            return redirect()->back();
+        }
+
+        $category->clearMediaCollection('categories');
+        Media::where(['model_id' => $category->id, 'collection_name' => 'categories'])->delete();
         $category->delete();
         toastr()->info(__('msgs.deleted', ['name' => __('category.category')]));
         return redirect()->route('admin.categories.index');

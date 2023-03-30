@@ -58,7 +58,7 @@ class Category extends Model implements HasMedia
 
     public function parentCategory()
     {
-        return $this->hasMany(Category::class, 'parent_id')->select('id', 'name');
+        return $this->belongsTo(Category::class, 'parent_id')->select('id', 'name');
     }
 
     public function subCategories()

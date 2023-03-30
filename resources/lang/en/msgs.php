@@ -48,12 +48,12 @@ return [
     'is_it_parent'          => 'Is it parent?',
     'master'                => 'Master',
     'branch'                => 'Branch',
-    'Parent'                => 'Parent',
+    'parent'                => 'Parent',
     'is_it_active'          => 'Is it active?',
     'not_active'            => 'Not active',
     'added_by'              => 'Added by',
     'photo'                 => 'Photo',
-    'description'           => 'Description',
+    'descriprion'           => 'Description',
 
     'are_you_sure_about_deleting'   => 'Are you sure about deleting ?'
 ];
