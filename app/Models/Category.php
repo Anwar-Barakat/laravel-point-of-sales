@@ -53,16 +53,16 @@ class Category extends Model implements HasMedia
 
     public function section()
     {
-        return $this->belongsTo(Section::class, 'section_id')->select('id', 'name');
+        return $this->belongsTo(Section::class, 'section_id');
     }
 
     public function parentCategory()
     {
-        return $this->belongsTo(Category::class, 'parent_id')->select('id', 'name');
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
     public function subCategories()
     {
-        return $this->hasMany(Category::class, 'parent_id')->select('id', 'name')->where('is_active', 1);
+        return $this->hasMany(Category::class, 'parent_id');
     }
 }

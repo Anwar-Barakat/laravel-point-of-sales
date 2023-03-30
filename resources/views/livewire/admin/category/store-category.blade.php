@@ -57,8 +57,16 @@
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="0">{{ __('msgs.parent') }}</option>
                             @if ($categories)
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach ($categories as $root)
+                                    <option value="{{ $root->id }}">{{ ucwords($root->name) }}</option>
+                                    @if ($root->subCategories)
+                                        @foreach ($root->subCategories as $child)
+                                            <option value="{{ $child->id }}">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;
+                                                {{ ucwords($child->name) }}
+                                            </option>
+                                        @endforeach
+                                    @endif
                                 @endforeach
                             @endif
                         </select>

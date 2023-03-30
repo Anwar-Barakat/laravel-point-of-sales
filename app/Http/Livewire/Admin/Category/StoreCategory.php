@@ -31,7 +31,7 @@ class StoreCategory extends Component
 
     public function updatedSectionId()
     {
-        $this->categories = Category::where('section_id', $this->section_id)->active()->get();
+        $this->categories = Category::with('subCategories')->where(['section_id' => $this->section_id, 'parent_id' => 0])->get();
     }
 
     public function store()
