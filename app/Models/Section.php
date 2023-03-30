@@ -31,11 +31,6 @@ class Section extends Model
         return $this->belongsTo(Admin::class, 'added_by');
     }
 
-    public function updatedBy()
-    {
-        return $this->belongsTo(Admin::class, 'updated_by');
-    }
-
     public function categories()
     {
         return $this->hasMany(Category::class)->with('subCategories')->where('parent_id', 0);
