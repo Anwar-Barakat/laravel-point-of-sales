@@ -1,11 +1,11 @@
-<div>
+<x-master-layout>
     @section('pageTitle', __('unit.units'))
     @section('breadcrumbTitle', __('unit.units'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
             <h3 class="card-title">{{ __('msgs.all', ['name' => __('unit.units')]) }}</h3>
-            <a href="" class="btn btn-primary">
+            <a href="{{ route('admin.units.create') }}" class="btn btn-primary">
                 {{ __('msgs.create', ['name' => __('unit.unit')]) }}
             </a>
         </div>
@@ -32,21 +32,14 @@
                                 <td>
                                     <span class="badge bg-{{ $unit->status == 'retail' ? 'blue' : 'green' }}">{{ __('unit.' . $unit->status) }}</span>
                                 </td>
-                                <td>
-                                    <button wire:click='updateStatus({{ $unit->id }})' class="btn position-relative">
-                                        {{ $unit->is_active ? __('msgs.active') : __('msgs.not_active') }}
-                                        <span class="badge {{ $unit->is_active ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
-                                    </button>
-                                </td>
+                                <td>@livewire('admin.unit.update-status', ['unit_id' => $unit->id, 'is_active' => $unit->is_active])</td>
                                 <td> {{ $unit->created_at }} </td>
-                                <td>
-                                    <span class="badge bg-blue-lt">{{ $unit->addedBy->name }}</span>
-                                </td>
+                                <td> <span class="badge bg-blue-lt">{{ $unit->addedBy->name }}</span></td>
                                 <td>
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="" class="dropdown-item d-flex align-items-center gap-1">
+                                            <a href="{{ route('admin.units.edit', ['unit' => $unit]) }}" class="dropdown-item d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -86,4 +79,4 @@
             </div>
         </div>
     </div>
-</div>
+</x-master-layout>

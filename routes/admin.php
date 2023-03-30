@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Store\StoreController;
 use App\Http\Controllers\Admin\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\Treasury\TreasuryDelivery\TreasuryDeliveryController;
+use App\Http\Controllers\Admin\Unit\UnitController;
+use App\Http\Livewire\Admin\Unit\AddUnit;
 use App\Http\Livewire\Admin\Unit\IndexUnit;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -84,7 +86,7 @@ Route::group(
                 //!_______________________
                 //! Units
                 //!_______________________
-                Route::get('units',                         IndexUnit::class)->name('units.index');
+                Route::resource('units',                    UnitController::class)->except(['show']);
             });
         });
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class UpdateUnitRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateUnitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name_ar'   => ['required', 'min:3'],
+            'name_en'   => ['required', 'min:3'],
+            'is_active' => ['required', 'boolean'],
+            'status'    => ['required', 'in:retail,wholesale']
         ];
     }
 }
