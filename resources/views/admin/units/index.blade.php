@@ -61,7 +61,7 @@
                                             </a>
                                         </div>
                                     </span>
-                                    {{-- <x-modal-delete :id="$unit->id" :action="route('admin.categories.destroy', ['category' => $category])" /> --}}
+                                    <x-modal-delete :id="$unit->id" :action="route('admin.units.destroy', ['unit' => $unit])" />
                                 </td>
                             </tr>
                         @empty

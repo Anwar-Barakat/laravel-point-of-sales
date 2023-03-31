@@ -18,8 +18,11 @@ class Setting extends Model implements HasMedia
         'company_name',
         'company_code',
         'alert_msg',
-        'address', 'mobile',
-        'added_by', 'updated_by', 'is_active',
+        'address',
+        'mobile',
+        'added_by',
+        'updated_by',
+        'is_active',
     ];
 
     public $translatable    = ['company_name'];
