@@ -1,7 +1,7 @@
 <div class="col d-flex flex-column">
     <form wire:submit.prevent='submit'>
         <div class="card-body">
-            <h3 class="mb-4">{{ __('msgs.main_info') }}</h3>
+            <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row">
                 <div class="col-sm-12 col-md-6 m-auto mb-3">
                     @if ($image)
@@ -13,14 +13,14 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('card.barcode_not_entered')" />
-                        <x-text-input type="text" class="form-control" placeholder="{{ __('msgs.type', ['name' => __('card.barcode')]) }}" wire:model='barcode' required />
+                        <x-text-input type="text" class="form-control" wire:model='barcode' required />
                         <x-input-error :messages="$errors->get('barcode')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('card.item_name')" />
-                        <x-text-input type="text" class="form-control" placeholder="{{ __('msgs.type', ['name' => __('card.item_name')]) }}" wire:model='item_name' required />
+                        <x-text-input type="text" class="form-control" wire:model='item_name' required />
                         <x-input-error :messages="$errors->get('item_name')" class="mt-2" />
                     </div>
                 </div>
@@ -72,6 +72,8 @@
                     </div>
                 </div>
             </div>
+            <hr class="w-50">
+            <h4 class="mb-4 text-blue">{{ __('card.wholesale_retail_prices') }}</h4>
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
@@ -85,10 +87,39 @@
                         <x-input-error :messages="$errors->get('wholesale_unit')" class="mt-2" />
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('card.wholesale_price')" />
+                        <x-text-input type="text" class="form-control" wire:model='wholesale_price' required />
+                        <x-input-error :messages="$errors->get('wholesale_price')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('card.wholesale_price_for_block')" />
+                        <x-text-input type="text" class="form-control" wire:model='wholesale_price_for_block' required />
+                        <x-input-error :messages="$errors->get('wholesale_price_for_block')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('card.wholesale_price_for_half_block')" />
+                        <x-text-input type="text" class="form-control" wire:model='wholesale_price_for_blockcard.wholesale_price_for_half_block' required />
+                        <x-input-error :messages="$errors->get('wholesale_price_for_half_block')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('card.wholesale_cost_price')" />
+                        <x-text-input type="text" class="form-control" wire:model='wholesale_cost_price' required />
+                        <x-input-error :messages="$errors->get('wholesale_cost_price')" class="mt-2" />
+                    </div>
+                </div>
+
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('card.has_retail_unit')" />
-                        <select id="" class="form-control" wire:model='is_active'>
+                        <select id="" class="form-control" wire:model='has_retail_unit'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -97,29 +128,60 @@
                     </div>
                 </div>
             </div>
-            <div class="row row-cards">
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('card.retail_unit')" />
-                        <select id="" class="form-control" wire:model='parent_id'>
-                            <option value="">{{ __('btns.select') }}</option>
-                            @foreach ($retail_units as $unit)
-                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
+            @if (!empty($retail_units))
+                <div class="row row-cards">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('card.retail_unit')" />
+                            <select id="" class="form-control" wire:model='parent_id'>
+                                <option value="">{{ __('btns.select') }}</option>
+                                @foreach ($retail_units as $unit)
+                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('card.retail_price')" />
+                            <x-text-input type="text" class="form-control" wire:model='retail_price' required />
+                            <x-input-error :messages="$errors->get('retail_price')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('card.retail_price_for_block')" />
+                            <x-text-input type="text" class="form-control" wire:model='retail_price_for_block' required />
+                            <x-input-error :messages="$errors->get('retail_price_for_block')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('card.retail_price_for_half_block')" />
+                            <x-text-input type="text" class="form-control" wire:model='retail_price_for_blockcard.retail_price_for_half_block' required />
+                            <x-input-error :messages="$errors->get('retail_price_for_half_block')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('card.retail_count_for_wholesale')" />
+                            <x-text-input type="text" class="form-control" wire:model='retail_count_for_wholesale' required />
+                            <x-input-error :messages="$errors->get('retail_count_for_wholesale')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('card.retail_cost_price')" />
+                            <x-text-input type="text" class="form-control" wire:model='retail_cost_price' required />
+                            <x-input-error :messages="$errors->get('retail_cost_price')" class="mt-2" />
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('card.retail_count_for_wholesale')" />
-                        <x-text-input type="text" class="form-control" wire:model='retail_count_for_wholesale' required />
-                        <x-input-error :messages="$errors->get('retail_count_for_wholesale')" class="mt-2" />
-                    </div>
-                </div>
-            </div>
+            @endif
 
-
+            <hr class="w-50">
+            <h4 class="mb-4  text-blue">{{ __('msgs.attachements') }}</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <x-input-label class="form-label" :value="__('msgs.photo')" />

@@ -25,6 +25,15 @@ return new class extends Migration
             $table->foreignId('retail_unit_id')->constrained('units')->cascadeOnUpdate();
             $table->decimal('retail_count_for_wholesale');
 
+            $table->decimal('wholesale_price')->comment('the sectional price for the main unit');
+            $table->decimal('wholesale_price_for_block');
+            $table->decimal('wholesale_price_for_half_block');
+            $table->decimal('wholesale_cost_price')->comment('the cost average for main unit');
+            $table->decimal('retail_price')->nullable();
+            $table->decimal('retail_price_for_block')->nullable();
+            $table->decimal('retail_price_for_half_block')->nullable();
+            $table->decimal('retail_cost_price');
+
             $table->date('date');
             $table->integer('company_code');
             $table->bigInteger('code');

@@ -10,6 +10,7 @@ return [
     'delete'                => 'حذف :name',
     'details'               => 'تفاصيل :name',
     'type'                  => 'أدخل :name',
+    'exists'                => ':name بالفعل موجودة',
 
     //? Results :
     'updated'               => 'تم تحديث :name بنجاج',
@@ -22,7 +23,6 @@ return [
     'try_again'             => 'من فضلك حاول مجدداً',
     'password_reset_link'   => 'لقد أرسلنا رابط إعادة تعيين كلمة المرور بالبريد الإلكتروني',
 
-    'exists'                => ':name بالفعل موجودة',
 
 
     //? Public Masseges :
@@ -44,7 +44,6 @@ return [
     'is_it_parent'          => 'هل هي فئة رئيسية؟',
     'master'                => 'رئيسية',
     'branch'                => 'فرعية',
-    'a'                => 'فئة رئيسية',
     'is_it_active'          => 'هل هي مُفعل؟',
     'active'                => 'مُفعل',
     'not_active'            => 'غير مُفعل',
@@ -55,6 +54,7 @@ return [
     'added_by'              => 'أُضيفت من قبل',
     'photo'                 => 'الصورة',
     'descriprion'           => 'الوصف',
+    'attachements'          => 'المرفقات',
 
     'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف'
 

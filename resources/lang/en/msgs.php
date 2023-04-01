@@ -10,6 +10,7 @@ return [
     'delete'                => 'Delete :name',
     'details'               => ':name details',
     'type'                  => 'Type the :name',
+    'exists'                => ':name already exists',
 
     //? Results :
     'updated'               => ':name Has Been Updated Successfuly',
@@ -21,7 +22,6 @@ return [
     'try_again'             => 'Oops, Please try again',
     'password_reset_link'   => 'We have e-mailed your password reset link!',
 
-    'exists'                => ':name already exists',
 
 
     //? Public Masseges :
@@ -54,6 +54,7 @@ return [
     'added_by'              => 'Added by',
     'photo'                 => 'Photo',
     'descriprion'           => 'Description',
+    'attachements'          => 'Attachements',
 
     'are_you_sure_about_deleting'   => 'Are you sure about deleting ?'
 ];
