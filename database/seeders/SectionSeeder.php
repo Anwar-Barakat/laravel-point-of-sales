@@ -40,6 +40,14 @@ class SectionSeeder extends Seeder
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
             ],
+            [
+                'name'          => [
+                    'en'        => 'Foods',
+                    'ar'        => 'طعام',
+                ],
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+            ],
         ];
 
         foreach ($sections as $section) {

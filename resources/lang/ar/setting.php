@@ -3,7 +3,6 @@
 return [
 
     'my_account'            => 'الملف الشخصي',
-    'general_setting'       => 'الضبط العام',
     'profile_details'       => 'تفاصيل الملف الشخصي',
     'business_profile'      => 'ملف الأعمال الشخصي',
     'details'               => 'تفاصيل',

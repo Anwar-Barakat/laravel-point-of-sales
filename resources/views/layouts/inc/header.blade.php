@@ -121,7 +121,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('setting.general_setting') }}
+                                {{ __('partials.general_setting') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">

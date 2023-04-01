@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
+use App\Http\Controllers\Admin\CardItem\CardItemController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Section\SectionController;
@@ -14,8 +15,6 @@ use App\Http\Controllers\Admin\Store\StoreController;
 use App\Http\Controllers\Admin\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\Treasury\TreasuryDelivery\TreasuryDeliveryController;
 use App\Http\Controllers\Admin\Unit\UnitController;
-use App\Http\Livewire\Admin\Unit\AddUnit;
-use App\Http\Livewire\Admin\Unit\IndexUnit;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -87,6 +86,12 @@ Route::group(
                 //! Units
                 //!_______________________
                 Route::resource('units',                    UnitController::class)->except(['show']);
+
+
+                //!_______________________
+                //! Cards
+                //!_______________________
+                Route::resource('card-items',                CardItemController::class)->except(['show']);
             });
         });
     }

@@ -3,7 +3,6 @@
 return [
 
     'my_account'            => 'My account',
-    'general_setting'       => 'General setting',
     'profile_details'       => 'Profile Details',
     'business_profile'      => 'Business Profile',
     'details'               => 'Details',

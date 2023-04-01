@@ -9,6 +9,7 @@ return [
     'update'                => 'تحديث :name',
     'delete'                => 'حذف :name',
     'details'               => 'تفاصيل :name',
+    'type'                  => 'أدخل :name',
 
     //? Results :
     'updated'               => 'تم تحديث :name بنجاج',
@@ -43,7 +44,7 @@ return [
     'is_it_parent'          => 'هل هي فئة رئيسية؟',
     'master'                => 'رئيسية',
     'branch'                => 'فرعية',
-    'parent'                => 'فئة رئيسية',
+    'a'                => 'فئة رئيسية',
     'is_it_active'          => 'هل هي مُفعل؟',
     'active'                => 'مُفعل',
     'not_active'            => 'غير مُفعل',

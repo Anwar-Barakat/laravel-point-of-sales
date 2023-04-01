@@ -9,7 +9,7 @@ return [
     'update'                => 'Update :name',
     'delete'                => 'Delete :name',
     'details'               => ':name details',
-
+    'type'                  => 'Type the :name',
 
     //? Results :
     'updated'               => ':name Has Been Updated Successfuly',

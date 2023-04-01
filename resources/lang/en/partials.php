@@ -11,6 +11,10 @@ return [
     'logout'        => 'Logout',
     'by'            => 'By',
 
+    //? Group Link
+    'general_setting'   => 'General Setting',
+    'stocks'            => 'Stocks',
+
 
     //? Footer :
     'copyright'             => 'Copyright',
