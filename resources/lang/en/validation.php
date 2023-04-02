@@ -148,42 +148,63 @@ return [
 
     'attributes' => [
         //? settings table
-        'company_name_ar'           => 'Arabic company name',
-        'company_name_en'           => 'English company name',
-        'company_code'              => 'Company code',
-        'address'                   => 'Address',
+        'company_name_ar'           => 'arabic company name',
+        'company_name_en'           => 'english company name',
+        'company_code'              => 'company code',
+        'address'                   => 'address',
         'mobile'                    => 'mobile',
-        'is_active'                 => 'Is active',
-        'current_password'          => 'Current password',
-        'password_confirmation'     => 'Password Confirmation',
+        'is_active'                 => 'is active',
+        'current_password'          => 'current password',
+        'password_confirmation'     => 'password Confirmation',
 
         //? admins table
-        'name'          => 'Name',
-        'bio'           => 'Bio',
-        'email'         => 'Email',
-        'password'      => 'Password',
-        'status'        => 'Status',
+        'name'          => 'name',
+        'bio'           => 'bio',
+        'email'         => 'email',
+        'password'      => 'password',
+        'status'        => 'status',
 
 
         //? treasuries table
-        'is_master'             => 'Is master',
-        'is_active'             => 'Is active',
-        'last_payment_receipt'  => 'Last payment receipt',
-        'last_payment_collect'  => 'Last payment collect',
-        'treasury_name_ar'      => 'Arabic treasury name',
-        'treasury_name_en'      => 'English treasury name',
+        'is_master'             => 'is master',
+        'last_payment_receipt'  => 'last payment receipt',
+        'last_payment_collect'  => 'last payment collect',
+        'treasury_name_ar'      => 'arabic treasury name',
+        'treasury_name_en'      => 'english treasury name',
 
         //? treasuries delivery table
-        'treasury_delivery_id'  => 'Treasury delivery',
-        'name_ar'               => 'Arabic name',
-        'name_en'               => 'English name',
+        'treasury_delivery_id'  => 'treasury delivery',
+        'name_ar'               => 'arabic name',
+        'name_en'               => 'english name',
 
 
-    //? categories
-    'section_id'            => 'Section',
-    'parent_id'             => 'Category parent',
-    'description'           => 'Description',
-    'photo'                 => 'Photo',
+        //? categories
+        'section_id'            => 'section',
+        'parent_id'             => 'category parent',
+        'description'           => 'description',
+        'photo'                 => 'photo',
+
+
+        //? card items
+        'barcode'               => 'barcode',
+        'item_name'             => 'item name',
+        'category_id'           => 'category',
+        'item_type'             => 'item type',
+        'retail_unit_id'        => 'retail unit',
+        'wholesale_unit_id'     => 'wholesale unit',
+        'has_retail_unit'       => 'item has retails unit?',
+        'wholesale_cost_price'  => 'wholesale cost price',
+        'retail_cost_price'     => 'retail cost price',
+        'has_fixed_price'       => 'has fixed price for invoices',
+
+        'retail_count_for_wholesale'        => 'retail unit count for one wholesale',
+        'wholesale_price'                   => 'wholesale price',
+        'wholesale_price_for_block'         => 'wholesale price for block',
+        'wholesale_price_for_half_block'    => 'wholesale price for half block',
+        'retail_price'                      => 'retail price',
+        'retail_price_for_block'            => 'retail price for block',
+        'retail_price_for_half_block'       => 'retail price for block',
+
     ],
 
 ];

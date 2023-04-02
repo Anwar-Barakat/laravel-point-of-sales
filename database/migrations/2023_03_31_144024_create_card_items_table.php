@@ -32,8 +32,13 @@ return new class extends Migration
             $table->decimal('retail_price')->nullable();
             $table->decimal('retail_price_for_block')->nullable();
             $table->decimal('retail_price_for_half_block')->nullable();
-            $table->decimal('retail_cost_price');
+            $table->decimal('retail_cost_price')->nullable();
 
+            $table->decimal('wholesale_qty')->comment('qty for wholesale unit');
+            $table->decimal('retail|_qty')->comment('كمية التجزئة المتبقية من الوحدة الاب في حالة وجود وحدة تجزئة للصنف');
+            $table->decimal('all_qty_retails')->comment('all qty in retail unit ');
+
+            $table->boolean('has_fixed_price')->default(1)->comment('Does it has fixed price for invoices?');
             $table->date('date');
             $table->integer('company_code');
             $table->bigInteger('code');

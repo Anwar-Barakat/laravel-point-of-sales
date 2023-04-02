@@ -2,26 +2,24 @@
 
 return [
     'card'                  => 'كرت منتجات',
-    'barcode'               => 'باركود',
     'barcode_not_entered'   => 'الباركود غير مدخل - سيولد بشكل اتوماتيكي',
-    'item_name'             => 'اسم الصنف',
-
-
     'stored'                => 'مخزني',
     'protected'             => 'عهدة',
     'consuming'             => 'إستهلاكي',
-    'item_type'             => 'نوع الصنف',
-    'item_category'         => 'فئة الصنف',
-
     'parent_unit'           => 'الوحدة الأب',
     'child_unit'            => 'الوحدة الفرعية',
+
+    'barcode'               => 'باركود',
+    'item_name'             => 'اسم الصنف',
+    'item_type'             => 'نوع الصنف',
+    'item_category'         => 'فئة الصنف',
     'has_retail_unit'       => 'الصنف يحوي واحدة تجزئة؟',
-    'retail_unit'           => 'وجدة تجزئة',
+    'retail_unit'           => 'وحدة تجزئة',
     'wholesale_unit'        => 'وحدة جملة',
     'cost_price'            => 'سعر التكلفة',
-    'wholesale_cost_price'  => 'سعر تكلفة الشراء للوجدة الرئيسية',
-    'retail_cost_price'     => 'سعر تكلفة الشراء للوجدة التجزئة',
-
+    'wholesale_cost_price'  => 'سعر تكلفة الشراء للوحدة الرئيسية',
+    'retail_cost_price'     => 'سعر تكلفة الشراء للوحدة التجزئة',
+    'has_fixed_price'       => 'لديه سعر ثابت للفواتير؟',
 
     'wholesale_retail_prices'           => 'أسعار الجمل والتجزئة',
     'retail_count_for_wholesale'        => 'عدد وحدات التجزئة في وحدة الرئيسية',

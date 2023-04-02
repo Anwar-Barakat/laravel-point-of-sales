@@ -1,25 +1,24 @@
 <?php
 
 return [
-    'card'                  => 'Card',
-    'barcode'               => 'Barcode',
+    'card'                  => 'Card items',
     'barcode_not_entered'   => 'Barcode not entered - will be generated automatically',
-    'item_name'             => 'Item name',
-
     'stored'                => 'Stored',
     'protected'             => 'Protected',
     'consuming'             => 'Consuming',
-
-    'item_type'             => 'Item type',
-    'item_category'         => 'Item category',
-
     'parent_unit'           => 'Parent unit',
     'child_unit'            => 'Child unit',
+
+    'barcode'               => 'Barcode',
+    'item_name'             => 'Item name',
+    'item_type'             => 'Item type',
+    'item_category'         => 'Item category',
     'retail_unit'           => 'Retail unit',
     'wholesale_unit'        => 'Wholesale unit',
     'has_retail_unit'       => 'Item Has retails unit?',
     'wholesale_cost_price'  => 'Wholesale cost price',
     'retail_cost_price'     => 'Retail cost price',
+    'has_fixed_price'       => 'Has fixed price for invoices?',
 
     'wholesale_retail_prices'           => 'Wholesales & Retails Prices',
     'retail_count_for_wholesale'        => 'Retail unit count for one wholesale',

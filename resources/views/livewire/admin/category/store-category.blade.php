@@ -3,7 +3,7 @@
         <div class="card-body">
             <h3 class="mb-4">{{ __('msgs.main_info') }}</h3>
             <div class="row">
-                <div class="col-sm-12 col-md-6 m-auto mb-3">
+                <div class="col-sm-12 col-md-6 m-auto mb-4">
                     @if ($image)
                         <img src="{{ $image->temporaryUrl() }}" class="img img-thumbnail" height="300">
                     @endif
