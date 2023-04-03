@@ -2,12 +2,13 @@
 
 return [
     'card'                  => 'كرت منتجات',
-    'barcode_not_entered'   => 'الباركود غير مدخل - سيولد بشكل اتوماتيكي',
+    'barcode_not_entered'   => 'الباركود - سيولد بشكل اتوماتيكي',
     'stored'                => 'مخزني',
     'protected'             => 'عهدة',
     'consuming'             => 'إستهلاكي',
     'parent_unit'           => 'الوحدة الأب',
     'child_unit'            => 'الوحدة الفرعية',
+    'parent_item'           => 'الصنف الأب',
 
     'barcode'               => 'باركود',
     'item_name'             => 'اسم الصنف',

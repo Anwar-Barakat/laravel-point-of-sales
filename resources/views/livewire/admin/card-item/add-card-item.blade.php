@@ -43,8 +43,8 @@
                         <x-input-label class="form-label" :value="__('card.item_type')" />
                         <select id="" class="form-control" wire:model='item_type'>
                             <option value="">{{ __('btns.select') }}</option>
-                            @foreach (App\Models\CardItem::ITEMTYPE as $item)
-                                <option value="{{ $item }}">{{ __('card.' . $item) }}</option>
+                            @foreach (App\Models\CardItem::ITEMTYPE as $key => $value)
+                                <option value="{{ $key }}">{{ __('card.' . $value) }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('item_type')" class="mt-2" />
@@ -83,6 +83,20 @@
                         <x-input-error :messages="$errors->get('has_fixed_price')" class="mt-2" />
                     </div>
                 </div>
+                @if ($parent_items->count() > 0)
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('card.parent_item')" />
+                            <select id="" class="form-control" wire:model='parent_id'>
+                                <option value="">{{ __('btns.select') }}</option>
+                                @foreach ($parent_items as $parent)
+                                    <option value="{{ $parent->id }}">{{ $parent->item_name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
+                        </div>
+                    </div>
+                @endif
             </div>
             <hr class="w-50">
             <h4 class="mb-4 text-blue">{{ __('card.wholesale_retail_prices') }}</h4>

@@ -8,6 +8,7 @@ return [
     'consuming'             => 'Consuming',
     'parent_unit'           => 'Parent unit',
     'child_unit'            => 'Child unit',
+    'parent_item'           => 'Parent Item',
 
     'barcode'               => 'Barcode',
     'item_name'             => 'Item name',

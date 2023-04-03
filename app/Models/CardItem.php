@@ -11,7 +11,7 @@ class CardItem extends Model
 
     protected $guarded = [];
 
-    const ITEMTYPE = ['stored', 'consuming', 'protected'];
+    const ITEMTYPE = [1 => 'stored', 2 => 'consuming', 3 => 'protected'];
 
     public function scopeActive($query)
     {
