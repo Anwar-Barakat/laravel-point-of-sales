@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Admin\CardItem;
+namespace App\Http\Livewire\Admin\Item;
 
-use App\Models\CardItem;
 use App\Models\Category;
+use App\Models\Item;
 use App\Models\Unit;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 
-class AddCardItem extends Component
+class AddItem extends Component
 {
     use WithFileUploads;
 
@@ -40,7 +40,7 @@ class AddCardItem extends Component
     public function mount()
     {
         $this->auth             = Auth::guard('admin')->user();
-        $this->parent_items     = CardItem::select('id', 'item_name')->where(['company_code' => $this->auth->company_code])->active()->get();
+        $this->parent_items     = Item::select('id', 'item_name')->where(['company_code' => $this->auth->company_code])->active()->get();
         $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_code', $this->auth->company_code)->active()->latest()->get();
         $this->wholesale_units  = Unit::select('id', 'name')->where(['company_code' => $this->auth->company_code, 'status' => 'wholesale'])->active()->get();
     }
@@ -66,7 +66,7 @@ class AddCardItem extends Component
         $validation['added_by']     = $this->auth->id;
         $validation['company_code'] = $this->auth->company_code;
 
-        CardItem::create($validation);
+        Item::create($validation);
         toastr()->success(__('msgs.created', ['name' => __('card.card')]));
         $this->resetExcept(['auth', 'categories', 'wholesale_units', 'parent_items']);
     }
@@ -74,13 +74,13 @@ class AddCardItem extends Component
 
     public function render()
     {
-        return view('livewire.admin.card-item.add-card-item');
+        return view('livewire.admin.item.add-item');
     }
 
     protected function rules()
     {
         return [
-            'item_name'                         => ['required', 'min:3', 'unique:card_items,item_name'],
+            'item_name'                         => ['required', 'min:3', 'unique:items,item_name'],
             'is_active'                         => ['required', 'boolean'],
             'item_type'                         => ['required', 'in:1,2,3'],
             'category_id'                       => ['required', 'integer'],

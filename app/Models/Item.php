@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CardItem extends Model
+class Item extends Model
 {
     use HasFactory;
-
-    protected $table = 'card_items';
 
     protected $fillable = [
         'item_name',
@@ -46,7 +44,7 @@ class CardItem extends Model
 
     public function parentItem()
     {
-        return $this->belongsTo(CardItem::class, 'parent_id');
+        return $this->belongsTo(Item::class, 'parent_id');
     }
 
     public function category()

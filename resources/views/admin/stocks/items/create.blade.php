@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="row g-0">
-            @livewire('admin.card-item.add-card-item')
+            @livewire('admin.item.add-item')
         </div>
     </div>
 

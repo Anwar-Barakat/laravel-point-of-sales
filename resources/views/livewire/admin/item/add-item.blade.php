@@ -42,7 +42,7 @@
                         <x-input-label class="form-label" :value="__('card.item_type')" />
                         <select id="" class="form-control" wire:model='item_type'>
                             <option value="">{{ __('btns.select') }}</option>
-                            @foreach (App\Models\CardItem::ITEMTYPE as $key => $value)
+                            @foreach (App\Models\Item::ITEMTYPE as $key => $value)
                                 <option value="{{ $key }}">{{ __('card.' . $value) }}</option>
                             @endforeach
                         </select>

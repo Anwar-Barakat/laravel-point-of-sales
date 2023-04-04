@@ -211,10 +211,10 @@
                                             {{ __('card.cards') }}
                                         </a>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('admin.card-items.index') }}" class="dropdown-item {{ request()->routeIs('admin.card-items.index') ? 'active' : '' }}"">
+                                            <a href="{{ route('admin.items.index') }}" class="dropdown-item {{ request()->routeIs('admin.items.index') ? 'active' : '' }}"">
                                                 {{ __('msgs.list', ['name' => __('card.cards')]) }}
                                             </a>
-                                            <a href="{{ route('admin.card-items.create') }}" class="dropdown-item {{ request()->routeIs('admin.card-items.create') ? 'active' : '' }}"">
+                                            <a href="{{ route('admin.items.create') }}" class="dropdown-item {{ request()->routeIs('admin.items.create') ? 'active' : '' }}"">
                                                 {{ __('msgs.create', ['name' => __('card.card')]) }}
                                             </a>
                                         </div>

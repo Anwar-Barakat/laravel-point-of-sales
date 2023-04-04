@@ -70,13 +70,13 @@
                 </tr>
             </thead>
             <tbody class="table-tbody">
-                @forelse ($cardItems as $item)
+                @forelse ($items as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->item_name }}</td>
                         <td>
                             <span class="badge bg-blue">
-                                {{ __('card.' . App\Models\CardItem::ITEMTYPE[$item->item_type]) }}
+                                {{ __('card.' . App\Models\Item::ITEMTYPE[$item->item_type]) }}
                             </span>
                         </td>
                         <td>{{ $item->category->name }}</td>
@@ -130,7 +130,7 @@
             </tbody>
         </table>
         <div class="mt-3">
-            {{-- {{ $cardItems->links() }} --}}
+            {{-- {{ $items->links() }} --}}
         </div>
     </div>
 </div>

@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin\CardItem;
+namespace App\Http\Controllers\Admin\Item;
 
-use App\Models\CardItem;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CardItemController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.stocks.card-items.index');
+        return view('admin.stocks.items.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class CardItemController extends Controller
      */
     public function create()
     {
-        return view('admin.stocks.card-items.create');
+        return view('admin.stocks.items.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class CardItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CardItem $cardItem)
+    public function show(Item $item)
     {
         //
     }
@@ -43,7 +43,7 @@ class CardItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CardItem $cardItem)
+    public function edit(Item $item)
     {
         //
     }
@@ -51,7 +51,7 @@ class CardItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CardItem $cardItem)
+    public function update(Request $request, Item $item)
     {
         //
     }
@@ -59,7 +59,7 @@ class CardItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CardItem $cardItem)
+    public function destroy(Item $item)
     {
         //
     }

@@ -4,9 +4,9 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
-use App\Http\Controllers\Admin\CardItem\CardItemController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Item\ItemController;
 use App\Http\Controllers\Admin\Section\SectionController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
@@ -91,7 +91,7 @@ Route::group(
                 //!_______________________
                 //! Cards
                 //!_______________________
-                Route::resource('card-items',                CardItemController::class)->except(['show']);
+                Route::resource('items',                ItemController::class)->except(['show']);
             });
         });
     }
