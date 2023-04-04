@@ -10,6 +10,7 @@ return [
     'parent_unit'           => 'الوحدة الأب',
     'child_unit'            => 'الوحدة الفرعية',
     'parent_item'           => 'الصنف الأب',
+    'parent'                => 'أب',
 
     'barcode'               => 'باركود',
     'item_name'             => 'اسم الصنف',

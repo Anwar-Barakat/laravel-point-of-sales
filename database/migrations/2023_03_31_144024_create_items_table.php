@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('item_code')->unique();
-            $table->string('item_barcode');
-            $table->string('item_name');
-            $table->tinyInteger('item_type')->comment('1 => stored, 2 => consuming, 3 => protection');
+            $table->string('code')->unique();
+            $table->string('barcode');
+            $table->string('name');
+            $table->tinyInteger('type')->comment('1 => stored, 2 => consuming, 3 => protection');
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
             $table->boolean('is_active')->default(1);
+            $table->bigInteger('parent_id')->nullable();
 
             $table->boolean('has_retail_unit')->default(1);
             $table->foreignId('wholesale_unit_id')->constrained('units')->cascadeOnUpdate();
@@ -41,7 +42,6 @@ return new class extends Migration
             $table->boolean('has_fixed_price')->default(1)->comment('Does it has fixed price for invoices?');
             $table->date('date')->default(now());
             $table->integer('company_code');
-            $table->bigInteger('parent_id')->nullable();
 
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();

@@ -10,6 +10,8 @@ return [
     'parent_unit'           => 'Parent unit',
     'child_unit'            => 'Child unit',
     'parent_item'           => 'Parent Item',
+    'parent'                => 'Parent',
+
 
     'barcode'               => 'Barcode',
     'item_name'             => 'Item name',

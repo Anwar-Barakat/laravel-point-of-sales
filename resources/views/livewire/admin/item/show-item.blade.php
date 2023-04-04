@@ -59,12 +59,13 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> {{ __('card.item_name') }}</th>
-                    <th> {{ __('card.item_type') }}</th>
-                    <th> {{ __('card.item_category') }}</th>
-                    <th> {{ __('card.parent_item') }}</th>
-                    <th> {{ __('card.parent_unit') }}</th>
-                    <th> {{ __('card.child_unit') }}</th>
+                    <th> {{ __('msgs.photo') }}</th>
+                    <th> {{ __('item.item_name') }}</th>
+                    <th> {{ __('item.item_type') }}</th>
+                    <th> {{ __('item.item_category') }}</th>
+                    <th> {{ __('item.parent_item') }}</th>
+                    <th> {{ __('item.parent_unit') }}</th>
+                    <th> {{ __('item.child_unit') }}</th>
                     <th> {{ __('setting.status') }}</th>
                     <th></th>
                 </tr>
@@ -73,15 +74,22 @@
                 @forelse ($items as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->item_name }}</td>
+                        <td>
+                            @if ($item->getFirstMediaUrl('items', 'thumb'))
+                                <img src="{{ $item->getFirstMediaUrl('items') }}" class="img img-thumbnail" alt="{{ $item->name }}" width="80">
+                            @else
+                                <img src="" class="img img-thumbnail" alt="{{ $item->name }}">
+                            @endif
+                        </td>
+                        <td>{{ $item->name }}</td>
                         <td>
                             <span class="badge bg-blue">
-                                {{ __('card.' . App\Models\Item::ITEMTYPE[$item->item_type]) }}
+                                {{ __('item.' . App\Models\Item::ITEMTYPE[$item->type]) }}
                             </span>
                         </td>
-                        <td>{{ $item->category->name }}</td>
+                        <td><span class="badge badge-outline text-blue">{{ $item->category->name }}</span></td>
                         <td>{{ $item->parentItem->name ?? '-' }}</td>
-                        <td>{{ $item->parentUnit->name }}</td>
+                        <td><span class="badge bg-blue-lt">{{ $item->parentUnit->name }}</span></td>
                         <td>{{ $item->childUnit->name ?? '-' }}</td>
                         <td>
                             <div>

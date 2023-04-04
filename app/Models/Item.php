@@ -4,37 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Item extends Model
+class Item extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
-    protected $fillable = [
-        'item_name',
-        'is_active',
-        'item_type',
-        'category_id',
-        'parent_id',
-        'has_fixed_price',
-        'has_retail_unit',
-        'wholesale_unit_id',
-        'wholesale_price',
-        'wholesale_price_for_block',
-        'wholesale_price_for_half_block',
-        'wholesale_cost_price',
-        'retail_count_for_wholesale',
-        'retail_unit_id',
-        'retail_price',
-        'retail_price_for_block',
-        'retail_price_for_half_block',
-        'retail_cost_price',
-    ];
+    protected $guarded = [];
 
     const ITEMTYPE = [1 => 'stored', 2 => 'consuming', 3 => 'protected'];
 
     public function scopeActive($query)
     {
         return $query->where(['is_active' => 1]);
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->fit(Manipulations::FIT_CROP, 400, 400)
+            ->nonQueued();
     }
 
     public function addedBy()

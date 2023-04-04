@@ -20,8 +20,8 @@ class AddItem extends Component
         $wholesale_units    = [],
         $retail_units       = [];
 
-    public $item_name, $is_active;
-    public $item_type, $category_id, $parent_id;
+    public $name, $is_active;
+    public $type, $category_id, $parent_id;
     public $has_retail_unit,
         $has_fixed_price,
         $wholesale_unit_id,
@@ -40,7 +40,7 @@ class AddItem extends Component
     public function mount()
     {
         $this->auth             = Auth::guard('admin')->user();
-        $this->parent_items     = Item::select('id', 'item_name')->where(['company_code' => $this->auth->company_code])->active()->get();
+        $this->parent_items     = Item::select('id', 'name')->where(['company_code' => $this->auth->company_code])->active()->get();
         $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_code', $this->auth->company_code)->active()->latest()->get();
         $this->wholesale_units  = Unit::select('id', 'name')->where(['company_code' => $this->auth->company_code, 'status' => 'wholesale'])->active()->get();
     }
@@ -58,16 +58,23 @@ class AddItem extends Component
             $this->retail_units  = [];
     }
 
+
     public function submit()
     {
         $validation                 = $this->validate();
-        $validation['item_code']    = Str::random(15);
-        $validation['item_barcode'] = 'item-' . Str::random(15);
+        $validation['code']         = Str::random(15);
+        $validation['barcode']      = 'item-' . Str::random(15);
         $validation['added_by']     = $this->auth->id;
         $validation['company_code'] = $this->auth->company_code;
 
-        Item::create($validation);
-        toastr()->success(__('msgs.created', ['name' => __('card.card')]));
+        $item = Item::create($validation);
+        if ($this->image) {
+            $this->validate(['image' => 'image|max:1024']);
+            $item->clearMediaCollection('items');
+            $item->addMedia($this->image)->toMediaCollection('items');
+        }
+
+        toastr()->success(__('msgs.created', ['name' => __('item.card')]));
         $this->resetExcept(['auth', 'categories', 'wholesale_units', 'parent_items']);
     }
 
@@ -80,9 +87,9 @@ class AddItem extends Component
     protected function rules()
     {
         return [
-            'item_name'                         => ['required', 'min:3', 'unique:items,item_name'],
+            'name'                              => ['required', 'min:3', 'unique:items,name'],
             'is_active'                         => ['required', 'boolean'],
-            'item_type'                         => ['required', 'in:1,2,3'],
+            'type'                              => ['required', 'in:1,2,3'],
             'category_id'                       => ['required', 'integer'],
             'parent_id'                         => ['required', 'integer'],
             'has_fixed_price'                   => ['required', 'boolean'],
