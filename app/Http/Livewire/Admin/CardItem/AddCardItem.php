@@ -16,12 +16,12 @@ class AddCardItem extends Component
 
     public $auth,
         $categories         = [],
-        $parent_items        = [],
+        $parent_items       = [],
         $wholesale_units    = [],
         $retail_units       = [];
 
-    public $barcode, $item_name, $is_active;
-    public $item_type, $category_id;
+    public $item_name, $is_active;
+    public $item_type, $category_id, $parent_id;
     public $has_retail_unit,
         $has_fixed_price,
         $wholesale_unit_id,
@@ -40,7 +40,7 @@ class AddCardItem extends Component
     public function mount()
     {
         $this->auth             = Auth::guard('admin')->user();
-        $this->parent_items      = CardItem::select('id', 'item_name')->where(['company_code' => $this->auth->company_code])->active()->get();
+        $this->parent_items     = CardItem::select('id', 'item_name')->where(['company_code' => $this->auth->company_code])->active()->get();
         $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_code', $this->auth->company_code)->active()->latest()->get();
         $this->wholesale_units  = Unit::select('id', 'name')->where(['company_code' => $this->auth->company_code, 'status' => 'wholesale'])->active()->get();
     }
@@ -80,10 +80,11 @@ class AddCardItem extends Component
     protected function rules()
     {
         return [
-            'item_name'                         => ['required', 'min:3'],
+            'item_name'                         => ['required', 'min:3', 'unique:card_items,item_name'],
             'is_active'                         => ['required', 'boolean'],
             'item_type'                         => ['required', 'in:1,2,3'],
             'category_id'                       => ['required', 'integer'],
+            'parent_id'                         => ['required', 'integer'],
             'has_fixed_price'                   => ['required', 'boolean'],
             'has_retail_unit'                   => ['required', 'boolean'],
             'wholesale_unit_id'                 => ['required', 'integer'],

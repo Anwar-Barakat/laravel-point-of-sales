@@ -9,7 +9,28 @@ class CardItem extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $table = 'card_items';
+
+    protected $fillable = [
+        'item_name',
+        'is_active',
+        'item_type',
+        'category_id',
+        'parent_id',
+        'has_fixed_price',
+        'has_retail_unit',
+        'wholesale_unit_id',
+        'wholesale_price',
+        'wholesale_price_for_block',
+        'wholesale_price_for_half_block',
+        'wholesale_cost_price',
+        'retail_count_for_wholesale',
+        'retail_unit_id',
+        'retail_price',
+        'retail_price_for_block',
+        'retail_price_for_half_block',
+        'retail_cost_price',
+    ];
 
     const ITEMTYPE = [1 => 'stored', 2 => 'consuming', 3 => 'protected'];
 
@@ -23,8 +44,23 @@ class CardItem extends Model
         return $this->belongsTo(Admin::class, 'added_by');
     }
 
-    public function parentCard()
+    public function parentItem()
     {
-        return $this->belongsTo(Card::class, 'parent_id');
+        return $this->belongsTo(CardItem::class, 'parent_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function parentUnit()
+    {
+        return $this->belongsTo(Unit::class, 'wholesale_unit_id');
+    }
+
+    public function childUnit()
+    {
+        return $this->belongsTo(Unit::class, 'retail_unit_id');
     }
 }

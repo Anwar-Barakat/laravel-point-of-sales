@@ -14,8 +14,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('card.barcode_not_entered')" />
-                        <x-text-input type="text" class="form-control" wire:model='barcode' />
-                        <x-input-error :messages="$errors->get('barcode')" class="mt-2" />
+                        <x-text-input type="text" class="form-control" readonly disabled />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -83,20 +82,21 @@
                         <x-input-error :messages="$errors->get('has_fixed_price')" class="mt-2" />
                     </div>
                 </div>
-                @if ($parent_items->count() > 0)
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('card.parent_item')" />
-                            <select id="" class="form-control" wire:model='parent_id'>
-                                <option value="">{{ __('btns.select') }}</option>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('card.parent_item')" />
+                        <select id="" class="form-control" wire:model='parent_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="">{{ __('card.parent') }}</option>
+                            @if ($parent_items->count() > 0)
                                 @foreach ($parent_items as $parent)
                                     <option value="{{ $parent->id }}">{{ $parent->item_name }}</option>
                                 @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
-                        </div>
+                            @endif
+                        </select>
+                        <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
                     </div>
-                @endif
+                </div>
             </div>
             <hr class="w-50">
             <h4 class="mb-4 text-blue">{{ __('card.wholesale_retail_prices') }}</h4>

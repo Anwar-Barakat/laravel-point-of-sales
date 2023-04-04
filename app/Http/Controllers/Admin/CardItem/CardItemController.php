@@ -13,6 +13,7 @@ class CardItemController extends Controller
      */
     public function index()
     {
+        return view('admin.stocks.card-items.index');
     }
 
     /**
