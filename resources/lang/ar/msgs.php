@@ -16,6 +16,7 @@ return [
     'updated'               => 'تم تحديث :name بنجاج',
     'created'               => 'تم إنشاء :name بنجاج',
     'deleted'               => 'تم حذف :name بنجاج',
+    'submitted'             => 'تم حفظ البيانات :name بنجاج',
 
 
     'email_pass_not_valid'  => 'البريد الألكتروني أو كلمة المرور غير صالحة',

@@ -208,14 +208,14 @@
                                     <!-- card items -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                            {{ __('item.cards') }}
+                                            {{ __('item.items') }}
                                         </a>
                                         <div class="dropdown-menu">
                                             <a href="{{ route('admin.items.index') }}" class="dropdown-item {{ request()->routeIs('admin.items.index') ? 'active' : '' }}"">
-                                                {{ __('msgs.list', ['name' => __('item.cards')]) }}
+                                                {{ __('msgs.list', ['name' => __('item.items')]) }}
                                             </a>
                                             <a href="{{ route('admin.items.create') }}" class="dropdown-item {{ request()->routeIs('admin.items.create') ? 'active' : '' }}"">
-                                                {{ __('msgs.create', ['name' => __('item.card')]) }}
+                                                {{ __('msgs.create', ['name' => __('item.item')]) }}
                                             </a>
                                         </div>
                                     </div>

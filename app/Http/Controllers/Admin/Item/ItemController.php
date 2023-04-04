@@ -45,7 +45,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('admin.stocks.items.edit', ['item' => $item]);
     }
 
     /**

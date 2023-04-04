@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'cards'                 => 'Cards Items',
-    'card'                  => 'Card items',
+    'items'                 => 'Items',
+    'item'                  => 'Item',
     'barcode_not_entered'   => 'Barcode not entered - will be generated automatically',
     'stored'                => 'Stored',
     'protected'             => 'Protected',

@@ -16,6 +16,7 @@ return [
     'updated'               => ':name Has Been Updated Successfuly',
     'created'               => ':name Has Been Created Successfuly',
     'deleted'               => ':name Has Been Deleted Successfuly',
+    'submitted'             => ':name Has Been Submitted Successfuly',
 
     'email_pass_not_valid'  => 'Oops, Email or Password not Valid',
     'welcome_back'          => 'Welcome Back',

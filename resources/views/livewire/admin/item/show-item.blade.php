@@ -103,7 +103,7 @@
                             <span class="dropdown">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.treasuries.edit', ['treasury' => $item]) }}">
+                                    <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.items.edit', $item) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -112,7 +112,7 @@
                                         </svg>
                                         <span>{{ __('btns.edit') }}</span>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.treasuries.show', ['treasury' => $item]) }}">
+                                    {{-- <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.treasuries.show', ['treasury' => $item]) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon text-warning" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M13 5h8" />
@@ -122,7 +122,7 @@
                                             <path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                                             <path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                                         </svg>
-                                        <span>{{ __('btns.details') }}</span>
+                                        <span>{{ __('btns.details') }}</span> --}}
                                     </a>
                                 </div>
                             </span>
