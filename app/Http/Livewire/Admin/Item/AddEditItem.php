@@ -11,7 +11,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class EditItem extends Component
+class AddEditItem extends Component
 {
     use WithFileUploads;
 
@@ -65,7 +65,7 @@ class EditItem extends Component
             $this->item->addMedia($this->image)->toMediaCollection('items');
         }
 
-        toastr()->success(__('msgs.submited', ['name' => __('item.item')]));
+        toastr()->success(__('msgs.submitted', ['name' => __('item.item')]));
         return redirect()->route('admin.items.index');
         // } catch (\Throwable $th) {
         //     return redirect()->back()->withErrors(['error' => $th->getMessage()]);
@@ -75,7 +75,7 @@ class EditItem extends Component
 
     public function render()
     {
-        return view('livewire.admin.item.edit-item');
+        return view('livewire.admin.item.add-edit-item');
     }
 
     protected function rules()
