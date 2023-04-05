@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -92,6 +93,12 @@ Route::group(
                 //! Cards
                 //!_______________________
                 Route::resource('items',                ItemController::class)->except(['store', 'update']);
+
+
+                //!_______________________
+                //! Account types
+                //!_______________________
+                Route::resource('account-types',         AccountTypeController::class)->except(['create', 'show', 'edit']);
             });
         });
     }

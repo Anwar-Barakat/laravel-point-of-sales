@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('is_active')->default(1);
-            $table->integer('related_to_internal_account')->default(0);
+            $table->boolean('related_to_internal_account')->default(0);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();
         });

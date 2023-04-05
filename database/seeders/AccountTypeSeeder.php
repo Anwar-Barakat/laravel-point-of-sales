@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AccountType;
+use App\Models\Admin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,7 @@ class AccountTypeSeeder extends Seeder
      */
     public function run(): void
     {
+        $admin          = Admin::inRandomOrder()->first();
         $account_types  = [
             [
                 'name'                          => [
@@ -20,6 +22,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Vendor'
                 ],
                 'related_to_internal_account'   => 1,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -27,6 +30,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Customer'
                 ],
                 'related_to_internal_account'   => 1,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -34,6 +38,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Representative'
                 ],
                 'related_to_internal_account'   => 1,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -41,6 +46,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Bank'
                 ],
                 'related_to_internal_account'   => 0,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -48,6 +54,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Employee'
                 ],
                 'related_to_internal_account'   => 1,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -55,6 +62,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'General'
                 ],
                 'related_to_internal_account'   => 0,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -62,6 +70,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Expenses'
                 ],
                 'related_to_internal_account'   => 0,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -69,6 +78,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Internal Section'
                 ],
                 'related_to_internal_account'   => 1,
+                'added_by'                      => $admin->id,
             ],
             [
                 'name'                          => [
@@ -76,6 +86,7 @@ class AccountTypeSeeder extends Seeder
                     'en'                        => 'Capital'
                 ],
                 'related_to_internal_account'   => 0,
+                'added_by'                      => $admin->id,
             ]
         ];
 

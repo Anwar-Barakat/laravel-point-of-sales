@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Account\AccountType;
 
-use App\Http\Requests\StoreAccountTypeRequest;
-use App\Http\Requests\UpdateAccountTypeRequest;
+use App\Http\Requests\Admin\StoreAccountTypeRequest;
+use App\Http\Requests\Admin\UpdateAccountTypeRequest;
 use App\Models\AccountType;
+use App\Http\Controllers\Controller;
 
 class AccountTypeController extends Controller
 {
@@ -13,7 +14,8 @@ class AccountTypeController extends Controller
      */
     public function index()
     {
-        //
+        $account_types = AccountType::with(['addedBy:id,name'])->latest()->paginate(PAGINATION_COUNT);
+        return view('admin.accounts.account-types.index', ['account_types' => $account_types]);
     }
 
     /**
