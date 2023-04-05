@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             StoreSeeder::class,
             UnitSeeder::class,
+
+            AccountTypeSeeder::class,
         ]);
     }
 }
