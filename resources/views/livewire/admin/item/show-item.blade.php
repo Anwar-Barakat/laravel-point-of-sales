@@ -90,7 +90,7 @@
                         <td><span class="badge badge-outline text-blue">{{ $item->category->name }}</span></td>
                         <td>{{ $item->parentItem->name ?? '-' }}</td>
                         <td><span class="badge bg-blue-lt">{{ $item->parentUnit->name }}</span></td>
-                        <td>{{ $item->childUnit->name ?? '-' }}</td>
+                        <td><span class="badge bg-blue-lt">{{ $item->childUnit->name ?? '-' }}</span></td>
                         <td>
                             <div>
                                 <button wire:click='updateStatus({{ $item->id }})' class="btn position-relative">

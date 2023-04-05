@@ -37,7 +37,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        $item->load(['category:id,name', 'parentUnit:id,name', 'childUnit:id,name', 'addedBy:id,name', 'parentItem:id,name']);
+        return view('admin.stocks.items.show', ['item' => $item]);
     }
 
     /**
