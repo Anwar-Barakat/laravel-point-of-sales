@@ -2,10 +2,22 @@
     <form wire:submit.prevent='submit'>
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
+            {{-- @if ($errors->any())
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <ul class="p-0 m-0 list-unstyled">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif --}}
             <div class="row">
                 <div class="col-sm-12 col-md-6 m-auto mb-4">
-                    @if ($image)
-                        <img src="{{ $image->temporaryUrl() }}" class="img img-thumbnail" height="300">
+                    @if ($item->getFirstMediaUrl('items'))
+                        <img src="{{ $item->getFirstMediaUrl('items') }}" alt="{{ $item->name }}">
+                    @else
+                        <img src="{{ asset('backend/static/products/default-product.jpg') }}" alt="product name">
                     @endif
                 </div>
             </div>
@@ -154,7 +166,7 @@
                     </div>
                 </div>
             </div>
-            @if (!empty($retail_units))
+            @if (!empty($retail_units) || !empty($item['retail_unit_id']))
                 <div class="row row-cards">
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
@@ -211,8 +223,8 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <x-input-label class="form-label" :value="__('msgs.photo')" />
-                    <x-text-input type="file" class="form-control" wire:model='item.image' />
-                    <x-input-error :messages="$errors->get('item.image')" class="mt-2" />
+                    <x-text-input type="file" class="form-control" wire:model='image' />
+                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
             </div>
         </div>

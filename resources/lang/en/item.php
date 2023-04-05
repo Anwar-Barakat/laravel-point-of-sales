@@ -3,7 +3,7 @@
 return [
     'items'                 => 'Items',
     'item'                  => 'Item',
-    'barcode_not_entered'   => 'Barcode not entered - will be generated automatically',
+    'barcode_not_entered'   => 'Barcode - will be generated automatically',
     'stored'                => 'Stored',
     'protected'             => 'Protected',
     'consuming'             => 'Consuming',

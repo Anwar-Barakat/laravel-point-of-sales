@@ -78,7 +78,7 @@
                             @if ($item->getFirstMediaUrl('items', 'thumb'))
                                 <img src="{{ $item->getFirstMediaUrl('items') }}" class="img img-thumbnail" alt="{{ $item->name }}" width="80">
                             @else
-                                <img src="" class="img img-thumbnail" alt="{{ $item->name }}">
+                                <img src="{{ asset('backend/static/default-show-product.png') }}" class="img img-thumbnail" alt="{{ $item->name }}" width="80">
                             @endif
                         </td>
                         <td>{{ $item->name }}</td>
@@ -112,7 +112,7 @@
                                         </svg>
                                         <span>{{ __('btns.edit') }}</span>
                                     </a>
-                                    {{-- <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.treasuries.show', ['treasury' => $item]) }}">
+                                    <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.items.show', ['item' => $item]) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon text-warning" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M13 5h8" />
@@ -122,7 +122,7 @@
                                             <path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                                             <path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                                         </svg>
-                                        <span>{{ __('btns.details') }}</span> --}}
+                                        <span>{{ __('btns.details') }}</span>
                                     </a>
                                 </div>
                             </span>
@@ -131,7 +131,7 @@
                 @empty
                     <tr>
                         <td colspan="9">
-                            <x-blank-section :content="__('treasury.treasury')" :url="route('admin.treasuries.create')" />
+                            <x-blank-section :content="__('item.item')" :url="route('admin.items.create')" />
                         </td>
                     </tr>
                 @endforelse

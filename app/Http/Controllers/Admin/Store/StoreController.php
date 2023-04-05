@@ -14,7 +14,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = Store::with(['addedBy','updatedBy'])->latest()->paginate(PAGINATION_COUNT);
+        $stores = Store::with(['addedBy'])->latest()->paginate(PAGINATION_COUNT);
         return view('admin.stores.index', ['stores' => $stores]);
     }
 

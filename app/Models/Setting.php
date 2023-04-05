@@ -41,4 +41,9 @@ class Setting extends Model implements HasMedia
     {
         return $this->belongsTo(Admin::class, 'added_by');
     }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by');
+    }
 }

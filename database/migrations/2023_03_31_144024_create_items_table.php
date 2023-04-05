@@ -24,7 +24,6 @@ return new class extends Migration
             $table->boolean('has_retail_unit')->default(1);
             $table->foreignId('wholesale_unit_id')->constrained('units')->cascadeOnUpdate();
             $table->foreignId('retail_unit_id')->nullable()->constrained('units')->cascadeOnUpdate();
-            $table->decimal('retail_count_for_wholesale')->nullable();
 
             $table->decimal('wholesale_price');
             $table->decimal('wholesale_price_for_block');
@@ -34,6 +33,7 @@ return new class extends Migration
             $table->decimal('retail_price_for_block')->nullable();
             $table->decimal('retail_price_for_half_block')->nullable();
             $table->decimal('retail_cost_price')->nullable();
+            $table->decimal('retail_count_for_wholesale')->nullable();
 
             $table->decimal('wholesale_qty')->nullable()->comment('qty for wholesale unit');
             $table->decimal('retail|_qty')->nullable()->comment('كمية التجزئة المتبقية من الوحدة الاب في حالة وجود وحدة تجزئة للصنف');
@@ -44,7 +44,6 @@ return new class extends Migration
             $table->integer('company_code');
 
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
-            $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();
         });
     }

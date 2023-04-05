@@ -91,7 +91,7 @@ Route::group(
                 //!_______________________
                 //! Cards
                 //!_______________________
-                Route::resource('items',                ItemController::class)->except(['show']);
+                Route::resource('items',                ItemController::class)->except(['store', 'update']);
             });
         });
     }
