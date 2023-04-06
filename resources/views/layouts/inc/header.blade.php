@@ -250,6 +250,21 @@
                                     <a class="dropdown-item {{ request()->routeIs('admin.account-types.index') ? 'active' : '' }}"" href="{{ route('admin.account-types.index') }}">
                                         {{ __('account.account_types') }}
                                     </a>
+
+                                    <!-- financial accounts -->
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                            {{ __('account.financial_accounts') }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ route('admin.financial-accounts.index') }}" class="dropdown-item {{ request()->routeIs('admin.financial-accounts.index') ? 'active' : '' }}"">
+                                                {{ __('msgs.list', ['name' => __('account.financial_accounts')]) }}
+                                            </a>
+                                            <a href="{{ route('admin.financial-accounts.create') }}" class="dropdown-item {{ request()->routeIs('admin.financial-accounts.create') ? 'active' : '' }}"">
+                                                {{ __('msgs.create', ['name' => __('account.financial_account')]) }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

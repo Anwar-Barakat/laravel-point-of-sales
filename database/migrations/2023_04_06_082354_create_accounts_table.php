@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('financial_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->boolean('is_parent')->default(0);

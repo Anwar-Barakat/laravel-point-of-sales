@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
+use App\Http\Controllers\Admin\Account\FinancialAccount\FinancialAccountController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -99,6 +100,11 @@ Route::group(
                 //! Account types
                 //!_______________________
                 Route::resource('account-types',         AccountTypeController::class)->only(['index']);
+
+                //!_______________________
+                //! Financial Accounts
+                //!_______________________
+                Route::resource('financial-accounts',    FinancialAccountController::class)->only(['index', 'create', 'edit', 'show']);
             });
         });
     }

@@ -8,6 +8,14 @@ return [
 
     'added_from_accounts_screen'    => 'لا, يضاف من شاشة الحسابات',
     'added_from_its_screen'         => 'نعم, يضاف من شاشته',
-    'related_to_internal_account'   => 'متعلق بالحساب الداخلي'
+    'related_to_internal_account'   => 'متعلق بالحساب الداخلي',
 
+    //? Financial account
+    'financial_accounts'            => 'الحسابات المالية',
+    'financial_account'             => 'حساب مالي',
+    'account_type'                  => 'نوع الحساب',
+    'account_number'                => 'رقم الحساب',
+    'is_parent_account'             => 'هل هو حساب أب؟',
+    'parent_account'                => 'حساب أب',
+    'balance'                       => 'الرصيد',
 ];

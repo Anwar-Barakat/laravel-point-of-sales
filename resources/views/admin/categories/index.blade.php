@@ -1,6 +1,7 @@
 <x-master-layout>
-    @section('pageTitle', __('category.categories'))
-    @section('breadcrumbTitle', __('category.categories'))
+    @section('pageTitle', __('msgs.list', ['name' => __('category.categories')]))
+    @section('breadcrumbTitle', __('msgs.list', ['name' => __('category.categories')]))
+    @section('breadcrumbSubtitle', __('partials.stocks'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
