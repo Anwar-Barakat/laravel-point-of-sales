@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Item;
+namespace App\Http\Livewire\Admin\Stock\Item;
 
 use App\Models\Item;
 use Livewire\Component;
@@ -24,7 +24,7 @@ class ShowItem extends Component
 
     public function render()
     {
-        return view('livewire.admin.item.show-item');
+        return view('livewire.admin.stock.item.show-item');
     }
 
     public function getItems()

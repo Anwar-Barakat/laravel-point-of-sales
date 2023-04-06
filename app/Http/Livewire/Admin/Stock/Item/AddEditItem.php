@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Item;
+namespace App\Http\Livewire\Admin\Stock\Item;
 
 use App\Models\Category;
 use App\Models\Item;
@@ -75,7 +75,7 @@ class AddEditItem extends Component
 
     public function render()
     {
-        return view('livewire.admin.item.add-edit-item');
+        return view('livewire.admin.stock.item.add-edit-item');
     }
 
     protected function rules()

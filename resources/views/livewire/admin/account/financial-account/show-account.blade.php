@@ -24,16 +24,32 @@
                 <tbody class="table-tbody">
                     @forelse ($financial_accounts as $financial_account)
                         <tr>
-                            <td>{{ $financial_account->account_type }}</td>
-                            <td>{{ $financial_account->account_number }}</td>
-                            <td>{{ $financial_account->parent_id ? 'yes' : 'no' }}</td>
+                            <td>{{ $financial_account->name }}</td>
                             <td>
-                                {{ $financial_account->is_active }}
+                                <span class="badge bg-info-lt">
+                                    {{ $financial_account->accountType->name }}
+                            </td>
+                            </span>
+                            <td>{{ $financial_account->account_number }}</td>
+                            <td>{{ $financial_account->parent_id ? __('msgs.yes') : __('msgs.no') }}</td>
+                            <th>
+                                <span class="badge bg-blue">
+                                    {{ $financial_account->parentAccount->name ?? __('msgs.master') }}
+                                </span>
+                            </th>
+                            <td>
+                                <div>
+                                    <button wire:click='updateStatus({{ $financial_account->id }})' class="btn position-relative">
+                                        {{ $financial_account->is_active ? __('msgs.active') : __('msgs.not_active') }}
+                                        <span class="badge {{ $financial_account->is_active ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
+                                    </button>
+                                </div>
                             </td>
                             <td> {{ $financial_account->created_at }} </td>
                             <td>
                                 <span class="badge bg-blue-lt">{{ $financial_account->created_at }}</span>
                             </td>
+                            <th></th>
                         </tr>
                     @empty
                         <tr>

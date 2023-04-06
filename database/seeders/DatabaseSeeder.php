@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
 
             AccountTypeSeeder::class,
+
+            FinancialAccountSeeder::class,
         ]);
     }
 }

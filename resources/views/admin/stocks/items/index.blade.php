@@ -11,7 +11,7 @@
                     {{ __('msgs.create', ['name' => __('item.item')]) }}
                 </a>
             </div>
-            @livewire('admin.item.show-item')
+            @livewire('admin.stock.item.show-item')
         </div>
     </div>
 

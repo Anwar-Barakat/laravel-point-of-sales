@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="row g-0">
-            @livewire('admin.item.add-edit-item', [$item])
+            @livewire('admin.stock.item.add-edit-item', [$item])
         </div>
     </div>
 
