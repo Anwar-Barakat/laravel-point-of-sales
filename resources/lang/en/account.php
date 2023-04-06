@@ -15,10 +15,17 @@ return [
     //? Financial account
     'financial_accounts'            => 'Financial accounts',
     'financial_account'             => 'Financial account',
+    'account_name'                  => 'Account name',
     'account_type'                  => 'Account type',
     'account_number'                => 'Account number',
     'is_parent_account'             => 'Is it parent account',
     'parent_account'                => 'Parent account',
     'balance'                       => 'Balance',
-    
+    'parent_accounts'               => 'Parent accounts',
+    'initial_balance'               => 'Initial balance',
+    'initial_balance_status'        => 'Initial balance status',
+    'current_balamce'               => 'Current balance',
+    'balanced'                      => 'Balanced',
+    'credit'                        => 'Credit',
+    'debit'                         => 'Debit',
 ];

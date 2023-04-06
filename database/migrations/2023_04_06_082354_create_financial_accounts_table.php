@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('parent_id')->nullable();
             $table->bigInteger('account_number')->comment('not duplicated at the company level');
             $table->decimal('initial_balance')->default(0)->comment('credit-debit-balanced at the beginning');
+            $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');
             $table->decimal('currnet_balance')->default(0)->comment('credit-debit-balanced at the beginning');
             $table->string('notes');
             $table->integer('company_code');

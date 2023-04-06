@@ -13,9 +13,17 @@ return [
     //? Financial account
     'financial_accounts'            => 'الحسابات المالية',
     'financial_account'             => 'حساب مالي',
+    'account_name'                  => 'اسم الحساب',
     'account_type'                  => 'نوع الحساب',
     'account_number'                => 'رقم الحساب',
     'is_parent_account'             => 'هل هو حساب أب؟',
     'parent_account'                => 'حساب أب',
     'balance'                       => 'الرصيد',
+    'parent_accounts'               => 'الحسابات الأب',
+    'initial_balance'               => 'الرصيد الأبتدائي',
+    'initial_balance_status'        => 'حالة الرصيد الأبتدائي',
+    'current_balamce'               => 'الرصيد الحالي',
+    'balanced'                      => 'مُتزن',
+    'credit'                        => 'دائن',
+    'debit'                         => 'مدين',
 ];

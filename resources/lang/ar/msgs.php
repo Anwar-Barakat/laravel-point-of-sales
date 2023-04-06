@@ -56,6 +56,7 @@ return [
     'photo'                 => 'الصورة',
     'descriprion'           => 'الوصف',
     'attachements'          => 'المرفقات',
+    'notes'                 => 'ملاحظات',
 
     'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف'
 

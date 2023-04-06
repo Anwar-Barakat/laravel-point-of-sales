@@ -15,6 +15,7 @@ class FinancialAccount extends Model
         'account_type_id',
         'parent_id',
         'account_number',
+        'initial_balance_status',
         'initial_balance',
         'currnet_balance',
         'notes',
@@ -24,6 +25,8 @@ class FinancialAccount extends Model
         'added_by',
         'date',
     ];
+
+    const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
 
     public function scopeActive($query)
     {

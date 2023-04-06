@@ -21,7 +21,7 @@ class FinancialAccountController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.accounts.financial-accounts.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class FinancialAccountController extends Controller
      */
     public function edit(FinancialAccount $financialAccount)
     {
-        //
+        return view('admin.accounts.financial-accounts.edit', ['financialAccount' => $financialAccount]);
     }
 
     /**

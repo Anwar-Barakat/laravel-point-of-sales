@@ -56,6 +56,7 @@ return [
     'photo'                 => 'Photo',
     'descriprion'           => 'Description',
     'attachements'          => 'Attachements',
+    'notes'                 => 'Notes',
 
     'are_you_sure_about_deleting'   => 'Are you sure about deleting ?'
 ];
