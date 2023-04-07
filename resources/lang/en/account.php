@@ -28,4 +28,6 @@ return [
     'balanced'                      => 'Balanced',
     'credit'                        => 'Credit',
     'debit'                         => 'Debit',
+    'is_archived'                   => 'Archived',
+    'not_archived'                  => 'Not archived',
 ];

@@ -40,8 +40,8 @@
                             <td>
                                 <div>
                                     <button wire:click='updateStatus({{ $financial_account->id }})' class="btn position-relative">
-                                        {{ $financial_account->is_active ? __('msgs.active') : __('msgs.not_active') }}
-                                        <span class="badge {{ $financial_account->is_active ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
+                                        {{ $financial_account->is_archived ? __('account.not_archived') : __('account.is_archived') }}
+                                        <span class="badge {{ $financial_account->is_archived ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
                                     </button>
                                 </div>
                             </td>

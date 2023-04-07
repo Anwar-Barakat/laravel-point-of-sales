@@ -1,5 +1,6 @@
-<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
-<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+<link rel="shortcut icon" href="{{ asset('backend/favicon.ico') }}" type="image/x-icon" />
+<link rel="icon" href="{{ asset('backend/favicon.ico') }}" type="image/x-icon" />
+
 @if (App::getLocale() == 'ar')
     <link href="{{ asset('backend/dist/css/tabler.rtl.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/dist/css/tabler-flags.rtl.min.css') }}" rel="stylesheet" />

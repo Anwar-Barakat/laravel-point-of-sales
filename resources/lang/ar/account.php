@@ -26,4 +26,7 @@ return [
     'balanced'                      => 'مُتزن',
     'credit'                        => 'دائن',
     'debit'                         => 'مدين',
+    'is_archived'                   => 'مؤرشف',
+    'not_archived'                  => 'غير مؤرشف',
+
 ];

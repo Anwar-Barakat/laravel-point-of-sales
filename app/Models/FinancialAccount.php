@@ -11,17 +11,16 @@ class FinancialAccount extends Model
 
     protected $fillable = [
         'name',
-        'is_parent',
         'account_type_id',
+        'is_parent',
         'parent_id',
         'account_number',
-        'initial_balance_status',
         'initial_balance',
+        'initial_balance_status',
         'currnet_balance',
         'notes',
         'company_code',
         'is_archived',
-        'is_active',
         'added_by',
         'date',
     ];

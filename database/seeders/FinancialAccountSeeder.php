@@ -24,7 +24,6 @@ class FinancialAccountSeeder extends Seeder
             [
                 'name'              => 'Capita',
                 'account_type_id'   => $account_type->id,
-                'account_number'    => 1,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
                 'added_by'          => $admin->id,

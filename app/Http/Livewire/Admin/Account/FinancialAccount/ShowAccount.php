@@ -17,7 +17,7 @@ class ShowAccount extends Component
     public function updateStatus($id)
     {
         $account    = FinancialAccount::findOrFail($id);
-        $account->update(['is_active' => !$account->is_active]);
+        $account->update(['is_archived' => !$account->is_archived]);
         $this->getAccounts();
     }
 
