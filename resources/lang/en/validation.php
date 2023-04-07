@@ -207,7 +207,7 @@ return [
 
 
         //? financial account:
-        'account_type'                  => 'Account type',
+        'account_type_id'               => 'Account type',
         'account_number'                => 'Account number',
         'parent_id'                     => 'Account parent',
         'is_parent_account'             => 'Is it parent account',
@@ -216,6 +216,8 @@ return [
         'initial_balance_status'        => 'Initial balance status',
         'current_balamce'               => 'Current balance',
         'is_archived'                   => 'Archived',
+        'notes'                         => 'Notes',
+        'is_parent'                     => 'Is parent',
 
     ],
 

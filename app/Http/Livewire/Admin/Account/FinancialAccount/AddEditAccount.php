@@ -15,23 +15,28 @@ class AddEditAccount extends Component
     public $auth;
     public $account_types   = [];
     public $parent_accounts = [];
+    public $edit            = false;
 
     public function mount(FinancialAccount $financialAccount)
     {
         $this->financialAccount = $financialAccount;
+        $this->edit = !empty($this->financialAccount->initial_balance_status) ? true : false;
+        if ($this->edit)
+            $this->parent_accounts = $this->getParentAccount();
+
         $this->auth             = Auth::guard('admin')->user();
         $this->account_types    = AccountType::select('id', 'name')->where('related_to_internal_account', 0)->active()->get();
     }
 
-    public function updated($fields)
+    public function updated($propertyName)
     {
-        return $this->validateOnly($fields);
+        $this->validateOnly($propertyName);
     }
 
-    public function updateFinancialAccountIsParent()
+    public function updatedFinancialAccountIsParent()
     {
-        $this->parent_accounts = $this->financialAccount->is_parent
-            ? FinancialAccount::select('id', 'name')->where('company_code', $this->auth->company_code)->active()->get()
+        $this->parent_accounts = $this->financialAccount->is_parent == '0'
+            ? $this->getParentAccount()
             : [];
     }
 
@@ -42,29 +47,25 @@ class AddEditAccount extends Component
 
     public function submit()
     {
-        try {
-            $this->validate();
-            $this->financialAccount['added_by']     = $this->auth->id;
-            $this->financialAccount['company_code'] = $this->auth->company_code;
+        $this->validate();
+        $this->financialAccount['added_by']     = $this->auth->id;
+        $this->financialAccount['company_code'] = $this->auth->company_code;
 
-            switch ($this->financialAccount->initial_balance_status) {
-                case 1:
-                    $this->financialAccount->initial_balance = 0;
-                    break;
-                case 2:
-                    abs($this->financialAccount->initial_balance);
-                    break;
-                case 3:
-                    $this->financialAccount->initial_balance = $this->financialAccount->initial_balance * (-1);
-                    break;
-            }
-
-            $this->financialAccount->save();
-            toastr()->success(__('msgs.submitted', ['name' => __('account.financial_account')]));
-            return redirect()->route('admin.financial-accounts.index');
-        } catch (\Throwable $th) {
-            return redirect()->back()->withErrors(['error' => $th->getMessage()]);
+        switch ($this->financialAccount->initial_balance_status) {
+            case 1:
+                $this->financialAccount->initial_balance = 0;
+                break;
+            case 2:
+                abs($this->financialAccount->initial_balance);
+                break;
+            case 3:
+                $this->financialAccount->initial_balance = $this->financialAccount->initial_balance * (-1);
+                break;
         }
+
+        $this->financialAccount->save();
+        toastr()->success(__('msgs.submitted', ['name' => __('account.financial_account')]));
+        return redirect()->route('admin.financial-accounts.index');
     }
 
     public function render()
@@ -90,5 +91,10 @@ class AddEditAccount extends Component
             'financialAccount.is_archived'              => ['required', 'boolean'],
             'financialAccount.notes'                    => ['required', 'min:10'],
         ];
+    }
+
+    public function getParentAccount()
+    {
+        return FinancialAccount::select('id', 'name')->where('company_code', $this->auth->company_code)->active()->get();
     }
 }

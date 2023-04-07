@@ -6,7 +6,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.account_name')" />
-                        <x-text-input type="text" class="form-control" wire:model.debounce.350='financialAccount.name' required />
+                        <x-text-input type="text" class="form-control" wire:model.debounce.350='financialAccount.name' />
                         <x-input-error :messages="$errors->get('financialAccount.name')" class="mt-2" />
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <x-input-error :messages="$errors->get('financialAccount.is_parent')" class="mt-2" />
                     </div>
                 </div>
-                @if (!empty($parent_accounts) || !empty($financialAccount['parent_id']))
+                @if ($parent_accounts || $edit)
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.parent_accounts')" />
@@ -51,32 +51,34 @@
                 @endif
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
-                        <select id="" class="form-control" wire:model.debounce.350='financialAccount.initial_balance_status'>
-                            <option value="">{{ __('btns.select') }}</option>
-                            @foreach (App\Models\FinancialAccount::INITIALBANALNCESTATUS as $key => $status)
-                                <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('financialAccount.initial_balance_status')" class="mt-2" />
+                @if (!$edit)
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
+                            <select id="" class="form-control" wire:model.debounce.350='financialAccount.initial_balance_status'>
+                                <option value="">{{ __('btns.select') }}</option>
+                                @foreach (App\Models\FinancialAccount::INITIALBANALNCESTATUS as $key => $status)
+                                    <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('financialAccount.initial_balance_status')" class="mt-2" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.initial_balance')" />
-                        <x-text-input type="number" class="form-control" wire:model.debounce.350='financialAccount.initial_balance' required />
-                        <x-input-error :messages="$errors->get('financialAccount.initial_balance')" class="mt-2" />
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('account.initial_balance')" />
+                            <x-text-input type="number" class="form-control" wire:model.debounce.350='financialAccount.initial_balance' />
+                            <x-input-error :messages="$errors->get('financialAccount.initial_balance')" class="mt-2" />
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
                         <select id="" class="form-control" wire:model.debounce.350='financialAccount.is_archived'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('account.is_archived') }}</option>
-                            <option value="1">{{ __('account.not_archived') }}</option>
+                            <option value="0">{{ __('account.not_archived') }}</option>
                         </select>
                         <x-input-error :messages="$errors->get('financialAccount.is_archived')" class="mt-2" />
                     </div>
@@ -87,7 +89,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="5" class="form-control" wire:model.debounce.350='financialAccount.notes' required></textarea>
+                        <textarea rows="5" class="form-control" wire:model.debounce.350='financialAccount.notes'></textarea>
                         <x-input-error :messages="$errors->get('financialAccount.notes')" class="mt-2" />
                     </div>
                 </div>
