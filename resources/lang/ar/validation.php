@@ -206,6 +206,16 @@ return [
         'retail_price_for_block'            => 'سعر الجملة لوحدة قياس التجزئة',
         'retail_price_for_half_block'       => 'سعر النصف جملة لوحدة قياس التجزئة',
 
+
+        'account_type'                  => 'نوع الحساب',
+        'account_number'                => 'رقم الحساب',
+        'parent_id'                     => 'الحساب الأب',
+        'parent_accounts'               => 'الحسابات الأب',
+        'initial_balance'               => 'الرصيد الأبتدائي',
+        'initial_balance_status'        => 'حالة الرصيد الأبتدائي',
+        'current_balamce'               => 'الرصيد الحالي',
+        'is_archived'                   => 'مؤرشف',
+
     ],
 
 ];

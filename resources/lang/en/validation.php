@@ -205,6 +205,18 @@ return [
         'retail_price_for_block'            => 'retail price for block',
         'retail_price_for_half_block'       => 'retail price for block',
 
+
+        //? financial account:
+        'account_type'                  => 'Account type',
+        'account_number'                => 'Account number',
+        'parent_id'                     => 'Account parent',
+        'is_parent_account'             => 'Is it parent account',
+        'parent_accounts'               => 'Parent accounts',
+        'initial_balance'               => 'Initial balance',
+        'initial_balance_status'        => 'Initial balance status',
+        'current_balamce'               => 'Current balance',
+        'is_archived'                   => 'Archived',
+
     ],
 
 ];
