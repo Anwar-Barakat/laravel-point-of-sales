@@ -87,7 +87,7 @@ class AccountTypeSeeder extends Seeder
                 ],
                 'related_to_internal_account'   => 0,
                 'added_by'                      => $admin->id,
-            ]
+            ],
         ];
 
         foreach ($account_types as $account) {

@@ -53,7 +53,6 @@ class AddEditItem extends Component
     {
         // try {
         $this->validate();
-        $this->item['code']         = Str::random(15);
         $this->item['barcode']      = 'item-' . Str::random(15);
         $this->item['added_by']     = $this->auth->id;
         $this->item['company_code'] = $this->auth->company_code;
