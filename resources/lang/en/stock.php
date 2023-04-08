@@ -1,6 +1,9 @@
 <?php
 
 return [
+    //!_______________________
+    //! Items
+    //!_______________________
     'items'                 => 'Items',
     'item'                  => 'Item',
     'barcode_not_entered'   => 'Barcode - will be generated automatically',
@@ -32,4 +35,8 @@ return [
     'retail_price'                      => 'Retail price',
     'retail_price_for_block'            => 'Retail price for block',
     'retail_price_for_half_block'       => 'Retail price for block',
+
+    //!_______________________
+    //!
+    //!_______________________
 ];

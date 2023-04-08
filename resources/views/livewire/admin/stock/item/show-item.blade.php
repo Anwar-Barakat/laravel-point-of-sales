@@ -56,12 +56,12 @@
                 <tr>
                     <th>#</th>
                     <th> {{ __('msgs.photo') }}</th>
-                    <th> {{ __('item.item_name') }}</th>
-                    <th> {{ __('item.item_type') }}</th>
-                    <th> {{ __('item.item_category') }}</th>
-                    <th> {{ __('item.parent_item') }}</th>
-                    <th> {{ __('item.parent_unit') }}</th>
-                    <th> {{ __('item.child_unit') }}</th>
+                    <th> {{ __('stock.item_name') }}</th>
+                    <th> {{ __('stock.item_type') }}</th>
+                    <th> {{ __('stock.item_category') }}</th>
+                    <th> {{ __('stock.parent_item') }}</th>
+                    <th> {{ __('stock.parent_unit') }}</th>
+                    <th> {{ __('stock.child_unit') }}</th>
                     <th> {{ __('setting.status') }}</th>
                     <th></th>
                 </tr>
@@ -80,7 +80,7 @@
                         <td>{{ $item->name }}</td>
                         <td>
                             <span class="badge bg-blue">
-                                {{ __('item.' . App\Models\Item::ITEMTYPE[$item->type]) }}
+                                {{ __('stock.' . App\Models\Item::ITEMTYPE[$item->type]) }}
                             </span>
                         </td>
                         <td><span class="badge badge-outline text-blue">{{ $item->category->name }}</span></td>
@@ -127,7 +127,7 @@
                 @empty
                     <tr>
                         <td colspan="9">
-                            <x-blank-section :content="__('item.item')" :url="route('admin.items.create')" />
+                            <x-blank-section :content="__('stock.item')" :url="route('admin.items.create')" />
                         </td>
                     </tr>
                 @endforelse

@@ -25,13 +25,13 @@
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.barcode_not_entered')" />
+                        <x-input-label class="form-label" :value="__('stock.barcode_not_entered')" />
                         <x-text-input type="text" class="form-control" disabled readonly wire:model='barcode' />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.item_name')" />
+                        <x-input-label class="form-label" :value="__('stock.item_name')" />
                         <x-text-input type="text" class="form-control" wire:model='item.name' />
                         <x-input-error :messages="$errors->get('item.name')" class="mt-2" />
                     </div>
@@ -51,11 +51,11 @@
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.item_type')" />
+                        <x-input-label class="form-label" :value="__('stock.item_type')" />
                         <select id="" class="form-control" wire:model='item.type'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Item::ITEMTYPE as $key => $value)
-                                <option value="{{ $key }}">{{ __('item.' . $value) }}</option>
+                                <option value="{{ $key }}">{{ __('stock.' . $value) }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('item.type')" class="mt-2" />
@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.item_category')" />
+                        <x-input-label class="form-label" :value="__('stock.item_category')" />
                         <select id="" class="form-control" wire:model="item.category_id">
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($categories)
@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.has_fixed_price')" />
+                        <x-input-label class="form-label" :value="__('stock.has_fixed_price')" />
                         <select id="" class="form-control" wire:model='item.has_fixed_price'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
@@ -96,10 +96,10 @@
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.parent_item')" />
+                        <x-input-label class="form-label" :value="__('stock.parent_item')" />
                         <select id="" class="form-control" wire:model='item.parent_id'>
                             <option value="">{{ __('btns.select') }}</option>
-                            <option value="0">{{ __('item.parent') }}</option>
+                            <option value="0">{{ __('stock.parent') }}</option>
                             @if ($parent_items->count() > 0)
                                 @foreach ($parent_items as $parent)
                                     <option value="{{ $parent->id }}">{{ $parent->name }}</option>
@@ -111,11 +111,11 @@
                 </div>
             </div>
             <hr class="w-50">
-            <h4 class="mb-4 text-blue">{{ __('item.wholesale_retail_prices') }}</h4>
+            <h4 class="mb-4 text-blue">{{ __('stock.wholesale_retail_prices') }}</h4>
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.wholesale_unit')" />
+                        <x-input-label class="form-label" :value="__('stock.wholesale_unit')" />
                         <select id="" class="form-control" wire:model='item.wholesale_unit_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($wholesale_units as $unit)
@@ -127,28 +127,28 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.wholesale_price')" />
+                        <x-input-label class="form-label" :value="__('stock.wholesale_price')" />
                         <x-text-input type="number" class="form-control" wire:model='item.wholesale_price' />
                         <x-input-error :messages="$errors->get('item.wholesale_price')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.wholesale_price_for_block')" />
+                        <x-input-label class="form-label" :value="__('stock.wholesale_price_for_block')" />
                         <x-text-input type="number" class="form-control" wire:model='item.wholesale_price_for_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_block')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.wholesale_price_for_half_block')" />
+                        <x-input-label class="form-label" :value="__('stock.wholesale_price_for_half_block')" />
                         <x-text-input type="number" class="form-control" wire:model='item.wholesale_price_for_half_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_half_block')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.wholesale_cost_price')" />
+                        <x-input-label class="form-label" :value="__('stock.wholesale_cost_price')" />
                         <x-text-input type="number" class="form-control" wire:model='item.wholesale_cost_price' />
                         <x-input-error :messages="$errors->get('item.wholesale_cost_price')" class="mt-2" />
                     </div>
@@ -156,7 +156,7 @@
 
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('item.has_retail_unit')" />
+                        <x-input-label class="form-label" :value="__('stock.has_retail_unit')" />
                         <select id="" class="form-control" wire:model='item.has_retail_unit'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
@@ -170,7 +170,7 @@
                 <div class="row row-cards">
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('item.retail_unit')" />
+                            <x-input-label class="form-label" :value="__('stock.retail_unit')" />
                             <select id="" class="form-control" wire:model='item.retail_unit_id'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach ($retail_units as $unit)
@@ -182,35 +182,35 @@
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('item.retail_price')" />
+                            <x-input-label class="form-label" :value="__('stock.retail_price')" />
                             <x-text-input type="number" class="form-control" wire:model='item.retail_price' />
                             <x-input-error :messages="$errors->get('item.retail_price')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('item.retail_price_for_block')" />
+                            <x-input-label class="form-label" :value="__('stock.retail_price_for_block')" />
                             <x-text-input type="number" class="form-control" wire:model='item.retail_price_for_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_block')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('item.retail_price_for_half_block')" />
+                            <x-input-label class="form-label" :value="__('stock.retail_price_for_half_block')" />
                             <x-text-input type="number" class="form-control" wire:model='item.retail_price_for_half_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_half_block')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('item.retail_cost_price')" />
+                            <x-input-label class="form-label" :value="__('stock.retail_cost_price')" />
                             <x-text-input type="number" class="form-control" wire:model='item.retail_cost_price' />
                             <x-input-error :messages="$errors->get('item.retail_cost_price')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('item.retail_count_for_wholesale')" />
+                            <x-input-label class="form-label" :value="__('stock.retail_count_for_wholesale')" />
                             <x-text-input type="number" class="form-control" wire:model='item.retail_count_for_wholesale' />
                             <x-input-error :messages="$errors->get('item.retail_count_for_wholesale')" class="mt-2" />
                         </div>

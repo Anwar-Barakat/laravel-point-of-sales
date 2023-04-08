@@ -65,7 +65,7 @@ class AddEditItem extends Component
             $this->item->addMedia($this->image)->toMediaCollection('items');
         }
 
-        toastr()->success(__('msgs.submitted', ['name' => __('item.item')]));
+        toastr()->success(__('msgs.submitted', ['name' => __('stock.item')]));
         return redirect()->route('admin.items.index');
         // } catch (\Throwable $th) {
         //     return redirect()->back()->withErrors(['error' => $th->getMessage()]);

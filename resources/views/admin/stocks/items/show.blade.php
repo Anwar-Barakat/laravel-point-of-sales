@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.details', ['name' => __('item.item')]))
-    @section('breadcrumbTitle', __('msgs.details', ['name' => __('item.item')]))
+    @section('pageTitle', __('msgs.details', ['name' => __('stock.item')]))
+    @section('breadcrumbTitle', __('msgs.details', ['name' => __('stock.item')]))
     @section('breadcrumbSubtitle', __('partials.stocks'))
 
     <div class="row">
@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th>{{ __('item.item_name') }}</th>
+                            <th>{{ __('stock.item_name') }}</th>
                             <td>{{ $item->name }}</td>
                         </tr>
                         <tr>
@@ -32,8 +32,8 @@
                             </th>
                         </tr>
                         <tr>
-                            <th>{{ __('item.item_type') }}</th>
-                            <td><span class="badge bg-blue"> {{ __('item.' . App\Models\Item::ITEMTYPE[$item->type]) }}</span></td>
+                            <th>{{ __('stock.item_type') }}</th>
+                            <td><span class="badge bg-blue"> {{ __('stock.' . App\Models\Item::ITEMTYPE[$item->type]) }}</span></td>
                         </tr>
                         <tr>
                             <th>{{ __('msgs.is_active') }}</th>
@@ -47,7 +47,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ __('item.item_category') }}</th>
+                            <th>{{ __('stock.item_category') }}</th>
                             <td>
                                 <span class="badge bg-blue">
                                     {{ $item->category->name }}
@@ -55,7 +55,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{{ __('item.has_fixed_price') }}</th>
+                            <th>{{ __('stock.has_fixed_price') }}</th>
                             <td>{{ $item->has_fixed_price ? __('msgs.yes') : __('msgs.no') }}</td>
                         </tr>
                     </tbody>
@@ -66,18 +66,18 @@
             <div class="card">
                 <div class="card-header d-grid">
                     <div class="w-100 d-flex align-items-center justify-content-between">
-                        <h3 class="card-title">{{ __('item.wholesale_price') }}</h3>
+                        <h3 class="card-title">{{ __('stock.wholesale_price') }}</h3>
                     </div>
                 </div>
                 <div class="card-table table-responsive">
                     <table class="table table-vcenter" wire:key='store'>
                         <thead>
                             <tr>
-                                <th>{{ __('item.wholesale_unit') }}</th>
-                                <th>{{ __('item.wholesale_price') }}</th>
-                                <th>{{ __('item.wholesale_price_for_half_block') }}</th>
-                                <th>{{ __('item.wholesale_price_for_block') }}</th>
-                                <th>{{ __('item.wholesale_cost_price') }}</th>
+                                <th>{{ __('stock.wholesale_unit') }}</th>
+                                <th>{{ __('stock.wholesale_price') }}</th>
+                                <th>{{ __('stock.wholesale_price_for_half_block') }}</th>
+                                <th>{{ __('stock.wholesale_price_for_block') }}</th>
+                                <th>{{ __('stock.wholesale_cost_price') }}</th>
                             </tr>
                         </thead>
                         <tr>
@@ -93,18 +93,18 @@
             <div class="card mt-3">
                 <div class="card-header d-grid">
                     <div class="w-100 d-flex align-items-center justify-content-between">
-                        <h3 class="card-title">{{ __('item.retail_price') }}</h3>
+                        <h3 class="card-title">{{ __('stock.retail_price') }}</h3>
                     </div>
                 </div>
                 <div class="card-table table-responsive">
                     <table class="table table-vcenter" wire:key='store'>
                         <thead>
                             <tr>
-                                <th>{{ __('item.retail_unit') }}</th>
-                                <th>{{ __('item.retail_price') }}</th>
-                                <th>{{ __('item.retail_price_for_half_block') }}</th>
-                                <th>{{ __('item.retail_price_for_block') }}</th>
-                                <th>{{ __('item.retail_cost_price') }}</th>
+                                <th>{{ __('stock.retail_unit') }}</th>
+                                <th>{{ __('stock.retail_price') }}</th>
+                                <th>{{ __('stock.retail_price_for_half_block') }}</th>
+                                <th>{{ __('stock.retail_price_for_block') }}</th>
+                                <th>{{ __('stock.retail_cost_price') }}</th>
                             </tr>
                         </thead>
                         <tr>

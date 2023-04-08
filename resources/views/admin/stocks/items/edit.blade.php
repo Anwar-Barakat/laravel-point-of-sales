@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.edit', ['name' => __('item.item')]))
-    @section('breadcrumbTitle', __('msgs.edit', ['name' => __('item.item')]))
+    @section('pageTitle', __('msgs.edit', ['name' => __('stock.item')]))
+    @section('breadcrumbTitle', __('msgs.edit', ['name' => __('stock.item')]))
     @section('breadcrumbSubtitle', __('partials.stocks'))
 
     <div class="card">
