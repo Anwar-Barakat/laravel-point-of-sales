@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Setting;
+namespace App\Http\Livewire\Admin\GeneralSetting\Setting;
 
 use Illuminate\Http\Request;
 use Livewire\Component;
@@ -59,6 +59,6 @@ class GeneralSetting extends Component
 
     public function render()
     {
-        return view('livewire.admin.setting.general-setting');
+        return view('livewire.admin.general-setting.setting.general-setting');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Setting;
+namespace App\Http\Livewire\Admin\GeneralSetting\Setting;
 
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +55,6 @@ class AdminProfile extends Component
 
     public function render()
     {
-        return view('livewire.admin.setting.admin-profile');
+        return view('livewire.admin.general-setting.setting.admin-profile');
     }
 }

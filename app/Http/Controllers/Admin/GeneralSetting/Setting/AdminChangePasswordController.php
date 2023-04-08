@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Setting;
+namespace App\Http\Controllers\Admin\GeneralSetting\Setting;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,6 +12,6 @@ class AdminChangePasswordController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('admin.settings.change-password');
+        return view('admin.general-settings.settings.change-password');
     }
 }

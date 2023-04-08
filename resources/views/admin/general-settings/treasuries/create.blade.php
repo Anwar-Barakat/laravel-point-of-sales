@@ -4,5 +4,5 @@
     @section('breadcrumbSubtitle', __('treasury.treasuries'))
 
 
-    @livewire('admin.treasury.store-treasury')
+    @livewire('admin.general-setting.treasury.store-treasury')
 </x-master-layout>

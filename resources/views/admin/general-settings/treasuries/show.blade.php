@@ -78,10 +78,10 @@
                         </a>
                     </div>
                 </div>
-                @include('admin.treasuries.treasury-deliveries.index')
+                @include('admin.general-settings.treasuries.treasury-deliveries.index')
             </div>
         </div>
         <!-- Add treasury delivery modal -->
-        @include('admin.treasuries.treasury-deliveries.create', ['treasury' => $treasury, 'treasuries' => $treasuries])
+        @include('admin.general-settings.treasuries.treasury-deliveries.create', ['treasury' => $treasury, 'treasuries' => $treasuries])
     </div>
 </x-master-layout>

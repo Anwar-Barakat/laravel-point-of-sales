@@ -4,9 +4,9 @@
 
     <div class="card">
         <div class="row g-0">
-            @include('admin.settings.inc.sidebar')
+            @include('admin.general-settings.settings.inc.sidebar')
 
-            @livewire('admin.setting.general-setting', ['setting' => $setting])
+            @livewire('admin.general-setting.setting.admin-profile')
         </div>
     </div>
 </x-master-layout>

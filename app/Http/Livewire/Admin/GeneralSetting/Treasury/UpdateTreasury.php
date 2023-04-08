@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Treasury;
+namespace App\Http\Livewire\Admin\GeneralSetting\Treasury;
 
 use App\Models\Treasury;
 use Carbon\Carbon;
@@ -66,6 +66,6 @@ class UpdateTreasury extends Component
 
     public function render()
     {
-        return view('livewire.admin.treasury.update-treasury');
+        return view('livewire.admin.general-setting.treasury.update-treasury');
     }
 }

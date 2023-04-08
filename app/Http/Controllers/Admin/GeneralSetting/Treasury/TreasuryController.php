@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Treasury;
+namespace App\Http\Controllers\Admin\GeneralSetting\Treasury;
 
 use App\Models\Treasury;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class TreasuryController extends Controller
      */
     public function index()
     {
-        return view('admin.treasuries.index');
+        return view('admin.general-settings.treasuries.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class TreasuryController extends Controller
      */
     public function create()
     {
-        return view('admin.treasuries.create');
+        return view('admin.general-settings.treasuries.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class TreasuryController extends Controller
     {
         $treasury->load(['addedBy', 'updatedBy', 'treasuriesDelivery']);
         $treasuries = Treasury::select('id', 'name')->where(['company_code' => auth()->guard('admin')->user()->company_code])->active()->get();
-        return view('admin.treasuries.show', ['treasury' => $treasury, 'treasuries' => $treasuries]);
+        return view('admin.general-settings.treasuries.show', ['treasury' => $treasury, 'treasuries' => $treasuries]);
     }
 
     /**
@@ -48,7 +48,7 @@ class TreasuryController extends Controller
      */
     public function edit(Treasury $treasury)
     {
-        return view('admin.treasuries.edit', ['treasury' => $treasury]);
+        return view('admin.general-settings.treasuries.edit', ['treasury' => $treasury]);
     }
 
     /**

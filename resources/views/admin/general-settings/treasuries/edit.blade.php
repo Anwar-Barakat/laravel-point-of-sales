@@ -4,5 +4,5 @@
     @section('breadcrumbSubtitle', __('treasury.treasuries'))
 
 
-    @livewire('admin.treasury.update-treasury', ['treasury' => $treasury])
+    @livewire('admin.general-setting.treasury.update-treasury', ['treasury' => $treasury])
 </x-master-layout>

@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Setting;
+namespace App\Http\Controllers\Admin\GeneralSetting\Setting;
 
-use App\Http\Requests\StoreSettingRequest;
-use App\Http\Requests\UpdateSettingRequest;
 use App\Models\Setting;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -16,7 +15,7 @@ class SettingController extends Controller
     {
         $setting   = Setting::with(['addedBy:id,name,email', 'updatedBy:id,name,email'])
             ->where('company_code', auth()->guard('admin')->user()->company_code)->first();
-        return view('admin.settings.index', ['setting' => $setting]);
+        return view('admin.general-settings.settings.index', ['setting' => $setting]);
     }
 
     /**
@@ -30,7 +29,7 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSettingRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -54,7 +53,7 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSettingRequest $request, Setting $setting)
+    public function update(Request $request, Setting $setting)
     {
         //
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Treasury;
+namespace App\Http\Livewire\Admin\GeneralSetting\Treasury;
 
 use App\Models\Admin;
 use App\Models\Treasury;
@@ -25,6 +25,6 @@ class ShowTreasury extends Component
             ->search(trim($this->name))
             ->orderBy($this->order_by, $this->sort_by)
             ->paginate($this->per_page);
-        return view('livewire.admin.treasury.show-treasury', ['treasuries' => $treasuries]);
+        return view('livewire.admin.general-setting.treasury.show-treasury', ['treasuries' => $treasuries]);
     }
 }

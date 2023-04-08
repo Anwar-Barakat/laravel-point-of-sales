@@ -78,7 +78,7 @@
                             @endif
                         </td>
                         <td>
-                            @livewire('admin.treasury.update-status', ['treasury_id' => $treasury->id, 'is_active' => $treasury->is_active])
+                            @livewire('admin.general-setting.treasury.update-status', ['treasury_id' => $treasury->id, 'is_active' => $treasury->is_active])
                         </td>
                         <td>{{ $treasury->last_payment_receipt }}</td>
                         <td> {{ $treasury->last_payment_collect }}</td>

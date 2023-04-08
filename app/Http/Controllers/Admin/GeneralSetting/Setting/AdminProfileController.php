@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Setting;
+namespace App\Http\Controllers\Admin\GeneralSetting\Setting;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,6 +12,6 @@ class AdminProfileController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('admin.settings.profile');
+        return view('admin.general-settings.settings.profile');
     }
 }

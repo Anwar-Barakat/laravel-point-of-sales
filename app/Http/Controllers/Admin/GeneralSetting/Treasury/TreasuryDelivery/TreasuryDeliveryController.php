@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Treasury\TreasuryDelivery;
+namespace App\Http\Controllers\Admin\GeneralSetting\Treasury\TreasuryDelivery;
 
 use App\Http\Controllers\Controller;
 use App\Models\Treasury;

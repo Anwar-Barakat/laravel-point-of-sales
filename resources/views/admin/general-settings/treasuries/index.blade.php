@@ -8,6 +8,6 @@
             <a href="{{ route('admin.treasuries.create') }}" class="btn btn-primary">{{ __('msgs.create', ['name' => __('treasury.treasury')]) }}</a>
         </div>
 
-        @livewire('admin.treasury.show-treasury')
+        @livewire('admin.general-setting.treasury.show-treasury')
     </div>
 </x-master-layout>
