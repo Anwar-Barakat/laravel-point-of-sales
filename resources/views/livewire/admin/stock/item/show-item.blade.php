@@ -16,7 +16,6 @@
                             <option value="{{ $admin->id }}">{{ $admin->name }}</option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                 </div>
             </div>
             <div class="col-sm-12 col-md-4 col-lg-2">
@@ -27,7 +26,6 @@
                         <option value="last_payment_receipt">{{ __('treasury.last_payment_receipt') }}</option>
                         <option value="last_payment_collect">{{ __('treasury.last_payment_collect') }}</option>
                     </select>
-                    <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                 </div>
             </div>
             <div class="col-sm-12 col-md-4 col-lg-2">
@@ -39,7 +37,6 @@
                         <option value="10">10</option>
                         <option value="15">10</option>
                     </select>
-                    <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                 </div>
             </div>
             <div class="col-sm-12 col-md-4 col-lg-2">
@@ -50,7 +47,6 @@
                         <option value="asc">{{ __('msgs.asc') }}</option>
                         <option value="desc">{{ __('msgs.desc') }}</option>
                     </select>
-                    <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                 </div>
             </div>
         </div> --}}

@@ -17,6 +17,7 @@ return [
     'created'               => 'تم إنشاء :name بنجاج',
     'deleted'               => 'تم حذف :name بنجاج',
     'submitted'             => 'تم حفظ البيانات :name بنجاج',
+    'has_childs'            => ':name لديه :childs ابناء',
 
 
     'email_pass_not_valid'  => 'البريد الألكتروني أو كلمة المرور غير صالحة',

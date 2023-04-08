@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('account_type_id')->constrained()->cascadeOnUpdate();
-            $table->boolean('is_parent')->default(0);
+            $table->boolean('is_parent')->default(1);
             $table->bigInteger('parent_id')->nullable();
             $table->string('account_number')->default(Str::uuid());
             $table->decimal('initial_balance')->default(0);

@@ -6,8 +6,61 @@
         </a>
     </div>
 
+
     <div class="card-body">
         <div id="table-default" class="table-responsive">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.search_by_name')" />
+                        <x-text-input class="form-control" placeholder="{{ __('btns.search') }}" wire:model="name" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('account.account_type')" />
+                        <select id="" class="form-control" wire:model='account_type_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @foreach (App\Models\AccountType::active()->get() as $admin)
+                                <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.order_by')" />
+                        <select id="" class="form-control" wire:model='order_by'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="name">{{ __('account.account_name') }}</option>
+                            <option value="created_at">{{ __('msgs.created_at') }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.per_page')" />
+                        <select id="" class="form-control" wire:model='per_page'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.sort_by')" />
+                        <select id="" class="form-control" wire:model='sort_by'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="asc">{{ __('msgs.asc') }}</option>
+                            <option value="desc">{{ __('msgs.desc') }}</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
+                    </div>
+                </div>
+            </div>
+            <br>
             <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                 <thead>
                     <tr>
@@ -28,10 +81,10 @@
                             <td>
                                 <span class="badge bg-info-lt">
                                     {{ $financial_account->accountType->name }}
+                                </span>
                             </td>
-                            </span>
                             <td>{{ $financial_account->account_number }}</td>
-                            <td>{{ $financial_account->parent_id ? __('msgs.yes') : __('msgs.no') }}</td>
+                            <td>{{ $financial_account->is_parent ? __('msgs.yes') : __('msgs.no') }}</td>
                             <th>
                                 <span class="badge bg-blue">
                                     {{ $financial_account->parentAccount->name ?? __('msgs.master') }}
@@ -59,8 +112,22 @@
                                             </svg>
                                             <span>{{ __('btns.edit') }}</span>
                                         </a>
+
+                                        <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $financial_account->id }}">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 7l16 0" />
+                                                <path d="M10 11l0 6" />
+                                                <path d="M14 11l0 6" />
+                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                            </svg>
+                                            <span>{{ __('btns.delete') }}</span>
+                                        </a>
                                     </div>
                                 </span>
+                                <x-modal-delete :id="$financial_account->id" :action="route('admin.financial-accounts.destroy', ['financial_account' => $financial_account])" />
                             </td>
                         </tr>
                     @empty
@@ -73,7 +140,7 @@
                 </tbody>
             </table>
             <div class="mt-3">
-                {{-- {{ $financial_accounts->links() }} --}}
+                {{ $financial_accounts->links() }}
             </div>
         </div>
     </div>

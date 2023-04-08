@@ -35,7 +35,7 @@
                         <x-input-error :messages="$errors->get('financialAccount.is_parent')" class="mt-2" />
                     </div>
                 </div>
-                @if ($parent_accounts || $edit)
+                @if ($parent_accounts)
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.parent_accounts')" />

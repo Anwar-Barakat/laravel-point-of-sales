@@ -27,6 +27,14 @@ class FinancialAccount extends Model
 
     const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
 
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'LIKE', $term);
+        });
+    }
+
     public function scopeActive($query)
     {
         return $query->where(['is_archived' => '1']);
@@ -40,6 +48,11 @@ class FinancialAccount extends Model
     public function parentAccount()
     {
         return $this->belongsTo(FinancialAccount::class, 'parent_id');
+    }
+
+    public function childAccounts()
+    {
+        return $this->hasMany(FinancialAccount::class, 'parent_id');
     }
 
     public function accountType()

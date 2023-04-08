@@ -4,15 +4,17 @@ namespace App\Http\Livewire\Admin\Account\FinancialAccount;
 
 use App\Models\FinancialAccount;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowAccount extends Component
 {
-    public $financial_accounts = [];
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->getAccounts();
-    }
+    public $name,
+        $order_by   = 'name',
+        $sort_by    = 'asc',
+        $account_type_id,
+        $per_page   = PAGINATION_COUNT;
 
     public function updateStatus($id)
     {
@@ -23,12 +25,17 @@ class ShowAccount extends Component
 
     public function render()
     {
-        return view('livewire.admin.account.financial-account.show-account');
+        $financial_accounts   = $this->getAccounts();
+        return view('livewire.admin.account.financial-account.show-account', ['financial_accounts' => $financial_accounts]);
     }
 
     public function getAccounts()
     {
-        return $this->financial_accounts   = FinancialAccount::with(['parentAccount:id,name', 'accountType:id,name'])->latest()
-            ->get();
+        return
+            FinancialAccount::with(['parentAccount:id,name', 'accountType:id,name'])
+            ->when($this->account_type_id, fn ($q) => $q->where('account_type_id', $this->account_type_id))
+            ->search(trim($this->name))
+            ->orderBy($this->order_by, $this->sort_by)
+            ->paginate($this->per_page);
     }
 }

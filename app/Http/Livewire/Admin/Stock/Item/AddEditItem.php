@@ -28,9 +28,9 @@ class AddEditItem extends Component
 
     public function mount(Item $item)
     {
+        $this->auth             = Auth::guard('admin')->user();
         $this->item             = $item;
         $this->barcode          = $item->barcode;
-        $this->auth             = Auth::guard('admin')->user();
         $this->parent_items     = Item::select('id', 'name')->where(['company_code' => $this->auth->company_code])->active()->get();
         $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_code', $this->auth->company_code)->active()->latest()->get();
         $this->wholesale_units  = Unit::select('id', 'name')->where(['company_code' => $this->auth->company_code, 'status' => 'wholesale'])->active()->get();

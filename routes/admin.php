@@ -104,7 +104,7 @@ Route::group(
                 //!_______________________
                 //! Financial Accounts
                 //!_______________________
-                Route::resource('financial-accounts',    FinancialAccountController::class)->only(['index', 'create', 'edit', 'show']);
+                Route::resource('financial-accounts',    FinancialAccountController::class)->except(['store', 'update']);
             });
         });
     }

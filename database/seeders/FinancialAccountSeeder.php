@@ -18,16 +18,24 @@ class FinancialAccountSeeder extends Seeder
     {
         $faker          = Factory::create();
         $admin          = Admin::inRandomOrder()->first();
-        $account_type   = AccountType::where('name->en', 'Capital')->first();
+        $captial_type   = AccountType::where('name->en', 'Capital')->first();
+        $expenses_type  = AccountType::where('name->en', 'Expenses')->first();
 
         $accounts       = [
             [
-                'name'              => 'Capita',
-                'account_type_id'   => $account_type->id,
+                'name'              => 'Capital',
+                'account_type_id'   => $captial_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
                 'added_by'          => $admin->id,
-            ]
+            ],
+            [
+                'name'              => 'Phone & Internet Invoice',
+                'account_type_id'   => $expenses_type->id,
+                'notes'             => $faker->sentence(10),
+                'company_code'      => $admin->company_code,
+                'added_by'          => $admin->id,
+            ],
         ];
 
         foreach ($accounts as $account) {

@@ -17,6 +17,7 @@ return [
     'created'               => ':name Has Been Created Successfuly',
     'deleted'               => ':name Has Been Deleted Successfuly',
     'submitted'             => ':name Has Been Submitted Successfuly',
+    'has_childs'            => 'The :name has :childs for children',
 
     'email_pass_not_valid'  => 'Oops, Email or Password not Valid',
     'welcome_back'          => 'Welcome Back',

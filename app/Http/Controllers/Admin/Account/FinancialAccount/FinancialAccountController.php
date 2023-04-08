@@ -61,6 +61,13 @@ class FinancialAccountController extends Controller
      */
     public function destroy(FinancialAccount $financialAccount)
     {
-        //
+        $exists = $financialAccount->childAccounts()->count();
+        if ($exists > 0) {
+            toastr()->error(__('msgs.has_childs', ['name' => __('account.financial_account'), 'childs' => __('account.financial_accounts')]));
+            return redirect()->route('admin.financial-accounts.index');
+        }
+        $financialAccount->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('account.financial_account')]));
+        return redirect()->route('admin.financial-accounts.index');
     }
 }

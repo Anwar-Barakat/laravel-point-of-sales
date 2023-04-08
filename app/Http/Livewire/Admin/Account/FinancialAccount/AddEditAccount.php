@@ -19,12 +19,12 @@ class AddEditAccount extends Component
 
     public function mount(FinancialAccount $financialAccount)
     {
+        $this->auth             = Auth::guard('admin')->user();
         $this->financialAccount = $financialAccount;
         $this->edit = !empty($this->financialAccount->initial_balance_status) ? true : false;
-        if ($this->edit)
+        if ($this->edit && $this->financialAccount['is_parent'] == 0)
             $this->parent_accounts = $this->getParentAccount();
 
-        $this->auth             = Auth::guard('admin')->user();
         $this->account_types    = AccountType::select('id', 'name')->where('related_to_internal_account', 0)->active()->get();
     }
 
@@ -95,6 +95,7 @@ class AddEditAccount extends Component
 
     public function getParentAccount()
     {
-        return FinancialAccount::select('id', 'name')->where('company_code', $this->auth->company_code)->active()->get();
+        return FinancialAccount::select('id', 'name')->where(['company_code' => $this->auth->company_code])
+            ->where('id', '!=', $this->financialAccount->id)->active()->get();
     }
 }
