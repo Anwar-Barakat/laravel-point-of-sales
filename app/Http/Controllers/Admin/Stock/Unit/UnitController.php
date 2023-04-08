@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Unit;
+namespace App\Http\Controllers\Admin\Stock\Unit;
 
 use App\Http\Requests\Admin\StoreUnitRequest;
 use App\Http\Requests\Admin\UpdateUnitRequest;
@@ -15,7 +15,7 @@ class UnitController extends Controller
     public function index()
     {
         $units  = Unit::latest()->paginate(PAGINATION_COUNT);
-        return view('admin.units.index', ['units' => $units]);
+        return view('admin.stocks.units.index', ['units' => $units]);
     }
 
     /**
@@ -23,7 +23,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        return view('admin.units.create');
+        return view('admin.stocks.units.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        return view('admin.units.edit', ['unit' => $unit]);
+        return view('admin.stocks.units.edit', ['unit' => $unit]);
     }
 
     /**

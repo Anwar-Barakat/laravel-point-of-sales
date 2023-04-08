@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category;
+namespace App\Http\Livewire\Admin\Stock\Category;
 
 use App\Models\Category;
 use App\Models\Section;
@@ -68,11 +68,12 @@ class EditCategory extends Component
         }
 
         toastr()->success(__('msgs.create', ['name' => __('category.category')]));
+        return redirect()->route('admin.categories.index');
     }
 
     public function render()
     {
         $sections = Section::get();
-        return view('livewire.admin.category.edit-category', ['sections' => $sections]);
+        return view('livewire.admin.stock.category.edit-category', ['sections' => $sections]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Section;
+namespace App\Http\Controllers\Admin\Stock\Section;
 
 use App\Http\Requests\Admin\StoreSectionRequest;
 use App\Http\Requests\Admin\UpdateSectionRequest;
@@ -15,7 +15,7 @@ class SectionController extends Controller
     public function index()
     {
         $sections  = Section::with(['addedBy'])->latest()->paginate(PAGINATION_COUNT);
-        return view('admin.sections.index', ['sections' => $sections]);
+        return view('admin.stocks.sections.index', ['sections' => $sections]);
     }
 
     /**

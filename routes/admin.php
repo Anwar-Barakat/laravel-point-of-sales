@@ -7,16 +7,16 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\SettingController;
 use App\Http\Controllers\Admin\GeneralSetting\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\GeneralSetting\Treasury\TreasuryDelivery\TreasuryDeliveryController;
-use App\Http\Controllers\Admin\Item\ItemController;
-use App\Http\Controllers\Admin\Section\SectionController;
-use App\Http\Controllers\Admin\Store\StoreController;
-use App\Http\Controllers\Admin\Unit\UnitController;
+use App\Http\Controllers\Admin\Stock\Category\CategoryController;
+use App\Http\Controllers\Admin\Stock\Item\ItemController;
+use App\Http\Controllers\Admin\Stock\Section\SectionController;
+use App\Http\Controllers\Admin\Stock\Store\StoreController;
+use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -93,18 +93,18 @@ Route::group(
                 //!_______________________
                 //! Cards
                 //!_______________________
-                Route::resource('items',                ItemController::class)->except(['store', 'update']);
+                Route::resource('items',                    ItemController::class)->except(['store', 'update']);
 
 
                 //!_______________________
                 //! Account types
                 //!_______________________
-                Route::resource('account-types',         AccountTypeController::class)->only(['index']);
+                Route::resource('account-types',            AccountTypeController::class)->only(['index']);
 
                 //!_______________________
                 //! Financial Accounts
                 //!_______________________
-                Route::resource('financial-accounts',    FinancialAccountController::class)->except(['store', 'update']);
+                Route::resource('financial-accounts',       FinancialAccountController::class)->except(['store', 'update']);
             });
         });
     }

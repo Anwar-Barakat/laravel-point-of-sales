@@ -1,12 +1,12 @@
 <x-master-layout>
-    @section('pageTitle', __('unit.units'))
-    @section('breadcrumbTitle', __('unit.units'))
+    @section('pageTitle', __('store.stores'))
+    @section('breadcrumbTitle', __('store.stores'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h3 class="card-title">{{ __('msgs.all', ['name' => __('unit.units')]) }}</h3>
-            <a href="{{ route('admin.units.create') }}" class="btn btn-primary">
-                {{ __('msgs.create', ['name' => __('unit.unit')]) }}
+            <h3 class="card-title">{{ __('msgs.all', ['name' => __('store.stores')]) }}</h3>
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-store">
+                {{ __('msgs.create', ['name' => __('store.store')]) }}
             </a>
         </div>
 
@@ -16,8 +16,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th> {{ __('unit.unit') }}</th>
-                            <th>{{ __('setting.status') }}</th>
+                            <th> {{ __('store.store') }}</th>
                             <th> {{ __('msgs.is_active') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
                             <th> {{ __('msgs.added_by') }}</th>
@@ -25,21 +24,22 @@
                         </tr>
                     </thead>
                     <tbody class="table-tbody">
-                        @forelse ($units as $unit)
+                        @forelse ($stores as $store)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $unit->name }}</td>
+                                <td>{{ $store->name }}</td>
                                 <td>
-                                    <span class="badge bg-{{ $unit->status == 'retail' ? 'blue' : 'green' }}">{{ __('unit.' . $unit->status) }}</span>
+                                    @livewire('admin.stock.store.update-status', ['store_id' => $store->id, 'is_active' => $store->is_active])
                                 </td>
-                                <td>@livewire('admin.unit.update-status', ['unit_id' => $unit->id, 'is_active' => $unit->is_active])</td>
-                                <td> {{ $unit->created_at }} </td>
-                                <td> <span class="badge bg-blue-lt">{{ $unit->addedBy->name }}</span></td>
+                                <td> {{ $store->created_at }} </td>
+                                <td>
+                                    <span class="badge bg-blue-lt">{{ $store->addedBy->name }}</span>
+                                </td>
                                 <td>
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="{{ route('admin.units.edit', ['unit' => $unit]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-store-{{ $store->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -48,7 +48,7 @@
                                                 </svg>
                                                 <span>{{ __('btns.edit') }}</span>
                                             </a>
-                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $unit->id }}">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $store->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M4 7l16 0" />
@@ -61,22 +61,29 @@
                                             </a>
                                         </div>
                                     </span>
-                                    <x-modal-delete :id="$unit->id" :action="route('admin.units.destroy', ['unit' => $unit])" />
+
+                                    <x-modal-delete :id="$store->id" :action="route('admin.stores.destroy', ['store' => $store])" />
+
                                 </td>
+                                <!-- edit store modal -->
+                                @include('admin.stocks.stores.edit')
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="0">
-                                    <x-blank-section :content="__('unit.unit')" :url="route('admin.categories.create')" />
+                                <td colspan="8">
+                                    <x-blank-section :content="__('store.store')" :url="route('admin.stores.create')" />
                                 </td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
                 <div class="mt-3">
-                    {{ $units->links() }}
+                    {{ $stores->links() }}
                 </div>
             </div>
         </div>
+
+        <!-- Add store modal -->
+        @include('admin.stocks.stores.create')
     </div>
 </x-master-layout>

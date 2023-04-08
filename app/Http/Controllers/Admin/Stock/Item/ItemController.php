@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Item;
+namespace App\Http\Controllers\Admin\Stock\Item;
 
 use App\Models\Item;
 use Illuminate\Http\Request;

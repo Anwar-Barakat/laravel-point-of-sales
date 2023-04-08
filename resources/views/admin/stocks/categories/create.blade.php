@@ -6,7 +6,7 @@
 
     <div class="card">
         <div class="row g-0">
-            @livewire('admin.account.financial-account.add-edit-account')
+            @livewire('admin.stock.category.store-category')
         </div>
     </div>
 

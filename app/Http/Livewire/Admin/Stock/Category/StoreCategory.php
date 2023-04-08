@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category;
+namespace App\Http\Livewire\Admin\Stock\Category;
 
 use App\Models\Category;
 use App\Models\Section;
@@ -53,12 +53,12 @@ class StoreCategory extends Component
         }
 
         toastr()->success(__('msgs.create', ['name' => __('category.category')]));
-        $this->reset();
+        return redirect()->route('admin.categories.index');
     }
 
     public function render()
     {
         $sections   = Section::get();
-        return view('livewire.admin.category.store-category', ['sections' => $sections]);
+        return view('livewire.admin.stock.category.store-category', ['sections' => $sections]);
     }
 }

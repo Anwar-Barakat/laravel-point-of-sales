@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Category;
+namespace App\Http\Controllers\Admin\Stock\Category;
 
 use App\Models\Category;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::with(['addedBy', 'section', 'parentCategory'])->latest()->paginate(PAGINATION_COUNT);
-        return view('admin.categories.index', ['categories' => $categories]);
+        return view('admin.stocks.categories.index', ['categories' => $categories]);
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.stocks.categories.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', ['category' => $category]);
+        return view('admin.stocks.categories.edit', ['category' => $category]);
     }
 
     /**

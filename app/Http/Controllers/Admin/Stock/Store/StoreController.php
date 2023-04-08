@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Store;
+namespace App\Http\Controllers\Admin\Stock\Store;
 
 use App\Http\Requests\Admin\StoreStoreRequest;
 use App\Http\Requests\Admin\UpdateStoreRequest;
@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function index()
     {
         $stores = Store::with(['addedBy'])->latest()->paginate(PAGINATION_COUNT);
-        return view('admin.stores.index', ['stores' => $stores]);
+        return view('admin.stocks.stores.index', ['stores' => $stores]);
     }
 
     /**

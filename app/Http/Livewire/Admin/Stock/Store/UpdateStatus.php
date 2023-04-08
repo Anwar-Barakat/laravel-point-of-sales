@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Store;
+namespace App\Http\Livewire\Admin\Stock\Store;
 
 use App\Models\Store;
 use Livewire\Component;
@@ -18,6 +18,6 @@ class UpdateStatus extends Component
 
     public function render()
     {
-        return view('livewire.admin.store.update-status');
+        return view('livewire.admin.stock.store.update-status');
     }
 }

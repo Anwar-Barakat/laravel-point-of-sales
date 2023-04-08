@@ -29,7 +29,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td> {{ $section->name }}</td>
                                 <td>
-                                    @livewire('admin.section.update-status', ['section_id' => $section->id, 'is_active' => $section->is_active])
+                                    @livewire('admin.stock.section.update-status', ['section_id' => $section->id, 'is_active' => $section->is_active])
                                 </td>
                                 <td> {{ $section->created_at }} </td>
                                 <td>
@@ -55,7 +55,7 @@
 
                                 </td>
                                 <!-- edit section modal -->
-                                @include('admin.sections.edit')
+                                @include('admin.stocks.sections.edit')
                             </tr>
                         @empty
                             <tr>
@@ -73,6 +73,6 @@
         </div>
 
         <!-- Add section modal -->
-        @include('admin.sections.create')
+        @include('admin.stocks.sections.create')
     </div>
 </x-master-layout>
