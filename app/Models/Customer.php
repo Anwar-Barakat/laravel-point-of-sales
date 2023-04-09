@@ -30,8 +30,4 @@ class Customer extends Model
     {
         return $this->belongsTo(FinancialAccount::class, 'account_id');
     }
-    public function parentAccount()
-    {
-        return $this->belongsTo(FinancialAccount::class, 'parent_account_id');
-    }
 }
