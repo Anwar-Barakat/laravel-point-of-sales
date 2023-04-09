@@ -6,20 +6,20 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.account_name')" />
-                        <x-text-input type="text" class="form-control" wire:model.debounce.350='financialAccount.name' />
-                        <x-input-error :messages="$errors->get('financialAccount.name')" class="mt-2" />
+                        <x-text-input type="text" class="form-control" wire:model.debounce.350='account.name' />
+                        <x-input-error :messages="$errors->get('account.name')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.account_type')" />
-                        <select id="" class="form-control" wire:model.debounce.350='financialAccount.account_type_id'>
+                        <select id="" class="form-control" wire:model.debounce.350='account.account_type_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($account_types as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                             @endforeach
                         </select>
-                        <x-input-error :messages="$errors->get('financialAccount.account_type_id')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('account.account_type_id')" class="mt-2" />
                     </div>
                 </div>
             </div>
@@ -27,25 +27,25 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.is_parent_account')" />
-                        <select id="" class="form-control" wire:model.debounce.350='financialAccount.is_parent'>
+                        <select id="" class="form-control" wire:model.debounce.350='account.is_parent'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
                         </select>
-                        <x-input-error :messages="$errors->get('financialAccount.is_parent')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('account.is_parent')" class="mt-2" />
                     </div>
                 </div>
                 @if ($parent_accounts)
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.parent_accounts')" />
-                            <select id="" class="form-control" wire:model.debounce.350='financialAccount.parent_id'>
+                            <select id="" class="form-control" wire:model.debounce.350='account.parent_id'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach ($parent_accounts as $parent_accounts)
                                     <option value="{{ $parent_accounts->id }}">{{ $parent_accounts->name }}</option>
                                 @endforeach
                             </select>
-                            <x-input-error :messages="$errors->get('financialAccount.parent_id')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('account.parent_id')" class="mt-2" />
                         </div>
                     </div>
                 @endif
@@ -55,32 +55,32 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
-                            <select id="" class="form-control" wire:model.debounce.350='financialAccount.initial_balance_status'>
+                            <select id="" class="form-control" wire:model.debounce.350='account.initial_balance_status'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach (App\Models\FinancialAccount::INITIALBANALNCESTATUS as $key => $status)
                                     <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
                                 @endforeach
                             </select>
-                            <x-input-error :messages="$errors->get('financialAccount.initial_balance_status')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('account.initial_balance_status')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
-                            <x-text-input type="number" class="form-control" wire:model.debounce.350='financialAccount.initial_balance' />
-                            <x-input-error :messages="$errors->get('financialAccount.initial_balance')" class="mt-2" />
+                            <x-text-input type="number" class="form-control" wire:model.debounce.350='account.initial_balance' />
+                            <x-input-error :messages="$errors->get('account.initial_balance')" class="mt-2" />
                         </div>
                     </div>
                 @endif
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
-                        <select id="" class="form-control" wire:model.debounce.350='financialAccount.is_archived'>
+                        <select id="" class="form-control" wire:model.debounce.350='account.is_archived'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('account.is_archived') }}</option>
                             <option value="0">{{ __('account.not_archived') }}</option>
                         </select>
-                        <x-input-error :messages="$errors->get('financialAccount.is_archived')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('account.is_archived')" class="mt-2" />
                     </div>
                 </div>
             </div>
@@ -89,8 +89,8 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="5" class="form-control" wire:model.debounce.350='financialAccount.notes'></textarea>
-                        <x-input-error :messages="$errors->get('financialAccount.notes')" class="mt-2" />
+                        <textarea rows="5" class="form-control" wire:model.debounce.350='account.notes'></textarea>
+                        <x-input-error :messages="$errors->get('account.notes')" class="mt-2" />
                     </div>
                 </div>
             </div>

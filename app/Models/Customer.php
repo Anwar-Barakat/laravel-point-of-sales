@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Customer extends Model
 {
@@ -26,7 +27,7 @@ class Customer extends Model
 
     const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
 
-    public function account()
+    public function account(): BelongsTo
     {
         return $this->belongsTo(FinancialAccount::class, 'account_id');
     }

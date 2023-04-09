@@ -6,7 +6,12 @@
 
     <div class="card">
         <div class="row g-0">
-            @livewire('admin.account.financial-account.add-edit-account', ['financialAccount' => $financialAccount])
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                @endforeach
+            @endif
+            @livewire('admin.account.financial-account.add-edit-account', ['account' => $financialAccount])
         </div>
     </div>
 

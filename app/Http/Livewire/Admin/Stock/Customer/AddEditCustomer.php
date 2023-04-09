@@ -53,7 +53,7 @@ class AddEditCustomer extends Component
                 'added_by'                  => $this->auth->id,
             ]);
 
-            $this->customer['account_id']   = 1;
+            $this->customer['account_id']   = $account->id;
             $this->customer['added_by']     = $this->auth->id;
             $this->customer['company_code'] = $this->auth->company_code;
 

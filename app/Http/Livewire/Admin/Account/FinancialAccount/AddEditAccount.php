@@ -5,25 +5,26 @@ namespace App\Http\Livewire\Admin\Account\FinancialAccount;
 use App\Models\AccountType;
 use App\Models\FinancialAccount;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class AddEditAccount extends Component
 {
-    public FinancialAccount $financialAccount;
+    public FinancialAccount $account;
 
     public $auth;
     public $account_types   = [];
     public $parent_accounts = [];
     public $edit            = false;
 
-    public function mount(FinancialAccount $financialAccount)
+    public function mount(FinancialAccount $account)
     {
         $this->auth             = Auth::guard('admin')->user();
-        $this->financialAccount = $financialAccount;
+        $this->account = $account;
 
-        $this->edit = !empty($this->financialAccount->initial_balance_status) ? true : false;
-        if ($this->edit && $this->financialAccount['is_parent'] == 0)
+        $this->edit = !empty($this->account->initial_balance_status) ? true : false;
+        if ($this->edit && $this->account['is_parent'] == 0)
             $this->parent_accounts = $this->getParentAccount();
 
         $this->account_types    = AccountType::select('id', 'name')->where('related_to_internal_account', 0)->active()->get();
@@ -34,39 +35,43 @@ class AddEditAccount extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function updatedFinancialAccountIsParent()
+    public function updatedAccountIsParent()
     {
-        $this->parent_accounts = $this->financialAccount->is_parent == '0'
+        $this->parent_accounts = $this->account->is_parent == '0'
             ? $this->getParentAccount()
             : [];
     }
 
-    public function updatedFinancialAccountInitialBalanceStatus()
+    public function updatedAccountInitialBalanceStatus()
     {
-        $this->financialAccount->initial_balance = ($this->financialAccount->initial_balance_status == 1) ? 0 : '';
+        $this->account->initial_balance = ($this->account->initial_balance_status == 1) ? 0 : '';
     }
 
     public function submit()
     {
         $this->validate();
-        $this->financialAccount['added_by']     = $this->auth->id;
-        $this->financialAccount['company_code'] = $this->auth->company_code;
+        try {
+            $this->account['added_by']     = $this->auth->id;
+            $this->account['company_code'] = $this->auth->company_code;
 
-        switch ($this->financialAccount->initial_balance_status) {
-            case 1:
-                $this->financialAccount->initial_balance = 0;
-                break;
-            case 2:
-                abs($this->financialAccount->initial_balance);
-                break;
-            case 3:
-                $this->financialAccount->initial_balance = $this->financialAccount->initial_balance * (-1);
-                break;
+            switch ($this->account->initial_balance_status) {
+                case 1:
+                    $this->account->initial_balance = 0;
+                    break;
+                case 2:
+                    abs($this->account->initial_balance);
+                    break;
+                case 3:
+                    $this->account->initial_balance = $this->account->initial_balance * (-1);
+                    break;
+            }
+
+            $this->account->save();
+            toastr()->success(__('msgs.submitted', ['name' => __('account.financial_account')]));
+            return redirect()->route('admin.financial-accounts.index');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.financial-accounts.index')->with(['error' => $th->getMessage()]);
         }
-
-        $this->financialAccount->save();
-        toastr()->success(__('msgs.submitted', ['name' => __('account.financial_account')]));
-        return redirect()->route('admin.financial-accounts.index');
     }
 
     public function render()
@@ -77,26 +82,26 @@ class AddEditAccount extends Component
     public function rules(): array
     {
         return [
-            'financialAccount.name'                     => [
+            'account.name'                     => [
                 'required',
                 'min:3',
-                Rule::unique('financial_accounts', 'name')->ignore($this->financialAccount->id)->where(function ($query) {
+                Rule::unique('financial_accounts', 'name')->ignore($this->account->id)->where(function ($query) {
                     return $query->where('company_code', $this->auth->company_code);
                 })
             ],
-            'financialAccount.account_type_id'          => ['required', 'integer'],
-            'financialAccount.is_parent'                => ['required', 'boolean'],
-            'financialAccount.parent_id'                => ['required_if:is_parent,yes'],
-            'financialAccount.initial_balance_status'   => ['required', 'in:1,2,3'],
-            'financialAccount.initial_balance'          => ['required', 'between:0,999999'],
-            'financialAccount.is_archived'              => ['required', 'boolean'],
-            'financialAccount.notes'                    => ['required', 'min:10'],
+            'account.account_type_id'          => ['required', 'integer'],
+            'account.is_parent'                => ['required', 'boolean'],
+            'account.parent_id'                => ['required_if:is_parent,yes'],
+            'account.initial_balance_status'   => ['required', 'in:1,2,3'],
+            'account.initial_balance'          => ['required', 'between:0,999999'],
+            'account.is_archived'              => ['required', 'boolean'],
+            'account.notes'                    => ['required', 'min:10'],
         ];
     }
 
     public function getParentAccount()
     {
         return FinancialAccount::select('id', 'name')->where(['company_code' => $this->auth->company_code])
-            ->where('id', '!=', $this->financialAccount->id)->active()->get();
+            ->where('id', '!=', $this->account->id)->active()->get();
     }
 }

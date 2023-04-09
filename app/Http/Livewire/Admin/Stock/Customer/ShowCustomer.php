@@ -20,6 +20,7 @@ class ShowCustomer extends Component
     public function render()
     {
         $customers  = $this->getCustomers();
+        dd($customers);
         return view('livewire.admin.stock.customer.show-customer', ['customers' => $customers]);
     }
 

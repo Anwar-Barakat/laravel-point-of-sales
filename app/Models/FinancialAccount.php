@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class FinancialAccount extends Model
 {
@@ -63,5 +64,10 @@ class FinancialAccount extends Model
     public function accountType()
     {
         return $this->belongsTo(AccountType::class, 'account_type_id');
+    }
+
+    public function customer(): HasOne
+    {
+        return $this->hasOne(Customer::class, 'account_id');
     }
 }
