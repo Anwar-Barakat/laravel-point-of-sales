@@ -21,6 +21,7 @@ class AddEditAccount extends Component
     {
         $this->auth             = Auth::guard('admin')->user();
         $this->financialAccount = $financialAccount;
+
         $this->edit = !empty($this->financialAccount->initial_balance_status) ? true : false;
         if ($this->edit && $this->financialAccount['is_parent'] == 0)
             $this->parent_accounts = $this->getParentAccount();

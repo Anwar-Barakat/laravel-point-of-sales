@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.stocks.customers.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stocks.customers.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('admin.stocks.customers.edit', ['customer' => $customer]);
     }
 
     /**

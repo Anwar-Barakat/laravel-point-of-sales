@@ -91,6 +91,9 @@
         <div class="collapse navbar-collapse" id="navbar-menu">
             <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                 <ul class="navbar-nav">
+                    <!-- _______________________
+                    Dashboard
+                    _______________________ !-->
                     <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.dashboard') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -107,6 +110,10 @@
                             </span>
                         </a>
                     </li>
+
+                    <!-- _______________________
+                    General Setting
+                    _______________________!-->
                     <li class="nav-item dropdown {{ request()->routeIs('admin.treasuries.*') || request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -151,7 +158,11 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') ? 'active' : '' }}">
+
+                    <!-- _______________________
+                    Stocks
+                    _______________________!-->
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') || request()->routeIs('admin.customers.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -224,10 +235,29 @@
                                             </a>
                                         </div>
                                     </div>
+
+                                    <!-- customers -->
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                            {{ __('stock.customers') }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ route('admin.items.index') }}" class="dropdown-item {{ request()->routeIs('admin.customers.index') ? 'active' : '' }}"">
+                                                {{ __('msgs.list', ['name' => __('stock.customers')]) }}
+                                            </a>
+                                            <a href="{{ route('admin.customers.create') }}" class="dropdown-item {{ request()->routeIs('admin.customers.create') ? 'active' : '' }}"">
+                                                {{ __('msgs.create', ['name' => __('stock.customer')]) }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </li>
+
+                    <!-- _______________________
+                    Accounts
+                    _______________________!-->
                     <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">

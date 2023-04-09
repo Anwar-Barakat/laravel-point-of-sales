@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\GeneralSetting\Setting\SettingController;
 use App\Http\Controllers\Admin\GeneralSetting\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\GeneralSetting\Treasury\TreasuryDelivery\TreasuryDeliveryController;
 use App\Http\Controllers\Admin\Stock\Category\CategoryController;
+use App\Http\Controllers\Admin\Stock\Customer\CustomerController;
 use App\Http\Controllers\Admin\Stock\Item\ItemController;
 use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
@@ -55,55 +56,64 @@ Route::group(
                 Route::get('/dashboard',                    DashboardController::class)->name('dashboard');
 
 
-                //!_______________________
-                //! Setting
-                //!_______________________
+                //_______________________
+                // Setting
+                //_______________________
                 Route::resource('/settings',                SettingController::class)->only(['index']);
                 Route::get('/profile',                      AdminProfileController::class)->name('setting.profile');
                 Route::get('/change-password',              AdminChangePasswordController::class)->name('setting.change-password');
 
-                //!_______________________
-                //! Treasuries
-                //!_______________________
+                //_______________________
+                // Treasuries
+                //_______________________
                 Route::resource('treasuries',               TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
                 Route::resource('treasury-deliveries',      TreasuryDeliveryController::class)->only(['store', 'destroy']);
 
-                //!_______________________
-                //! Sections
-                //!_______________________
+
+
+                //_______________________
+                // Sections
+                //_______________________
                 Route::resource('sections',                 SectionController::class)->except(['create', 'show', 'edit']);
 
-                //!_______________________
-                //! Categories
-                //!_______________________
+                //_______________________
+                // Categories
+                //_______________________
                 Route::resource('categories',               CategoryController::class)->except(['store', 'show', 'update']);
 
-                //!_______________________
-                //! Stoes
-                //!_______________________
+                //_______________________
+                // Stoes
+                //_______________________
                 Route::resource('stores',                   StoreController::class)->except(['create', 'show', 'edit']);
 
 
-                //!_______________________
-                //! Units
-                //!_______________________
+                //_______________________
+                // Units
+                //_______________________
                 Route::resource('units',                    UnitController::class)->except(['show']);
 
 
-                //!_______________________
-                //! Cards
-                //!_______________________
+                //_______________________
+                // Items
+                //_______________________
                 Route::resource('items',                    ItemController::class)->except(['store', 'update']);
 
 
-                //!_______________________
-                //! Account types
-                //!_______________________
+                //_______________________
+                // Customers
+                //_______________________
+                Route::resource('customers',                CustomerController::class);
+
+
+
+                //_______________________
+                // Account types
+                //_______________________
                 Route::resource('account-types',            AccountTypeController::class)->only(['index']);
 
-                //!_______________________
-                //! Financial Accounts
-                //!_______________________
+                //_______________________
+                // Financial Accounts
+                //_______________________
                 Route::resource('financial-accounts',       FinancialAccountController::class)->except(['store', 'update']);
             });
         });

@@ -25,8 +25,16 @@ class FinancialAccountSeeder extends Seeder
 
         $accounts       = [
             [
+                'name'              => 'Parent Supplies',
+                'account_number'    => uniqid(),
+                'account_type_id'   => $general_type->id,
+                'notes'             => $faker->sentence(10),
+                'company_code'      => $admin->company_code,
+                'added_by'          => $admin->id,
+            ],
+            [
                 'name'              => 'Capital',
-                'account_number'    => Str::uuid(),
+                'account_number'    => uniqid(),
                 'account_type_id'   => $captial_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
@@ -34,16 +42,8 @@ class FinancialAccountSeeder extends Seeder
             ],
             [
                 'name'              => 'Phone & Internet Invoice',
-                'account_number'    => Str::uuid(),
+                'account_number'    => uniqid(),
                 'account_type_id'   => $expenses_type->id,
-                'notes'             => $faker->sentence(10),
-                'company_code'      => $admin->company_code,
-                'added_by'          => $admin->id,
-            ],
-            [
-                'name'              => 'Parent Supplies',
-                'account_number'    => Str::uuid(),
-                'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
                 'added_by'          => $admin->id,

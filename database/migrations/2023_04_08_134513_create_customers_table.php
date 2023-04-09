@@ -16,14 +16,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('account_number')->default(Str::uuid());
             $table->foreignId('account_id')->constrained('financial_accounts')->cascadeOnUpdate();
-            $table->foreignId('parent_account_id')->constrained('financial_accounts')->cascadeOnUpdate();
 
             $table->decimal('initial_balance')->default(0);
             $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');
             $table->decimal('currnet_balance')->default(0);
-            
+
             $table->string('notes');
             $table->integer('company_code');
             $table->boolean('is_active')->default(1);

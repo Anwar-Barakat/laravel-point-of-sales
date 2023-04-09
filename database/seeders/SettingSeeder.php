@@ -28,6 +28,7 @@ class SettingSeeder extends Seeder
                 'alert_msg'         => $faker->sentence(10),
                 'address'           => $faker->address(),
                 'mobile'            => $faker->phoneNumber(),
+                'account_id'        => 1,
                 'added_by'          => $admin->id,
                 'updated_by'        => $admin->id,
             ]

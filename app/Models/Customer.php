@@ -14,7 +14,6 @@ class Customer extends Model
         'address',
         'account_number',
         'account_id',
-        'parent_account_id',
         'initial_balance',
         'initial_balance_status',
         'currnet_balance',
@@ -24,6 +23,8 @@ class Customer extends Model
         'added_by',
         'date',
     ];
+
+    const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
 
     public function account()
     {

@@ -80,4 +80,6 @@ return [
     //!_______________________
     'customer'          => 'Customer',
     'customers'         => 'Customers',
+    'address'           => 'Address',
+    'customer_name'     => 'Customer name',
 ];
