@@ -40,6 +40,11 @@ class FinancialAccount extends Model
         return $query->where(['is_archived' => '0']);
     }
 
+    public function scopeParent($query)
+    {
+        return $this->where(['is_parent' => 1, 'is_archived' => '0']);
+    }
+
     public function addedBy()
     {
         return $this->belongsTo(Admin::class, 'added_by');

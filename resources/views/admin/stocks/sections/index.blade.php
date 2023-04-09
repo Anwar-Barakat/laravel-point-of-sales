@@ -1,12 +1,12 @@
 <x-master-layout>
-    @section('pageTitle', __('section.sections'))
-    @section('breadcrumbTitle', __('section.sections'))
+    @section('pageTitle', __('stock.sections'))
+    @section('breadcrumbTitle', __('stock.sections'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h3 class="card-title">{{ __('msgs.all', ['name' => __('section.sections')]) }}</h3>
+            <h3 class="card-title">{{ __('msgs.all', ['name' => __('stock.sections')]) }}</h3>
             <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-section">
-                {{ __('msgs.create', ['name' => __('section.section')]) }}
+                {{ __('msgs.create', ['name' => __('stock.section')]) }}
             </a>
         </div>
 
@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>{{ __('section.section') }}</th>
+                            <th>{{ __('stock.section') }}</th>
                             <th>{{ __('msgs.is_active') }}</th>
                             <th>{{ __('msgs.created_at') }}</th>
                             <th>{{ __('msgs.added_by') }}</th>
@@ -60,7 +60,7 @@
                         @empty
                             <tr>
                                 <td colspan="8">
-                                    <x-blank-section :content="__('section.section')" :url="route('admin.sections.create')" />
+                                    <x-blank-section :content="__('stock.section')" :url="route('admin.sections.create')" />
                                 </td>
                             </tr>
                         @endforelse

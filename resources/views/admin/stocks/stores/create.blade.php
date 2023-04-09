@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"> {{ __('msgs.create', ['name' => __('store.store')]) }}</h5>
+                <h5 class="modal-title"> {{ __('msgs.create', ['name' => __('stock.store')]) }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="POST" action="{{ route('admin.stores.store') }}">
@@ -10,12 +10,12 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12 col-lg-6 mb-3">
-                            <x-input-label class="form-label" :value="__('store.store_ar')" />
+                            <x-input-label class="form-label" :value="__('stock.store_ar')" />
                             <x-text-input type="text" name="name_ar" class="form-control" placeholder="{{ __('msgs.name_ar') }}" :value="old('name_ar')" required />
                             <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                         </div>
                         <div class="col-sm-12 col-lg-6 mb-3">
-                            <x-input-label class="form-label" :value="__('store.store_en')" />
+                            <x-input-label class="form-label" :value="__('stock.store_en')" />
                             <x-text-input type="text" name="name_en" class="form-control" placeholder="{{ __('msgs.name_en') }}" :value="old('name_en')" required />
                             <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                         </div>

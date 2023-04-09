@@ -45,7 +45,7 @@ class StoreController extends Controller
             'added_by'      => $auth->id,
             'company_code'  => $auth->company_code,
         ]);
-        toastr()->success(__('msgs.created', ['name' => __('store.store')]));
+        toastr()->success(__('msgs.created', ['name' => __('stock.store')]));
         return redirect()->route('admin.stores.index');
     }
 
@@ -84,7 +84,7 @@ class StoreController extends Controller
             'updated_by'    => $auth->id,
             'company_code'  => $auth->company_code,
         ]);
-        toastr()->success(__('msgs.updated', ['name' => __('store.store')]));
+        toastr()->success(__('msgs.updated', ['name' => __('stock.store')]));
         return redirect()->route('admin.stores.index');
     }
 
@@ -94,7 +94,7 @@ class StoreController extends Controller
     public function destroy(Store $store)
     {
         $store->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('store.store')]));
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.store')]));
         return redirect()->route('admin.stores.index');
     }
 }

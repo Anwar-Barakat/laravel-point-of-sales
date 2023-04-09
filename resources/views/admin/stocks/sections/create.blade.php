@@ -2,19 +2,19 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"> {{ __('msgs.create', ['name' => __('section.section')]) }}</h5>
+                <h5 class="modal-title"> {{ __('msgs.create', ['name' => __('stock.section')]) }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="POST" action="{{ route('admin.sections.store') }}">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('section.section_ar')" />
+                        <x-input-label class="form-label" :value="__('stock.section_ar')" />
                         <x-text-input type="text" name="name_ar" class="form-control" placeholder="{{ __('msgs.name_ar') }}" :value="old('name_ar')" required />
                         <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                     </div>
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('section.section_en')" />
+                        <x-input-label class="form-label" :value="__('stock.section_en')" />
                         <x-text-input type="text" name="name_en" class="form-control" placeholder="{{ __('msgs.name_en') }}" :value="old('name_en')" required />
                         <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                     </div>

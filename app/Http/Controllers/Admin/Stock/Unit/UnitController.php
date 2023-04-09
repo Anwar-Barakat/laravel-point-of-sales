@@ -40,7 +40,7 @@ class UnitController extends Controller
             $data['company_code']   = $auth->id;
 
             Unit::create($data);
-            toastr()->success(__('msgs.created', ['name' => __('unit.unit')]));
+            toastr()->success(__('msgs.created', ['name' => __('stock.unit')]));
             return redirect()->route('admin.units.index');
         }
     }
@@ -75,7 +75,7 @@ class UnitController extends Controller
             $data['company_code']   = $auth->id;
 
             $unit->update($data);
-            toastr()->success(__('msgs.created', ['name' => __('unit.unit')]));
+            toastr()->success(__('msgs.created', ['name' => __('stock.unit')]));
             return redirect()->route('admin.units.index');
         }
     }
@@ -86,7 +86,7 @@ class UnitController extends Controller
     public function destroy(Unit $unit)
     {
         $unit->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('unit.unit')]));
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.unit')]));
         return redirect()->back();
     }
 }

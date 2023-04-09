@@ -1,6 +1,8 @@
 <x-master-layout>
-    @section('pageTitle', 'settings')
-    @section('breadcrumbTitle', __('setting.settings'))
+    @section('pageTitle', __('setting.change_password'))
+    @section('breadcrumbTitle', __('setting.change_password'))
+    @section('breadcrumbSubtitle', __('partials.general_setting'))
+
 
     <div class="card">
         <div class="row g-0">

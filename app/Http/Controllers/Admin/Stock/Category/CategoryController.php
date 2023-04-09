@@ -67,14 +67,14 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->subCategories()->count() > 0) {
-            toastr()->error(__('category.category_has_cats'));
+            toastr()->error(__('stock.category_has_cats'));
             return redirect()->back();
         }
 
         $category->clearMediaCollection('categories');
         Media::where(['model_id' => $category->id, 'collection_name' => 'categories'])->delete();
         $category->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('category.category')]));
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.category')]));
         return redirect()->route('admin.categories.index');
     }
 }

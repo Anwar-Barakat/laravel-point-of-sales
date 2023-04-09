@@ -9,6 +9,21 @@ class Customer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'address',
+        'account_number',
+        'account_id',
+        'parent_account_id',
+        'initial_balance',
+        'initial_balance_status',
+        'currnet_balance',
+        'notes',
+        'company_code',
+        'is_active',
+        'added_by',
+        'date',
+    ];
 
     public function account()
     {

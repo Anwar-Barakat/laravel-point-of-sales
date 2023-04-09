@@ -20,6 +20,7 @@ class Setting extends Model implements HasMedia
         'alert_msg',
         'address',
         'mobile',
+        'account_id',
         'added_by',
         'updated_by',
         'is_active',
@@ -36,6 +37,10 @@ class Setting extends Model implements HasMedia
             ->nonQueued();
     }
 
+    public function account()
+    {
+        return $this->belongsTo(FinancialAccount::class, 'account_id');
+    }
 
     public function addedBy()
     {

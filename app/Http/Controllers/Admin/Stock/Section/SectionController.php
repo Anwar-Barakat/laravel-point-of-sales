@@ -42,7 +42,7 @@ class SectionController extends Controller
             'is_active'     => $data['is_active'],
             'added_by'      => $auth->id,
         ]);
-        toastr()->success(__('msgs.created', ['name' => __('section.section')]));
+        toastr()->success(__('msgs.created', ['name' => __('stock.section')]));
         return redirect()->route('admin.sections.index');
     }
 
@@ -78,7 +78,7 @@ class SectionController extends Controller
             'is_active'     => $data['is_active'],
             'updated_by'    => $auth->id,
         ]);
-        toastr()->success(__('msgs.created', ['name' => __('section.section')]));
+        toastr()->success(__('msgs.created', ['name' => __('stock.section')]));
         return redirect()->route('admin.sections.index');
     }
 

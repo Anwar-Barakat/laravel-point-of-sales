@@ -15,14 +15,14 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.name_ar')" />
-                        <x-text-input type="text" class="form-control" placeholder="{{ __('category.category_ar') }}" wire:model='name_ar' required />
+                        <x-text-input type="text" class="form-control" placeholder="{{ __('stock.category_ar') }}" wire:model='name_ar' required />
                         <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.name_en')" />
-                        <x-text-input type="text" class="form-control" placeholder="{{ __('category.category_en') }}" wire:model='name_en' required />
+                        <x-text-input type="text" class="form-control" placeholder="{{ __('stock.category_en') }}" wire:model='name_en' required />
                         <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('section.section')" />
+                        <x-input-label class="form-label" :value="__('stock.section')" />
                         <select id="" class="form-control" wire:model="section_id">
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($sections as $section)
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('category.category_level')" />
+                        <x-input-label class="form-label" :value="__('stock.category_level')" />
                         <select id="" class="form-control" wire:model="parent_id">
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="0">{{ __('msgs.parent') }}</option>

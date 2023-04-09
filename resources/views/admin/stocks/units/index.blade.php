@@ -1,12 +1,12 @@
 <x-master-layout>
-    @section('pageTitle', __('unit.units'))
-    @section('breadcrumbTitle', __('unit.units'))
+    @section('pageTitle', __('stock.units'))
+    @section('breadcrumbTitle', __('stock.units'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h3 class="card-title">{{ __('msgs.all', ['name' => __('unit.units')]) }}</h3>
+            <h3 class="card-title">{{ __('msgs.all', ['name' => __('stock.units')]) }}</h3>
             <a href="{{ route('admin.units.create') }}" class="btn btn-primary">
-                {{ __('msgs.create', ['name' => __('unit.unit')]) }}
+                {{ __('msgs.create', ['name' => __('stock.unit')]) }}
             </a>
         </div>
 
@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th> {{ __('unit.unit') }}</th>
+                            <th> {{ __('stock.unit') }}</th>
                             <th>{{ __('setting.status') }}</th>
                             <th> {{ __('msgs.is_active') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
@@ -30,7 +30,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $unit->name }}</td>
                                 <td>
-                                    <span class="badge bg-{{ $unit->status == 'retail' ? 'blue' : 'green' }}">{{ __('unit.' . $unit->status) }}</span>
+                                    <span class="badge bg-{{ $unit->status == 'retail' ? 'blue' : 'green' }}">{{ __('stock.' . $unit->status) }}</span>
                                 </td>
                                 <td>
                                     @livewire('admin.stock.unit.update-status', ['unit_id' => $unit->id, 'is_active' => $unit->is_active])
@@ -69,7 +69,7 @@
                         @empty
                             <tr>
                                 <td colspan="0">
-                                    <x-blank-section :content="__('unit.unit')" :url="route('admin.categories.create')" />
+                                    <x-blank-section :content="__('stock.unit')" :url="route('admin.categories.create')" />
                                 </td>
                             </tr>
                         @endforelse

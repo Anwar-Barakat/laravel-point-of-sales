@@ -172,20 +172,20 @@
                                 <div class="dropdown-menu-column">
                                     <!-- sections -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.sections.index') ? 'active' : '' }}"" href="{{ route('admin.sections.index') }}">
-                                        {{ __('section.sections') }}
+                                        {{ __('stock.sections') }}
                                     </a>
 
                                     <!-- categories -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                            {{ __('category.categories') }}
+                                            {{ __('stock.categories') }}
                                         </a>
                                         <div class="dropdown-menu">
                                             <a href="{{ route('admin.categories.index') }}" class="dropdown-item {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}"">
-                                                {{ __('msgs.list', ['name' => __('category.categories')]) }}
+                                                {{ __('msgs.list', ['name' => __('stock.categories')]) }}
                                             </a>
                                             <a href="{{ route('admin.categories.create') }}" class="dropdown-item {{ request()->routeIs('admin.categories.create') ? 'active' : '' }}"">
-                                                {{ __('msgs.create', ['name' => __('category.category')]) }}
+                                                {{ __('msgs.create', ['name' => __('stock.category')]) }}
                                             </a>
                                         </div>
                                     </div>
@@ -193,21 +193,21 @@
                                     <!-- units -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                            {{ __('unit.units') }}
+                                            {{ __('stock.units') }}
                                         </a>
                                         <div class="dropdown-menu">
                                             <a href="{{ route('admin.units.index') }}" class="dropdown-item {{ request()->routeIs('admin.units.index') ? 'active' : '' }}"">
-                                                {{ __('msgs.list', ['name' => __('unit.units')]) }}
+                                                {{ __('msgs.list', ['name' => __('stock.units')]) }}
                                             </a>
                                             <a href="" class="dropdown-item {{ request()->routeIs('admin.categories.create') ? 'active' : '' }}"">
-                                                {{ __('msgs.create', ['name' => __('unit.unit')]) }}
+                                                {{ __('msgs.create', ['name' => __('stock.unit')]) }}
                                             </a>
                                         </div>
                                     </div>
 
                                     <!-- stores -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.stores.index') ? 'active' : '' }}"" href="{{ route('admin.stores.index') }}">
-                                        {{ __('store.stores') }}
+                                        {{ __('stock.stores') }}
                                     </a>
 
                                     <!-- items -->

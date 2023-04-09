@@ -37,6 +37,47 @@ return [
     'retail_price_for_half_block'       => 'Retail price for block',
 
     //!_______________________
-    //!
+    //! Stores
     //!_______________________
+    'store'     => 'Store',
+    'stores'    => 'Stores',
+    'store_ar'  => 'Arabic store name',
+    'store_en'  => 'English store name',
+
+    //!_______________________
+    //! Categories
+    //!_______________________
+    'categories'            => 'Categories',
+    'category'              => 'Category',
+    'category_ar'           => 'Arabic category name',
+    'category_en'           => 'English category name',
+    'category_name'         => 'Category name',
+    'category_level'        => 'Category level',
+    'parent_category'       => 'Parent Category',
+    'category_has_cats'     => 'Oops, this category has sub-categories',
+
+    //!_______________________
+    //! Sections
+    //!_______________________
+    'sections'      => 'Sections',
+    'section'       => 'Section',
+    'section_ar'    => 'Arabic section name',
+    'section_en'    => 'English section name',
+
+    //!_______________________
+    //! Units
+    //!_______________________
+    'units'             => 'Units',
+    'unit'              => 'Unit',
+    'unit_ar'           => 'Arabic unit name',
+    'unit_en'           => 'English unit name',
+    'unit_name'         => 'Unit name',
+    'retail'            => 'Retail',
+    'wholesale'         => 'Wholesale',
+
+    //!_______________________
+    //! Customers
+    //!_______________________
+    'customer'          => 'Customer',
+    'customers'         => 'Customers',
 ];

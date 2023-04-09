@@ -33,11 +33,23 @@
                     <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
                 </div>
             </div>
-            <h3 class="card-title mt-4">{{ __('setting.address') }}</h3>
             <div class="row g-3">
                 <div class="col-md-12 col-lg-6">
+                    <h3 class="card-title mt-4">{{ __('setting.address') }}</h3>
                     <x-text-input type="text" class="form-control" wire:model="address" required />
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <h3 class="card-title mt-4">{{ __('account.financial_account') }}
+                        <small class="text text-sm">( {{ $setting->account->account_number ?? '-' }} )</small>
+                    </h3>
+                    <select wire:model='account_id' class="form-control">
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach ($parent_accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('account_id')" class="mt-2" />
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.alert_msg') }}</h3>

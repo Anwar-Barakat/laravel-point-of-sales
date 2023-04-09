@@ -52,7 +52,7 @@ class StoreCategory extends Component
             $category->addMedia($this->image)->toMediaCollection('categories');
         }
 
-        toastr()->success(__('msgs.create', ['name' => __('category.category')]));
+        toastr()->success(__('msgs.create', ['name' => __('stock.category')]));
         return redirect()->route('admin.categories.index');
     }
 

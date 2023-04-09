@@ -1,13 +1,13 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.list', ['name' => __('category.categories')]))
-    @section('breadcrumbTitle', __('msgs.list', ['name' => __('category.categories')]))
+    @section('pageTitle', __('msgs.list', ['name' => __('stock.categories')]))
+    @section('breadcrumbTitle', __('msgs.list', ['name' => __('stock.categories')]))
     @section('breadcrumbSubtitle', __('partials.stocks'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
-            <h3 class="card-title">{{ __('msgs.all', ['name' => __('category.categories')]) }}</h3>
+            <h3 class="card-title">{{ __('msgs.all', ['name' => __('stock.categories')]) }}</h3>
             <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">
-                {{ __('msgs.create', ['name' => __('category.category')]) }}
+                {{ __('msgs.create', ['name' => __('stock.category')]) }}
             </a>
         </div>
 
@@ -17,8 +17,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th> {{ __('category.category') }}</th>
-                            <th>{{ __('section.section') }}</th>
+                            <th> {{ __('stock.category') }}</th>
+                            <th>{{ __('stock.section') }}</th>
                             <th>{{ __('msgs.is_it_parent') }}</th>
                             <th> {{ __('msgs.is_active') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
@@ -82,7 +82,7 @@
                         @empty
                             <tr>
                                 <td colspan="0">
-                                    <x-blank-section :content="__('category.category')" :url="route('admin.categories.create')" />
+                                    <x-blank-section :content="__('stock.category')" :url="route('admin.categories.create')" />
                                 </td>
                             </tr>
                         @endforelse

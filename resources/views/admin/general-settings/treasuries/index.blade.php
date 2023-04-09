@@ -1,6 +1,7 @@
 <x-master-layout>
     @section('pageTitle', __('treasury.treasuries'))
     @section('breadcrumbTitle', __('treasury.treasuries'))
+    @section('breadcrumbSubtitle', __('partials.general_setting'))
 
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">

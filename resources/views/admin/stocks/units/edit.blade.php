@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.create', ['name' => __('unit.unit')]))
-    @section('breadcrumbTitle', __('msgs.create', ['name' => __('unit.unit')]))
+    @section('pageTitle', __('msgs.create', ['name' => __('stock.unit')]))
+    @section('breadcrumbTitle', __('msgs.create', ['name' => __('stock.unit')]))
 
     <div class="card">
         <div class="row g-0">
@@ -14,14 +14,14 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('msgs.name_ar')" />
-                                    <x-text-input type="text" class="form-control" placeholder="{{ __('unit.unit_ar') }}" :value="old('name_ar', $unit->getTranslation('name', 'ar'))" name='name_ar' required />
+                                    <x-text-input type="text" class="form-control" placeholder="{{ __('stock.unit_ar') }}" :value="old('name_ar', $unit->getTranslation('name', 'ar'))" name='name_ar' required />
                                     <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('msgs.name_en')" />
-                                    <x-text-input type="text" class="form-control" placeholder="{{ __('unit.unit_en') }}" :value="old('name_en', $unit->getTranslation('name', 'en'))" name='name_en' required />
+                                    <x-text-input type="text" class="form-control" placeholder="{{ __('stock.unit_en') }}" :value="old('name_en', $unit->getTranslation('name', 'en'))" name='name_en' required />
                                     <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                                 </div>
                             </div>
@@ -41,8 +41,8 @@
                                     <x-input-label class="form-label" :value="__('setting.status')" />
                                     <select id="" class="form-control" name='status'>
                                         <option value="">{{ __('btns.select') }}</option>
-                                        <option value="retail" {{ $unit->status == 'retail' ? 'selected' : '' }}>{{ __('unit.retail') }}</option>
-                                        <option value="wholesale" {{ $unit->status == 'wholesale ' ? 'selected' : '' }}>{{ __('unit.wholesale') }}</option>
+                                        <option value="retail" {{ $unit->status == 'retail' ? 'selected' : '' }}>{{ __('stock.retail') }}</option>
+                                        <option value="wholesale" {{ $unit->status == 'wholesale ' ? 'selected' : '' }}>{{ __('stock.wholesale') }}</option>
                                     </select>
                                     <x-input-error :messages="$errors->get('status')" class="mt-2" />
                                 </div>

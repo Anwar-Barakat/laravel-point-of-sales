@@ -1,7 +1,7 @@
 <x-master-layout>
     @section('pageTitle', __('msgs.details', ['name' => __('treasury.treasury')]))
     @section('breadcrumbTitle', __('msgs.details', ['name' => __('treasury.treasury')]))
-    @section('breadcrumbSubtitle', __('treasury.treasuries'))
+    @section('breadcrumbSubtitle', __('partials.general_setting'))
 
 
     <div class="row">

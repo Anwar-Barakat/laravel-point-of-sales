@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'settings'              => 'الأعدادات',
     'my_account'            => 'الملف الشخصي',
     'profile_details'       => 'تفاصيل الملف الشخصي',
     'business_profile'      => 'ملف الأعمال الشخصي',
