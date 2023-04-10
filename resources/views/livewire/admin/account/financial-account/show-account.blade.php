@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-        <h3 class="card-title">{{ __('msgs.all', ['name' => __('account.financial_accounts')]) }}</h3>
-        <a href="{{ route('admin.financial-accounts.create') }}" class="btn btn-primary">
-            {{ __('msgs.create', ['name' => __('account.financial_account')]) }}
+        <h3 class="card-title">{{ __('msgs.all', ['name' => __('account.accounts')]) }}</h3>
+        <a href="{{ route('admin.accounts.create') }}" class="btn btn-primary">
+            {{ __('msgs.create', ['name' => __('account.account')]) }}
         </a>
     </div>
 
@@ -75,35 +75,35 @@
                     </tr>
                 </thead>
                 <tbody class="table-tbody">
-                    @forelse ($financial_accounts as $financial_account)
+                    @forelse ($accounts as $account)
                         <tr>
-                            <td>{{ $financial_account->name }}</td>
+                            <td>{{ $account->name }}</td>
                             <td>
                                 <span class="badge bg-info-lt">
-                                    {{ $financial_account->accountType->name }}
+                                    {{ $account->accountType->name }}
                                 </span>
                             </td>
-                            <td>{{ $financial_account->account_number }}</td>
-                            <td>{{ $financial_account->is_parent ? __('msgs.yes') : __('msgs.no') }}</td>
+                            <td>{{ $account->account_number }}</td>
+                            <td>{{ $account->is_parent ? __('msgs.yes') : __('msgs.no') }}</td>
                             <th>
                                 <span class="badge bg-blue">
-                                    {{ $financial_account->parentAccount->name ?? __('msgs.master') }}
+                                    {{ $account->parentAccount->name ?? __('msgs.master') }}
                                 </span>
                             </th>
                             <td>
                                 <div>
-                                    <button wire:click='updateStatus({{ $financial_account->id }})' class="btn position-relative">
-                                        {{ $financial_account->is_archived ? __('account.is_archived') : __('account.not_archived') }}
-                                        <span class="badge {{ $financial_account->is_archived ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
+                                    <button wire:click='updateStatus({{ $account->id }})' class="btn position-relative">
+                                        {{ $account->is_archived ? __('account.is_archived') : __('account.not_archived') }}
+                                        <span class="badge {{ $account->is_archived ? 'bg-red' : 'bg-green' }} badge-notification badge-blink"></span>
                                     </button>
                                 </div>
                             </td>
-                            <td> {{ $financial_account->created_at }} </td>
+                            <td> {{ $account->created_at }} </td>
                             <td>
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="{{ route('admin.financial-accounts.edit', ['financial_account' => $financial_account]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                        <a href="{{ route('admin.accounts.edit', ['account' => $account]) }}" class="dropdown-item d-flex align-items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -113,7 +113,7 @@
                                             <span>{{ __('btns.edit') }}</span>
                                         </a>
 
-                                        <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $financial_account->id }}">
+                                        <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $account->id }}">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -127,20 +127,20 @@
                                         </a>
                                     </div>
                                 </span>
-                                <x-modal-delete :id="$financial_account->id" :action="route('admin.financial-accounts.destroy', ['financial_account' => $financial_account])" />
+                                <x-modal-delete :id="$account->id" :action="route('admin.accounts.destroy', ['account' => $account])" />
                             </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="8">
-                                <x-blank-section :content="__('account.financial_account')" :url="route('admin.financial-accounts.create')" />
+                                <x-blank-section :content="__('account.account')" :url="route('admin.accounts.create')" />
                             </td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
             <div class="mt-3">
-                {{ $financial_accounts->links() }}
+                {{ $accounts->links() }}
             </div>
         </div>
     </div>

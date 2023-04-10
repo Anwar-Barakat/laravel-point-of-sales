@@ -39,7 +39,7 @@ class Setting extends Model implements HasMedia
 
     public function account()
     {
-        return $this->belongsTo(FinancialAccount::class, 'account_id');
+        return $this->belongsTo(Account::class, 'account_id');
     }
 
     public function addedBy()

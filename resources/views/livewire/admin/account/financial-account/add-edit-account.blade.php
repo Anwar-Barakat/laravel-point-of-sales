@@ -57,7 +57,7 @@
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
                             <select id="" class="form-control" wire:model.debounce.350='account.initial_balance_status'>
                                 <option value="">{{ __('btns.select') }}</option>
-                                @foreach (App\Models\FinancialAccount::INITIALBANALNCESTATUS as $key => $status)
+                                @foreach (App\Models\Account::INITIALBANALNCESTATUS as $key => $status)
                                     <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
                                 @endforeach
                             </select>

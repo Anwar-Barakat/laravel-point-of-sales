@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\GeneralSetting\Setting;
 
-use App\Models\FinancialAccount;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -52,7 +52,7 @@ class GeneralSetting extends Component
 
     public function render()
     {
-        $this->parent_accounts  = FinancialAccount::where('company_code', Auth::guard('admin')->user()->company_code)->parent()->get();
+        $this->parent_accounts  = Account::where('company_code', Auth::guard('admin')->user()->company_code)->parent()->get();
         return view('livewire.admin.general-setting.setting.general-setting', ['parent_accounts' => $this->parent_accounts]);
     }
 

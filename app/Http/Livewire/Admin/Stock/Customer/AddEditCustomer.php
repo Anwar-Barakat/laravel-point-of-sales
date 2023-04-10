@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Stock\Customer;
 
+use App\Models\Account;
 use App\Models\AccountType;
 use App\Models\Customer;
-use App\Models\FinancialAccount;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -40,24 +40,27 @@ class AddEditCustomer extends Component
                     break;
             }
 
-            $account = FinancialAccount::create([
-                'name'                      => $this->customer->name,
-                'account_type_id'           => AccountType::where('name->en', 'General')->first()->id,
-                'is_parent'                 => 0,
-                'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->account_id,
-                'account_number'            => uniqid(),
-                'initial_balance_status'    => $this->customer->initial_balance_status,
-                'initial_balance'           => $this->customer->initial_balance,
-                'notes'                     => $this->customer->notes,
-                'company_code'              => $this->auth->company_code,
-                'added_by'                  => $this->auth->id,
-            ]);
-
-            $this->customer['account_id']   = $account->id;
             $this->customer['added_by']     = $this->auth->id;
             $this->customer['company_code'] = $this->auth->company_code;
-
             $this->customer->save();
+
+            Account::updateOrCreate(
+                [
+                    'customer_id'              => $this->customer->id,
+                ],
+                [
+                    'name'                      => $this->customer->name,
+                    'account_type_id'           => AccountType::where('name->en', 'General')->first()->id,
+                    'is_parent'                 => 0,
+                    'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->account_id,
+                    'account_number'            => uniqid(),
+                    'initial_balance_status'    => $this->customer->initial_balance_status,
+                    'initial_balance'           => $this->customer->initial_balance,
+                    'notes'                     => $this->customer->notes,
+                    'company_code'              => $this->auth->company_code,
+                    'added_by'                  => $this->auth->id,
+                ]
+            );
             DB::commit();
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.financial_account')]));

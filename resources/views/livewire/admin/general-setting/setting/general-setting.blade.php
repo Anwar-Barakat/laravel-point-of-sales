@@ -40,7 +40,7 @@
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <h3 class="card-title mt-4">{{ __('account.financial_account') }}
+                    <h3 class="card-title mt-4">{{ __('account.account') }}
                         <small class="text text-sm">( {{ $setting->account->account_number ?? '-' }} )</small>
                     </h3>
                     <select wire:model='account_id' class="form-control">

@@ -26,7 +26,7 @@
                             <td>{{ $customer->name }}</td>
                             <td>
                                 <span class="badge bg-info-lt">
-                                    {{ $customer->account->account_number }}
+                                    {{ $customer->account->id }}
                                 </span>
                             </td>
                             <td>
@@ -79,7 +79,7 @@
                 </tbody>
             </table>
             <div class="mt-3">
-                {{ $customers->links() }}
+                {{-- {{ $customers->links() }} --}}
             </div>
         </div>
     </div>

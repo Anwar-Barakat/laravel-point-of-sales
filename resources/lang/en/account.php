@@ -13,8 +13,8 @@ return [
 
 
     //? Financial account
-    'financial_accounts'            => 'Financial accounts',
-    'financial_account'             => 'Financial account',
+    'accounts'            => 'Financial accounts',
+    'account'             => 'Financial account',
     'account_name'                  => 'Account name',
     'parent_account'                => 'Parent account',
     'balance'                       => 'Balance',

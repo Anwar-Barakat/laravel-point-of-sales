@@ -4,13 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\AccountType;
 use App\Models\Admin;
-use App\Models\FinancialAccount;
+use App\Models\Account;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class FinancialAccountSeeder extends Seeder
+class AccountSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -51,8 +51,8 @@ class FinancialAccountSeeder extends Seeder
         ];
 
         foreach ($accounts as $account) {
-            if (is_null(FinancialAccount::where('name', $account['name'])->first()))
-                FinancialAccount::create($account);
+            if (is_null(Account::where('name', $account['name'])->first()))
+                Account::create($account);
         }
     }
 }

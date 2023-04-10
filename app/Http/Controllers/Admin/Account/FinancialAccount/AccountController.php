@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Account\FinancialAccount;
 
-use App\Models\FinancialAccount;
+use App\Models\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FinancialAccountController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class FinancialAccountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FinancialAccount $financialAccount)
+    public function show(Account $account)
     {
         //
     }
@@ -43,15 +43,15 @@ class FinancialAccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FinancialAccount $financialAccount)
+    public function edit(Account $account)
     {
-        return view('admin.accounts.financial-accounts.edit', ['financialAccount' => $financialAccount]);
+        return view('admin.accounts.financial-accounts.edit', ['account' => $account]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FinancialAccount $financialAccount)
+    public function update(Request $request, Account $account)
     {
         //
     }
@@ -59,15 +59,15 @@ class FinancialAccountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FinancialAccount $financialAccount)
+    public function destroy(Account $account)
     {
-        $exists = $financialAccount->childAccounts()->count();
+        $exists = $account->childAccounts()->count();
         if ($exists > 0) {
-            toastr()->error(__('msgs.has_childs', ['name' => __('account.financial_account'), 'childs' => __('account.financial_accounts')]));
-            return redirect()->route('admin.financial-accounts.index');
+            toastr()->error(__('msgs.has_childs', ['name' => __('account.account'), 'childs' => __('account.accounts')]));
+            return redirect()->route('admin.accounts.index');
         }
-        $financialAccount->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('account.financial_account')]));
-        return redirect()->route('admin.financial-accounts.index');
+        $account->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('account.account')]));
+        return redirect()->route('admin.accounts.index');
     }
 }

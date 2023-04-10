@@ -20,13 +20,11 @@ class ShowCustomer extends Component
     public function render()
     {
         $customers  = $this->getCustomers();
-        dd($customers);
         return view('livewire.admin.stock.customer.show-customer', ['customers' => $customers]);
     }
 
     public function getCustomers()
     {
-        return  Customer::with(['account:id,name,account_number'])
-            ->paginate(10);
+        return  Customer::with(['account'])->get();
     }
 }

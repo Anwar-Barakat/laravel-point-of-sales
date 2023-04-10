@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.edit', ['name' => __('account.financial_account')]))
-    @section('breadcrumbTitle', __('msgs.edit', ['name' => __('account.financial_account')]))
+    @section('pageTitle', __('msgs.edit', ['name' => __('account.account')]))
+    @section('breadcrumbTitle', __('msgs.edit', ['name' => __('account.account')]))
     @section('breadcrumbSubtitle', __('account.accounts'))
 
 
@@ -11,7 +11,7 @@
                     <div>{{ $error }}</div>
                 @endforeach
             @endif
-            @livewire('admin.account.financial-account.add-edit-account', ['account' => $financialAccount])
+            @livewire('admin.account.financial-account.add-edit-account', ['account' => $account])
         </div>
     </div>
 

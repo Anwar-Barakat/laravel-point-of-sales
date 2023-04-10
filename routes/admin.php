@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
-use App\Http\Controllers\Admin\Account\FinancialAccount\FinancialAccountController;
+use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -114,7 +114,7 @@ Route::group(
                 //_______________________
                 // Financial Accounts
                 //_______________________
-                Route::resource('financial-accounts',       FinancialAccountController::class)->except(['store', 'update']);
+                Route::resource('accounts',                 AccountController::class)->except(['store', 'update']);
             });
         });
     }

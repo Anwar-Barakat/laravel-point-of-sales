@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('financial_accounts', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->foreignId('account_type_id')->constrained()->cascadeOnUpdate();
@@ -28,6 +28,8 @@ return new class extends Migration
             $table->boolean('is_archived')->default(0);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->date('date')->default(now());
+
+            $table->foreignId('customer_id')->constrained('customers')->cascadeOnUpdate();
             $table->timestamps();
         });
     }

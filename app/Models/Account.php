@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class FinancialAccount extends Model
+class Account extends Model
 {
     use HasFactory;
 
@@ -24,6 +25,8 @@ class FinancialAccount extends Model
         'is_archived',
         'added_by',
         'date',
+
+        'customer_id',
     ];
 
     const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
@@ -53,12 +56,12 @@ class FinancialAccount extends Model
 
     public function parentAccount()
     {
-        return $this->belongsTo(FinancialAccount::class, 'parent_id');
+        return $this->belongsTo(Account::class, 'parent_id');
     }
 
     public function childAccounts()
     {
-        return $this->hasMany(FinancialAccount::class, 'parent_id');
+        return $this->hasMany(Account::class, 'parent_id');
     }
 
     public function accountType()
@@ -66,8 +69,8 @@ class FinancialAccount extends Model
         return $this->belongsTo(AccountType::class, 'account_type_id');
     }
 
-    public function customer(): HasOne
+    public function customer()
     {
-        return $this->hasOne(Customer::class, 'account_id');
+        return $this->belongsTo(Customer::class);
     }
 }

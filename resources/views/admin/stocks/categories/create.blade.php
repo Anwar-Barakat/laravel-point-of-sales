@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.create', ['name' => __('account.financial_account')]))
-    @section('breadcrumbTitle', __('msgs.create', ['name' => __('account.financial_account')]))
+    @section('pageTitle', __('msgs.create', ['name' => __('account.account')]))
+    @section('breadcrumbTitle', __('msgs.create', ['name' => __('account.account')]))
     @section('breadcrumbSubtitle', __('account.accounts'))
 
 

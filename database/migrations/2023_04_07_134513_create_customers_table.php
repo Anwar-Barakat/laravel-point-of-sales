@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address');
-            $table->foreignId('account_id')->constrained('financial_accounts')->cascadeOnUpdate();
+            $table->string('address')->nullable();
 
             $table->decimal('initial_balance')->default(0);
             $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');

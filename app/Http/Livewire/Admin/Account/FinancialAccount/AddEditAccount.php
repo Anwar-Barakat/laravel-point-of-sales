@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Account\FinancialAccount;
 
 use App\Models\AccountType;
-use App\Models\FinancialAccount;
+use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -11,14 +11,14 @@ use Livewire\Component;
 
 class AddEditAccount extends Component
 {
-    public FinancialAccount $account;
+    public Account $account;
 
     public $auth;
     public $account_types   = [];
     public $parent_accounts = [];
     public $edit            = false;
 
-    public function mount(FinancialAccount $account)
+    public function mount(Account $account)
     {
         $this->auth             = Auth::guard('admin')->user();
         $this->account = $account;
@@ -66,11 +66,21 @@ class AddEditAccount extends Component
                     break;
             }
 
+            $this->account->customer()->updateOrCreate(
+                [
+                    'customer_id'   => $this->account->customer_id,
+                ],
+                [
+                    'name'          => $this->account->name,
+                ]
+            );
             $this->account->save();
-            toastr()->success(__('msgs.submitted', ['name' => __('account.financial_account')]));
-            return redirect()->route('admin.financial-accounts.index');
+
+
+            toastr()->success(__('msgs.submitted', ['name' => __('account.account')]));
+            return redirect()->route('admin.accounts.index');
         } catch (\Throwable $th) {
-            return redirect()->route('admin.financial-accounts.index')->with(['error' => $th->getMessage()]);
+            return redirect()->route('admin.accounts.index')->with(['error' => $th->getMessage()]);
         }
     }
 
@@ -85,7 +95,7 @@ class AddEditAccount extends Component
             'account.name'                     => [
                 'required',
                 'min:3',
-                Rule::unique('financial_accounts', 'name')->ignore($this->account->id)->where(function ($query) {
+                Rule::unique('accounts', 'name')->ignore($this->account->id)->where(function ($query) {
                     return $query->where('company_code', $this->auth->company_code);
                 })
             ],
@@ -101,7 +111,7 @@ class AddEditAccount extends Component
 
     public function getParentAccount()
     {
-        return FinancialAccount::select('id', 'name')->where(['company_code' => $this->auth->company_code])
+        return Account::select('id', 'name')->where(['company_code' => $this->auth->company_code])
             ->where('id', '!=', $this->account->id)->active()->get();
     }
 }
