@@ -10,6 +10,12 @@ class ShowCustomer extends Component
 {
     use WithPagination;
 
+    public $name,
+        $order_by   = 'name',
+        $sort_by    = 'asc',
+        $account_type_id,
+        $per_page   = PAGINATION_COUNT;
+
     public function updateStatus($id)
     {
         $account    = Customer::findOrFail($id);
@@ -25,6 +31,10 @@ class ShowCustomer extends Component
 
     public function getCustomers()
     {
-        return  Customer::with(['account'])->get();
+        return  Customer::with(['account'])
+            ->when($this->account_type_id, fn ($q) => $q->where('account_type_id', $this->account_type_id))
+            ->search(trim($this->name))
+            ->orderBy($this->order_by, $this->sort_by)
+            ->paginate($this->per_page);;
     }
 }

@@ -28,6 +28,14 @@ class Customer extends Model
 
     const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
 
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'LIKE', $term);
+        });
+    }
+
     public function account()
     {
         return $this->hasOne(Account::class);

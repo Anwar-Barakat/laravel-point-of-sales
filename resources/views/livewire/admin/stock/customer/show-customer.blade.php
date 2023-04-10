@@ -9,6 +9,46 @@
 
     <div class="card-body">
         <div id="table-default" class="table-responsive">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.search_by_name')" />
+                        <x-text-input class="form-control" placeholder="{{ __('btns.search') }}" wire:model="name" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.order_by')" />
+                        <select id="" class="form-control" wire:model='order_by'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="name">{{ __('stock.customer_name') }}</option>
+                            <option value="created_at">{{ __('msgs.created_at') }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.per_page')" />
+                        <select id="" class="form-control" wire:model='per_page'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.sort_by')" />
+                        <select id="" class="form-control" wire:model='sort_by'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="asc">{{ __('msgs.asc') }}</option>
+                            <option value="desc">{{ __('msgs.desc') }}</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
+                    </div>
+                </div>
+            </div>
             <br>
             <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                 <thead>
@@ -25,9 +65,11 @@
                         <tr>
                             <td>{{ $customer->name }}</td>
                             <td>
-                                <span class="badge bg-info-lt">
-                                    {{ $customer->account->id }}
-                                </span>
+                                <a href="{{ route('admin.accounts.show', ['account' => $customer->account]) }}">
+                                    <span class="badge bg-info-lt">
+                                        {{ $customer->account->account_number }}
+                                    </span>
+                                </a>
                             </td>
                             <td>
                                 <div>
