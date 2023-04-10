@@ -61,11 +61,16 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        $exists = $account->childAccounts()->count();
-        if ($exists > 0) {
-            toastr()->error(__('msgs.has_childs', ['name' => __('account.account'), 'childs' => __('account.accounts')]));
+        if ($account->childAccounts()->exists()) {
+            toastr()->error(__('msgs.has_sth', ['name' => __('account.account'), 'sth' => __('account.accounts')]));
             return redirect()->route('admin.accounts.index');
         }
+
+        if (!is_null($account->customer())) {
+            toastr()->error(__('msgs.has_sth', ['name' => __('account.account'), 'sth' => __('stock.customer')]));
+            return redirect()->route('admin.accounts.index');
+        }
+
         $account->delete();
         toastr()->info(__('msgs.deleted', ['name' => __('account.account')]));
         return redirect()->route('admin.accounts.index');

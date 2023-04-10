@@ -46,7 +46,7 @@ class Account extends Model
 
     public function scopeParent($query)
     {
-        return $this->where(['is_parent' => 1, 'is_archived' => '0']);
+        return $this->where(['is_parent' => '1', 'is_archived' => '0']);
     }
 
     public function addedBy()

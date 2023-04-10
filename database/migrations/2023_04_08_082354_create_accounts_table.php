@@ -29,7 +29,7 @@ return new class extends Migration
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->date('date')->default(now());
 
-            $table->foreignId('customer_id')->constrained('customers')->cascadeOnUpdate();
+            $table->foreignId('customer_id')->nullable()->constrained('customers')->cascadeOnUpdate();
             $table->timestamps();
         });
     }

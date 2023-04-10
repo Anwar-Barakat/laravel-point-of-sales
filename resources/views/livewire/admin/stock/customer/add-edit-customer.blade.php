@@ -29,30 +29,29 @@
                     </div>
                 </div>
             </div>
-            <div class="row row-cards">
-                {{-- @if (!$edit) --}}
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
-                        <select id="" class="form-control" wire:model.debounce.350='customer.initial_balance_status'>
-                            <option value="">{{ __('btns.select') }}</option>
-                            @foreach (App\Models\Customer::INITIALBANALNCESTATUS as $key => $status)
-                                <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
-                            @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('customer.initial_balance_status')" class="mt-2" />
+            @if (!$edit)
+                <div class="row row-cards">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
+                            <select id="" class="form-control" wire:model.debounce.350='customer.initial_balance_status'>
+                                <option value="">{{ __('btns.select') }}</option>
+                                @foreach (App\Models\Customer::INITIALBANALNCESTATUS as $key => $status)
+                                    <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('customer.initial_balance_status')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('account.initial_balance')" />
+                            <x-text-input type="number" class="form-control" wire:model.debounce.350='customer.initial_balance' />
+                            <x-input-error :messages="$errors->get('customer.initial_balance')" class="mt-2" />
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.initial_balance')" />
-                        <x-text-input type="number" class="form-control" wire:model.debounce.350='customer.initial_balance' />
-                        <x-input-error :messages="$errors->get('customer.initial_balance')" class="mt-2" />
-                    </div>
-                </div>
-                {{-- @endif --}}
-
-            </div>
+            @endif
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">

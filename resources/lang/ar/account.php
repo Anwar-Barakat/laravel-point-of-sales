@@ -11,8 +11,8 @@ return [
     'related_to_internal_account'   => 'متعلق بالحساب الداخلي',
 
     //? Financial account
-    'accounts'            => 'الحسابات المالية',
-    'account'             => 'حساب مالي',
+    'accounts'                      => 'حسابات المالية',
+    'account'                       => 'حساب مالي',
     'account_name'                  => 'اسم الحساب',
     'is_parent_account'             => 'هل هو حساب أب؟',
     'parent_account'                => 'حساب أب',

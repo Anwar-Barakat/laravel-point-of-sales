@@ -16,10 +16,13 @@ class AddEditCustomer extends Component
     public Customer $customer;
 
     public $auth;
+    public $edit = false;
+
 
     public function mount(Customer $customer)
     {
         $this->customer = $customer;
+        $this->edit = !empty($this->customer->initial_balance_status) ? true : false;
     }
 
     public function submit()
@@ -50,7 +53,7 @@ class AddEditCustomer extends Component
                 ],
                 [
                     'name'                      => $this->customer->name,
-                    'account_type_id'           => AccountType::where('name->en', 'General')->first()->id,
+                    'account_type_id'           => AccountType::where('name->en', 'Customer')->first()->id,
                     'is_parent'                 => 0,
                     'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->account_id,
                     'account_number'            => uniqid(),

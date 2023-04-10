@@ -23,11 +23,12 @@ class AddEditAccount extends Component
         $this->auth             = Auth::guard('admin')->user();
         $this->account = $account;
 
+        $this->account->account_type_id;
         $this->edit = !empty($this->account->initial_balance_status) ? true : false;
         if ($this->edit && $this->account['is_parent'] == 0)
             $this->parent_accounts = $this->getParentAccount();
 
-        $this->account_types    = AccountType::select('id', 'name')->where('related_to_internal_account', 0)->active()->get();
+        $this->account_types    = AccountType::select('id', 'name')->active()->get();
     }
 
     public function updated($propertyName)
@@ -51,6 +52,8 @@ class AddEditAccount extends Component
     {
         $this->validate();
         try {
+            DB::beginTransaction();
+
             $this->account['added_by']     = $this->auth->id;
             $this->account['company_code'] = $this->auth->company_code;
 
@@ -66,20 +69,16 @@ class AddEditAccount extends Component
                     break;
             }
 
-            $this->account->customer()->updateOrCreate(
-                [
-                    'customer_id'   => $this->account->customer_id,
-                ],
-                [
-                    'name'          => $this->account->name,
-                ]
-            );
-            $this->account->save();
+            if (!is_null($this->account->customer()))
+                $this->account->customer()->update(['name'          => $this->account->name]);
 
+            $this->account->save();
+            DB::commit();
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.account')]));
             return redirect()->route('admin.accounts.index');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return redirect()->route('admin.accounts.index')->with(['error' => $th->getMessage()]);
         }
     }
@@ -112,6 +111,6 @@ class AddEditAccount extends Component
     public function getParentAccount()
     {
         return Account::select('id', 'name')->where(['company_code' => $this->auth->company_code])
-            ->where('id', '!=', $this->account->id)->active()->get();
+            ->where('id', '!=', $this->account->id)->parent()->get();
     }
 }

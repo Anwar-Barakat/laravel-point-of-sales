@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
             AccountTypeSeeder::class,
 
-            // AccountSeeder::class,
+            AccountSeeder::class,
         ]);
     }
 }
