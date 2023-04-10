@@ -69,7 +69,7 @@
                         <th> {{ __('account.account_number') }}</th>
                         <th> {{ __('account.is_parent_account') }}</th>
                         <th> {{ __('account.parent_account') }}</th>
-                        <th>{{ __('msgs.is_active') }}</th>
+                        <th>{{ __('partials.status') }}</th>
                         <th>{{ __('msgs.created_at') }}</th>
                         <th></th>
                     </tr>

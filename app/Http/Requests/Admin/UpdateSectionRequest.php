@@ -24,6 +24,8 @@ class UpdateSectionRequest extends FormRequest
         return [
             'name_ar'       => ['required', 'min:3',  'regex:/^[\pL\s\-]+$/u', 'unique:sections,name->ar,' . $this->section->id],
             'name_en'       => ['required', 'min:3',  'regex:/^[\pL\s\-]+$/u', 'unique:sections,name->en,' . $this->section->id],
+            'is_active'     => ['required', 'boolean'],
+            'section_id'    => ['required', 'integer']
         ];
     }
 }

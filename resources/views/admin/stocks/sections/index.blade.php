@@ -17,7 +17,7 @@
                         <tr>
                             <th>#</th>
                             <th>{{ __('stock.section') }}</th>
-                            <th>{{ __('msgs.is_active') }}</th>
+                            <th>{{ __('partials.status') }}</th>
                             <th>{{ __('msgs.created_at') }}</th>
                             <th>{{ __('msgs.added_by') }}</th>
                             <th></th>

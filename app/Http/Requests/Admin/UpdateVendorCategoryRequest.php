@@ -11,7 +11,7 @@ class UpdateVendorCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateVendorCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name_ar'       => ['required', 'min:3',  'regex:/^[\pL\s\-]+$/u', 'unique:vendor_categories,name->ar,' . $this->vendor_category->id],
+            'name_en'       => ['required', 'min:3',  'regex:/^[\pL\s\-]+$/u', 'unique:vendor_categories,name->en,' . $this->vendor_category->id],
         ];
     }
 }

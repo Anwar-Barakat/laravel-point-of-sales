@@ -36,7 +36,7 @@
                             <td><span class="badge bg-blue"> {{ __('stock.' . App\Models\Item::ITEMTYPE[$item->type]) }}</span></td>
                         </tr>
                         <tr>
-                            <th>{{ __('msgs.is_active') }}</th>
+                            <th>{{ __('partials.status') }}</th>
                             <td>
                                 <div>
                                     <button class="btn position-relative">

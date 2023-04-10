@@ -13,10 +13,10 @@ class VendorCategory extends Model
 
     protected $fillable = [
         'name',
+        'section_id',
         'is_active',
         'company_code',
         'added_by',
-        'section_id',
     ];
 
     public $translatable  = ['name'];

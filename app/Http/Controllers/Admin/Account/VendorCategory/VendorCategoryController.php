@@ -33,7 +33,21 @@ class VendorCategoryController extends Controller
      */
     public function store(StoreVendorCategoryRequest $request)
     {
-        //
+        $data   = $request->only(['name_ar', 'name_en', 'is_active', 'section_id']);
+        $auth   = auth()->guard('admin')->user();
+
+        VendorCategory::create([
+            'name'          => [
+                'ar'    => $data['name_ar'],
+                'en'    => $data['name_en'],
+            ],
+            'is_active'     => $data['is_active'],
+            'section_id'    => $data['section_id'],
+            'added_by'      => $auth->id,
+            'company_code'  => $auth->company_code
+        ]);
+        toastr()->success(__('msgs.created', ['name' => __('account.vendor_category')]));
+        return redirect()->route('admin.vendor-categories.index');
     }
 
     /**
@@ -57,7 +71,20 @@ class VendorCategoryController extends Controller
      */
     public function update(UpdateVendorCategoryRequest $request, VendorCategory $vendorCategory)
     {
-        //
+        $data   = $request->only(['name_ar', 'name_en', 'is_active', 'section_id']);
+        $auth   = auth()->guard('admin')->user();
+
+        $vendorCategory->update([
+            'name'          => [
+                'ar'    => $data['name_ar'],
+                'en'    => $data['name_en'],
+            ],
+            'is_active'     => $data['is_active'],
+            'section_id'    => $data['section_id'],
+            'company_code'  => $auth->company_code
+        ]);
+        toastr()->success(__('msgs.updated', ['name' => __('account.vendor_category')]));
+        return redirect()->route('admin.vendor-categories.index');
     }
 
     /**

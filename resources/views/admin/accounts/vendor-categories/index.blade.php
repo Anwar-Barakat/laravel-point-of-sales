@@ -16,9 +16,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>{{ __('category.category_name') }}</th>
-                            <th>{{ __('account.section') }}</th>
-                            <th>{{ __('msgs.is_active') }}</th>
+                            <th>{{ __('stock.category_name') }}</th>
+                            <th>{{ __('stock.section') }}</th>
+                            <th>{{ __('partials.status') }}</th>
                             <th>{{ __('msgs.created_at') }}</th>
                             <th>{{ __('msgs.added_by') }}</th>
                             <th></th>
@@ -35,8 +35,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    1
-                                    {{-- @livewire('admin.stock.section.update-status', ['section_id' => $vendor_category->id, 'is_active' => $vendor_category->is_active]) --}}
+                                    @livewire('admin.account.vendor-category.update-status', ['vendor_category_id' => $vendor_category->id, 'is_active' => $vendor_category->is_active])
                                 </td>
                                 <td> {{ $vendor_category->created_at }} </td>
                                 <td>
@@ -46,7 +45,7 @@
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-section-{{ $vendor_category->id }}">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#edit-vendor-category-{{ $vendor_category->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />

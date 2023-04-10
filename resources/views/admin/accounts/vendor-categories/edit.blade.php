@@ -28,17 +28,19 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('msgs.is_it_active')" />
+                                <x-input-label class="form-label" :value="__('partials.status')" />
                                 <select class="form-control" name="is_active">
                                     <option value="">{{ __('btns.select') }}</option>
-                                    <option value="1" {{ $vendor_category->is_active ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
-                                    <option value="0" {{ $vendor_category->is_active == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>
+                                    <option value="1" {{ $vendor_category->is_active ? 'selected' : '' }}>{{ __('msgs.active') }}</option>
+                                    <option value="0" {{ $vendor_category->is_active == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                             </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('msgs.is_it_active')" />
-                                <select class="form-control" name="is_active">
+                                <x-input-label class="form-label" :value="__('stock.section')" />
+                                <select class="form-control" name="section_id">
                                     <option value="">{{ __('btns.select') }}</option>
                                     @foreach ($sections as $section)
                                         <option value="{{ $section->id }}" {{ old('section_id', $vendor_category->section_id) == $section->id ? 'selected' : '' }}>{{ $section->name }}</option>

@@ -27,7 +27,7 @@
                             <td>{{ $treasury->is_master ? __('msgs.master') : __('msgs.branch') }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('msgs.is_it_active') }}</th>
+                            <th>{{ __('partials.status') }}</th>
                             <td>{{ $treasury->is_active ? __('msgs.active') : __('msgs.not_active') }}</td>
                         </tr>
                         <tr>

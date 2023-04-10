@@ -55,7 +55,7 @@
                     <tr>
                         <th> {{ __('stock.customer_name') }}</th>
                         <th> {{ __('account.account_number') }}</th>
-                        <th>{{ __('msgs.is_active') }}</th>
+                        <th>{{ __('partials.status') }}</th>
                         <th>{{ __('msgs.created_at') }}</th>
                         <th></th>
                     </tr>

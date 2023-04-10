@@ -19,7 +19,7 @@
                             <th>#</th>
                             <th> {{ __('account.account_type') }}</th>
                             <th> {{ __('account.related_to_internal_account') }}</th>
-                            <th> {{ __('msgs.is_active') }}</th>
+                            <th> {{ __('setting.status') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
                             <th> {{ __('msgs.added_by') }}</th>
                             <th></th>
@@ -32,7 +32,7 @@
                                 <td>{{ $account_type->name }}</td>
                                 <td>{{ $account_type->related_to_internal_account ? __('account.added_from_its_screen') : __('account.added_from_accounts_screen') }}</td>
                                 <td>
-                                    {{ $account_type->is_active }}
+                                    @livewire('admin.account.account-type.update-status', ['account_type_id' => $account_type->id, 'is_active' => $account_type->is_active])
                                 </td>
                                 <td> {{ $account_type->created_at }} </td>
                                 <td>
