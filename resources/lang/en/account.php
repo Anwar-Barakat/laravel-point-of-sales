@@ -31,4 +31,10 @@ return [
     'initial_balance_status'        => 'Initial balance status',
     'current_balamce'               => 'Current balance',
     'is_archived'                   => 'Archived',
+
+
+    //? Vendor categories
+    'vendor_categories'             => 'Vendor categories',
+    'vendor_category'               => 'Vendor category',
+
 ];

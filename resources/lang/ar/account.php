@@ -30,4 +30,8 @@ return [
     'current_balamce'               => 'الرصيد الحالي',
     'is_archived'                   => 'مؤرشف',
 
+
+    //? Vendor categories
+    'vendor_categories'             => 'فئات الموردين',
+    'vendor_category'               => 'فئة الموردين',
 ];
