@@ -219,7 +219,7 @@
                     <!-- _______________________
                     Accounts
                     _______________________!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') || request()->routeIs('admin.vendors-categories.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') || request()->routeIs('admin.vendor-categories.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -258,8 +258,8 @@
                                     </div>
 
                                     <!-- vendors categories -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.vendors-categories.index') ? 'active' : '' }}" href="{{ route('admin.vendors-categories.index') }}">
-                                        {{ __('account.account_types') }}
+                                    <a class="dropdown-item {{ request()->routeIs('admin.vendor-categories.index') ? 'active' : '' }}" href="{{ route('admin.vendor-categories.index') }}">
+                                        {{ __('account.vendor_categories') }}
                                     </a>
                                 </div>
                             </div>

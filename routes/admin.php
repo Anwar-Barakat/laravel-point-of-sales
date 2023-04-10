@@ -120,7 +120,7 @@ Route::group(
                 //_______________________
                 // Vendors Categories
                 //_______________________
-                Route::resource('vendors-categories',       VendorCategoryController::class);
+                Route::resource('vendor-categories',        VendorCategoryController::class);
             });
         });
     }

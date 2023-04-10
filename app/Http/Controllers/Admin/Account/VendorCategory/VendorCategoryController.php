@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\StoreVendorCategoryRequest;
 use App\Http\Requests\Admin\UpdateVendorCategoryRequest;
 use App\Models\VendorCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Section;
 
 class VendorCategoryController extends Controller
 {
@@ -14,7 +15,9 @@ class VendorCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data['vendor_categories']  = VendorCategory::with(['addedBy:id,name', 'section:id,name'])->latest()->paginate(PAGINATION_COUNT);
+        $data['sections']           = Section::active()->get();
+        return view('admin.accounts.vendor-categories.index', $data);
     }
 
     /**
