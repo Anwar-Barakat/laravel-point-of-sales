@@ -262,11 +262,6 @@
                                             </a>
                                         </div>
                                     </div>
-
-                                    <!-- vendors categories -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.vendor-categories.index') ? 'active' : '' }}" href="{{ route('admin.vendor-categories.index') }}">
-                                        {{ __('account.vendor_categories') }}
-                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Account extends Model
 {
@@ -50,28 +50,33 @@ class Account extends Model
         return $this->where(['is_parent' => '1', 'is_archived' => '0']);
     }
 
-    public function addedBy()
+    public function addedBy(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'added_by');
     }
 
-    public function parentAccount()
+    public function parentAccount(): BelongsTo
     {
         return $this->belongsTo(Account::class, 'parent_id');
     }
 
-    public function childAccounts()
+    public function childAccounts(): HasMany
     {
         return $this->hasMany(Account::class, 'parent_id');
     }
 
-    public function accountType()
+    public function accountType(): BelongsTo
     {
         return $this->belongsTo(AccountType::class, 'account_type_id');
     }
 
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function vendor(): BelongsTo
+    {
+        return $this->belongsTo(Vendor::class);
     }
 }

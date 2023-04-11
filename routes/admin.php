@@ -116,11 +116,6 @@ Route::group(
                 // Financial Accounts
                 //_______________________
                 Route::resource('accounts',                 AccountController::class)->except(['store', 'update']);
-
-                //_______________________
-                // Vendors Categories
-                //_______________________
-                Route::resource('vendor-categories',        VendorCategoryController::class);
             });
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Stock\Vendor;
 
 use App\Models\Account;
 use App\Models\AccountType;
+use App\Models\Category;
 use App\Models\Setting;
 use App\Models\Vendor;
 use App\Models\VendorCategory;
@@ -19,14 +20,14 @@ class AddEditVendor extends Component
 
     public $edit = false;
 
-    public $vendor_categories = [];
+    public $categories = [];
 
     public function mount(Vendor $vendor)
     {
         $this->auth     = Auth::guard('admin')->user();
         $this->vendor   = $vendor;
         $this->edit     = !empty($this->vendor->initial_balance_status) ? true : false;
-        $this->vendor_categories = VendorCategory::active()->get();
+        $this->categories = Category::with('subCategories')->where(['parent_id' => 0])->active()->get();
     }
 
     public function updated($propertyName)
@@ -103,12 +104,12 @@ class AddEditVendor extends Component
                     return $query->where('company_code', $this->auth->company_code);
                 })
             ],
-            'vendor.address'                  => ['required', 'min:10'],
-            'vendor.initial_balance_status'   => ['required', 'in:1,2,3'],
-            'vendor.initial_balance'          => ['required', 'between:0,999999'],
-            'vendor.is_active'                => ['required', 'boolean'],
-            'vendor.notes'                    => ['required', 'min:10'],
-            'vendor.vendor_category_id'       => ['required', 'integer'],
+            'vendor.address'                    => ['required', 'min:10'],
+            'vendor.initial_balance_status'     => ['required', 'in:1,2,3'],
+            'vendor.initial_balance'            => ['required', 'between:0,999999'],
+            'vendor.is_active'                  => ['required', 'boolean'],
+            'vendor.notes'                      => ['required', 'min:10'],
+            'vendor.category_id'                => ['required', 'integer'],
         ];
     }
 }

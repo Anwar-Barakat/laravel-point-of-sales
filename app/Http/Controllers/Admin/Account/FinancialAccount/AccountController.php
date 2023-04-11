@@ -71,6 +71,12 @@ class AccountController extends Controller
             return redirect()->route('admin.accounts.index');
         }
 
+        if (!is_null($account->vendor())) {
+            toastr()->error(__('msgs.has_sth', ['name' => __('account.account'), 'sth' => __('stock.customer')]));
+            return redirect()->route('admin.accounts.index');
+        }
+
+
         $account->delete();
         toastr()->info(__('msgs.deleted', ['name' => __('account.account')]));
         return redirect()->route('admin.accounts.index');

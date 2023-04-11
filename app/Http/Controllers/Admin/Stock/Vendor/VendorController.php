@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Stock\Vendor;
 
 use App\Models\Vendor;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\VendorCategory;
 use Illuminate\Http\Request;
 
@@ -46,8 +47,7 @@ class VendorController extends Controller
      */
     public function edit(Vendor $vendor)
     {
-        $vendor_categories = VendorCategory::active()->get();
-        return view('admin.stocks.vendors.edit', ['vendor' => $vendor, 'vendor_categories' => $vendor_categories]);
+        return view('admin.stocks.vendors.edit', ['vendor' => $vendor]);
     }
 
     /**

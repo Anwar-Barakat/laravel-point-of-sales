@@ -30,14 +30,24 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.vendor_category')" />
-                        <select id="" class="form-control" wire:model.debounce.350='vendor.vendor_category_id'>
+                        <x-input-label class="form-label" :value="__('stock.category')" />
+                        <select id="" class="form-control" wire:model.debounce.350='vendor.category_id'>
                             <option value="">{{ __('btns.select') }}</option>
-                            @foreach ($vendor_categories as $cat)
-                                <option value="{{ $cat->id }}" {{ old('vendor_category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                            @endforeach
+                            @if ($categories)
+                                @foreach ($categories as $root)
+                                    <option value="{{ $root->id }}">{{ ucwords($root->name) }}</option>
+                                    @if ($root->subCategories)
+                                        @foreach ($root->subCategories as $child)
+                                            <option value="{{ $child->id }}">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;
+                                                {{ ucwords($child->name) }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            @endif
                         </select>
-                        <x-input-error :messages="$errors->get('vednor.vendor_category_id')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('vednor.category_id')" class="mt-2" />
                     </div>
                 </div>
             </div>

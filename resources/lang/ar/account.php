@@ -31,10 +31,6 @@ return [
     'is_archived'                   => 'مؤرشف',
 
 
-    //? Vendor categories
-    'vendor_categories'             => 'فئات الموردين',
-    'vendor_category'               => 'فئة الموردين',
-
     //? Vendors
     'vendor'                => 'مورد',
     'vendors'               => 'موردين',

@@ -55,6 +55,7 @@
                     <tr>
                         <th> {{ __('stock.vendor_name') }}</th>
                         <th> {{ __('account.account_number') }}</th>
+                        <th>{{ __('stock.category') }}</th>
                         <th>{{ __('partials.status') }}</th>
                         <th>{{ __('msgs.created_at') }}</th>
                         <th></th>
@@ -70,6 +71,11 @@
                                         {{ $vendor->account->account_number }}
                                     </span>
                                 </a>
+                            </td>
+                            <td>
+                                <span class="badge bg-green">
+                                    {{ $vendor->category->name }}
+                                </span>
                             </td>
                             <td>
                                 <div>

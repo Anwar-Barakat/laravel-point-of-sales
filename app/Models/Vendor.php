@@ -17,7 +17,7 @@ class Vendor extends Model
         'initial_balance',
         'initial_balance_status',
         'currnet_balance',
-        'vendor_category_id',
+        'category_id',
         'notes',
         'company_code',
         'is_active',
@@ -38,5 +38,10 @@ class Vendor extends Model
     public function account()
     {
         return $this->hasOne(Account::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }
