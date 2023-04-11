@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
 use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
+use App\Http\Controllers\Admin\Account\Vendor\VendorController;
 use App\Http\Controllers\Admin\Account\VendorCategory\VendorCategoryController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
@@ -121,6 +122,12 @@ Route::group(
                 // Vendors Categories
                 //_______________________
                 Route::resource('vendor-categories',        VendorCategoryController::class);
+
+
+                //_______________________
+                // Vendors
+                //_______________________
+                Route::resource('vendors',                  VendorController::class);
             });
         });
     }

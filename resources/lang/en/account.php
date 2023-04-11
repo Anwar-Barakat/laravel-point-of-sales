@@ -37,4 +37,8 @@ return [
     'vendor_categories'             => 'Vendor categories',
     'vendor_category'               => 'Vendor category',
 
+
+    //? Vendors
+    'vendor'                => 'Vendor',
+    'vendors'               => 'Vendors',
 ];

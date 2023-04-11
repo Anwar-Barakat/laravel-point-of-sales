@@ -11,26 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('account_type_id')->constrained()->cascadeOnUpdate();
-            $table->boolean('is_parent')->default(1);
-            $table->bigInteger('parent_id')->nullable();
+            $table->string('address')->nullable();
 
-            $table->string('account_number');
             $table->decimal('initial_balance')->default(0);
             $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');
             $table->decimal('currnet_balance')->default(0);
 
             $table->string('notes');
             $table->integer('company_code');
-            $table->boolean('is_archived')->default(0);
+            $table->boolean('is_active')->default(1);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
+            $table->foreignId('vendor_category_id')->constrained()->cascadeOnUpdate();
             $table->date('date')->default(now());
-
-            $table->foreignId('customer_id')->nullable()->constrained('customers')->cascadeOnUpdate();
-            $table->timestamps();
         });
     }
 
@@ -39,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('vendors');
     }
 };
