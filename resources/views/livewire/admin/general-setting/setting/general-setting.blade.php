@@ -39,17 +39,31 @@
                     <x-text-input type="text" class="form-control" wire:model="address" required />
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                 </div>
+            </div>
+            <div class="row g-3">
                 <div class="col-md-12 col-lg-6">
-                    <h3 class="card-title mt-4">{{ __('account.account') }}
-                        <small class="text text-sm">( {{ $setting->account->account_number ?? '-' }} )</small>
+                    <h3 class="card-title mt-4">{{ __('setting.parent_c_account') }}
+                        <small class="text text-sm">( {{ $setting->customer_account->account_number ?? '-' }} )</small>
                     </h3>
-                    <select wire:model='account_id' class="form-control">
+                    <select wire:model='customer_account_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>
                         @foreach ($parent_accounts as $account)
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('account_id')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('customer_account_id')" class="mt-2" />
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <h3 class="card-title mt-4">{{ __('setting.parent_v_account') }}
+                        <small class="text text-sm">( {{ $setting->vendor_account->account_number ?? '-' }} )</small>
+                    </h3>
+                    <select wire:model='vendor_account_id' class="form-control">
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach ($parent_accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('vendor_account_id')" class="mt-2" />
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.alert_msg') }}</h3>

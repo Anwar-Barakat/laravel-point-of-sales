@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.create', ['name' => __('stock.vendor')]))
-    @section('breadcrumbTitle', __('msgs.create', ['name' => __('stock.vendor')]))
+    @section('pageTitle', __('msgs.edit', ['name' => __('stock.vendor')]))
+    @section('breadcrumbTitle', __('msgs.edit', ['name' => __('stock.vendor')]))
     @section('breadcrumbSubtitle', __('partials.stocks'))
 
 
@@ -11,7 +11,7 @@
                     <div>{{ $error }}</div>
                 @endforeach
             @endif
-            @livewire('admin.stock.vendor.add-edit-vendor')
+            @livewire('admin.stock.vendor.add-edit-vendor', ['vendor' => $vendor])
         </div>
     </div>
 

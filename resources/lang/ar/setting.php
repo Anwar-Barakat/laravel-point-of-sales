@@ -26,4 +26,7 @@ return [
     'new_password'          => 'كلمة المرور الجديدة',
     'current_password'      => 'كلمة المرور الحالية',
     'password_confirmation' => 'تأكيد كلمة المرور',
+
+    'parent_c_account'      => 'الحساب الأب للعملاء',
+    'parent_v_account'      => 'الحساب الأب للموردين',
 ];

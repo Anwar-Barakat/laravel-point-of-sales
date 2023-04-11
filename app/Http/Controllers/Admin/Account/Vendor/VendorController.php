@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Account\Vendor;
 
 use App\Models\Vendor;
 use App\Http\Controllers\Controller;
+use App\Models\VendorCategory;
 use Illuminate\Http\Request;
 
 class VendorController extends Controller
@@ -21,7 +22,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.accounts.vendors.create');
     }
 
     /**
@@ -45,7 +46,8 @@ class VendorController extends Controller
      */
     public function edit(Vendor $vendor)
     {
-        //
+        $vendor_categories = VendorCategory::active()->get();
+        return view('admin.accounts.vendors.edit', ['vendor' => $vendor, 'vendor_categories' => $vendor_categories]);
     }
 
     /**

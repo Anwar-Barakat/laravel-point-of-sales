@@ -25,6 +25,14 @@ class AccountSeeder extends Seeder
 
         $accounts       = [
             [
+                'name'              => 'Parent Customers',
+                'account_number'    => uniqid(),
+                'account_type_id'   => $general_type->id,
+                'notes'             => $faker->sentence(10),
+                'company_code'      => $admin->company_code,
+                'added_by'          => $admin->id,
+            ],
+            [
                 'name'              => 'Parent Supplies',
                 'account_number'    => uniqid(),
                 'account_type_id'   => $general_type->id,

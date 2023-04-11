@@ -82,4 +82,6 @@ return [
     'customers'         => 'Customers',
     'address'           => 'Address',
     'customer_name'     => 'Customer name',
+    'customer_account'  => 'Customer account',
+
 ];

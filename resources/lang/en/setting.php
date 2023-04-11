@@ -26,4 +26,7 @@ return [
     'new_password'          => 'New password',
     'current_password'      => 'Current password',
     'password_confirmation' => 'Password confirmation',
+
+    'parent_c_account'      => 'The parent customers account',
+    'parent_v_account'      => 'The parent vendors account',
 ];

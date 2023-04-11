@@ -20,7 +20,8 @@ class Setting extends Model implements HasMedia
         'alert_msg',
         'address',
         'mobile',
-        'account_id',
+        'customer_account_id',
+        'vendor_account_id',
         'added_by',
         'updated_by',
         'is_active',
@@ -37,9 +38,14 @@ class Setting extends Model implements HasMedia
             ->nonQueued();
     }
 
-    public function account()
+    public function customer_account()
     {
-        return $this->belongsTo(Account::class, 'account_id');
+        return $this->belongsTo(Account::class, 'customer_account_id');
+    }
+
+    public function vendor_account()
+    {
+        return $this->belongsTo(Account::class, 'vendor_account_id');
     }
 
     public function addedBy()

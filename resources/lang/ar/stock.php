@@ -83,6 +83,7 @@ return [
     'customers'         => 'العملاء',
     'address'           => 'العنوان',
     'customer_name'     => 'اسم العميل',
+    'customer_account'  => 'حساب العميل',
 
 
 ];
