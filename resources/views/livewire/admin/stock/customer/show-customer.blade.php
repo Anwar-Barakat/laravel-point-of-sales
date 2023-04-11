@@ -113,7 +113,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8">
+                            <td colspan="5">
                                 <x-blank-section :content="__('stock.customer')" :url="route('admin.customers.create')" />
                             </td>
                         </tr>

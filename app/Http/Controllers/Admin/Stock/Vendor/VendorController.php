@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Account\Vendor;
+namespace App\Http\Controllers\Admin\Stock\Vendor;
 
 use App\Models\Vendor;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.stocks.vendors.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        return view('admin.accounts.vendors.create');
+        return view('admin.stocks.vendors.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class VendorController extends Controller
     public function edit(Vendor $vendor)
     {
         $vendor_categories = VendorCategory::active()->get();
-        return view('admin.accounts.vendors.edit', ['vendor' => $vendor, 'vendor_categories' => $vendor_categories]);
+        return view('admin.stocks.vendors.edit', ['vendor' => $vendor, 'vendor_categories' => $vendor_categories]);
     }
 
     /**

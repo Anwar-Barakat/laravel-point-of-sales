@@ -1,0 +1,81 @@
+<div class="col d-flex flex-column">
+    <form wire:submit.prevent='submit'>
+        <div class="card-body">
+            <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
+            <div class="row row-cards">
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('stock.vendor_name')" />
+                        <x-text-input type="text" class="form-control" wire:model.debounce.350='vendor.name' />
+                        <x-input-error :messages="$errors->get('vednor.name')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('stock.address')" />
+                        <x-text-input type="text" class="form-control" wire:model.debounce.350='vendor.address' />
+                        <x-input-error :messages="$errors->get('vednor.address')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('setting.status')" />
+                        <select id="" class="form-control" wire:model.debounce.350='vendor.is_active'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="1" {{ old('is_active') ? 'selected' : '' }}>{{ __('msgs.is_active') }}</option>
+                            <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('vednor.is_active')" class="mt-2" />
+                    </div>
+                </div>
+            </div>
+            @if (!$edit)
+                <div class="row row-cards">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
+                            <select id="" class="form-control" wire:model.debounce.350='vendor.initial_balance_status'>
+                                <option value="">{{ __('btns.select') }}</option>
+                                @foreach (App\Models\Vendor::INITIALBANALNCESTATUS as $key => $status)
+                                    <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('vednor.initial_balance_status')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('account.initial_balance')" />
+                            <x-text-input type="number" class="form-control" wire:model.debounce.350='vendor.initial_balance' />
+                            <x-input-error :messages="$errors->get('vednor.initial_balance')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('account.vendor_category')" />
+                            <select id="" class="form-control" wire:model.debounce.350='vendor.vendor_category_id'>
+                                <option value="">{{ __('btns.select') }}</option>
+                                @foreach ($vendor_categories as $cat)
+                                    <option value="{{ $cat->id }}" {{ old('vendor_category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('vednor.vendor_category_id')" class="mt-2" />
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <div class="row row-cards">
+                <div class="col-sm-12 col-md-6">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('msgs.notes')" />
+                        <textarea rows="5" class="form-control" wire:model.debounce.350='vendor.notes'></textarea>
+                        <x-input-error :messages="$errors->get('vednor.notes')" class="mt-2" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <button type="submit" class="btn btn-primary">{{ __('btns.submit') }}</button>
+        </div>
+    </form>
+</div>

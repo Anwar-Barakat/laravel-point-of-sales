@@ -14,15 +14,26 @@ use Livewire\Component;
 class AddEditCustomer extends Component
 {
     public Customer $customer;
-
     public $auth;
+
     public $edit = false;
 
 
     public function mount(Customer $customer)
     {
+        $this->auth             = Auth::guard('admin')->user();
         $this->customer = $customer;
         $this->edit = !empty($this->customer->initial_balance_status) ? true : false;
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function updatedCustomerInitialBalanceStatus()
+    {
+        $this->customer->initial_balance = ($this->customer->initial_balance_status == 1) ? 0 : '';
     }
 
     public function submit()
@@ -55,7 +66,7 @@ class AddEditCustomer extends Component
                     'name'                      => $this->customer->name,
                     'account_type_id'           => AccountType::where('name->en', 'Customer')->first()->id,
                     'is_parent'                 => 0,
-                    'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->account_id,
+                    'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->customer_account_id,
                     'account_number'            => uniqid(),
                     'initial_balance_status'    => $this->customer->initial_balance_status,
                     'initial_balance'           => $this->customer->initial_balance,
@@ -76,7 +87,6 @@ class AddEditCustomer extends Component
 
     public function render()
     {
-        $this->auth             = Auth::guard('admin')->user();
         return view('livewire.admin.stock.customer.add-edit-customer');
     }
 

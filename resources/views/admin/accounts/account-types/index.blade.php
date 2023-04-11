@@ -6,9 +6,6 @@
     <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
             <h3 class="card-title">{{ __('msgs.all', ['name' => __('account.account_types')]) }}</h3>
-            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-account-type">
-                {{ __('msgs.create', ['name' => __('account.account_type')]) }}
-            </a>
         </div>
 
         <div class="card-body">

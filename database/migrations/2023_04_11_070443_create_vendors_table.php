@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('vendor_category_id')->constrained()->cascadeOnUpdate();
             $table->date('date')->default(now());
+            $table->timestamps();
         });
     }
 

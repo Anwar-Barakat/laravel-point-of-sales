@@ -206,10 +206,16 @@
                                         {{ __('stock.items') }}
                                     </a>
                                 </div>
+
                                 <div class="dropdown-menu-column">
                                     <!-- customers -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.customers.index') ? 'active' : '' }}" href="{{ route('admin.customers.index') }}"">
                                         {{ __('stock.customers') }}
+                                    </a>
+
+                                    <!-- vendors -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.vendors.index') ? 'active' : '' }}" href="{{ route('admin.vendors.index') }}"">
+                                        {{ __('stock.vendors') }}
                                     </a>
                                 </div>
                             </div>

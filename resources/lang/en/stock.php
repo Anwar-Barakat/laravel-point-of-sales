@@ -84,4 +84,13 @@ return [
     'customer_name'     => 'Customer name',
     'customer_account'  => 'Customer account',
 
+
+    //!_______________________
+    //! Vendors
+    //!_______________________
+    'vendor'          => 'Vendor',
+    'vendors'         => 'Vendors',
+    'vendor_name'     => 'Vendor name',
+    'vendor_account'  => 'Vendor account',
+
 ];

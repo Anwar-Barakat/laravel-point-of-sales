@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
 use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
-use App\Http\Controllers\Admin\Account\Vendor\VendorController;
 use App\Http\Controllers\Admin\Account\VendorCategory\VendorCategoryController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
@@ -20,6 +19,7 @@ use App\Http\Controllers\Admin\Stock\Item\ItemController;
 use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
+use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -57,7 +57,6 @@ Route::group(
                 Route::get('/logout',                       LogoutController::class)->name('logout');
                 Route::get('/dashboard',                    DashboardController::class)->name('dashboard');
 
-
                 //_______________________
                 // Setting
                 //_______________________
@@ -70,8 +69,6 @@ Route::group(
                 //_______________________
                 Route::resource('treasuries',               TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
                 Route::resource('treasury-deliveries',      TreasuryDeliveryController::class)->only(['store', 'destroy']);
-
-
 
                 //_______________________
                 // Sections
@@ -88,23 +85,25 @@ Route::group(
                 //_______________________
                 Route::resource('stores',                   StoreController::class)->except(['create', 'show', 'edit']);
 
-
                 //_______________________
                 // Units
                 //_______________________
                 Route::resource('units',                    UnitController::class)->except(['show']);
-
 
                 //_______________________
                 // Items
                 //_______________________
                 Route::resource('items',                    ItemController::class)->except(['store', 'update']);
 
-
                 //_______________________
                 // Customers
                 //_______________________
                 Route::resource('customers',                CustomerController::class);
+
+                //_______________________
+                // Vendors
+                //_______________________
+                Route::resource('vendors',                  VendorController::class);
 
 
 
@@ -122,12 +121,6 @@ Route::group(
                 // Vendors Categories
                 //_______________________
                 Route::resource('vendor-categories',        VendorCategoryController::class);
-
-
-                //_______________________
-                // Vendors
-                //_______________________
-                Route::resource('vendors',                  VendorController::class);
             });
         });
     }
