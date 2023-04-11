@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Stock\Customer;
+namespace App\Http\Livewire\Admin\Stock\Vendor;
 
-use App\Models\Customer;
+use App\Models\Vendor;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShowCustomer extends Component
+class ShowVendor extends Component
 {
     use WithPagination;
 
@@ -17,20 +17,20 @@ class ShowCustomer extends Component
 
     public function updateStatus($id)
     {
-        $account    = Customer::findOrFail($id);
+        $account    = Vendor::findOrFail($id);
         $account->update(['is_active' => !$account->is_active]);
-        $this->getCustomers();
+        $this->getVendors();
     }
 
     public function render()
     {
-        $customers  = $this->getCustomers();
-        return view('livewire.admin.stock.customer.show-customer', ['customers' => $customers]);
+        $vendors  = $this->getVendors();
+        return view('livewire.admin.stock.vendor.show-vendor', ['vendors' => $vendors]);
     }
 
-    public function getCustomers()
+    public function getVendors()
     {
-        return  Customer::with(['account'])
+        return  Vendor::with(['account'])
             ->search(trim($this->name))
             ->orderBy($this->order_by, $this->sort_by)
             ->paginate($this->per_page);;

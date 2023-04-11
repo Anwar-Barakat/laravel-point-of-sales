@@ -28,6 +28,18 @@
                         <x-input-error :messages="$errors->get('vednor.is_active')" class="mt-2" />
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('account.vendor_category')" />
+                        <select id="" class="form-control" wire:model.debounce.350='vendor.vendor_category_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @foreach ($vendor_categories as $cat)
+                                <option value="{{ $cat->id }}" {{ old('vendor_category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('vednor.vendor_category_id')" class="mt-2" />
+                    </div>
+                </div>
             </div>
             @if (!$edit)
                 <div class="row row-cards">
@@ -48,18 +60,6 @@
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
                             <x-text-input type="number" class="form-control" wire:model.debounce.350='vendor.initial_balance' />
                             <x-input-error :messages="$errors->get('vednor.initial_balance')" class="mt-2" />
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('account.vendor_category')" />
-                            <select id="" class="form-control" wire:model.debounce.350='vendor.vendor_category_id'>
-                                <option value="">{{ __('btns.select') }}</option>
-                                @foreach ($vendor_categories as $cat)
-                                    <option value="{{ $cat->id }}" {{ old('vendor_category_id') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('vednor.vendor_category_id')" class="mt-2" />
                         </div>
                     </div>
                 </div>
