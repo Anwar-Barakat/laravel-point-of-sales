@@ -1,9 +1,9 @@
 <?php
 
 return [
-    //!_______________________
-    //! Items
-    //!_______________________
+    //_______________________
+    // Items
+    //_______________________
     'items'                 => 'Items',
     'item'                  => 'Item',
     'barcode_not_entered'   => 'Barcode - will be generated automatically',
@@ -36,17 +36,17 @@ return [
     'retail_price_for_block'            => 'Retail price for block',
     'retail_price_for_half_block'       => 'Retail price for block',
 
-    //!_______________________
-    //! Stores
-    //!_______________________
+    //_______________________
+    // Stores
+    //_______________________
     'store'     => 'Store',
     'stores'    => 'Stores',
     'store_ar'  => 'Arabic store name',
     'store_en'  => 'English store name',
 
-    //!_______________________
-    //! Categories
-    //!_______________________
+    //_______________________
+    // Categories
+    //_______________________
     'categories'            => 'Categories',
     'category'              => 'Category',
     'category_ar'           => 'Arabic category name',
@@ -56,17 +56,17 @@ return [
     'parent_category'       => 'Parent Category',
     'category_has_cats'     => 'Oops, this category has sub-categories',
 
-    //!_______________________
-    //! Sections
-    //!_______________________
+    //_______________________
+    // Sections
+    //_______________________
     'sections'      => 'Sections',
     'section'       => 'Section',
     'section_ar'    => 'Arabic section name',
     'section_en'    => 'English section name',
 
-    //!_______________________
-    //! Units
-    //!_______________________
+    //_______________________
+    // Units
+    //_______________________
     'units'             => 'Units',
     'unit'              => 'Unit',
     'unit_ar'           => 'Arabic unit name',
@@ -75,9 +75,9 @@ return [
     'retail'            => 'Retail',
     'wholesale'         => 'Wholesale',
 
-    //!_______________________
-    //! Customers
-    //!_______________________
+    //_______________________
+    // Customers
+    //_______________________
     'customer'          => 'Customer',
     'customers'         => 'Customers',
     'address'           => 'Address',
@@ -85,9 +85,9 @@ return [
     'customer_account'  => 'Customer account',
 
 
-    //!_______________________
-    //! Vendors
-    //!_______________________
+    //_______________________
+    // Vendors
+    //_______________________
     'vendor'          => 'Vendor',
     'vendors'         => 'Vendors',
     'vendor_name'     => 'Vendor name',

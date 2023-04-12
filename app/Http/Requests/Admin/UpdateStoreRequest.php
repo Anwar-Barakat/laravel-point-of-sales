@@ -26,7 +26,7 @@ class UpdateStoreRequest extends FormRequest
             'name_en'   => ['required', 'string', 'min:3'],
             'address'   => ['required', 'string', 'min:10'],
             'mobile'    => ['required', 'min:10', 'max:10'],
-            'is_active' => ['required', 'boolean', 'between:0,999999']
+            'is_active' => ['required', 'boolean', 'between:0,999999'],
         ];
     }
 }

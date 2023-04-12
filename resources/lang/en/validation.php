@@ -219,6 +219,11 @@ return [
         'notes'                         => 'Notes',
         'is_parent'                     => 'Is parent',
 
+        // orders
+        'vendor_id'             => 'Vendor',
+        'account_id'            => 'Account',
+        'invoice_type'          => 'Invoice type',
+        'invoice_date'          => 'Invoice date',
     ],
 
 ];

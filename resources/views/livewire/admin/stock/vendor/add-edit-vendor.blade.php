@@ -22,8 +22,8 @@
                         <x-input-label class="form-label" :value="__('setting.status')" />
                         <select id="" class="form-control" wire:model.debounce.350='vendor.is_active'>
                             <option value="">{{ __('btns.select') }}</option>
-                            <option value="1" {{ old('is_active') ? 'selected' : '' }}>{{ __('msgs.is_active') }}</option>
-                            <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
+                            <option value="1" {{ old('order.vendor_id') ? 'selected' : '' }}>{{ __('msgs.is_active') }}</option>
+                            <option value="0" {{ old('order.vendor_id') == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
                         </select>
                         <x-input-error :messages="$errors->get('vednor.is_active')" class="mt-2" />
                     </div>

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('type')->comment('1 => purchase, 2 => return on the same pill, 3 => return on general');
-            $table->bigInteger('serial');
 
             $table->bigInteger('invoice_number');
             $table->boolean('invoice_type')->comment('0 => cash, 1 => delayed');
@@ -24,6 +23,7 @@ return new class extends Migration
             $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
             $table->decimal('paid')->default(0);
             $table->decimal('remains')->default(0);
+            $table->string('notes');
 
             $table->decimal('discount')->nullable();
             $table->boolean('tax_type')->nullable()->comment('0 => percentage, 1 => fixed');

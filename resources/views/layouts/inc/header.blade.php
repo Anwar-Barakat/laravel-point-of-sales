@@ -117,14 +117,11 @@
                     <li class="nav-item dropdown {{ request()->routeIs('admin.treasuries.*') || request()->routeIs('admin.settings.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/package -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                                    <path d="M12 12l8 -4.5" />
-                                    <path d="M12 12l0 9" />
-                                    <path d="M12 12l-8 -4.5" />
-                                    <path d="M16 5.25l-8 4.5" />
+                                    <path
+                                        d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                 </svg>
                             </span>
                             <span class="nav-link-title">
@@ -153,7 +150,6 @@
                                             </a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -268,20 +264,55 @@
                     </li>
 
                     <!-- _______________________
+                    Movements Stocks
+                    _______________________!-->
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 3a7 7 0 0 1 7 7v4l-3 -3" />
+                                    <path d="M22 11l-3 3" />
+                                    <path d="M8 15.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
+                                    <path d="M3 12.5v5.5l5 3" />
+                                    <path d="M8 15.545l5 -3.03" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                {{ __('movement.stock_movements') }}
+                            </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <!-- financial accounts -->
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                    {{ __('movement.orders') }}
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ route('admin.orders.index') }}" class="dropdown-item {{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
+                                        {{ __('msgs.list', ['name' => __('movement.orders')]) }}
+                                    </a>
+                                    <a href="{{ route('admin.orders.create') }}" class="dropdown-item {{ request()->routeIs('admin.orders.create') ? 'active' : '' }}">
+                                        {{ __('msgs.create', ['name' => __('movement.order')]) }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- _______________________
                     Languages
                     _______________________!-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                    <path d="M15 15l3.35 3.35" />
-                                    <path d="M9 15l-3.35 3.35" />
-                                    <path d="M5.65 5.65l3.35 3.35" />
-                                    <path d="M18.35 5.65l-3.35 3.35" />
+                                    <path d="M4 5h7" />
+                                    <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+                                    <path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
+                                    <path d="M12 20l4 -9l4 9" />
+                                    <path d="M19.1 18h-6.2" />
                                 </svg>
                             </span>
                             <span class="nav-link-title">

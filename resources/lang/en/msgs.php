@@ -58,6 +58,7 @@ return [
     'descriprion'           => 'Description',
     'attachements'          => 'Attachements',
     'notes'                 => 'Notes',
+    'add_new'               => 'Add new',
 
     'are_you_sure_about_deleting'   => 'Are you sure about deleting ?'
 ];

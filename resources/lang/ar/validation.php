@@ -147,7 +147,9 @@ return [
     */
 
     'attributes' => [
-        //? settings table
+        //_______________________
+        // sections
+        //_______________________
         'company_name_ar'           => 'اسم الشركة بالعربي',
         'company_name_en'           => 'اسم الشركة بالانكليزي',
         'company_code'              => 'رمز الشركة',
@@ -157,14 +159,18 @@ return [
         'current_password'          => 'كلمة المرور الحالية',
         'password_confirmation'     => 'تأكيد كلمة المرور',
 
-        //? admins table
+        //_______________________
+        // admins
+        //_______________________
         'name'          => 'الاسم',
         'bio'           => 'السيرة الذاتية',
         'email'         => 'البريد الألكتروني',
         'password'      => 'كلمة المرو',
         'status'        => 'الحالة',
 
-        //? treasuries table
+        //_______________________
+        // treasuries
+        //_______________________
         'is_master'             => 'رئيسية',
         'is_active'             => 'مُفعلة',
         'last_payment_receipt'  => 'آخر إيصال دفع',
@@ -172,19 +178,25 @@ return [
         'treasury_name_ar'      => 'اسم الخزنة بالعربي',
         'treasury_name_en'      => 'اسم الخزنة بالأنكليزي',
 
-        //? treasuries delivery table
+        //_______________________
+        // treasuries delivery
+        //_______________________
         'treasury_delivery_id'  => 'الخزنة المسلم',
         'name_ar'               => 'الاسم بالعربي',
         'name_en'               => 'الاسم بالأنكليزي',
 
-        //? categories
+        //_______________________
+        // categories
+        //_______________________
         'section_id'            => 'القسم',
         'category_id'           => 'الفئة',
         'parent_id'             => 'فئة الأب',
         'description'           => 'الوصف',
         'photo'                 => 'صورة',
 
-        //? card items
+        //_______________________
+        // items
+        //_______________________
         'barcode'               => 'باركود',
         'item_name'             => 'اسم الصنف',
         'item_type'             => 'نوع الصنف',
@@ -218,6 +230,13 @@ return [
         'notes'                         => 'الملاحظات',
         'is_parent'                     => 'هل أب',
 
+        //_______________________
+        // orders
+        //_______________________
+        'vendor_id'             => 'المورد',
+        'account_id'            => 'الحساب المالي',
+        'invoice_type'          => 'نوع الفاتورة',
+        'invoice_date'          => 'تاريخ الفاتورة',
     ],
 
 ];

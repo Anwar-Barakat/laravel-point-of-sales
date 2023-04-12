@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
+use App\Http\Controllers\Admin\StockMovement\OrderController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -116,6 +117,13 @@ Route::group(
                 // Financial Accounts
                 //_______________________
                 Route::resource('accounts',                 AccountController::class)->except(['store', 'update']);
+
+
+
+                //_______________________
+                // Orders
+                //_______________________
+                Route::resource('orders',                   OrderController::class)->only(['index', 'create', 'edit']);
             });
         });
     }

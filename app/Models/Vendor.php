@@ -12,7 +12,6 @@ class Vendor extends Model
     protected $fillable = [
         'name',
         'address',
-
         'initial_balance',
         'initial_balance_status',
         'currnet_balance',
@@ -25,6 +24,11 @@ class Vendor extends Model
     ];
 
     const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
+
+    public function scopeActive($query)
+    {
+        return $query->where(['is_active' => 1]);
+    }
 
     public function scopeSearch($query, $term)
     {

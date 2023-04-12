@@ -1,7 +1,6 @@
 <?php
 
 return [
-    //? Actions :
     'all'                   => 'جميع :name',
     'list'                  => 'قائمة :name',
     'create'                => 'إضافة :name جديد',
@@ -12,7 +11,6 @@ return [
     'type'                  => 'أدخل :name',
     'exists'                => ':name بالفعل موجودة',
 
-    //? Results :
     'updated'               => 'تم تحديث :name بنجاج',
     'created'               => 'تم إنشاء :name بنجاج',
     'deleted'               => 'تم حذف :name بنجاج',
@@ -26,8 +24,6 @@ return [
     'password_reset_link'   => 'لقد أرسلنا رابط إعادة تعيين كلمة المرور بالبريد الإلكتروني',
 
 
-
-    //? Public Masseges :
     'not_found'             => 'لا يوجد',
     'not_valid'             => ':name غير صالح',
     'created_at'            => 'تاريخ الإضافة',
@@ -58,6 +54,7 @@ return [
     'descriprion'           => 'الوصف',
     'attachements'          => 'المرفقات',
     'notes'                 => 'ملاحظات',
+    'add_new'               => 'إضافة جديد',
 
     'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف'
 
