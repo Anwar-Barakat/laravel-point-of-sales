@@ -67,7 +67,7 @@
                             <td>
                                 <a href="{{ route('admin.accounts.show', ['account' => $customer->account]) }}">
                                     <span class="badge bg-info-lt">
-                                        {{ $customer->account->account_number }}
+                                        {{ $customer->account->number }}
                                     </span>
                                 </a>
                             </td>

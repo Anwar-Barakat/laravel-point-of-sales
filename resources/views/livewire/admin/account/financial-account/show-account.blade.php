@@ -83,7 +83,7 @@
                                     {{ $account->accountType->name }}
                                 </span>
                             </td>
-                            <td>{{ $account->account_number }}</td>
+                            <td>{{ $account->number }}</td>
                             <td>{{ $account->is_parent ? __('msgs.yes') : __('msgs.no') }}</td>
                             <th>
                                 <span class="badge bg-blue">

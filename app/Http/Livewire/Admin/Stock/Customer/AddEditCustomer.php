@@ -67,7 +67,7 @@ class AddEditCustomer extends Component
                     'account_type_id'           => AccountType::where('name->en', 'Customer')->first()->id,
                     'is_parent'                 => 0,
                     'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->customer_account_id,
-                    'account_number'            => uniqid(),
+                    'number'                    => uniqid(),
                     'initial_balance_status'    => $this->customer->initial_balance_status,
                     'initial_balance'           => $this->customer->initial_balance,
                     'notes'                     => $this->customer->notes,

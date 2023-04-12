@@ -43,7 +43,7 @@
             <div class="row g-3">
                 <div class="col-md-12 col-lg-6">
                     <h3 class="card-title mt-4">{{ __('setting.parent_c_account') }}
-                        <small class="text text-sm">( {{ $setting->customer_account->account_number ?? '-' }} )</small>
+                        <small class="text text-sm">( {{ $setting->customer_account->number ?? '-' }} )</small>
                     </h3>
                     <select wire:model='customer_account_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <h3 class="card-title mt-4">{{ __('setting.parent_v_account') }}
-                        <small class="text text-sm">( {{ $setting->vendor_account->account_number ?? '-' }} )</small>
+                        <small class="text text-sm">( {{ $setting->vendor_account->number ?? '-' }} )</small>
                     </h3>
                     <select wire:model='vendor_account_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>

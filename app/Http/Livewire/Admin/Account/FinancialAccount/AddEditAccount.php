@@ -55,6 +55,7 @@ class AddEditAccount extends Component
             DB::beginTransaction();
 
             $this->account['added_by']     = $this->auth->id;
+            $this->account['number']       = uniqid();
             $this->account['company_code'] = $this->auth->company_code;
 
             switch ($this->account->initial_balance_status) {
@@ -70,6 +71,9 @@ class AddEditAccount extends Component
             }
 
             if (!is_null($this->account->customer()))
+                $this->account->customer()->update(['name'          => $this->account->name]);
+
+            if (!is_null($this->account->vendor()))
                 $this->account->customer()->update(['name'          => $this->account->name]);
 
             $this->account->save();

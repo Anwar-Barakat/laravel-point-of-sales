@@ -26,7 +26,7 @@ class AccountSeeder extends Seeder
         $accounts       = [
             [
                 'name'              => 'Parent Customers',
-                'account_number'    => uniqid(),
+                'number'            => uniqid(),
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
@@ -34,7 +34,7 @@ class AccountSeeder extends Seeder
             ],
             [
                 'name'              => 'Parent Supplies',
-                'account_number'    => uniqid(),
+                'number'            => uniqid(),
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
@@ -42,7 +42,7 @@ class AccountSeeder extends Seeder
             ],
             [
                 'name'              => 'Capital',
-                'account_number'    => uniqid(),
+                'number'            => uniqid(),
                 'account_type_id'   => $captial_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
@@ -50,7 +50,7 @@ class AccountSeeder extends Seeder
             ],
             [
                 'name'              => 'Phone & Internet Invoice',
-                'account_number'    => uniqid(),
+                'number'            => uniqid(),
                 'account_type_id'   => $expenses_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,

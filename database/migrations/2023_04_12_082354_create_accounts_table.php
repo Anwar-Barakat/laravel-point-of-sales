@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('is_parent')->default(1);
             $table->bigInteger('parent_id')->nullable();
 
-            $table->string('account_number');
+            $table->string('number');
             $table->decimal('initial_balance')->default(0);
             $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');
             $table->decimal('currnet_balance')->default(0);

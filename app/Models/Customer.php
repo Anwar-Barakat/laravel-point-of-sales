@@ -14,8 +14,6 @@ class Customer extends Model
     protected $fillable = [
         'name',
         'address',
-        'account_number',
-        'account_id',
         'initial_balance',
         'initial_balance_status',
         'currnet_balance',

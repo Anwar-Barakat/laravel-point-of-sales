@@ -68,7 +68,7 @@
                             <td>
                                 <a href="{{ route('admin.accounts.show', 'test') }}">
                                     <span class="badge bg-info-lt">
-                                        {{ $vendor->account->account_number }}
+                                        {{ $vendor->account->number }}
                                     </span>
                                 </a>
                             </td>

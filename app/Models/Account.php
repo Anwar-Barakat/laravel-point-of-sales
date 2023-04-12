@@ -16,7 +16,7 @@ class Account extends Model
         'account_type_id',
         'is_parent',
         'parent_id',
-        'account_number',
+        'number',
         'initial_balance',
         'initial_balance_status',
         'currnet_balance',

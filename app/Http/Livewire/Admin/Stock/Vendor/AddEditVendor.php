@@ -71,7 +71,7 @@ class AddEditVendor extends Component
                     'account_type_id'           => AccountType::where('name->en', 'Vendor')->first()->id,
                     'is_parent'                 => 0,
                     'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->vendor_account_id,
-                    'account_number'            => uniqid(),
+                    'number'                    => uniqid(),
                     'initial_balance_status'    => $this->vendor->initial_balance_status,
                     'initial_balance'           => $this->vendor->initial_balance,
                     'notes'                     => $this->vendor->notes,
