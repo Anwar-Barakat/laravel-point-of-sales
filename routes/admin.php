@@ -123,7 +123,7 @@ Route::group(
                 //_______________________
                 // Orders
                 //_______________________
-                Route::resource('orders',                   OrderController::class)->only(['index', 'create', 'edit']);
+                Route::resource('orders',                   OrderController::class);
             });
         });
     }

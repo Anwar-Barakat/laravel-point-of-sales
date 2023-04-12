@@ -10,6 +10,9 @@ return [
     'order'                 => 'Order',
     'cash'                  => 'Cash',
     'delayed'               => 'Delayed',
+    'purchase'              => 'Purchase',
+    'return_on_the_same_pill'   => 'Return on the same pill',
+    'return_on_general'         => 'Return on general',
 
     'vendor_id'             => 'Vendor',
     'account_id'            => 'Account',

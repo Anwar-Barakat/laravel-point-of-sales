@@ -36,20 +36,6 @@ class Treasury extends Model
         return $query->where('is_active', 1);
     }
 
-    // protected function isMaster(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn () => $this->attributes['is_master'] ? __('msgs.master') : __('msgs.branch'),
-    //     );
-    // }
-
-    // protected function isActive(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn () => $this->attributes['is_active'] ? __('msgs.active') : __('msgs.not_active'),
-    //     );
-    // }
-
     public function addedBy()
     {
         return $this->belongsTo(Admin::class, 'added_by');

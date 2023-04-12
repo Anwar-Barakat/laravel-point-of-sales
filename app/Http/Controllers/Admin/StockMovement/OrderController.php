@@ -13,7 +13,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.stock-movements.orders.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('admin.stock-movements.orders.edit', ['order' => $order]);
     }
 
     /**

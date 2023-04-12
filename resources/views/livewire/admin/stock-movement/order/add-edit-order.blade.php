@@ -28,7 +28,7 @@
                         <select id="" class="form-control" wire:model.debounce.350='order.invoice_type'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Order::INVOICETYPE as $key => $value)
-                                <option value="{{ $key }}" {{ old('order.invoice_type') == $key ? 'selected' : '' }}>{{ __('movement.' . $value) }}</option>
+                                <option value="{{ $key }}">{{ __('movement.' . $value) }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('order.invoice_type')" class="mt-2" />
