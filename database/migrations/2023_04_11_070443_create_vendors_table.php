@@ -25,7 +25,6 @@ return new class extends Migration
             $table->boolean('is_active')->default(1);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
-            $table->date('date')->default(now());
             $table->timestamps();
         });
     }

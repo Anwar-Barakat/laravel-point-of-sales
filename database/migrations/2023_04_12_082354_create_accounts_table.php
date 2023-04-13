@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('is_parent')->default(1);
             $table->bigInteger('parent_id')->nullable();
 
-            $table->string('number');
+            $table->string('number')->unique();
             $table->decimal('initial_balance')->default(0);
             $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');
             $table->decimal('currnet_balance')->default(0);
@@ -27,7 +27,6 @@ return new class extends Migration
             $table->integer('company_code');
             $table->boolean('is_archived')->default(0);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
-            $table->date('date')->default(now());
 
             $table->foreignId('customer_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('vendor_id')->nullable()->constrained()->cascadeOnUpdate();

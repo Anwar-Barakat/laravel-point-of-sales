@@ -83,6 +83,9 @@
                                 {{ $order->invoice_type ? __('movement.delayed') : __('movement.cash') }}
                             </td>
                             <td>
+                                {{ $order->invoice_date }}
+                            </td>
+                            <td>
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">

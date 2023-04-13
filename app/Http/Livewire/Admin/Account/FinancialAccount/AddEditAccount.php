@@ -74,7 +74,7 @@ class AddEditAccount extends Component
                 $this->account->customer()->update(['name'          => $this->account->name]);
 
             if (!is_null($this->account->vendor()))
-                $this->account->customer()->update(['name'          => $this->account->name]);
+                $this->account->vendor()->update(['name'          => $this->account->name]);
 
             $this->account->save();
             DB::commit();
