@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             StoreSeeder::class,
             UnitSeeder::class,
+            ItemSeeder::class,
 
             AccountTypeSeeder::class,
 

@@ -75,6 +75,7 @@ return [
     'unit_name'         => 'اسم الوحدة',
     'retail'            => 'مفرق',
     'wholesale'         => 'جملة',
+    'unit_price'        => 'سعر الوحدة',
 
     //_______________________
     // Customers

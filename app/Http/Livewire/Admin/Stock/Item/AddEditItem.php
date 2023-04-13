@@ -51,24 +51,24 @@ class AddEditItem extends Component
 
     public function submit()
     {
-        // try {
         $this->validate();
-        $this->item['barcode']      = 'item-' . Str::random(15);
-        $this->item['added_by']     = $this->auth->id;
-        $this->item['company_code'] = $this->auth->company_code;
-        $this->item->save();
+        try {
+            $this->item['barcode']      = 'item-' . Str::random(15);
+            $this->item['added_by']     = $this->auth->id;
+            $this->item['company_code'] = $this->auth->company_code;
+            $this->item->save();
 
-        if ($this->image) {
-            $this->validate(['image' => 'image|max:1024']);
-            $this->item->clearMediaCollection('items');
-            $this->item->addMedia($this->image)->toMediaCollection('items');
+            if ($this->image) {
+                $this->validate(['image' => 'image|max:1024']);
+                $this->item->clearMediaCollection('items');
+                $this->item->addMedia($this->image)->toMediaCollection('items');
+            }
+
+            toastr()->success(__('msgs.submitted', ['name' => __('stock.item')]));
+            return redirect()->route('admin.items.index');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.items.create')->withErrors(['error' => $th->getMessage()]);
         }
-
-        toastr()->success(__('msgs.submitted', ['name' => __('stock.item')]));
-        return redirect()->route('admin.items.index');
-        // } catch (\Throwable $th) {
-        //     return redirect()->back()->withErrors(['error' => $th->getMessage()]);
-        // }
     }
 
 

@@ -18,6 +18,9 @@ return [
     'percentage'                => 'Percentage',
     'fixed'                     => 'Fixed',
     'add_items'                 => 'Add items',
+    'total_price'               => 'Total price',
+    'production_date'           => 'Production history',
+    'expiration_date'           => 'Expiration date',
 
     'vendor_id'             => 'Vendor',
     'account_id'            => 'Account',
@@ -27,4 +30,5 @@ return [
     'discount'              => 'discount',
     'tax_type'              => 'Tax type',
     'tax'                   => 'Tax',
+    'qty'                   => 'Quantity',
 ];

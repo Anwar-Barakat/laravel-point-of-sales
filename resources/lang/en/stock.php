@@ -74,6 +74,7 @@ return [
     'unit_name'         => 'Unit name',
     'retail'            => 'Retail',
     'wholesale'         => 'Wholesale',
+    'unit_price'        => 'Unit price',
 
     //_______________________
     // Customers

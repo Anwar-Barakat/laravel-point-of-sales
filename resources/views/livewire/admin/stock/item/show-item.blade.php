@@ -1,56 +1,5 @@
 <div class="card-body">
     <div id="table-default" class="table-responsive">
-        {{-- <div class="row">
-            <div class="col-sm-12 col-md-4 col-lg-2">
-                <div class="mb-3">
-                    <x-input-label class="form-label" :value="__('msgs.search_by_name')" />
-                    <x-text-input class="form-control" placeholder="{{ __('btns.search') }}" wire:model="name" />
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-2">
-                <div class="mb-3">
-                    <x-input-label class="form-label" :value="__('msgs.added_by')" />
-                    <select id="" class="form-control" wire:model='added_by'>
-                        <option value="">{{ __('btns.select') }}</option>
-                        @foreach (App\Models\Admin::all() as $admin)
-                            <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-2">
-                <div class="mb-3">
-                    <x-input-label class="form-label" :value="__('msgs.order_by')" />
-                    <select id="" class="form-control" wire:model='order_by'>
-                        <option value="">{{ __('btns.select') }}</option>
-                        <option value="last_payment_receipt">{{ __('treasury.last_payment_receipt') }}</option>
-                        <option value="last_payment_collect">{{ __('treasury.last_payment_collect') }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-2">
-                <div class="mb-3">
-                    <x-input-label class="form-label" :value="__('msgs.per_page')" />
-                    <select id="" class="form-control" wire:model='per_page'>
-                        <option value="">{{ __('btns.select') }}</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">10</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-2">
-                <div class="mb-3">
-                    <x-input-label class="form-label" :value="__('msgs.sort_by')" />
-                    <select id="" class="form-control" wire:model='sort_by'>
-                        <option value="">{{ __('btns.select') }}</option>
-                        <option value="asc">{{ __('msgs.asc') }}</option>
-                        <option value="desc">{{ __('msgs.desc') }}</option>
-                    </select>
-                </div>
-            </div>
-        </div> --}}
-        <br>
         <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
             <thead>
                 <tr>
@@ -134,7 +83,7 @@
             </tbody>
         </table>
         <div class="mt-3">
-            {{-- {{ $items->links() }} --}}
+            {{ $items->links() }}
         </div>
     </div>
 </div>

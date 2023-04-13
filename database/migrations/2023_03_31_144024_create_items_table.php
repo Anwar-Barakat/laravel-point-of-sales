@@ -18,9 +18,9 @@ return new class extends Migration
             $table->tinyInteger('type')->comment('1 => stored, 2 => consuming, 3 => protection');
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
             $table->boolean('is_active')->default(1);
-            $table->bigInteger('parent_id')->nullable();
+            $table->bigInteger('parent_id')->default(0);
 
-            $table->boolean('has_retail_unit')->default(1);
+            $table->boolean('has_retail_unit')->default(0);
             $table->foreignId('wholesale_unit_id')->constrained('units')->cascadeOnUpdate();
             $table->foreignId('retail_unit_id')->nullable()->constrained('units')->cascadeOnUpdate();
 
@@ -35,11 +35,10 @@ return new class extends Migration
             $table->decimal('retail_count_for_wholesale')->nullable();
 
             $table->decimal('wholesale_qty')->nullable()->comment('qty for wholesale unit');
-            $table->decimal('retail|_qty')->nullable()->comment('كمية التجزئة المتبقية من الوحدة الاب في حالة وجود وحدة تجزئة للصنف');
+            $table->decimal('retail_qty')->nullable()->comment('كمية التجزئة المتبقية من الوحدة الاب في حالة وجود وحدة تجزئة للصنف');
             $table->decimal('all_qty_retails')->nullable()->comment('all qty in retail unit ');
 
             $table->boolean('has_fixed_price')->default(1)->comment('Does it has fixed price for invoices?');
-            $table->date('date')->default(now());
             $table->integer('company_code');
 
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
