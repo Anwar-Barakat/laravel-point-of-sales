@@ -20,14 +20,15 @@ return new class extends Migration
             $table->boolean('is_approved')->default(0);
             $table->string('notes');
 
+            $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
+            $table->decimal('discount')->nullable();
+            $table->boolean('tax_type')->nullable()->comment('0 => percentage, 1 => fixed');
+            $table->decimal('tax')->nullable();
+
             // $table->decimal('total_cost');
-            // $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
             // $table->decimal('paid')->default(0);
             // $table->decimal('remains')->default(0);
 
-            // $table->decimal('discount')->nullable();
-            // $table->boolean('tax_type')->nullable()->comment('0 => percentage, 1 => fixed');
-            // $table->decimal('tax')->nullable();
             // $table->decimal('grand_cost');
 
             $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();

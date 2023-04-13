@@ -3,10 +3,7 @@
     @section('breadcrumbTitle', __('msgs.edit', ['name' => __('movement.order')]))
     @section('breadcrumbSubtitle', __('movement.stock_movements'))
 
-    <div class="card">
-        <div class="row g-0">
-            @livewire('admin.stock.vendor.add-edit-order', ['order' => $order])
-        </div>
-    </div>
+
+    @livewire('admin.stock-movement.order.order-detail', ['order' => $order])
 
 </x-master-layout>

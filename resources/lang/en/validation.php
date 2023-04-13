@@ -147,7 +147,9 @@ return [
     */
 
     'attributes' => [
-        //? settings table
+        //_______________________
+        // Settings
+        //_______________________
         'company_name_ar'           => 'arabic company name',
         'company_name_en'           => 'english company name',
         'company_code'              => 'company code',
@@ -157,7 +159,9 @@ return [
         'current_password'          => 'current password',
         'password_confirmation'     => 'password Confirmation',
 
-        //? admins table
+        //_______________________
+        // Admins
+        //_______________________
         'name'          => 'name',
         'bio'           => 'bio',
         'email'         => 'email',
@@ -165,27 +169,31 @@ return [
         'status'        => 'status',
 
 
-        //? treasuries table
+        //_______________________
+        // Treasuries
+        //_______________________
         'is_master'             => 'is master',
         'last_payment_receipt'  => 'last payment receipt',
         'last_payment_collect'  => 'last payment collect',
         'treasury_name_ar'      => 'arabic treasury name',
         'treasury_name_en'      => 'english treasury name',
-
-        //? treasuries delivery table
         'treasury_delivery_id'  => 'treasury delivery',
         'name_ar'               => 'arabic name',
         'name_en'               => 'english name',
 
 
-        //? categories
+
+        //_______________________
+        // Categories
+        //_______________________
         'section_id'            => 'section',
         'parent_id'             => 'category parent',
         'description'           => 'description',
         'photo'                 => 'photo',
 
-
-        //? card items
+        //_______________________
+        // Items
+        //_______________________
         'barcode'               => 'barcode',
         'item_name'             => 'item name',
         'category_id'           => 'category',
@@ -206,7 +214,9 @@ return [
         'retail_price_for_half_block'       => 'retail price for block',
 
 
-        //? financial account:
+        //_______________________
+        // Accounts
+        //_______________________
         'account_type_id'               => 'Account type',
         'account_number'                => 'Account number',
         'parent_id'                     => 'Account parent',
@@ -219,11 +229,17 @@ return [
         'notes'                         => 'Notes',
         'is_parent'                     => 'Is parent',
 
-        // orders
+        //_______________________
+        // Orders
+        //_______________________
         'vendor_id'             => 'Vendor',
         'account_id'            => 'Account',
         'invoice_type'          => 'Invoice type',
         'invoice_date'          => 'Invoice date',
+        'discount_type'         => 'Discount type',
+        'discount'              => 'discount',
+        'tax_type'              => 'Tax type',
+        'tax'                   => 'Tax',
     ],
 
 ];

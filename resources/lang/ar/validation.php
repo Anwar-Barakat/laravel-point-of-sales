@@ -177,10 +177,6 @@ return [
         'last_payment_collect'  => 'آخر إيصال تجميع',
         'treasury_name_ar'      => 'اسم الخزنة بالعربي',
         'treasury_name_en'      => 'اسم الخزنة بالأنكليزي',
-
-        //_______________________
-        // treasuries delivery
-        //_______________________
         'treasury_delivery_id'  => 'الخزنة المسلم',
         'name_ar'               => 'الاسم بالعربي',
         'name_en'               => 'الاسم بالأنكليزي',
@@ -219,6 +215,9 @@ return [
         'retail_price_for_half_block'       => 'سعر النصف جملة لوحدة قياس التجزئة',
 
 
+        //_______________________
+        // Accounts
+        //_______________________
         'account_type_id'               => 'نوع الحساب',
         'account_number'                => 'رقم الحساب',
         'parent_id'                     => 'الحساب الأب',
@@ -237,6 +236,10 @@ return [
         'account_id'            => 'الحساب المالي',
         'invoice_type'          => 'نوع الفاتورة',
         'invoice_date'          => 'تاريخ الفاتورة',
+        'discount_type'         => 'نوع الخصم',
+        'discount'              => 'الخصم',
+        'tax_type'              => 'نوع الضريبة',
+        'tax'                   => 'الضريبة',
     ],
 
 ];
