@@ -80,13 +80,14 @@ class AddEditItem extends Component
     protected function rules()
     {
         return [
-            'item.name' => [
+            'item.name'                          => [
                 'required',
                 'min:3',
                 Rule::unique('items', 'name')->ignore($this->item->id)->where(function ($query) {
                     return $query->where('company_code', $this->auth->company_code);
                 })
             ],
+
             'item.is_active'                        => ['required', 'boolean'],
             'item.type'                             => ['required', 'in:1,2,3'],
             'item.category_id'                      => ['required', 'integer'],

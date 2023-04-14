@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -58,20 +59,31 @@ class OrderDetail extends Component
         $this->validate();
         try {
             if ($this->order->is_approved == 0) {
+                DB::beginTransaction();
+
                 $this->orderProduct->order_id       = $this->order->id;
                 $this->orderProduct->added_by       = $this->auth->id;
                 $this->orderProduct->company_code   = $this->auth->company_code;
                 $this->orderProduct->save();
+
+                $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', $this->auth->company_code)->sum('total_price');
+                $this->order->items_cost            = $totalPrices;
+                $this->order->cost_before_discount  = $totalPrices + $this->order->tax;
+                $this->order->cost_after_discount   = $this->order->cost_before_discount - $this->order->discount;
+                $this->order->save();
+
+                DB::commit();
+                toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
             }
-            toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
         } catch (\Throwable $th) {
+            DB::rollBack();
             return redirect()->route('admin.orders.show', $this->order)->with(['error' => $th->getMessage()]);
         }
     }
 
     public function render()
     {
-        $order_products = OrderProduct::where('order_id', $this->order->id)->paginate(PAGINATION_COUNT);
+        $order_products = OrderProduct::where('order_id', $this->order->id)->where('company_code', $this->auth->company_code)->paginate(PAGINATION_COUNT);
         return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $order_products]);
     }
 

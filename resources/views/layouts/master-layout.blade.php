@@ -16,6 +16,9 @@
     <meta name="csrf_token" value="{{ csrf_token() }}" />
 
     <title>@yield('pageTitle')</title>
+    <link rel="shortcut icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
+
     <!-- CSS files -->
     @include('layouts.inc.head')
     <livewire:styles />

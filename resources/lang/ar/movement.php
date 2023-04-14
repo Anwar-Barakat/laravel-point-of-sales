@@ -19,6 +19,10 @@ return [
     'add_items'                 => 'إضافة أصناف',
     'total_price'               => 'السعر الأجمالي',
     'unit_price'                => 'سعر الوحدة',
+    'order_is_closed'           => 'حالة الطلب مُغلق',
+    'cost_before_discount'      => 'التكلفة قبل الخصم',
+    'cost_after_discount'       => 'التكلفة بعد الخصم',
+    'items_cost'                => 'تكلفة الأصناف',
 
     'vendor_id'                 => 'المورد',
     'account_id'                => 'الحساب المالي',
@@ -31,4 +35,6 @@ return [
     'qty'                       => 'الكمية',
     'production_date'           => 'تاريخ الأنتاج',
     'expiration_date'           => 'تاريخ انتهاء الصلاحية',
+
+
 ];

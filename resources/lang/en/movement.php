@@ -20,6 +20,10 @@ return [
     'add_items'                 => 'Add items',
     'total_price'               => 'Total price',
     'unit_price'                => 'Unit price',
+    'order_is_closed'           => 'Order is closed',
+    'cost_before_discount'      => 'Cost before discount',
+    'cost_after_discount'       => 'Cost after discount',
+    'items_cost'                => 'Items cost',
 
     'vendor_id'                 => 'Vendor',
     'account_id'                => 'Account',
@@ -32,4 +36,6 @@ return [
     'qty'                       => 'Quantity',
     'production_date'           => 'Production history',
     'expiration_date'           => 'Expiration date',
+
+
 ];

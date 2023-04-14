@@ -232,14 +232,17 @@ return [
         //_______________________
         // Orders
         //_______________________
-        'vendor_id'             => 'Vendor',
-        'account_id'            => 'Account',
-        'invoice_type'          => 'Invoice type',
-        'invoice_date'          => 'Invoice date',
-        'discount_type'         => 'Discount type',
-        'discount'              => 'discount',
-        'tax_type'              => 'Tax type',
-        'tax'                   => 'Tax',
+        'vendor_id'                 => 'Vendor',
+        'account_id'                => 'Account',
+        'invoice_type'              => 'Invoice type',
+        'invoice_date'              => 'Invoice date',
+        'discount_type'             => 'Discount type',
+        'discount'                  => 'discount',
+        'tax_type'                  => 'Tax type',
+        'tax'                       => 'Tax',
+        'qty'                       => 'Quantity',
+        'production_date'           => 'Production history',
+        'expiration_date'           => 'Expiration date',
     ],
 
 ];

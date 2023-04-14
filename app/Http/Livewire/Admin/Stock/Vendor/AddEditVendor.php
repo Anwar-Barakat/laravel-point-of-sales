@@ -7,7 +7,6 @@ use App\Models\AccountType;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Models\Vendor;
-use App\Models\VendorCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -100,7 +99,7 @@ class AddEditVendor extends Component
             'vendor.name'                     => [
                 'required',
                 'min:3',
-                Rule::unique('vendors', 'name')->ignore($this->vendor->id)->where(function ($query) {
+                Rule::unique('items', 'name')->ignore($this->vendor->id)->where(function ($query) {
                     return $query->where('company_code', $this->auth->company_code);
                 })
             ],

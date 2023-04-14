@@ -15,8 +15,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <link rel="shortcut icon" href="{{ asset('backend/favicon.ico') }}" type="image/x-icon" />
-    <link rel="icon" href="{{ asset('backend/favicon.ico') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
 
     @if (App::getLocale() == 'ar')
         <link href="{{ asset('backend/dist/css/tabler.rtl.min.css') }}" rel="stylesheet" />
