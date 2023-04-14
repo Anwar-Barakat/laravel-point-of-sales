@@ -20,9 +20,9 @@ return new class extends Migration
             $table->date('production_date')->nullable();
             $table->date('expiration_date')->nullable();
 
-            $table->integer('qty');
+            $table->integer('qty')->default(1);
             $table->decimal('unit_price');
-            $table->decimal('total_cost');
+            $table->decimal('total_price');
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
 

@@ -37,7 +37,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order->load(['addedBy', 'vendor', 'account']);
+        $order->load(['addedBy', 'vendor', 'account', 'orderProducts']);
         return view('admin.stock-movements.orders.show', ['order' => $order]);
     }
 
