@@ -17,8 +17,12 @@ return new class extends Migration
             $table->foreignId('unit_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();
 
+            $table->date('production_date')->nullable();
+            $table->date('expiration_date')->nullable();
+
             $table->integer('qty');
-            $table->integer('total_cost');
+            $table->decimal('unit_price');
+            $table->decimal('total_cost');
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
 

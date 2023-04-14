@@ -18,17 +18,17 @@ return [
     'fixed'                     => 'ثابتة',
     'add_items'                 => 'إضافة أصناف',
     'total_price'               => 'السعر الأجمالي',
+    'unit_price'                => 'سعر الوحدة',
+
+    'vendor_id'                 => 'المورد',
+    'account_id'                => 'الحساب المالي',
+    'invoice_type'              => 'نوع الفاتورة',
+    'invoice_date'              => 'تاريخ الفاتورة',
+    'discount_type'             => 'نوع الخصم',
+    'discount'                  => 'الخصم',
+    'tax_type'                  => 'نوع الضريبة',
+    'tax'                       => 'الضريبة',
+    'qty'                       => 'الكمية',
     'production_date'           => 'تاريخ الأنتاج',
     'expiration_date'           => 'تاريخ انتهاء الصلاحية',
-
-    'vendor_id'             => 'المورد',
-    'account_id'            => 'الحساب المالي',
-    'invoice_type'          => 'نوع الفاتورة',
-    'invoice_date'          => 'تاريخ الفاتورة',
-    'discount_type'         => 'نوع الخصم',
-    'discount'              => 'الخصم',
-    'tax_type'              => 'نوع الضريبة',
-    'tax'                   => 'الضريبة',
-    'qty'                   => 'الكمية',
-
 ];

@@ -67,10 +67,10 @@
                                     {{ __('stock.item_name') }}
                                     (<a href="{{ route('admin.items.create') }}" class="text underline">{{ __('msgs.add_new') }}</a>)
                                 </label>
-                                <select class="form-select" wire:model.debounce.350='order_id' id="select-tags-advanced">
+                                <select class="form-select" wire:model.debounce.350='item_id' id="select-tags-advanced">
                                     <option value="">{{ __('btns.select') }}</option>
                                     @foreach ($items as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }} ({{ $item->type }})</option>
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('order_id')" class="mt-2" />
@@ -93,8 +93,15 @@
                         @endif
                         <div class="col-sm-12 col-md-4">
                             <div class="mb-3">
+                                <x-input-label class="form-label" :value="__('movement.unit_price')" />
+                                <x-text-input type="number" class="form-control" wire:model.debounce.350='unit_price' wire:keyup='calcPrice' />
+                                <x-input-error :messages="$errors->get('unit_price')" class="mt-2" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('movement.qty')" />
-                                <x-text-input type="text" class="form-control" wire:model.debounce.350='qty' />
+                                <x-text-input type="number" class="form-control" wire:model.debounce.350='qty' wire:keyup='calcPrice' />
                                 <x-input-error :messages="$errors->get('qty')" class="mt-2" />
                             </div>
                         </div>
@@ -117,33 +124,15 @@
                         <div class="col-sm-12 col-md-4">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('movement.total_price')" />
-                                <x-text-input type="text" class="form-control" wire:model.debounce.350='total_price' />
-                                <x-input-error :messages="$errors->get('total_price')" class="mt-2" />
+                                <x-text-input type="number" class="form-control" wire:model.debounce.350='total_price' readonly disabled />
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="card-footer text-end">
+                    <button type="submit" class="btn btn-primary">{{ __('btns.submit') }}</button>
+                </div>
             </form>
-        </div>
-        <div class="card">
-            <div class="card-header w-100 d-flex align-items-center justify-content-between">
-                <h3 class="card-title">{{ __('stock.items') }}</h3>
-            </div>
-            <table class="table card-table table-vcenter table-striped-columns">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

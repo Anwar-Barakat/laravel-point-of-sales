@@ -15,6 +15,7 @@ return [
     //? Results :
     'updated'               => ':name Has Been Updated Successfuly',
     'created'               => ':name Has Been Created Successfuly',
+    'added'                 => ':name Has Been Added Successfuly',
     'deleted'               => ':name Has Been Deleted Successfuly',
     'submitted'             => ':name Has Been Submitted Successfuly',
     'has_sth'               => 'The :name has :sth',
