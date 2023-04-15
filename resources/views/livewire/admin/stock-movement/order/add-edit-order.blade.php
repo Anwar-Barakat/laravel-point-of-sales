@@ -43,6 +43,28 @@
                 </div>
             </div>
             <div class="row row-cards">
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            {{ __('stock.store') }}
+                            (<a href="{{ route('admin.stores.index') }}" class="text underline">{{ __('msgs.add_new') }}</a>)
+                        </label>
+                        <select class="form-control" wire:model.debounce.350='order.store_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @if ($stores)
+                                @foreach ($stores as $store)
+                                    <option value="{{ $store->id }}" {{ old('order.store_id') == $store->id ? 'selected' : '' }}>
+                                        {{ $store->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                        <x-input-error :messages="$errors->get('order.store_id')" class="mt-2" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cards">
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />

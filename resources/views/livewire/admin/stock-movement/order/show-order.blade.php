@@ -56,6 +56,7 @@
                         <th>#</th>
                         <th> {{ __('stock.vendor_name') }}</th>
                         <th> {{ __('account.account_number') }}</th>
+                        <th> {{ __('stock.store') }}</th>
                         <th>{{ __('movement.invoice_type') }}</th>
                         <th>{{ __('movement.invoice_date') }}</th>
                         <th></th>
@@ -79,6 +80,7 @@
                                     </span>
                                 </a>
                             </td>
+                            <td>{{ $order->store->name }}</td>
                             <td>
                                 {{ $order->invoice_type ? __('movement.delayed') : __('movement.cash') }}
                             </td>
@@ -89,15 +91,17 @@
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="{{ route('admin.orders.edit', ['order' => $order]) }}" class="dropdown-item d-flex align-items-center gap-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                                <path d="M16 5l3 3" />
-                                            </svg>
-                                            <span>{{ __('btns.edit') }}</span>
-                                        </a>
+                                        @if ($order->is_approved == 0)
+                                            <a href="{{ route('admin.orders.edit', ['order' => $order]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                                <span>{{ __('btns.edit') }}</span>
+                                            </a>
+                                        @endif
 
                                         <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.orders.show', ['order' => $order]) }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

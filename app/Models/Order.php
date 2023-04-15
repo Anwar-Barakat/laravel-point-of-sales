@@ -33,6 +33,11 @@ class Order extends Model
         return $this->belongsTo(Vendor::class, 'vendor_id');
     }
 
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class, 'account_id');

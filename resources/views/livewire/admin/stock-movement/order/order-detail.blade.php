@@ -25,6 +25,10 @@
                         <td>{{ $order->vendor->name }}</td>
                     </tr>
                     <tr>
+                        <th>{{ __('stock.store') }}</th>
+                        <td>{{ $order->store->name }}</td>
+                    </tr>
+                    <tr>
                         <th>{{ __('movement.invoice_number') }}</th>
                         <td>{{ $order->account->number }}</td>
                     </tr>
@@ -81,9 +85,9 @@
                                         {{ __('stock.item_name') }}
                                         (<a href="{{ route('admin.items.create') }}" class="text underline">{{ __('msgs.add_new') }}</a>)
                                     </label>
-                                    <select class="form-select" wire:model.debounce.350='orderProduct.item_id' id="select-tags-advanced">
+                                    <select class="form-select" wire:model='product.item_id'>
                                         <option value="">{{ __('btns.select') }}</option>
-                                        @foreach ($items as $item)
+                                        @forelse ($items as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
@@ -93,7 +97,7 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('stock.unit')" />
-                                        <select class="form-select" wire:model.debounce.350='orderProduct.unit_id' id="select-tags-advanced">
+                                        <select class="form-select" wire:model.debounce.500s='product.unit_id' id="select-tags-advanced">
                                             <option value="">{{ __('btns.select') }}</option>
                                             <option value="{{ $wholesale_unit->id }}">{{ $wholesale_unit->name }} ({{ __('stock.wholesale_unit') }})</option>
                                             @if (!is_null($retail_unit))
@@ -106,33 +110,33 @@
                             <div class="col-sm-12 col-md-4">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.unit_price')" />
-                                    <x-text-input type="number" class="form-control" wire:model.debounce.350='orderProduct.unit_price' wire:keyup='calcPrice' />
+                                    <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.unit_price' wire:keyup='calcPrice' />
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.qty')" />
-                                    <x-text-input type="number" class="form-control" wire:model.debounce.350='orderProduct.qty' wire:keyup='calcPrice' />
+                                    <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.qty' wire:keyup='calcPrice' />
                                 </div>
                             </div>
                             @if ($consuming)
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.production_date')" />
-                                        <x-text-input type="date" class="form-control" wire:model.debounce.350='orderProduct.production_date' :value="date('Y-m-d')" />
+                                        <x-text-input type="date" class="form-control" wire:model.debounce.500s='product.production_date' :value="date('Y-m-d')" />
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.expiration_date')" />
-                                        <x-text-input type="date" class="form-control" wire:model.debounce.350='orderProduct.expiration_date' :value="date('Y-m-d')" />
+                                        <x-text-input type="date" class="form-control" wire:model.debounce.500s='product.expiration_date' :value="date('Y-m-d')" />
                                     </div>
                                 </div>
                             @endif
                             <div class="col-sm-12 col-md-4">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.total_price')" />
-                                    <x-text-input type="number" class="form-control" wire:model.debounce.350='orderProduct.total_price' readonly disabled />
+                                    <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.total_price' readonly disabled />
                                 </div>
                             </div>
                         </div>
@@ -172,6 +176,7 @@
                             <th>{{ __('movement.production_date') }}</th>
                             <th>{{ __('movement.expiration_date') }}</th>
                             <th>{{ __('movement.total_price') }}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -199,6 +204,28 @@
                                 <td class="bg-blue-500">
                                     {{ $orderProduct->total_price }}
                                 </td>
+                                <th>
+                                    <div class="btn-list flex-nowrap">
+                                        <a wire:click.prefetch="edit({{ $orderProduct->id }})" href="#add-items" class="btn d-flex justify-content-center align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                <path d="M16 5l3 3" />
+                                            </svg>
+                                        </a>
+                                        <a wire:click.prefetch="delete({{ $orderProduct->id }})" href="#add-items" class="btn d-flex justify-content-center align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M4 7l16 0" />
+                                                <path d="M10 11l0 6" />
+                                                <path d="M14 11l0 6" />
+                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </th>
                             </tr>
                         @empty
                             <tr>

@@ -233,6 +233,8 @@ return [
         // Orders
         //_______________________
         'vendor_id'                 => 'Vendor',
+        'store_id'                  => 'Store',
+        'item_id'                   => 'Item',
         'account_id'                => 'Account',
         'invoice_type'              => 'Invoice type',
         'invoice_date'              => 'Invoice date',

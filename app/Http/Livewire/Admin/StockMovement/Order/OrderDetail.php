@@ -16,7 +16,7 @@ class OrderDetail extends Component
     use WithPagination;
 
     public Order $order;
-    public OrderProduct $orderProduct;
+    public OrderProduct $product;
 
     public $items = [], $auth;
     public $wholesale_unit = null,
@@ -24,26 +24,26 @@ class OrderDetail extends Component
 
     public $consuming = false;
 
-    public $orderProducts = [];
+    public $products = [];
 
 
-    public function mount(Order $order, OrderProduct $orderProduct)
+    public function mount(Order $order, OrderProduct $product)
     {
-        $this->auth                 = Auth::guard('admin')->user();
-        $this->order                = $order;
-        $this->orderProduct         = $orderProduct;
-        $this->orderProduct->qty    = 1;
+        $this->auth            = Auth::guard('admin')->user();
+        $this->order           = $order;
+        $this->product         = $product;
+        $this->product->qty    = 1;
         $this->order->is_approved   == 0 ?  $this->items = Item::select('id', 'name')->active()->get() : [];
     }
 
     public function calcPrice()
     {
-        $this->orderProduct->total_price = (int)$this->orderProduct->qty * (float)$this->orderProduct->unit_price;
+        $this->product->total_price = (int)$this->product->qty * (float)$this->product->unit_price;
     }
 
-    public function updatedOrderProductItemId()
+    public function updatedProductItemId()
     {
-        $item                   = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->orderProduct->item_id);
+        $item                   = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
         $this->consuming        = $item->type == 2 ? true : false;
         $this->wholesale_unit   = $item->parentUnit;
         $this->retail_unit      = $item->childUnit ?? null;
@@ -61,10 +61,10 @@ class OrderDetail extends Component
             if ($this->order->is_approved == 0) {
                 DB::beginTransaction();
 
-                $this->orderProduct->order_id       = $this->order->id;
-                $this->orderProduct->added_by       = $this->auth->id;
-                $this->orderProduct->company_code   = $this->auth->company_code;
-                $this->orderProduct->save();
+                $this->product->order_id       = $this->order->id;
+                $this->product->added_by       = $this->auth->id;
+                $this->product->company_code   = $this->auth->company_code;
+                $this->product->save();
 
                 $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', $this->auth->company_code)->sum('total_price');
                 $this->order->items_cost            = $totalPrices;
@@ -81,9 +81,24 @@ class OrderDetail extends Component
         }
     }
 
+    public function edit($id)
+    {
+        $product            = OrderProduct::with('item:id,type')->findOrFail($id);
+        $this->consuming    = $product->item->type == 2 ?  true : false;
+        $this->product      = $product;
+    }
+
+    public function delete($id)
+    {
+        $product            = OrderProduct::findOrFail($id);
+        $product->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
+    }
+
     public function render()
     {
-        $order_products = OrderProduct::where('order_id', $this->order->id)->where('company_code', $this->auth->company_code)->paginate(PAGINATION_COUNT);
+        $order_products = OrderProduct::where('order_id', $this->order->id)
+            ->where('company_code', $this->auth->company_code)->paginate(PAGINATION_COUNT);
         return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $order_products]);
     }
 
@@ -91,18 +106,18 @@ class OrderDetail extends Component
     public function rules(): array
     {
         return [
-            'orderProduct.item_id'           => [
+            'product.item_id'           => [
                 'required',
-                Rule::unique('order_products', 'item_id')->ignore($this->orderProduct->id)->where(function ($query) {
-                    return $query->where('item_id', $this->orderProduct->item_id);
+                Rule::unique('order_products', 'item_id')->ignore($this->product->id)->where(function ($query) {
+                    return $query->where('item_id', $this->product->item_id);
                 })
             ],
-            'orderProduct.unit_id'           => ['required'],
-            'orderProduct.unit_price'        => ['required', 'integer'],
-            'orderProduct.qty'               => ['required', 'integer'],
-            'orderProduct.production_date'   => ['required_if:consuming,yes'],
-            'orderProduct.expiration_date'   => ['required_if:consuming,yes'],
-            'orderProduct.total_price'       => ['required'],
+            'product.unit_id'           => ['required', 'integer'],
+            'product.unit_price'        => ['required', 'between:0,9999'],
+            'product.qty'               => ['required', 'integer'],
+            'product.production_date'   => ['required_if:consuming,yes'],
+            'product.expiration_date'   => ['required_if:consuming,yes'],
+            'product.total_price'       => ['required'],
         ];
     }
 }

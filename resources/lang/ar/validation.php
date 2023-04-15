@@ -233,6 +233,8 @@ return [
         // orders
         //_______________________
         'vendor_id'                 => 'المورد',
+        'store_id'                  => 'المخزن',
+        'item_id'                   => 'الصنف',
         'account_id'                => 'الحساب المالي',
         'invoice_type'              => 'نوع الفاتورة',
         'invoice_date'              => 'تاريخ الفاتورة',

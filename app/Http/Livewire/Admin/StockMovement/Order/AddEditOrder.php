@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\StockMovement\Order;
 
 use App\Models\Order;
+use App\Models\Store;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -12,7 +13,8 @@ class AddEditOrder extends Component
     public Order $order;
     public $auth;
 
-    public $vendors = [];
+    public $vendors = [],
+        $stores = [];
 
     public function mount(Order $order)
     {
@@ -20,12 +22,13 @@ class AddEditOrder extends Component
         $this->order    = $order;
         $this->order['invoice_date']  = date('Y-m-d');
         $this->vendors  = Vendor::active()->where('company_code', $this->auth->company_code)->get();
+        $this->stores   = Store::active()->where('company_code', $this->auth->company_code)->get();
     }
 
-    // public function updated($fields)
-    // {
-    //     return $this->validateOnly($fields);
-    // }
+    public function updated($fields)
+    {
+        return $this->validateOnly($fields);
+    }
 
     public function submit()
     {
@@ -53,6 +56,7 @@ class AddEditOrder extends Component
     {
         return [
             'order.vendor_id'       => ['required', 'integer'],
+            'order.store_id'        => ['required', 'integer'],
             'order.invoice_type'    => ['required', 'boolean'],
             'order.invoice_date'    => ['required', 'date'],
             'order.notes'           => ['required', 'min:10'],

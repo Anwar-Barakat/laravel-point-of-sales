@@ -36,6 +36,7 @@ return new class extends Migration
 
             $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('account_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             // $table->decimal('vendor_balance_before')->nullable();
             // $table->decimal('vendor_balance_after')->nullable();
             // $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();

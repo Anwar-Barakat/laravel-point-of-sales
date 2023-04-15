@@ -23,6 +23,11 @@ class Store extends Model
     public $translatable    = ['name'];
     protected $casts        = ['created_at' => 'date:Y-m-d',];
 
+    public function scopeActive($query)
+    {
+        return $query->where(['is_active' => 1]);
+    }
+
     public function addedBy()
     {
         return $this->belongsTo(Admin::class, 'added_by');
