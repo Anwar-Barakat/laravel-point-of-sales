@@ -155,7 +155,7 @@ return [
         'company_code'              => 'company code',
         'address'                   => 'address',
         'mobile'                    => 'mobile',
-        'is_active'                 => 'is active',
+        'is_active'                 => 'status',
         'current_password'          => 'current password',
         'password_confirmation'     => 'password Confirmation',
 
@@ -172,7 +172,7 @@ return [
         //_______________________
         // Treasuries
         //_______________________
-        'is_master'             => 'is master',
+        'is_master'             => 'treasury type',
         'last_payment_receipt'  => 'last payment receipt',
         'last_payment_collect'  => 'last payment collect',
         'treasury_name_ar'      => 'arabic treasury name',

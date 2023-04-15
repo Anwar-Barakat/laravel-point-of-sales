@@ -20,10 +20,10 @@
     <link rel="shortcut icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
     <link rel="icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
 
-    @vite('resources/css/app.css')
     <!-- CSS files -->
     @include('layouts.inc.head')
 
+    @vite('resources/css/app.css')
     <livewire:styles />
 </head>
 
@@ -83,8 +83,6 @@
             @include('layouts.inc.footer')
         </div>
     </div>
-
-    <!-- Libs JS -->
     @include('layouts.inc.footer-scripts')
 </body>
 

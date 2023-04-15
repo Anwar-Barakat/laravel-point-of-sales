@@ -60,6 +60,7 @@
             </table>
         </div>
     </div>
+
     @if ($order->is_approved == 0)
         <div class="col-md-12 col-lg-8" id="add-items">
             <div class="card mb-3">

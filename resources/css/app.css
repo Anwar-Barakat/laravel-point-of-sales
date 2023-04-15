@@ -5,3 +5,11 @@
 .collapse {
     visibility: unset !important;
 }
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    background-color: var(--tblr-btn-active-bg);
+    background-image: none;
+}
