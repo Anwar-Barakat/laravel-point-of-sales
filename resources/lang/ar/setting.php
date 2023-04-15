@@ -6,7 +6,6 @@ return [
     'profile_details'       => 'تفاصيل الملف الشخصي',
     'business_profile'      => 'ملف الأعمال الشخصي',
     'details'               => 'تفاصيل',
-
     'settings'              => 'الأعدادات',
     'company_name_ar'       => 'اسم الشركة بالعربي',
     'company_name_en'       => 'اسم الشركة بالأنكليزي',
@@ -26,7 +25,13 @@ return [
     'new_password'          => 'كلمة المرور الجديدة',
     'current_password'      => 'كلمة المرور الحالية',
     'password_confirmation' => 'تأكيد كلمة المرور',
-
     'parent_c_account'      => 'الحساب الأب للعملاء',
     'parent_v_account'      => 'الحساب الأب للموردين',
+
+
+    //_______________________
+    // Admins
+    //_______________________
+    'admins'                => 'المشرفين',
+    'admin'                 => 'مشرف',
 ];

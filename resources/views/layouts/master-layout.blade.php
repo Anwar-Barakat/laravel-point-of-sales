@@ -20,8 +20,10 @@
     <link rel="shortcut icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
     <link rel="icon" href="{{ asset('backend/dist/img/favicon.ico') }}" type="image/x-icon" />
 
+    @vite('resources/css/app.css')
     <!-- CSS files -->
     @include('layouts.inc.head')
+
     <livewire:styles />
 </head>
 
@@ -52,8 +54,7 @@
                                         {{ __('msgs.create', ['name' => __('dash.invoice')]) }}
                                     </a>
                                 </span>
-                                <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                <a href="#" class="btn btn-primary flex justify-between items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <path d="M12 5l0 14" />
@@ -61,8 +62,7 @@
                                     </svg>
                                     {{ __('msgs.create', ['name' => __('dash.report')]) }}
                                 </a>
-                                <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                <a href="#" class="btn btn-primary d-sm-none btn-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <path d="M12 5l0 14" />

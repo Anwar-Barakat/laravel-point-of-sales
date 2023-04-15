@@ -24,9 +24,8 @@ class TreasurySeeder extends Seeder
                 'is_active'             => rand(1, 0),
                 'last_payment_receipt'  => 1,
                 'last_payment_collect'  => 1,
-                'added_by'              => $admin->id,
-                'updated_by'            => $admin->id,
                 'company_code'          => $admin->company_code,
+                'admin_id'              => $admin->id,
             ],
             [
                 'name'                  => 'Casher 2',
@@ -34,9 +33,8 @@ class TreasurySeeder extends Seeder
                 'is_active'             => rand(1, 0),
                 'last_payment_receipt'  => 1,
                 'last_payment_collect'  => 1,
-                'added_by'              => $admin->id,
-                'updated_by'            => $admin->id,
                 'company_code'          => $admin->company_code,
+                'admin_id'              => $admin->id,
             ],
         ];
 

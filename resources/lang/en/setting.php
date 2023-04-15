@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'my_account'            => 'My account',
     'profile_details'       => 'Profile Details',
     'business_profile'      => 'Business Profile',
@@ -26,7 +25,14 @@ return [
     'new_password'          => 'New password',
     'current_password'      => 'Current password',
     'password_confirmation' => 'Password confirmation',
-
     'parent_c_account'      => 'The parent customers account',
     'parent_v_account'      => 'The parent vendors account',
+
+    //_______________________
+    // Admins
+    //_______________________
+    'admins'                => 'Admins',
+    'admin'                 => 'admin',
+
+
 ];

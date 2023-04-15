@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GeberalSetting\Admin\AdminController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\SettingController;
@@ -70,6 +71,12 @@ Route::group(
                 //_______________________
                 Route::resource('treasuries',               TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
                 Route::resource('treasury-deliveries',      TreasuryDeliveryController::class)->only(['store', 'destroy']);
+
+                //_______________________
+                // Admins
+                //_______________________
+                Route::resource('admins',                   AdminController::class);
+
 
                 //_______________________
                 // Sections

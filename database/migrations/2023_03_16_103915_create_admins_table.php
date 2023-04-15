@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('address')->nullable();
             $table->text('bio')->nullable();
-            $table->boolean('is_active')->default(true)->comment('1 => is active');
+            $table->boolean('is_active')->default(1);
             $table->integer('company_code')->default(0);
             $table->timestamps();
         });

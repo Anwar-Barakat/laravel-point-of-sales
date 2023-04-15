@@ -9,17 +9,6 @@
             </div>
             <div class="col-sm-12 col-md-4 col-lg-2">
                 <div class="mb-3">
-                    <x-input-label class="form-label" :value="__('msgs.added_by')" />
-                    <select id="" class="form-control" wire:model='added_by'>
-                        <option value="">{{ __('btns.select') }}</option>
-                        @foreach (App\Models\Admin::all() as $admin)
-                            <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-2">
-                <div class="mb-3">
                     <x-input-label class="form-label" :value="__('msgs.order_by')" />
                     <select id="" class="form-control" wire:model='order_by'>
                         <option value="">{{ __('btns.select') }}</option>
@@ -57,11 +46,10 @@
                     <th>#</th>
                     <th> {{ __('treasury.treasury') }}</th>
                     <th> {{ __('msgs.is_master') }}</th>
-                    <th> {{ __('msgs.is_active') }}</th>
+                    <th> {{ __('setting.status') }}</th>
                     <th> {{ __('treasury.last_payment_receipt') }}</th>
                     <th> {{ __('treasury.last_payment_receipt') }}</th>
                     <th> {{ __('msgs.created_at') }}</th>
-                    <th>{{ __('msgs.added_by') }}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -83,9 +71,6 @@
                         <td>{{ $treasury->last_payment_receipt }}</td>
                         <td> {{ $treasury->last_payment_collect }}</td>
                         <td> {{ $treasury->created_at }} </td>
-                        <td>
-                            <span class="badge bg-blue-lt">{{ $treasury->addedBy->name }}</span>
-                        </td>
                         <td>
                             <span class="dropdown">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
@@ -117,7 +102,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8">
+                        <td colspan="7">
                             <x-blank-section :content="__('treasury.treasury')" :url="route('admin.treasuries.create')" />
                         </td>
                     </tr>

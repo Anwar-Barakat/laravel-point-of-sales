@@ -16,9 +16,8 @@ class Treasury extends Model
         'is_active',
         'last_payment_receipt',
         'last_payment_collect',
-        'added_by',
-        'updated_by',
         'company_code',
+        'admin_id',
     ];
 
     protected $casts        = ['created_at' => 'date:Y-m-d',];
@@ -34,16 +33,6 @@ class Treasury extends Model
     public function scopeActive($query)
     {
         return $query->where('is_active', 1);
-    }
-
-    public function addedBy()
-    {
-        return $this->belongsTo(Admin::class, 'added_by');
-    }
-
-    public function updatedBy()
-    {
-        return $this->belongsTo(Admin::class, 'updated_by');
     }
 
     public function treasuriesDelivery()

@@ -19,9 +19,7 @@ return new class extends Migration
             $table->integer('company_code');
             $table->bigInteger('last_payment_receipt');
             $table->bigInteger('last_payment_collect');
-
-            $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
-            $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();
+            $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

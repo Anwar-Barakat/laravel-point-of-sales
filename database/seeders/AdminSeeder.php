@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
     {
         $admins =  [
             [
-                'name'              => fake()->name(),
+                'name'              => 'Anwar Barakat',
                 'email'             => 'admin@admin.com',
                 'password'          => Hash::make('adminadmin'),
                 'company_code'      => 1

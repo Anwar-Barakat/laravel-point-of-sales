@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -35,5 +36,10 @@ class Admin extends Authenticatable implements HasMedia
         $this->addMediaConversion('admin_avatar')
             ->fit(Manipulations::FIT_CROP, 300)
             ->nonQueued();
+    }
+
+    public function treasuries(): HasMany
+    {
+        return $this->hasMany(Treasury::class);
     }
 }
