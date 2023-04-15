@@ -27,7 +27,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.is_active')" />
-                        <select id="" class="form-control" wire:model='is_active'>
+                        <select class="form-select" wire:model='is_active'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -41,7 +41,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.section')" />
-                        <select id="" class="form-control" wire:model="section_id">
+                        <select class="form-select" wire:model="section_id">
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($sections as $section)
                                 <option value="{{ $section->id }}">{{ $section->name }}</option>
@@ -53,7 +53,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.category_level')" />
-                        <select id="" class="form-control" wire:model="parent_id">
+                        <select class="form-select" wire:model="parent_id">
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="0">{{ __('msgs.parent') }}</option>
                             @if ($categories)

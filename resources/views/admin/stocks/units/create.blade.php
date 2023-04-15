@@ -27,7 +27,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('msgs.is_active')" />
-                                    <select id="" class="form-control" name='is_active'>
+                                    <select class="form-select" name='is_active'>
                                         <option value="">{{ __('btns.select') }}</option>
                                         <option value="1" {{ old('is_active') == '1' ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
                                         <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>
@@ -38,7 +38,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('setting.status')" />
-                                    <select id="" class="form-control" name='status'>
+                                    <select class="form-select" name='status'>
                                         <option value="">{{ __('btns.select') }}</option>
                                         <option value="retail" {{ old('is_active') == 'retail' ? 'selected' : '' }}>{{ __('stock.retail') }}</option>
                                         <option value="wholesale" {{ old('is_active') == 'wholesale' ? 'selected' : '' }}>{{ __('stock.wholesale') }}</option>

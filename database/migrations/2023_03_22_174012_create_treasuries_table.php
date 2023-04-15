@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('treasuries', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->boolean('is_master')->default(0)->comment('1 => is master');
-            $table->boolean('is_active')->default(true)->comment('1 => is active');
+            $table->boolean('is_master')->default(0);
+            $table->boolean('is_active')->default(1);
             $table->integer('company_code');
             $table->bigInteger('last_payment_receipt');
             $table->bigInteger('last_payment_collect');

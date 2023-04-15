@@ -19,7 +19,7 @@
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.order_by')" />
-                        <select id="" class="form-control" wire:model='order_by'>
+                        <select class="form-select" wire:model='order_by'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="name">{{ __('movement.order_name') }}</option>
                             <option value="created_at">{{ __('msgs.created_at') }}</option>
@@ -29,7 +29,7 @@
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.per_page')" />
-                        <select id="" class="form-control" wire:model='per_page'>
+                        <select class="form-select" wire:model='per_page'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
@@ -40,7 +40,7 @@
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.sort_by')" />
-                        <select id="" class="form-control" wire:model='sort_by'>
+                        <select class="form-select" wire:model='sort_by'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="asc">{{ __('msgs.asc') }}</option>
                             <option value="desc">{{ __('msgs.desc') }}</option>

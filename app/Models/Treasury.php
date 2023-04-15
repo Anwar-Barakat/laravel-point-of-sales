@@ -20,7 +20,7 @@ class Treasury extends Model
         'admin_id',
     ];
 
-    protected $casts        = ['created_at' => 'date:Y-m-d',];
+    protected $casts = ['created_at' => 'date:Y-m-d',];
 
     public function scopeSearch($query, $term)
     {

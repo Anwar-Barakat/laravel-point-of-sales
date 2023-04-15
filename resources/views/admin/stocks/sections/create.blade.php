@@ -20,7 +20,7 @@
                     </div>
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.is_it_active')" />
-                        <select class="form-control" name="is_active">
+                        <select class="form-select" name="is_active">
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1" {{ old('is_active') ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
                             <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>

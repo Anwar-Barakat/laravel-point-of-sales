@@ -20,7 +20,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
-                        <select id="" class="form-control" wire:model.debounce.350='vendor.is_active'>
+                        <select class="form-select" wire:model.debounce.350='vendor.is_active'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1" {{ old('order.vendor_id') ? 'selected' : '' }}>{{ __('msgs.is_active') }}</option>
                             <option value="0" {{ old('order.vendor_id') == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
@@ -31,7 +31,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.category')" />
-                        <select id="" class="form-control" wire:model.debounce.350='vendor.category_id'>
+                        <select class="form-select" wire:model.debounce.350='vendor.category_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($categories)
                                 @foreach ($categories as $root)
@@ -56,7 +56,7 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
-                            <select id="" class="form-control" wire:model.debounce.350='vendor.initial_balance_status'>
+                            <select class="form-select" wire:model.debounce.350='vendor.initial_balance_status'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach (App\Models\Vendor::INITIALBANALNCESTATUS as $key => $status)
                                     <option value="{{ $key }}">{{ __('account.' . $status) }}</option>

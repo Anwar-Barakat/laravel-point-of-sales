@@ -27,6 +27,7 @@ return [
     'password_confirmation' => 'Password confirmation',
     'parent_c_account'      => 'The parent customers account',
     'parent_v_account'      => 'The parent vendors account',
+    'treasury_type'         => 'Treasury type',
 
     //_______________________
     // Admins

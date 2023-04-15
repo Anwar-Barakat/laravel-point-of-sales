@@ -9,7 +9,7 @@
                             {{ __('stock.vendor_name') }}
                             (<a href="{{ route('admin.vendors.create') }}" class="text underline">{{ __('msgs.add_new') }}</a>)
                         </label>
-                        <select class="form-control" wire:model.debounce.350='order.vendor_id'>
+                        <select class="form-select" wire:model.debounce.350='order.vendor_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($vendors)
                                 @foreach ($vendors as $vendor)
@@ -25,7 +25,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('movement.invoice_type')" />
-                        <select id="" class="form-control" wire:model.debounce.350='order.invoice_type'>
+                        <select class="form-select" wire:model.debounce.350='order.invoice_type'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Order::INVOICETYPE as $key => $value)
                                 <option value="{{ $key }}">{{ __('movement.' . $value) }}</option>
@@ -49,7 +49,7 @@
                             {{ __('stock.store') }}
                             (<a href="{{ route('admin.stores.index') }}" class="text underline">{{ __('msgs.add_new') }}</a>)
                         </label>
-                        <select class="form-control" wire:model.debounce.350='order.store_id'>
+                        <select class="form-select" wire:model.debounce.350='order.store_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($stores)
                                 @foreach ($stores as $store)

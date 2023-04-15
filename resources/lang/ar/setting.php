@@ -27,7 +27,7 @@ return [
     'password_confirmation' => 'تأكيد كلمة المرور',
     'parent_c_account'      => 'الحساب الأب للعملاء',
     'parent_v_account'      => 'الحساب الأب للموردين',
-
+    'treasury_type'         => 'نوع الخزنة',
 
     //_______________________
     // Admins

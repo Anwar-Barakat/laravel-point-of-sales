@@ -5,5 +5,5 @@
 
 
 
-    @livewire('admin.general-setting.treasury.update-treasury', ['treasury' => $treasury])
+    @livewire('admin.general-setting.treasury.add-edit-treasury', ['treasury' => $treasury])
 </x-master-layout>

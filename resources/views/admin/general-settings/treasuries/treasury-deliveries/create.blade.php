@@ -12,7 +12,7 @@
                  <div class="modal-body">
                      <div class="mb-3">
                          <x-input-label class="form-label" :value="__('treasury.treasury')" />
-                         <select class="form-control" name="treasury_delivery_id">
+                         <select class="form-select" name="treasury_delivery_id">
                              <option value="">{{ __('btns.select') }}</option>
                              @foreach ($treasuries as $treasury)
                                  <option value="{{ $treasury->id }}">{{ $treasury->name }}</option>

@@ -17,11 +17,22 @@ class ShowTreasury extends Component
         $sort_by    = 'asc',
         $per_page   = PAGINATION_COUNT;
 
+    public function updateStatus($id)
+    {
+        $treasury    = Treasury::findOrFail($id);
+        $treasury->update(['is_active' => !$treasury->is_active]);
+    }
+
     public function render()
     {
-        $treasuries = Treasury::search(trim($this->name))
+
+        return view('livewire.admin.general-setting.treasury.show-treasury', ['treasuries' => $this->getTreasuries()]);
+    }
+
+    public function getTreasuries()
+    {
+        return Treasury::search(trim($this->name))
             ->orderBy($this->order_by, $this->sort_by)
             ->paginate($this->per_page);
-        return view('livewire.admin.general-setting.treasury.show-treasury', ['treasuries' => $treasuries]);
     }
 }

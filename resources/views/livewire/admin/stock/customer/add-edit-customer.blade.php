@@ -20,7 +20,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
-                        <select id="" class="form-control" wire:model.debounce.350='customer.is_active'>
+                        <select class="form-select" wire:model.debounce.350='customer.is_active'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.is_active') }}</option>
                             <option value="0">{{ __('msgs.not_active') }}</option>
@@ -33,7 +33,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
-                        <select id="" class="form-control" wire:model.debounce.350='customer.initial_balance_status'>
+                        <select class="form-select" wire:model.debounce.350='customer.initial_balance_status'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Customer::INITIALBANALNCESTATUS as $key => $status)
                                 <option value="{{ $key }}">{{ __('account.' . $status) }}</option>

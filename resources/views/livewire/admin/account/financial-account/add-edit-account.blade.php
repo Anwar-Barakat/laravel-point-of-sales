@@ -13,7 +13,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.account_type')" />
-                        <select id="" class="form-control" wire:model.debounce.350='account.account_type_id'>
+                        <select class="form-select" wire:model.debounce.350='account.account_type_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($account_types as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
@@ -27,7 +27,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.is_parent_account')" />
-                        <select id="" class="form-control" wire:model.debounce.350='account.is_parent'>
+                        <select class="form-select" wire:model.debounce.350='account.is_parent'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -39,7 +39,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.parent_accounts')" />
-                            <select id="" class="form-control" wire:model.debounce.350='account.parent_id'>
+                            <select class="form-select" wire:model.debounce.350='account.parent_id'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach ($parent_accounts as $parent_accounts)
                                     <option value="{{ $parent_accounts->id }}">{{ $parent_accounts->name }}</option>
@@ -52,7 +52,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
-                        <select id="" class="form-control" wire:model.debounce.350='account.is_archived'>
+                        <select class="form-select" wire:model.debounce.350='account.is_archived'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('account.is_archived') }}</option>
                             <option value="0">{{ __('account.not_archived') }}</option>
@@ -66,7 +66,7 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
-                            <select id="" class="form-control" wire:model.debounce.350='account.initial_balance_status'>
+                            <select class="form-select" wire:model.debounce.350='account.initial_balance_status'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach (App\Models\Account::INITIALBANALNCESTATUS as $key => $status)
                                     <option value="{{ $key }}">{{ __('account.' . $status) }}</option>

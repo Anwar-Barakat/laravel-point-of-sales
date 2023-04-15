@@ -29,7 +29,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.is_active')" />
-                        <select id="" class="form-control" wire:model.debounce.350='item.is_active'>
+                        <select class="form-select" wire:model.debounce.350='item.is_active'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -42,7 +42,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_type')" />
-                        <select id="" class="form-control" wire:model.debounce.350='item.type'>
+                        <select class="form-select" wire:model.debounce.350='item.type'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Item::ITEMTYPE as $key => $value)
                                 <option value="{{ $key }}">{{ __('stock.' . $value) }}</option>
@@ -54,7 +54,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_category')" />
-                        <select id="" class="form-control" wire:model.debounce.350="item.category_id">
+                        <select class="form-select" wire:model.debounce.350="item.category_id">
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($categories)
                                 @foreach ($categories as $root)
@@ -76,7 +76,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_fixed_price')" />
-                        <select id="" class="form-control" wire:model.debounce.350='item.has_fixed_price'>
+                        <select class="form-select" wire:model.debounce.350='item.has_fixed_price'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -87,7 +87,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.parent_item')" />
-                        <select id="" class="form-control" wire:model.debounce.350='item.parent_id'>
+                        <select class="form-select" wire:model.debounce.350='item.parent_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="0">{{ __('stock.parent') }}</option>
                             @if ($parent_items->count() > 0)
@@ -106,7 +106,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_unit')" />
-                        <select id="" class="form-control" wire:model.debounce.350='item.wholesale_unit_id'>
+                        <select class="form-select" wire:model.debounce.350='item.wholesale_unit_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($wholesale_units as $unit)
                                 <option value="{{ $unit->id }}">{{ $unit->name }}</option>
@@ -147,7 +147,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_retail_unit')" />
-                        <select id="" class="form-control" wire:model.debounce.350='item.has_retail_unit'>
+                        <select class="form-select" wire:model.debounce.350='item.has_retail_unit'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -161,7 +161,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_unit')" />
-                            <select id="" class="form-control" wire:model.debounce.350='item.retail_unit_id'>
+                            <select class="form-select" wire:model.debounce.350='item.retail_unit_id'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach ($retail_units as $unit)
                                     <option value="{{ $unit->id }}">{{ $unit->name }}</option>
