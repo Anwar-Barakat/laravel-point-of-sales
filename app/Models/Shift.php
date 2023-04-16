@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Shift extends Model
 {
@@ -16,8 +17,8 @@ class Shift extends Model
         'delivered_treasury_id',
         'delivered_shift_id',
         'init_treasury_balance',
-        'start_date',
-        'end_date',
+        'date_opened',
+        'date_closed',
         'is_finished',
         'is_delivered',
         'commission',
@@ -29,4 +30,15 @@ class Shift extends Model
         'notes',
         'company_code',
     ];
+
+
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'admin_id');
+    }
+
+    public function treasury(): BelongsTo
+    {
+        return $this->belongsTo(Treasury::class, 'treasury_id');
+    }
 }

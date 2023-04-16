@@ -28,7 +28,7 @@ class AddEditShift extends Component
         try {
             $shiftOpened = Shift::where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->exists();
             if ($shiftOpened) {
-                toastr()->error(__('movement.shift_opened'));
+                toastr()->error(__('movement.you_have_opened_shift'));
                 return redirect()->route('admin.shifts.create');
             }
 
@@ -43,7 +43,7 @@ class AddEditShift extends Component
 
             $this->shift->save();
             toastr()->success(__('msgs.added', ['name' => __('movement.treasury_shifts')]));
-            return redirect()->route('admin.shifts.create');
+            return redirect()->route('admin.shifts.index');
         } catch (\Throwable $th) {
             // return redirect()->back()->with(['error' => $th->getMessage()]);
             return redirect()->route('admin.shifts.create')->with(['error' => $th->getMessage()]);
@@ -58,13 +58,7 @@ class AddEditShift extends Component
     public function rules(): array
     {
         return [
-            'shift.treasury_id'     => [
-                'required',
-                // 'min:3',
-                // Rule::unique('shifts', 'treasury_id')->ignore($this->shift->id)->where(function ($query) {
-                //     return $query->where('company_code', $this->auth->company_code);
-                // })
-            ]
+            'shift.treasury_id'     => ['required', 'integer']
         ];
     }
 }

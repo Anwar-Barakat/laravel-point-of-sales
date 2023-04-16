@@ -44,8 +44,18 @@ return [
     'treasuries_shifts'         => 'Treasuries shifts',
     'treasury_shifts'           => 'Treasury shifts',
     'not_available_now'         => 'Not available now',
+    'date_opened'               => 'Date opened',
+    'date_closed'               => 'Date closed',
+    'review_status'             => 'Review status',
+    'finished'                  => 'Finished',
+    'not_finished'              => 'Not finished',
+    'is_reviewed'               => 'Is reiewed',
+    'reviewed_status'           => 'Reiewed status',
+    'my_shift'                  => 'My shift',
+    'waiting_for_review'        => 'Waiting for review',
+    'opened_shift'              => 'Shift opened',
 
-    'shift_opened'              => 'You have already a shift opened',
+    'you_have_opened_shift'     => 'You have already a shift opened',
     'treasury_opened'           => 'The selected treasury is currently used into another shift',
 
 ];

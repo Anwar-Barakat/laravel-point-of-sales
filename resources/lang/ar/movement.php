@@ -43,8 +43,18 @@ return [
     'treasuries_shifts'         => 'تحولات سندات الخزانة',
     'treasury_shifts'           => 'تحولات الخزينة',
     'not_available_now'         => 'غير متاحة حالياً',
+    'date_opened'               => 'تاريخ البدء',
+    'date_closed'               => 'تاريخ الأنتهاء',
+    'review_status'             => 'حالة المراجعة',
+    'finished'                  => 'مُكتمل',
+    'not_finished'              => 'غير مُكتمل',
+    'is_reviewed'               => 'تمت المراجعة',
+    'reviewed_status'           => 'حالة المراجعة',
+    'my_shift'                  => 'تحويلات الخزنة خاصتي',
+    'waiting_for_review'        => 'بإنتظار المراجعة',
+    'opened_shift'              => 'تحويلات الخزنة مفتوحة',
 
-    'shift_opened'              => 'لديك الفعل تحويل خزينة مفتوحة سابقاً',
+    'you_have_opened_shift'     => 'لديك الفعل تحويل خزينة مفتوحة سابقاً',
     'treasury_opened'           => 'الخزنة مستخدمة حالياً في تحويل خزينة آخر',
 
 ];

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('delivered_shift_id')->nullable()->constrained('shifts')->cascadeOnUpdate();
 
             $table->decimal('init_treasury_balance')->default(0);
-            $table->datetime('start_date')->nullable();
-            $table->datetime('end_date')->nullable();
+            $table->datetime('date_opened')->nullable();
+            $table->datetime('date_closed')->nullable();
             $table->boolean('is_finished')->default(0);
             $table->boolean('is_delivered')->default(0);
             $table->decimal('commission')->default(0);
@@ -31,6 +31,7 @@ return new class extends Migration
             $table->decimal('status_money')->default(0);
 
             $table->boolean('receive_type')->nullable()->comment('0 => the same treasury, 1 => another treasury');
+            $table->boolean('is_reviewed')->default(0);
             $table->dateTime('review_date')->nullable();
             $table->string('notes')->nullable();
             $table->integer('company_code');
