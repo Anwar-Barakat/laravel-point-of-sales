@@ -40,7 +40,11 @@ return [
     //_______________________
     // Shifts
     //_______________________
-    'treasuries_shifts'         => 'Treasuries shifts',
-    'treasury_shifts'           => 'Treasury shifts',
+    'treasuries_shifts'         => 'تحولات سندات الخزانة',
+    'treasury_shifts'           => 'تحولات الخزينة',
+    'not_available_now'         => 'غير متاحة حالياً',
+
+    'shift_opened'              => 'لديك الفعل تحويل خزينة مفتوحة سابقاً',
+    'treasury_opened'           => 'الخزنة مستخدمة حالياً في تحويل خزينة آخر',
 
 ];

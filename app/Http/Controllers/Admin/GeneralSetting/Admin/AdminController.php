@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\GeneralSetting\Admin;
 
-use App\Http\Requests\StoreShiftRequest;
-use App\Http\Requests\UpdateShiftRequest;
-use App\Models\Shift;
+use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use Illuminate\Http\Request;
 
-class ShiftController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('admin.general-settings.admins.index');
     }
 
     /**
@@ -21,13 +21,12 @@ class ShiftController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreShiftRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,15 +34,15 @@ class ShiftController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Shift $shift)
+    public function show(Admin $admin)
     {
-        //
+        return view('admin.general-settings.admins.show', ['admin' => $admin]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Shift $shift)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -51,7 +50,7 @@ class ShiftController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateShiftRequest $request, Shift $shift)
+    public function update(Request $request, Admin $admin)
     {
         //
     }
@@ -59,7 +58,7 @@ class ShiftController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Shift $shift)
+    public function destroy(Admin $admin)
     {
         //
     }

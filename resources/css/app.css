@@ -13,3 +13,11 @@ button,
     background-color: var(--tblr-btn-active-bg);
     background-image: none;
 }
+
+.form-input,
+.form-textarea,
+.form-select,
+.form-multiselect {
+    border: var(--tblr-border-width) solid var(--tblr-border-color);
+    border-color: var(--tblr-border-color);
+}

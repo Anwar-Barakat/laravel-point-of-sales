@@ -232,19 +232,20 @@ return [
         //_______________________
         // Orders
         //_______________________
-        'vendor_id'                 => 'Vendor',
-        'store_id'                  => 'Store',
-        'item_id'                   => 'Item',
-        'account_id'                => 'Account',
-        'invoice_type'              => 'Invoice type',
-        'invoice_date'              => 'Invoice date',
-        'discount_type'             => 'Discount type',
+        'treasury_id'               => 'treasury',
+        'vendor_id'                 => 'vendor',
+        'store_id'                  => 'store',
+        'item_id'                   => 'item',
+        'account_id'                => 'account',
+        'invoice_type'              => 'invoice type',
+        'invoice_date'              => 'invoice date',
+        'discount_type'             => 'discount type',
         'discount'                  => 'discount',
-        'tax_type'                  => 'Tax type',
-        'tax'                       => 'Tax',
-        'qty'                       => 'Quantity',
-        'production_date'           => 'Production history',
-        'expiration_date'           => 'Expiration date',
+        'tax_type'                  => 'tax type',
+        'tax'                       => 'tax',
+        'qty'                       => 'quantity',
+        'production_date'           => 'production history',
+        'expiration_date'           => 'expiration date',
     ],
 
 ];

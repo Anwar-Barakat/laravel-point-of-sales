@@ -45,6 +45,7 @@
                 <tr>
                     <th>#</th>
                     <th> {{ __('treasury.treasury') }}</th>
+                    <th> {{ __('setting.admin') }}</th>
                     <th> {{ __('msgs.is_master') }}</th>
                     <th> {{ __('setting.status') }}</th>
                     <th> {{ __('treasury.last_payment_receipt') }}</th>
@@ -58,6 +59,11 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $treasury->name }}</td>
+                        <td>
+                            <a href="{{ route('admin.admins.show', $treasury->admin) }}">
+                                <span class="badge bg-azure">{{ $treasury->admin->email }}</span>
+                            </a>
+                        </td>
                         <td>
                             @if ($treasury->is_master)
                                 <span class="badge badge-outline text-green">{{ __('msgs.master') }}</span>

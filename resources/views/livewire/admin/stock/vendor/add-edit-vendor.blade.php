@@ -6,21 +6,21 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.vendor_name')" />
-                        <x-text-input type="text" class="form-control" wire:model.debounce.350='vendor.name' />
+                        <x-text-input type="text" class="form-control" wire:model.debounce.500s='vendor.name' />
                         <x-input-error :messages="$errors->get('vednor.name')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.address')" />
-                        <x-text-input type="text" class="form-control" wire:model.debounce.350='vendor.address' />
+                        <x-text-input type="text" class="form-control" wire:model.debounce.500s='vendor.address' />
                         <x-input-error :messages="$errors->get('vednor.address')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
-                        <select class="form-select" wire:model.debounce.350='vendor.is_active'>
+                        <select class="form-select" wire:model.debounce.500s='vendor.is_active'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1" {{ old('order.vendor_id') ? 'selected' : '' }}>{{ __('msgs.is_active') }}</option>
                             <option value="0" {{ old('order.vendor_id') == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
@@ -31,7 +31,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.category')" />
-                        <select class="form-select" wire:model.debounce.350='vendor.category_id'>
+                        <select class="form-select" wire:model.debounce.500s='vendor.category_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($categories)
                                 @foreach ($categories as $root)
@@ -56,7 +56,7 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
-                            <select class="form-select" wire:model.debounce.350='vendor.initial_balance_status'>
+                            <select class="form-select" wire:model.debounce.500s='vendor.initial_balance_status'>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach (App\Models\Vendor::INITIALBANALNCESTATUS as $key => $status)
                                     <option value="{{ $key }}">{{ __('account.' . $status) }}</option>
@@ -68,7 +68,7 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
-                            <x-text-input type="number" class="form-control" wire:model.debounce.350='vendor.initial_balance' />
+                            <x-text-input type="number" class="form-control" wire:model.debounce.500s='vendor.initial_balance' />
                             <x-input-error :messages="$errors->get('vednor.initial_balance')" class="mt-2" />
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="5" class="form-control" wire:model.debounce.350='vendor.notes'></textarea>
+                        <textarea rows="5" class="form-control" wire:model.debounce.500s='vendor.notes'></textarea>
                         <x-input-error :messages="$errors->get('vednor.notes')" class="mt-2" />
                     </div>
                 </div>

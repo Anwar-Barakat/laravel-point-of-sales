@@ -285,7 +285,7 @@
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <!-- financial accounts -->
+                            <!-- orders -->
                             <div class="dropend">
                                 <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                     {{ __('movement.orders') }}
@@ -296,6 +296,21 @@
                                     </a>
                                     <a href="{{ route('admin.orders.create') }}" class="dropdown-item {{ request()->routeIs('admin.orders.create') ? 'active' : '' }}">
                                         {{ __('msgs.create', ['name' => __('movement.order')]) }}
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- shifts -->
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                    {{ __('movement.treasuries_shifts') }}
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ route('admin.shifts.index') }}" class="dropdown-item {{ request()->routeIs('admin.shifts.index') ? 'active' : '' }}">
+                                        {{ __('msgs.list', ['name' => __('movement.treasuries_shifts')]) }}
+                                    </a>
+                                    <a href="{{ route('admin.shifts.create') }}" class="dropdown-item {{ request()->routeIs('admin.shifts.create') ? 'active' : '' }}">
+                                        {{ __('msgs.create', ['name' => __('movement.treasury_shifts')]) }}
                                     </a>
                                 </div>
                             </div>

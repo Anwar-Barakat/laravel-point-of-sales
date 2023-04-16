@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('treasuries', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
             $table->boolean('is_master')->default(0);
             $table->boolean('is_active')->default(1);
             $table->integer('company_code');
-            $table->bigInteger('last_payment_receipt');
-            $table->bigInteger('last_payment_collect');
-            $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
+            $table->integer('last_payment_receipt')->default(1);
+            $table->integer('last_payment_collect')->default(1);
             $table->timestamps();
         });
     }

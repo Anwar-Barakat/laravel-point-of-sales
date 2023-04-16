@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Treasury extends Model
 {
@@ -35,7 +37,12 @@ class Treasury extends Model
         return $query->where('is_active', 1);
     }
 
-    public function treasuriesDelivery()
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'admin_id');
+    }
+
+    public function treasuriesDelivery(): HasMany
     {
         return $this->hasMany(TreasuryDelivery::class);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\StockMovement;
+namespace App\Http\Controllers\Admin\StockMovement\Order;
 
 use App\Models\Order;
 use App\Http\Controllers\Controller;

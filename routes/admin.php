@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\GeberalSetting\Admin\AdminController;
+use App\Http\Controllers\Admin\GeneralSetting\Admin\AdminController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\SettingController;
@@ -21,7 +21,8 @@ use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
-use App\Http\Controllers\Admin\StockMovement\OrderController;
+use App\Http\Controllers\Admin\StockMovement\Order\OrderController;
+use App\Http\Controllers\Admin\StockMovement\Shift\ShiftController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -131,6 +132,11 @@ Route::group(
                 // Orders
                 //_______________________
                 Route::resource('orders',                   OrderController::class);
+
+                //_______________________
+                // Shifts
+                //_______________________
+                Route::resource('shifts',                   ShiftController::class);
             });
         });
     }

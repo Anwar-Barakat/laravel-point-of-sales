@@ -16,23 +16,16 @@ class TreasurySeeder extends Seeder
      */
     public function run(): void
     {
-        $admin      = Admin::inRandomOrder()->first();
+        $admin      = Admin::where('email', 'admin@admin.com')->first();
         $treasuries = [
             [
                 'name'                  => 'Casher 1',
                 'is_master'             => 1,
-                'is_active'             => rand(1, 0),
-                'last_payment_receipt'  => 1,
-                'last_payment_collect'  => 1,
                 'company_code'          => $admin->company_code,
                 'admin_id'              => $admin->id,
             ],
             [
                 'name'                  => 'Casher 2',
-                'is_master'             => 0,
-                'is_active'             => rand(1, 0),
-                'last_payment_receipt'  => 1,
-                'last_payment_collect'  => 1,
                 'company_code'          => $admin->company_code,
                 'admin_id'              => $admin->id,
             ],

@@ -233,6 +233,7 @@ return [
         // orders
         //_______________________
         'vendor_id'                 => 'المورد',
+        'treasury_id'               => 'الخزنة',
         'store_id'                  => 'المخزن',
         'item_id'                   => 'الصنف',
         'account_id'                => 'الحساب المالي',

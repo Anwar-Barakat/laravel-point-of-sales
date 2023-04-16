@@ -43,5 +43,9 @@ return [
     //_______________________
     'treasuries_shifts'         => 'Treasuries shifts',
     'treasury_shifts'           => 'Treasury shifts',
+    'not_available_now'         => 'Not available now',
+
+    'shift_opened'              => 'You have already a shift opened',
+    'treasury_opened'           => 'The selected treasury is currently used into another shift',
 
 ];

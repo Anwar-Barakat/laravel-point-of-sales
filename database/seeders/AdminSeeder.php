@@ -17,13 +17,13 @@ class AdminSeeder extends Seeder
     {
         $admins =  [
             [
-                'name'              => 'Anwar Barakat',
+                'name'              => 'Admin',
                 'email'             => 'admin@admin.com',
                 'password'          => Hash::make('adminadmin'),
                 'company_code'      => 1
             ],
             [
-                'name'              => 'Anwar Barakat',
+                'name'              => 'Admin1',
                 'email'             => 'admin1@admin.com',
                 'password'          => Hash::make('adminadmin'),
                 'company_code'      => 1
