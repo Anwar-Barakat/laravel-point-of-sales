@@ -22,6 +22,12 @@ class AdminSeeder extends Seeder
                 'password'          => Hash::make('adminadmin'),
                 'company_code'      => 1
             ],
+            [
+                'name'              => 'Anwar Barakat',
+                'email'             => 'admin1@admin.com',
+                'password'          => Hash::make('adminadmin'),
+                'company_code'      => 1
+            ],
         ];
 
         foreach ($admins as $admin) {

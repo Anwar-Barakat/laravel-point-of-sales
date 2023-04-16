@@ -38,4 +38,10 @@ return [
     'expiration_date'           => 'Expiration date',
 
 
+    //_______________________
+    // Shifts
+    //_______________________
+    'treasuries_shifts'         => 'Treasuries shifts',
+    'treasury_shifts'           => 'Treasury shifts',
+
 ];
