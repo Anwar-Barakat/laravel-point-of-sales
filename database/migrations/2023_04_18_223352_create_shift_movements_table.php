@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shift_movements', function (Blueprint $table) {
             $table->id();
-            $table->integer('movement_type');
+            $table->foreignId('shift_movement_type_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('shift_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->constrained()->cascadeOnUpdate();

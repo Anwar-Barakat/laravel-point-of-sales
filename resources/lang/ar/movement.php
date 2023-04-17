@@ -57,4 +57,9 @@ return [
     'you_have_opened_shift'     => 'لديك الفعل تحويل خزينة مفتوحة سابقاً',
     'treasury_opened'           => 'الخزنة مستخدمة حالياً في تحويل خزينة آخر',
 
+    //_______________________
+    // Shifts movements
+    //_______________________
+    'collecting'                    => 'تحصيل',
+    'monetary_collecting_screen'    => 'شاشة تحصيل النقدية',
 ];

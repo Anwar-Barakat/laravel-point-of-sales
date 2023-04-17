@@ -61,4 +61,11 @@ return [
     'shift_movements'           => 'Treasuries shifts',
     'treasury_shifts'           => 'Treasury shifts',
 
+
+    //_______________________
+    // Shifts movements
+    //_______________________
+    'collecting'                    => 'Collecting',
+    'monetary_collecting_screen'    => 'Monetary collecting screen',
+
 ];

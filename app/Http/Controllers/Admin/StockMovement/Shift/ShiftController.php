@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\StockMovement\Shift;
 
-use App\Http\Requests\StoreShiftRequest;
-use App\Http\Requests\UpdateShiftRequest;
 use App\Models\Shift;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ShiftController extends Controller
 {
@@ -28,7 +27,7 @@ class ShiftController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreShiftRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -52,7 +51,7 @@ class ShiftController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateShiftRequest $request, Shift $shift)
+    public function update(Request $request, Shift $shift)
     {
         //
     }

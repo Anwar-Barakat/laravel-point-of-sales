@@ -107,12 +107,12 @@ Route::group(
                 //_______________________
                 // Customers
                 //_______________________
-                Route::resource('customers',                CustomerController::class);
+                Route::resource('customers',                CustomerController::class)->except('store', 'update');
 
                 //_______________________
                 // Vendors
                 //_______________________
-                Route::resource('vendors',                  VendorController::class);
+                Route::resource('vendors',                  VendorController::class)->except('store', 'update');
 
 
 
@@ -122,21 +122,26 @@ Route::group(
                 Route::resource('account-types',            AccountTypeController::class)->only(['index']);
 
                 //_______________________
-                // Financial Accounts
+                // Accounts
                 //_______________________
                 Route::resource('accounts',                 AccountController::class)->except(['store', 'update']);
+
+                //_______________________
+                // Shift Movements
+                //_______________________
+                Route::resource('shift-movements',          ShiftController::class)->except('store', 'update', 'destroy');
 
 
 
                 //_______________________
                 // Orders
                 //_______________________
-                Route::resource('orders',                   OrderController::class);
+                Route::resource('orders',                   OrderController::class)->except('store', 'update', 'destroy');
 
                 //_______________________
                 // Shifts
                 //_______________________
-                Route::resource('shifts',                   ShiftController::class);
+                Route::resource('shifts',                   ShiftController::class)->except('store', 'update', 'destroy');
             });
         });
     }

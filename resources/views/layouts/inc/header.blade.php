@@ -260,6 +260,21 @@
                                             </a>
                                         </div>
                                     </div>
+
+                                    <!-- collection monetary screen -->
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                            {{ __('movement.monetary_collecting_screen') }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ route('admin.accounts.index') }}" class="dropdown-item {{ request()->routeIs('admin.financial-accounts.index') ? 'active' : '' }}">
+                                                {{ __('msgs.list', ['name' => __('account.accounts')]) }}
+                                            </a>
+                                            <a href="{{ route('admin.accounts.create') }}" class="dropdown-item {{ request()->routeIs('admin.financial-accounts.create') ? 'active' : '' }}">
+                                                {{ __('msgs.create', ['name' => __('account.account')]) }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

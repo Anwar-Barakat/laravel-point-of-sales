@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             SettingSeeder::class,
-
             TreasurySeeder::class,
             TreasuryDeliverySeeder::class,
 
@@ -27,9 +26,9 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
 
             AccountTypeSeeder::class,
-
             AccountSeeder::class,
             VendorSeeder::class,
+            ShiftMovementTypeSeeder::class,
         ]);
     }
 }
