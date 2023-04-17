@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Account\TreasuryTransaction;
 
-use App\Http\Requests\StoreShiftMovementRequest;
-use App\Http\Requests\UpdateShiftMovementRequest;
-use App\Models\ShiftMovement;
+use App\Models\TreasuryTransaction;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ShiftMovementController extends Controller
+class TreasuryTransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,13 +21,13 @@ class ShiftMovementController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.accounts.shift-movements.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreShiftMovementRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ShiftMovementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ShiftMovement $shiftMovement)
+    public function show(TreasuryTransaction $treasuryTransaction)
     {
         //
     }
@@ -43,7 +43,7 @@ class ShiftMovementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ShiftMovement $shiftMovement)
+    public function edit(TreasuryTransaction $treasuryTransaction)
     {
         //
     }
@@ -51,7 +51,7 @@ class ShiftMovementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateShiftMovementRequest $request, ShiftMovement $shiftMovement)
+    public function update(Request $request, TreasuryTransaction $treasuryTransaction)
     {
         //
     }
@@ -59,7 +59,7 @@ class ShiftMovementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ShiftMovement $shiftMovement)
+    public function destroy(TreasuryTransaction $treasuryTransaction)
     {
         //
     }

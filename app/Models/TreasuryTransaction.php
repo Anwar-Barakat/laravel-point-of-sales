@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShiftMovement extends Model
+class TreasuryTransaction extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'movement_type',
+        'shift_type_id',
         'shift_id',
         'admin_id',
         'treasury_id',

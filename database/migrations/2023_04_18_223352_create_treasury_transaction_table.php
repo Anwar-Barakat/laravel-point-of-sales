@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shift_movements', function (Blueprint $table) {
+        Schema::create('treasury_transaction', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shift_movement_type_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('shift_type_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('shift_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->constrained()->cascadeOnUpdate();

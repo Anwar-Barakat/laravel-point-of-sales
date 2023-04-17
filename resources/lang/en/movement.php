@@ -67,5 +67,6 @@ return [
     //_______________________
     'collecting'                    => 'Collecting',
     'monetary_collecting_screen'    => 'Monetary collecting screen',
-
+    'shift_movements'               => 'Shift movements',
+    'collecting'                    => 'Collecting',
 ];

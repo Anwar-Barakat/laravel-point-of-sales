@@ -62,4 +62,6 @@ return [
     //_______________________
     'collecting'                    => 'تحصيل',
     'monetary_collecting_screen'    => 'شاشة تحصيل النقدية',
+    'shift_movements'               => 'حركات تحويلات الخزاءن',
+
 ];

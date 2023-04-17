@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\ShiftMovementType;
+use App\Models\ShiftType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ShiftMovementTypeSeeder extends Seeder
+class ShiftTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -119,8 +119,8 @@ class ShiftMovementTypeSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            if (is_null(ShiftMovementType::where('name->en', $type['name']['en'])->where('name->ar', $type['name']['ar'])->first()))
-                ShiftMovementType::create($type);
+            if (is_null(ShiftType::where('name->en', $type['name']['en'])->where('name->ar', $type['name']['ar'])->first()))
+                ShiftType::create($type);
         }
     }
 }

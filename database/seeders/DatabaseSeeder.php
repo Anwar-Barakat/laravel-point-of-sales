@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             AccountTypeSeeder::class,
             AccountSeeder::class,
             VendorSeeder::class,
-            ShiftMovementTypeSeeder::class,
+            ShiftTypeSeeder::class,
         ]);
     }
 }

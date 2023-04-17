@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shift_movement_types', function (Blueprint $table) {
+        Schema::create('shift_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->text('name');
             $table->boolean('is_active')->default(1);
             $table->timestamps();
         });

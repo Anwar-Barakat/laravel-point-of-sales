@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
 use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
-use App\Http\Controllers\Admin\Account\VendorCategory\VendorCategoryController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -23,6 +22,7 @@ use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use App\Http\Controllers\Admin\StockMovement\Order\OrderController;
 use App\Http\Controllers\Admin\StockMovement\Shift\ShiftController;
+use App\Http\Controllers\TreasuryTransactionController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -129,7 +129,7 @@ Route::group(
                 //_______________________
                 // Shift Movements
                 //_______________________
-                Route::resource('shift-movements',          ShiftController::class)->except('store', 'update', 'destroy');
+                Route::resource('shift-movements',          TreasuryTransactionController::class)->except('store', 'update', 'destroy');
 
 
 
