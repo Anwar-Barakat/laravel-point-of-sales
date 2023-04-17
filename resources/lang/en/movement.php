@@ -58,4 +58,7 @@ return [
     'you_have_opened_shift'     => 'You have already a shift opened',
     'treasury_opened'           => 'The selected treasury is currently used into another shift',
 
+    'shift_movements'           => 'Treasuries shifts',
+    'treasury_shifts'           => 'Treasury shifts',
+
 ];
