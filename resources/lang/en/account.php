@@ -1,7 +1,9 @@
 <?php
 
 return [
-    //? Account types
+    //_______________________
+    // Accounts types
+    //_______________________
     'account_types'     => 'Account types',
     'account'           => 'Account',
     'accounts'          => 'Accounts',
@@ -12,7 +14,9 @@ return [
     'related_to_internal_account'   => 'Related to internal account',
 
 
-    //? Financial account
+    //_______________________
+    // Accounts
+    //_______________________
     'accounts'            => 'Financial accounts',
     'account'             => 'Financial account',
     'account_name'                  => 'Account name',
@@ -33,7 +37,21 @@ return [
     'is_archived'                   => 'Archived',
 
 
-    //? Vendors
+    //_______________________
+    // Vendors
+    //_______________________
     'vendor'                => 'Vendor',
     'vendors'               => 'Vendors',
+
+    //_______________________
+    // treasury transation
+    //_______________________
+    'treasury_transations'      => 'Treasury transations',
+    'treasury_transation'       => 'Treasury transation',
+    'amount_collected'          => 'Amount collected',
+    'transaction_date'          => 'Transaction_date',
+
+    'treasury_available_balance'    => 'Treasury available balance',
+    'dont_have_open_shift'          => 'You don\'t have an open shift to be able to deal with treasury transaction,
+'
 ];

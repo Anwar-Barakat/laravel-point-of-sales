@@ -223,7 +223,7 @@
                     <!-- _______________________
                     Accounts
                     _______________________!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') || request()->routeIs('admin.shift-movements.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') || request()->routeIs('admin.treasury-transactions.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -262,8 +262,8 @@
                                     </div>
 
                                     <!-- collection monetary screen -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.shift-movements.index') ? 'active' : '' }}" href="{{ route('admin.shift-movements.index') }}">
-                                        {{ __('movement.monetary_collecting_screen') }}
+                                    <a class="dropdown-item {{ request()->routeIs('admin.treasury-transactions.index') ? 'active' : '' }}" href="{{ route('admin.treasury-transactions.index') }}">
+                                        {{ __('account.treasury_transations') }}
                                     </a>
                                 </div>
                             </div>

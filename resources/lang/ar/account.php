@@ -1,6 +1,9 @@
 <?php
 
 return [
+    //_______________________
+    // Accounts types
+    //_______________________
     'account_types'     => 'أنواع الحسابات',
     'account'           => 'الحساب',
     'accounts'          => 'الحسابات',
@@ -10,7 +13,9 @@ return [
     'added_from_its_screen'         => 'نعم, يضاف من شاشته',
     'related_to_internal_account'   => 'متعلق بالحساب الداخلي',
 
-    //? Financial account
+    //_______________________
+    // Accoounts
+    //_______________________
     'accounts'                      => 'حسابات المالية',
     'account'                       => 'حساب مالي',
     'account_name'                  => 'اسم الحساب',
@@ -31,7 +36,22 @@ return [
     'is_archived'                   => 'مؤرشف',
 
 
-    //? Vendors
+    //_______________________
+    // Vendors
+    //_______________________
     'vendor'                => 'مورد',
     'vendors'               => 'موردين',
+
+
+    //_______________________
+    // treasury transation
+    //_______________________
+    'treasury_transations'      => 'معاملات سندات الخزانة',
+    'treasury_transation'       => 'معاملة سند الخزنة',
+    'amount_collected'          => 'المبلغ المُحصل',
+    'transaction_date'          => 'تاريخ المعاملة',
+
+
+    'treasury_available_balance'    => 'رصيد الخزينة المتوفر',
+    'dont_have_open_shift'          => 'ليس لديك مناوبة مفتوحة لتتمكن من التعامل مع معاملات الخزينة'
 ];

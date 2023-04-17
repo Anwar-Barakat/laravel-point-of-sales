@@ -21,7 +21,7 @@ class TreasuryTransactionController extends Controller
      */
     public function create()
     {
-        return view('admin.accounts.shift-movements.create');
+        return view('admin.accounts.treasury-transactions.create');
     }
 
     /**

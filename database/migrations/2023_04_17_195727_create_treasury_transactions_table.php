@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('treasury_transaction', function (Blueprint $table) {
+        Schema::create('treasury_transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shift_type_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('shift_id')->constrained()->cascadeOnUpdate();
@@ -23,7 +23,8 @@ return new class extends Migration
             $table->boolean('is_account');
             $table->boolean('is_approved');
 
-            $table->decimal('money')->default(0);
+            $table->date('transaction_date');
+            $table->decimal('amount_collected')->default(0);
             $table->decimal('money_for_account')->default(0);
             $table->integer('company_code');
             $table->timestamps();
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shift_movements');
+        Schema::dropIfExists('treasury_transactions');
     }
 };

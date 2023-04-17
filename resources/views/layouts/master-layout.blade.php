@@ -23,12 +23,12 @@
     <!-- CSS files -->
     @include('layouts.inc.head')
 
-    @vite('resources/css/app.css')
     <livewire:styles />
+    @vite('resources/css/app.css')
 </head>
 
 <body>
-    <script src="{{ asset('backend/dist/js/demo-theme.min.js?1674944402') }}"></script>
+    <script src="{{ asset('backend/dist/js/demo-theme.min.js') }}"></script>
     <div class="page">
         <!-- Navbar -->
         @include('layouts.inc.header')

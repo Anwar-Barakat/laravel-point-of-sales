@@ -21,3 +21,7 @@ button,
     border: var(--tblr-border-width) solid var(--tblr-border-color);
     border-color: var(--tblr-border-color);
 }
+
+.ts-control > input {
+    padding: 0 30px !important;
+}

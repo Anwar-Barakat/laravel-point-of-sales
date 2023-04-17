@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
 use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
+use App\Http\Controllers\Admin\Account\TreasuryTransaction\TreasuryTransactionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -22,7 +23,6 @@ use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use App\Http\Controllers\Admin\StockMovement\Order\OrderController;
 use App\Http\Controllers\Admin\StockMovement\Shift\ShiftController;
-use App\Http\Controllers\TreasuryTransactionController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -57,91 +57,91 @@ Route::group(
             Route::post('reset-password',               [NewPasswordController::class, 'store'])->name('password.reset');
 
             Route::group(['middleware' => 'admin'], function () {
-                Route::get('/logout',                       LogoutController::class)->name('logout');
-                Route::get('/dashboard',                    DashboardController::class)->name('dashboard');
+                Route::get('/logout',                           LogoutController::class)->name('logout');
+                Route::get('/dashboard',                        DashboardController::class)->name('dashboard');
 
                 //_______________________
                 // Setting
                 //_______________________
-                Route::resource('/settings',                SettingController::class)->only(['index']);
-                Route::get('/profile',                      AdminProfileController::class)->name('setting.profile');
-                Route::get('/change-password',              AdminChangePasswordController::class)->name('setting.change-password');
+                Route::resource('/settings',                    SettingController::class)->only(['index']);
+                Route::get('/profile',                          AdminProfileController::class)->name('setting.profile');
+                Route::get('/change-password',                  AdminChangePasswordController::class)->name('setting.change-password');
 
                 //_______________________
                 // Treasuries
                 //_______________________
-                Route::resource('treasuries',               TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
-                Route::resource('treasury-deliveries',      TreasuryDeliveryController::class)->only(['store', 'destroy']);
+                Route::resource('treasuries',                   TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
+                Route::resource('treasury-deliveries',          TreasuryDeliveryController::class)->only(['store', 'destroy']);
 
                 //_______________________
                 // Admins
                 //_______________________
-                Route::resource('admins',                   AdminController::class);
+                Route::resource('admins',                       AdminController::class);
 
 
                 //_______________________
                 // Sections
                 //_______________________
-                Route::resource('sections',                 SectionController::class)->except(['create', 'show', 'edit']);
+                Route::resource('sections',                     SectionController::class)->except(['create', 'show', 'edit']);
 
                 //_______________________
                 // Categories
                 //_______________________
-                Route::resource('categories',               CategoryController::class)->except(['store', 'show', 'update']);
+                Route::resource('categories',                   CategoryController::class)->except(['store', 'show', 'update']);
 
                 //_______________________
                 // Stoes
                 //_______________________
-                Route::resource('stores',                   StoreController::class)->except(['create', 'show', 'edit']);
+                Route::resource('stores',                       StoreController::class)->except(['create', 'show', 'edit']);
 
                 //_______________________
                 // Units
                 //_______________________
-                Route::resource('units',                    UnitController::class)->except(['show']);
+                Route::resource('units',                        UnitController::class)->except(['show']);
 
                 //_______________________
                 // Items
                 //_______________________
-                Route::resource('items',                    ItemController::class)->except(['store', 'update']);
+                Route::resource('items',                        ItemController::class)->except(['store', 'update']);
 
                 //_______________________
                 // Customers
                 //_______________________
-                Route::resource('customers',                CustomerController::class)->except('store', 'update');
+                Route::resource('customers',                    CustomerController::class)->except('store', 'update');
 
                 //_______________________
                 // Vendors
                 //_______________________
-                Route::resource('vendors',                  VendorController::class)->except('store', 'update');
+                Route::resource('vendors',                      VendorController::class)->except('store', 'update');
 
 
 
                 //_______________________
                 // Account types
                 //_______________________
-                Route::resource('account-types',            AccountTypeController::class)->only(['index']);
+                Route::resource('account-types',                AccountTypeController::class)->only(['index']);
 
                 //_______________________
                 // Accounts
                 //_______________________
-                Route::resource('accounts',                 AccountController::class)->except(['store', 'update']);
+                Route::resource('accounts',                     AccountController::class)->except(['store', 'update']);
 
                 //_______________________
-                // Shift Movements
+                // collection transaction
                 //_______________________
-                Route::resource('shift-movements',          TreasuryTransactionController::class)->except('store', 'update', 'destroy');
+                Route::resource('treasury-transactions',        TreasuryTransactionController::class)->except('store', 'update', 'destroy');
 
 
 
                 //_______________________
                 // Orders
                 //_______________________
-                Route::resource('orders',                   OrderController::class)->except('store', 'update', 'destroy');
+                Route::resource('orders',                       OrderController::class)->except('store', 'update', 'destroy');
 
                 //_______________________
                 // Shifts
                 //_______________________
-                Route::resource('shifts',                   ShiftController::class)->except('store', 'update', 'destroy');
+                Route::resource('shifts',                       ShiftController::class)->except('store', 'update');
             });
         });
     }
