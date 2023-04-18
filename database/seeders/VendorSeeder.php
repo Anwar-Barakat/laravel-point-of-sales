@@ -22,7 +22,7 @@ class VendorSeeder extends Seeder
     {
         $faker      = Factory::create();
         $category   = Category::inRandomOrder()->active()->first();
-        $admin      = Admin::inRandomOrder()->first();
+        $admin      = Admin::where('email', 'admin@admin.com')->first();
 
         DB::table('vendors')->delete();
 

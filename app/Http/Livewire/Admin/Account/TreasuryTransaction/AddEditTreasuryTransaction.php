@@ -32,7 +32,7 @@ class AddEditTreasuryTransaction extends Component
         $this->shiftTypes   = ShiftType::collect()->active()->get();
 
         if (Shift::where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->count() > 0) {
-            $this->shiftExists  = Shift::with(['treasury:id,name'])->where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->first();
+            $this->shiftExists  = Shift::with(['treasury:id,name', 'admin:id,name'])->where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->first();
             $this->transaction->treasury_id = !is_null($this->shiftExists)
                 ? $this->shiftExists->treasury->id
                 : '';
@@ -80,7 +80,8 @@ class AddEditTreasuryTransaction extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.account.treasury-transaction.add-edit-treasury-transaction');
+        $transactions   = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])->where(['company_code' => $this->auth->company_code])->paginate(PAGINATION_COUNT);
+        return view('livewire.admin.account.treasury-transaction.add-edit-treasury-transaction', ['transactions' => $transactions]);
     }
 
     public function rules(): array

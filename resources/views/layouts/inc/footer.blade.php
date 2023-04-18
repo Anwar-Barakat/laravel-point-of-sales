@@ -22,7 +22,6 @@
                         <a href="{{ route('admin.dashboard') }}" class="link-secondary"> {{ __('partials.sales_management') }}</a>.
                         {{ __('partials.all_rights_reserved') }}
                     </li>
-
                 </ul>
             </div>
         </div>

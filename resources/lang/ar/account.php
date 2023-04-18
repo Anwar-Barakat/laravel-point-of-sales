@@ -46,12 +46,15 @@ return [
     //_______________________
     // treasury transation
     //_______________________
-    'treasury_transactions'      => 'معاملات سندات الخزانة',
-    'treasury_transaction'       => 'معاملة سند الخزنة',
+    'treasury_transactions'     => 'معاملات سندات الخزانة',
+    'treasury_transaction'      => 'معاملة سند الخزنة',
     'amount_collected'          => 'المبلغ المُحصل',
     'transaction_date'          => 'تاريخ المعاملة',
     'shift_type'                => 'نوع التحويل',
     'report'                    => 'تقرير',
+    'counterpart_collection'    => 'تحصيل نظير',
+    'cash_collection_screen'    => 'شاشة تحصيل النقدية',
+    'click_here'                => 'إضغط هنا',
 
     'treasury_available_balance'    => 'رصيد الخزينة المتوفر',
     'dont_have_open_shift'          => 'ليس لديك مناوبة مفتوحة لتتمكن من التعامل مع معاملات الخزينة'

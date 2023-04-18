@@ -16,7 +16,7 @@ class StoreSeeder extends Seeder
     public function run(): void
     {
         $fake   = Factory::create();
-        $admin  = Admin::inRandomOrder()->first();
+        $admin  = Admin::where('email', 'admin@admin.com')->first();
 
         $stores = [
             [

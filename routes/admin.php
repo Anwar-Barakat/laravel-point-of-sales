@@ -136,7 +136,7 @@ Route::group(
                 //_______________________
                 // Orders
                 //_______________________
-                Route::resource('orders',                       OrderController::class)->except('store', 'update', 'destroy');
+                Route::resource('orders',                       OrderController::class)->except('store', 'update');
 
                 //_______________________
                 // Shifts

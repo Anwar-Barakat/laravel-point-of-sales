@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TreasuryTransaction extends Model
 {
@@ -23,4 +24,24 @@ class TreasuryTransaction extends Model
         'money_for_account',
         'company_code'
     ];
+
+    public function shift_type(): BelongsTo
+    {
+        return $this->belongsTo(ShiftType::class, 'shift_type_id');
+    }
+
+    public function shift(): BelongsTo
+    {
+        return $this->belongsTo(Shift::class, 'shift_id');
+    }
+
+    public function admin(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'admin_id');
+    }
+
+    public function treasury(): BelongsTo
+    {
+        return $this->belongsTo(Treasury::class, 'treasury_id');
+    }
 }

@@ -18,7 +18,7 @@ class AccountSeeder extends Seeder
     public function run(): void
     {
         $faker          = Factory::create();
-        $admin          = Admin::inRandomOrder()->first();
+        $admin          = Admin::where('email', 'admin@admin.com')->first();
         $captial_type   = AccountType::where('name->en', 'Capital')->first();
         $general_type   = AccountType::where('name->en', 'General')->first();
         $expenses_type  = AccountType::where('name->en', 'Expenses')->first();

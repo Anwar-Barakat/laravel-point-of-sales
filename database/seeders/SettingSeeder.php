@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $faker      = Factory::create();
-        $admin      = Admin::inRandomOrder()->first();
+        $admin      = Admin::where('email', 'admin@admin.com')->first();
 
         $settings   = [
             [

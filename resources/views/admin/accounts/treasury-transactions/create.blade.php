@@ -4,10 +4,6 @@
     @section('breadcrumbSubtitle', __('account.accounts'))
 
 
-    <div class="card">
-        <div class="row g-0">
-            @livewire('admin.account.treasury-transaction.add-edit-treasury-transaction')
-        </div>
-    </div>
+    @livewire('admin.account.treasury-transaction.add-edit-treasury-transaction')
 
 </x-master-layout>

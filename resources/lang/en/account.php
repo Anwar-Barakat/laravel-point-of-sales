@@ -46,12 +46,15 @@ return [
     //_______________________
     // treasury transation
     //_______________________
-    'treasury_transactions'      => 'Treasury transations',
-    'treasury_transaction'       => 'Treasury transation',
+    'treasury_transactions'     => 'Treasury transations',
+    'treasury_transaction'      => 'Treasury transation',
     'amount_collected'          => 'Amount collected',
     'transaction_date'          => 'Transaction_date',
     'shift_type'                => 'Shift type',
     'report'                    => 'Report',
+    'counterpart_collection'    => 'Counterpart collection',
+    'cash_collection_screen'    => 'Cash collection screen',
+    'click_here'                => 'Click here',
 
     'treasury_available_balance'    => 'Treasury available balance',
     'dont_have_open_shift'          => 'You don\'t have an open shift to be able to deal with treasury transaction,

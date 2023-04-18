@@ -20,7 +20,7 @@ class ItemFactory extends Factory
      */
     public function definition(): array
     {
-        $admin      = Admin::inRandomOrder()->first();
+        $admin      = Admin::where('email', 'admin@admin.com')->first();
         $category   = Category::inRandomOrder()->active()->first();
         $unit       = Unit::inRandomOrder()->active()->first();
         return [

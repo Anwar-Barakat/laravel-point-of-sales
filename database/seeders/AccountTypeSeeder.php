@@ -14,7 +14,7 @@ class AccountTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin          = Admin::inRandomOrder()->first();
+        $admin          = Admin::where('email', 'admin@admin.com')->first();
         $account_types  = [
             [
                 'name'                          => [

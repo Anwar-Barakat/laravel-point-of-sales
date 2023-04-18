@@ -40,7 +40,7 @@
                                 </span>
                             </td>
                             <td>
-                                <span class="badge bg-green-lt">
+                                <span class="badge bg-blue-lt">
                                     {{ $shift->admin->name }}
                                 </span>
                             </td>

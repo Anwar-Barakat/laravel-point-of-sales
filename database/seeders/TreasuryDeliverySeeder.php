@@ -18,7 +18,7 @@ class TreasuryDeliverySeeder extends Seeder
     {
         DB::table('treasury_deliveries')->truncate();
 
-        $admin      = Admin::inRandomOrder()->first();
+        $admin      = Admin::where('email', 'admin@admin.com')->first();
         $treasuries = [
             [
                 'treasury_id'           => Treasury::where('is_master', 1)->first()->id,
