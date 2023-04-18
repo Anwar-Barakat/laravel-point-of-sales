@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Account\TreasuryTransaction;
 use App\Models\TreasuryTransaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Shift;
+use Illuminate\Support\Facades\Auth;
 
 class TreasuryTransactionController extends Controller
 {
@@ -21,6 +23,10 @@ class TreasuryTransactionController extends Controller
      */
     public function create()
     {
+        if (!$this->hasOpenShift()) {
+            toastr()->error(__('account.dont_have_open_shift'));
+            return redirect()->route('admin.shifts.create');
+        }
         return view('admin.accounts.treasury-transactions.create');
     }
 
@@ -62,5 +68,12 @@ class TreasuryTransactionController extends Controller
     public function destroy(TreasuryTransaction $treasuryTransaction)
     {
         //
+    }
+
+
+    private function hasOpenShift()
+    {
+        return Shift::where(['admin_id' => Auth::guard('admin')->id(), 'company_code' => Auth::guard('admin')->user()->company_code, 'is_finished' => 0])
+            ->count() > 0;
     }
 }

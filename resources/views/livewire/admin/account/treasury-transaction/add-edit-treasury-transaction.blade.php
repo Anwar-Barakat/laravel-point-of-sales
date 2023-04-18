@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 d-flex flex-column">
                 @if ($shiftExists)
-                    <form wire:submit.prevent='submit' id="add-items">
+                    <form wire:submit.prevent='submit' id="add-treasury-transaction">
                         <div class="card-body">
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                             <div class="row row-cards">
@@ -43,8 +43,8 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.amount_collected')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='transaction.amount_collected' />
-                                        <x-input-error :messages="$errors->get('transaction.amount_collected')" class="mt-2" />
+                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='transaction.money' />
+                                        <x-input-error :messages="$errors->get('transaction.money')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
@@ -110,14 +110,14 @@
                                 <td><span class="badge bg-blue"> {{ $transaction->treasury->name }}</span></td>
                                 <td><span class="badge bg-blue-lt">{{ $transaction->admin->name }}</span></td>
                                 <td><span class="badge bg-green"> {{ $transaction->shift_type->name }}</span></td>
-                                <td>{{ $transaction->amount_collected }}</td>
+                                <td>{{ $transaction->money }}</td>
                                 <td>
                                     <button type="button" class="btn" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('account.report') }}" data-bs-content="{{ $transaction->report }}">{{ __('account.click_here') }}</button>
                                 </td>
                                 <td>{{ $transaction->created_at }}</td>
                                 <th>
                                     <div class="btn-list flex-nowrap">
-                                        <a wire:click.prefetch="edit({{ $transaction->id }})" href="#add-items" class="btn d-flex justify-content-center align-items-center">
+                                        <a wire:click.prefetch="edit({{ $transaction->id }})" href="#add-treasury-transaction" class="btn d-flex justify-content-center align-items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -131,7 +131,7 @@
                         @empty
                             <tr>
                                 <td colspan="10">
-                                    <x-blank-section :content="__('account.treasury_transaction')" :url="'#add-items'" />
+                                    <x-blank-section :content="__('account.treasury_transaction')" :url="'#add-treasury-transaction'" />
                                 </td>
                             </tr>
                         @endforelse

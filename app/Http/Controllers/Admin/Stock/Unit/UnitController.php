@@ -14,7 +14,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units  = Unit::latest()->paginate(PAGINATION_COUNT);
+        $units  = Unit::latest()->paginate(CUSTOM_PAGINATION);
         return view('admin.stocks.units.index', ['units' => $units]);
     }
 

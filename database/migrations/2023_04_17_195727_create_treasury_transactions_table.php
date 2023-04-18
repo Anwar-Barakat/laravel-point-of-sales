@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->date('transaction_date');
             $table->integer('payment_receipt');
-            $table->decimal('amount_collected')->default(0);
+            $table->decimal('money')->default(0);
             $table->decimal('money_for_account')->default(0);
             $table->text('report');
             $table->integer('company_code');

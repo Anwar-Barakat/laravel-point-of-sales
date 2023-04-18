@@ -98,7 +98,7 @@ class OrderDetail extends Component
     public function render()
     {
         $order_products = OrderProduct::where('order_id', $this->order->id)
-            ->where('company_code', $this->auth->company_code)->paginate(PAGINATION_COUNT);
+            ->where('company_code', $this->auth->company_code)->paginate(CUSTOM_PAGINATION);
         return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $order_products]);
     }
 

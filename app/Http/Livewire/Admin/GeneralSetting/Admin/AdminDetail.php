@@ -24,7 +24,7 @@ class AdminDetail extends Component
     public function render()
     {
         $treasuries = Treasury::where(['company_code' => auth()->guard('admin')->user()->company_code, 'admin_id' => $this->admin->id])
-            ->paginate(PAGINATION_COUNT);
+            ->paginate(CUSTOM_PAGINATION);
         return view('livewire.admin.general-setting.admin.admin-detail', ['treasuries' => $treasuries]);
     }
 }

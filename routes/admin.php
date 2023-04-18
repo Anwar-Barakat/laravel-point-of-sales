@@ -37,7 +37,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-define('PAGINATION_COUNT', 10);
+define('CUSTOM_PAGINATION', 10);
 
 Route::group(
     [

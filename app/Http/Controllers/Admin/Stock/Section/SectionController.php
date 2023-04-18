@@ -14,7 +14,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $sections  = Section::with(['addedBy'])->latest()->paginate(PAGINATION_COUNT);
+        $sections  = Section::with(['addedBy'])->latest()->paginate(CUSTOM_PAGINATION);
         return view('admin.stocks.sections.index', ['sections' => $sections]);
     }
 

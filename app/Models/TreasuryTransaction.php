@@ -21,7 +21,7 @@ class TreasuryTransaction extends Model
         'is_approved',
         'transaction_date',
         'payment_receipt',
-        'money_for_account',
+        'money',
         'company_code'
     ];
 

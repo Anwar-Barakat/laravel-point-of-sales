@@ -18,7 +18,6 @@ class AddEditTreasuryTransaction extends Component
 
     public Admin $auth;
     public Shift $shiftExists;
-    public int $treasuryBalance;
 
     public $accounts = [],
         $shiftTypes = [];
@@ -31,16 +30,13 @@ class AddEditTreasuryTransaction extends Component
         $this->accounts     = Account::where(['company_code' => $this->auth->company_code, 'is_parent' => 0])->active()->get();
         $this->shiftTypes   = ShiftType::collect()->active()->get();
 
-        if (Shift::where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->count() > 0) {
-            $this->shiftExists  = Shift::with(['treasury:id,name', 'admin:id,name'])->where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->first();
-            $this->transaction->treasury_id = !is_null($this->shiftExists)
-                ? $this->shiftExists->treasury->id
-                : '';
-            $this->treasuryBalance = TreasuryTransaction::where(['company_code' => $this->auth->company_code, 'shift_id' => $this->shiftExists->id])->sum('amount_collected') ?? 0;
-        } else {
-            toastr()->error(__('account.dont_have_open_shift'));
-            return redirect()->route('admin.shifts.create');
-        }
+
+        $this->shiftExists  = Shift::with(['treasury:id,name', 'admin:id,name'])
+            ->where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->first();
+
+        $this->transaction->treasury_id = !is_null($this->shiftExists)
+            ? $this->shiftExists->treasury->id
+            : '';
     }
 
     public function updated($fields)
@@ -65,7 +61,7 @@ class AddEditTreasuryTransaction extends Component
                     'payment_receipt'   => $this->shiftExists->last_payment_receipt + 1,
                     'is_approved'       => 1,
                     'is_account'        => 1,
-                    'money_for_account' => floatval(-$this->transaction->amount_collected),
+                    'money_for_account' => floatval(-$this->transaction->money),
                     'company_code'      => $this->auth->company_code,
                 ])->save();
 
@@ -78,10 +74,31 @@ class AddEditTreasuryTransaction extends Component
         }
     }
 
+    public function edit($id)
+    {
+        $transaction = TreasuryTransaction::findOrFail($id);
+        if (!$transaction) {
+            toastr()->error(__('msgs.something_went_wrong'));
+            return false;
+        }
+        $this->transaction  = $transaction;
+    }
+
+
     public function render(): View
     {
-        $transactions   = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])->where(['company_code' => $this->auth->company_code])->paginate(PAGINATION_COUNT);
-        return view('livewire.admin.account.treasury-transaction.add-edit-treasury-transaction', ['transactions' => $transactions]);
+        $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
+            ->where(['company_code' => $this->auth->company_code])
+            ->where('money', '>', '0')
+            ->paginate(CUSTOM_PAGINATION);
+
+        $treasuryBalance    = TreasuryTransaction::where(['company_code' => $this->auth->company_code, 'shift_id' => $this->shiftExists->id])
+            ->sum('money') ?? 0;
+
+        return view('livewire.admin.account.treasury-transaction.add-edit-treasury-transaction', [
+            'transactions'      => $transactions,
+            'treasuryBalance'   => $treasuryBalance
+        ]);
     }
 
     public function rules(): array
@@ -89,7 +106,7 @@ class AddEditTreasuryTransaction extends Component
         return [
             'transaction.transaction_date'  => ['required', 'date'],
             'transaction.shift_type_id'     => ['required', 'integer'],
-            'transaction.amount_collected'  => ['required', 'numeric', 'between:0,9999.99'],
+            'transaction.money'             => ['required', 'numeric', 'between:0,9999.99'],
             'transaction.account_id'        => ['required', 'integer'],
             'transaction.report'            => ['required', 'min:20'],
         ];

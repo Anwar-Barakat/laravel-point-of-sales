@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::with(['addedBy', 'section', 'parentCategory'])->latest()->paginate(PAGINATION_COUNT);
+        $categories = Category::with(['addedBy', 'section', 'parentCategory'])->latest()->paginate(CUSTOM_PAGINATION);
         return view('admin.stocks.categories.index', ['categories' => $categories]);
     }
 

@@ -20,6 +20,6 @@ class ShowAdmin extends Component
 
     public function getAdmins()
     {
-        return  Admin::paginate(PAGINATION_COUNT);;
+        return  Admin::paginate(CUSTOM_PAGINATION);;
     }
 }

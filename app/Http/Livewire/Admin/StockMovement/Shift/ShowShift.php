@@ -24,7 +24,7 @@ class ShowShift extends Component
 
     public function render()
     {
-        $shifts = Shift::with(['admin:id,name', 'treasury:id,name'])->latest()->paginate(PAGINATION_COUNT);
+        $shifts = Shift::with(['admin:id,name', 'treasury:id,name'])->latest()->paginate(CUSTOM_PAGINATION);
         return view('livewire.admin.stock-movement.shift.show-shift', ['shifts' => $shifts]);
     }
 }

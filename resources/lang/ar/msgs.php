@@ -57,6 +57,7 @@ return [
     'notes'                 => 'ملاحظات',
     'add_new'               => 'إضافة جديد',
 
-    'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف'
+    'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف',
+    'something_went_wrong'          => 'حدث خطأ ما',
 
 ];

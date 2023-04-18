@@ -33,6 +33,6 @@ class ShowItem extends Component
     public function getItems()
     {
         return Item::with(['parentUnit:id,name', 'childUnit:id,name', 'category:id,name', 'addedBy:id,name', 'parentItem:id,name'])
-            ->paginate(PAGINATION_COUNT);
+            ->paginate(CUSTOM_PAGINATION);
     }
 }
