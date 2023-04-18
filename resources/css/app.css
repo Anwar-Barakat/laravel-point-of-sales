@@ -25,3 +25,7 @@ button,
 .ts-control > input {
     padding: 0 30px !important;
 }
+
+textarea {
+    resize: none;
+}

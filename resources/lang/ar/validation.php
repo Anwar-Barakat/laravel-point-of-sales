@@ -246,6 +246,15 @@ return [
         'qty'                       => 'الكمية',
         'production_date'           => 'تاريخ الأنتاج',
         'expiration_date'           => 'تاريخ انتهاء الصلاحية',
+
+        //_______________________
+        // treasury transation
+        //_______________________
+        'amount_collected'          => 'المبلغ المُحصل',
+        'transaction_date'          => 'تاريخ المعاملة',
+        'shift_type_id'             => 'نوع التحويل',
+        'report'                    => 'تقرير',
+
     ],
 
 ];

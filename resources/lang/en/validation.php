@@ -246,6 +246,15 @@ return [
         'qty'                       => 'quantity',
         'production_date'           => 'production history',
         'expiration_date'           => 'expiration date',
+
+        //_______________________
+        // treasury transation
+        //_______________________
+        'amount_collected'          => 'Amount collected',
+        'transaction_date'          => 'Transaction_date',
+        'shift_type_id'             => 'Shift type',
+        'report'                    => 'Report',
+
     ],
 
 ];

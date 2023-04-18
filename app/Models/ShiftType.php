@@ -11,4 +11,19 @@ class ShiftType extends Model
     use HasFactory, HasTranslations;
 
     public $translatable    = ['name'];
+
+    public function scopeActive($query)
+    {
+        return $query->where(['is_active' => 1]);
+    }
+
+    public function scopePrivate($query)
+    {
+        return $query->where('in_screen', 0);
+    }
+
+    public function scopeCollect($query)
+    {
+        return $query->where('in_screen', 1);
+    }
 }

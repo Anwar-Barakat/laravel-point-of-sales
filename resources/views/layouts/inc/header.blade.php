@@ -262,9 +262,19 @@
                                     </div>
 
                                     <!-- collection monetary screen -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.treasury-transactions.index') ? 'active' : '' }}" href="{{ route('admin.treasury-transactions.index') }}">
-                                        {{ __('account.treasury_transations') }}
-                                    </a>
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                            {{ __('account.treasury_transactions') }}
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <a href="{{ route('admin.treasury-transactions.index') }}" class="dropdown-item {{ request()->routeIs('admin.treasury-transactions.index') ? 'active' : '' }}">
+                                                {{ __('msgs.list', ['name' => __('account.treasury_transactions')]) }}
+                                            </a>
+                                            <a href="{{ route('admin.treasury-transactions.create') }}" class="dropdown-item {{ request()->routeIs('admin.treasury-transactions.create') ? 'active' : '' }}">
+                                                {{ __('msgs.create', ['name' => __('account.treasury_transaction')]) }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

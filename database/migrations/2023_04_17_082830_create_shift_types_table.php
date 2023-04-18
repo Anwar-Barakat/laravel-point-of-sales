@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->boolean('is_active')->default(1);
+            $table->boolean('in_screen')->comment('0 => special, 1 => monetary');
             $table->timestamps();
         });
     }
