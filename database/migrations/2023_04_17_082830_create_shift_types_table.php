@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('name');
             $table->boolean('is_active')->default(1);
             $table->boolean('in_screen')->comment('0 => special, 1 => monetary');
+            $table->foreignId('account_type_id')->constrained()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

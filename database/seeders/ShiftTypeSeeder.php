@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AccountType;
 use App\Models\ShiftType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,123 +16,140 @@ class ShiftTypeSeeder extends Seeder
     {
         $types = [
             [
-                'name'          => [
-                    'ar'        => 'مراجعة واستلام سندات الخزينة على نفس الخزنة',
-                    'en'        => 'Review and receive shift treasuries on the same safe',
+                'name'              => [
+                    'ar'            => 'مراجعة واستلام سندات الخزينة على نفس الخزنة',
+                    'en'            => 'Review and receive shift treasuries on the same safe',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'مراجعة واستلام سندات الخزينة على خزينة أخرى',
-                    'en'        => 'Review and receive treasury bonds on another treasury',
+                'name'              => [
+                    'ar'            => 'مراجعة واستلام سندات الخزينة على خزينة أخرى',
+                    'en'            => 'Review and receive treasury bonds on another treasury',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'صرف مبلغ لحساب مالي',
-                    'en'        => 'Disbursement of an amount to a financial account',
+                'name'              => [
+                    'ar'            => 'صرف مبلغ لحساب مالي',
+                    'en'            => 'Disbursement of an amount to a financial account',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'تحصيل مبلغ من حساب مالي',
-                    'en'        => 'Collecting money from a financial account',
+                'name'              => [
+                    'ar'            => 'تحصيل مبلغ من حساب مالي',
+                    'en'            => 'Collecting money from a financial account',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'تحصيل إيرادات مبيعات',
-                    'en'        => 'Collection of sales revenue',
+                'name'              => [
+                    'ar'            => 'تحصيل إيرادات مبيعات',
+                    'en'            => 'Collection of sales revenue',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'Customer'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'صرف نظير مرتجع مبيعات',
-                    'en'        => 'Disbursement of sales returns',
+                'name'              => [
+                    'ar'            => 'صرف نظير مرتجع مبيعات',
+                    'en'            => 'Disbursement of sales returns',
                 ],
-                'in_screen'     => 0,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'صرف سلفة على راتب موظف',
-                    'en'        => 'Disbursement of an advance on the salary of an employee',
+                'name'              => [
+                    'ar'            => 'صرف سلفة على راتب موظف',
+                    'en'            => 'Disbursement of an advance on the salary of an employee',
                 ],
-                'in_screen'     => 0,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'صرف نظير مشتريات من مورد',
-                    'en'        => 'Disbursement for purchases from a supplier',
+                'name'              => [
+                    'ar'            => 'صرف نظير مشتريات من مورد',
+                    'en'            => 'Disbursement for purchases from a supplier',
                 ],
-                'in_screen'     => 0,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'تحصيل نظير مرتجع مشتربات الى مورد',
-                    'en'        => 'Collection of a return counterpart purchased to a supplier',
+                'name'              => [
+                    'ar'            => 'تحصيل نظير مرتجع مشتربات الى مورد',
+                    'en'            => 'Collection of a return counterpart purchased to a supplier',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'Vendor'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'إيراد زيادة رأس المال',
-                    'en'        => 'Capital Increase Revenue',
+                'name'              => [
+                    'ar'            => 'إيراد زيادة رأس المال',
+                    'en'            => 'Capital Increase Revenue',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'مصاريف شراء مثل اللولون',
-                    'en'        => 'Purchase expenses like Lulon',
+                'name'              => [
+                    'ar'            => 'مصاريف شراء مثل اللولون',
+                    'en'            => 'Purchase expenses like Lulon',
                 ],
-                'in_screen'     => 0,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'استبدال وديعة بنكية',
-                    'en'        => 'Exchange for a bank deposit',
+                'name'              => [
+                    'ar'            => 'استبدال وديعة بنكية',
+                    'en'            => 'Exchange for a bank deposit',
                 ],
-                'in_screen'     => 0,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'استرداد سلفة على راتب الموظف',
-                    'en'        => 'refund of an advance on the employee\'s salary',
+                'name'              => [
+                    'ar'            => 'استرداد سلفة على راتب الموظف',
+                    'en'            => 'refund of an advance on the employee\'s salary',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'تحصيل خصومات موظفين',
-                    'en'        => 'Collecting employee discounts',
+                'name'              => [
+                    'ar'            => 'تحصيل خصومات موظفين',
+                    'en'            => 'Collecting employee discounts',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'صرف مرتب للموظف',
-                    'en'        => 'salary payment to the employee',
+                'name'              => [
+                    'ar'            => 'صرف مرتب للموظف',
+                    'en'            => 'salary payment to the employee',
                 ],
-                'in_screen'     => 0,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'اقتراض من بنك',
-                    'en'        => 'Borrowing from a bank',
+                'name'              => [
+                    'ar'            => 'اقتراض من بنك',
+                    'en'            => 'Borrowing from a bank',
                 ],
-                'in_screen'     => 1,
+                'in_screen'         => 1,
+                'account_type_id'   => AccountType::where(['name->en' => 'Bank'])->first()->id,
             ],
             [
-                'name'          => [
-                    'ar'        => 'صرف لرد رأس المال',
-                    'en'        => 'Disbursement to refund capital',
+                'name'              => [
+                    'ar'            => 'صرف لرد رأس المال',
+                    'en'            => 'Disbursement to refund capital',
                 ],
-                'in_screen'     => 0,
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
         ];
 

@@ -26,4 +26,9 @@ class ShiftType extends Model
     {
         return $query->where('in_screen', 1);
     }
+
+    public function accountType()
+    {
+        return $this->belongsTo(AccountType::class, 'account_type_id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Account\ExchangeTransaction;
 
 use App\Models\Account;
+use App\Models\AccountType;
 use App\Models\Shift;
 use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
@@ -26,7 +27,7 @@ class AddEditExchangeTransaction extends Component
     {
         $this->transaction = $transaction;
         $this->auth         = Auth::guard('admin')->user();
-        $this->accounts     = Account::where(['company_code' => $this->auth->company_code, 'is_parent' => 0])->active()->get();
+        $this->accounts     = Account::with(['accountType:id,name'])->where(['company_code' => $this->auth->company_code, 'is_parent' => 0])->active()->get();
         $this->shiftTypes   = ShiftType::private()->active()->get();
 
 
@@ -41,6 +42,18 @@ class AddEditExchangeTransaction extends Component
     public function updated($fields)
     {
         return $this->validateOnly($fields);
+    }
+
+    public function updatedTransactionAccountId()
+    {
+        $account                    = Account::with('accountType:id')->findOrFail($this->transaction->account_id);
+        $this->shiftTypes           = ShiftType::where(['account_type_id' => $account->accountType->id])->private()->get();
+    }
+
+    public function updatedTransactionShiftType()
+    {
+        $shiftType                  = ShiftType::with(['accountType:id'])->findOrFail($this->transaction->shift_type_id);
+        dd($shiftType);
     }
 
     public function submit()
@@ -89,9 +102,6 @@ class AddEditExchangeTransaction extends Component
         $this->transaction  = $transaction;
     }
 
-
-
-
     public function render()
     {
         $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
@@ -109,7 +119,6 @@ class AddEditExchangeTransaction extends Component
             'treasuryBalance'   => $treasuryBalance
         ]);
     }
-
 
     public function rules(): array
     {

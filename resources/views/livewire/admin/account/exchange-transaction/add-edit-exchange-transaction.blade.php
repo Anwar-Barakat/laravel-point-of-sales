@@ -31,10 +31,10 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.account')" />
-                                        <select class="form-select" wire:model.debounce.500s='transaction.account_id' id="select-tags-advanced">
+                                        <select class="form-select" wire:model='transaction.account_id' id="select-tags-advanced">
                                             <option value="">{{ __('btns.select') }}</option>
                                             @foreach ($accounts as $account)
-                                                <option value="{{ $account->id }}">{{ $account->name }}</option>
+                                                <option value="{{ $account->id }}">{{ $account->name }} ({{ $account->accountType->name }})</option>
                                             @endforeach
                                         </select>
                                         <x-input-error :messages="$errors->get('transaction.account_id')" class="mt-2" />
@@ -42,21 +42,21 @@
                                 </div>
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
-                                        <x-input-label class="form-label" :value="__('account.amount_collected')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='transaction.money' />
-                                        <x-input-error :messages="$errors->get('transaction.money')" class="mt-2" />
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.shift_type')" />
-                                        <select class="form-select" wire:model.debounce.500s='transaction.shift_type_id' id="select-tags-advanced">
+                                        <select class="form-select" wire:model='transaction.shift_type_id' id="select-tags-advanced">
                                             <option value="">{{ __('btns.select') }}</option>
                                             @foreach ($shiftTypes as $type)
                                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                                             @endforeach
                                         </select>
                                         <x-input-error :messages="$errors->get('transaction.shift_type_id')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="mb-3">
+                                        <x-input-label class="form-label" :value="__('account.amount_collected')" />
+                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='transaction.money' />
+                                        <x-input-error :messages="$errors->get('transaction.money')" class="mt-2" />
                                     </div>
                                 </div>
                             </div>

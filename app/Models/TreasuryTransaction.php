@@ -44,4 +44,9 @@ class TreasuryTransaction extends Model
     {
         return $this->belongsTo(Treasury::class, 'treasury_id');
     }
+
+    public function account(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'account_id');
+    }
 }

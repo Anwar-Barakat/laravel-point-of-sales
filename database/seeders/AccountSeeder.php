@@ -50,7 +50,7 @@ class AccountSeeder extends Seeder
                 'added_by'          => $admin->id,
             ],
             [
-                'name'              => 'Phone & Internet Invoice',
+                'name'              => 'Phone & Internet Invoices',
                 'number'            => uniqid(),
                 'account_type_id'   => $expenses_type->id,
                 'notes'             => $faker->sentence(10),
@@ -58,7 +58,15 @@ class AccountSeeder extends Seeder
                 'added_by'          => $admin->id,
             ],
             [
-                'name'              => 'Bank Account',
+                'name'              => 'Banks',
+                'number'            => uniqid(),
+                'account_type_id'   => $general_type->id,
+                'notes'             => $faker->sentence(10),
+                'company_code'      => $admin->company_code,
+                'added_by'          => $admin->id,
+            ],
+            [
+                'name'              => 'Expenses',
                 'number'            => uniqid(),
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
@@ -69,8 +77,19 @@ class AccountSeeder extends Seeder
                 'name'              => 'Islamic Bank',
                 'number'            => uniqid(),
                 'is_parent'         => 0,
-                'parent_id'         => 5,
+                'parent_id'         => 6, // Banks
                 'account_type_id'   => $bank_type->id,
+                'notes'             => $faker->sentence(10),
+                'company_code'      => $admin->company_code,
+                'added_by'          => $admin->id,
+            ],
+
+            [
+                'name'              => 'Water Invoices',
+                'number'            => uniqid(),
+                'is_parent'         => 0,
+                'parent_id'         => 7, // Expenses
+                'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_code'      => $admin->company_code,
                 'added_by'          => $admin->id,

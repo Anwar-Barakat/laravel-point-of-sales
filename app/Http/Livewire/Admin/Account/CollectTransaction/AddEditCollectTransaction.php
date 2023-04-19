@@ -23,7 +23,6 @@ class AddEditCollectTransaction extends Component
     public $accounts = [],
         $shiftTypes = [];
 
-
     public function mount(TreasuryTransaction $transaction)
     {
         $this->transaction = $transaction;
@@ -43,6 +42,12 @@ class AddEditCollectTransaction extends Component
     public function updated($fields)
     {
         return $this->validateOnly($fields);
+    }
+
+    public function updatedTransactionAccountId()
+    {
+        $account                    = Account::with('accountType:id')->findOrFail($this->transaction->account_id);
+        $this->shiftTypes           = ShiftType::where(['account_type_id' => $account->accountType->id])->collect()->get();
     }
 
     public function submit()
@@ -84,8 +89,6 @@ class AddEditCollectTransaction extends Component
         }
         $this->transaction  = $transaction;
     }
-
-
 
     public function rules(): array
     {
