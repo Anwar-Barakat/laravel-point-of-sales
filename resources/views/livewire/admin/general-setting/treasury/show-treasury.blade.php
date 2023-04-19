@@ -12,7 +12,7 @@
                     <x-input-label class="form-label" :value="__('msgs.order_by')" />
                     <select class="form-select" wire:model='order_by'>
                         <option value="">{{ __('btns.select') }}</option>
-                        <option value="last_payment_receipt">{{ __('treasury.last_payment_receipt') }}</option>
+                        <option value="last_payment_exchange">{{ __('treasury.last_payment_exchange') }}</option>
                         <option value="last_payment_collect">{{ __('treasury.last_payment_collect') }}</option>
                     </select>
                 </div>
@@ -48,8 +48,8 @@
                     <th> {{ __('setting.admin') }}</th>
                     <th> {{ __('msgs.is_master') }}</th>
                     <th> {{ __('setting.status') }}</th>
-                    <th> {{ __('treasury.last_payment_receipt') }}</th>
-                    <th> {{ __('treasury.last_payment_receipt') }}</th>
+                    <th> {{ __('treasury.last_payment_collect') }}</th>
+                    <th> {{ __('treasury.last_payment_exchange') }}</th>
                     <th> {{ __('msgs.created_at') }}</th>
                     <th></th>
                 </tr>
@@ -79,8 +79,8 @@
                                 </button>
                             </div>
                         </td>
-                        <td>{{ $treasury->last_payment_receipt }}</td>
                         <td> {{ $treasury->last_payment_collect }}</td>
+                        <td>{{ $treasury->last_payment_exchange }}</td>
                         <td> {{ $treasury->created_at }} </td>
                         <td>
                             <span class="dropdown">

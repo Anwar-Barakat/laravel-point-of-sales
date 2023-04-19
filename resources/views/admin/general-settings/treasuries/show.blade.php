@@ -31,8 +31,8 @@
                             <td>{{ $treasury->is_active ? __('msgs.active') : __('msgs.not_active') }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('treasury.last_payment_receipt') }}</th>
-                            <td>{{ $treasury->last_payment_receipt }}</td>
+                            <th>{{ __('treasury.last_payment_exchange') }}</th>
+                            <td>{{ $treasury->last_payment_exchange }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('treasury.last_payment_collect') }}</th>

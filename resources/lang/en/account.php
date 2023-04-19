@@ -46,6 +46,11 @@ return [
     //_______________________
     // treasury transation
     //_______________________
+
+    'collect_transactions'      => 'Collect transactions',
+    'collect_transaction'       => 'Collect transaction',
+    'exchange_transactions'     => 'Exchange transactions',
+    'exchange_transaction'      => 'Exchange transaction',
     'treasury_transactions'     => 'Treasury transations',
     'treasury_transaction'      => 'Treasury transation',
     'amount_collected'          => 'Amount collected',
@@ -53,10 +58,14 @@ return [
     'shift_type'                => 'Shift type',
     'report'                    => 'Report',
     'counterpart_collection'    => 'Counterpart collection',
+    'counterpart_exchange'      => 'Counterpart exchange',
     'cash_collection_screen'    => 'Cash collection screen',
+    'case_exchange_screen'      => 'Cash exchange screen',
     'click_here'                => 'Click here',
 
+
+
     'treasury_available_balance'    => 'Treasury available balance',
-    'dont_have_open_shift'          => 'You don\'t have an open shift to be able to deal with treasury transaction,
-'
+    'dont_have_open_shift'          => 'You don\'t have an open shift to be able to deal with treasury transaction',
+    'not_enough_balance'            => 'There is not enough balance in the safe at the moment',
 ];

@@ -173,7 +173,7 @@ return [
         // Treasuries
         //_______________________
         'is_master'             => 'treasury type',
-        'last_payment_receipt'  => 'last payment receipt',
+        'last_payment_exchange' => 'last payment receipt',
         'last_payment_collect'  => 'last payment collect',
         'treasury_name_ar'      => 'arabic treasury name',
         'treasury_name_en'      => 'english treasury name',

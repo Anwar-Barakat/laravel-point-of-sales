@@ -53,8 +53,8 @@
                                 <th> {{ __('treasury.treasury') }}</th>
                                 <th> {{ __('msgs.is_master') }}</th>
                                 <th> {{ __('setting.status') }}</th>
-                                <th> {{ __('treasury.last_payment_receipt') }}</th>
-                                <th> {{ __('treasury.last_payment_receipt') }}</th>
+                                <th> {{ __('treasury.last_payment_collect') }}</th>
+                                <th> {{ __('treasury.last_payment_exchange') }}</th>
                                 <th> {{ __('msgs.created_at') }}</th>
                                 <th></th>
                             </tr>
@@ -79,8 +79,8 @@
                                             </button>
                                         </div>
                                     </td>
-                                    <td>{{ $treasury->last_payment_receipt }}</td>
                                     <td> {{ $treasury->last_payment_collect }}</td>
+                                    <td>{{ $treasury->last_payment_exchange }}</td>
                                     <td> {{ $treasury->created_at }} </td>
                                     <td>
                                         <span class="dropdown">

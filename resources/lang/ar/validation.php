@@ -173,7 +173,7 @@ return [
         //_______________________
         'is_master'             => 'رئيسية',
         'is_active'             => 'مُفعلة',
-        'last_payment_receipt'  => 'آخر إيصال دفع',
+        'last_payment_exchange' => 'آخر إيصال دفع',
         'last_payment_collect'  => 'آخر إيصال تجميع',
         'treasury_name_ar'      => 'اسم الخزنة بالعربي',
         'treasury_name_en'      => 'اسم الخزنة بالأنكليزي',

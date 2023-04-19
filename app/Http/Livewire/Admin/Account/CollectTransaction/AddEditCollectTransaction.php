@@ -59,14 +59,14 @@ class AddEditCollectTransaction extends Component
                     'shift_id'          => $this->shiftExists->id,
                     'admin_id'          => $this->auth->id,
                     'treasury_id'       => $this->shiftExists->treasury->id,
-                    'payment_receipt'   => $this->shiftExists->last_payment_receipt + 1,
+                    'payment'           => $this->shiftExists->last_payment_collect + 1,
                     'is_approved'       => 1,
                     'is_account'        => 1,
                     'money_for_account' => floatval(-$this->transaction->money),
                     'company_code'      => $this->auth->company_code,
                 ])->save();
 
-                $this->shiftExists->treasury->increment('last_payment_receipt');
+                $this->shiftExists->treasury->increment('last_payment_collect');
             });
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
@@ -97,8 +97,6 @@ class AddEditCollectTransaction extends Component
             'transaction.report'            => ['required', 'min:20'],
         ];
     }
-
-
 
     public function render()
     {

@@ -12,7 +12,7 @@ class UpdateTreasury extends Component
     public $name,
         $is_master,
         $is_active,
-        $last_payment_receipt,
+        $last_payment_exchange,
         $last_payment_collect,
         $treasury;
 
@@ -20,7 +20,7 @@ class UpdateTreasury extends Component
         'name'                  => ['required', 'string', 'min:3'],
         'is_master'             => ['required', 'in:0,1'],
         'is_active'             => ['required', 'in:0,1'],
-        'last_payment_receipt'  => ['required', 'integer', 'min:1'],
+        'last_payment_exchange'  => ['required', 'integer', 'min:1'],
         'last_payment_collect'  => ['required', 'integer', 'min:1']
     ];
 
@@ -30,7 +30,7 @@ class UpdateTreasury extends Component
         $this->name                     = $treasury->name;
         $this->is_master                = $treasury->is_master;
         $this->is_active                = $treasury->is_active;
-        $this->last_payment_receipt     = $treasury->last_payment_receipt;
+        $this->last_payment_exchange    = $treasury->last_payment_exchange;
         $this->last_payment_collect     = $treasury->last_payment_collect;
     }
 

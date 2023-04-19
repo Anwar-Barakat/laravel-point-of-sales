@@ -66,7 +66,7 @@ class AddEditTreasury extends Component
             ],
             'treasury.is_master'             => ['required', 'in:0,1'],
             'treasury.is_active'             => ['required', 'in:0,1'],
-            'treasury.last_payment_receipt'  => ['required', 'integer', 'min:1'],
+            'treasury.last_payment_exchange' => ['required', 'integer', 'min:1'],
             'treasury.last_payment_collect'  => ['required', 'integer', 'min:1']
         ];
     }

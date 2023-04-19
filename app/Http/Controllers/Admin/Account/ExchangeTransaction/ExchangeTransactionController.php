@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Account\TreasuryTransaction;
+namespace App\Http\Controllers\Admin\Account\ExchangeTransaction;
 
 use App\Http\Controllers\Controller;
 use App\Models\Shift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CollectTransactionController extends Controller
+class ExchangeTransactionController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -18,10 +18,8 @@ class CollectTransactionController extends Controller
             toastr()->error(__('account.dont_have_open_shift'));
             return redirect()->route('admin.shifts.create');
         }
-        return view('admin.accounts.collect-transactions.create');
+        return view('admin.accounts.exchange-transactions.create');
     }
-
-
 
     private function hasOpenShift()
     {

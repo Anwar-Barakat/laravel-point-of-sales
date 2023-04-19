@@ -16,7 +16,7 @@ class Treasury extends Model
         'name',
         'is_master',
         'is_active',
-        'last_payment_receipt',
+        'last_payment_exchange',
         'last_payment_collect',
         'company_code',
         'admin_id',

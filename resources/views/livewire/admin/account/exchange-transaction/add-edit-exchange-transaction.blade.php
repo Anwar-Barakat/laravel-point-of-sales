@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 d-flex flex-column">
                 @if ($shiftExists)
-                    <form wire:submit.prevent='submit' id="add-collect-transaction">
+                    <form wire:submit.prevent='submit' id="add-exchange-transaction">
                         <div class="card-body">
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                             <div class="row row-cards">
@@ -64,7 +64,7 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('dash.report')" />
-                                        <textarea rows="5" class="form-control" wire:model.debounce.500s='transaction.report' placeholder="{{ __('account.counterpart_collection') }}"></textarea>
+                                        <textarea rows="5" class="form-control" wire:model.debounce.500s='transaction.report' placeholder="{{ __('account.counterpart_exchange') }}"></textarea>
                                         <x-input-error :messages="$errors->get('transaction.report')" class="mt-2" />
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header w-100 d-flex align-items-center justify-content-between">
-                    <h3 class="card-title">{{ __('account.collect_transactions') }}</h3>
+                    <h3 class="card-title">{{ __('account.exchange_transactions') }}</h3>
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>
@@ -110,14 +110,14 @@
                                 <td><span class="badge bg-blue"> {{ $transaction->treasury->name }}</span></td>
                                 <td><span class="badge bg-blue-lt">{{ $transaction->admin->name }}</span></td>
                                 <td><span class="badge bg-green"> {{ $transaction->shift_type->name }}</span></td>
-                                <td>{{ $transaction->money }}</td>
+                                <td>{{ abs($transaction->money) }}</td>
                                 <td>
                                     <button type="button" class="btn" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('account.report') }}" data-bs-content="{{ $transaction->report }}">{{ __('account.click_here') }}</button>
                                 </td>
                                 <td>{{ $transaction->created_at }}</td>
                                 <th>
                                     <div class="btn-list flex-nowrap">
-                                        <a wire:click.prefetch="edit({{ $transaction->id }})" href="#add-collect-transaction" class="btn d-flex justify-content-center align-items-center">
+                                        <a wire:click.prefetch="edit({{ $transaction->id }})" href="#add-exchange-transaction" class="btn d-flex justify-content-center align-items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -131,7 +131,7 @@
                         @empty
                             <tr>
                                 <td colspan="10">
-                                    <x-blank-section :content="__('account.collect_transaction')" :url="'#add-collect-transaction'" />
+                                    <x-blank-section :content="__('account.collect_transaction')" :url="'#add-exchange-transaction'" />
                                 </td>
                             </tr>
                         @endforelse

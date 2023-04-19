@@ -57,9 +57,13 @@ return [
     'shift_type'                => 'نوع التحويل',
     'report'                    => 'تقرير',
     'counterpart_collection'    => 'تحصيل نظير',
+    'counterpart_exchange'      => 'صرف نظير',
     'cash_collection_screen'    => 'شاشة تحصيل النقدية',
+    'cash_exchange_screen'      => 'شاشة صرف النقدية',
     'click_here'                => 'إضغط هنا',
 
     'treasury_available_balance'    => 'رصيد الخزينة المتوفر',
-    'dont_have_open_shift'          => 'ليس لديك مناوبة مفتوحة لتتمكن من التعامل مع معاملات الخزينة'
+    'dont_have_open_shift'          => 'ليس لديك مناوبة مفتوحة لتتمكن من التعامل مع معاملات الخزينة',
+    'not_enough_balance'            => 'لا يوجد رصيد كافي في الخزنة حالياً',
+
 ];

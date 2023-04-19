@@ -38,9 +38,9 @@
                     <div class="row row-cards">
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('treasury.last_payment_receipt')" />
-                                <x-text-input type="number" class="form-control" wire:model.debounce.500s='treasury.last_payment_receipt' required />
-                                <x-input-error :messages="$errors->get('treasury.last_payment_receipt')" class="mt-2" />
+                                <x-input-label class="form-label" :value="__('treasury.last_payment_exchange')" />
+                                <x-text-input type="number" class="form-control" wire:model.debounce.500s='treasury.last_payment_exchange' required />
+                                <x-input-error :messages="$errors->get('treasury.last_payment_exchange')" class="mt-2" />
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">

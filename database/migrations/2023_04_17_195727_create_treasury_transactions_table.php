@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('is_approved');
 
             $table->date('transaction_date');
-            $table->integer('payment_receipt');
+            $table->integer('payment');
             $table->decimal('money')->default(0);
             $table->decimal('money_for_account')->default(0);
             $table->text('report');

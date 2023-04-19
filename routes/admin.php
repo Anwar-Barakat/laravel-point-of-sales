@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
+use App\Http\Controllers\Admin\Account\CollectTransaction\CollectTransactionController;
+use App\Http\Controllers\Admin\Account\ExchangeTransaction\ExchangeTransactionController;
 use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
-use App\Http\Controllers\Admin\Account\TreasuryTransaction\CollectTransactionController;
-use App\Http\Controllers\Admin\Account\TreasuryTransaction\ExchangeTransactionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;

@@ -3,7 +3,7 @@
 return [
     'treasury'              => 'Treasury',
     'treasuries'            => 'Treasuries',
-    'last_payment_receipt'  => 'Last payment receipt',
+    'last_payment_exchange' => 'Last payment receipt',
     'last_payment_collect'  => 'Last payment collect',
     'treasury_name'         => 'Treasury name',
     'treasury_name_ar'      => 'Arabic treasury name',
