@@ -88,7 +88,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header w-100 d-flex align-items-center justify-content-between">
-                    <h3 class="card-title">{{ __('account.treasury_transactions') }}</h3>
+                    <h3 class="card-title">{{ __('account.collect_transactions') }}</h3>
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>
@@ -131,7 +131,7 @@
                         @empty
                             <tr>
                                 <td colspan="10">
-                                    <x-blank-section :content="__('account.treasury_transaction')" :url="'#add-treasury-transaction'" />
+                                    <x-blank-section :content="__('account.collect_transaction')" :url="'#add-treasury-transaction'" />
                                 </td>
                             </tr>
                         @endforelse

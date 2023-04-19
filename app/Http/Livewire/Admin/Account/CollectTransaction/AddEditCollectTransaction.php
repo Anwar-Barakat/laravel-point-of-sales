@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Account\TreasuryTransaction;
+namespace App\Http\Livewire\Admin\Account\CollectTransaction;
 
+use App\Http\Middleware\Admin;
 use App\Models\Account;
-use App\Models\Admin;
 use App\Models\Shift;
 use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
-class AddEditTreasuryTransaction extends Component
+class AddEditCollectTransaction extends Component
 {
+
     public TreasuryTransaction $transaction;
 
-    public Admin $auth;
+    public $auth;
     public Shift $shiftExists;
 
     public $accounts = [],
@@ -85,21 +86,6 @@ class AddEditTreasuryTransaction extends Component
     }
 
 
-    public function render(): View
-    {
-        $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
-            ->where(['company_code' => $this->auth->company_code])
-            ->where('money', '>', '0')
-            ->paginate(CUSTOM_PAGINATION);
-
-        $treasuryBalance    = TreasuryTransaction::where(['company_code' => $this->auth->company_code, 'shift_id' => $this->shiftExists->id])
-            ->sum('money') ?? 0;
-
-        return view('livewire.admin.account.treasury-transaction.add-edit-treasury-transaction', [
-            'transactions'      => $transactions,
-            'treasuryBalance'   => $treasuryBalance
-        ]);
-    }
 
     public function rules(): array
     {
@@ -110,5 +96,23 @@ class AddEditTreasuryTransaction extends Component
             'transaction.account_id'        => ['required', 'integer'],
             'transaction.report'            => ['required', 'min:20'],
         ];
+    }
+
+
+
+    public function render()
+    {
+        $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
+            ->where(['company_code' => $this->auth->company_code])
+            ->where('money', '>', '0')
+            ->paginate(CUSTOM_PAGINATION);
+
+        $treasuryBalance    = TreasuryTransaction::where(['company_code' => $this->auth->company_code, 'shift_id' => $this->shiftExists->id])
+            ->sum('money') ?? 0;
+
+        return view('livewire.admin.account.collect-transaction.add-edit-collect-transaction', [
+            'transactions'      => $transactions,
+            'treasuryBalance'   => $treasuryBalance
+        ]);
     }
 }

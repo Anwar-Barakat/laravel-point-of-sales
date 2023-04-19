@@ -48,6 +48,10 @@ return [
     //_______________________
     'treasury_transactions'     => 'معاملات سندات الخزانة',
     'treasury_transaction'      => 'معاملة سند الخزنة',
+    'collect_transactions'      => 'معاملات تحصيل نقدية',
+    'collect_transaction'       => 'معاملة تحصيل نقدية',
+    'exchange_transactions'     => 'معاملات صرف نقدية',
+    'exchange_transaction'      => 'معاملة صرف نقدية',
     'amount_collected'          => 'المبلغ المُحصل',
     'transaction_date'          => 'تاريخ المعاملة',
     'shift_type'                => 'نوع التحويل',

@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
 use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
-use App\Http\Controllers\Admin\Account\TreasuryTransaction\TreasuryTransactionController;
+use App\Http\Controllers\Admin\Account\TreasuryTransaction\CollectTransactionController;
+use App\Http\Controllers\Admin\Account\TreasuryTransaction\ExchangeTransactionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -129,7 +130,8 @@ Route::group(
                 //_______________________
                 // collection transaction
                 //_______________________
-                Route::resource('treasury-transactions',        TreasuryTransactionController::class)->except('store', 'update', 'destroy');
+                Route::get('collect-transactions',              CollectTransactionController::class)->name('collect-transactions');
+                Route::get('exchange-transactions',             ExchangeTransactionController::class)->name('exchange-transactions');
 
 
 
