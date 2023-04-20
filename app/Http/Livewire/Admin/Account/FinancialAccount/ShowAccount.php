@@ -14,7 +14,7 @@ class ShowAccount extends Component
         $order_by   = 'name',
         $sort_by    = 'asc',
         $account_type_id,
-        $per_page   = PAGINATION_COUNT;
+        $per_page   = CUSTOM_PAGINATION;
 
     public function updateStatus($id)
     {

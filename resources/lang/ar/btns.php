@@ -12,4 +12,5 @@ return [
     'delete'        => 'حذف',
     'search'        => 'بحث',
     'details'       => 'تفاصيل',
+    'approval'      => 'إعتماد',
 ];

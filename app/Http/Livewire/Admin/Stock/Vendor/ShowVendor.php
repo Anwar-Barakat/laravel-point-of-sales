@@ -13,7 +13,7 @@ class ShowVendor extends Component
     public $name,
         $order_by   = 'name',
         $sort_by    = 'asc',
-        $per_page   = PAGINATION_COUNT;
+        $per_page   = CUSTOM_PAGINATION;
 
     public function updateStatus($id)
     {

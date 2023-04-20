@@ -10,7 +10,7 @@ return [
     'actions'       => 'Actions',
     'close'         => 'Close',
     'delete'        => 'Delete',
-
     'search'        => 'Search',
     'details'       => 'Details',
+    'approval'      => 'Approval',
 ];

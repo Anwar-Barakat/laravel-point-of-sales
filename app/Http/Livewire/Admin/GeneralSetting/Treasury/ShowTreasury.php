@@ -15,7 +15,7 @@ class ShowTreasury extends Component
     public $name,
         $order_by   = 'last_payment_collect',
         $sort_by    = 'asc',
-        $per_page   = PAGINATION_COUNT;
+        $per_page   = CUSTOM_PAGINATION;
 
     public function updateStatus($id)
     {

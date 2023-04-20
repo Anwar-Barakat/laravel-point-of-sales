@@ -12,7 +12,7 @@ class ShowOrder extends Component
 
     public $name,
         $sort_by    = 'asc',
-        $per_page   = PAGINATION_COUNT;
+        $per_page   = CUSTOM_PAGINATION;
 
 
     public function render()

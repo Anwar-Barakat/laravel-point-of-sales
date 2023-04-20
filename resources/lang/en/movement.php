@@ -60,7 +60,7 @@ return [
 
     'shift_movements'           => 'Treasuries shifts',
     'treasury_shifts'           => 'Treasury shifts',
-
+    'approval_and_posting'      => 'Approval and posting of purchase invoice',
 
 
 
