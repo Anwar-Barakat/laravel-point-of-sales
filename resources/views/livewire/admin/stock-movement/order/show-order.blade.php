@@ -130,7 +130,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">
+                            <td colspan="6">
                                 <x-blank-section :content="__('movement.order')" :url="route('admin.orders.create')" />
                             </td>
                         </tr>

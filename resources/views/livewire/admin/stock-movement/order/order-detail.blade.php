@@ -4,10 +4,11 @@
             <div class="card">
                 <div class="card-header flex justify-content-between items-center">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
-                    @if ($order->is_approved == 0)
+                    @if ($order->is_approved == 0 && $order_products->count() > 0)
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approval-modal">{{ __('btns.approval') }}</button>
                     @endif
-                    @include('livewire.admin.stock-movement.order.approval-modal')
+
+                    @livewire('admin.stock-movement.order.approval-order', ['order' => $order])
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>
@@ -38,12 +39,16 @@
                             <td>{{ $order->account->number }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('movement.discount_type') }}</th>
-                            <td>{{ $order->discount_type ? __('movement.fixed') : __('movement.percentage') }}</td>
-                        </tr>
-                        <tr>
                             <th>{{ __('movement.items_cost') }}</th>
                             <td>{{ $order->items_cost ?? '0' }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('movement.tax') }}</th>
+                            <td>{{ $order->tax ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('movement.discount') }}</th>
+                            <td>{{ $order->discount ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('movement.cost_before_discount') }}</th>
@@ -217,11 +222,9 @@
                                 <td>{{ $orderProduct->qty }}</td>
                                 <td>{{ $orderProduct->production_date ?? '-' }}</td>
                                 <td>{{ $orderProduct->expiration_date ?? '-' }}</td>
-                                <td class="bg-blue-500">
-                                    {{ $orderProduct->total_price }}
-                                </td>
-                                <th>
-                                    <div class="btn-list flex-nowrap">
+                                <td class="bg-blue-500">{{ $orderProduct->total_price }}</td>
+                                <td>
+                                    <div class="btn-list flex-nowrap justify-content-center">
                                         <a wire:click.prefetch="edit({{ $orderProduct->id }})" href="#add-items" class="btn d-flex justify-content-center align-items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -241,7 +244,7 @@
                                             </svg>
                                         </a>
                                     </div>
-                                </th>
+                                </td>
                             </tr>
                         @empty
                             <tr>

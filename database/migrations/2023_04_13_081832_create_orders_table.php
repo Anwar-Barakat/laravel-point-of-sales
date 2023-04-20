@@ -20,9 +20,9 @@ return new class extends Migration
             $table->boolean('is_approved')->default(0);
             $table->string('notes');
 
-            $table->boolean('discount_type')->default(0)->comment('0 => percentage, 1 => fixed');
+            $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
             $table->decimal('discount')->default(0);
-            $table->boolean('tax_type')->default(0)->comment('0 => percentage, 1 => fixed');
+            $table->boolean('tax_type')->nullable()->comment('0 => percentage, 1 => fixed');
             $table->decimal('tax')->default(0);
 
             $table->decimal('items_cost')->default(0); // all items costs

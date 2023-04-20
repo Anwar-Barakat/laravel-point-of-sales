@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('barcode');
             $table->string('name');
             $table->tinyInteger('type')->comment('1 => stored, 2 => consuming, 3 => protection');
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate();

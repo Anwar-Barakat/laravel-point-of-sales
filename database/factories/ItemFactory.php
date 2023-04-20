@@ -24,8 +24,7 @@ class ItemFactory extends Factory
         $category   = Category::inRandomOrder()->active()->first();
         $unit       = Unit::inRandomOrder()->active()->first();
         return [
-            'barcode'                           => 'item-' . Str::random(15),
-            'name'                              => $this->faker->text(10),
+            'name'                              => $this->faker->word(),
             'type'                              => 1, // stored
             'category_id'                       => $category->id,
             'has_retail_unit'                   => 0,
