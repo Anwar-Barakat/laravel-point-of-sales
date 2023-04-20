@@ -2,7 +2,7 @@
     <div class="card">
         <div class="row">
             <div class="col-12 d-flex flex-column">
-                @if ($shiftExists)
+                @if (has_open_shift())
                     <form wire:submit.prevent='submit' id="add-exchange-transaction">
                         <div class="card-body">
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
@@ -17,7 +17,7 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('treasury.treasury')" />
-                                        <x-text-input type="text" class="form-control" :value="$shiftExists->treasury->name" readonly disabled />
+                                        <x-text-input type="text" class="form-control" :value="has_open_shift()->treasury->name" readonly disabled />
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
@@ -125,7 +125,7 @@
                                 </td>
                                 <td>{{ $transaction->created_at }}</td>
                                 <th>
-                                    <div class="btn-list flex-nowrap">
+                                    <div class="btn-list flex-nowrap flex justify-content-center">
                                         <a wire:click.prefetch="edit({{ $transaction->id }})" href="#add-exchange-transaction" class="btn d-flex justify-content-center align-items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />

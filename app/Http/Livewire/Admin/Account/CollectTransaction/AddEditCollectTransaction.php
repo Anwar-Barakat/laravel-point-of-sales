@@ -9,16 +9,10 @@ use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 
 class AddEditCollectTransaction extends Component
 {
-
     public TreasuryTransaction $transaction;
-
-    public $auth;
-    public Shift $shiftExists;
 
     public $accounts = [],
         $shiftTypes = [];
@@ -26,17 +20,8 @@ class AddEditCollectTransaction extends Component
     public function mount(TreasuryTransaction $transaction)
     {
         $this->transaction = $transaction;
-        $this->auth         = Auth::guard('admin')->user();
-        $this->accounts     = Account::where(['company_code' => $this->auth->company_code, 'is_parent' => 0])->active()->get();
+        $this->accounts     = Account::where(['company_code' => app('auth_com'), 'is_parent' => 0])->active()->get();
         $this->shiftTypes   = ShiftType::collect()->active()->get();
-
-
-        $this->shiftExists  = Shift::with(['treasury:id,name', 'admin:id,name'])
-            ->where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->first();
-
-        $this->transaction->treasury_id = !is_null($this->shiftExists)
-            ? $this->shiftExists->treasury->id
-            : '';
     }
 
     public function updated($fields)
@@ -46,14 +31,14 @@ class AddEditCollectTransaction extends Component
 
     public function updatedTransactionAccountId()
     {
-        $account                    = Account::with('accountType:id')->findOrFail($this->transaction->account_id);
-        $this->shiftTypes           = ShiftType::where(['account_type_id' => $account->accountType->id])->collect()->get();
+        $account            = Account::with('accountType:id')->findOrFail($this->transaction->account_id);
+        $this->shiftTypes   = ShiftType::where(['account_type_id' => $account->accountType->id])->collect()->get();
     }
 
     public function submit()
     {
         $this->validate();
-        if (!$this->shiftExists) {
+        if (!has_open_shift()) {
             toastr()->error(__('account.dont_have_open_shift'));
             return redirect()->route('admin.shifts.create');
         }
@@ -61,17 +46,17 @@ class AddEditCollectTransaction extends Component
         try {
             DB::transaction(function () {
                 $this->transaction->fill([
-                    'shift_id'          => $this->shiftExists->id,
-                    'admin_id'          => $this->auth->id,
-                    'treasury_id'       => $this->shiftExists->treasury->id,
-                    'payment'           => $this->shiftExists->last_payment_collect + 1,
+                    'shift_id'          => has_open_shift()->id,
+                    'admin_id'          => app('auth_id'),
+                    'treasury_id'       => has_open_shift()->treasury->id,
+                    'payment'           => has_open_shift()->treasury->last_payment_collect + 1,
                     'is_approved'       => 1,
                     'is_account'        => 1,
                     'money_for_account' => floatval(-$this->transaction->money),
-                    'company_code'      => $this->auth->company_code,
+                    'company_code'      => app('auth_com'),
                 ])->save();
 
-                $this->shiftExists->treasury->increment('last_payment_collect');
+                has_open_shift()->treasury->increment('last_payment_collect');
             });
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
@@ -104,11 +89,11 @@ class AddEditCollectTransaction extends Component
     public function render()
     {
         $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
-            ->where(['company_code' => $this->auth->company_code])
+            ->where(['company_code' => app('auth_com')])
             ->where('money', '>', '0')
             ->paginate(CUSTOM_PAGINATION);
 
-        $treasuryBalance    = TreasuryTransaction::where(['company_code' => $this->auth->company_code, 'shift_id' => $this->shiftExists->id])
+        $treasuryBalance    = TreasuryTransaction::where(['company_code' => app('auth_com'), 'shift_id' => has_open_shift()->id])
             ->sum('money') ?? 0;
 
         return view('livewire.admin.account.collect-transaction.add-edit-collect-transaction', [

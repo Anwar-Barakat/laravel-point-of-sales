@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Admin\Stock\Item;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Unit;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
@@ -17,23 +16,19 @@ class AddEditItem extends Component
 
     public Item $item;
 
-    public $auth,
-        $categories         = [],
+    public $categories         = [],
         $parent_items       = [],
         $wholesale_units    = [],
         $retail_units       = [];
 
-    public $barcode,
-        $image;
+    public $image;
 
     public function mount(Item $item)
     {
-        $this->auth             = Auth::guard('admin')->user();
         $this->item             = $item;
-        $this->barcode          = $item->barcode;
-        $this->parent_items     = Item::select('id', 'name')->where(['company_code' => $this->auth->company_code])->active()->get();
-        $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_code', $this->auth->company_code)->active()->latest()->get();
-        $this->wholesale_units  = Unit::select('id', 'name')->where(['company_code' => $this->auth->company_code, 'status' => 'wholesale'])->active()->get();
+        $this->parent_items     = Item::select('id', 'name')->where(['company_code' => app('auth_com')])->active()->get();
+        $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_code', app('auth_com'))->active()->latest()->get();
+        $this->wholesale_units  = Unit::select('id', 'name')->where(['company_code' => app('auth_com'), 'status' => 'wholesale'])->active()->get();
     }
 
     public function updated($propertyName)
@@ -44,7 +39,7 @@ class AddEditItem extends Component
     public function updatedItemHasRetailUnit()
     {
         $this->retail_units = $this->item->has_retail_unit
-            ? Unit::select('id', 'name')->where(['company_code' => $this->auth->company_code, 'status' => 'retail'])->active()->get()
+            ? Unit::select('id', 'name')->where(['company_code' => app('auth_com'), 'status' => 'retail'])->active()->get()
             : [];
     }
 
@@ -53,9 +48,8 @@ class AddEditItem extends Component
     {
         $this->validate();
         try {
-            $this->item['barcode']      = 'item-' . Str::random(15);
-            $this->item['added_by']     = $this->auth->id;
-            $this->item['company_code'] = $this->auth->company_code;
+            $this->item['added_by']     = app('auth_id');
+            $this->item['company_code'] = app('auth_com');
             $this->item->save();
 
             if ($this->image) {
@@ -84,7 +78,7 @@ class AddEditItem extends Component
                 'required',
                 'min:3',
                 Rule::unique('items', 'name')->ignore($this->item->id)->where(function ($query) {
-                    return $query->where('company_code', $this->auth->company_code);
+                    return $query->where('company_code', app('auth_com'));
                 })
             ],
 

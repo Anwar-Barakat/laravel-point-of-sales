@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Admin\Account\FinancialAccount;
 
 use App\Models\AccountType;
 use App\Models\Account;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -13,14 +12,12 @@ class AddEditAccount extends Component
 {
     public Account $account;
 
-    public $auth;
     public $account_types   = [];
     public $parent_accounts = [];
     public $edit            = false;
 
     public function mount(Account $account)
     {
-        $this->auth             = Auth::guard('admin')->user();
         $this->account = $account;
 
         $this->account->account_type_id;
@@ -54,9 +51,9 @@ class AddEditAccount extends Component
         try {
             DB::beginTransaction();
 
-            $this->account['added_by']     = $this->auth->id;
+            $this->account['added_by']     = app('auth_id');
             $this->account['number']       = uniqid();
-            $this->account['company_code'] = $this->auth->company_code;
+            $this->account['company_code'] = app('auth_com');
 
             switch ($this->account->initial_balance_status) {
                 case 1:
@@ -99,7 +96,7 @@ class AddEditAccount extends Component
                 'required',
                 'min:3',
                 Rule::unique('accounts', 'name')->ignore($this->account->id)->where(function ($query) {
-                    return $query->where('company_code', $this->auth->company_code);
+                    return $query->where('company_code', app('auth_com'));
                 })
             ],
             'account.account_type_id'          => ['required', 'integer'],
@@ -114,7 +111,7 @@ class AddEditAccount extends Component
 
     public function getParentAccount()
     {
-        return Account::select('id', 'name')->where(['company_code' => $this->auth->company_code])
+        return Account::select('id', 'name')->where(['company_code' => app('auth_com')])
             ->where('id', '!=', $this->account->id)->parent()->get();
     }
 }

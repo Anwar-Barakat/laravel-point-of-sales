@@ -4,8 +4,6 @@ namespace App\Http\Livewire\Admin\GeneralSetting\Treasury;
 
 use App\Models\Admin;
 use App\Models\Treasury;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -14,11 +12,8 @@ class AddEditTreasury extends Component
     public Treasury $treasury;
     public Admin $admin;
 
-    public $auth;
-
     public function mount(Treasury $treasury, Admin $admin)
     {
-        $this->auth     = Auth::guard('admin')->user();
         $this->treasury = $treasury;
         $this->admin    = $admin;
     }
@@ -32,14 +27,14 @@ class AddEditTreasury extends Component
     {
         $this->validate();
         try {
-            $masterExists   = Treasury::where(['company_code' => $this->auth->company_code, 'is_master' => '1'])->first();
+            $masterExists   = Treasury::where(['company_code' => app('auth_com'), 'is_master' => '1'])->first();
             if ($masterExists && $masterExists->is_master == $this->treasury['is_master']) {
                 toastr()->error(__('msgs.exists', ['name' => __('treasury.master_treasury')]));
                 return false;
             }
 
-            $this->treasury['admin_id']       = $this->admin->id ?? $this->auth->id;
-            $this->treasury['company_code']   = $this->auth->company_code;
+            $this->treasury['admin_id']       = $this->admin->id ?? app('auth_id');
+            $this->treasury['company_code']   = app('auth_com');
             $this->treasury->save();
 
             toastr()->success(__('msgs.submitted', ['name' => __('treasury.treasury')]));
@@ -60,8 +55,8 @@ class AddEditTreasury extends Component
                 'required',
                 'min:3',
                 Rule::unique('treasuries', 'name')->ignore($this->treasury->id)->where(function ($query) {
-                    return $query->where('company_code', $this->auth->company_code)
-                        ->orWhere(['company_code' => $this->auth->company_code, 'admin_id' => $this->auth->id]);
+                    return $query->where('company_code', app('auth_com'))
+                        ->orWhere(['company_code' => app('auth_com'), 'admin_id' => app('auth_id')]);
                 })
             ],
             'treasury.is_master'             => ['required', 'in:0,1'],

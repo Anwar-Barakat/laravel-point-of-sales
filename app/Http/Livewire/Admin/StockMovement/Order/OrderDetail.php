@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Admin\StockMovement\Order;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderProduct;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -18,7 +17,7 @@ class OrderDetail extends Component
     public Order $order;
     public OrderProduct $product;
 
-    public $items = [], $auth;
+    public $items = [];
     public $wholesale_unit = null,
         $retail_unit = null;
 
@@ -29,7 +28,6 @@ class OrderDetail extends Component
 
     public function mount(Order $order, OrderProduct $product)
     {
-        $this->auth            = Auth::guard('admin')->user();
         $this->order           = $order;
         $this->product         = $product;
         $this->product->qty    = 1;
@@ -64,11 +62,11 @@ class OrderDetail extends Component
 
                 $this->product->fill([
                     'order_id'      => $this->order->id,
-                    'added_by'      => $this->auth->id,
-                    'company_code'  => $this->auth->company_code,
+                    'added_by'      => app('auth_id'),
+                    'company_code'  => app('auth_com'),
                 ])->save();
 
-                $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', $this->auth->company_code)->sum('total_price');
+                $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', app('auth_com'))->sum('total_price');
                 $this->order->fill([
                     'items_cost'            => $totalPrices,
                     'cost_before_discount'  => $totalPrices + $this->order->tax,
@@ -102,7 +100,7 @@ class OrderDetail extends Component
     public function render()
     {
         $order_products = OrderProduct::where('order_id', $this->order->id)
-            ->where('company_code', $this->auth->company_code)->paginate(CUSTOM_PAGINATION);
+            ->where('company_code', app('auth_com'))->paginate(CUSTOM_PAGINATION);
         return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $order_products]);
     }
 

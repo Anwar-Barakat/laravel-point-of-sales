@@ -26,7 +26,6 @@ class ShowAccount extends Component
     public function render()
     {
         $accounts   = $this->getAccounts();
-        // dd($accounts);
         return view('livewire.admin.account.financial-account.show-account', ['accounts' => $accounts]);
     }
 

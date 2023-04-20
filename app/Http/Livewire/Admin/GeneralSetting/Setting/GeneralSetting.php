@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Admin\GeneralSetting\Setting;
 
 use App\Models\Account;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -12,7 +10,6 @@ class GeneralSetting extends Component
 {
     use WithFileUploads;
 
-    public $auth;
     public $setting,
         $company_name_ar, $company_name_en,
         $customer_account_id, $vendor_account_id,
@@ -22,7 +19,6 @@ class GeneralSetting extends Component
 
     public function mount()
     {
-        $this->auth = Auth::guard('admin')->user();
         $this->company_name_ar      = $this->setting->getTranslation('company_name', 'ar');
         $this->company_name_en      = $this->setting->getTranslation('company_name', 'en');
         $this->address              = $this->setting->address;
@@ -31,7 +27,7 @@ class GeneralSetting extends Component
         $this->mobile               = $this->setting->mobile;
         $this->alert_msg            = $this->setting->alert_msg;
 
-        $this->parent_accounts    = Account::where('company_code', $this->auth->company_code)->parent()->get();
+        $this->parent_accounts    = Account::where('company_code', app('auth_com'))->parent()->get();
     }
 
     public function updated($fields)

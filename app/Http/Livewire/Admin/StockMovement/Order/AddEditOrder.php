@@ -5,24 +5,21 @@ namespace App\Http\Livewire\Admin\StockMovement\Order;
 use App\Models\Order;
 use App\Models\Store;
 use App\Models\Vendor;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AddEditOrder extends Component
 {
     public Order $order;
-    public $auth;
 
     public $vendors = [],
         $stores = [];
 
     public function mount(Order $order)
     {
-        $this->auth     = Auth::guard('admin')->user();
         $this->order    = $order;
         $this->order['invoice_date']  = date('Y-m-d');
-        $this->vendors  = Vendor::active()->where('company_code', $this->auth->company_code)->get();
-        $this->stores   = Store::active()->where('company_code', $this->auth->company_code)->get();
+        $this->vendors  = Vendor::active()->where('company_code', app('auth_com'))->get();
+        $this->stores   = Store::active()->where('company_code', app('auth_com'))->get();
     }
 
     public function updated($fields)
@@ -36,8 +33,8 @@ class AddEditOrder extends Component
         try {
             $this->order['type']            = 1; // purchase
             $this->order['account_id']      = $this->order->vendor->account->id;
-            $this->order['added_by']        = $this->auth->id;
-            $this->order['company_code']    = $this->auth->company_code;
+            $this->order['added_by']        = app('auth_id');
+            $this->order['company_code']    = app('auth_com');
 
             $this->order->save();
             toastr()->success(__('msgs.submitted', ['name' => __('movement.order')]));

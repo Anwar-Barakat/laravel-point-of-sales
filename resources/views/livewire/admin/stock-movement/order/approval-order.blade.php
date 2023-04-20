@@ -11,7 +11,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.items_cost')" />
-                                    <x-text-input type="text" class="form-control" wire:model='order.items_cost' readonly disabled />
+                                    <x-text-input type="number" class="form-control" wire:model='order.items_cost' readonly disabled />
                                     <x-input-error :messages="$errors->get('order.items_cost')" class="mt-2" />
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.tax')" />
-                                        <x-text-input type="text" class="form-control" wire:model='order.tax_value' />
+                                        <x-text-input type="number" class="form-control" wire:model='order.tax_value' />
                                         <x-input-error :messages="$errors->get('order.tax_value')" class="mt-2" />
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.discount')" />
-                                        <x-text-input type="text" class="form-control" wire:model='order.discount_value' />
+                                        <x-text-input type="number" class="form-control" wire:model='order.discount_value' />
                                         <x-input-error :messages="$errors->get('order.discount_value')" class="mt-2" />
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.cost_after_discount')" />
-                                    <x-text-input type="text" class="form-control" wire:model='order.cost_after_discount' readonly disabled />
+                                    <x-text-input type="number" class="form-control" wire:model='order.cost_after_discount' readonly disabled />
                                     <x-input-error :messages="$errors->get('order.cost_after_discount')" class="mt-2" />
                                 </div>
                             </div>

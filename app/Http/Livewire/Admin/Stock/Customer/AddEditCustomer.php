@@ -6,7 +6,6 @@ use App\Models\Account;
 use App\Models\AccountType;
 use App\Models\Customer;
 use App\Models\Setting;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -14,14 +13,11 @@ use Livewire\Component;
 class AddEditCustomer extends Component
 {
     public Customer $customer;
-    public $auth;
-
     public $edit = false;
 
 
     public function mount(Customer $customer)
     {
-        $this->auth             = Auth::guard('admin')->user();
         $this->customer = $customer;
         $this->edit = !empty($this->customer->initial_balance_status) ? true : false;
     }
@@ -54,8 +50,8 @@ class AddEditCustomer extends Component
                     break;
             }
 
-            $this->customer['added_by']     = $this->auth->id;
-            $this->customer['company_code'] = $this->auth->company_code;
+            $this->customer['added_by']     = app('auth_id');
+            $this->customer['company_code'] = app('auth_com');
             $this->customer->save();
 
             Account::updateOrCreate(
@@ -66,13 +62,13 @@ class AddEditCustomer extends Component
                     'name'                      => $this->customer->name,
                     'account_type_id'           => AccountType::where('name->en', 'Customer')->first()->id,
                     'is_parent'                 => 0,
-                    'parent_id'                 => Setting::where('company_code', $this->auth->company_code)->first()->customer_account_id,
+                    'parent_id'                 => Setting::where('company_code', app('auth_com'))->first()->customer_account_id,
                     'number'                    => uniqid(),
                     'initial_balance_status'    => $this->customer->initial_balance_status,
                     'initial_balance'           => $this->customer->initial_balance,
                     'notes'                     => $this->customer->notes,
-                    'company_code'              => $this->auth->company_code,
-                    'added_by'                  => $this->auth->id,
+                    'company_code'              => app('auth_com'),
+                    'added_by'                  => app('auth_id'),
                 ]
             );
             DB::commit();
@@ -97,7 +93,7 @@ class AddEditCustomer extends Component
                 'required',
                 'min:3',
                 Rule::unique('customers', 'name')->ignore($this->customer->id)->where(function ($query) {
-                    return $query->where('company_code', $this->auth->company_code);
+                    return $query->where('company_code', app('auth_com'));
                 })
             ],
             'customer.address'                  => ['required', 'min:10'],

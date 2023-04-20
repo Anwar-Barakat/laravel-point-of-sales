@@ -4,7 +4,7 @@ return [
     'confirm'       => 'تأكيد',
     'edit'          => 'تعديل',
     'update'        => 'تحديث',
-    'cancel'        => 'إالغاء',
+    'cancel'        => 'إلغاء',
     'submit'        => 'حفظ البيانات',
     'select'        => 'أختر',
     'actions'       => 'العمليات',

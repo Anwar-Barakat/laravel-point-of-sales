@@ -4,42 +4,38 @@ namespace App\Http\Livewire\Admin\StockMovement\Shift;
 
 use App\Models\Shift;
 use App\Models\Treasury;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class AddEditShift extends Component
 {
     public Shift $shift;
 
-    public $auth,
-        $treasuries = [];
+    public $treasuries = [];
 
     public function mount(Shift $shift)
     {
         $this->shift        = $shift;
-        $this->auth         = Auth::guard('admin')->user();
-        $this->treasuries   = Treasury::where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code])->active()->get();
+        $this->treasuries   = Treasury::where(['admin_id' => app('auth_id'), 'company_code' => app('auth_com')])->active()->get();
     }
 
     public function submit()
     {
         $this->validate();
         try {
-            $shiftOpened = Shift::where(['admin_id' => $this->auth->id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->exists();
+            $shiftOpened = Shift::where(['admin_id' => app('auth_id'), 'company_code' => app('auth_com'), 'is_finished' => 0])->exists();
             if ($shiftOpened) {
                 toastr()->error(__('movement.you_have_opened_shift'));
                 return redirect()->route('admin.shifts.create');
             }
 
-            $treasuryOpened = Shift::where(['treasury_id' => $this->shift->treasury_id, 'company_code' => $this->auth->company_code, 'is_finished' => 0])->exists();
+            $treasuryOpened = Shift::where(['treasury_id' => $this->shift->treasury_id, 'company_code' => app('auth_com'), 'is_finished' => 0])->exists();
             if ($treasuryOpened) {
                 toastr()->error(__('movement.treasury_opened'));
                 return redirect()->route('admin.shifts.create');
             }
 
-            $this->shift->admin_id      = $this->auth->id;
-            $this->shift->company_code  = $this->auth->company_code;
+            $this->shift->admin_id      = app('auth_id');
+            $this->shift->company_code  = app('auth_com');
 
             $this->shift->save();
             toastr()->success(__('msgs.added', ['name' => __('movement.treasury_shifts')]));
