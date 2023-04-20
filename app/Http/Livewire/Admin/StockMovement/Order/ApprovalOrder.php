@@ -14,6 +14,33 @@ class ApprovalOrder extends Component
         $this->order    = $order;
     }
 
+    public function updated($fields)
+    {
+        return $this->validateOnly($fields);
+    }
+
+
+    public function updatedOrderTaxValue()
+    {
+        if ($this->order->tax_type == 0)
+            $taxAmount = ($this->order->items_cost * floatval($this->order->tax_value)) / 100;
+        else
+            $taxAmount = floatval($this->order->tax_value);
+
+        $this->order->cost_before_discount  = $this->order->items_cost + $taxAmount;
+        $this->order->cost_after_discount   = $this->order->cost_before_discount;
+    }
+
+    public function updatedOrderDiscountValue()
+    {
+        if ($this->order->discount_type == 0)
+            $disAmount = ($this->order->items_cost * floatval($this->order->discount_value)) / 100;
+        else
+            $disAmount = floatval($this->order->discount_value);
+
+        $this->order->cost_after_discount   = $this->order->cost_before_discount - $disAmount;
+    }
+
     public function render()
     {
         return view('livewire.admin.stock-movement.order.approval-order');
@@ -24,16 +51,16 @@ class ApprovalOrder extends Component
         return [
             'order.items_cost'              => ['required'],
             'order.tax_type'                => ['boolean'],
-            'order.tax_value'               => ['required', 'numeric', function ($attribute, $value, $fail) {
+            'order.tax_value'               => ['numeric', function ($attribute, $value, $fail) {
                 if ($this->order->tax_type  == '0' && $value >= 100) {
-                    $fail($attribute . ' must be less than 100 when tax type is percentage.');
+                    $fail(__('validation.tax_type_is_percent'));
                 }
             }],
             'order.cost_before_discount'    => ['required'],
             'order.discount_type'           => ['boolean'],
-            'order.discount_value'          => ['required', 'numeric', function ($attribute, $value, $fail) {
+            'order.discount_value'          => ['numeric', function ($attribute, $value, $fail) {
                 if ($this->order->discount_type == '0' && $value >= 100) {
-                    $fail($attribute . ' must be less than 100 when discount type is percentage.');
+                    $fail(__('validation.discount_type_is_percent'));
                 }
             }],
             'order.cost_after_discount'     => ['required'],

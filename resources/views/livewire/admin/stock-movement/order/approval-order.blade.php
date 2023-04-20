@@ -1,4 +1,4 @@
-    <div class="modal modal-blur fade" id="approval-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal modal-blur fade" wire:ignore.self id="approval-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered large-modal" role="document">
             <form class="w-100">
                 <div class="modal-content">
@@ -23,20 +23,25 @@
                                         <option value="0">{{ __('movement.percentage') }}</option>
                                         <option value="1">{{ __('movement.fixed') }}</option>
                                     </select>
+                                    <x-input-error :messages="$errors->get('order.tax_type')" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('movement.tax')" />
-                                    <x-text-input type="text" class="form-control" wire:model='order.tax_value' />
+                            @if ($order->tax_type != null)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="mb-3">
+                                        <x-input-label class="form-label" :value="__('movement.tax')" />
+                                        <x-text-input type="text" class="form-control" wire:model='order.tax_value' />
+                                        <x-input-error :messages="$errors->get('order.tax_value')" class="mt-2" />
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('movement.cost_before_discount')" />
+                                    <x-input-label class="form-label" :value="__('movement.items_cost') . ' + ' . __('movement.tax')" />
                                     <x-text-input type="number" class="form-control" wire:model='order.cost_before_discount' readonly disabled />
+                                    <x-input-error :messages="$errors->get('order.cost_before_discount')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
@@ -47,20 +52,25 @@
                                         <option value="0">{{ __('movement.percentage') }}</option>
                                         <option value="1">{{ __('movement.fixed') }}</option>
                                     </select>
+                                    <x-input-error :messages="$errors->get('order.discount_type')" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('movement.discount')" />
-                                    <x-text-input type="text" class="form-control" wire:model='order.discount_value' />
+                            @if ($order->discount_type != null)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="mb-3">
+                                        <x-input-label class="form-label" :value="__('movement.discount')" />
+                                        <x-text-input type="text" class="form-control" wire:model='order.discount_value' />
+                                        <x-input-error :messages="$errors->get('order.discount_value')" class="mt-2" />
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.cost_after_discount')" />
                                     <x-text-input type="text" class="form-control" wire:model='order.cost_after_discount' readonly disabled />
+                                    <x-input-error :messages="$errors->get('order.cost_after_discount')" class="mt-2" />
                                 </div>
                             </div>
                         </div>

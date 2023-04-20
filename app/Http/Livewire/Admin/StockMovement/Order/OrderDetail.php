@@ -61,19 +61,23 @@ class OrderDetail extends Component
             if ($this->order->is_approved == 0) {
                 DB::beginTransaction();
 
-                $this->product->order_id       = $this->order->id;
-                $this->product->added_by       = $this->auth->id;
-                $this->product->company_code   = $this->auth->company_code;
-                $this->product->save();
+
+                $this->product->fill([
+                    'order_id'      => $this->order->id,
+                    'added_by'      => $this->auth->id,
+                    'company_code'  => $this->auth->company_code,
+                ])->save();
 
                 $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', $this->auth->company_code)->sum('total_price');
-                $this->order->items_cost            = $totalPrices;
-                $this->order->cost_before_discount  = $totalPrices + $this->order->tax;
-                $this->order->cost_after_discount   = $this->order->cost_before_discount - $this->order->discount;
-                $this->order->save();
+                $this->order->fill([
+                    'items_cost'            => $totalPrices,
+                    'cost_before_discount'  => $totalPrices + $this->order->tax,
+                    'cost_after_discount'   => $totalPrices + $this->order->tax - $this->order->discount,
+                ])->save();
 
                 DB::commit();
                 toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
+                $this->reset('product');
             }
         } catch (\Throwable $th) {
             DB::rollBack();
