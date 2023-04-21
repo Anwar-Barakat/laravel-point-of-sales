@@ -14,7 +14,6 @@ class AddEditExchangeTransaction extends Component
     public TreasuryTransaction $transaction;
 
     public $accounts = [],
-        $treasury_balance,
         $shiftTypes = [];
 
 
@@ -44,7 +43,7 @@ class AddEditExchangeTransaction extends Component
             return redirect()->route('admin.shifts.create');
         }
 
-        if ($this->transaction->money > $this->treasury_balance) {
+        if ($this->transaction->money > get_treasury_balance()) {
             toastr()->error(__('account.not_enough_balance'));
             return false;
         }
@@ -89,14 +88,9 @@ class AddEditExchangeTransaction extends Component
             ->where('money', '<', '0')
             ->paginate(CUSTOM_PAGINATION);
 
-        $treasuryBalance    = TreasuryTransaction::where(['company_code' => app('auth_com'), 'shift_id' => has_open_shift()->id])
-            ->sum('money') ?? 0;
-
-        $this->treasury_balance = $treasuryBalance;
-
         return view('livewire.admin.account.exchange-transaction.add-edit-exchange-transaction', [
             'transactions'      => $transactions,
-            'treasuryBalance'   => $treasuryBalance
+            'treasuryBalance'   => get_treasury_balance()
         ]);
     }
 

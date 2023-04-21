@@ -28,11 +28,11 @@ return new class extends Migration
             $table->decimal('items_cost')->default(0); // all items costs
             $table->decimal('cost_before_discount')->default(0);
             $table->decimal('cost_after_discount')->default(0);
+            // $table->decimal('grand_cost');
 
             // $table->decimal('paid')->default(0);
             // $table->decimal('remains')->default(0);
 
-            // $table->decimal('grand_cost');
 
             $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('account_id')->constrained()->cascadeOnUpdate();

@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Account\CollectTransaction;
 
-use App\Http\Middleware\Admin;
 use App\Models\Account;
-use App\Models\Shift;
 use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
 use Illuminate\Support\Facades\DB;
@@ -60,8 +58,9 @@ class AddEditCollectTransaction extends Component
             });
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
+            $this->reset('transaction.transaction_date', 'transaction.account_id', 'transaction.shift_type_id', 'transaction.money', 'transaction.report',);
         } catch (\Throwable $th) {
-            return redirect()->route('admin.treasury-transactions.create')->with(['error' => $th->getMessage()]);
+            return redirect()->route('admin.collect-transactions')->with(['error' => $th->getMessage()]);
         }
     }
 
@@ -93,12 +92,9 @@ class AddEditCollectTransaction extends Component
             ->where('money', '>', '0')
             ->paginate(CUSTOM_PAGINATION);
 
-        $treasuryBalance    = TreasuryTransaction::where(['company_code' => app('auth_com'), 'shift_id' => has_open_shift()->id])
-            ->sum('money') ?? 0;
-
         return view('livewire.admin.account.collect-transaction.add-edit-collect-transaction', [
             'transactions'      => $transactions,
-            'treasuryBalance'   => $treasuryBalance
+            'treasuryBalance'   => get_treasury_balance()
         ]);
     }
 }

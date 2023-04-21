@@ -23,7 +23,7 @@ return [
     'cost_before_discount'      => 'التكلفة قبل الخصم',
     'cost_after_discount'       => 'التكلفة بعد الخصم',
     'items_cost'                => 'تكلفة الأصناف',
-
+    'grand_total'               => 'المبلغ الأجمالي',
     'vendor_id'                 => 'المورد',
     'account_id'                => 'الحساب المالي',
     'invoice_type'              => 'نوع الفاتورة',
@@ -35,7 +35,10 @@ return [
     'qty'                       => 'الكمية',
     'production_date'           => 'تاريخ الأنتاج',
     'expiration_date'           => 'تاريخ انتهاء الصلاحية',
-
+    'paid_to_the_supplier'      => 'المدفوع للمورد',
+    'remain_to_the_supplier'    => 'المُتبقي للمورد',
+    'cost_tax_discount'         => 'مجموع سعر الاصناف + الضريبة + الخصم',
+    'payments_reminders'        => 'المدفوعات والمُتبقي',
 
     //_______________________
     // Shifts

@@ -117,7 +117,10 @@ return [
     'uploaded'                      => 'The :attribute failed to upload.',
     'url'                           => 'The :attribute format is invalid.',
     'uuid'                          => 'The :attribute must be a valid UUID.',
+
     'discount_type_is_percent'      => 'discount type must be less than 100 when the discount type is percentage',
+    'paid_smaller_than_cost'        => 'Paid must be smaller than or equal to the grand cost',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

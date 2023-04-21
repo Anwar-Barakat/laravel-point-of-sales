@@ -62,6 +62,7 @@ return [
     'cash_exchange_screen'      => 'شاشة صرف النقدية',
     'click_here'                => 'إضغط هنا',
 
+
     'treasury_available_balance'    => 'رصيد الخزينة المتوفر',
     'dont_have_open_shift'          => 'ليس لديك مناوبة مفتوحة لتتمكن من التعامل مع معاملات الخزينة',
     'not_enough_balance'            => 'لا يوجد رصيد كافي في الخزنة حالياً',

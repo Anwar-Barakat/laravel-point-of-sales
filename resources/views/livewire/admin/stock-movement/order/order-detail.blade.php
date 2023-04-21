@@ -47,15 +47,15 @@
                             <td>{{ $order->tax ?? '-' }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('movement.discount') }}</th>
-                            <td>{{ $order->discount ?? '-' }}</td>
-                        </tr>
-                        <tr>
                             <th>{{ __('movement.cost_before_discount') }}</th>
                             <td>{{ $order->cost_before_discount ?? '0' }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('movement.cost_after_discount') }}</th>
+                            <th>{{ __('movement.discount') }}</th>
+                            <td>{{ $order->discount ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('movement.grand_total') }}</th>
                             <td>{{ $order->cost_after_discount ?? '0' }}</td>
                         </tr>
                         <tr>

@@ -24,6 +24,7 @@ return [
     'cost_before_discount'      => 'Cost before discount',
     'cost_after_discount'       => 'Cost after discount',
     'items_cost'                => 'Items cost',
+    'grand_total'               => 'Grand total',
 
     'vendor_id'                 => 'Vendor',
     'account_id'                => 'Account',
@@ -36,6 +37,10 @@ return [
     'qty'                       => 'Quantity',
     'production_date'           => 'Production history',
     'expiration_date'           => 'Expiration date',
+    'paid_to_the_vendor'        => 'Paid to the vendor',
+    'remain_to_the_vendor'      => 'Remain to the vendor',
+    'cost_tax_discount'         => 'Total price of items + tax + discount',
+    'payments_reminders'        => 'Payments and remainder',
 
 
     //_______________________

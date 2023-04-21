@@ -32,6 +32,40 @@ textarea {
 
 @media screen and (min-width: 991px) {
     .large-modal {
-        max-width: 900px;
+        max-width: 980px;
     }
+}
+
+.form-control {
+    padding: 0.4375rem 0.75rem;
+    font-family: var(--tblr-font-sans-serif);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4285714286;
+    color: inherit;
+    background-color: var(--tblr-bg-forms);
+    background-clip: padding-box;
+    border: var(--tblr-border-width) solid var(--tblr-border-color);
+    appearance: none;
+    border-radius: var(--tblr-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-select {
+    padding: 0.4375rem 2.25rem 0.4375rem 0.75rem;
+    font-family: var(--tblr-font-sans-serif);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4285714286;
+    color: inherit;
+    background-color: var(--tblr-bg-forms);
+    background-image: var(--tblr-form-select-bg-img),
+        var(--tblr-form-select-bg-icon, none);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: var(--tblr-border-width) solid var(--tblr-border-color);
+    border-radius: var(--tblr-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none;
 }
