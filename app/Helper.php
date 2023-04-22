@@ -36,3 +36,10 @@ if (!function_exists('get_treasury_balance')) {
             ->sum('money') ?? 0;
     }
 }
+
+if (!function_exists('get_transaction')) {
+    function get_transaction()
+    {
+        return TreasuryTransaction::where(['company_code' => get_auth_com(), 'shift_id' => has_open_shift()->id])->first();
+    }
+}

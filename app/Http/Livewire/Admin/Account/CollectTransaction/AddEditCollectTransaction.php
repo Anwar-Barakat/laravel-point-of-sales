@@ -7,9 +7,12 @@ use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AddEditCollectTransaction extends Component
 {
+    use WithPagination;
+
     public TreasuryTransaction $transaction;
 
     public $accounts = [],

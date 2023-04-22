@@ -121,7 +121,7 @@
                         </tbody>
                     </table>
                     <div class="p-3 mt-2">
-                        {{ $treasuries->links() }}
+                        {{ $treasurieslinks('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>

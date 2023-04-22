@@ -16,6 +16,7 @@ return [
     'added'                 => 'تم إضافة :name بنجاج',
     'deleted'               => 'تم حذف :name بنجاج',
     'submitted'             => 'تم حفظ البيانات :name بنجاج',
+    'approved'              => 'تم الأعتماد :name بنجاج',
     'has_sth'               => ':name لديه :sth',
 
 

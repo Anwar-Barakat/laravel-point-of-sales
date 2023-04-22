@@ -22,7 +22,8 @@ class TreasuryTransaction extends Model
         'transaction_date',
         'payment',
         'money',
-        'company_code'
+        'report',
+        'company_code',
     ];
 
     public function shift_type(): BelongsTo

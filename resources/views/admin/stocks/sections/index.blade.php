@@ -67,7 +67,7 @@
                     </tbody>
                 </table>
                 <div class="p-3 mt-2">
-                    {{ $sections->links() }}
+                    {{ $sectionslinks('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

@@ -108,14 +108,14 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.paid_to_the_supplier')" />
-                                    <input type="number" class="form-control" wire:model='order.what_paid' {{ $order->invoice_type == 0 ? 'readonly disabled' : '' }} />
-                                    <x-input-error :messages="$errors->get('order.what_paid')" class="mt-2" />
+                                    <input type="number" class="form-control" wire:model='order.paid' {{ $order->invoice_type == 0 ? 'readonly disabled' : '' }} />
+                                    <x-input-error :messages="$errors->get('order.paid')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('movement.remain_to_the_supplier')" />
-                                    <x-text-input type="number" class="form-control" wire:model='order.what_remain' readonly disabled />
+                                    <x-text-input type="number" class="form-control" wire:model='order.remains' readonly disabled />
                                 </div>
                             </div>
                         </div>

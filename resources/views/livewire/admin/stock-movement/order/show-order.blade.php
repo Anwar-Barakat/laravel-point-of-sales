@@ -137,8 +137,8 @@
                     @endforelse
                 </tbody>
             </table>
-       <div class="p-3 mt-2">
-                {{ $orders->links() }}
+            <div class="p-3 mt-2">
+                {{ $orders->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

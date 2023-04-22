@@ -39,6 +39,7 @@ return [
     'remain_to_the_supplier'    => 'المُتبقي للمورد',
     'cost_tax_discount'         => 'مجموع سعر الاصناف + الضريبة + الخصم',
     'payments_reminders'        => 'المدفوعات والمُتبقي',
+    'already_approved'          => 'تم إعتماد الطلب بنجاح سابقاً',
 
     //_______________________
     // Shifts

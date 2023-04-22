@@ -11,6 +11,7 @@ return [
     'details'               => ':name details',
     'type'                  => 'Type the :name',
     'exists'                => ':name already exists',
+    'already_approved'      => 'Order Has already Been Approved previous',
 
     //? Results :
     'updated'               => ':name Has Been Updated Successfuly',
@@ -18,6 +19,7 @@ return [
     'added'                 => ':name Has Been Added Successfuly',
     'deleted'               => ':name Has Been Deleted Successfuly',
     'submitted'             => ':name Has Been Submitted Successfuly',
+    'approved'              => ':name Has Been Approved Successfuly',
     'has_sth'               => 'The :name has :sth',
 
     'email_pass_not_valid'  => 'Oops, Email or Password not Valid',

@@ -41,6 +41,7 @@ return [
     'remain_to_the_vendor'      => 'Remain to the vendor',
     'cost_tax_discount'         => 'Total price of items + tax + discount',
     'payments_reminders'        => 'Payments and remainder',
+    'already_approved'          => 'Order Has already Been Approved previous',
 
 
     //_______________________

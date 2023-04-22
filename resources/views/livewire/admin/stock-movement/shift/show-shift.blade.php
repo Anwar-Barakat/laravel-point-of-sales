@@ -108,7 +108,7 @@
                 </tbody>
             </table>
             <div class="p-3 mt-2">
-                {{ $shifts->links() }}
+                {{ $shifts->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

@@ -126,7 +126,7 @@
                 </tbody>
             </table>
             <div class="p-3 mt-2">
-                {{ $vendors->links() }}
+                {{ $vendorslinks('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

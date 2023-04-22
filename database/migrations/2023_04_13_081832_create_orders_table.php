@@ -18,34 +18,38 @@ return new class extends Migration
             $table->boolean('invoice_type');
             $table->date('invoice_date');
             $table->boolean('is_approved')->default(0);
+            $table->boolean('is_account')->default(0);
             $table->string('notes');
 
-            $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
-            $table->decimal('discount')->default(0);
             $table->boolean('tax_type')->nullable()->comment('0 => percentage, 1 => fixed');
-            $table->decimal('tax')->default(0);
+            $table->decimal('tax_value')->default(0);
+            $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
+            $table->decimal('discount_value')->default(0);
 
             $table->decimal('items_cost')->default(0); // all items costs
             $table->decimal('cost_before_discount')->default(0);
             $table->decimal('cost_after_discount')->default(0);
-            // $table->decimal('grand_cost');
 
-            // $table->decimal('paid')->default(0);
-            // $table->decimal('remains')->default(0);
+            $table->decimal('paid')->default(0);
+            $table->decimal('remains')->default(0);
 
 
             $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('account_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();
+            $table->foreignId('treasury_transaction_id')->nullable();
+            $table->decimal('money_for_account')->default(0);
+
             // $table->decimal('vendor_balance_before')->nullable();
             // $table->decimal('vendor_balance_after')->nullable();
-            // $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
 
             $table->integer('company_code');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
