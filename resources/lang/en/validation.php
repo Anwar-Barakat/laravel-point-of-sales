@@ -120,6 +120,7 @@ return [
 
     'discount_type_is_percent'      => 'discount type must be less than 100 when the discount type is percentage',
     'paid_smaller_than_cost'        => 'Paid must be smaller than or equal to the grand cost',
+    'discount_less_grand_total'     => 'The discount cannot be greater than the total amount',
 
     /*
     |--------------------------------------------------------------------------

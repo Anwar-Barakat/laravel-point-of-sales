@@ -27,7 +27,7 @@ class GeneralSetting extends Component
         $this->mobile               = $this->setting->mobile;
         $this->alert_msg            = $this->setting->alert_msg;
 
-        $this->parent_accounts    = Account::where('company_code', app('auth_com'))->parent()->get();
+        $this->parent_accounts    = Account::where('company_code', get_auth_com())->parent()->get();
     }
 
     public function updated($fields)

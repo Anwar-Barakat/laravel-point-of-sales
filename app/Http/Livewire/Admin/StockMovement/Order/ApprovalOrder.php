@@ -9,11 +9,15 @@ class ApprovalOrder extends Component
 {
     public Order $order;
 
+    public $total;
+
     public function mount(Order $order)
     {
         $this->order = $order;
+        $this->total = $this->order->cost_after_discount;
         $this->remain_paid_price();
     }
+
     public function updated($fields)
     {
         return $this->validateOnly($fields);
@@ -38,19 +42,42 @@ class ApprovalOrder extends Component
 
     public function updatedOrderDiscountValue()
     {
-        if ($this->order->discount_type == 0)
-            $disAmount = ($this->order->items_cost * floatval($this->order->discount_value)) / 100;
-        else
-            $disAmount = floatval($this->order->discount_value);
+        // Check the discount type and value
+        if (($this->order->discount_type == 1 && $this->order->discount_value > $this->order->cost_after_discount) ||
+            ($this->order->discount_type == 0 && $this->order->discount_value >= 100)
+        ) {
+            // Reset the discount value and update the cost after discount
+            $this->order->discount_value = 0;
+            $this->order->cost_after_discount = $this->order->cost_before_discount;
+            $this->order->what_paid = $this->order->cost_after_discount;
 
-        $this->order->cost_after_discount   = $this->order->cost_before_discount - $disAmount;
+            toastr()->error($this->order->discount_type == 1
+                ? __('validation.discount_less_grand_total')
+                : __('validation.tax_type_is_percent'));
+        }
+        // Calculate the discount amount
+        $discountAmount = $this->calculateDiscountAmount();
+
+        // Update the cost after discount
+        $this->order->cost_after_discount = $this->order->cost_before_discount - $discountAmount;
+
+        // Update the remaining paid price
         $this->remain_paid_price();
     }
+
+    public function calculateDiscountAmount()
+    {
+        // Calculate the discount amount based on the discount type
+        return $this->order->discount_type == 0
+            ? ($this->order->items_cost * floatval($this->order->discount_value)) / 100
+            : floatval($this->order->discount_value);
+    }
+
 
     public function updatedOrderWhatPaid()
     {
         if ($this->order->invoice_type) {
-            $this->order->what_remain = $this->order->cost_after_discount - $this->order->what_paid;
+            $this->order->what_remain   = $this->order->cost_after_discount - $this->order->what_paid;
 
             if ($this->order->what_paid > $this->order->cost_after_discount)
                 $this->order->what_remain = 0;
@@ -84,18 +111,14 @@ class ApprovalOrder extends Component
         return [
             'order.items_cost'              => ['required'],
             'order.tax_type'                => ['nullable', 'boolean'],
-            'order.tax_value'               => ['nullable', 'numeric', function ($value, $fail) {
+            'order.tax_value'               => ['nullable', 'numeric', function ($value) {
                 if ($this->order->tax_type  == '0' && $value >= 100) {
                     toastr()->error(__('validation.tax_type_is_percent'));
                 }
             }],
             'order.cost_before_discount'    => ['required'],
             'order.discount_type'           => ['nullable', 'boolean'],
-            'order.discount_value'          => ['nullable', 'numeric', function ($value, $fail) {
-                if ($this->order->discount_type == '0' && $value >= 100) {
-                    toastr()->error(__('validation.discount_type_is_percent'));
-                }
-            }],
+            'order.discount_value'          => ['nullable', 'numeric'],
             'order.cost_after_discount'     => ['required'],
             'order.invoice_type'            => ['required'],
             'order.what_paid'               => ['required', 'numeric', function () {

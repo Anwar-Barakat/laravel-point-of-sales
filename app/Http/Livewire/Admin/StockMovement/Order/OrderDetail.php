@@ -62,11 +62,11 @@ class OrderDetail extends Component
 
                 $this->product->fill([
                     'order_id'      => $this->order->id,
-                    'added_by'      => app('auth_id'),
-                    'company_code'  => app('auth_com'),
+                    'added_by'      => get_auth_id(),
+                    'company_code'  => get_auth_com(),
                 ])->save();
 
-                $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', app('auth_com'))->sum('total_price');
+                $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', get_auth_com())->sum('total_price');
                 $this->order->fill([
                     'items_cost'            => $totalPrices,
                     'cost_before_discount'  => $totalPrices + $this->order->tax,
@@ -100,7 +100,7 @@ class OrderDetail extends Component
     public function render()
     {
         $order_products = OrderProduct::where('order_id', $this->order->id)
-            ->where('company_code', app('auth_com'))->paginate(CUSTOM_PAGINATION);
+            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION);
         return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $order_products]);
     }
 

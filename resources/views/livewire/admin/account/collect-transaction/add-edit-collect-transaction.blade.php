@@ -10,7 +10,7 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.transaction_date')" />
-                                        <x-text-input type="date" class="form-control" wire:model.debounce.500s='transaction.transaction_date' />
+                                        <x-text-input type="date" class="form-control" wire:model='transaction.transaction_date' />
                                         <x-input-error :messages="$errors->get('transaction.transaction_date')" class="mt-2" />
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.amount_collected')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='transaction.money' />
+                                        <x-text-input type="number" class="form-control" wire:model='transaction.money' />
                                         <x-input-error :messages="$errors->get('transaction.money')" class="mt-2" />
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('dash.report')" />
-                                        <textarea rows="5" class="form-control" wire:model.debounce.500s='transaction.report' placeholder="{{ __('account.counterpart_collection') }}"></textarea>
+                                        <textarea rows="5" class="form-control" wire:model='transaction.report' placeholder="{{ __('account.counterpart_collection') }}"></textarea>
                                         <x-input-error :messages="$errors->get('transaction.report')" class="mt-2" />
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                <div class="mt-3">
+                <div class="p-3 mt-2">
                     {{ $transactions->links() }}
                 </div>
             </div>

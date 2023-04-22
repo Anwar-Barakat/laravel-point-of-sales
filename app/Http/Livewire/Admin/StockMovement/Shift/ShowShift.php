@@ -17,7 +17,7 @@ class ShowShift extends Component
     {
         $this->auth = auth()->guard('admin')->user();
         $this->admin_has_opened_shift =
-            Shift::where(['admin_id' => app('auth_id'), 'company_code' => app('auth_com'), 'is_finished' => 0])->exists()
+            Shift::where(['admin_id' => get_auth_id(), 'company_code' => get_auth_com(), 'is_finished' => 0])->exists()
             ? true
             : false;
     }

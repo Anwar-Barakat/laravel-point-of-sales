@@ -45,7 +45,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                <div class="mt-3">
+                <div class="p-3 mt-2">
                     {{ $account_types->links() }}
                 </div>
             </div>

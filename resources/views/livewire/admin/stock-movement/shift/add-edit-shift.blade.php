@@ -14,7 +14,7 @@
                             @if ($treasuries)
                                 @foreach ($treasuries as $treasury)
                                     @php
-                                        $not_available = App\Models\Shift::where(['treasury_id' => $treasury->id, 'admin_id' => app('auth_id'), 'company_code' => app('auth_com')])->exists();
+                                        $not_available = App\Models\Shift::where(['treasury_id' => $treasury->id, 'admin_id' => get_auth_id(), 'company_code' => get_auth_com()])->exists();
                                     @endphp
                                     <option value="{{ $treasury->id }}" {{ $not_available ? 'disabled' : '' }}>
                                         {{ $treasury->name }}

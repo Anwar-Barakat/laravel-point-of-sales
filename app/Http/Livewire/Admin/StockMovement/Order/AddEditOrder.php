@@ -18,8 +18,8 @@ class AddEditOrder extends Component
     {
         $this->order    = $order;
         $this->order['invoice_date']  = date('Y-m-d');
-        $this->vendors  = Vendor::active()->where('company_code', app('auth_com'))->get();
-        $this->stores   = Store::active()->where('company_code', app('auth_com'))->get();
+        $this->vendors  = Vendor::active()->where('company_code', get_auth_com())->get();
+        $this->stores   = Store::active()->where('company_code', get_auth_com())->get();
     }
 
     public function updated($fields)
@@ -33,8 +33,8 @@ class AddEditOrder extends Component
         try {
             $this->order['type']            = 1; // purchase
             $this->order['account_id']      = $this->order->vendor->account->id;
-            $this->order['added_by']        = app('auth_id');
-            $this->order['company_code']    = app('auth_com');
+            $this->order['added_by']        = get_auth_id();
+            $this->order['company_code']    = get_auth_com();
 
             $this->order->save();
             toastr()->success(__('msgs.submitted', ['name' => __('movement.order')]));

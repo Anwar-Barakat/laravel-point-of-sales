@@ -18,7 +18,7 @@ class AddEditCollectTransaction extends Component
     public function mount(TreasuryTransaction $transaction)
     {
         $this->transaction = $transaction;
-        $this->accounts     = Account::where(['company_code' => app('auth_com'), 'is_parent' => 0])->active()->get();
+        $this->accounts     = Account::where(['company_code' => get_auth_com(), 'is_parent' => 0])->active()->get();
         $this->shiftTypes   = ShiftType::collect()->active()->get();
     }
 
@@ -35,30 +35,29 @@ class AddEditCollectTransaction extends Component
 
     public function submit()
     {
-        $this->validate();
         if (!has_open_shift()) {
             toastr()->error(__('account.dont_have_open_shift'));
             return redirect()->route('admin.shifts.create');
         }
 
+        $this->validate();
         try {
             DB::transaction(function () {
                 $this->transaction->fill([
                     'shift_id'          => has_open_shift()->id,
-                    'admin_id'          => app('auth_id'),
+                    'admin_id'          => get_auth_id(),
                     'treasury_id'       => has_open_shift()->treasury->id,
                     'payment'           => has_open_shift()->treasury->last_payment_collect + 1,
                     'is_approved'       => 1,
                     'is_account'        => 1,
                     'money_for_account' => floatval(-$this->transaction->money),
-                    'company_code'      => app('auth_com'),
+                    'company_code'      => get_auth_com(),
                 ])->save();
 
                 has_open_shift()->treasury->increment('last_payment_collect');
             });
-
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
-            $this->reset('transaction.transaction_date', 'transaction.account_id', 'transaction.shift_type_id', 'transaction.money', 'transaction.report',);
+            $this->reset('transaction');
         } catch (\Throwable $th) {
             return redirect()->route('admin.collect-transactions')->with(['error' => $th->getMessage()]);
         }
@@ -88,7 +87,7 @@ class AddEditCollectTransaction extends Component
     public function render()
     {
         $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
-            ->where(['company_code' => app('auth_com')])
+            ->where(['company_code' => get_auth_com()])
             ->where('money', '>', '0')
             ->paginate(CUSTOM_PAGINATION);
 
