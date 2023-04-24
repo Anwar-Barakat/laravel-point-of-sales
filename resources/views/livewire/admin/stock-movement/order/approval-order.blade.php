@@ -90,8 +90,8 @@
                             </div>
                         </div>
 
-                        <hr class="mt-3 w-50">
-                        <h3 class="mb-3 mt-3 text-blue">{{ __('movement.payments_reminders') }}</h3>
+                        <hr class="mt-3 mb-3 w-50">
+                        <h3 class="mb-3 text-blue">{{ __('movement.payments_reminders') }}</h3>
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
@@ -120,8 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <br>
+                    <hr class="mt-3 mb-3 w-50">
                     <div class="modal-footer">
                         <a href="#" class="btn link-secondary" data-bs-dismiss="modal">
                             {{ __('btns.cancel') }}

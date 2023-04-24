@@ -11,14 +11,7 @@
                     @endif
                 </div>
             </div>
-
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('stock.barcode_not_entered')" />
-                        <x-text-input type="text" class="form-control" disabled readonly wire:model.debounce.350='barcode' />
-                    </div>
-                </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_name')" />
@@ -37,8 +30,6 @@
                         <x-input-error :messages="$errors->get('item.is_active')" class="mt-2" />
                     </div>
                 </div>
-            </div>
-            <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_type')" />
@@ -51,6 +42,8 @@
                         <x-input-error :messages="$errors->get('item.type')" class="mt-2" />
                     </div>
                 </div>
+            </div>
+            <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_category')" />
@@ -100,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <hr class="w-50">
+            <hr class="mt-3 mb-3 w-50">
             <h4 class="mb-4 text-blue">{{ __('stock.wholesale_retail_prices') }}</h4>
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
@@ -117,13 +110,6 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('stock.wholesale_price')" />
-                        <x-text-input type="number" class="form-control" wire:model.debounce.350='item.wholesale_price' />
-                        <x-input-error :messages="$errors->get('item.wholesale_price')" class="mt-2" />
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_price_for_block')" />
                         <x-text-input type="number" class="form-control" wire:model.debounce.350='item.wholesale_price_for_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_block')" class="mt-2" />
@@ -134,6 +120,13 @@
                         <x-input-label class="form-label" :value="__('stock.wholesale_price_for_half_block')" />
                         <x-text-input type="number" class="form-control" wire:model.debounce.350='item.wholesale_price_for_half_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_half_block')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('stock.wholesale_price')" />
+                        <x-text-input type="number" class="form-control" wire:model.debounce.350='item.wholesale_price' />
+                        <x-input-error :messages="$errors->get('item.wholesale_price')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -208,7 +201,7 @@
                 </div>
             @endif
 
-            <hr class="w-50">
+            <hr class="mt-3 mb-3 w-50">
             <h4 class="mb-4  text-blue">{{ __('msgs.attachements') }}</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-4">

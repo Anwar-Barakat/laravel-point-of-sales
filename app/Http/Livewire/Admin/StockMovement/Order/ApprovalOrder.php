@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\StockMovement\Order;
 
+use App\Models\ItemBatch;
 use App\Models\Order;
 use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
@@ -85,7 +86,6 @@ class ApprovalOrder extends Component
     {
         $this->validate();
         try {
-
             if ($this->order->is_approved == 0) {
                 $this->remain_paid_price();
                 $this->order->remains = $this->order->cost_after_discount - $this->order->paid;
@@ -137,10 +137,9 @@ class ApprovalOrder extends Component
 
                 has_open_shift()->treasury->increment('last_payment_exchange');
 
-                // a- invoice type is cash =>
-
-                // b- invoice type is delayed =>
                 // 2- store movement :
+
+
 
                 DB::commit();
                 toastr()->success(__('msgs.approved', ['name' => __('movement.order')]));

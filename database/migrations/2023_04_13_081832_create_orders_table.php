@@ -32,6 +32,7 @@ return new class extends Migration
 
             $table->decimal('paid')->default(0);
             $table->decimal('remains')->default(0);
+            $table->decimal('money_for_account')->default(0);
 
 
             $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();
@@ -39,7 +40,6 @@ return new class extends Migration
             $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_transaction_id')->nullable();
-            $table->decimal('money_for_account')->default(0);
 
             // $table->decimal('vendor_balance_before')->nullable();
             // $table->decimal('vendor_balance_after')->nullable();

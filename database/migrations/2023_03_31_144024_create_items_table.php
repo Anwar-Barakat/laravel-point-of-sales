@@ -31,10 +31,10 @@ return new class extends Migration
             $table->decimal('retail_price_for_block')->nullable();
             $table->decimal('retail_price_for_half_block')->nullable();
             $table->decimal('retail_cost_price')->nullable();
-            $table->decimal('retail_count_for_wholesale')->nullable();
+            $table->integer('retail_count_for_wholesale')->nullable();
 
-            $table->decimal('wholesale_qty')->nullable()->comment('qty for wholesale unit');
-            $table->decimal('retail_qty')->nullable()->comment('كمية التجزئة المتبقية من الوحدة الاب في حالة وجود وحدة تجزئة للصنف');
+            $table->decimal('wholesale_qty')->nullable();
+            $table->decimal('retail_qty')->nullable();
             $table->decimal('all_qty_retails')->nullable()->comment('all qty in retail unit ');
 
             $table->boolean('has_fixed_price')->default(1)->comment('Does it has fixed price for invoices?');

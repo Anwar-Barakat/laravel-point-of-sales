@@ -20,13 +20,14 @@ class ItemFactory extends Factory
      */
     public function definition(): array
     {
-        $admin      = Admin::where('email', 'admin@admin.com')->first();
-        $category   = Category::inRandomOrder()->active()->first();
-        $unit       = Unit::inRandomOrder()->active()->first();
+        $admin          = Admin::where('email', 'admin@admin.com')->first();
+        $اouseware_cat  = Category::where('name->en', 'Houseware')->active()->first()->id;
+        $unit           = Unit::inRandomOrder()->active()->first();
+
         return [
-            'name'                              => $this->faker->word(),
+            'name'                              => 'أكواب عصير',
             'type'                              => 1, // stored
-            'category_id'                       => $category->id,
+            'category_id'                       => $اouseware_cat,
             'has_retail_unit'                   => 0,
             'wholesale_unit_id'                 => $unit->id,
             'wholesale_price'                   => $this->faker->numberBetween(0, 500),

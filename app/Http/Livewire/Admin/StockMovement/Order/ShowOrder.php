@@ -24,6 +24,7 @@ class ShowOrder extends Component
     public function getOrders()
     {
         return  Order::with(['account', 'vendor'])
+            ->latest()
             ->paginate($this->per_page);;
     }
 }

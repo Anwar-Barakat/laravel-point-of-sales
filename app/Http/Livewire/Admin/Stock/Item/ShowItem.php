@@ -26,13 +26,12 @@ class ShowItem extends Component
 
     public function render()
     {
-        $items = $this->getItems();
-        return view('livewire.admin.stock.item.show-item', ['items' => $items]);
+        return view('livewire.admin.stock.item.show-item', ['items' => $this->getItems()]);
     }
 
     public function getItems()
     {
         return Item::with(['parentUnit:id,name', 'childUnit:id,name', 'category:id,name', 'addedBy:id,name', 'parentItem:id,name'])
-            ->paginate(CUSTOM_PAGINATION);
+            ->latest()->paginate(CUSTOM_PAGINATION);
     }
 }

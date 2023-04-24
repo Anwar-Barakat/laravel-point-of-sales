@@ -19,7 +19,6 @@ class Category extends Model implements HasMedia
         'is_active',
         'description',
         'parent_id',
-
         'section_id',
         'added_by',
         'updated_by',

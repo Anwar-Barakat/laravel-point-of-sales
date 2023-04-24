@@ -61,6 +61,51 @@ class UnitSeeder extends Seeder
                 'company_code'  => $admin->company_code,
                 'added_by'      => $admin->id,
             ],
+            [
+                'name'          => [
+                    'en'        => '1 Kilogram Platter',
+                    'ar'        => 'طبق ١ كيلوغرام'
+                ],
+                'status'        => 'retail',
+                'company_code'  => $admin->company_code,
+                'added_by'      => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'en'        => '90g Platter',
+                    'ar'        => 'طبق ٩٠ غرام'
+                ],
+                'status'        => 'retail',
+                'company_code'  => $admin->company_code,
+                'added_by'      => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'en'        => 'Cup Carton',
+                    'ar'        => 'كرتونة الأكواب'
+                ],
+                'status'        => 'wholesale',
+                'company_code'  => $admin->company_code,
+                'added_by'      => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'en'        => 'Box',
+                    'ar'        => 'علبة'
+                ],
+                'status'        => 'retail',
+                'company_code'  => $admin->company_code,
+                'added_by'      => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'en'        => 'Sachet',
+                    'ar'        => 'الكيس'
+                ],
+                'status'        => 'wholesale',
+                'company_code'  => $admin->company_code,
+                'added_by'      => $admin->id,
+            ],
         ];
 
         foreach ($units as $unit) {

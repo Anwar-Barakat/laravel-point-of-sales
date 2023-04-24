@@ -17,9 +17,10 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $faker      = Factory::create();
-        $admin      = Admin::where('email', 'admin@admin.com')->first();
-        $sectionId  = Section::where('name->en', 'Men')->first()->id;
+        $faker          = Factory::create();
+        $admin          = Admin::where('email', 'admin@admin.com')->first();
+        $men_section    = Section::where('name->en', 'Men')->first()->id;
+        $food_section   = Section::where('name->en', 'Foods')->first()->id;
 
         $categories = [
             [
@@ -30,7 +31,7 @@ class CategorySeeder extends Seeder
                 'company_code'  => $admin->company_code,
                 'description'   => $faker->sentence(20),
                 'parent_id'     => 0,
-                'section_id'    => $sectionId,
+                'section_id'    => $men_section,
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
             ],
@@ -42,7 +43,67 @@ class CategorySeeder extends Seeder
                 'company_code'  => $admin->company_code,
                 'description'   => $faker->sentence(20),
                 'parent_id'     => 0,
-                'section_id'    => $sectionId,
+                'section_id'    => $men_section,
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'ar'    => 'لحوم ومجمدات',
+                    'en'    => 'Meat & Freezers',
+                ],
+                'company_code'  => $admin->company_code,
+                'description'   => $faker->sentence(20),
+                'parent_id'     => 0,
+                'section_id'    => $food_section,
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'ar'    => 'حبوب',
+                    'en'    => 'Beans',
+                ],
+                'company_code'  => $admin->company_code,
+                'description'   => $faker->sentence(20),
+                'parent_id'     => 0,
+                'section_id'    => $food_section,
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'ar'    => 'مخللات',
+                    'en'    => 'Pickles',
+                ],
+                'company_code'  => $admin->company_code,
+                'description'   => $faker->sentence(20),
+                'parent_id'     => 0,
+                'section_id'    => $food_section,
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'ar'    => 'الأدوات اليدوية',
+                    'en'    => 'Hand Tools',
+                ],
+                'company_code'  => $admin->company_code,
+                'description'   => $faker->sentence(20),
+                'parent_id'     => 0,
+                'section_id'    => $food_section,
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'ar'    => 'الأجهزة المنزلية',
+                    'en'    => 'Home Appliances',
+                ],
+                'company_code'  => $admin->company_code,
+                'description'   => $faker->sentence(20),
+                'parent_id'     => 0,
+                'section_id'    => $food_section,
                 'added_by'      => $admin->id,
                 'updated_by'    => $admin->id,
             ],
