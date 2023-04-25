@@ -16,18 +16,21 @@ class ItemTransactionCategorySeeder extends Seeder
 
         $categories   = [
             [
+                'id'            => 1,
                 'name'          => [
                     'en'        => 'Transaction on purchases',
                     'ar'        => "حركة على المشتريات",
                 ],
             ],
             [
+                'id'            => 2,
                 'name'          => [
                     'en'        => 'Traffic on sales',
                     'ar'        => 'حركة على المبيعات',
                 ],
             ],
             [
+                'id'            => 3,
                 'name'          => [
                     'en'        => 'Transaction on stores',
                     'ar'        => 'حركة على المخازن',

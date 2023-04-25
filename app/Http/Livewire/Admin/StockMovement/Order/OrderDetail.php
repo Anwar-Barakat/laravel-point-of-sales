@@ -112,8 +112,8 @@ class OrderDetail extends Component
         return [
             'product.item_id'           => [
                 'required',
-                Rule::unique('order_products', 'item_id')->ignore($this->product->id)->where(function ($query) {
-                    return $query->where('item_id', $this->product->item_id);
+                Rule::unique('order_products', 'item_id')->ignore($this->product->item_id)->where(function ($query) {
+                    return $query->where('id', $this->product->id);
                 })
             ],
             'product.unit_id'           => ['required', 'integer'],

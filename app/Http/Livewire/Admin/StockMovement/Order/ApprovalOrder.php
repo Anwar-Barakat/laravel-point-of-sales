@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\StockMovement\Order;
 
 use App\Models\ItemBatch;
+use App\Models\ItemTransaction;
 use App\Models\Order;
 use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
@@ -106,7 +107,9 @@ class ApprovalOrder extends Component
 
                 DB::beginTransaction();
 
-                // 1- monetary movement :
+                //________________________________________________
+                // 1- Monetary Transaction
+                //________________________________________________
                 TreasuryTransaction::create([
                     'shift_type_id'     => ShiftType::findOrFail(8)->id, // Disbursement for an invoice for purchases from a supplier
                     'shift_id'          => has_open_shift()->id,
@@ -124,8 +127,9 @@ class ApprovalOrder extends Component
                     'company_code'      => get_auth_com(),
                 ]);
 
-                has_open_shift()->treasury->increment('last_payment_collect');
-
+                //________________________________________________
+                // 2- Approving the order
+                //________________________________________________
                 $this->order->treasury_id               = has_open_shift()->treasury->id;
                 $this->order->is_approved               = 1;
                 $this->order->approved_by               = get_auth_id();
@@ -134,10 +138,19 @@ class ApprovalOrder extends Component
                 $this->order->company_code              = get_auth_com();
                 $this->order->save();
 
+                //________________________________________________
+                // 3- Increment last payment receipt for treasury
+                //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_exchange');
 
-                // 2- store movement :
+                //________________________________________________
+                // 4- Transaction on store
+                //________________________________________________
                 $this->order->orderProducts->map(function ($prod) {
+
+                    // get the qty before the transaction for all stores (item transaction)
+                    $qty_before_transaction = ItemBatch::where(['item_id' => $prod->item->id, 'company_code' => get_auth_com()])->sum('qty');
+
                     if ($prod->unit->status == 'retail') {
                         $quantity   = $prod->qty / $prod->item->retail_count_for_wholesale;
                         $unit_price = $prod->unit_price * $prod->item->retail_count_for_wholesale;
@@ -170,10 +183,29 @@ class ApprovalOrder extends Component
                         $data['total_price']    = $unit_price * $quantity;
                         ItemBatch::create($data);
                     }
+
+
+                    //________________________________________________
+                    // 5- Any transaction on item it must be stored
+                    //________________________________________________
+                    $qty_after_transaction = ItemBatch::where(['item_id' => $prod->item->id, 'company_code' => get_auth_com()])->sum('qty');
+                    ItemTransaction::create([
+                        'item_transaction_category_id'  => 1,   // Transaction on purchases
+                        'item_transaction_type_id'      => 1,   //purchases
+                        'item_id'                       => $prod->item->id,
+                        'order_id'                      => $this->order->id,
+                        'order_product_id'              => $prod->id,
+                        'report'                        => 'Purchases return from the ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id,
+                        'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
+                        'qty_after_transaction'         => $qty_after_transaction . ' ' . $prod->item->parentUnit->name,
+                        'added_by'                      => get_auth_id(),
+                        'company_code'                  => get_auth_com(),
+                    ]);
                 });
 
                 DB::commit();
                 toastr()->success(__('msgs.approved', ['name' => __('movement.order')]));
+                return redirect()->route('admin.orders.index');
             } else
                 toastr()->error(__('movement.already_approved'));
         } catch (\Throwable $th) {
@@ -190,7 +222,8 @@ class ApprovalOrder extends Component
 
     public function render()
     {
-        return view('livewire.admin.stock-movement.order.approval-order');
+        $order = $this->order;
+        return view('livewire.admin.stock-movement.order.approval-order', ['order' => $order]);
     }
 
     public function rules()
