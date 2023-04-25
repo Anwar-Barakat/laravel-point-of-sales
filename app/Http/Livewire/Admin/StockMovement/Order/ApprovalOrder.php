@@ -127,7 +127,7 @@ class ApprovalOrder extends Component
                 has_open_shift()->treasury->increment('last_payment_collect');
 
                 $this->order->treasury_id               = has_open_shift()->treasury->id;
-                // $this->order->is_approved               = 1;
+                $this->order->is_approved               = 1;
                 $this->order->approved_by               = get_auth_id();
                 $this->order->money_for_account         = floatval(-$this->order->cost_after_discount);
                 $this->order->treasury_transaction_id   = TreasuryTransaction::latest()->first()->id;
@@ -158,11 +158,7 @@ class ApprovalOrder extends Component
                         $data['expiration_date']   = $prod->expiration_date;
                     }
 
-                    $batchExists = ItemBatch::where([
-                        'item_id'           => $prod->item->id,
-                        'store_id'          => $this->order->store->id,
-                        'unit_price'        => $unit_price,
-                    ])->first();
+                    $batchExists = ItemBatch::where($data)->first();
                     if (isset($batchExists)) {
                         $batchExists->update([
                             'qty'           => $quantity + $batchExists->qty,
@@ -175,8 +171,6 @@ class ApprovalOrder extends Component
                         ItemBatch::create($data);
                     }
                 });
-
-
 
                 DB::commit();
                 toastr()->success(__('msgs.approved', ['name' => __('movement.order')]));

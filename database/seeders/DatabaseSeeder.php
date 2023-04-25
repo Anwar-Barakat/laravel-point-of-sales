@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             AccountSeeder::class,
             VendorSeeder::class,
             ShiftTypeSeeder::class,
+
+            ItemTransactionCategorySeeder::class,
+            ItemTransactionTypeSeeder::class,
         ]);
     }
 }
