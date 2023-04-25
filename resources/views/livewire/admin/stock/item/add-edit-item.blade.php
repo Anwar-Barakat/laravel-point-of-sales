@@ -136,7 +136,6 @@
                         <x-input-error :messages="$errors->get('item.wholesale_cost_price')" class="mt-2" />
                     </div>
                 </div>
-
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_retail_unit')" />
@@ -165,13 +164,6 @@
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('stock.retail_price')" />
-                            <x-text-input type="number" class="form-control" wire:model.debounce.350='item.retail_price' />
-                            <x-input-error :messages="$errors->get('item.retail_price')" class="mt-2" />
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_price_for_block')" />
                             <x-text-input type="number" class="form-control" wire:model.debounce.350='item.retail_price_for_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_block')" class="mt-2" />
@@ -182,6 +174,13 @@
                             <x-input-label class="form-label" :value="__('stock.retail_price_for_half_block')" />
                             <x-text-input type="number" class="form-control" wire:model.debounce.350='item.retail_price_for_half_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_half_block')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="mb-3">
+                            <x-input-label class="form-label" :value="__('stock.retail_price')" />
+                            <x-text-input type="number" class="form-control" wire:model.debounce.350='item.retail_price' />
+                            <x-input-error :messages="$errors->get('item.retail_price')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">

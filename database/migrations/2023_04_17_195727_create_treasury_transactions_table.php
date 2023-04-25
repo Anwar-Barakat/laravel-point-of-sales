@@ -25,8 +25,8 @@ return new class extends Migration
 
             $table->date('transaction_date');
             $table->integer('payment');
-            $table->decimal('money')->default(0);
-            $table->decimal('money_for_account')->default(0);
+            $table->decimal('money', 10, 2)->default(0);
+            $table->decimal('money_for_account', 10, 2)->default(0);
             $table->text('report');
             $table->integer('company_code');
             $table->timestamps();

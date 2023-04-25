@@ -112,7 +112,7 @@
                                                 <option value="">{{ __('btns.select') }}</option>
                                                 <option value="{{ $wholesale_unit->id }}">{{ $wholesale_unit->name }} ({{ __('stock.wholesale_unit') }})</option>
                                                 @if (!is_null($retail_unit))
-                                                    <option value="{{ $wholesale_unit->id }}">{{ $wholesale_unit->name }} ({{ __('stock.retail_unit') }})</option>
+                                                    <option value="{{ $retail_unit->id }}">{{ $retail_unit->name }} ({{ __('stock.retail_unit') }})</option>
                                                 @endif
                                             </select>
                                         </div>

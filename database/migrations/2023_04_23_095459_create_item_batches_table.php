@@ -13,12 +13,19 @@ return new class extends Migration
     {
         Schema::create('item_batches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
-            $table->integer('qty')->default(1);
+            // exculsively parent unit
+            $table->foreignId('unit_id')->constrained()->cascadeOnUpdate();
+
+            $table->decimal('qty', 10, 2);
+            $table->decimal('unit_price', 10, 2)->default(1);
+            $table->decimal('total_price', 10, 2)->default(1);
+
+            $table->date('production_date')->nullable();
+            $table->date('expiration_date')->nullable();
             $table->boolean('is_archieved')->default(0);
+            $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
             $table->timestamps();
         });

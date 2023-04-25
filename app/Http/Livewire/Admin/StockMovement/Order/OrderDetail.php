@@ -85,23 +85,25 @@ class OrderDetail extends Component
 
     public function edit($id)
     {
-        $product            = OrderProduct::with('item:id,type')->findOrFail($id);
-        $this->consuming    = $product->item->type == 2 ?  true : false;
-        $this->product      = $product;
+        $product                = OrderProduct::with('item')->findOrFail($id);
+        $this->consuming        = $product->item->type == 2 ?  true : false;
+        $this->product          = $product;
+        $this->wholesale_unit   = $product->item->parentUnit;
+        $this->product->unit_id = $product->unit_id;
     }
 
     public function delete($id)
     {
         $product            = OrderProduct::findOrFail($id);
         $product->delete();
+        $this->getOrderProducts();
         toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
     }
 
     public function render()
     {
-        $order_products = OrderProduct::where('order_id', $this->order->id)
-            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION);
-        return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $order_products]);
+
+        return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $this->getOrderProducts()]);
     }
 
 
@@ -121,5 +123,11 @@ class OrderDetail extends Component
             'product.expiration_date'   => ['required_if:consuming,yes'],
             'product.total_price'       => ['required'],
         ];
+    }
+
+    public function getOrderProducts()
+    {
+        return OrderProduct::where('order_id', $this->order->id)
+            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION);
     }
 }

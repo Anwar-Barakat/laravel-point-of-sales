@@ -8,6 +8,7 @@ use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use PDO;
 
 class ApprovalOrder extends Component
 {
@@ -98,18 +99,16 @@ class ApprovalOrder extends Component
                     toastr()->error(__('account.dont_have_open_shift'));
                     return redirect()->route('admin.shifts.create');
                 }
-
                 if (get_treasury_balance() < $this->order->paid) {
-                    toastr()->error(__('account.treasury_available_balance'));
+                    toastr()->error(__('account.not_enough_balance'));
                     return false;
                 }
 
                 DB::beginTransaction();
 
-
                 // 1- monetary movement :
-                $transaction = TreasuryTransaction::create([
-                    'shift_type_id'     => ShiftType::where('name->en', 'Disbursement for purchases from a supplier')->first()->id,
+                TreasuryTransaction::create([
+                    'shift_type_id'     => ShiftType::findOrFail(8)->id, // Disbursement for an invoice for purchases from a supplier
                     'shift_id'          => has_open_shift()->id,
                     'admin_id'          => get_auth_id(),
                     'treasury_id'       => has_open_shift()->treasury->id,
@@ -128,16 +127,54 @@ class ApprovalOrder extends Component
                 has_open_shift()->treasury->increment('last_payment_collect');
 
                 $this->order->treasury_id               = has_open_shift()->treasury->id;
-                $this->order->is_approved               = 1;
-                $this->order->added_by                  = get_auth_id();
+                // $this->order->is_approved               = 1;
+                $this->order->approved_by               = get_auth_id();
                 $this->order->money_for_account         = floatval(-$this->order->cost_after_discount);
-                $this->order->treasury_transaction_id   = $transaction->id;
+                $this->order->treasury_transaction_id   = TreasuryTransaction::latest()->first()->id;
                 $this->order->company_code              = get_auth_com();
                 $this->order->save();
 
                 has_open_shift()->treasury->increment('last_payment_exchange');
 
                 // 2- store movement :
+                $this->order->orderProducts->map(function ($prod) {
+                    if ($prod->unit->status == 'retail') {
+                        $quantity   = $prod->qty / $prod->item->retail_count_for_wholesale;
+                        $unit_price = $prod->unit_price * $prod->item->retail_count_for_wholesale;
+                    } else {
+                        $quantity   = $prod->qty;
+                        $unit_price = $prod->unit_price;
+                    }
+
+                    $data = [
+                        'item_id'           => $prod->item->id, // unit and prices
+                        'store_id'          => $this->order->store->id,
+                        'unit_id'           => $prod->item->parentUnit->id,
+                        'unit_price'        => $unit_price,
+                        'company_code'      => get_auth_com(),
+                    ];
+                    if ($prod->item->type == 2) {
+                        $data['production_date']   = $prod->production_date;
+                        $data['expiration_date']   = $prod->expiration_date;
+                    }
+
+                    $batchExists = ItemBatch::where([
+                        'item_id'           => $prod->item->id,
+                        'store_id'          => $this->order->store->id,
+                        'unit_price'        => $unit_price,
+                    ])->first();
+                    if (isset($batchExists)) {
+                        $batchExists->update([
+                            'qty'           => $quantity + $batchExists->qty,
+                            'total_price'   => $batchExists->unit_price * ($quantity + $batchExists->qty)
+                        ]);
+                    } else {
+                        $data['added_by']       = get_auth_id();
+                        $data['qty']            = $quantity;
+                        $data['total_price']    = $unit_price * $quantity;
+                        ItemBatch::create($data);
+                    }
+                });
 
 
 

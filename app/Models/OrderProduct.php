@@ -30,6 +30,7 @@ class OrderProduct extends Model implements HasMedia
         return $this->belongsTo(Item::class, 'item_id');
     }
 
+
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class, 'unit_id');

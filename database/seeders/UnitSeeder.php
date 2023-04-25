@@ -45,15 +45,6 @@ class UnitSeeder extends Seeder
             ],
             [
                 'name'          => [
-                    'en'        => 'Box',
-                    'ar'        => 'العلبة'
-                ],
-                'status'        => 'wholesale',
-                'company_code'  => $admin->company_code,
-                'added_by'      => $admin->id,
-            ],
-            [
-                'name'          => [
                     'en'        => 'Dozen',
                     'ar'        => 'الدرزن'
                 ],

@@ -29,7 +29,7 @@ class ItemSeeder extends Seeder
                 'name'                              => 'Glass Cups',
                 'type'                              => 1, // consuming
                 'category_id'                       => $hand_too_cat,
-                'has_retail_unit'                   => 1,
+                'has_retail_unit'                   => true,
                 'wholesale_unit_id'                 => $cups_unit,
                 'wholesale_price_for_block'         => 800,
                 'wholesale_price_for_half_block'    => 850,
@@ -49,7 +49,7 @@ class ItemSeeder extends Seeder
                 'name'                              => 'Chicken Meat',
                 'type'                              => 2, // consuming
                 'category_id'                       => $meat_cat,
-                'has_retail_unit'                   => 0,
+                'has_retail_unit'                   => false,
                 'wholesale_unit_id'                 => $sachet_unit,
                 'wholesale_price_for_block'         => 800,
                 'wholesale_price_for_half_block'    => 850,
@@ -63,7 +63,7 @@ class ItemSeeder extends Seeder
                 'name'                              => 'Lamb',
                 'type'                              => 2, // consuming
                 'category_id'                       => $meat_cat,
-                'has_retail_unit'                   => 0,
+                'has_retail_unit'                   => false,
                 'wholesale_unit_id'                 => $sachet_unit,
                 'wholesale_price_for_block'         => 1000,
                 'wholesale_price_for_half_block'    => 1050,
@@ -77,7 +77,7 @@ class ItemSeeder extends Seeder
                 'name'                              => 'Beef',
                 'type'                              => 2, // consuming
                 'category_id'                       => $meat_cat,
-                'has_retail_unit'                   => 0,
+                'has_retail_unit'                   => false,
                 'wholesale_unit_id'                 => $sachet_unit,
                 'wholesale_price_for_block'         => 900,
                 'wholesale_price_for_half_block'    => 950,

@@ -16,6 +16,7 @@ class ShiftTypeSeeder extends Seeder
     {
         $types = [
             [
+                'id'                => 1,
                 'name'              => [
                     'ar'            => 'مراجعة واستلام سندات الخزينة على نفس الخزنة',
                     'en'            => 'Review and receive shift treasuries on the same safe',
@@ -24,6 +25,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 2,
                 'name'              => [
                     'ar'            => 'مراجعة واستلام سندات الخزينة على خزينة أخرى',
                     'en'            => 'Review and receive treasury bonds on another treasury',
@@ -32,6 +34,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 3,
                 'name'              => [
                     'ar'            => 'صرف مبلغ لحساب مالي',
                     'en'            => 'Disbursement of an amount to a financial account',
@@ -40,6 +43,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 4,
                 'name'              => [
                     'ar'            => 'تحصيل مبلغ من حساب مالي',
                     'en'            => 'Collecting money from a financial account',
@@ -48,6 +52,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 5,
                 'name'              => [
                     'ar'            => 'تحصيل إيرادات مبيعات',
                     'en'            => 'Collection of sales revenue',
@@ -56,6 +61,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'Customer'])->first()->id,
             ],
             [
+                'id'                => 6,
                 'name'              => [
                     'ar'            => 'صرف نظير مرتجع مبيعات',
                     'en'            => 'Disbursement of sales returns',
@@ -64,6 +70,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 7,
                 'name'              => [
                     'ar'            => 'صرف سلفة على راتب موظف',
                     'en'            => 'Disbursement of an advance on the salary of an employee',
@@ -72,6 +79,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 8,
                 'name'              => [
                     'ar'            => 'صرف نظير فاتورة مشتريات من مورد',
                     'en'            => 'Disbursement for an invoice for purchases from a supplier',
@@ -80,6 +88,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 9,
                 'name'              => [
                     'ar'            => 'تحصيل نظير مرتجع مشتربات الى مورد',
                     'en'            => 'Collection of a return counterpart purchased to a supplier',
@@ -88,6 +97,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'Vendor'])->first()->id,
             ],
             [
+                'id'                => 10,
                 'name'              => [
                     'ar'            => 'إيراد زيادة رأس المال',
                     'en'            => 'Capital Increase Revenue',
@@ -96,6 +106,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 11,
                 'name'              => [
                     'ar'            => 'مصاريف شراء مثل اللولون',
                     'en'            => 'Purchase expenses like Lulon',
@@ -104,6 +115,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 12,
                 'name'              => [
                     'ar'            => 'استبدال وديعة بنكية',
                     'en'            => 'Exchange for a bank deposit',
@@ -112,6 +124,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 13,
                 'name'              => [
                     'ar'            => 'استرداد سلفة على راتب الموظف',
                     'en'            => 'refund of an advance on the employee\'s salary',
@@ -120,6 +133,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 14,
                 'name'              => [
                     'ar'            => 'تحصيل خصومات موظفين',
                     'en'            => 'Collecting employee discounts',
@@ -128,6 +142,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 15,
                 'name'              => [
                     'ar'            => 'صرف مرتب للموظف',
                     'en'            => 'salary payment to the employee',
@@ -136,6 +151,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
             ],
             [
+                'id'                => 16,
                 'name'              => [
                     'ar'            => 'اقتراض من بنك',
                     'en'            => 'Borrowing from a bank',
@@ -144,6 +160,7 @@ class ShiftTypeSeeder extends Seeder
                 'account_type_id'   => AccountType::where(['name->en' => 'Bank'])->first()->id,
             ],
             [
+                'id'                => 17,
                 'name'              => [
                     'ar'            => 'صرف لرد رأس المال',
                     'en'            => 'Disbursement to refund capital',

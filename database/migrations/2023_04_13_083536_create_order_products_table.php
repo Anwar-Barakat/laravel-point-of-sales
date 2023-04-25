@@ -21,8 +21,8 @@ return new class extends Migration
             $table->date('expiration_date')->nullable();
 
             $table->integer('qty')->default(1);
-            $table->decimal('unit_price');
-            $table->decimal('total_price');
+            $table->decimal('unit_price', 10, 2);
+            $table->decimal('total_price', 10, 2);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
 

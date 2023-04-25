@@ -21,8 +21,8 @@ class StoreSeeder extends Seeder
         $stores = [
             [
                 'name'      => [
-                    'ar'    => $fake->sentence(2),
-                    'en'    => $fake->sentence(2),
+                    'ar'    => 'المخزن ١',
+                    'en'    => 'Store 1',
                 ],
                 'address'   => $fake->address(),
                 'mobile'    => $fake->phoneNumber(),
@@ -32,8 +32,8 @@ class StoreSeeder extends Seeder
             ],
             [
                 'name'      => [
-                    'ar'    => $fake->sentence(2),
-                    'en'    => $fake->sentence(2),
+                    'ar'    => 'المخزن ٢',
+                    'en'    => 'Store 2',
                 ],
                 'address'   => $fake->address(),
                 'mobile'    => $fake->phoneNumber(),

@@ -18,21 +18,22 @@ return new class extends Migration
             $table->boolean('invoice_type');
             $table->date('invoice_date');
             $table->boolean('is_approved')->default(0);
+            $table->foreignId('approved_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->boolean('is_account')->default(0);
             $table->string('notes');
 
             $table->boolean('tax_type')->nullable()->comment('0 => percentage, 1 => fixed');
-            $table->decimal('tax_value')->default(0);
+            $table->decimal('tax_value', 10, 2)->default(0);
             $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
-            $table->decimal('discount_value')->default(0);
+            $table->decimal('discount_value', 10, 2)->default(0);
 
-            $table->decimal('items_cost')->default(0); // all items costs
-            $table->decimal('cost_before_discount')->default(0);
-            $table->decimal('cost_after_discount')->default(0);
+            $table->decimal('items_cost', 10, 2)->default(0); // all items costs
+            $table->decimal('cost_before_discount', 10, 2)->default(0);
+            $table->decimal('cost_after_discount', 10, 2)->default(0);
 
-            $table->decimal('paid')->default(0);
-            $table->decimal('remains')->default(0);
-            $table->decimal('money_for_account')->default(0);
+            $table->decimal('paid', 10, 2)->default(0);
+            $table->decimal('remains', 10, 2)->default(0);
+            $table->decimal('money_for_account', 10, 2)->default(0);
 
 
             $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();
@@ -41,8 +42,8 @@ return new class extends Migration
             $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_transaction_id')->nullable();
 
-            // $table->decimal('vendor_balance_before')->nullable();
-            // $table->decimal('vendor_balance_after')->nullable();
+            // $table->decimal('vendor_balance_before',10,2)->nullable();
+            // $table->decimal('vendor_balance_after',10,2)->nullable();
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
 
             $table->integer('company_code');

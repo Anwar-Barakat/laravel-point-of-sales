@@ -33,25 +33,18 @@
                         </tr>
                         <tr>
                             <th>{{ __('stock.item_type') }}</th>
-                            <td><span class="badge bg-blue"> {{ __('stock.' . App\Models\Item::ITEMTYPE[$item->type]) }}</span></td>
+                            <td>{{ __('stock.' . App\Models\Item::ITEMTYPE[$item->type]) }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('partials.status') }}</th>
                             <td>
-                                <div>
-                                    <button class="btn position-relative">
-                                        {{ $item->is_active ? __('msgs.active') : __('msgs.not_active') }}
-                                        <span class="badge {{ $item->is_active ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
-                                    </button>
-                                </div>
+                                {{ $item->is_active ? __('msgs.active') : __('msgs.not_active') }}
                             </td>
                         </tr>
                         <tr>
                             <th>{{ __('stock.item_category') }}</th>
                             <td>
-                                <span class="badge bg-blue">
-                                    {{ $item->category->name }}
-                                </span>
+                                {{ $item->category->name }}
                             </td>
                         </tr>
                         <tr>
