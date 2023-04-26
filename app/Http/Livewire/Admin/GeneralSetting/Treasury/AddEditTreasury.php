@@ -23,7 +23,7 @@ class AddEditTreasury extends Component
         return $this->validateOnly($fields);
     }
 
-    public function store()
+    public function submit()
     {
         $this->validate();
         try {

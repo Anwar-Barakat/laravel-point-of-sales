@@ -28,7 +28,11 @@ class DatabaseSeeder extends Seeder
             AccountTypeSeeder::class,
             AccountSeeder::class,
             VendorSeeder::class,
+            ShiftSeeder::class,
             ShiftTypeSeeder::class,
+            CollectTransactionSeeder::class,
+            ExchangeTransactionSeeder::class,
+
 
             ItemTransactionCategorySeeder::class,
             ItemTransactionTypeSeeder::class,

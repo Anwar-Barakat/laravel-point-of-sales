@@ -143,8 +143,11 @@ class ApprovalOrder extends Component
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_exchange');
 
+
+            
+
                 //________________________________________________
-                // 4- Transaction on store
+                // 5- Transaction on store
                 //________________________________________________
                 $this->order->orderProducts->map(function ($prod) {
 
@@ -186,7 +189,7 @@ class ApprovalOrder extends Component
 
 
                     //________________________________________________
-                    // 5- Any transaction on item it must be stored
+                    // 6- Any transaction on item it must be stored
                     //________________________________________________
                     $qty_after_transaction = ItemBatch::where(['item_id' => $prod->item->id, 'company_code' => get_auth_com()])->sum('qty');
                     ItemTransaction::create([

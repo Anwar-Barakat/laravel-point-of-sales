@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
-                                        <x-input-label class="form-label" :value="__('account.amount_collected')" />
+                                        <x-input-label class="form-label" :value="__('account.amount_exchanged')" />
                                         <x-text-input type="number" class="form-control" wire:model.debounce.500s='transaction.money' />
                                         <x-input-error :messages="$errors->get('transaction.money')" class="mt-2" />
                                     </div>

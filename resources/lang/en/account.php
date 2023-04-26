@@ -54,6 +54,7 @@ return [
     'treasury_transactions'     => 'Treasury transations',
     'treasury_transaction'      => 'Treasury transation',
     'amount_collected'          => 'Amount collected',
+    'amount_exchanged'          => 'Amount exchanged',
     'transaction_date'          => 'Transaction_date',
     'shift_type'                => 'Shift type',
     'report'                    => 'Report',

@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row g-0">
         <div class="col d-flex flex-column">
-            <form wire:submit.prevent='store'>
+            <form wire:submit.prevent='submit'>
                 <div class="card-body">
                     <h3 class="mb-4">{{ __('msgs.main_info') }}</h3>
                     <div class="row row-cards">

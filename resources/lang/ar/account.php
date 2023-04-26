@@ -53,6 +53,7 @@ return [
     'exchange_transactions'     => 'معاملات صرف نقدية',
     'exchange_transaction'      => 'معاملة صرف نقدية',
     'amount_collected'          => 'المبلغ المُحصل',
+    'amount_exchanged'          => 'المبلغ المصروف',
     'transaction_date'          => 'تاريخ المعاملة',
     'shift_type'                => 'نوع التحويل',
     'report'                    => 'تقرير',

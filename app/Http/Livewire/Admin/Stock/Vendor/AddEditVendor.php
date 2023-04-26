@@ -26,9 +26,9 @@ class AddEditVendor extends Component
         $this->categories = Category::with('subCategories')->where(['parent_id' => 0])->active()->get();
     }
 
-    public function updated($propertyName)
+    public function updated($fields)
     {
-        $this->validateOnly($propertyName);
+        return $this->validateOnly($fields);
     }
 
     public function updatedVendorInitialBalanceStatus()
@@ -41,16 +41,15 @@ class AddEditVendor extends Component
         $this->validate();
         try {
             DB::beginTransaction();
-
             switch ($this->vendor->initial_balance_status) {
                 case 1:
                     $this->vendor->initial_balance = 0;
                     break;
                 case 2:
-                    abs($this->vendor->initial_balance);
+                    $this->vendor->initial_balance = $this->vendor->initial_balance * (-1);
                     break;
                 case 3:
-                    $this->vendor->initial_balance = $this->vendor->initial_balance * (-1);
+                    abs($this->vendor->initial_balance);
                     break;
             }
 

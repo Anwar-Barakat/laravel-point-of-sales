@@ -85,7 +85,7 @@ class ShiftTypeSeeder extends Seeder
                     'en'            => 'Disbursement for an invoice for purchases from a supplier',
                 ],
                 'in_screen'         => 0,
-                'account_type_id'   => AccountType::where(['name->en' => 'General'])->first()->id,
+                'account_type_id'   => AccountType::where(['name->en' => 'Vendor'])->first()->id,
             ],
             [
                 'id'                => 9,

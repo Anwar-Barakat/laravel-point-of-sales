@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+ul {
+    padding-left: 0;
+    padding-right: 0;
+    list-style: none !important;
+}
+
 .collapse {
     visibility: unset !important;
 }
