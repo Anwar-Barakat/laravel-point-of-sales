@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Account;
+use App\Models\Order;
 use App\Models\Shift;
 use App\Models\TreasuryTransaction;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('get_auth_id')) {
@@ -41,5 +44,19 @@ if (!function_exists('get_transaction')) {
     function get_transaction()
     {
         return TreasuryTransaction::where(['company_code' => get_auth_com(), 'shift_id' => has_open_shift()->id])->first();
+    }
+}
+
+if (!function_exists('update_account_balance')) {
+    function update_account_balance(Account $account)
+    {
+        if ($account->accountType->name = 'Vendor') {
+            $vendor_order_balance       = Order::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');
+            $vendor_transaction_balance = TreasuryTransaction::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');
+            $final_balamce              = $account->vendor->initial_balance + $vendor_order_balance + $vendor_transaction_balance;
+
+            $account->update(['current_balance' => $final_balamce]);
+            $account->vendor->update(['current_balance' => $final_balamce]);
+        }
     }
 }

@@ -59,6 +59,8 @@ class AddEditCollectTransaction extends Component
 
                 has_open_shift()->treasury->increment('last_payment_collect');
             });
+            update_account_balance($this->transaction->account);
+
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
             $this->reset('transaction');
         } catch (\Throwable $th) {

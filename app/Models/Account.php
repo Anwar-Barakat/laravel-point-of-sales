@@ -19,13 +19,12 @@ class Account extends Model
         'number',
         'initial_balance',
         'initial_balance_status',
-        'currnet_balance',
+        'current_balance',
         'notes',
         'company_code',
         'is_archived',
         'added_by',
         'date',
-
         'customer_id',
         'vendor_id',
     ];

@@ -22,6 +22,7 @@ class TreasuryTransaction extends Model
         'transaction_date',
         'payment',
         'money',
+        'money_for_account',
         'report',
         'company_code',
     ];

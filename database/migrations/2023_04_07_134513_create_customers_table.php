@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->decimal('initial_balance', 10, 2)->default(0);
             $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');
-            $table->decimal('currnet_balance', 10, 2)->default(0);
+            $table->decimal('current_balance', 10, 2)->default(0);
 
             $table->string('notes');
             $table->integer('company_code');

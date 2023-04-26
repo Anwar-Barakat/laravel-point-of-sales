@@ -144,7 +144,11 @@ class ApprovalOrder extends Component
                 has_open_shift()->treasury->increment('last_payment_exchange');
 
 
-            
+                //________________________________________________
+                // 4- Update the vendor account balance
+                //________________________________________________
+                update_account_balance($this->order->vendor->account);
+
 
                 //________________________________________________
                 // 5- Transaction on store

@@ -14,7 +14,7 @@ class Vendor extends Model
         'address',
         'initial_balance',
         'initial_balance_status',
-        'currnet_balance',
+        'current_balance',
         'category_id',
         'notes',
         'company_code',

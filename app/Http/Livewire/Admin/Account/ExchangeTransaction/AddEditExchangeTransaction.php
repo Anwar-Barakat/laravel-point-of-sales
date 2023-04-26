@@ -67,6 +67,7 @@ class AddEditExchangeTransaction extends Component
 
                 has_open_shift()->treasury->increment('last_payment_exchange');
             });
+            update_account_balance($this->transaction->account);
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
         } catch (\Throwable $th) {

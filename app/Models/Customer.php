@@ -16,7 +16,7 @@ class Customer extends Model
         'address',
         'initial_balance',
         'initial_balance_status',
-        'currnet_balance',
+        'current_balance',
         'notes',
         'company_code',
         'is_active',

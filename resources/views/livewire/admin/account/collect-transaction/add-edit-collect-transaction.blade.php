@@ -116,8 +116,8 @@
                         @forelse ($transactions as $transaction)
                             <tr>
                                 <td>{{ $transaction->id }}</td>
-                                <td><span class="badge bg-blue"> {{ $transaction->treasury->name }}</span></td>
                                 <td><span class="badge bg-blue-lt">{{ $transaction->admin->name }}</span></td>
+                                <td><span class="badge bg-blue"> {{ $transaction->treasury->name }}</span></td>
                                 <td><span class="badge bg-green"> {{ $transaction->shift_type->name }}</span></td>
                                 <td>{{ $transaction->money }}</td>
                                 <td>
