@@ -154,13 +154,12 @@ class ApprovalOrder extends Component
                 // 5- Transaction on store
                 //________________________________________________
                 $this->order->orderProducts->map(function ($prod) {
-
-                    // get the qty before the transaction for all stores (item transaction)
+                    $ratio                  = $prod->item->retail_count_for_wholesale;
                     $qty_before_transaction = ItemBatch::where(['item_id' => $prod->item->id, 'company_code' => get_auth_com()])->sum('qty');
 
                     if ($prod->unit->status == 'retail') {
-                        $quantity   = $prod->qty / $prod->item->retail_count_for_wholesale;
-                        $unit_price = $prod->unit_price * $prod->item->retail_count_for_wholesale;
+                        $quantity   = $prod->qty / $ratio;
+                        $unit_price = $prod->unit_price * $ratio;
                     } else {
                         $quantity   = $prod->qty;
                         $unit_price = $prod->unit_price;
@@ -208,6 +207,25 @@ class ApprovalOrder extends Component
                         'added_by'                      => get_auth_id(),
                         'company_code'                  => get_auth_com(),
                     ]);
+
+
+                    //________________________________________________
+                    // 7- Update Item qty & prices in stock
+                    //________________________________________________
+                    $prod->item->wholesale_cost_price   = $unit_price;
+                    $prod->item->retail_cost_price      = $unit_price / $ratio;
+
+                    $batches_qty = ItemBatch::where(['item_id' => $prod->item->id, 'is_archieved' => 0, 'company_code' => get_auth_com()])->sum('qty');
+                    if ($prod->item->has_retail_unit) {
+                        //________ qty in batches are put as a parent unit ________
+
+                        $prod->item->all_retail_qty     = $batches_qty * $ratio; // 81 * 10 = 810
+                        $prod->item->wholesale_qty      = floor($batches_qty); // 81 => 80
+                        $prod->item->retail_qty         = fmod($prod->item->all_retail_qty, $ratio); // 81 % 20 = 1
+                    } else {
+                        $prod->item->wholesale_qty      = $batches_qty;
+                    }
+                    $prod->item->save();
                 });
 
                 DB::commit();

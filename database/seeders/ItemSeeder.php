@@ -27,19 +27,17 @@ class ItemSeeder extends Seeder
         $items = [
             [
                 'name'                              => 'Glass Cups',
-                'type'                              => 1, // consuming
+                'type'                              => 1, // stored
                 'category_id'                       => $hand_too_cat,
                 'has_retail_unit'                   => true,
                 'wholesale_unit_id'                 => $cups_unit,
                 'wholesale_price_for_block'         => 800,
                 'wholesale_price_for_half_block'    => 850,
                 'wholesale_price'                   => 900,
-                'wholesale_cost_price'              => 1000,
                 'retail_unit_id'                    => $box_unit,
                 'retail_price_for_block'            => 80,
                 'retail_price_for_half_block'       => 85,
                 'retail_price'                      => 90,
-                'retail_cost_price'                 => 100,
                 'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
                 'has_fixed_price'                   => rand(0, 1),
                 'company_code'                      => $admin->company_code,
@@ -54,7 +52,6 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_block'         => 800,
                 'wholesale_price_for_half_block'    => 850,
                 'wholesale_price'                   => 900,
-                'wholesale_cost_price'              => 1000,
                 'has_fixed_price'                   => rand(0, 1),
                 'company_code'                      => $admin->company_code,
                 'added_by'                          => $admin->id,
@@ -68,7 +65,6 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_block'         => 1000,
                 'wholesale_price_for_half_block'    => 1050,
                 'wholesale_price'                   => 1100,
-                'wholesale_cost_price'              => 1200,
                 'has_fixed_price'                   => rand(0, 1),
                 'company_code'                      => $admin->company_code,
                 'added_by'                          => $admin->id,
@@ -82,7 +78,6 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_block'         => 900,
                 'wholesale_price_for_half_block'    => 950,
                 'wholesale_price'                   => 1000,
-                'wholesale_cost_price'              => 1100,
                 'has_fixed_price'                   => rand(0, 1),
                 'company_code'                      => $admin->company_code,
                 'added_by'                          => $admin->id,

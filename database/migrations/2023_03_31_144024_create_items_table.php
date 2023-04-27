@@ -23,19 +23,20 @@ return new class extends Migration
             $table->foreignId('wholesale_unit_id')->constrained('units')->cascadeOnUpdate();
             $table->foreignId('retail_unit_id')->nullable()->constrained('units')->cascadeOnUpdate();
 
-            $table->decimal('wholesale_price',10,2);
-            $table->decimal('wholesale_price_for_block',10,2);
-            $table->decimal('wholesale_price_for_half_block',10,2);
-            $table->decimal('wholesale_cost_price',10,2)->comment('the cost average for main unit');
-            $table->decimal('retail_price',10,2)->nullable();
-            $table->decimal('retail_price_for_block',10,2)->nullable();
-            $table->decimal('retail_price_for_half_block',10,2)->nullable();
-            $table->decimal('retail_cost_price',10,2)->nullable();
+            $table->decimal('wholesale_price', 10, 2);
+            $table->decimal('wholesale_price_for_block', 10, 2);
+            $table->decimal('wholesale_price_for_half_block', 10, 2);
+            $table->decimal('retail_price', 10, 2)->nullable();
+            $table->decimal('retail_price_for_block', 10, 2)->nullable();
+            $table->decimal('retail_price_for_half_block', 10, 2)->nullable();
+
+            $table->decimal('wholesale_cost_price', 10, 2)->nullable();
+            $table->decimal('retail_cost_price', 10, 2)->nullable();
             $table->integer('retail_count_for_wholesale')->nullable();
 
-            $table->decimal('wholesale_qty',10,2)->nullable();
-            $table->decimal('retail_qty',10,2)->nullable();
-            $table->decimal('all_qty_retails',10,2)->nullable()->comment('all qty in retail unit ');
+            $table->decimal('wholesale_qty')->nullable();
+            $table->decimal('retail_qty')->nullable();
+            $table->decimal('all_retail_qty')->nullable()->comment('all qty in retail unit ');
 
             $table->boolean('has_fixed_price')->default(1)->comment('Does it has fixed price for invoices?');
             $table->integer('company_code');
