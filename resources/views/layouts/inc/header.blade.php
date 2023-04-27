@@ -298,17 +298,10 @@
                         <div class="dropdown-menu">
                             <!-- orders -->
                             <div class="dropend">
-                                <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                    {{ __('movement.orders') }}
+                                <a class="dropdown-item" href="{{ route('admin.orders.index') }}">
+                                    {{ __('movement.purchase_bills') }}
                                 </a>
-                                <div class="dropdown-menu">
-                                    <a href="{{ route('admin.orders.index') }}" class="dropdown-item {{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
-                                        {{ __('msgs.list', ['name' => __('movement.orders')]) }}
-                                    </a>
-                                    <a href="{{ route('admin.orders.create') }}" class="dropdown-item {{ request()->routeIs('admin.orders.create') ? 'active' : '' }}">
-                                        {{ __('msgs.create', ['name' => __('movement.order')]) }}
-                                    </a>
-                                </div>
+
                             </div>
 
                             <!-- shifts -->

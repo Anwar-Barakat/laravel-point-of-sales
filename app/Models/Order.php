@@ -15,14 +15,6 @@ class Order extends Model
     protected $guarded  = [];
     const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
 
-    public function scopeSearch($query, $term)
-    {
-        $term = "%$term%";
-        $query->where(function ($query) use ($term) {
-            $query->where('name', 'LIKE', $term);
-        });
-    }
-
     public function addedBy(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'added_by');

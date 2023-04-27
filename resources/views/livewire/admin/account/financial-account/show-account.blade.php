@@ -18,22 +18,22 @@
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.account_type')" />
-                        <select class="form-select" wire:model='account_type_id'>
-                            <option value="">{{ __('btns.select') }}</option>
-                            @foreach (App\Models\AccountType::active()->get() as $admin)
-                                <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-2">
-                    <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.order_by')" />
                         <select class="form-select" wire:model='order_by'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="name">{{ __('account.account_name') }}</option>
                             <option value="created_at">{{ __('msgs.created_at') }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('account.account_type')" />
+                        <select class="form-select" wire:model='account_type_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @foreach (App\Models\AccountType::get() as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                 </tbody>
             </table>
             <div class="p-3 mt-2">
-                {{ $accountslinks('pagination::bootstrap-5') }}
+                {{ $accounts->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

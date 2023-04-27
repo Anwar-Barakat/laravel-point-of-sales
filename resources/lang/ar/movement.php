@@ -6,6 +6,8 @@ return [
     //_______________________
     'stock_movements'           => 'حركات المخازن',
     'purchase_invoices'         => 'فواتير المشتريات',
+    'purchase_bills'            => 'فواتير المشتريات',
+    'purchase_bill'             => 'فاتورة مشتريات',
     'orders'                    => 'الطلبات',
     'order'                     => 'طلب',
     'cash'                      => 'كاش',

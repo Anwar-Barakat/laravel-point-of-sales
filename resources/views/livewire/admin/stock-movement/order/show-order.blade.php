@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-        <h3 class="card-title">{{ __('msgs.all', ['name' => __('movement.orders')]) }}</h3>
+        <h3 class="card-title">{{ __('msgs.all', ['name' => __('movement.purchase_bills')]) }}</h3>
         <a href="{{ route('admin.orders.create') }}" class="btn btn-primary">
-            {{ __('msgs.create', ['name' => __('movement.order')]) }}
+            {{ __('msgs.create', ['name' => __('movement.purchase_bill')]) }}
         </a>
     </div>
 
@@ -12,17 +12,33 @@
             <div class="row">
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('msgs.search_by_name')" />
-                        <x-text-input class="form-control" placeholder="{{ __('btns.search') }}" wire:model="name" />
+                        <x-input-label class="form-label" :value="__('msgs.order_by')" />
+                        <select class="form-select" wire:model='order_by'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="created_at">{{ __('msgs.created_at') }}</option>
+                            <option value="invoice_date">{{ __('movement.invoice_date') }}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('msgs.order_by')" />
-                        <select class="form-select" wire:model='order_by'>
+                        <x-input-label class="form-label" :value="__('stock.vendor')" />
+                        <select class="form-select" wire:model='vendor_id'>
                             <option value="">{{ __('btns.select') }}</option>
-                            <option value="name">{{ __('movement.order_name') }}</option>
-                            <option value="created_at">{{ __('msgs.created_at') }}</option>
+                            @foreach (App\Models\Vendor::get() as $vendor)
+                                <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('stock.store')" />
+                        <select class="form-select" wire:model='store_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @foreach (App\Models\Store::get() as $store)
+                                <option value="{{ $store->id }}">{{ $store->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -55,10 +71,11 @@
                     <tr>
                         <th>#</th>
                         <th> {{ __('stock.vendor_name') }}</th>
-                        <th> {{ __('account.account_number') }}</th>
                         <th> {{ __('stock.store') }}</th>
+                        <th> {{ __('account.account_number') }}</th>
                         <th>{{ __('movement.invoice_type') }}</th>
                         <th>{{ __('movement.invoice_date') }}</th>
+                        <th>{{ __('movement.total_price') }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -73,6 +90,7 @@
                                     </span>
                                 </a>
                             </td>
+                             <td>{{ $order->store->name }}</td>
                             <td>
                                 <a href="{{ route('admin.accounts.show', ['account' => $order->account]) }}">
                                     <span class="badge bg-green-lt">
@@ -80,12 +98,15 @@
                                     </span>
                                 </a>
                             </td>
-                            <td>{{ $order->store->name }}</td>
+
                             <td>
                                 {{ $order->invoice_type ? __('movement.delayed') : __('movement.cash') }}
                             </td>
                             <td>
                                 {{ $order->invoice_date }}
+                            </td>
+                            <td>
+                                <span class="text-green-600">{{ $order->cost_after_discount }}</span>
                             </td>
                             <td>
                                 <span class="dropdown">

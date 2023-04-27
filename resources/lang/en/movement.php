@@ -25,6 +25,8 @@ return [
     'cost_after_discount'       => 'Cost after discount',
     'items_cost'                => 'Items cost',
     'grand_total'               => 'Grand total',
+    'purchase_bills'            => 'Purchase bills',
+    'purchase_bill'             => 'Purchase bill',
 
     'vendor_id'                 => 'Vendor',
     'account_id'                => 'Account',
