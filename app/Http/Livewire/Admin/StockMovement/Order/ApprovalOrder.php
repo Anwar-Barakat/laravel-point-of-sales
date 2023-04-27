@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\StockMovement\Order;
 
+use App\Models\Item;
 use App\Models\ItemBatch;
 use App\Models\ItemTransaction;
 use App\Models\Order;
@@ -210,21 +211,11 @@ class ApprovalOrder extends Component
 
 
                     //________________________________________________
-                    // 7- Update Item qty & prices in stock
+                    // 7- Update Item qty & prices in items table
                     //________________________________________________
                     $prod->item->wholesale_cost_price   = $unit_price;
                     $prod->item->retail_cost_price      = $unit_price / $ratio;
-
-                    $batches_qty = ItemBatch::where(['item_id' => $prod->item->id, 'is_archieved' => 0, 'company_code' => get_auth_com()])->sum('qty');
-                    if ($prod->item->has_retail_unit) {
-                        //________ qty in batches are put as a parent unit ________
-
-                        $prod->item->all_retail_qty     = $batches_qty * $ratio; // 81 * 10 = 810
-                        $prod->item->wholesale_qty      = floor($batches_qty); // 81 => 80
-                        $prod->item->retail_qty         = fmod($prod->item->all_retail_qty, $ratio); // 81 % 20 = 1
-                    } else {
-                        $prod->item->wholesale_qty      = $batches_qty;
-                    }
+                    update_item_qty($prod->item);
                     $prod->item->save();
                 });
 
