@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('type')->comment('1 => purchase, 2 => return on the same pill, 3 => return on general');
 
@@ -36,26 +36,25 @@ return new class extends Migration
             $table->decimal('money_for_account', 10, 2)->default(0);
 
 
-            $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('customer_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('account_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_transaction_id')->nullable();
 
-            $table->decimal('vendor_balance_before', 10, 2)->nullable();
-            $table->decimal('vendor_balance_after', 10, 2)->nullable();
+            $table->decimal('customer_balance_before', 10, 2)->nullable();
+            $table->decimal('customer_balance_after', 10, 2)->nullable();
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
             $table->timestamps();
+            $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('sales');
     }
 };
