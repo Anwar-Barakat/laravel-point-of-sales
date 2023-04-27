@@ -5,6 +5,7 @@ use App\Models\Item;
 use App\Models\ItemBatch;
 use App\Models\Order;
 use App\Models\Shift;
+use App\Models\Store;
 use App\Models\TreasuryTransaction;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
@@ -64,26 +65,27 @@ if (!function_exists('update_account_balance')) {
 }
 
 if (!function_exists('batch_item_qty')) {
-    function batch_item_qty(Item $item)
+    function item_batch_qty(Item $item, $store_id = null)
     {
-        return ItemBatch::where(['item_id' => $item->id, 'is_archieved' => 0, 'company_code' => get_auth_com()])->sum('qty');
+        return ItemBatch::where(['item_id' => $item->id, 'is_archieved' => 0, 'company_code' => get_auth_com()])
+            ->when($store_id, function ($query, $store_id) {
+                return $query->where('store_id', $store_id);
+            })->sum('qty');
     }
 }
 
 if (!function_exists('update_item_qty')) {
     function update_item_qty(Item $item)
     {
-        $batches_qty = batch_item_qty($item);
-
+        $batches_qty = item_batch_qty($item);
         if ($item->has_retail_unit) {
             //________ qty in batches are put as a parent unit ________
 
             $item->all_retail_qty     = $batches_qty * $item->retail_count_for_wholesale; // 81 * 10 = 810
             $item->wholesale_qty      = floor($batches_qty); // 81 => 80
             $item->retail_qty         = fmod($item->all_retail_qty, $item->retail_count_for_wholesale); // 81 % 20 = 1
-        } else {
+        } else
             $item->wholesale_qty      = $batches_qty;
-        }
 
         return $item;
     }

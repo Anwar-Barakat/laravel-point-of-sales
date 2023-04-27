@@ -156,7 +156,9 @@ class ApprovalOrder extends Component
                 //________________________________________________
                 $this->order->orderProducts->map(function ($prod) {
                     $ratio                  = $prod->item->retail_count_for_wholesale;
-                    $qty_before_transaction = ItemBatch::where(['item_id' => $prod->item->id, 'company_code' => get_auth_com()])->sum('qty');
+                    $qty_before_transaction = item_batch_qty($prod->item);
+                    $store_qty_before_trans = item_batch_qty($prod->item, $this->order->store_id);
+
 
                     if ($prod->unit->status == 'retail') {
                         $quantity   = $prod->qty / $ratio;
@@ -195,14 +197,18 @@ class ApprovalOrder extends Component
                     //________________________________________________
                     // 6- Any transaction on item it must be stored
                     //________________________________________________
-                    $qty_after_transaction = ItemBatch::where(['item_id' => $prod->item->id, 'company_code' => get_auth_com()])->sum('qty');
+                    $qty_after_transaction = item_batch_qty($prod->item);
+                    $store_qty_after_trans = item_batch_qty($prod->item, $this->order->store_id);
                     ItemTransaction::create([
                         'item_transaction_category_id'  => 1,   // Transaction on purchases
                         'item_transaction_type_id'      => 1,   //purchases
                         'item_id'                       => $prod->item->id,
                         'order_id'                      => $this->order->id,
+                        'store_id'                      => $this->order->store_id,
                         'order_product_id'              => $prod->id,
                         'report'                        => 'Purchases return from the ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id,
+                        'store_qty_before_transaction'  => $store_qty_before_trans . ' ' . $prod->item->parentUnit->name,
+                        'store_qty_after_transaction'   => $store_qty_after_trans . ' ' . $prod->item->parentUnit->name,
                         'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
                         'qty_after_transaction'         => $qty_after_transaction . ' ' . $prod->item->parentUnit->name,
                         'added_by'                      => get_auth_id(),
