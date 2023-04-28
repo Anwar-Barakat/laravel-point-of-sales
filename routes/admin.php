@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use App\Http\Controllers\Admin\StockMovement\Order\OrderController;
+use App\Http\Controllers\Admin\StockMovement\Sale\SaleController;
 use App\Http\Controllers\Admin\StockMovement\Shift\ShiftController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -134,11 +135,16 @@ Route::group(
                 Route::get('exchange-transactions',             ExchangeTransactionController::class)->name('exchange-transactions');
 
 
-
                 //_______________________
                 // Orders
                 //_______________________
                 Route::resource('orders',                       OrderController::class)->except('store', 'update');
+
+                //_______________________
+                // Orders
+                //_______________________
+                Route::resource('sales',                        SaleController::class);
+
 
                 //_______________________
                 // Shifts

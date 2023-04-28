@@ -89,20 +89,19 @@ class OrderDetail extends Component
         $this->consuming        = $product->item->type == 2 ?  true : false;
         $this->product          = $product;
         $this->wholesale_unit   = $product->item->parentUnit;
-        $this->product->unit_id = $product->unit_id;
+        $this->retail_unit      = $product->item->childUnit ?? '';
     }
 
     public function delete($id)
     {
         $product            = OrderProduct::findOrFail($id);
         $product->delete();
-        $this->getOrderProducts();
         toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
+        $this->getOrderProducts();
     }
 
     public function render()
     {
-
         return view('livewire.admin.stock-movement.order.order-detail', ['order_products' => $this->getOrderProducts()]);
     }
 
@@ -110,12 +109,7 @@ class OrderDetail extends Component
     public function rules(): array
     {
         return [
-            'product.item_id'           => [
-                'required',
-                Rule::unique('order_products', 'item_id')->ignore($this->product->item_id)->where(function ($query) {
-                    return $query->where('id', $this->product->id);
-                })
-            ],
+            'product.item_id'           => ['required'],
             'product.unit_id'           => ['required', 'integer'],
             'product.unit_price'        => ['required', 'between:0,9999'],
             'product.qty'               => ['required', 'integer'],

@@ -135,7 +135,7 @@
 
                                     <!-- treasuries -->
                                     <div class="dropend">
-                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                        <a class="dropdown-item dropdown-toggle {{ request()->routeIs('admin.treasuries.*') ? 'active' : '' }}" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                             {{ __('treasury.treasuries') }}
                                         </a>
                                         <div class="dropdown-menu">
@@ -248,14 +248,14 @@
 
                                     <!-- financial accounts -->
                                     <div class="dropend">
-                                        <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                        <a class="dropdown-item dropdown-toggle {{ request()->routeIs('admin.accounts.*') ? 'active' : '' }}" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                             {{ __('account.accounts') }}
                                         </a>
                                         <div class="dropdown-menu">
-                                            <a href="{{ route('admin.accounts.index') }}" class="dropdown-item {{ request()->routeIs('admin.financial-accounts.index') ? 'active' : '' }}">
+                                            <a href="{{ route('admin.accounts.index') }}" class="dropdown-item {{ request()->routeIs('admin.accounts.index') ? 'active' : '' }}">
                                                 {{ __('msgs.list', ['name' => __('account.accounts')]) }}
                                             </a>
-                                            <a href="{{ route('admin.accounts.create') }}" class="dropdown-item {{ request()->routeIs('admin.financial-accounts.create') ? 'active' : '' }}">
+                                            <a href="{{ route('admin.accounts.create') }}" class="dropdown-item {{ request()->routeIs('admin.accounts.create') ? 'active' : '' }}">
                                                 {{ __('msgs.create', ['name' => __('account.account')]) }}
                                             </a>
                                         </div>
@@ -279,7 +279,7 @@
                     <!-- _______________________
                     Movements Stocks
                     _______________________!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') || request()->routeIs('admin.shifts.*') || request()->routeIs('admin.sales.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -297,27 +297,19 @@
                         </a>
                         <div class="dropdown-menu">
                             <!-- orders -->
-                            <div class="dropend">
-                                <a class="dropdown-item" href="{{ route('admin.orders.index') }}">
-                                    {{ __('movement.purchase_bills') }}
-                                </a>
+                            <a class="dropdown-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
+                                {{ __('movement.orders') }}
+                            </a>
 
-                            </div>
+                            <!-- sales -->
+                            <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">
+                                {{ __('movement.sales_invoices') }}
+                            </a>
 
                             <!-- shifts -->
-                            <div class="dropend">
-                                <a class="dropdown-item dropdown-toggle" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                    {{ __('movement.treasuries_shifts') }}
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a href="{{ route('admin.shifts.index') }}" class="dropdown-item {{ request()->routeIs('admin.shifts.index') ? 'active' : '' }}">
-                                        {{ __('msgs.list', ['name' => __('movement.treasuries_shifts')]) }}
-                                    </a>
-                                    <a href="{{ route('admin.shifts.create') }}" class="dropdown-item {{ request()->routeIs('admin.shifts.create') ? 'active' : '' }}">
-                                        {{ __('msgs.create', ['name' => __('movement.treasury_shifts')]) }}
-                                    </a>
-                                </div>
-                            </div>
+                            <a class="dropdown-item {{ request()->routeIs('admin.shifts.*') ? 'active' : '' }}" href="{{ route('admin.shifts.index') }}">
+                                {{ __('movement.treasuries_shifts') }}
+                            </a>
                         </div>
                     </li>
 

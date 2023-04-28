@@ -228,7 +228,7 @@
                                 @if (!$order->is_approved == 1)
                                     <td>
                                         <div class="btn-list flex-nowrap justify-content-center">
-                                            <a wire:click.prefetch="edit({{ $orderProduct->id }})" href="#add-items" class="btn d-flex justify-content-center align-items-center">
+                                            <a wire:click.prefetch="edit({{ $orderProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -236,7 +236,7 @@
                                                     <path d="M16 5l3 3" />
                                                 </svg>
                                             </a>
-                                            <a wire:click.prefetch="delete({{ $orderProduct->id }})" href="#add-items" class="btn d-flex justify-content-center align-items-center">
+                                            <a wire:click.prefetch="delete({{ $orderProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M4 7l16 0" />

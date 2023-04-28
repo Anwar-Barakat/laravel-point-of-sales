@@ -2,5 +2,4 @@
 
 return [
     'report'    => 'report',
-    'invoice'   => 'Invoice',
 ];

@@ -7,7 +7,7 @@
                     <div class="mb-3">
                         <label for="" class="form-label">
                             {{ __('stock.vendor_name') }}
-                            (<a href="{{ route('admin.vendors.create') }}" class="text underline">{{ __('msgs.add_new') }}</a>)
+                            (<a href="{{ route('admin.vendors.create') }}" class="text underline" title="{{ __('msgs.create', ['name' => __('stock.vendor')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
                         <select class="form-select" wire:model.debounce.500s='order.vendor_id'>
                             <option value="">{{ __('btns.select') }}</option>
@@ -47,7 +47,7 @@
                     <div class="mb-3">
                         <label for="" class="form-label">
                             {{ __('stock.store') }}
-                            (<a href="{{ route('admin.stores.index') }}" class="text underline">{{ __('msgs.add_new') }}</a>)
+                            (<a href="{{ route('admin.stores.index') }}" class="text underline" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
                         <select class="form-select" wire:model.debounce.500s='order.store_id'>
                             <option value="">{{ __('btns.select') }}</option>

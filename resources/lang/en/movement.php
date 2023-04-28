@@ -71,5 +71,14 @@ return [
     'approval_and_posting'      => 'Approval and posting of purchase invoice',
 
 
-
+    //_______________________
+    // Sales
+    //_______________________
+    'sales'                     => 'Sales',
+    'sales_invoices'            => 'Sales invoices',
+    'sale_invoice'              => 'Sale invoice',
+    'sale_type'                 => 'Sale type',
+    'sectoral'                  => 'Sectoral',
+    'half_wholesale'            => 'Half-wholesale',
+    'wholesale'                 => 'Wholesale',
 ];

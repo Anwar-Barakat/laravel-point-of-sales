@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('sale_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('unit_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('batch_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('item_batch_id')->constrained()->cascadeOnUpdate();
 
             $table->date('production_date')->nullable();
             $table->date('expiration_date')->nullable();
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->decimal('total_price', 10, 2);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->integer('company_code');
-
             $table->timestamps();
         });
     }

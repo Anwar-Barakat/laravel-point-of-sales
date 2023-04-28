@@ -50,8 +50,8 @@
                         <div class="col-auto ms-auto d-print-none">
                             <div class="btn-list">
                                 <span class="d-none d-sm-inline">
-                                    <a href="#" class="btn">
-                                        {{ __('msgs.create', ['name' => __('dash.invoice')]) }}
+                                    <a href="{{ route('admin.sales.index') }}" class="btn">
+                                        {{ __('msgs.create', ['name' => __('movement.sale_invoice')]) }}
                                     </a>
                                 </span>
                                 <a href="#" class="btn btn-primary flex justify-between items-center">
