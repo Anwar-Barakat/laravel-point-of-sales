@@ -20,19 +20,24 @@ class Sale extends Model
         return $this->belongsTo(Admin::class, 'added_by');
     }
 
+    public function account(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'account_id');
+    }
+
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
 
+    public function delegate(): BelongsTo
+    {
+        return $this->belongsTo(Delegate::class, 'delegate_id');
+    }
+
     public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class, 'store_id');
-    }
-
-    public function account(): BelongsTo
-    {
-        return $this->belongsTo(Account::class, 'account_id');
     }
 
     public function saleProducts(): HasMany

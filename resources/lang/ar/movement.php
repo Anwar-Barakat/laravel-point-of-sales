@@ -77,6 +77,9 @@ return [
     'wholesale'                 => 'جملة',
     'number'                    => 'عدد',
     'specific_store_qty'        => 'الكميات في المخزن المحدد',
+    'delegate'                  => 'مندوب',
+    'delegate_name'             => 'اسم المندوب',
+
 
 
 ];

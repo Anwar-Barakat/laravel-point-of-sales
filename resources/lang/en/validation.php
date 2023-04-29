@@ -268,6 +268,8 @@ return [
         'customer_id'               => 'customer',
         'unit_id'                   => 'unit',
         'sale_type'                 => 'sale type',
+        'delegate_id'               => 'delegate',
+
     ],
 
 ];

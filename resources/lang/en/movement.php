@@ -83,4 +83,6 @@ return [
     'wholesale'                 => 'Wholesale',
     'number'                    => 'Number',
     'specific_store_qty'        => 'QTY in the specific store',
+    'delegate'                  => 'Delegate',
+    'delegate_name'             => 'Delegate name',
 ];

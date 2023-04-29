@@ -325,6 +325,7 @@ return [
         'customer_id'                   => 'الزبون',
         'unit_id'                       => 'الوحدة',
         'sale_type'                     => 'نوع المبيع',
+        'delegate_id'                   => 'مندوب',
 
     ],
 

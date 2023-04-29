@@ -35,7 +35,9 @@ return new class extends Migration
 
 
             $table->foreignId('customer_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('delegate_id')->nullable();
             $table->foreignId('account_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_transaction_id')->nullable();
 

@@ -3,52 +3,91 @@
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <label for="" class="form-label">
                             {{ __('stock.customer_name') }}
                             (<a href="{{ route('admin.customers.create') }}" class="text underline" title="{{ __('msgs.create', ['name' => __('stock.customer')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
-                        <select class="form-select" wire:model.debounce.500s='order.customer_id'>
+                        <select class="form-select" wire:model.defer='sale.customer_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($customers)
                                 @foreach ($customers as $customer)
-                                    <option value="{{ $customer->id }}" {{ old('order.customer_id') == $customer->id ? 'selected' : '' }}>
+                                    <option value="{{ $customer->id }}" {{ old('sale.customer_id') == $customer->id ? 'selected' : '' }}>
                                         {{ $customer->name }}
                                     </option>
                                 @endforeach
                             @endif
                         </select>
-                        <x-input-error :messages="$errors->get('order.customer_id')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('sale.customer_id')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('movement.invoice_type')" />
-                        <select class="form-select" wire:model.debounce.500s='order.invoice_type'>
+                        <select class="form-select" wire:model.defer='sale.invoice_type'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Sale::INVOICETYPE as $key => $value)
                                 <option value="{{ $key }}">{{ __('movement.' . $value) }}</option>
                             @endforeach
                         </select>
-                        <x-input-error :messages="$errors->get('order.invoice_type')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('sale.invoice_type')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('movement.invoice_date')" />
-                        <x-text-input type="date" class="form-control" wire:model.debounce.500s='order.invoice_date' />
-                        <x-input-error :messages="$errors->get('vednor.invoice_date')" class="mt-2" />
+                        <x-text-input type="date" class="form-control" wire:model.defer='sale.invoice_date' />
+                        <x-input-error :messages="$errors->get('sale.invoice_date')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            {{ __('movement.delegate_name') }}
+                            (<a href="" class="text underline" title="{{ __('msgs.create', ['name' => __('movement.delegate')]) }}">{{ __('msgs.add_new') }}</a>)
+                        </label>
+                        <select class="form-select" wire:model.defer='sale.delegate_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @if ($delegates)
+                                @foreach ($delegates as $delegate)
+                                    <option value="{{ $delegate->id }}" {{ old('sale.delegate_id') == $delegate->id ? 'selected' : '' }}>
+                                        {{ $delegate->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                        <x-input-error :messages="$errors->get('sale.delegate_id')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('stock.category_name')" />
+                        <select class="form-select" wire:model.defer="sale.category_id">
+                            <option value="">{{ __('btns.select') }}</option>
+                            @foreach ($categories as $root)
+                                <option value="{{ $root->id }}">{{ ucwords($root->name) }}</option>
+                                @if ($root->subCategories)
+                                    @foreach ($root->subCategories as $child)
+                                        <option value="{{ $child->id }}">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;
+                                            {{ ucwords($child->name) }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('sale.category_id')" class="mt-2" />
                     </div>
                 </div>
             </div>
 
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="5" class="form-control" wire:model.debounce.500s='order.notes'></textarea>
-                        <x-input-error :messages="$errors->get('order.notes')" class="mt-2" />
+                        <textarea rows="5" class="form-control" wire:model.defer='sale.notes'></textarea>
+                        <x-input-error :messages="$errors->get('sale.notes')" class="mt-2" />
                     </div>
                 </div>
             </div>
