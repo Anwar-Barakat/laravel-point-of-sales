@@ -6,26 +6,7 @@
                         <div class="card-body">
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                             <div class="row row-cards">
-                                <div class="col-12 col-md-3">
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">
-                                            {{ __('stock.store') }}
-                                            (<a href="{{ route('admin.stores.index') }}" class="text underline" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
-                                        </label>
-                                        <select class="form-select" wire:model='sale.store_id'>
-                                            <option value="">{{ __('btns.select') }}</option>
-                                            @if ($stores)
-                                                @foreach ($stores as $store)
-                                                    <option value="{{ $store->id }}" {{ old('sale.store_id') == $store->id ? 'selected' : '' }}>
-                                                        {{ $store->name }}
-                                                    </option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                        <x-input-error :messages="$errors->get('sale.store_id')" class="mt-2" />
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <label for="" class="form-label">
                                             {{ __('stock.customer_name') }}
@@ -44,7 +25,7 @@
                                         <x-input-error :messages="$errors->get('sale.customer_id')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.invoice_type')" />
                                         <select class="form-select" wire:model.debounce.500s='sale.invoice_type'>
@@ -56,7 +37,7 @@
                                         <x-input-error :messages="$errors->get('sale.invoice_type')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.invoice_date')" />
                                         <x-text-input type="date" class="form-control" wire:model.debounce.500s='sale.invoice_date' />
@@ -64,24 +45,43 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr class="mt-4 mb-3 w-50">
+                            <h4 class="mb-4 text-blue">{{ __('stock.wholesale_retail_prices') }}</h4>
                             <div class="row row-cards">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-lg-3">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">
+                                            {{ __('stock.store') }}
+                                            (<a href="{{ route('admin.stores.index') }}" class="text underline" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
+                                        </label>
+                                        <select class="form-select" wire:model='sale.store_id'>
+                                            <option value="">{{ __('btns.select') }}</option>
+                                            @if ($stores)
+                                                @foreach ($stores as $store)
+                                                    <option value="{{ $store->id }}" {{ old('sale.store_id') == $store->id ? 'selected' : '' }}>
+                                                        {{ $store->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                        <x-input-error :messages="$errors->get('sale.store_id')" class="mt-2" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.sale_type')" />
-                                        <select class="form-select" wire:model.debounce.500s='sale.invoice_type'>
+                                        <select class="form-select" wire:model='sale.sale_type'>
                                             <option value="">{{ __('btns.select') }}</option>
                                             @foreach (App\Models\SALE::SALETYPE as $key => $value)
                                                 <option value="{{ $key }}">{{ __('movement.' . $value) }}</option>
                                             @endforeach
                                         </select>
-                                        <x-input-error :messages="$errors->get('sale.invoice_type')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('sale.sale_type')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-lg-3">
                                     <div class="mb-3">
-                                        <label for="" class="form-label">
-                                            {{ __('stock.item') }}</label>
-                                        </label>
+                                        <x-input-label class="form-label" :value="__('stock.item')" />
                                         <select class="form-select" wire:model='sale.item_id'>
                                             <option value="">{{ __('btns.select') }}</option>
                                             @foreach ($items as $product)
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                                 @if ($wholesale_unit)
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-lg-3">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('stock.unit')" />
                                             <select class="form-select" wire:model='sale.unit_id'>
@@ -110,7 +110,7 @@
 
                             <div class="row row-cards">
                                 @if ($batches)
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-lg-6">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('movement.specific_store_qty')" />
                                             <select class="form-select" wire:model='sale.item_batch_id'>
@@ -119,12 +119,14 @@
                                                     @if ($unit->status == 'retail')
                                                         @php
                                                             $qty = floatval($batch->qty) * floatval($item->retail_count_for_wholesale);
-                                                            $price = floatval($batch->unit_price) / floatval($item->retail_count_for_wholesale);
+                                                            $price = floatval($item->retail_count_for_wholesale) != 0 ? floatval($batch->unit_price) / floatval($item->retail_count_for_wholesale) : 0;
                                                         @endphp
-                                                        <option value="{{ $batch->id }}">
-                                                            {{ __('movement.number') }} {{ $qty }} ({{ __('stock.unit') . ' : ' . $unit->name }})
-                                                            - {{ __('stock.unit_price') . ' : ' . number_format($price, 0) }}
-                                                        </option>
+                                                        @if ($price > 0)
+                                                            <option value="{{ $batch->id }}">
+                                                                {{ __('movement.number') }} {{ $qty }} ({{ __('stock.unit') . ' : ' . $unit->name }})
+                                                                - {{ __('stock.unit_price') . ' : ' . number_format($price, 0) }}
+                                                            </option>
+                                                        @endif
                                                     @else
                                                         <option value="{{ $batch->id }}">
                                                             {{ __('movement.number') }} {{ number_format($batch->qty, 0) }} ({{ __('stock.unit') }} : {{ $unit->name }})
@@ -138,14 +140,14 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.qty')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='sale.qty' readonly disabled />
+                                        <x-text-input type="number" class="form-control" wire:model='sale.qty' wire:keyup='calcPrice' />
                                         <x-input-error :messages="$errors->get('sale.invoice_type')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('stock.unit_price')" />
                                         <x-text-input type="number" class="form-control" wire:model.debounce.500s='sale.unit_price' readonly disabled />
@@ -153,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="row row-cards">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-lg-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.grand_total')" />
                                         <x-text-input type="number" class="form-control" wire:model.debounce.500s='sale.total_price' readonly disabled />

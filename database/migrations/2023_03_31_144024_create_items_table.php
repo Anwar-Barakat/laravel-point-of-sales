@@ -24,8 +24,8 @@ return new class extends Migration
             $table->foreignId('retail_unit_id')->nullable()->constrained('units')->cascadeOnUpdate();
 
             $table->decimal('wholesale_price', 10, 2);
-            $table->decimal('wholesale_price_for_block', 10, 2);
             $table->decimal('wholesale_price_for_half_block', 10, 2);
+            $table->decimal('wholesale_price_for_block', 10, 2);
             $table->decimal('retail_price', 10, 2)->nullable();
             $table->decimal('retail_price_for_block', 10, 2)->nullable();
             $table->decimal('retail_price_for_half_block', 10, 2)->nullable();

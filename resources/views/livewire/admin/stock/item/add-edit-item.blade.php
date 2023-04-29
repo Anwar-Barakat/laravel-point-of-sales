@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <hr class="mt-3 mb-3 w-50">
+            <hr class="mt-4 mb-3 w-50">
             <h4 class="mb-4 text-blue">{{ __('stock.wholesale_retail_prices') }}</h4>
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
@@ -200,7 +200,7 @@
                 </div>
             @endif
 
-            <hr class="mt-3 mb-3 w-50">
+            <hr class="mt-4 mb-3 w-50">
             <h4 class="mb-4  text-blue">{{ __('msgs.attachements') }}</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-4">

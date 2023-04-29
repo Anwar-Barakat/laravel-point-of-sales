@@ -27,6 +27,7 @@ class ShowSale extends Component
     {
         $this->sale                 = $sale;
         $this->sale->invoice_date   = date('Y-m-d');
+        $this->sale->qty            = 1;
         $this->customers            = Customer::active()->where('company_code', get_auth_com())->get();
         $this->stores               = Store::active()->where('company_code', get_auth_com())->get();
         $this->items                = Item::active()->get();
@@ -35,6 +36,18 @@ class ShowSale extends Component
     public function updated($fields)
     {
         return $this->validateOnly($fields);
+    }
+
+    public function updatedSaleStoreId()
+    {
+        if (!is_null($this->sale->item_id) && !is_null($this->sale->unit_id))
+            $this->batches  = $this->getBatches();
+    }
+
+    public function updatedSaleSaleType()
+    {
+        if (!is_null($this->sale->item_id) && !is_null($this->sale->unit_id))
+            $this->sale->unit_price = $this->getUnitPrice();
     }
 
     public function updatedSaleItemId()
@@ -49,17 +62,12 @@ class ShowSale extends Component
 
     public function updatedSaleUnitId()
     {
+        $this->item     = $this->getItem();
         $this->unit     = Unit::select('id', 'name', 'status')->findOrFail($this->sale->unit_id);
         $this->batches  = $this->getBatches();
+
+        $this->sale->unit_price = $this->getUnitPrice();
     }
-
-
-    public function updatedSaleStoreId()
-    {
-        if (!is_null($this->sale->item_id) && !is_null($this->sale->unit_id))
-            $this->batches  = $this->getBatches();
-    }
-
 
     public function render()
     {
@@ -70,39 +78,59 @@ class ShowSale extends Component
     public function rules(): array
     {
         return [
-            'sale.invoice_date'    => ['required', 'date'],
-            'sale.invoice_type'    => ['required', 'boolean'],
-            'sale.store_id'        => ['required', 'integer'],
-            'sale.customer_id'     => ['required', 'integer'],
-            'sale.store_id'        => ['required', 'integer'],
-            'sale.unit_id'         => ['required', 'integer'],
-            'sale.item_id'         => ['required', 'integer'],
-            'sale.item_batch_id'   => ['required', 'integer'],
+            'sale.invoice_date'     => ['required', 'date'],
+            'sale.invoice_type'     => ['required', 'boolean'],
+            'sale.store_id'         => ['required', 'integer'],
+            'sale.sale_type'        => ['required', 'in:1,2,3'],
+            'sale.customer_id'      => ['required', 'integer'],
+            'sale.store_id'         => ['required', 'integer'],
+            'sale.unit_id'          => ['required', 'integer'],
+            'sale.item_id'          => ['required', 'integer'],
+            'sale.item_batch_id'    => ['required', 'integer'],
+            'sale.unit_price'       => ['required', 'numeric'],
+            'sale.qty'              => ['required', 'integer'],
+            'sale.total_price'      => ['required', 'numeric'],
         ];
     }
 
     public function getBatches()
     {
         return ItemBatch::select('unit_price', 'qty', 'production_date', 'expiration_date')
-            ->where([
-                'company_code'  => get_auth_com()
-            ])
-            ->when($this->sale->item_id, function ($query) {
-                return $query->where(['item_id'  => $this->sale->item_id]);
-            })
-            ->when($this->sale->store_id, function ($query) {
-                return $query->where(['store_id' => $this->sale->store_id]);
-            })
-            ->when($this->sale->unit_id, function ($query) {
-                return $query->where(['unit_id' => $this->item->parentUnit->id]);
-            })
-            ->when($this->item->type == 2, function ($query) {
-                return $query->orderBy('production_date', 'asc');
-            })->latest()->get();
+            ->where(['company_code'         => get_auth_com()])
+            ->when($this->sale->item_id,    fn ($query) => $query->where(['item_id'  => $this->sale->item_id]))
+            ->when($this->sale->store_id,   fn ($query) => $query->where(['store_id' => $this->sale->store_id]))
+            ->when($this->sale->unit_id,    fn ($query) => $query->where(['unit_id' => $this->item->parentUnit->id]))
+            ->when($this->item->type == 2,  fn ($query) => $query->orderBy('production_date', 'asc'))
+            ->latest()->get();
     }
 
     public function getItem()
     {
         return Item::with(['parentUnit', 'childUnit'])->findOrFail($this->sale->item_id);
+    }
+
+    public function getUnitPrice()
+    {
+        $prices = [
+            $this->item->retail_price,
+            $this->item->retail_price_for_half_block,
+            $this->item->retail_price_for_block,
+            $this->item->wholesale_price,
+            $this->item->wholesale_price_for_half_block,
+            $this->item->wholesale_price_for_block,
+        ];
+
+        if ($this->unit->status == 'wholesale') {
+            $index = $this->sale->sale_type + 2;
+        } else {
+            $index = $this->sale->sale_type - 1;
+        }
+
+        return $prices[$index];
+    }
+
+    public function calcPrice()
+    {
+        $this->sale->total_price = (int)$this->sale->qty * (float)$this->sale->unit_price;
     }
 }
