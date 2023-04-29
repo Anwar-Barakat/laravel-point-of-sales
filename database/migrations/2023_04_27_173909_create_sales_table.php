@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
             $table->boolean('invoice_type');
             $table->date('invoice_date');
             $table->boolean('is_approved')->default(0);

@@ -27,6 +27,7 @@ class Account extends Model
         'date',
         'customer_id',
         'vendor_id',
+        'delegate_id',
     ];
 
     const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];
@@ -77,5 +78,10 @@ class Account extends Model
     public function vendor(): BelongsTo
     {
         return $this->belongsTo(Vendor::class);
+    }
+
+    public function delegate(): BelongsTo
+    {
+        return $this->belongsTo(Delegate::class);
     }
 }

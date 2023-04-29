@@ -35,7 +35,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'مندوب',
-                    'en'                        => 'Representative'
+                    'en'                        => 'Delegate'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,

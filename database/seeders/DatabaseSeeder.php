@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             ItemTransactionCategorySeeder::class,
             ItemTransactionTypeSeeder::class,
             CustomerSeeder::class,
+            DelegateSeeder::class,
         ]);
     }
 }

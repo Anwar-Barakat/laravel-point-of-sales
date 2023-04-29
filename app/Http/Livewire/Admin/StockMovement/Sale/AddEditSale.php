@@ -27,6 +27,23 @@ class AddEditSale extends Component
         return $this->validateOnly($fields);
     }
 
+    public function submit()
+    {
+        $this->validate();
+        try {
+            $this->sale->type            = 1; // purchase
+            $this->sale->account_id      = $this->sale->vendor->account->id;
+            $this->sale->added_by        = get_auth_id();
+            $this->sale->company_code    = get_auth_com();
+
+            $this->sale->save();
+            toastr()->success(__('msgs.submitted', ['name' => __('movement.order')]));
+            return redirect()->route('admin.orders.index');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.orders.create')->with(['error' => $th->getMessage()]);
+        }
+    }
+
     public function render()
     {
         return view('livewire.admin.stock-movement.sale.add-edit-sale');
