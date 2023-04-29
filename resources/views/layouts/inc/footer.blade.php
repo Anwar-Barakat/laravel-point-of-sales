@@ -4,7 +4,7 @@
             <div class="col-lg-auto ms-lg-auto">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        <a href="https://github.com/sponsors/codecalm" target="_blank" class="link-secondary" rel="noopener">
+                        <a href="https://github.com/sponsors/codecalm" target="_blank" class="link-secondary flex items-center gap-1" rel="noopener">
                             <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink icon-filled icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />

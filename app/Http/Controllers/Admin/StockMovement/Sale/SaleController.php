@@ -13,7 +13,6 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('admin.stock-movements.sales.index');
     }
 
     /**
@@ -21,7 +20,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stock-movements.sales.create');
     }
 
     /**

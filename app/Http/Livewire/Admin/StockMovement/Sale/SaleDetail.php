@@ -6,11 +6,13 @@ use App\Models\Customer;
 use App\Models\Item;
 use App\Models\ItemBatch;
 use App\Models\Sale;
+use App\Models\SaleProduct;
 use App\Models\Store;
 use App\Models\Unit;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class ShowSale extends Component
+class SaleDetail extends Component
 {
     public Sale $sale;
 
@@ -88,11 +90,37 @@ class ShowSale extends Component
     public function submit()
     {
         $this->validate();
+        try {
+            if ($this->sale->is_approved == 0) {
+                DB::beginTransaction();
+
+
+                $this->product->fill([
+                    'sale_id'      => $this->sale->id,
+                    'added_by'      => get_auth_id(),
+                    'company_code'  => get_auth_com(),
+                ])->save();
+
+                $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_code', get_auth_com())->sum('total_price');
+                $this->sale->fill([
+                    'items_cost'            => $totalPrices,
+                    'cost_before_discount'  => $totalPrices + $this->sale->tax,
+                    'cost_after_discount'   => $totalPrices + $this->sale->tax - $this->sale->discount,
+                ])->save();
+
+                DB::commit();
+                toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
+                $this->reset('product');
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('admin.sales.show', $this->sale)->with(['error' => $th->getMessage()]);
+        }
     }
 
     public function render()
     {
-        return view('livewire.admin.stock-movement.sale.show-sale');
+        return view('livewire.admin.stock-movement.sale.sale-detail');
     }
 
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(1);
             $table->string('status')->comment('either retails or wholesale');
             $table->integer('company_code');
 

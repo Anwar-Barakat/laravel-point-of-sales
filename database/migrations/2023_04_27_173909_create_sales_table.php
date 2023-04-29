@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->comment('1 => purchase, 2 => return on the same pill, 3 => return on general');
-
+            $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
             $table->boolean('invoice_type');
             $table->date('invoice_date');
             $table->boolean('is_approved')->default(0);
