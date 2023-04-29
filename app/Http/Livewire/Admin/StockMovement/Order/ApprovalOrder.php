@@ -215,12 +215,12 @@ class ApprovalOrder extends Component
                         'company_code'                  => get_auth_com(),
                     ]);
 
-
                     //________________________________________________
                     // 7- Update Item qty & prices in items table
                     //________________________________________________
                     $prod->item->wholesale_cost_price   = $unit_price;
-                    $prod->item->retail_cost_price      = $unit_price / $ratio;
+
+                    $prod->item->retail_cost_price      = $prod->item->has_retail_unit ? $unit_price / $ratio : null;
                     update_item_qty($prod->item);
                     $prod->item->save();
                 });

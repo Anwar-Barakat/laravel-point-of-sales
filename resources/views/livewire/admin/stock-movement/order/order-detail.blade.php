@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header flex justify-content-between items-center">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
@@ -72,7 +72,7 @@
         </div>
 
         @if ($order->is_approved == 0)
-            <div class="col-md-12 col-lg-8" id="add-items">
+            <div class="col-md-12 col-lg-6" id="add-items">
                 <div class="card mb-3">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('movement.add_items') }}</h3>
@@ -90,7 +90,7 @@
                             @endif
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                             <div class="row">
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="" class="form-label">
                                             {{ __('stock.item_name') }}
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                                 @if ($wholesale_unit)
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-12 col-md-6">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('stock.unit')" />
                                             <select class="form-select" wire:model.debounce.500s='product.unit_id' id="select-tags-advanced">
@@ -118,33 +118,33 @@
                                         </div>
                                     </div>
                                 @endif
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.unit_price')" />
                                         <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.unit_price' wire:keyup='calcPrice' />
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.qty')" />
                                         <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.qty' wire:keyup='calcPrice' />
                                     </div>
                                 </div>
                                 @if ($consuming)
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-12 col-md-6">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('movement.production_date')" />
                                             <x-text-input type="date" class="form-control" wire:model.debounce.500s='product.production_date' />
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-12 col-md-6">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('movement.expiration_date')" />
                                             <x-text-input type="date" class="form-control" wire:model.debounce.500s='product.expiration_date' />
                                         </div>
                                     </div>
                                 @endif
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.total_price')" />
                                         <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.total_price' readonly disabled />
@@ -178,7 +178,7 @@
         @endif
     </div>
 
-    <div class="row mt-2">
+    <div class="row mt-3">
         <div class="col-12">
             <div class="card">
                 <div class="card-header w-100 d-flex align-items-center justify-content-between">

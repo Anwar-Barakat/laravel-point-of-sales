@@ -81,4 +81,6 @@ return [
     'sectoral'                  => 'Sectoral',
     'half_wholesale'            => 'Half-wholesale',
     'wholesale'                 => 'Wholesale',
+    'number'                    => 'Number',
+    'specific_store_qty'        => 'QTY in the specific store',
 ];

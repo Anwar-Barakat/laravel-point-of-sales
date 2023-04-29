@@ -94,10 +94,10 @@ class OrderDetail extends Component
 
     public function delete($id)
     {
-        $product            = OrderProduct::findOrFail($id);
+        $product            = OrderProduct::where(['id' => $id, 'order_id' => $this->order->id])->first();
         $product->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
         $this->getOrderProducts();
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
     }
 
     public function render()

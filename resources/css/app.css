@@ -12,6 +12,10 @@ ul {
     visibility: unset !important;
 }
 
+.row-cards {
+    margin-bottom: 1rem;
+}
+
 button,
 [type="button"],
 [type="reset"],

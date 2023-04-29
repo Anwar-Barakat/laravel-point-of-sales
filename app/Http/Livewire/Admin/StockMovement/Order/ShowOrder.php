@@ -14,7 +14,7 @@ class ShowOrder extends Component
         $vendor_id,
         $store_id,
         $order_by = 'created_at',
-        $sort_by = 'asc',
+        $sort_by = 'desc',
         $per_page = CUSTOM_PAGINATION;
 
 

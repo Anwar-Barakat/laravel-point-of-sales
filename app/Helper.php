@@ -76,9 +76,8 @@ if (!function_exists('update_item_qty')) {
     function update_item_qty(Item $item)
     {
         $batches_qty = item_batch_qty($item);
-        if ($item->has_retail_unit) {
+        if ($item->has_retail_unit == 1) {
             //________ qty in batches are put as a parent unit ________
-
             $item->all_retail_qty     = $batches_qty * $item->retail_count_for_wholesale; // 81 * 10 = 810
             $item->wholesale_qty      = floor($batches_qty); // 81 => 80
             $item->retail_qty         = fmod($item->all_retail_qty, $item->retail_count_for_wholesale); // 81 % 20 = 1

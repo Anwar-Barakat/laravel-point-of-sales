@@ -59,6 +59,8 @@ Route::group(
             Route::post('reset-password',               [NewPasswordController::class, 'store'])->name('password.reset');
 
             Route::group(['middleware' => 'admin'], function () {
+                Route::fallback(fn () =>  redirect()->route('admin.dashboard'));
+
                 Route::get('/logout',                           LogoutController::class)->name('logout');
                 Route::get('/dashboard',                        DashboardController::class)->name('dashboard');
 

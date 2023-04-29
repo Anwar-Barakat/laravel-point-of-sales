@@ -75,4 +75,8 @@ return [
     'sectoral'                  => 'قطاعي',
     'half_wholesale'            => 'نصف جملة',
     'wholesale'                 => 'جملة',
+    'number'                    => 'عدد',
+    'specific_store_qty'        => 'الكميات في المخزن المحدد',
+
+
 ];
