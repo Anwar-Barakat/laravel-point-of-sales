@@ -121,7 +121,8 @@ return [
     'discount_type_is_percent'      => 'discount type must be less than 100 when the discount type is percentage',
     'paid_smaller_than_cost'        => 'Paid must be smaller than or equal to the grand cost',
     'discount_less_grand_total'     => 'The discount cannot be greater than the total amount',
-
+    'select_item_batch'             => 'Please, select the item batch',
+    'qty_not_available_now'         => 'Quantity unavailable in the store now',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -259,6 +260,14 @@ return [
         'shift_type_id'             => 'Shift type',
         'report'                    => 'Report',
 
+
+        //_______________________
+        // Sales
+        //_______________________
+        'item_batch_id'             => 'item batch',
+        'customer_id'               => 'customer',
+        'unit_id'                   => 'unit',
+        'sale_type'                 => 'sale type',
     ],
 
 ];

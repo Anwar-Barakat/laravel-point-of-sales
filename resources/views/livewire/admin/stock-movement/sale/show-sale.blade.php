@@ -113,7 +113,7 @@
                                     <div class="col-12 col-lg-6">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('movement.specific_store_qty')" />
-                                            <select class="form-select" wire:model='sale.item_batch_id'>
+                                            <select class="form-select" wire:model.defer='sale.item_batch_id'>
                                                 <option value="">{{ __('btns.select') }}</option>
                                                 @foreach ($batches as $batch)
                                                     @if ($unit->status == 'retail')
@@ -144,7 +144,7 @@
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('movement.qty')" />
                                         <x-text-input type="number" class="form-control" wire:model='sale.qty' wire:keyup='calcPrice' />
-                                        <x-input-error :messages="$errors->get('sale.invoice_type')" class="mt-2" />
+                                        <x-input-error :messages="$errors->get('sale.qty')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-3">

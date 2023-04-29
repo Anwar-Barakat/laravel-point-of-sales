@@ -66,7 +66,28 @@ class ShowSale extends Component
         $this->unit     = Unit::select('id', 'name', 'status')->findOrFail($this->sale->unit_id);
         $this->batches  = $this->getBatches();
 
-        $this->sale->unit_price = $this->getUnitPrice();
+        if (!is_null($this->sale->item_id) && !is_null($this->sale->sale_type))
+            $this->sale->unit_price = $this->getUnitPrice();
+    }
+
+    public function calcPrice()
+    {
+        $batch = ItemBatch::find($this->sale->item_batch_id);
+        if (!$batch) {
+            toastr()->error(__('validation.select_item_batch'));
+            $this->sale->qty = 1;
+        }
+
+        $batchQty = $this->unit->status == 'wholesale' ? $batch->qty : $batch->qty * $this->item->retail_count_for_wholesale;
+        if ($this->sale->qty > $batchQty) {
+            toastr()->error(__('validation.qty_not_available_now'));
+            $this->sale->qty = 1;
+        }
+    }
+
+    public function submit()
+    {
+        $this->validate();
     }
 
     public function render()
@@ -87,15 +108,15 @@ class ShowSale extends Component
             'sale.unit_id'          => ['required', 'integer'],
             'sale.item_id'          => ['required', 'integer'],
             'sale.item_batch_id'    => ['required', 'integer'],
-            'sale.unit_price'       => ['required', 'numeric'],
-            'sale.qty'              => ['required', 'integer'],
-            'sale.total_price'      => ['required', 'numeric'],
+            'sale.unit_price'       => ['required', 'numeric', 'min:1'],
+            'sale.qty'              => ['required', 'integer', 'min:1'],
+            'sale.total_price'      => ['required', 'numeric', 'min:1'],
         ];
     }
 
     public function getBatches()
     {
-        return ItemBatch::select('unit_price', 'qty', 'production_date', 'expiration_date')
+        return ItemBatch::select('id', 'unit_price', 'qty', 'production_date', 'expiration_date')
             ->where(['company_code'         => get_auth_com()])
             ->when($this->sale->item_id,    fn ($query) => $query->where(['item_id'  => $this->sale->item_id]))
             ->when($this->sale->store_id,   fn ($query) => $query->where(['store_id' => $this->sale->store_id]))
@@ -127,10 +148,5 @@ class ShowSale extends Component
         }
 
         return $prices[$index];
-    }
-
-    public function calcPrice()
-    {
-        $this->sale->total_price = (int)$this->sale->qty * (float)$this->sale->unit_price;
     }
 }
