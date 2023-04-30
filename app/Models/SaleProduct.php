@@ -13,10 +13,12 @@ class SaleProduct extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
+        'sale_type',
         'sale_id',
         'unit_id',
         'unit_price',
         'item_id',
+        'store_id',
         'production_date',
         'expiration_date',
         'qty',
@@ -25,11 +27,17 @@ class SaleProduct extends Model implements HasMedia
         'company_code',
     ];
 
+    const SALETYPE      = [1 => 'sectoral', 2 => 'half_wholesale', 3 => 'wholesale'];
+
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class, 'item_id');
     }
 
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
 
     public function unit(): BelongsTo
     {

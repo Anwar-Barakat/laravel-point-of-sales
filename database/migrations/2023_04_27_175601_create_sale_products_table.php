@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sale_products', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('sale_type')->comment('1 => sectoral, 2 => half_wholesale, 3 => wholesale');
             $table->foreignId('sale_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();

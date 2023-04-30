@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-12 col-lg-4">
             <div class="card">
                 <div class="card-header flex justify-content-between items-center">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
@@ -71,7 +71,7 @@
         </div>
 
         @if ($order->is_approved == 0)
-            <div class="col-md-6" id="add-items">
+            <div class="col-12 col-lg-8" id="add-items">
                 <div class="card mb-3">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('movement.add_items') }}</h3>
@@ -167,7 +167,7 @@
                 </div>
             </div>
         @else
-            <div class="col-md-6" id="add-items">
+            <div class="col-12 col-lg-8" id="add-items">
                 <div class="card mb-3">
                     <div class="card-header text-info">
                         <h3 class="card-title">{{ __('movement.order_is_closed') }}</h3>

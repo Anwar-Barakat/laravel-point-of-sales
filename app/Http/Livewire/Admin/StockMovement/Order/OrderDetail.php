@@ -28,9 +28,10 @@ class OrderDetail extends Component
 
     public function mount(Order $order, OrderProduct $product)
     {
-        $this->order           = $order;
-        $this->product         = $product;
-        $this->product->qty    = 1;
+        $this->order                = $order;
+        $this->product              = $product;
+        $this->order->invoice_date  = date('Y-m-d');
+        $this->product->qty         = 1;
         $this->order->is_approved   == 0 ?  $this->items = Item::select('id', 'name')->active()->get() : [];
     }
 

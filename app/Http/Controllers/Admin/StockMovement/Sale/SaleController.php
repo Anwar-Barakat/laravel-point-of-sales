@@ -37,6 +37,7 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
+        return view('admin.stock-movements.sales.show', ['sale' => $sale]);
     }
 
     /**
