@@ -101,9 +101,10 @@ class ApprovalOrder extends Component
                     toastr()->error(__('account.dont_have_open_shift'));
                     return redirect()->route('admin.shifts.create');
                 }
+
                 if (get_treasury_balance() < $this->order->paid) {
                     toastr()->error(__('account.not_enough_balance'));
-                    return false;
+                    $this->order->paid = 0;
                 }
 
                 DB::beginTransaction();
@@ -254,8 +255,9 @@ class ApprovalOrder extends Component
             'order.items_cost'              => ['required'],
             'order.tax_type'                => ['nullable', 'boolean'],
             'order.tax_value'               => ['nullable', 'numeric', function ($value) {
-                if ($this->order->tax_type  == '0' && $value >= 100) {
+                if ($this->order->tax_type  == '0' && $this->order->tax_value  >= 100) {
                     toastr()->error(__('validation.tax_type_is_percent'));
+                    $this->order->tax_value = 0;
                 }
             }],
             'order.cost_before_discount'    => ['required'],

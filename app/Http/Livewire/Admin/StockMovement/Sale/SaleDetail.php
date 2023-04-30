@@ -10,6 +10,7 @@ use App\Models\SaleProduct;
 use App\Models\Store;
 use App\Models\Unit;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -21,20 +22,15 @@ class SaleDetail extends Component
     public SaleProduct $product;
 
     public $customers   = [],
-        $stores         = [];
-
-    public $items       = [];
-    public $wholesale_unit = null,
-        $retail_unit = null;
-
+        $stores         = [],
+        $items          = [];
     public $batches, $unit, $item;
 
     public function mount(Sale $sale, SaleProduct $product)
     {
         $this->sale                 = $sale;
         $this->product              = $product;
-        $this->product->invoice_date   = date('Y-m-d');
-        $this->product->qty            = 1;
+        $this->product->qty         = 1;
         $this->customers            = Customer::active()->where('company_code', get_auth_com())->get();
         $this->stores               = Store::active()->where('company_code', get_auth_com())->get();
         $this->items                = Item::active()->get();
@@ -47,36 +43,32 @@ class SaleDetail extends Component
 
     public function updatedProductStoreId()
     {
-        if (!is_null($this->product->item_id) && !is_null($this->product->unit_id))
+        if ($this->product->item_id && $this->product->unit_id)
             $this->batches  = $this->getBatches();
     }
 
     public function updatedProductSaleType()
     {
-        if (!is_null($this->product->item_id) && !is_null($this->product->unit_id))
+        if ($this->product->item_id && $this->product->unit_id)
             $this->product->unit_price = $this->getUnitPrice();
 
-        if (!is_null($this->product->qty) && !is_null($this->product->unit_price))
+        if ($this->product->qty && $this->product->unit_price)
             $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function updatedProductItemId()
     {
         $this->item             = $this->getItem();
-        $this->wholesale_unit   = $this->item->parentUnit;
-        $this->retail_unit      = $this->item->childUnit ?? null;
-
-        if (!is_null($this->product->item_id) && !is_null($this->product->unit_id))
+        if ($this->product->item_id && $this->product->unit_id)
             $this->batches  = $this->getBatches();
     }
 
     public function updatedProductUnitId()
     {
-        $this->item     = $this->getItem();
-        $this->unit     = Unit::select('id', 'name', 'status')->findOrFail($this->product->unit_id);
+        $this->getItemAndUnit();
         $this->batches  = $this->getBatches();
 
-        if (!is_null($this->product->item_id) && !is_null($this->product->sale_type))
+        if ($this->product->item_id && $this->product->sale_type)
             $this->product->unit_price = $this->getUnitPrice();
     }
 
@@ -97,13 +89,12 @@ class SaleDetail extends Component
                 $this->product->qty = 1;
             }
         }
-        if (!is_null($this->product->qty) && !is_null($this->product->unit_price))
+        if ($this->product->qty && $this->product->unit_price)
             $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function submit()
     {
-
         $this->validate();
         try {
             if ($this->product->is_approved == 0) {
@@ -118,11 +109,11 @@ class SaleDetail extends Component
                         'company_code'  => get_auth_com(),
                     ])->save();
 
-                    $totalPrices = SaleProduct::where('sale_id', $this->product->id)->where('company_code', get_auth_com())->sum('total_price');
-                    $this->product->fill([
+                    $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_code', get_auth_com())->sum('total_price');
+                    $this->sale->fill([
                         'items_cost'            => $totalPrices,
-                        'cost_before_discount'  => $totalPrices + $this->product->tax,
-                        'cost_after_discount'   => $totalPrices + $this->product->tax - $this->product->discount,
+                        'cost_before_discount'  => $totalPrices,
+                        'cost_after_discount'   => $totalPrices,
                     ])->save();
 
                     DB::commit();
@@ -134,6 +125,14 @@ class SaleDetail extends Component
             DB::rollBack();
             return redirect()->route('admin.sales.show', $this->sale)->with(['error' => $th->getMessage()]);
         }
+    }
+
+    public function edit($id)
+    {
+        $product                = SaleProduct::with('item')->findOrFail($id);
+        $this->product          = $product;
+        $this->getItemAndUnit();
+        $this->batches          = $this->getBatches();
     }
 
     public function render()
@@ -148,7 +147,15 @@ class SaleDetail extends Component
             'product.sale_type'        => ['required', 'in:1,2,3'],
             'product.store_id'         => ['required', 'integer'],
             'product.unit_id'          => ['required', 'integer'],
-            'product.item_id'          => ['required', 'integer'],
+            'product.item_id'          => [
+                'required',
+                'integer',
+                Rule::unique('sale_products', 'item_id')->where(function ($query) {
+                    return $query->where('company_code', get_auth_com())
+                        ->where('unit_id', $this->product->unit_id)
+                        ->where('sale_id', $this->sale->id);
+                })->ignore($this->product->id)
+            ],
             'product.item_batch_id'    => ['required', 'integer'],
             'product.unit_price'       => ['required', 'numeric', 'min:1'],
             'product.qty'              => ['required', 'integer', 'min:1'],
@@ -160,16 +167,11 @@ class SaleDetail extends Component
     {
         return ItemBatch::select('id', 'unit_price', 'qty', 'production_date', 'expiration_date')
             ->where(['company_code'         => get_auth_com()])
-            ->when($this->product->item_id,    fn ($query) => $query->where(['item_id'  => $this->product->item_id]))
-            ->when($this->product->store_id,   fn ($query) => $query->where(['store_id' => $this->product->store_id]))
-            ->when($this->product->unit_id,    fn ($query) => $query->where(['unit_id' => $this->item->parentUnit->id]))
-            ->when($this->item->type == 2,  fn ($query) => $query->orderBy('production_date', 'asc'))
+            ->when($this->product->item_id,     fn ($q) => $q->where(['item_id'     => $this->product->item_id]))
+            ->when($this->product->store_id,    fn ($q) => $q->where(['store_id'    => $this->product->store_id]))
+            ->when($this->product->unit_id,     fn ($q) => $q->where(['unit_id'     => $this->item->parentUnit->id]))
+            ->when($this->item->type == 2,      fn ($q) => $q->orderBy('production_date', 'asc'))
             ->latest()->get();
-    }
-
-    public function getItem()
-    {
-        return Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
     }
 
     public function getUnitPrice()
@@ -194,7 +196,13 @@ class SaleDetail extends Component
 
     public function getSaleProducts()
     {
-        return SaleProduct::where('sale_id', $this->product->id)
-            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION);
+        return SaleProduct::where('sale_id', $this->sale->id)
+            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION - 5);
+    }
+
+    public function getItemAndUnit()
+    {
+        $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
+        $this->unit             = Unit::select('id', 'name', 'status')->findOrFail($this->product->unit_id);
     }
 }

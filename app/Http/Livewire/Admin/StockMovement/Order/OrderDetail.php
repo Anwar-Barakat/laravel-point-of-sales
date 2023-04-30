@@ -17,9 +17,7 @@ class OrderDetail extends Component
     public Order $order;
     public OrderProduct $product;
 
-    public $items = [];
-    public $wholesale_unit = null,
-        $retail_unit = null;
+    public $items = [], $item;
 
     public $consuming = false;
 
@@ -42,10 +40,8 @@ class OrderDetail extends Component
 
     public function updatedProductItemId()
     {
-        $item                   = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
-        $this->consuming        = $item->type == 2 ? true : false;
-        $this->wholesale_unit   = $item->parentUnit;
-        $this->retail_unit      = $item->childUnit ?? null;
+        $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
+        $this->consuming        = $this->item->type == 2 ? true : false;
     }
 
     public function updated($fields)
@@ -70,8 +66,8 @@ class OrderDetail extends Component
                 $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', get_auth_com())->sum('total_price');
                 $this->order->fill([
                     'items_cost'            => $totalPrices,
-                    'cost_before_discount'  => $totalPrices + $this->order->tax,
-                    'cost_after_discount'   => $totalPrices + $this->order->tax - $this->order->discount,
+                    'cost_before_discount'  => $totalPrices,
+                    'cost_after_discount'   => $totalPrices,
                 ])->save();
 
                 DB::commit();
@@ -89,8 +85,7 @@ class OrderDetail extends Component
         $product                = OrderProduct::with('item')->findOrFail($id);
         $this->consuming        = $product->item->type == 2 ?  true : false;
         $this->product          = $product;
-        $this->wholesale_unit   = $product->item->parentUnit;
-        $this->retail_unit      = $product->item->childUnit ?? '';
+        $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
     }
 
     public function delete($id)
@@ -123,6 +118,6 @@ class OrderDetail extends Component
     public function getOrderProducts()
     {
         return OrderProduct::where('order_id', $this->order->id)
-            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION);
+            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION - 5);
     }
 }

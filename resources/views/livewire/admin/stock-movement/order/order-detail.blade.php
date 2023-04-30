@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-4 mb-3">
             <div class="card">
                 <div class="card-header flex justify-content-between items-center">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
@@ -71,7 +71,7 @@
         </div>
 
         @if ($order->is_approved == 0)
-            <div class="col-12 col-lg-8" id="add-items">
+            <div class="col-12 col-lg-8 mb-3" id="add-items">
                 <div class="card mb-3">
                     <div class="card-header">
                         <h3 class="card-title">{{ __('movement.add_items') }}</h3>
@@ -97,23 +97,24 @@
                                         </label>
                                         <select class="form-select" wire:model='product.item_id'>
                                             <option value="">{{ __('btns.select') }}</option>
-                                            @forelse ($items as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @forelse ($items as $product)
+                                                <option value="{{ $product->id }}">{{ $product->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                @if ($wholesale_unit)
-                                    <div class="col-12 col-md-6">
+                                @if ($item)
+                                    <div class="col-12 col-lg-6">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('stock.unit')" />
-                                            <select class="form-select" wire:model.debounce.500s='product.unit_id' id="select-tags-advanced">
+                                            <select class="form-select" wire:model='product.unit_id'>
                                                 <option value="">{{ __('btns.select') }}</option>
-                                                <option value="{{ $wholesale_unit->id }}">{{ $wholesale_unit->name }} ({{ __('stock.wholesale_unit') }})</option>
-                                                @if (!is_null($retail_unit))
-                                                    <option value="{{ $retail_unit->id }}">{{ $retail_unit->name }} ({{ __('stock.retail_unit') }})</option>
+                                                <option value="{{ $item->parentUnit->id }}">{{ $item->parentUnit->name }} ({{ __('stock.wholesale_unit') }})</option>
+                                                @if (!is_null($item->childUnit))
+                                                    <option value="{{ $item->childUnit->id }}">{{ $item->childUnit->name }} ({{ __('stock.retail_unit') }})</option>
                                                 @endif
                                             </select>
+                                            <x-input-error :messages="$errors->get('product.unit_id')" class="mt-2" />
                                         </div>
                                     </div>
                                 @endif
@@ -167,7 +168,7 @@
                 </div>
             </div>
         @else
-            <div class="col-12 col-lg-8" id="add-items">
+            <div class="col-12 col-lg-8 mb-3" id="add-items">
                 <div class="card mb-3">
                     <div class="card-header text-info">
                         <h3 class="card-title">{{ __('movement.order_is_closed') }}</h3>
@@ -259,6 +260,9 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div class="p-3 mt-2">
+                    {{ $order_products->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>

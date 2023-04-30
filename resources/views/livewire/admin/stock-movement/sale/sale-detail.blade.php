@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-4 mb-3">
             <div class="card">
                 <div class="card-header flex justify-content-between items-center">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
@@ -70,21 +70,11 @@
             </div>
         </div>
         @if ($sale->is_approved == 0)
-            <div class="col-12 col-lg-8 d-flex flex-column">
+            <div class="col-12 col-lg-8 mb-3 d-flex flex-column">
                 <div class="card">
                     <form wire:submit.prevent='submit'>
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <ul class="p-0 m-0 list-unstyled">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            @endif
-                            <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
+                            <h3 class="mb-4 text-blue">{{ __('movement.add_items') }}</h3>
                             <div class="row row-cards">
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-3">
@@ -131,15 +121,15 @@
                                         <x-input-error :messages="$errors->get('product.item_id')" class="mt-2" />
                                     </div>
                                 </div>
-                                @if ($wholesale_unit)
+                                @if ($item)
                                     <div class="col-12 col-lg-6">
                                         <div class="mb-3">
                                             <x-input-label class="form-label" :value="__('stock.unit')" />
                                             <select class="form-select" wire:model='product.unit_id'>
                                                 <option value="">{{ __('btns.select') }}</option>
-                                                <option value="{{ $wholesale_unit->id }}">{{ $wholesale_unit->name }} ({{ __('stock.wholesale_unit') }})</option>
-                                                @if (!is_null($retail_unit))
-                                                    <option value="{{ $retail_unit->id }}">{{ $retail_unit->name }} ({{ __('stock.retail_unit') }})</option>
+                                                <option value="{{ $item->parentUnit->id }}">{{ $item->parentUnit->name }} ({{ __('stock.wholesale_unit') }})</option>
+                                                @if (!is_null($item->childUnit))
+                                                    <option value="{{ $item->childUnit->id }}">{{ $item->childUnit->name }} ({{ __('stock.retail_unit') }})</option>
                                                 @endif
                                             </select>
                                             <x-input-error :messages="$errors->get('product.unit_id')" class="mt-2" />
@@ -147,7 +137,6 @@
                                     </div>
                                 @endif
                             </div>
-
                             <div class="row row-cards">
                                 @if ($batches)
                                     <div class="col-12 col-lg-6">
@@ -219,7 +208,7 @@
                 </div>
             </div>
         @else
-            <div class="col-12 col-lg-8" id="add-items">
+            <div class="col-12 col-lg-8 mb-3" id="add-items">
                 <div class="card mb-3">
                     <div class="card-header text-info">
                         <h3 class="card-title">{{ __('movement.order_is_closed') }}</h3>
@@ -252,7 +241,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($sale_products as $saleProduct)
+                        @forelse ($sale_products as $saleProduct)
                             <tr>
                                 <td>{{ $saleProduct->id }}</td>
                                 <td>
@@ -274,10 +263,10 @@
                                 <td>{{ $saleProduct->production_date ?? '-' }}</td>
                                 <td>{{ $saleProduct->expiration_date ?? '-' }}</td>
                                 <td class="bg-blue-500">{{ $saleProduct->total_price }}</td>
-                                @if (!$order->is_approved == 1)
+                                @if (!$saleProduct->is_approved == 1)
                                     <td>
                                         <div class="btn-list flex-nowrap justify-content-center">
-                                            <a wire:click.prefetch="edit({{ $orderProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                            <a wire:click.prefetch="edit({{ $saleProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -285,7 +274,7 @@
                                                     <path d="M16 5l3 3" />
                                                 </svg>
                                             </a>
-                                            <a wire:click.prefetch="delete({{ $orderProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                            <a wire:click.prefetch="delete({{ $saleProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M4 7l16 0" />
@@ -306,9 +295,12 @@
                                     <x-blank-section :content="__('stock.item')" :url="'#add-items'" />
                                 </td>
                             </tr>
-                        @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
+                <div class="p-3 mt-2">
+                    {{ $sale_products->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>
