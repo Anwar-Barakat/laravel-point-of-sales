@@ -67,11 +67,11 @@ class AddEditAccount extends Component
                     break;
             }
 
-            if (!is_null($this->account->customer()))
-                $this->account->customer()->update(['name'          => $this->account->name]);
+            if (!is_null($this->account->customer))
+                $this->account->customer->update(['name' => $this->account->name,]);
 
-            if (!is_null($this->account->vendor()))
-                $this->account->vendor()->update(['name'          => $this->account->name]);
+            if (!is_null($this->account->vendor))
+                $this->account->vendor->update(['name' => $this->account->name]);
 
             $this->account->save();
             DB::commit();

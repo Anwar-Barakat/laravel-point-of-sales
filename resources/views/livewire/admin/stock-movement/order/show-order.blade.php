@@ -9,8 +9,8 @@
 
     <div class="card-body">
         <div id="table-default" class="table-responsive">
-            <div class="row">
-                <div class="col-sm-12 col-md-4 col-lg-2">
+            <div class="row row-cards">
+                <div class="col-sm-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.order_by')" />
                         <select class="form-select" wire:model='order_by'>
@@ -20,7 +20,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="col-sm-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.vendor')" />
                         <select class="form-select" wire:model='vendor_id'>
@@ -65,6 +65,20 @@
                     </div>
                 </div>
             </div>
+            <div class="row row-cards">
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('movement.invoices_from_date')" />
+                        <input type="date" class="form-control" wire:model='invoices_from_date'>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('movement.invoices_to_date')" />
+                        <input type="date" class="form-control" wire:model='invoices_to_date'>
+                    </div>
+                </div>
+            </div>
             <br>
             <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                 <thead>
@@ -99,15 +113,9 @@
                                 </a>
                             </td>
 
-                            <td>
-                                {{ $order->invoice_type ? __('movement.delayed') : __('movement.cash') }}
-                            </td>
-                            <td>
-                                {{ $order->invoice_date }}
-                            </td>
-                            <td>
-                                <span class="text-green-600">{{ $order->cost_after_discount }}</span>
-                            </td>
+                            <td>{{ $order->invoice_type ? __('movement.delayed') : __('movement.cash') }} </td>
+                            <td>{{ $order->invoice_date }}</td>
+                            <td><span class="text-gray-600">{{ $order->cost_after_discount }}</span></td>
                             <td>
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
@@ -125,12 +133,21 @@
                                         @endif
 
                                         <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.orders.show', ['order' => $order]) }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M12 5l0 14" />
-                                                <path d="M5 12l14 0" />
-                                            </svg>
-                                            <span>{{ __('movement.add_items') }}</span>
+                                            @if ($order->is_approved == 0)
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 5l0 14" />
+                                                    <path d="M5 12l14 0" />
+                                                </svg>
+                                                <span>{{ __('movement.add_items') }}</span>
+                                            @else
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
+                                                </svg>
+                                                <span>{{ __('btns.details') }}</span>
+                                            @endif
                                         </a>
 
                                         <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $order->id }}">

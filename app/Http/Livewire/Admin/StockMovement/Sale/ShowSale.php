@@ -17,6 +17,14 @@ class ShowSale extends Component
         $sort_by = 'desc',
         $per_page = CUSTOM_PAGINATION;
 
+    public $invoices_from_date,
+        $invoices_to_date;
+
+    public function mount()
+    {
+        $this->invoices_to_date = date('Y-m-d');
+    }
+
     public function render()
     {
         return view('livewire.admin.stock-movement.sale.show-sale', ['sales' => $this->getSales()]);
@@ -25,8 +33,9 @@ class ShowSale extends Component
     public function getSales()
     {
         return  Sale::with(['account', 'customer', 'delegate'])
-            ->when($this->customer_id, fn ($q) => $q->where('customer_id', $this->customer_id))
-            ->when($this->delegate_id, fn ($q) => $q->where('delegate_id', $this->delegate_id))
+            ->when($this->customer_id,          fn ($q) => $q->where('customer_id', $this->customer_id))
+            ->when($this->delegate_id,          fn ($q) => $q->where('delegate_id', $this->delegate_id))
+            ->when($this->invoices_from_date,   fn ($q) => $q->whereBetween('invoice_date', [$this->invoices_from_date, $this->invoices_to_date]))
             ->orderBy($this->order_by, $this->sort_by)
             ->paginate($this->per_page);
     }

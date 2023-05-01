@@ -106,7 +106,8 @@
                             <th>{{ __('setting.admin') }}</th>
                             <th>{{ __('treasury.treasury') }}</th>
                             <th>{{ __('account.shift_type') }}</th>
-                            <th>{{ __('account.amount_collected') }}</th>
+                            <th>{{ __('account.amount_exchanged') }}</th>
+                            <th>{{ __('account.account') }}</th>
                             <th>{{ __('dash.report') }}</th>
                             <th>{{ __('msgs.created_at') }}</th>
                             <th></th>
@@ -120,6 +121,7 @@
                                 <td><span class="badge bg-blue"> {{ $transaction->treasury->name }}</span></td>
                                 <td><span class="badge bg-green"> {{ $transaction->shift_type->name }}</span></td>
                                 <td>{{ abs($transaction->money) }}</td>
+                                <td><span class="badge bg-info-lt">{{ $transaction->account->number ?? '-' }}</span></td>
                                 <td>
                                     <button type="button" class="btn" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('account.report') }}" data-bs-content="{{ $transaction->report }}">{{ __('account.click_here') }}</button>
                                 </td>

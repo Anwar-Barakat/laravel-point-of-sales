@@ -81,4 +81,6 @@ return [
     'delegate_name'             => 'اسم المندوب',
     'paid_amount'               => 'المبلغ المدفوع',
     'remain_amount'             => 'المبلغ المُتبقي',
+    'invoices_from_date'        => 'الفواتير من تاريخ',
+    'invoices_to_date'          => 'الفواتير إلى تاريخ ',
 ];

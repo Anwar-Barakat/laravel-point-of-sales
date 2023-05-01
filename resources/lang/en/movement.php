@@ -87,4 +87,6 @@ return [
     'delegate_name'             => 'Delegate name',
     'paid_amount'               => 'Paid amount',
     'remain_amount'             => 'Remain amount',
+    'invoices_from_date'        => 'Invoices from date',
+    'invoices_to_date'          => 'Invoices to date',
 ];

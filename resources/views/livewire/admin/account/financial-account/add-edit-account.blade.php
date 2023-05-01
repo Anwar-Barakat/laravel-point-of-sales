@@ -22,6 +22,17 @@
                         <x-input-error :messages="$errors->get('account.account_type_id')" class="mt-2" />
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('setting.status')" />
+                        <select class="form-select" wire:model.debounce.350='account.is_archived'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="1">{{ __('account.is_archived') }}</option>
+                            <option value="0">{{ __('account.not_archived') }}</option>
+                        </select>
+                        <x-input-error :messages="$errors->get('account.is_archived')" class="mt-2" />
+                    </div>
+                </div>
             </div>
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6 col-lg-4">
@@ -49,17 +60,6 @@
                         </div>
                     </div>
                 @endif
-                <div class="col-sm-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('setting.status')" />
-                        <select class="form-select" wire:model.debounce.350='account.is_archived'>
-                            <option value="">{{ __('btns.select') }}</option>
-                            <option value="1">{{ __('account.is_archived') }}</option>
-                            <option value="0">{{ __('account.not_archived') }}</option>
-                        </select>
-                        <x-input-error :messages="$errors->get('account.is_archived')" class="mt-2" />
-                    </div>
-                </div>
             </div>
             @if (!$edit)
                 <div class="row row-cards">
