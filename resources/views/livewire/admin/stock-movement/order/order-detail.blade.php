@@ -7,7 +7,7 @@
                     @if ($order->is_approved == 0 && $order_products->count() > 0)
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approval-modal">{{ __('btns.approval') }}</button>
                     @endif
-                    @livewire('admin.stock-movement.order.approval-order', ['order' => $order])
+                    @livewire('admin.stock-movement.order.order-approval', ['order' => $order])
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>

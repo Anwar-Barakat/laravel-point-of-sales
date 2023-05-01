@@ -105,7 +105,14 @@ class OrderDetail extends Component
     public function rules(): array
     {
         return [
-            'product.item_id'           => ['required'],
+            'product.item_id'           => [
+                'required',
+                Rule::unique('order_products', 'item_id')->where(function ($query) {
+                    return $query->where('company_code', get_auth_com())
+                        ->where('unit_id', $this->product->unit_id)
+                        ->where('order_id', $this->order->id);
+                })->ignore($this->product->id)
+            ],
             'product.unit_id'           => ['required', 'integer'],
             'product.unit_price'        => ['required', 'between:0,9999'],
             'product.qty'               => ['required', 'integer'],

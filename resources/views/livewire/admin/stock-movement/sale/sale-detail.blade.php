@@ -154,13 +154,13 @@
                                                             $price = floatval($item->retail_count_for_wholesale) != 0 ? floatval($batch->unit_price) / floatval($item->retail_count_for_wholesale) : 0;
                                                         @endphp
                                                         @if ($price > 0)
-                                                            <option value="{{ $batch->id }}">
+                                                            <option value="{{ $batch->id }}" {{ $qty == 0 ? 'readony disabled' : '' }}>
                                                                 {{ __('movement.number') }} {{ $qty }} ({{ __('stock.unit') . ' : ' . $unit->name }})
                                                                 - {{ __('stock.unit_price') . ' : ' . number_format($price, 0) }}
                                                             </option>
                                                         @endif
                                                     @else
-                                                        <option value="{{ $batch->id }}">
+                                                        <option value="{{ $batch->id }}" {{ $batch->qty == 0 ? 'readony disabled' : '' }}>
                                                             {{ __('movement.number') }} {{ number_format($batch->qty, 0) }} ({{ __('stock.unit') }} : {{ $unit->name }})
                                                             {{ $batch->production_date ? __('movement.production_date') . ' : ' . $batch->production_date : '' }}
                                                             - {{ __('stock.unit_price') . ' : ' . number_format($batch->unit_price, 0) }}

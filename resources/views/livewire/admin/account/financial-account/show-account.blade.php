@@ -69,6 +69,7 @@
                         <th> {{ __('account.account_number') }}</th>
                         <th> {{ __('account.is_parent_account') }}</th>
                         <th> {{ __('account.parent_account') }}</th>
+                        <th> {{ __('account.current_balamce') }}</th>
                         <th>{{ __('partials.status') }}</th>
                         <th>{{ __('msgs.created_at') }}</th>
                         <th></th>
@@ -79,17 +80,18 @@
                         <tr>
                             <td>{{ $account->name }}</td>
                             <td>
-                                <span class="badge bg-info-lt">
+                                <span class="badge bg-green-lt">
                                     {{ $account->accountType->name }}
                                 </span>
                             </td>
-                            <td>{{ $account->number }}</td>
+                            <td> <span class="badge bg-info-lt">{{ $account->number }}</span></td>
                             <td>{{ $account->is_parent ? __('msgs.yes') : __('msgs.no') }}</td>
-                            <th>
+                            <td>
                                 <span class="badge bg-blue">
                                     {{ $account->parentAccount->name ?? __('msgs.master') }}
                                 </span>
-                            </th>
+                            </td>
+                            <td App::getLocale()=='ar' ? style="direction: ltr" : ''> {{ $account->current_balance }}</td>
                             <td>
                                 <div>
                                     <button wire:click='updateStatus({{ $account->id }})' class="btn position-relative">

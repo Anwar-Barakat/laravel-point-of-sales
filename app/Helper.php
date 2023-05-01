@@ -57,13 +57,17 @@ if (!function_exists('update_account_balance')) {
         if ($account->accountType->id == 1) {
             // vendor
             $balance = Order::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');
-            $balance = $account->vendor->initial_balance + $balance + $trans_balance;
+            $balance = $account->vendor->initial_balance
+                + $balance
+                + $trans_balance;
             $account->update(['current_balance' => $balance]);
             $account->vendor->update(['current_balance' => $balance]);
         } elseif ($account->accountType->id == 2) {
             // customer
             $balance = Sale::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');
-            $balance = $account->customer->initial_balance + $balance + $trans_balance;
+            $balance = $account->customer->initial_balance
+                + $balance
+                + $trans_balance;
             $account->update(['current_balance' => $balance]);
             $account->customer->update(['current_balance' => $balance]);
         }

@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr class="mt-4 mb-3 w-50">
+                    <hr class="mt-4 mb-3">
                     <div class="modal-footer">
                         <a href="#" class="btn link-secondary" data-bs-dismiss="modal">
                             {{ __('btns.cancel') }}

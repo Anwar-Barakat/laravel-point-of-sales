@@ -27,6 +27,11 @@ class TreasuryTransaction extends Model
         'company_code',
     ];
 
+    public function account(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'account_id');
+    }
+
     public function shift_type(): BelongsTo
     {
         return $this->belongsTo(ShiftType::class, 'shift_type_id');
@@ -45,10 +50,5 @@ class TreasuryTransaction extends Model
     public function treasury(): BelongsTo
     {
         return $this->belongsTo(Treasury::class, 'treasury_id');
-    }
-
-    public function account(): BelongsTo
-    {
-        return $this->belongsTo(Account::class, 'account_id');
     }
 }

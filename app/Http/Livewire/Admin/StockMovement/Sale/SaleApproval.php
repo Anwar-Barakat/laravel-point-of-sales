@@ -85,9 +85,8 @@ class SaleApproval extends Component
                 $this->remain_paid_price();
                 $this->sale->remains = $this->sale->cost_after_discount - $this->sale->paid;
 
-                if ($this->sale->invoice_type == 0) {
+                if ($this->sale->invoice_type == 0)
                     $this->sale->paid = $this->sale->cost_after_discount;
-                }
 
                 if (!has_open_shift()) {
                     toastr()->error(__('account.dont_have_open_shift'));
@@ -100,7 +99,7 @@ class SaleApproval extends Component
                 // 1- Monetary Transaction
                 //________________________________________________
                 TreasuryTransaction::create([
-                    'shift_type_id'     => ShiftType::findOrFail(8)->id, // Disbursement for an invoice for purchases from a supplier
+                    'shift_type_id'     => ShiftType::findOrFail(5)->id, // Collection of sales revenue
                     'shift_id'          => has_open_shift()->id,
                     'admin_id'          => get_auth_id(),
                     'treasury_id'       => has_open_shift()->treasury->id,
@@ -109,10 +108,10 @@ class SaleApproval extends Component
                     'is_approved'       => 1,
                     'is_account'        => 1,
                     'transaction_date'  => date('Y-m-d'),
-                    'payment'           => has_open_shift()->last_payment_exchange + 1,
-                    'money'             => floatval(-$this->sale->paid),
-                    'money_for_account' => $this->sale->paid,
-                    'report'            => 'Collecting a sales invoice from the customer of the owner of the number #' . $this->sale->customer->id,
+                    'payment'           => has_open_shift()->last_payment_collect + 1,
+                    'money'             => $this->sale->paid,
+                    'money_for_account' => floatval(-$this->sale->paid), // العميل
+                    'report'            => 'Collecting a sales invoice from the customer name(' . $this->sale->customer->name . ') of the owner of the number #' . $this->sale->customer->id,
                     'company_code'      => get_auth_com(),
                 ]);
 
@@ -122,19 +121,19 @@ class SaleApproval extends Component
                 $this->sale->treasury_id               = has_open_shift()->treasury->id;
                 $this->sale->is_approved               = 1;
                 $this->sale->approved_by               = get_auth_id();
-                $this->sale->money_for_account         = floatval(-$this->sale->cost_after_discount);
+                $this->sale->money_for_account         = $this->sale->cost_after_discount; // العميل مدين بالمبلغ كاملاً
                 $this->sale->treasury_transaction_id   = TreasuryTransaction::latest()->first()->id;
                 $this->sale->company_code              = get_auth_com();
                 $this->sale->save();
 
                 //________________________________________________
-                // 3- Increment last payment receipt for treasury
+                // 3- Increment last payment collect for treasury
                 //________________________________________________
-                has_open_shift()->treasury->increment('last_payment_exchange');
+                has_open_shift()->treasury->increment('last_payment_collect');
 
 
                 //________________________________________________
-                // 4- Update the vendor account balance
+                // 4- Update the customer account balance
                 //________________________________________________
                 update_account_balance($this->sale->customer->account);
 

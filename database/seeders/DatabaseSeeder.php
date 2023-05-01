@@ -31,7 +31,6 @@ class DatabaseSeeder extends Seeder
             ShiftSeeder::class,
             ShiftTypeSeeder::class,
             CollectTransactionSeeder::class,
-            ExchangeTransactionSeeder::class,
 
 
             ItemTransactionCategorySeeder::class,

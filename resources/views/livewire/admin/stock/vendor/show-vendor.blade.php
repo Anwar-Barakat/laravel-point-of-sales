@@ -56,6 +56,7 @@
                         <th> {{ __('stock.vendor_name') }}</th>
                         <th> {{ __('account.account_number') }}</th>
                         <th>{{ __('stock.category') }}</th>
+                        <th>{{ __('account.current_balamce') }}</th>
                         <th>{{ __('partials.status') }}</th>
                         <th>{{ __('msgs.created_at') }}</th>
                         <th></th>
@@ -77,6 +78,7 @@
                                     {{ $vendor->category->name }}
                                 </span>
                             </td>
+                            <td App::getLocale()=='ar' ? style="direction: ltr" : ''>{{ $vendor->current_balance }}</td>
                             <td>
                                 <div>
                                     <button wire:click='updateStatus({{ $vendor->id }})' class="btn position-relative">

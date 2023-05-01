@@ -10,9 +10,8 @@ use App\Models\ShiftType;
 use App\Models\TreasuryTransaction;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use PDO;
 
-class ApprovalOrder extends Component
+class OrderApproval extends Component
 {
     public Order $order;
 
@@ -139,7 +138,7 @@ class ApprovalOrder extends Component
                 $this->order->save();
 
                 //________________________________________________
-                // 3- Increment last payment receipt for treasury
+                // 3- Increment last payment exchange for treasury
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_exchange');
 
@@ -238,7 +237,7 @@ class ApprovalOrder extends Component
     public function render()
     {
         $order = $this->order;
-        return view('livewire.admin.stock-movement.order.approval-order', ['order' => $order]);
+        return view('livewire.admin.stock-movement.order.order-approval', ['order' => $order]);
     }
 
     public function rules()

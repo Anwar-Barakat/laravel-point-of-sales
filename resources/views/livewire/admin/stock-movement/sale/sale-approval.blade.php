@@ -107,20 +107,20 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('movement.paid_to_the_supplier')" />
+                                    <x-input-label class="form-label" :value="__('movement.paid_amount')" />
                                     <input type="number" class="form-control" wire:model='sale.paid' {{ $sale->invoice_type == 0 ? 'readonly disabled' : '' }} />
                                     <x-input-error :messages="$errors->get('sale.paid')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('movement.remain_to_the_supplier')" />
+                                    <x-input-label class="form-label" :value="__('movement.remain_amount')" />
                                     <x-text-input type="number" class="form-control" wire:model='sale.remains' readonly disabled />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr class="mt-4 mb-3 w-50">
+                    <hr class="mt-4 mb-3">
                     <div class="modal-footer">
                         <a href="#" class="btn link-secondary" data-bs-dismiss="modal">
                             {{ __('btns.cancel') }}

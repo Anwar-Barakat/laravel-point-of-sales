@@ -70,6 +70,8 @@ class SaleDetail extends Component
 
         if ($this->product->item_id && $this->product->sale_type)
             $this->product->unit_price = $this->getUnitPrice();
+
+        $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function calcPrice()
@@ -100,7 +102,7 @@ class SaleDetail extends Component
             if ($this->product->is_approved == 0) {
                 $batch = ItemBatch::select('qty')->find($this->product->item_batch_id);
 
-                if ($batch->qty > $this->product->qty) {
+                if ($batch->qty > $this->product->qty && $batch->qty > 0) {
                     DB::beginTransaction();
 
                     $this->product->fill([
@@ -119,6 +121,9 @@ class SaleDetail extends Component
                     DB::commit();
                     toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
                     $this->reset('product');
+                } else {
+                    toastr()->error(__('validation.qty_not_available_now'));
+                    return false;
                 }
             }
         } catch (\Throwable $th) {

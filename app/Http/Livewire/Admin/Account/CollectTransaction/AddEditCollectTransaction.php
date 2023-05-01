@@ -59,6 +59,7 @@ class AddEditCollectTransaction extends Component
 
                 has_open_shift()->treasury->increment('last_payment_collect');
             });
+
             update_account_balance($this->transaction->account);
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
@@ -91,7 +92,7 @@ class AddEditCollectTransaction extends Component
 
     public function render()
     {
-        $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
+        $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name', 'account'])
             ->where(['company_code' => get_auth_com()])
             ->where('money', '>', '0')
             ->paginate(CUSTOM_PAGINATION);
