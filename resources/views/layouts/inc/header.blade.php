@@ -292,23 +292,23 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('movement.stock_movements') }}
+                                {{ __('transaction.warehouse_transactions') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
                             <!-- orders -->
                             <a class="dropdown-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
-                                {{ __('movement.orders') }}
+                                {{ __('transaction.orders') }}
                             </a>
 
                             <!-- sales -->
                             <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">
-                                {{ __('movement.sales_invoices') }}
+                                {{ __('transaction.sales_invoices') }}
                             </a>
 
                             <!-- shifts -->
                             <a class="dropdown-item {{ request()->routeIs('admin.shifts.*') ? 'active' : '' }}" href="{{ route('admin.shifts.index') }}">
-                                {{ __('movement.treasuries_shifts') }}
+                                {{ __('transaction.treasuries_shifts') }}
                             </a>
                         </div>
                     </li>

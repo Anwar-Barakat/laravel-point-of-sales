@@ -36,6 +36,7 @@ if (!function_exists('has_open_shift')) {
 }
 
 if (!function_exists('get_treasury_balance')) {
+
     function get_treasury_balance()
     {
         return TreasuryTransaction::where(['company_code' => get_auth_com(), 'shift_id' => has_open_shift()->id])
@@ -44,6 +45,7 @@ if (!function_exists('get_treasury_balance')) {
 }
 
 if (!function_exists('get_transaction')) {
+
     function get_transaction()
     {
         return TreasuryTransaction::where(['company_code' => get_auth_com(), 'shift_id' => has_open_shift()->id])->first();
@@ -51,6 +53,7 @@ if (!function_exists('get_transaction')) {
 }
 
 if (!function_exists('update_account_balance')) {
+
     function update_account_balance(Account $account)
     {
         $trans_balance = TreasuryTransaction::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');

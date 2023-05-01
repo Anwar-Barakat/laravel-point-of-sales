@@ -16,9 +16,9 @@ class CollectTransactionSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Admin::where('email', 'admin@admin.com')->first();
-        $shift = Shift::where('admin_id', $admin->id)->first();
-        $account = Account::where('name', 'Banks')->first();
+        $admin      = Admin::where('email', 'admin@admin.com')->first();
+        $shift      = Shift::where('admin_id', $admin->id)->first();
+        $account    = Account::where('name', 'Banks')->first();
 
         TreasuryTransaction::create([
             'money'             => 20000, // treasury is credit
@@ -36,7 +36,8 @@ class CollectTransactionSeeder extends Seeder
             'report'            => 'Borrowing from a bank'
         ]);
 
-        update_account_balance($account);
+        $account->update(['current_balance' => floatval(-20000)]);
+
 
         $shift->treasury->increment('last_payment_collect');
     }

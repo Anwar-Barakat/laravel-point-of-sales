@@ -22,9 +22,9 @@ use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
-use App\Http\Controllers\Admin\StockMovement\Order\OrderController;
-use App\Http\Controllers\Admin\StockMovement\Sale\SaleController;
-use App\Http\Controllers\Admin\StockMovement\Shift\ShiftController;
+use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
+use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
+use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
