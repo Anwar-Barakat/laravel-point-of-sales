@@ -19,10 +19,10 @@ class AccountSeeder extends Seeder
     {
         $faker          = Factory::create();
         $admin          = Admin::where('email', 'admin@admin.com')->first();
-        $captial_type   = AccountType::where('name->en', 'Capital')->first();
-        $general_type   = AccountType::where('name->en', 'General')->first();
-        $expenses_type  = AccountType::where('name->en', 'Expenses')->first();
-        $bank_type      = AccountType::where('name->en', 'Bank')->first();
+        $captial_type   = AccountType::where('name->en', 'capital')->first();
+        $general_type   = AccountType::where('name->en', 'general')->first();
+        $expenses_type  = AccountType::where('name->en', 'expenses')->first();
+        $bank_type      = AccountType::where('name->en', 'bank')->first();
 
         $accounts       = [
             [

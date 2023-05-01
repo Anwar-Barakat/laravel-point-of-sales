@@ -16,9 +16,11 @@ return new class extends Migration
             $table->foreignId('item_transaction_category_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_transaction_type_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('order_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('order_product_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('order_id')->nullable()->constrained()->cascadeOnUpdate();
+            $table->foreignId('order_product_id')->nullable()->constrained()->cascadeOnUpdate();
+            $table->foreignId('sale_id')->nullable()->constrained()->cascadeOnUpdate();
+            $table->foreignId('sale_product_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->string('report');
             $table->string('store_qty_before_transaction');
             $table->string('store_qty_after_transaction');

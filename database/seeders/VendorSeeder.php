@@ -27,7 +27,7 @@ class VendorSeeder extends Seeder
         DB::table('vendors')->delete();
 
         $vendor = Vendor::create([
-            'name'                      => 'Vendor 1',
+            'name'                      => 'vendor 1',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'category_id'               => $category->id,
@@ -37,8 +37,8 @@ class VendorSeeder extends Seeder
         ]);
 
         Account::create([
-            'name'                      => 'Vendor 1',
-            'account_type_id'           => AccountType::where('name->en', 'Vendor')->first()->id,
+            'name'                      => 'vendor 1',
+            'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
             'is_parent'                 => 0,
             'parent_id'                 => Setting::where('company_code', $admin->company_code)->first()->vendor_account_id,
             'number'                    => uniqid(),
@@ -51,7 +51,7 @@ class VendorSeeder extends Seeder
 
 
         $vendor = Vendor::create([
-            'name'                      => 'Vendor 2',
+            'name'                      => 'vendor 2',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'category_id'               => $category->id,
@@ -61,8 +61,8 @@ class VendorSeeder extends Seeder
         ]);
 
         Account::create([
-            'name'                      => 'Vendor 2',
-            'account_type_id'           => AccountType::where('name->en', 'Vendor')->first()->id,
+            'name'                      => 'vendor 2',
+            'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
             'is_parent'                 => 0,
             'parent_id'                 => Setting::where('company_code', $admin->company_code)->first()->vendor_account_id,
             'number'                    => uniqid(),

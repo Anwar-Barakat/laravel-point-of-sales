@@ -90,7 +90,7 @@
                                     </span>
                                 </a>
                             </td>
-                             <td>{{ $order->store->name }}</td>
+                            <td>{{ $order->store->name }}</td>
                             <td>
                                 <a href="{{ route('admin.accounts.show', ['account' => $order->account]) }}">
                                     <span class="badge bg-green-lt">

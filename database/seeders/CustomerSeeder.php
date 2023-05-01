@@ -26,7 +26,7 @@ class CustomerSeeder extends Seeder
         DB::table('customers')->delete();
 
         $customer = Customer::create([
-            'name'                      => 'Customer 1',
+            'name'                      => 'customer 1',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
@@ -35,8 +35,8 @@ class CustomerSeeder extends Seeder
         ]);
 
         Account::create([
-            'name'                      => 'Customer 1',
-            'account_type_id'           => AccountType::where('name->en', 'Customer')->first()->id,
+            'name'                      => 'customer 1',
+            'account_type_id'           => AccountType::where('name->en', 'customer')->first()->id,
             'is_parent'                 => 0,
             'parent_id'                 => Setting::where('company_code', $admin->company_code)->first()->customer_account_id,
             'number'                    => uniqid(),

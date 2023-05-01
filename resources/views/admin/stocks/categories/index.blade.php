@@ -23,7 +23,7 @@
                             <th> {{ __('msgs.is_active') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
                             <th> {{ __('msgs.added_by') }}</th>
-                            <th></th>
+
                         </tr>
                     </thead>
                     <tbody class="table-tbody">

@@ -7,7 +7,7 @@
                     @if ($sale->is_approved == 0 && $sale_products->count() > 0)
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approval-modal">{{ __('btns.approval') }}</button>
                     @endif
-                    {{-- @livewire('admin.stock-movement.sale.approval-sale', ['sale' => $sale]) --}}
+                    @livewire('admin.stock-movement.sale.sale-approval', ['sale' => $sale])
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>
@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <th>{{ __('movement.tax') }}</th>
-                            <td>{{ $sale->tax ?? '-' }}</td>
+                            <td>{{ $sale->tax_value ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('movement.cost_before_discount') }}</th>
@@ -51,7 +51,7 @@
                         </tr>
                         <tr>
                             <th>{{ __('movement.discount') }}</th>
-                            <td>{{ $sale->discount ?? '-' }}</td>
+                            <td>{{ $sale->discount_value ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('movement.grand_total') }}</th>
@@ -80,7 +80,7 @@
                                     <div class="mb-3">
                                         <label for="" class="form-label">
                                             {{ __('stock.store') }}
-                                            (<a href="{{ route('admin.stores.index') }}" class="text underline" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
+                                            (<a href="{{ route('admin.stores.index') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
                                         </label>
                                         <select class="form-select" wire:model='product.store_id'>
                                             <option value="">{{ __('btns.select') }}</option>
@@ -141,7 +141,10 @@
                                 @if ($batches)
                                     <div class="col-12 col-lg-6">
                                         <div class="mb-3">
-                                            <x-input-label class="form-label" :value="__('movement.specific_store_qty')" />
+                                            <label for="" class="form-label">
+                                                {{ __('movement.specific_store_qty') }}
+                                                (<a href="{{ route('admin.orders.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('movement.purchase_bill')]) }}">{{ __('msgs.add_new') }}</a>)
+                                            </label>
                                             <select class="form-select" wire:model.defer='product.item_batch_id'>
                                                 <option value="">{{ __('btns.select') }}</option>
                                                 @foreach ($batches as $batch)
@@ -234,10 +237,12 @@
                             <th>{{ __('stock.item_type') }}</th>
                             <th>{{ __('stock.unit') }}</th>
                             <th>{{ __('stock.unit_price') }}</th>
+                            <th>{{ __('movement.sale_type') }}</th>
                             <th>{{ __('movement.qty') }}</th>
                             <th>{{ __('movement.production_date') }}</th>
                             <th>{{ __('movement.expiration_date') }}</th>
                             <th>{{ __('movement.total_price') }}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -259,11 +264,16 @@
                                 </td>
                                 <td> <span class="badge bg-blue-lt">{{ $saleProduct->unit->name }}</span></td>
                                 <td>{{ $saleProduct->unit_price }}</td>
+                                <td>
+                                    <span class="badge bg-azure-lt">
+                                        {{ __('movement.' . App\Models\SaleProduct::SALETYPE[$saleProduct->sale_type]) }}
+                                    </span>
+                                </td>
                                 <td>{{ $saleProduct->qty }}</td>
                                 <td>{{ $saleProduct->production_date ?? '-' }}</td>
                                 <td>{{ $saleProduct->expiration_date ?? '-' }}</td>
                                 <td class="bg-blue-500">{{ $saleProduct->total_price }}</td>
-                                @if (!$saleProduct->is_approved == 1)
+                                @if (!$sale->is_approved == 1)
                                     <td>
                                         <div class="btn-list flex-nowrap justify-content-center">
                                             <a wire:click.prefetch="edit({{ $saleProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">

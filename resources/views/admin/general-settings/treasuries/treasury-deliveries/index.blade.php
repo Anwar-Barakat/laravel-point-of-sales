@@ -6,7 +6,6 @@
                 <th>{{ __('treasury.treasury_name') }}</th>
                 <th>{{ __('msgs.added_by') }}</th>
                 <th>{{ __('msgs.created_at') }}</th>
-                <th></th>
             </tr>
         </thead>
         @forelse ($treasury->treasuriesDelivery as $branch)

@@ -63,7 +63,7 @@ class AddEditVendor extends Component
                 ],
                 [
                     'name'                      => $this->vendor->name,
-                    'account_type_id'           => AccountType::where('name->en', 'Vendor')->first()->id,
+                    'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
                     'is_parent'                 => 0,
                     'parent_id'                 => Setting::where('company_code', get_auth_com())->first()->vendor_account_id,
                     'number'                    => uniqid(),

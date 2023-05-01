@@ -7,7 +7,7 @@
                     <div class="mb-3">
                         <label for="" class="form-label">
                             {{ __('stock.customer_name') }}
-                            (<a href="{{ route('admin.customers.create') }}" class="text underline" title="{{ __('msgs.create', ['name' => __('stock.customer')]) }}">{{ __('msgs.add_new') }}</a>)
+                            (<a href="{{ route('admin.customers.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('stock.customer')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
                         <select class="form-select" wire:model.defer='sale.customer_id'>
                             <option value="">{{ __('btns.select') }}</option>
@@ -45,7 +45,7 @@
                     <div class="mb-3">
                         <label for="" class="form-label">
                             {{ __('movement.delegate_name') }}
-                            (<a href="" class="text underline" title="{{ __('msgs.create', ['name' => __('movement.delegate')]) }}">{{ __('msgs.add_new') }}</a>)
+                            (<a href="" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('movement.delegate')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
                         <select class="form-select" wire:model.defer='sale.delegate_id'>
                             <option value="">{{ __('btns.select') }}</option>

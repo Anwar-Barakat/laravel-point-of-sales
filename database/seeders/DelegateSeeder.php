@@ -38,7 +38,7 @@ class DelegateSeeder extends Seeder
 
         Account::create([
             'name'                      => 'Delegate 1',
-            'account_type_id'           => AccountType::where('name->en', 'Delegate')->first()->id,
+            'account_type_id'           => AccountType::where('name->en', 'delegate')->first()->id,
             'is_parent'                 => 1,
             'parent_id'                 => 0,
             'number'                    => uniqid(),

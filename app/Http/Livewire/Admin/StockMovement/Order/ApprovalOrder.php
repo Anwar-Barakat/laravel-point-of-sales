@@ -75,14 +75,12 @@ class ApprovalOrder extends Component
             : floatval($this->order->discount_value);
     }
 
-    public function updatedOrderWhatPaid()
+    public function updatedOrderPaid()
     {
-        if ($this->order->invoice_type) {
+        if ($this->order->invoice_type)
             $this->order->remains   = $this->order->cost_after_discount - $this->order->paid;
-
-            if ($this->order->paid > $this->order->cost_after_discount)
-                $this->order->remains = 0;
-        }
+        else
+            $this->remain_paid_price();
     }
 
     public function submit()
@@ -125,7 +123,7 @@ class ApprovalOrder extends Component
                     'payment'           => has_open_shift()->last_payment_exchange + 1,
                     'money'             => floatval(-$this->order->paid),
                     'money_for_account' => $this->order->paid,
-                    'report'            => 'Disbursement for a purchase invoice from the vendor of the number holder #' . get_auth_id(),
+                    'report'            => 'Disbursement for a purchase invoice from the vendor of the number holder #' . $this->order->vendor->id,
                     'company_code'      => get_auth_com(),
                 ]);
 
@@ -203,11 +201,11 @@ class ApprovalOrder extends Component
                     ItemTransaction::create([
                         'item_transaction_category_id'  => 1,   // Transaction on purchases
                         'item_transaction_type_id'      => 1,   //purchases
-                        'item_id'                       => $prod->item->id,
+                        'item_id'                       => $prod->item_id,
                         'order_id'                      => $this->order->id,
                         'store_id'                      => $this->order->store_id,
                         'order_product_id'              => $prod->id,
-                        'report'                        => 'Purchases return from the ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id,
+                        'report'                        => 'For purchases from the vendor ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id,
                         'store_qty_before_transaction'  => $store_qty_before_trans . ' ' . $prod->item->parentUnit->name,
                         'store_qty_after_transaction'   => $store_qty_after_trans . ' ' . $prod->item->parentUnit->name,
                         'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
@@ -237,12 +235,6 @@ class ApprovalOrder extends Component
         }
     }
 
-    private function remain_paid_price()
-    {
-        $this->order->paid     = $this->order->invoice_type == 0 ? $this->order->cost_after_discount : 0;
-        $this->order->remains   = $this->order->invoice_type == 0 ? 0 :  $this->order->cost_after_discount;
-    }
-
     public function render()
     {
         $order = $this->order;
@@ -268,9 +260,16 @@ class ApprovalOrder extends Component
             'order.paid'               => ['required', 'numeric', function () {
                 if ($this->order->paid > $this->order->cost_after_discount) {
                     toastr()->error(__('validation.paid_smaller_than_cost'));
+                    $this->order->paid = 0;
                 }
             }],
             'order.remains'             => ['required'],
         ];
+    }
+
+    private function remain_paid_price()
+    {
+        $this->order->paid      = $this->order->invoice_type == 0 ? $this->order->cost_after_discount : 0;
+        $this->order->remains   = $this->order->invoice_type == 0 ? 0 :  $this->order->cost_after_discount;
     }
 }

@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <th>{{ __('movement.tax') }}</th>
-                            <td>{{ $order->tax ?? '-' }}</td>
+                            <td>{{ $order->tax_value ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('movement.cost_before_discount') }}</th>
@@ -51,7 +51,7 @@
                         </tr>
                         <tr>
                             <th>{{ __('movement.discount') }}</th>
-                            <td>{{ $order->discount ?? '-' }}</td>
+                            <td>{{ $order->discount_value ?? '-' }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('movement.grand_total') }}</th>
@@ -197,9 +197,7 @@
                             <th>{{ __('movement.production_date') }}</th>
                             <th>{{ __('movement.expiration_date') }}</th>
                             <th>{{ __('movement.total_price') }}</th>
-                            @if (!$order->is_approved == 1)
-                                <th></th>
-                            @endif
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

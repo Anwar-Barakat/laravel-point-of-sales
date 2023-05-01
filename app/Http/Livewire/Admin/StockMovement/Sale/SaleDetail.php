@@ -52,13 +52,13 @@ class SaleDetail extends Component
         if ($this->product->item_id && $this->product->unit_id)
             $this->product->unit_price = $this->getUnitPrice();
 
-        if ($this->product->qty && $this->product->unit_price)
+        if ($this->product->unit_price)
             $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function updatedProductItemId()
     {
-        $this->item             = $this->getItem();
+        $this->item = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
         if ($this->product->item_id && $this->product->unit_id)
             $this->batches  = $this->getBatches();
     }

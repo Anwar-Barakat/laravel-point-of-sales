@@ -56,7 +56,7 @@
                                 <th> {{ __('treasury.last_payment_collect') }}</th>
                                 <th> {{ __('treasury.last_payment_exchange') }}</th>
                                 <th> {{ __('msgs.created_at') }}</th>
-                                <th></th>
+
                             </tr>
                         </thead>
                         <tbody class="table-tbody">

@@ -19,7 +19,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'مورد',
-                    'en'                        => 'Vendor'
+                    'en'                        => 'vendor'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,
@@ -27,7 +27,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'عميل',
-                    'en'                        => 'Customer'
+                    'en'                        => 'customer'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,
@@ -35,7 +35,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'مندوب',
-                    'en'                        => 'Delegate'
+                    'en'                        => 'delegate'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,
@@ -43,7 +43,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'بنكي',
-                    'en'                        => 'Bank'
+                    'en'                        => 'bank'
                 ],
                 'related_to_internal_account'   => 0,
                 'added_by'                      => $admin->id,
@@ -51,7 +51,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'موظف',
-                    'en'                        => 'Employee'
+                    'en'                        => 'employee'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,
@@ -59,7 +59,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'عام',
-                    'en'                        => 'General'
+                    'en'                        => 'general'
                 ],
                 'related_to_internal_account'   => 0,
                 'added_by'                      => $admin->id,
@@ -67,7 +67,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'مصروفات',
-                    'en'                        => 'Expenses'
+                    'en'                        => 'expenses'
                 ],
                 'related_to_internal_account'   => 0,
                 'added_by'                      => $admin->id,
@@ -75,7 +75,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'قسم داخلي',
-                    'en'                        => 'Internal Section'
+                    'en'                        => 'internal section'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,
@@ -83,7 +83,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'رأس المال',
-                    'en'                        => 'Capital'
+                    'en'                        => 'capital'
                 ],
                 'related_to_internal_account'   => 0,
                 'added_by'                      => $admin->id,
