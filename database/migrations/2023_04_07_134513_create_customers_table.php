@@ -16,16 +16,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('address')->nullable();
+            $table->string('address');
+            $table->string('mobile');
 
             $table->decimal('initial_balance', 10, 2)->default(0);
             $table->tinyInteger('initial_balance_status')->default(1)->comment('1 => balanced, 2 => credit, 3 => debit');
-            $table->decimal('current_balance', 10, 2)->default(0);
 
             $table->string('notes');
             $table->foreignId('company_id');
             $table->boolean('is_active')->default(1);
-            $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();
         });
     }

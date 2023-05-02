@@ -18,7 +18,6 @@ class Delegate extends Model
         'current_balance',
         'notes',
         'is_active',
-        'added_by',
         'commission_type',
         'commission_value',
         'commission_value_for_sectoral',

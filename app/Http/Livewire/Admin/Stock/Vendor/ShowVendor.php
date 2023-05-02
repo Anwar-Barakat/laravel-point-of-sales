@@ -17,9 +17,8 @@ class ShowVendor extends Component
 
     public function updateStatus($id)
     {
-        $account    = Vendor::findOrFail($id);
-        $account->update(['is_active' => !$account->is_active]);
-        $this->getVendors();
+        $vendor    = Vendor::findOrFail($id);
+        $vendor->update(['is_active' => !$vendor->is_active]);
     }
 
     public function render()

@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Admin\Stock\Vendor;
 use App\Models\Account;
 use App\Models\AccountType;
 use App\Models\Category;
-use App\Models\Setting;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,15 +15,12 @@ class AddEditVendor extends Component
 {
     public Vendor $vendor;
 
-    public $edit = false;
-
     public $categories = [];
 
     public function mount(Vendor $vendor)
     {
-        $this->vendor   = $vendor;
-        $this->edit     = !empty($this->vendor->initial_balance_status) ? true : false;
-        $this->categories = Category::with('subCategories')->where(['parent_id' => 0])->active()->get();
+        $this->vendor       = $vendor;
+        $this->categories   = Category::with('subCategories')->where(['parent_id' => 0])->active()->get();
     }
 
     public function updated($fields)
@@ -39,7 +35,7 @@ class AddEditVendor extends Component
 
     public function submit()
     {
-        $this->validate();
+        // $this->validate();
         try {
             DB::beginTransaction();
             switch ($this->vendor->initial_balance_status) {
@@ -47,24 +43,18 @@ class AddEditVendor extends Component
                     $this->vendor->initial_balance = 0;
                     break;
                 case 2:
-                    abs($this->vendor->initial_balance);
+                    $this->vendor->initial_balance = $this->vendor->initial_balance * (-1);
                     break;
                 case 3:
-                    $this->vendor->initial_balance = $this->vendor->initial_balance * (-1);
+                    abs($this->vendor->initial_balance);
                     break;
             }
 
-            $this->vendor->current_balance  = $this->vendor->initial_balance;
-
-            $this->vendor['added_by']       = get_auth_id();
             $this->vendor['company_id']     = get_auth_com();
             $this->vendor->save();
 
-            Account::updateOrCreate(
-                [
-                    'vendor_id'              => $this->vendor->id,
-                ],
-                [
+            if (!$this->vendor->account)
+                Account::create([
                     'name'                      => $this->vendor->name,
                     'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
                     'is_parent'                 => 0,
@@ -72,14 +62,17 @@ class AddEditVendor extends Component
                     'number'                    => uniqid(),
                     'initial_balance_status'    => $this->vendor->initial_balance_status,
                     'initial_balance'           => $this->vendor->initial_balance,
-                    'current_balance'           => $this->vendor->current_balance,
+                    'current_balance'           => $this->vendor->initial_balance,
                     'notes'                     => $this->vendor->notes,
+                    'vendor_id'                 => $this->vendor->id,
                     'company_id'                => get_auth_com(),
                     'added_by'                  => get_auth_id(),
-                ]
-            );
-            DB::commit();
+                ]);
+            else
+                $this->vendor->account->update(['name' => $this->vendor->name]);
 
+
+            DB::commit();
             toastr()->success(__('msgs.submitted', ['name' => __('account.vendor')]));
             return redirect()->route('admin.vendors.index');
         } catch (\Throwable $th) {
@@ -99,14 +92,13 @@ class AddEditVendor extends Component
             'vendor.name'                     => [
                 'required',
                 'min:3',
-                Rule::unique('vedors', 'name')->ignore($this->vendor->id)->where(function ($query) {
+                Rule::unique('vendors', 'name')->ignore($this->vendor->id)->where(function ($query) {
                     return $query->where('company_id', get_auth_com());
                 })
             ],
             'vendor.email'                    => [
                 'required',
-                'min:3',
-                Rule::unique('vedors', 'email')->ignore($this->vendor->id)->where(function ($query) {
+                Rule::unique('vendors', 'email')->ignore($this->vendor->id)->where(function ($query) {
                     return $query->where('company_id', get_auth_com());
                 })
             ],

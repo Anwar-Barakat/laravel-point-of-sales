@@ -51,18 +51,11 @@ class AddEditCustomer extends Component
                     break;
             }
 
-            $this->customer->current_balance    = $this->customer->initial_balance;
-
-
-            $this->customer['added_by']         = get_auth_id();
             $this->customer['company_id']       = get_auth_com();
             $this->customer->save();
 
-            Account::updateOrCreate(
-                [
-                    'customer_id'              => $this->customer->id,
-                ],
-                [
+            if (!$this->customer->account)
+                Account::create([
                     'name'                      => $this->customer->name,
                     'account_type_id'           => AccountType::where('name->en', 'customer')->first()->id,
                     'is_parent'                 => 0,
@@ -70,12 +63,15 @@ class AddEditCustomer extends Component
                     'number'                    => uniqid(),
                     'initial_balance_status'    => $this->customer->initial_balance_status,
                     'initial_balance'           => $this->customer->initial_balance,
-                    'current_balance'           => $this->customer->current_balance,
+                    'current_balance'           => $this->customer->initial_balance,
                     'notes'                     => $this->customer->notes,
+                    'customer_id'               => $this->customer->id,
                     'company_id'                => get_auth_com(),
                     'added_by'                  => get_auth_id(),
-                ]
-            );
+                ]);
+            else
+                $this->customer->account->update(['name' => $this->customer->name]);
+
             DB::commit();
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.account')]));
@@ -109,6 +105,7 @@ class AddEditCustomer extends Component
                 })
             ],
             'customer.address'                  => ['required', 'min:10'],
+            'customer.mobile'                   => ['required', 'min:10'],
             'customer.initial_balance_status'   => ['required', 'in:1,2,3'],
             'customer.initial_balance'          => ['required', 'between:0,999999'],
             'customer.is_active'                => ['required', 'boolean'],

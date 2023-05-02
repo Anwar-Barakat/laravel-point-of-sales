@@ -80,10 +80,10 @@
                             </td>
                             <td App::getLocale()=='ar' ? style="direction: ltr" : '' class="text-center">
                                 <span>
-                                    {{ number_format($vendor->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
-                                    {{ number_format($vendor->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
-                                    {{ number_format($vendor->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
-                                    <span class="badge badge-dark">{{ $vendor->current_balance }}</span>
+                                    {{ number_format($vendor->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
+                                    {{ number_format($vendor->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
+                                    {{ number_format($vendor->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
+                                    <span class="badge badge-dark">{{ $vendor->account->current_balance }}</span>
                                 </span>
                             </td>
                             <td>

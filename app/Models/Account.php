@@ -24,7 +24,6 @@ class Account extends Model
         'notes',
         'company_id',
         'is_archived',
-        'added_by',
         'date',
         'customer_id',
         'vendor_id',
@@ -54,11 +53,6 @@ class Account extends Model
     public function scopeParent($query)
     {
         return $this->where(['is_parent' => '1', 'is_archived' => '0']);
-    }
-
-    public function addedBy(): BelongsTo
-    {
-        return $this->belongsTo(Admin::class, 'added_by');
     }
 
     public function parentAccount(): BelongsTo

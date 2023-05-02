@@ -29,10 +29,10 @@ class CustomerSeeder extends Seeder
             'name'                      => 'customer 1',
             'email'                     => 'customer01@gmail.com',
             'address'                   => $faker->address(),
+            'mobile'                    => $faker->phoneNumber(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
             'company_id'                => $admin->id,
-            'added_by'                  => $admin->company->id,
         ]);
 
         Account::create([
@@ -44,7 +44,6 @@ class CustomerSeeder extends Seeder
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
             'company_id'                => $admin->company->id,
-            'added_by'                  => $admin->id,
             'customer_id'               => $customer->id,
         ]);
     }

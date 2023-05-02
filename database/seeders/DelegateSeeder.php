@@ -34,7 +34,6 @@ class DelegateSeeder extends Seeder
             'category_id'               => $category->id,
             'notes'                     => $faker->sentence(10),
             'company_id'                => $admin->id,
-            'added_by'                  => $admin->company->id,
         ]);
 
         Account::create([

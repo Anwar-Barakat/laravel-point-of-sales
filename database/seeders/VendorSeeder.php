@@ -34,7 +34,6 @@ class VendorSeeder extends Seeder
             'category_id'               => $category->id,
             'notes'                     => $faker->sentence(10),
             'company_id'              => $admin->id,
-            'added_by'                  => $admin->company->id,
         ]);
 
         Account::create([
@@ -45,8 +44,7 @@ class VendorSeeder extends Seeder
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_id'              => $admin->company->id,
-            'added_by'                  => $admin->id,
+            'company_id'                => $admin->company->id,
             'vendor_id'                 => $vendor->id,
         ]);
 
@@ -59,7 +57,6 @@ class VendorSeeder extends Seeder
             'category_id'               => $category->id,
             'notes'                     => $faker->sentence(10),
             'company_id'                => $admin->id,
-            'added_by'                  => $admin->company->id,
         ]);
 
         Account::create([
@@ -71,7 +68,6 @@ class VendorSeeder extends Seeder
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
             'company_id'                => $admin->company->id,
-            'added_by'                  => $admin->id,
             'vendor_id'                 => $vendor->id,
         ]);
     }

@@ -30,7 +30,7 @@ class ShowAccount extends Component
 
     public function getAccounts()
     {
-        return  Account::with(['parentAccount:id,name', 'accountType:id,name', 'customer:id,name'])
+        return  Account::with(['parentAccount:id,name', 'accountType', 'customer:id,name'])
             ->when($this->account_type_id, fn ($q) => $q->where('account_type_id', $this->account_type_id))
             ->search(trim($this->name))
             ->orderBy($this->order_by, $this->sort_by)

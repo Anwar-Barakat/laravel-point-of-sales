@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-12 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('stock.vendor_name')" />
+                        <x-input-label class="form-label" :value="__('auth.email')" />
                         <x-text-input type="email" class="form-control" wire:model.defer='vendor.email' />
                         <x-input-error :messages="$errors->get('vendor.email')" class="mt-2" />
                     </div>
@@ -52,7 +52,7 @@
                         <x-input-error :messages="$errors->get('vendor.category_id')" class="mt-2" />
                     </div>
                 </div>
-                @if (!$edit)
+                @if (!$vendor->account)
                     <div class="col-sm-12 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />

@@ -49,9 +49,6 @@ class AddEditAccount extends Component
     {
         $this->validate();
         try {
-            DB::beginTransaction();
-
-            $this->account->added_by          = get_auth_id();
             $this->account->number            = uniqid();
             $this->account->company_id        = get_auth_com();
 
@@ -67,15 +64,7 @@ class AddEditAccount extends Component
                     break;
             }
             $this->account->current_balance   = $this->account->initial_balance;
-
-            if (!is_null($this->account->customer))
-                $this->account->customer->update(['name' => $this->account->name,]);
-
-            if (!is_null($this->account->vendor))
-                $this->account->vendor->update(['name' => $this->account->name]);
-
             $this->account->save();
-            DB::commit();
 
             toastr()->success(__('msgs.submitted', ['name' => __('account.account')]));
             return redirect()->route('admin.accounts.index');

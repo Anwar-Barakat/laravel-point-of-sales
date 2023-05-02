@@ -15,12 +15,10 @@ class Vendor extends Model
         'address',
         'initial_balance',
         'initial_balance_status',
-        'current_balance',
         'category_id',
         'notes',
         'company_id',
         'is_active',
-        'added_by',
         'date',
     ];
 
