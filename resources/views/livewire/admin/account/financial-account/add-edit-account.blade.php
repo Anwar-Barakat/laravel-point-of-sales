@@ -89,7 +89,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="5" class="form-control" wire:model.debounce.350='account.notes'></textarea>
+                        <textarea rows="3" class="form-control" wire:model.debounce.350='account.notes'></textarea>
                         <x-input-error :messages="$errors->get('account.notes')" class="mt-2" />
                     </div>
                 </div>

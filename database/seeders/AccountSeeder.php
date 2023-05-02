@@ -30,7 +30,7 @@ class AccountSeeder extends Seeder
                 'number'            => 1,
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
+                'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,
             ],
             [
@@ -38,23 +38,23 @@ class AccountSeeder extends Seeder
                 'number'            => 2,
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
+                'company_id'        => $admin->company->id,
+                'added_by'          => $admin->id,
+            ],
+            [
+                'name'              => 'Parent Delegates',
+                'number'            => 3,
+                'account_type_id'   => $general_type->id,
+                'notes'             => $faker->sentence(10),
+                'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,
             ],
             [
                 'name'              => 'Capital',
-                'number'            => 3,
+                'number'            => 4,
                 'account_type_id'   => $captial_type->id,
                 'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
-                'added_by'          => $admin->id,
-            ],
-            [
-                'name'              => 'Phone & Internet Invoices',
-                'number'            => 4,
-                'account_type_id'   => $expenses_type->id,
-                'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
+                'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,
             ],
             [
@@ -62,7 +62,7 @@ class AccountSeeder extends Seeder
                 'number'            => 5,
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
+                'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,
             ],
             [
@@ -70,33 +70,35 @@ class AccountSeeder extends Seeder
                 'number'            => 6,
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
+                'company_id'        => $admin->company->id,
+                'added_by'          => $admin->id,
+            ],
+            [
+                'name'              => 'Phone & Internet Invoices',
+                'number'            => 7,
+                'is_parent'         => 0,
+                'parent_id'         => 6, // Expenses
+                'account_type_id'   => $expenses_type->id,
+                'notes'             => $faker->sentence(10),
+                'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,
             ],
             [
                 'name'              => 'Islamic Bank',
-                'number'            => 7,
+                'number'            => 8,
                 'is_parent'         => 0,
-                'parent_id'         => 6, // Banks
+                'parent_id'         => 5, // Banks
                 'account_type_id'   => $bank_type->id,
                 'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
+                'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,
             ],
 
             [
                 'name'              => 'Water Invoices',
-                'number'            => 8,
-                'is_parent'         => 0,
-                'parent_id'         => 7, // Expenses
-                'account_type_id'   => $general_type->id,
-                'notes'             => $faker->sentence(10),
-                'company_id'      => $admin->company->id,
-                'added_by'          => $admin->id,
-            ],
-            [
-                'name'              => 'Parent Delegates',
                 'number'            => 9,
+                'is_parent'         => 0,
+                'parent_id'         => 6, // Expenses
                 'account_type_id'   => $general_type->id,
                 'notes'             => $faker->sentence(10),
                 'company_id'        => $admin->company->id,

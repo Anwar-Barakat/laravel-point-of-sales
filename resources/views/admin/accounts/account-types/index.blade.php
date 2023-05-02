@@ -18,7 +18,6 @@
                             <th> {{ __('account.related_to_internal_account') }}</th>
                             <th> {{ __('setting.status') }}</th>
                             <th> {{ __('msgs.created_at') }}</th>
-                            <th> {{ __('msgs.added_by') }}</th>
                         </tr>
                     </thead>
                     <tbody class="table-tbody">
@@ -31,9 +30,6 @@
                                     @livewire('admin.account.account-type.update-status', ['account_type_id' => $account_type->id, 'is_active' => $account_type->is_active])
                                 </td>
                                 <td> {{ $account_type->created_at }} </td>
-                                <td>
-                                    <span class="badge bg-blue-lt">{{ $account_type->addedBy->name }}</span>
-                                </td>
                             </tr>
                         @empty
                             <tr>

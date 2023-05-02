@@ -33,7 +33,7 @@ class CompanySeeder extends Seeder
             'admin_id'              => $admin->id,
             'parent_customer_id'    => 1,
             'parent_vendor_id'      => 2,
-            'parent_delegate_id'    => 9,
+            'parent_delegate_id'    => 3,
         ]);
     }
 }

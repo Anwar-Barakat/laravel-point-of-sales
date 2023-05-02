@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\Treasury;
-use Carbon\Carbon;
-use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,12 +19,17 @@ class TreasurySeeder extends Seeder
             [
                 'name'                  => 'Casher 1',
                 'is_master'             => 1,
-                'company_id'          => $admin->company->id,
+                'company_id'            => $admin->company->id,
                 'admin_id'              => $admin->id,
             ],
             [
                 'name'                  => 'Casher 2',
-                'company_id'          => $admin->company->id,
+                'company_id'            => $admin->company->id,
+                'admin_id'              => $admin->id,
+            ],
+            [
+                'name'                  => 'Casher 3',
+                'company_id'            => $admin->company->id,
                 'admin_id'              => $admin->id,
             ],
         ];

@@ -51,21 +51,22 @@ class AddEditAccount extends Component
         try {
             DB::beginTransaction();
 
-            $this->account['added_by']     = get_auth_id();
-            $this->account['number']       = uniqid();
-            $this->account['company_id'] = get_auth_com();
+            $this->account->added_by          = get_auth_id();
+            $this->account->number            = uniqid();
+            $this->account->company_id        = get_auth_com();
 
             switch ($this->account->initial_balance_status) {
                 case 1:
                     $this->account->initial_balance = 0;
                     break;
                 case 2:
-                    abs($this->account->initial_balance);
-                    break;
-                case 3:
                     $this->account->initial_balance = $this->account->initial_balance * (-1);
                     break;
+                case 3:
+                    abs($this->account->initial_balance);
+                    break;
             }
+            $this->account->current_balance   = $this->account->initial_balance;
 
             if (!is_null($this->account->customer))
                 $this->account->customer->update(['name' => $this->account->name,]);

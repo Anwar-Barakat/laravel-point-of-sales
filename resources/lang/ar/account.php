@@ -26,7 +26,7 @@ return [
     'credit'                        => 'دائن',
     'debit'                         => 'مدين',
     'not_archived'                  => 'غير مؤرشف',
-
+    'root'                          => 'جذر',
     'account_type'                  => 'نوع الحساب',
     'account_number'                => 'رقم الحساب',
     'parent_accounts'               => 'الحسابات الأب',

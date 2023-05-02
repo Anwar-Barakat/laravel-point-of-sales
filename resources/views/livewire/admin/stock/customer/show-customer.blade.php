@@ -72,7 +72,14 @@
                                     </span>
                                 </a>
                             </td>
-                            <td App::getLocale()=='ar' ? style="direction: ltr" : ''>{{ $customer->current_balance }}</td>
+                            <td App::getLocale()=='ar' ? style="direction: ltr" : '' class="text-center">
+                                <span>
+                                    {{ number_format($customer->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
+                                    {{ number_format($customer->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
+                                    {{ number_format($customer->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
+                                    <span class="badge badge-dark">{{ $customer->current_balance }}</span>
+                                </span>
+                            </td>
                             <td>
                                 <div>
                                     <button wire:click='updateStatus({{ $customer->id }})' class="btn position-relative">

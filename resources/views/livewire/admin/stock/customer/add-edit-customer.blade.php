@@ -12,9 +12,9 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('stock.address')" />
-                        <x-text-input type="text" class="form-control" wire:model.debounce.350='customer.address' />
-                        <x-input-error :messages="$errors->get('customer.address')" class="mt-2" />
+                        <x-input-label class="form-label" :value="__('auth.email')" />
+                        <x-text-input type="email" class="form-control" wire:model.debounce.350='customer.email' />
+                        <x-input-error :messages="$errors->get('customer.email')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
@@ -53,8 +53,15 @@
             <div class="row row-cards">
                 <div class="col-12 col-lg-6">
                     <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('stock.address')" />
+                        <textarea rows="3" class="form-control" wire:model.debounce.350='customer.address'></textarea>
+                        <x-input-error :messages="$errors->get('customer.address')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="5" class="form-control" wire:model.debounce.350='customer.notes'></textarea>
+                        <textarea rows="3" class="form-control" wire:model.debounce.350='customer.notes'></textarea>
                         <x-input-error :messages="$errors->get('customer.notes')" class="mt-2" />
                     </div>
                 </div>

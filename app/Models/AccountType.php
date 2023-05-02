@@ -14,7 +14,6 @@ class AccountType extends Model
         'name',
         'is_active',
         'related_to_internal_account',
-        'added_by'
     ];
 
     public $translatable    = ['name'];
@@ -22,10 +21,5 @@ class AccountType extends Model
     public function scopeActive($query)
     {
         return $query->where(['is_active' => 1]);
-    }
-
-    public function addedBy()
-    {
-        return $this->belongsTo(Admin::class, 'added_by');
     }
 }

@@ -18,7 +18,7 @@ class CollectTransactionSeeder extends Seeder
     {
         $admin      = Admin::where('email', 'admin@admin.com')->first();
         $shift      = Shift::where('admin_id', $admin->id)->first();
-        $account    = Account::where('name', 'Banks')->first();
+        $account    = Account::where('number', 8)->first(); // islamic bank
 
         TreasuryTransaction::create([
             'money'             => 20000, // treasury is credit
@@ -31,7 +31,7 @@ class CollectTransactionSeeder extends Seeder
             'is_account'        => 1,
             'account_id'        => $account->id,
             'money_for_account' => floatval(-20000),
-            'company_id'      => $admin->company->id,
+            'company_id'        => $admin->company->id,
             'transaction_date'  => date('Y-m-d'),
             'report'            => 'Borrowing from a bank'
         ]);

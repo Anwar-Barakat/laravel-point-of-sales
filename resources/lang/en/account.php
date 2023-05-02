@@ -17,8 +17,8 @@ return [
     //_______________________
     // Accounts
     //_______________________
-    'accounts'            => 'Financial accounts',
-    'account'             => 'Financial account',
+    'accounts'                      => 'Financial accounts',
+    'account'                       => 'Financial account',
     'account_name'                  => 'Account name',
     'parent_account'                => 'Parent account',
     'balance'                       => 'Balance',
@@ -26,7 +26,7 @@ return [
     'credit'                        => 'Credit',
     'debit'                         => 'Debit',
     'not_archived'                  => 'Not archived',
-
+    'root'                          => 'Root',
     'account_type'                  => 'Account type',
     'account_number'                => 'Account number',
     'is_parent_account'             => 'Is it parent account',

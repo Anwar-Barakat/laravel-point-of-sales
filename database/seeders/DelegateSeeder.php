@@ -28,11 +28,12 @@ class DelegateSeeder extends Seeder
 
         $delegate = Delegate::create([
             'name'                      => 'delegate 1',
+            'email'                     => 'delegate01@gmail.com',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'category_id'               => $category->id,
             'notes'                     => $faker->sentence(10),
-            'company_id'              => $admin->id,
+            'company_id'                => $admin->id,
             'added_by'                  => $admin->company->id,
         ]);
 
@@ -41,10 +42,11 @@ class DelegateSeeder extends Seeder
             'account_type_id'           => AccountType::where('name->en', 'delegate')->first()->id,
             'is_parent'                 => 1,
             'parent_id'                 => 0,
+            'parent_id'                 => $admin->company->parent_delegate_id, // Parent Delegates
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_id'              => $admin->company->id,
+            'company_id'                => $admin->company->id,
             'added_by'                  => $admin->id,
             'delegate_id'               => $delegate->id,
         ]);

@@ -14,7 +14,7 @@ class AccountTypeController extends Controller
      */
     public function index()
     {
-        $account_types = AccountType::with(['addedBy:id,name'])->latest()->paginate(CUSTOM_PAGINATION);
+        $account_types = AccountType::orderBy('related_to_internal_account', 'asc')->paginate(CUSTOM_PAGINATION);
         return view('admin.accounts.account-types.index', ['account_types' => $account_types]);
     }
 

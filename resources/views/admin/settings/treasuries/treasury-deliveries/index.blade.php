@@ -4,16 +4,15 @@
             <tr>
                 <th>#</th>
                 <th>{{ __('treasury.treasury_name') }}</th>
-                <th>{{ __('msgs.added_by') }}</th>
                 <th>{{ __('msgs.created_at') }}</th>
+                <th></th>
             </tr>
         </thead>
         @forelse ($treasury->treasuriesDelivery as $branch)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $branch->treasuryDelivered->name }}</td>
-                <td>{{ $branch->treasuryDelivered->addedBy->name }}</td>
-                <td>{{ $branch->treasuryDelivered->addedBy->created_at }}</td>
+                <td>{{ $branch->treasuryDelivered->created_at }}</td>
                 <th>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $branch->id }}" class="btn btn-outline-danger d-flex align-items-center justify-content-center" title="{{ __('btns.delete') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

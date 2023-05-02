@@ -39,7 +39,7 @@
                 <div class="col-md-12">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.bio')" />
-                        <textarea rows="5" class="form-control" placeholder="{{ __('setting.bio') }}" wire:model='bio' required></textarea>
+                        <textarea rows="3" class="form-control" placeholder="{{ __('setting.bio') }}" wire:model='bio' required></textarea>
                         <x-input-error :messages="$errors->get('bio')" class="mt-2" />
                     </div>
                 </div>

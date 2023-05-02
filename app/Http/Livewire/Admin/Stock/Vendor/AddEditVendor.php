@@ -7,6 +7,7 @@ use App\Models\AccountType;
 use App\Models\Category;
 use App\Models\Setting;
 use App\Models\Vendor;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -46,15 +47,17 @@ class AddEditVendor extends Component
                     $this->vendor->initial_balance = 0;
                     break;
                 case 2:
-                    $this->vendor->initial_balance = $this->vendor->initial_balance * (-1);
+                    abs($this->vendor->initial_balance);
                     break;
                 case 3:
-                    abs($this->vendor->initial_balance);
+                    $this->vendor->initial_balance = $this->vendor->initial_balance * (-1);
                     break;
             }
 
-            $this->vendor['added_by']     = get_auth_id();
-            $this->vendor['company_id'] = get_auth_com();
+            $this->vendor->current_balance  = $this->vendor->initial_balance;
+
+            $this->vendor['added_by']       = get_auth_id();
+            $this->vendor['company_id']     = get_auth_com();
             $this->vendor->save();
 
             Account::updateOrCreate(
@@ -65,12 +68,13 @@ class AddEditVendor extends Component
                     'name'                      => $this->vendor->name,
                     'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
                     'is_parent'                 => 0,
-                    'parent_id'                 => Setting::where('company_id', get_auth_com())->first()->vendor_account_id,
+                    'parent_id'                 => Auth::guard('admin')->user()->company->parent_vendor_id,
                     'number'                    => uniqid(),
                     'initial_balance_status'    => $this->vendor->initial_balance_status,
                     'initial_balance'           => $this->vendor->initial_balance,
+                    'current_balance'           => $this->vendor->current_balance,
                     'notes'                     => $this->vendor->notes,
-                    'company_id'              => get_auth_com(),
+                    'company_id'                => get_auth_com(),
                     'added_by'                  => get_auth_id(),
                 ]
             );
@@ -95,7 +99,14 @@ class AddEditVendor extends Component
             'vendor.name'                     => [
                 'required',
                 'min:3',
-                Rule::unique('items', 'name')->ignore($this->vendor->id)->where(function ($query) {
+                Rule::unique('vedors', 'name')->ignore($this->vendor->id)->where(function ($query) {
+                    return $query->where('company_id', get_auth_com());
+                })
+            ],
+            'vendor.email'                    => [
+                'required',
+                'min:3',
+                Rule::unique('vedors', 'email')->ignore($this->vendor->id)->where(function ($query) {
                     return $query->where('company_id', get_auth_com());
                 })
             ],

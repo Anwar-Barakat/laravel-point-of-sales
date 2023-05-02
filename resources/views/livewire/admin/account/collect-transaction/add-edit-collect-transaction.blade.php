@@ -64,7 +64,7 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('dash.report')" />
-                                        <textarea rows="5" class="form-control" wire:model='transaction.report' placeholder="{{ __('account.counterpart_collection') }}"></textarea>
+                                        <textarea rows="3" class="form-control" wire:model='transaction.report' placeholder="{{ __('account.counterpart_collection') }}"></textarea>
                                         <x-input-error :messages="$errors->get('transaction.report')" class="mt-2" />
                                     </div>
                                 </div>

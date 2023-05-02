@@ -43,16 +43,8 @@
                             <td>{{ \Carbon\Carbon::parse($treasury->created_at)->format('Y-m-d') }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('msgs.added_by') }}</th>
-                            <td>{{ $treasury->addedBy->name }}</td>
-                        </tr>
-                        <tr>
                             <th>{{ __('msgs.updated_at') }}</th>
                             <td>{{ \Carbon\Carbon::parse($treasury->updated_at)->format('Y-m-d') }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('setting.updated_by') }}</th>
-                            <td>{{ $treasury->updatedBy->name ?? '' }}</td>
                         </tr>
                     </tbody>
                 </table>

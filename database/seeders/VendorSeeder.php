@@ -28,6 +28,7 @@ class VendorSeeder extends Seeder
 
         $vendor = Vendor::create([
             'name'                      => 'vendor 1',
+            'email'                     => 'vendor01@gmail.com',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'category_id'               => $category->id,
@@ -40,7 +41,7 @@ class VendorSeeder extends Seeder
             'name'                      => 'vendor 1',
             'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
             'is_parent'                 => 0,
-            'parent_id'                 => $admin->company->vendor_account_id,
+            'parent_id'                 => $admin->company->parent_vendor_id,
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
@@ -52,11 +53,12 @@ class VendorSeeder extends Seeder
 
         $vendor = Vendor::create([
             'name'                      => 'vendor 2',
+            'email'                     => 'vendor02@gmail.com',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'category_id'               => $category->id,
             'notes'                     => $faker->sentence(10),
-            'company_id'              => $admin->id,
+            'company_id'                => $admin->id,
             'added_by'                  => $admin->company->id,
         ]);
 
@@ -64,11 +66,11 @@ class VendorSeeder extends Seeder
             'name'                      => 'vendor 2',
             'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
             'is_parent'                 => 0,
-            'parent_id'                 => $admin->company->vendor_account_id,
+            'parent_id'                 => $admin->company->parent_vendor_id,
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_id'              => $admin->company->id,
+            'company_id'                => $admin->company->id,
             'added_by'                  => $admin->id,
             'vendor_id'                 => $vendor->id,
         ]);

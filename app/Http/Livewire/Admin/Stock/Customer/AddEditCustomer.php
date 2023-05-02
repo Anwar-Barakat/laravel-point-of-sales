@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\AccountType;
 use App\Models\Customer;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -43,15 +44,18 @@ class AddEditCustomer extends Component
                     $this->customer->initial_balance = 0;
                     break;
                 case 2:
-                    abs($this->customer->initial_balance);
+                    $this->customer->initial_balance = $this->customer->initial_balance * (-1);
                     break;
                 case 3:
-                    $this->customer->initial_balance = $this->customer->initial_balance * (-1);
+                    abs($this->customer->initial_balance);
                     break;
             }
 
-            $this->customer['added_by']     = get_auth_id();
-            $this->customer['company_id'] = get_auth_com();
+            $this->customer->current_balance    = $this->customer->initial_balance;
+
+
+            $this->customer['added_by']         = get_auth_id();
+            $this->customer['company_id']       = get_auth_com();
             $this->customer->save();
 
             Account::updateOrCreate(
@@ -62,18 +66,19 @@ class AddEditCustomer extends Component
                     'name'                      => $this->customer->name,
                     'account_type_id'           => AccountType::where('name->en', 'customer')->first()->id,
                     'is_parent'                 => 0,
-                    'parent_id'                 => Setting::where('company_id', get_auth_com())->first()->customer_account_id,
+                    'parent_id'                 => Auth::guard('admin')->user()->company->parent_customer_id,
                     'number'                    => uniqid(),
                     'initial_balance_status'    => $this->customer->initial_balance_status,
                     'initial_balance'           => $this->customer->initial_balance,
+                    'current_balance'           => $this->customer->current_balance,
                     'notes'                     => $this->customer->notes,
-                    'company_id'              => get_auth_com(),
+                    'company_id'                => get_auth_com(),
                     'added_by'                  => get_auth_id(),
                 ]
             );
             DB::commit();
 
-            toastr()->success(__('msgs.submitted', ['name' => __('account.financial_account')]));
+            toastr()->success(__('msgs.submitted', ['name' => __('account.account')]));
             return redirect()->route('admin.customers.index');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -93,6 +98,13 @@ class AddEditCustomer extends Component
                 'required',
                 'min:3',
                 Rule::unique('customers', 'name')->ignore($this->customer->id)->where(function ($query) {
+                    return $query->where('company_id', get_auth_com());
+                })
+            ],
+            'customer.email'                    => [
+                'required',
+                'min:3',
+                Rule::unique('customers', 'email')->ignore($this->customer->id)->where(function ($query) {
                     return $query->where('company_id', get_auth_com());
                 })
             ],

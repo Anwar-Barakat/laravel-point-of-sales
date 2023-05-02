@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email')->unique();
             $table->string('address')->nullable();
 
             $table->decimal('initial_balance', 10, 2)->default(0);

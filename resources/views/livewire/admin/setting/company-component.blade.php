@@ -41,7 +41,7 @@
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('customer_account_id')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('parent_customer_id')" class="mt-2" />
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <label class="form-label">
@@ -54,7 +54,7 @@
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('parent_vendor_id')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('company.parent_vendor_id')" class="mt-2" />
                 </div>
             </div>
             <div class="row row-cards">

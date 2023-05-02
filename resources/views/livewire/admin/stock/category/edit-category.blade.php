@@ -84,7 +84,7 @@
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.descriprion')" />
-                        <textarea wire:model='description' rows="5" class="form-control"></textarea>
+                        <textarea wire:model='description'rows="3" class="form-control"></textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                 </div>

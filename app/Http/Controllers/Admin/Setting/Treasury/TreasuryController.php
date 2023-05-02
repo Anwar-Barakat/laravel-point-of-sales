@@ -38,7 +38,7 @@ class TreasuryController extends Controller
      */
     public function show(Treasury $treasury)
     {
-        $treasury->load(['addedBy', 'updatedBy', 'treasuriesDelivery']);
+        $treasury->load(['treasuriesDelivery']);
         $treasuries = Treasury::select('id', 'name')->where(['company_id' => auth()->guard('admin')->user()->company->id])->active()->get();
         return view('admin.settings.treasuries.show', ['treasury' => $treasury, 'treasuries' => $treasuries]);
     }

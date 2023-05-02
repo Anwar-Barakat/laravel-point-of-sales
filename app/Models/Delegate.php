@@ -11,6 +11,7 @@ class Delegate extends Model
 
     protected $fillable = [
         'name',
+        'email',
         'address',
         'initial_balance',
         'initial_balance_status',

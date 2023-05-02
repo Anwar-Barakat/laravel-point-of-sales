@@ -27,10 +27,11 @@ class CustomerSeeder extends Seeder
 
         $customer = Customer::create([
             'name'                      => 'customer 1',
+            'email'                     => 'customer01@gmail.com',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_id'              => $admin->id,
+            'company_id'                => $admin->id,
             'added_by'                  => $admin->company->id,
         ]);
 
@@ -38,11 +39,11 @@ class CustomerSeeder extends Seeder
             'name'                      => 'customer 1',
             'account_type_id'           => AccountType::where('name->en', 'customer')->first()->id,
             'is_parent'                 => 0,
-            'parent_id'                 => $admin->company->customer_account_id,
+            'parent_id'                 => $admin->company->parent_customer_id,
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_id'              => $admin->company->id,
+            'company_id'                => $admin->company->id,
             'added_by'                  => $admin->id,
             'customer_id'               => $customer->id,
         ]);
