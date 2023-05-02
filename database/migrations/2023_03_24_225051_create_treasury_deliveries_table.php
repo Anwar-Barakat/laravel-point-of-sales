@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('treasury_deliveries', function (Blueprint $table) {
             $table->id();
-            $table->integer('company_code');
+            $table->foreignId('company_id');
 
             $table->foreignId('treasury_id')->comment('The treasury that you will receive')->constrained('treasuries')->cascadeOnUpdate();
             $table->foreignId('treasury_delivery_id')->comment('The treasury that will be delivered')->constrained('treasuries')->cascadeOnUpdate();

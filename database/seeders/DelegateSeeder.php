@@ -32,8 +32,8 @@ class DelegateSeeder extends Seeder
             'initial_balance_status'    => 1, // balanced
             'category_id'               => $category->id,
             'notes'                     => $faker->sentence(10),
-            'company_code'              => $admin->id,
-            'added_by'                  => $admin->company_code,
+            'company_id'              => $admin->id,
+            'added_by'                  => $admin->company->id,
         ]);
 
         Account::create([
@@ -44,7 +44,7 @@ class DelegateSeeder extends Seeder
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_code'              => $admin->company_code,
+            'company_id'              => $admin->company->id,
             'added_by'                  => $admin->id,
             'delegate_id'               => $delegate->id,
         ]);

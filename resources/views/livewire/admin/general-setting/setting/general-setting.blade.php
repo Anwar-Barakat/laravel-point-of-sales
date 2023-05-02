@@ -1,51 +1,41 @@
 <div class="col d-flex flex-column">
-    <form wire:submit.prevent='updateSetting'>
+    <form wire:submit.prevent='submit'>
         <div class="card-body">
             <h2 class="mb-4">{{ __('setting.settings') }}</h2>
             <div class="row align-items-center">
                 <div class="col-auto">
-                    @if ($setting->getFirstMediaUrl('global_setting'))
-                        <img src="{{ $setting->getFirstMediaUrl('global_setting') }}" alt="{{ $setting->company_code }}" class="img img-thumbnail" width="200">
+                    @if ($company->getFirstMediaUrl('company_logo'))
+                        <img src="{{ $company->getFirstMediaUrl('company_logo') }}" alt="{{ $company->name }}" class="img img-thumbnail" width="200">
                     @else
                         <img src="{{ asset('backend/static/avatars/default-logo.jpg.webp') }}" alt="">
                     @endif
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.business_profile') }}</h3>
-            <div class="row g-3">
-                <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="row row-cards">
+                <div class="col-12 col-lg-4 col-md-6">
                     <x-input-label class="form-label" :value="__('setting.company_name_ar')" />
-                    <x-text-input type="text" class="form-control" wire:model="company_name_ar" required />
-                    <x-input-error :messages="$errors->get('company_name_ar')" class="mt-2" />
+                    <x-text-input type="text" class="form-control" wire:model="name_ar" required />
+                    <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-12 col-lg-4 col-md-6">
                     <x-input-label class="form-label" :value="__('setting.company_name_en')" />
-                    <x-text-input type="text" class="form-control" wire:model="company_name_en" required />
-                    <x-input-error :messages="$errors->get('company_name_en')" class="mt-2" />
+                    <x-text-input type="text" class="form-control" wire:model="name_en" required />
+                    <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <x-input-label class="form-label" :value="__('setting.company_code')" />
-                    <x-text-input type="text" class="form-control" readonly="readonly" :value="$setting->company_code" />
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-12 col-lg-4 col-md-6">
                     <x-input-label class="form-label" :value="__('setting.mobile')" />
-                    <x-text-input type="text" class="form-control" wire:model="mobile" required />
-                    <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
+                    <x-text-input type="text" class="form-control" wire:model="company.mobile" required />
+                    <x-input-error :messages="$errors->get('company.mobile')" class="mt-2" />
                 </div>
             </div>
-            <div class="row g-3">
+            <div class="row row-cards">
                 <div class="col-md-12 col-lg-6">
-                    <h3 class="card-title mt-4">{{ __('setting.address') }}</h3>
-                    <x-text-input type="text" class="form-control" wire:model="address" required />
-                    <x-input-error :messages="$errors->get('address')" class="mt-2" />
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-md-12 col-lg-6">
-                    <h3 class="card-title mt-4">{{ __('setting.parent_c_account') }}
-                        <small class="text text-sm">( {{ $setting->customer_account->number ?? '-' }} )</small>
-                    </h3>
-                    <select wire:model='customer_account_id' class="form-control">
+                    <label class="form-label">
+                        {{ __('setting.company_name_ar') }}
+                        <span class="text-azure-500">( {{ $company->parentCustomer->account->number ?? '-' }} )</span>
+                    </label>
+                    <select wire:model='company.parent_customer_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>
                         @foreach ($parent_accounts as $account)
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
@@ -54,48 +44,56 @@
                     <x-input-error :messages="$errors->get('customer_account_id')" class="mt-2" />
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <h3 class="card-title mt-4">{{ __('setting.parent_v_account') }}
-                        <small class="text text-sm">( {{ $setting->vendor_account->number ?? '-' }} )</small>
-                    </h3>
-                    <select wire:model='vendor_account_id' class="form-control">
+                    <label class="form-label">
+                        {{ __('setting.parent_v_account') }}
+                        <span class="text-azure-500">( {{ $company->parentVendor->account->number ?? '-' }} )</span>
+                    </label>
+                    <select wire:model='company.parent_vendor_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>
                         @foreach ($parent_accounts as $account)
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('vendor_account_id')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('parent_vendor_id')" class="mt-2" />
                 </div>
             </div>
-            <h3 class="card-title mt-4">{{ __('setting.alert_msg') }}</h3>
-            <div class="row g-3">
+            <div class="row row-cards">
                 <div class="col-md-12 col-lg-6">
-                    <x-text-input type="text" class="form-control" wire:model="alert_msg" required />
-                    <x-input-error :messages="$errors->get('alert_msg')" class="mt-2" />
+                    <label class="form-label">
+                        {{ __('setting.parent_d_account') }}
+                        <span class="text-azure-500">( {{ $company->parentDelegate->account->number ?? '-' }} )</span>
+                    </label>
+                    <select wire:model='company.parent_delegate_id' class="form-control">
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach ($parent_accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('company.parent_delegate_id')" class="mt-2" />
                 </div>
             </div>
-            <h3 class="card-title mt-4">{{ __('setting.updated_by') }}</h3>
-            <div class="row g-3">
-                <div class="col-md-12">
-                    @if (!$setting->updated_by)
-                        {{ __('msgs.not_found') }}
-                    @else
-                        {{ $setting->updatedBy->name ?? '' }}
-                        <b>{{ __('setting.on_the_date') }}</b>
-                        ( {{ Carbon\Carbon::parse($setting->updated_at)->format('Y-m-d H:m A') }} )
-                    @endif
+            <div class="row row-cards">
+                <div class="col-md-12 col-lg-6">
+                    <x-input-label class="form-label" :value="__('setting.address')" />
+                    <textarea class="form-control" rows="3" wire:model="company.address" required></textarea>
+                    <x-input-error :messages="$errors->get('company.address')" class="mt-2" />
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <x-input-label class="form-label" :value="__('setting.alert_msg')" />
+                    <textarea class="form-control" rows="3" wire:model="company.alert_msg" required></textarea>
+                    <x-input-error :messages="$errors->get('company.alert_msg')" class="mt-2" />
                 </div>
             </div>
-
-            <h3 class="card-title mt-4">{{ __('setting.logo') }}</h3>
-            <div class="row g-3">
+            <div class="row row-cards">
                 <div class="col-md-6">
+                    <x-input-label class="form-label" :value="__('setting.logo')" />
                     <x-text-input type="file" class="form-control" wire:model="logo" />
                     <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                 </div>
             </div>
         </div>
         <div class="card-footer bg-transparent mt-auto">
-            <div class="btn-list justify-content-end">
+            <div class="btn-list justify-content-between">
                 <a href="#" class="btn">
                     {{ __('btns.cancel') }}
                 </a>

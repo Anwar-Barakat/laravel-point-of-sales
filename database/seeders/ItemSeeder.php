@@ -40,7 +40,7 @@ class ItemSeeder extends Seeder
                 'retail_price_for_block'            => 80,
                 'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
                 'has_fixed_price'                   => rand(0, 1),
-                'company_code'                      => $admin->company_code,
+                'company_id'                      => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -53,7 +53,7 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_half_block'    => 850,
                 'wholesale_price_for_block'         => 800,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_code'                      => $admin->company_code,
+                'company_id'                      => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -66,7 +66,7 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_half_block'    => 1050,
                 'wholesale_price_for_block'         => 1000,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_code'                      => $admin->company_code,
+                'company_id'                      => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -79,7 +79,7 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_half_block'    => 950,
                 'wholesale_price_for_block'         => 900,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_code'                      => $admin->company_code,
+                'company_id'                      => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
         ];

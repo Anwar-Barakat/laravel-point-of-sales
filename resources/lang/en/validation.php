@@ -157,7 +157,7 @@ return [
         //_______________________
         'company_name_ar'           => 'arabic company name',
         'company_name_en'           => 'english company name',
-        'company_code'              => 'company code',
+        'company_id'              => 'company code',
         'address'                   => 'address',
         'mobile'                    => 'mobile',
         'is_active'                 => 'status',

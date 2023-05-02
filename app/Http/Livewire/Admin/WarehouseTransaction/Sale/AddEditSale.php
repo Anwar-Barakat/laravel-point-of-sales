@@ -22,10 +22,10 @@ class AddEditSale extends Component
     {
         $this->sale         = $sale;
         $this->sale->invoice_date  = date('Y-m-d');
-        $this->customers    = Customer::active()->where('company_code', get_auth_com())->get();
-        $this->delegates    = Delegate::active()->where('company_code', get_auth_com())->get();
+        $this->customers    = Customer::active()->where('company_id', get_auth_com())->get();
+        $this->delegates    = Delegate::active()->where('company_id', get_auth_com())->get();
         $this->categories   = Category::with('subCategories')->where(['parent_id' => 0])->get();
-        $this->stores       = Store::active()->where('company_code', get_auth_com())->get();
+        $this->stores       = Store::active()->where('company_id', get_auth_com())->get();
     }
 
     public function updated($fields)
@@ -39,7 +39,7 @@ class AddEditSale extends Component
         try {
             $this->sale->account_id      = $this->sale->customer->account->id;
             $this->sale->added_by        = get_auth_id();
-            $this->sale->company_code    = get_auth_com();
+            $this->sale->company_id    = get_auth_com();
             $this->sale->save();
 
             toastr()->success(__('msgs.submitted', ['name' => __('transaction.sale_invoice')]));

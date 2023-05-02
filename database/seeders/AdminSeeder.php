@@ -20,13 +20,13 @@ class AdminSeeder extends Seeder
                 'name'              => 'Admin',
                 'email'             => 'admin@admin.com',
                 'password'          => Hash::make('adminadmin'),
-                'company_code'      => 1
+                'company_id'      => 1
             ],
             [
                 'name'              => 'Admin1',
                 'email'             => 'admin1@admin.com',
                 'password'          => Hash::make('adminadmin'),
-                'company_code'      => 1
+                'company_id'      => 1
             ],
         ];
 

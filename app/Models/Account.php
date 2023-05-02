@@ -22,7 +22,7 @@ class Account extends Model
         'initial_balance_status',
         'current_balance',
         'notes',
-        'company_code',
+        'company_id',
         'is_archived',
         'added_by',
         'date',

@@ -24,6 +24,6 @@ class ItemTransaction extends Model
         'qty_before_transaction',
         'qty_after_transaction',
         'added_by',
-        'company_code',
+        'company_id',
     ];
 }

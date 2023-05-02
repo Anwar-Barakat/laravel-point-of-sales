@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('unit_price', 10, 2);
             $table->decimal('total_price', 10, 2);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
-            $table->integer('company_code');
+            $table->foreignId('company_id');
 
             $table->timestamps();
         });

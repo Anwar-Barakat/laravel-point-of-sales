@@ -77,7 +77,7 @@
                     <a href="#" class="dropdown-item">{{ __('partials.status') }}</a>
                     <a href="{{ route('admin.setting.profile') }}" class="dropdown-item">{{ __('partials.profile') }}</a>
                     <div class="dropdown-divider"></div>
-                    <a href="{{ route('admin.settings.index') }}" class="dropdown-item">{{ __('partials.settings') }}</a>
+                    <a href="{{ route('admin.setting.company') }}" class="dropdown-item">{{ __('partials.settings') }}</a>
                     <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('admin-logout').submit();">{{ __('partials.logout') }}</a>
                     <form id="admin-logout" action="{{ route('admin.logout') }}" style="display: none;">
                         @csrf
@@ -129,7 +129,7 @@
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
                                     <!-- setting -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}" href="{{ route('admin.settings.index') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.setting.company') ? 'active' : '' }}" href="{{ route('admin.setting.company') }}">
                                         {{ __('setting.settings') }}
                                     </a>
 

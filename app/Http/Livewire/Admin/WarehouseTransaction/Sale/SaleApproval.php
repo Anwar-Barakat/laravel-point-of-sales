@@ -112,7 +112,7 @@ class SaleApproval extends Component
                     'money'             => $this->sale->paid,
                     'money_for_account' => floatval(-$this->sale->paid), // العميل
                     'report'            => 'Collecting a sales invoice from the customer name(' . $this->sale->customer->name . ') of the owner of the number #' . $this->sale->customer->id,
-                    'company_code'      => get_auth_com(),
+                    'company_id'      => get_auth_com(),
                 ]);
 
                 //________________________________________________
@@ -123,7 +123,7 @@ class SaleApproval extends Component
                 $this->sale->approved_by               = get_auth_id();
                 $this->sale->money_for_account         = $this->sale->cost_after_discount; // العميل مدين بالمبلغ كاملاً
                 $this->sale->treasury_transaction_id   = TreasuryTransaction::latest()->first()->id;
-                $this->sale->company_code              = get_auth_com();
+                $this->sale->company_id              = get_auth_com();
                 $this->sale->save();
 
                 //________________________________________________
@@ -182,7 +182,7 @@ class SaleApproval extends Component
                         'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
                         'qty_after_transaction'         => $qty_after_transaction . ' ' . $prod->item->parentUnit->name,
                         'added_by'                      => get_auth_id(),
-                        'company_code'                  => get_auth_com(),
+                        'company_id'                  => get_auth_com(),
                     ]);
 
                     //________________________________________________

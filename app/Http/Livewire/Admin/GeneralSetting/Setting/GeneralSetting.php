@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\GeneralSetting\Setting;
 
 use App\Models\Account;
+use App\Models\Company;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,24 +11,18 @@ class GeneralSetting extends Component
 {
     use WithFileUploads;
 
-    public $setting,
-        $company_name_ar, $company_name_en,
-        $customer_account_id, $vendor_account_id,
-        $address, $mobile, $alert_msg, $logo;
+    public Company $company;
+
+    public $name_ar, $name_en, $logo;
 
     public $parent_accounts;
 
-    public function mount()
+    public function mount(Company $company)
     {
-        $this->company_name_ar      = $this->setting->getTranslation('company_name', 'ar');
-        $this->company_name_en      = $this->setting->getTranslation('company_name', 'en');
-        $this->address              = $this->setting->address;
-        $this->customer_account_id  = $this->setting->customer_account_id;
-        $this->vendor_account_id    = $this->setting->vendor_account_id;
-        $this->mobile               = $this->setting->mobile;
-        $this->alert_msg            = $this->setting->alert_msg;
-
-        $this->parent_accounts    = Account::where('company_code', get_auth_com())->parent()->get();
+        $this->company              = $company;
+        $this->name_ar  = $company->getTranslation('name', 'ar');
+        $this->name_en  = $company->getTranslation('name', 'en');
+        $this->parent_accounts    = Account::where('company_id', get_auth_com())->parent()->get();
     }
 
     public function updated($fields)
@@ -35,21 +30,26 @@ class GeneralSetting extends Component
         $this->validateOnly($fields);
     }
 
-    public function updateSetting()
+    public function submit()
     {
-        $validation                         = $this->validate();
-        $validation['company_name']['ar']   = $this->company_name_ar;
-        $validation['company_name']['en']   = $this->company_name_en;
-        $this->setting->update($validation);
+        $this->validate();
+        try {
+            $this->company->name = [
+                'ar' => $this->name_ar,
+                'en' => $this->name_en
+            ];
+            $this->company->save();
 
-        if ($this->logo) {
-            $this->setting->clearMediaCollection('global_setting');
-            $this->setting->addMedia($this->logo)
-                ->toMediaCollection('global_setting');
+            if ($this->logo) {
+                $this->company->clearMediaCollection('company_logo');
+                $this->company->addMedia($this->logo)
+                    ->toMediaCollection('company_logo');
+            }
+
+            toastr()->success(__('msgs.updated', ['name' => __('setting.settings')]));
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.setting.company')->with(['error' => $th->getMessage()]);
         }
-
-        toastr()->success(__('msgs.updated', ['name' => __('setting.settings')]));
-        return redirect()->route('admin.settings.index');
     }
 
     public function render()
@@ -60,14 +60,15 @@ class GeneralSetting extends Component
     public function rules(): array
     {
         return [
-            'company_name_ar'       => ['required', 'string', 'min:3'],
-            'company_name_en'       => ['required', 'string'],
-            'address'               => ['required', 'min:3'],
-            'mobile'                => ['required'],
-            'customer_account_id'   => ['required', 'integer'],
-            'vendor_account_id'     => ['required', 'integer'],
-            'alert_msg'             => ['required'],
-            'logo'                  => ['nullable', 'image', 'max:1024', 'mimes:jpeg,png,jpg,svg'],
+            'name_ar'                       => ['required', 'string', 'min:3'],
+            'name_en'                       => ['required', 'string', 'min:3'],
+            'company.address'               => ['required', 'min:3'],
+            'company.mobile'                => ['required'],
+            'company.parent_customer_id'    => ['required', 'integer'],
+            'company.parent_vendor_id'      => ['required', 'integer'],
+            'company.parent_delegate_id'    => ['required', 'integer'],
+            'company.alert_msg'             => ['required'],
+            'logo'                          => ['nullable', 'image', 'max:1024', 'mimes:jpeg,png,jpg,svg'],
         ];
     }
 }

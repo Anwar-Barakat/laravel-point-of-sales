@@ -29,12 +29,12 @@ class TreasuryDeliveryController extends Controller
     public function store(Request $request)
     {
         $request->validate(['treasury_delivery_id'  => ['required', 'integer']]);
-        $comCode = auth()->guard('admin')->user()->company_code;
+        $comCode = auth()->guard('admin')->user()->company->id;
 
         /*
             check if parent(treasury_id) and child(treasury_delivery_id) registed before
         */
-        if (TreasuryDelivery::where(['treasury_id' => $request->id, 'treasury_delivery_id' => $request->treasury_delivery_id, 'company_code' => $comCode])->exists()) {
+        if (TreasuryDelivery::where(['treasury_id' => $request->id, 'treasury_delivery_id' => $request->treasury_delivery_id, 'company_id' => $comCode])->exists()) {
             toastr()->error(__('msgs.exists', ['name' => __('treasury.treasury')]));
             return redirect()->back();
         }
@@ -42,7 +42,7 @@ class TreasuryDeliveryController extends Controller
         TreasuryDelivery::create([
             'treasury_id'           => $request->id,
             'treasury_delivery_id'  => $request->treasury_delivery_id,
-            'company_code'          => $comCode,
+            'company_id'          => $comCode,
             'added_by'              => auth()->guard('admin')->id()
         ]);
 

@@ -7,7 +7,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
                         @if (auth()->guard('admin')->user()->getFirstMediaUrl('admin_avatar'))
-                            <img src="{{ auth()->guard('admin')->user()->getFirstMediaUrl('admin_avatar') }}" alt="{{ auth()->guard('admin')->user()->company_code }}" class="img img-thumbnail" width="200">
+                            <img src="{{ auth()->guard('admin')->user()->getFirstMediaUrl('admin_avatar') }}" alt="{{ auth()->guard('admin')->user()->company->name }}" class="img img-thumbnail" width="200">
                         @else
                             <img src="{{ asset('backend/static/avatars/default-logo.jpg.webp') }}" alt="">
                         @endif

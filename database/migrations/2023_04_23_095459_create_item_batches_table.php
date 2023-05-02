@@ -26,7 +26,7 @@ return new class extends Migration
             $table->date('expiration_date')->nullable();
             $table->boolean('is_archieved')->default(0);
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
-            $table->integer('company_code');
+            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

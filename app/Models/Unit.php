@@ -14,7 +14,7 @@ class Unit extends Model
         'name',
         'status',
         'is_active',
-        'company_code',
+        'company_id',
         'added_by',
         'updated_by',
     ];

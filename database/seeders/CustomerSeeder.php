@@ -30,19 +30,19 @@ class CustomerSeeder extends Seeder
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_code'              => $admin->id,
-            'added_by'                  => $admin->company_code,
+            'company_id'              => $admin->id,
+            'added_by'                  => $admin->company->id,
         ]);
 
         Account::create([
             'name'                      => 'customer 1',
             'account_type_id'           => AccountType::where('name->en', 'customer')->first()->id,
             'is_parent'                 => 0,
-            'parent_id'                 => Setting::where('company_code', $admin->company_code)->first()->customer_account_id,
+            'parent_id'                 => $admin->company->customer_account_id,
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
             'notes'                     => $faker->sentence(10),
-            'company_code'              => $admin->company_code,
+            'company_id'              => $admin->company->id,
             'added_by'                  => $admin->id,
             'customer_id'               => $customer->id,
         ]);

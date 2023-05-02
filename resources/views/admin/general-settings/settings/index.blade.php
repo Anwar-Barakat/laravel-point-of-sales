@@ -7,7 +7,7 @@
         <div class="row g-0">
             @include('admin.general-settings.settings.inc.sidebar')
 
-            @livewire('admin.general-setting.setting.general-setting', ['setting' => $setting])
+            @livewire('admin.general-setting.setting.general-setting', ['company' => $company])
         </div>
     </div>
 </x-master-layout>

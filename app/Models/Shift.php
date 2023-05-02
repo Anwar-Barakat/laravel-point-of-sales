@@ -28,7 +28,7 @@ class Shift extends Model
         'receive_type',
         'review_date',
         'notes',
-        'company_code',
+        'company_id',
     ];
 
 

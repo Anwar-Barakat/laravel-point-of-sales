@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('qty_before_transaction');
             $table->string('qty_after_transaction');
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
-            $table->integer('company_code');
+            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

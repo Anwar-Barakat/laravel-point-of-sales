@@ -37,7 +37,7 @@ class UnitController extends Controller
             $data['name']['ar']     = $request->name_ar;
             $data['name']['en']     = $request->name_en;
             $data['added_by']       = $auth->id;
-            $data['company_code']   = $auth->id;
+            $data['company_id']   = $auth->id;
 
             Unit::create($data);
             toastr()->success(__('msgs.created', ['name' => __('stock.unit')]));
@@ -72,7 +72,7 @@ class UnitController extends Controller
             $data['name']['ar']     = $request->name_ar;
             $data['name']['en']     = $request->name_en;
             $data['updated_by']     = $auth->id;
-            $data['company_code']   = $auth->id;
+            $data['company_id']   = $auth->id;
 
             $unit->update($data);
             toastr()->success(__('msgs.created', ['name' => __('stock.unit')]));

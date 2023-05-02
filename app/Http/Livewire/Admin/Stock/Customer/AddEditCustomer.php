@@ -51,7 +51,7 @@ class AddEditCustomer extends Component
             }
 
             $this->customer['added_by']     = get_auth_id();
-            $this->customer['company_code'] = get_auth_com();
+            $this->customer['company_id'] = get_auth_com();
             $this->customer->save();
 
             Account::updateOrCreate(
@@ -62,12 +62,12 @@ class AddEditCustomer extends Component
                     'name'                      => $this->customer->name,
                     'account_type_id'           => AccountType::where('name->en', 'customer')->first()->id,
                     'is_parent'                 => 0,
-                    'parent_id'                 => Setting::where('company_code', get_auth_com())->first()->customer_account_id,
+                    'parent_id'                 => Setting::where('company_id', get_auth_com())->first()->customer_account_id,
                     'number'                    => uniqid(),
                     'initial_balance_status'    => $this->customer->initial_balance_status,
                     'initial_balance'           => $this->customer->initial_balance,
                     'notes'                     => $this->customer->notes,
-                    'company_code'              => get_auth_com(),
+                    'company_id'              => get_auth_com(),
                     'added_by'                  => get_auth_id(),
                 ]
             );
@@ -93,7 +93,7 @@ class AddEditCustomer extends Component
                 'required',
                 'min:3',
                 Rule::unique('customers', 'name')->ignore($this->customer->id)->where(function ($query) {
-                    return $query->where('company_code', get_auth_com());
+                    return $query->where('company_id', get_auth_com());
                 })
             ],
             'customer.address'                  => ['required', 'min:10'],

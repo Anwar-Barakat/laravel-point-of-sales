@@ -22,7 +22,7 @@ class OrderProduct extends Model implements HasMedia
         'qty',
         'total_price',
         'added_by',
-        'company_code',
+        'company_id',
     ];
 
     public function item(): BelongsTo

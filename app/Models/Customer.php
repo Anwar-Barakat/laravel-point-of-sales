@@ -18,7 +18,7 @@ class Customer extends Model
         'initial_balance_status',
         'current_balance',
         'notes',
-        'company_code',
+        'company_id',
         'is_active',
         'added_by',
         'date',

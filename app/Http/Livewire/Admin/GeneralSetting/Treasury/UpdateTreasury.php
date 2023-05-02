@@ -42,19 +42,19 @@ class UpdateTreasury extends Component
     public function update()
     {
         $id         = $this->treasury->id;
-        $authComp   = Auth::guard('admin')->user()->company_code;
+        $authComp   = Auth::guard('admin')->user()->company->id;
 
         $validaion                  = $this->validate();
         $validaion['updated_by']    = Auth::guard('admin')->id();
         $validaion['date']          = Carbon::now();
 
-        $TreasuryExists = Treasury::where(['company_code' => $authComp, 'name' => $this->name])->first();
+        $TreasuryExists = Treasury::where(['company_id' => $authComp, 'name' => $this->name])->first();
         if ($TreasuryExists && $TreasuryExists->id != $id) {
             toastr()->error(__('msgs.exists', ['name' => __('treasury.treasury')]));
             return;
         }
 
-        $masterExists = Treasury::where(['company_code' => $authComp, 'is_master' => 1])->first();
+        $masterExists = Treasury::where(['company_id' => $authComp, 'is_master' => 1])->first();
         if ($masterExists && $masterExists->is_master == $this->is_master && $masterExists->id != $id) {
             toastr()->error(__('msgs.exists', ['name' => __('msgs.master_treasury')]));
             return;

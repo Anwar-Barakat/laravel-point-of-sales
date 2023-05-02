@@ -60,10 +60,10 @@ class OrderDetail extends Component
                 $this->product->fill([
                     'order_id'      => $this->order->id,
                     'added_by'      => get_auth_id(),
-                    'company_code'  => get_auth_com(),
+                    'company_id'  => get_auth_com(),
                 ])->save();
 
-                $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_code', get_auth_com())->sum('total_price');
+                $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_id', get_auth_com())->sum('total_price');
                 $this->order->fill([
                     'items_cost'            => $totalPrices,
                     'cost_before_discount'  => $totalPrices,
@@ -108,7 +108,7 @@ class OrderDetail extends Component
             'product.item_id'           => [
                 'required',
                 Rule::unique('order_products', 'item_id')->where(function ($query) {
-                    return $query->where('company_code', get_auth_com())
+                    return $query->where('company_id', get_auth_com())
                         ->where('unit_id', $this->product->unit_id)
                         ->where('order_id', $this->order->id);
                 })->ignore($this->product->id)
@@ -125,6 +125,6 @@ class OrderDetail extends Component
     public function getOrderProducts()
     {
         return OrderProduct::where('order_id', $this->order->id)
-            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION - 5);
+            ->where('company_id', get_auth_com())->paginate(CUSTOM_PAGINATION - 5);
     }
 }

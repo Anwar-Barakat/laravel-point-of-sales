@@ -31,8 +31,8 @@ class SaleDetail extends Component
         $this->sale                 = $sale;
         $this->product              = $product;
         $this->product->qty         = 1;
-        $this->customers            = Customer::active()->where('company_code', get_auth_com())->get();
-        $this->stores               = Store::active()->where('company_code', get_auth_com())->get();
+        $this->customers            = Customer::active()->where('company_id', get_auth_com())->get();
+        $this->stores               = Store::active()->where('company_id', get_auth_com())->get();
         $this->items                = Item::active()->get();
     }
 
@@ -108,10 +108,10 @@ class SaleDetail extends Component
                     $this->product->fill([
                         'sale_id'       => $this->sale->id,
                         'added_by'      => get_auth_id(),
-                        'company_code'  => get_auth_com(),
+                        'company_id'  => get_auth_com(),
                     ])->save();
 
-                    $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_code', get_auth_com())->sum('total_price');
+                    $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_id', get_auth_com())->sum('total_price');
                     $this->sale->fill([
                         'items_cost'            => $totalPrices,
                         'cost_before_discount'  => $totalPrices,
@@ -156,7 +156,7 @@ class SaleDetail extends Component
                 'required',
                 'integer',
                 Rule::unique('sale_products', 'item_id')->where(function ($query) {
-                    return $query->where('company_code', get_auth_com())
+                    return $query->where('company_id', get_auth_com())
                         ->where('unit_id', $this->product->unit_id)
                         ->where('sale_id', $this->sale->id);
                 })->ignore($this->product->id)
@@ -171,7 +171,7 @@ class SaleDetail extends Component
     public function getBatches()
     {
         return ItemBatch::select('id', 'unit_price', 'qty', 'production_date', 'expiration_date')
-            ->where(['company_code'         => get_auth_com()])
+            ->where(['company_id'         => get_auth_com()])
             ->when($this->product->item_id,     fn ($q) => $q->where(['item_id'     => $this->product->item_id]))
             ->when($this->product->store_id,    fn ($q) => $q->where(['store_id'    => $this->product->store_id]))
             ->when($this->product->unit_id,     fn ($q) => $q->where(['unit_id'     => $this->item->parentUnit->id]))
@@ -202,7 +202,7 @@ class SaleDetail extends Component
     public function getSaleProducts()
     {
         return SaleProduct::where('sale_id', $this->sale->id)
-            ->where('company_code', get_auth_com())->paginate(CUSTOM_PAGINATION - 5);
+            ->where('company_id', get_auth_com())->paginate(CUSTOM_PAGINATION - 5);
     }
 
     public function getItemAndUnit()

@@ -57,7 +57,7 @@ class EditCategory extends Component
         $validation['name']['ar']   = $this->name_ar;
         $validation['name']['en']   = $this->name_en;
         $validation['added_by']     = $auth->id;
-        $validation['company_code'] = $auth->company_code;
+        $validation['company_id']   = $auth->company->id;
 
         $this->category->update($validation);
 

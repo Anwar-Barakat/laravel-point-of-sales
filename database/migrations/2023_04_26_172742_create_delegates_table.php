@@ -21,7 +21,6 @@ return new class extends Migration
             $table->decimal('current_balance', 10, 2)->default(0);
 
             $table->string('notes');
-            $table->integer('company_code');
             $table->boolean('is_active')->default(1);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->boolean('commission_type')->nullable()->comment('0 => percentage, 1 => fixed');
@@ -30,6 +29,7 @@ return new class extends Migration
             $table->decimal('commission_value_for_half_block', 10, 2)->nullable();
             $table->decimal('commission_value_for_block', 10, 2)->nullable();
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

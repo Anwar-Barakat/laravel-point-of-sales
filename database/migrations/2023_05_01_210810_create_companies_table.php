@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->integer('company_code');
+            $table->string('name');
             $table->string('alert_msg');
             $table->string('address');
             $table->string('mobile');
             $table->boolean('is_active')->default(1);
 
-            $table->foreignId('customer_account_id')->nullable();
-            $table->foreignId('vendor_account_id')->nullable();
-            $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
-            $table->foreignId('updated_by')->constrained('admins')->cascadeOnUpdate();
+            $table->foreignId('parent_customer_id')->nullable();
+            $table->foreignId('parent_vendor_id')->nullable();
+            $table->foreignId('parent_delegate_id')->nullable();
+            $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('companies');
     }
 };

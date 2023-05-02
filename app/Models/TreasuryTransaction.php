@@ -24,7 +24,7 @@ class TreasuryTransaction extends Model
         'money',
         'money_for_account',
         'report',
-        'company_code',
+        'company_id',
     ];
 
     public function account(): BelongsTo

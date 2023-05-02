@@ -5,11 +5,12 @@ return [
     'my_account'            => 'الملف الشخصي',
     'profile_details'       => 'تفاصيل الملف الشخصي',
     'business_profile'      => 'ملف الأعمال الشخصي',
+    'company_setting'       => 'إعدادات الشركة',
     'details'               => 'تفاصيل',
     'settings'              => 'الأعدادات',
     'company_name_ar'       => 'اسم الشركة بالعربي',
     'company_name_en'       => 'اسم الشركة بالأنكليزي',
-    'company_code'          => 'رمز الشركة',
+    'company_id'          => 'رمز الشركة',
     'company'               => 'الشركة',
     'bio'                   => 'السيرة الذاتية',
     'status'                => 'الحالة',
@@ -27,6 +28,7 @@ return [
     'password_confirmation' => 'تأكيد كلمة المرور',
     'parent_c_account'      => 'الحساب الأب للعملاء',
     'parent_v_account'      => 'الحساب الأب للموردين',
+    'parent_d_account'      => 'الحساب الأب للمندوبين',
     'treasury_type'         => 'نوع الخزنة',
 
     //_______________________

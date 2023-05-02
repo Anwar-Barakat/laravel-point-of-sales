@@ -34,7 +34,7 @@ class SaleSeeder extends Seeder
             'notes'         => $faker->sentence(20),
             'account_id'    => $customer->account->id,
             'added_by'      => $admin->id,
-            'company_code'  => $admin->company_code,
+            'company_id'  => $admin->company->id,
         ]);
     }
 }

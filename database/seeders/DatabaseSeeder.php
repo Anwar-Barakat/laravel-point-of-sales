@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             UserSeeder::class,
-            SettingSeeder::class,
+            CompanySeeder::class,
             TreasurySeeder::class,
             TreasuryDeliverySeeder::class,
 
@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             CustomerSeeder::class,
             DelegateSeeder::class,
             SaleSeeder::class,
+
         ]);
     }
 }

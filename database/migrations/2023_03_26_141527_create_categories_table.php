@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('is_active')->default(true)->comment('1 => is active');
-            $table->integer('company_code');
+            $table->foreignId('company_id');
             $table->text('description');
 
             $table->foreignId('section_id')->constrained('sections')->cascadeOnUpdate();

@@ -43,7 +43,7 @@ class StoreController extends Controller
             'mobile'        => $data['mobile'],
             'is_active'     => $data['is_active'],
             'added_by'      => $auth->id,
-            'company_code'  => $auth->company_code,
+            'company_id'  => $auth->company->id,
         ]);
         toastr()->success(__('msgs.created', ['name' => __('stock.store')]));
         return redirect()->route('admin.stores.index');
@@ -82,7 +82,7 @@ class StoreController extends Controller
             'mobile'        => $data['mobile'],
             'is_active'     => $data['is_active'],
             'updated_by'    => $auth->id,
-            'company_code'  => $auth->company_code,
+            'company_id'  => $auth->company->id,
         ]);
         toastr()->success(__('msgs.updated', ['name' => __('stock.store')]));
         return redirect()->route('admin.stores.index');

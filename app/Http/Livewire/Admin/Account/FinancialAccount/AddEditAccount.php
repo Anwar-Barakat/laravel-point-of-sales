@@ -53,7 +53,7 @@ class AddEditAccount extends Component
 
             $this->account['added_by']     = get_auth_id();
             $this->account['number']       = uniqid();
-            $this->account['company_code'] = get_auth_com();
+            $this->account['company_id'] = get_auth_com();
 
             switch ($this->account->initial_balance_status) {
                 case 1:
@@ -96,7 +96,7 @@ class AddEditAccount extends Component
                 'required',
                 'min:3',
                 Rule::unique('accounts', 'name')->ignore($this->account->id)->where(function ($query) {
-                    return $query->where('company_code', get_auth_com());
+                    return $query->where('company_id', get_auth_com());
                 })
             ],
             'account.account_type_id'          => ['required', 'integer'],
@@ -111,7 +111,7 @@ class AddEditAccount extends Component
 
     public function getParentAccount()
     {
-        return Account::select('id', 'name')->where(['company_code' => get_auth_com()])
+        return Account::select('id', 'name')->where(['company_id' => get_auth_com()])
             ->where('id', '!=', $this->account->id)->parent()->get();
     }
 }

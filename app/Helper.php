@@ -20,7 +20,7 @@ if (!function_exists('get_auth_id')) {
 if (!function_exists('get_auth_com')) {
     function get_auth_com()
     {
-        return Auth::guard('admin')->user()->company_code;
+        return Auth::guard('admin')->user()->company->id;
     }
 }
 
@@ -29,7 +29,7 @@ if (!function_exists('has_open_shift')) {
     {
         return Shift::with(['treasury:id,name', 'admin:id,name'])->where([
             'admin_id'      => get_auth_id(),
-            'company_code'  => get_auth_com(),
+            'company_id'  => get_auth_com(),
             'is_finished'   => 0
         ])->first();
     }
@@ -39,7 +39,7 @@ if (!function_exists('get_treasury_balance')) {
 
     function get_treasury_balance()
     {
-        return TreasuryTransaction::where(['company_code' => get_auth_com(), 'shift_id' => has_open_shift()->id])
+        return TreasuryTransaction::where(['company_id' => get_auth_com(), 'shift_id' => has_open_shift()->id])
             ->sum('money') ?? 0;
     }
 }
@@ -48,7 +48,7 @@ if (!function_exists('get_transaction')) {
 
     function get_transaction()
     {
-        return TreasuryTransaction::where(['company_code' => get_auth_com(), 'shift_id' => has_open_shift()->id])->first();
+        return TreasuryTransaction::where(['company_id' => get_auth_com(), 'shift_id' => has_open_shift()->id])->first();
     }
 }
 
@@ -56,10 +56,10 @@ if (!function_exists('update_account_balance')) {
 
     function update_account_balance(Account $account)
     {
-        $trans_balance = TreasuryTransaction::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');
+        $trans_balance = TreasuryTransaction::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
         if ($account->accountType->id == 1) {
             // vendor
-            $balance = Order::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');
+            $balance = Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
             $balance = $account->vendor->initial_balance
                 + $balance
                 + $trans_balance;
@@ -67,7 +67,7 @@ if (!function_exists('update_account_balance')) {
             $account->vendor->update(['current_balance' => $balance]);
         } elseif ($account->accountType->id == 2) {
             // customer
-            $balance = Sale::where(['account_id' => $account->id, 'company_code' => get_auth_com()])->sum('money_for_account');
+            $balance = Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
             $balance = $account->customer->initial_balance
                 + $balance
                 + $trans_balance;
@@ -80,7 +80,7 @@ if (!function_exists('update_account_balance')) {
 if (!function_exists('batch_item_qty')) {
     function item_batch_qty(Item $item, $store_id = null)
     {
-        return ItemBatch::where(['item_id' => $item->id, 'is_archieved' => 0, 'company_code' => get_auth_com()])
+        return ItemBatch::where(['item_id' => $item->id, 'is_archieved' => 0, 'company_id' => get_auth_com()])
             ->when($store_id, function ($query, $store_id) {
                 return $query->where('store_id', $store_id);
             })->sum('qty');

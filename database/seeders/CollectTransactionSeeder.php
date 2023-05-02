@@ -31,7 +31,7 @@ class CollectTransactionSeeder extends Seeder
             'is_account'        => 1,
             'account_id'        => $account->id,
             'money_for_account' => floatval(-20000),
-            'company_code'      => $admin->company_code,
+            'company_id'      => $admin->company->id,
             'transaction_date'  => date('Y-m-d'),
             'report'            => 'Borrowing from a bank'
         ]);

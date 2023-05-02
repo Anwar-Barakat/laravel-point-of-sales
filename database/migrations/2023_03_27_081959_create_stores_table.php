@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('address');
             $table->boolean('is_active')->default(true);
-            $table->integer('company_code');
+            $table->foreignId('company_id');
 
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();

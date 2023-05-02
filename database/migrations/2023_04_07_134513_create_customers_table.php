@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('current_balance', 10, 2)->default(0);
 
             $table->string('notes');
-            $table->integer('company_code');
+            $table->foreignId('company_id');
             $table->boolean('is_active')->default(1);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();

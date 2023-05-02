@@ -28,7 +28,7 @@ return new class extends Migration
             $table->decimal('money', 10, 2)->default(0);
             $table->decimal('money_for_account', 10, 2)->default(0);
             $table->text('report');
-            $table->integer('company_code');
+            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

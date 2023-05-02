@@ -20,7 +20,7 @@ class ShiftSeeder extends Seeder
         Shift::create([
             'treasury_id'   => Treasury::inRandomOrder()->first()->id,
             'admin_id'      => $admin->id,
-            'company_code'  => $admin->company_code,
+            'company_id'  => $admin->company->id,
         ]);
     }
 }

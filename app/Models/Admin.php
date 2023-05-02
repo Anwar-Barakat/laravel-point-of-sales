@@ -24,7 +24,7 @@ class Admin extends Authenticatable implements HasMedia
         'is_active',
         'address',
         'bio',
-        'company_code'
+        'company_id'
     ];
 
     protected $guard    = 'admin';
@@ -41,5 +41,10 @@ class Admin extends Authenticatable implements HasMedia
     public function treasuries(): HasMany
     {
         return $this->hasMany(Treasury::class);
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class);
     }
 }

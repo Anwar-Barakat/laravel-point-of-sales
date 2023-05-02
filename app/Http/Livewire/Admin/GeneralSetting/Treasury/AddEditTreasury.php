@@ -27,14 +27,14 @@ class AddEditTreasury extends Component
     {
         $this->validate();
         try {
-            $masterExists   = Treasury::where(['company_code' => get_auth_com(), 'is_master' => '1'])->first();
+            $masterExists   = Treasury::where(['company_id' => get_auth_com(), 'is_master' => '1'])->first();
             if ($masterExists && $masterExists->is_master == $this->treasury['is_master']) {
                 toastr()->error(__('msgs.exists', ['name' => __('treasury.master_treasury')]));
                 return false;
             }
 
             $this->treasury['admin_id']       = $this->admin->id ?? get_auth_id();
-            $this->treasury['company_code']   = get_auth_com();
+            $this->treasury['company_id']   = get_auth_com();
             $this->treasury->save();
 
             toastr()->success(__('msgs.submitted', ['name' => __('treasury.treasury')]));
@@ -55,8 +55,8 @@ class AddEditTreasury extends Component
                 'required',
                 'min:3',
                 Rule::unique('treasuries', 'name')->ignore($this->treasury->id)->where(function ($query) {
-                    return $query->where('company_code', get_auth_com())
-                        ->orWhere(['company_code' => get_auth_com(), 'admin_id' => get_auth_id()]);
+                    return $query->where('company_id', get_auth_com())
+                        ->orWhere(['company_id' => get_auth_com(), 'admin_id' => get_auth_id()]);
                 })
             ],
             'treasury.is_master'             => ['required', 'in:0,1'],

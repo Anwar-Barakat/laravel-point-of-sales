@@ -35,7 +35,7 @@ class ItemFactory extends Factory
             'wholesale_price_for_half_block'    => $this->faker->numberBetween(900, 1000),
             'wholesale_cost_price'              => $this->faker->numberBetween(800, 900),
             'has_fixed_price'                   => rand(0, 1),
-            'company_code'                      => $admin->company_code,
+            'company_id'                      => $admin->company->id,
             'added_by'                          => $admin->id,
         ];
     }

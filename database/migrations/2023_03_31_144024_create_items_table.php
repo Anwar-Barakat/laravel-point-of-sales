@@ -39,7 +39,7 @@ return new class extends Migration
             $table->decimal('all_retail_qty')->nullable()->comment('all qty in retail unit ');
 
             $table->boolean('has_fixed_price')->default(1)->comment('Does it has fixed price for invoices?');
-            $table->integer('company_code');
+            $table->foreignId('company_id');
 
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();

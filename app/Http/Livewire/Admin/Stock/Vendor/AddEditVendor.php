@@ -54,7 +54,7 @@ class AddEditVendor extends Component
             }
 
             $this->vendor['added_by']     = get_auth_id();
-            $this->vendor['company_code'] = get_auth_com();
+            $this->vendor['company_id'] = get_auth_com();
             $this->vendor->save();
 
             Account::updateOrCreate(
@@ -65,12 +65,12 @@ class AddEditVendor extends Component
                     'name'                      => $this->vendor->name,
                     'account_type_id'           => AccountType::where('name->en', 'vendor')->first()->id,
                     'is_parent'                 => 0,
-                    'parent_id'                 => Setting::where('company_code', get_auth_com())->first()->vendor_account_id,
+                    'parent_id'                 => Setting::where('company_id', get_auth_com())->first()->vendor_account_id,
                     'number'                    => uniqid(),
                     'initial_balance_status'    => $this->vendor->initial_balance_status,
                     'initial_balance'           => $this->vendor->initial_balance,
                     'notes'                     => $this->vendor->notes,
-                    'company_code'              => get_auth_com(),
+                    'company_id'              => get_auth_com(),
                     'added_by'                  => get_auth_id(),
                 ]
             );
@@ -96,7 +96,7 @@ class AddEditVendor extends Component
                 'required',
                 'min:3',
                 Rule::unique('items', 'name')->ignore($this->vendor->id)->where(function ($query) {
-                    return $query->where('company_code', get_auth_com());
+                    return $query->where('company_id', get_auth_com());
                 })
             ],
             'vendor.address'                    => ['required', 'min:10'],

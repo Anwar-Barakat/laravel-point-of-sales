@@ -21,12 +21,12 @@ class TreasurySeeder extends Seeder
             [
                 'name'                  => 'Casher 1',
                 'is_master'             => 1,
-                'company_code'          => $admin->company_code,
+                'company_id'          => $admin->company->id,
                 'admin_id'              => $admin->id,
             ],
             [
                 'name'                  => 'Casher 2',
-                'company_code'          => $admin->company_code,
+                'company_id'          => $admin->company->id,
                 'admin_id'              => $admin->id,
             ],
         ];

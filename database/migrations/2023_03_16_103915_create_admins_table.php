@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->text('bio')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->integer('company_code')->default(0);
+            $table->integer('company_id')->default(0);
             $table->timestamps();
         });
     }

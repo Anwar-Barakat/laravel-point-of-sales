@@ -25,7 +25,7 @@ class TreasuryDeliverySeeder extends Seeder
                 'treasury_delivery_id'  => Treasury::where('is_master', 0)->first()->id,
                 'added_by'              => $admin->id,
                 'updated_by'            => $admin->id,
-                'company_code'          => $admin->company_code,
+                'company_id'          => $admin->company->id,
             ]
         ];
 

@@ -34,7 +34,7 @@ return new class extends Migration
             $table->boolean('is_reviewed')->default(0);
             $table->dateTime('review_date')->nullable();
             $table->string('notes')->nullable();
-            $table->integer('company_code');
+            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

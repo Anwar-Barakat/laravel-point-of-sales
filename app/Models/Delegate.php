@@ -16,7 +16,6 @@ class Delegate extends Model
         'initial_balance_status',
         'current_balance',
         'notes',
-        'company_code',
         'is_active',
         'added_by',
         'commission_type',
@@ -25,6 +24,7 @@ class Delegate extends Model
         'commission_value_for_half_block',
         'commission_value_for_block',
         'category_id',
+        'company_id',
     ];
 
     public function scopeActive($query)

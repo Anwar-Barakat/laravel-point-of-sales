@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneralSetting\Admin\AdminController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\GeneralSetting\Setting\AdminProfileController;
-use App\Http\Controllers\Admin\GeneralSetting\Setting\SettingController;
+use App\Http\Controllers\Admin\GeneralSetting\Setting\CompanyController;
 use App\Http\Controllers\Admin\GeneralSetting\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\GeneralSetting\Treasury\TreasuryDelivery\TreasuryDeliveryController;
 use App\Http\Controllers\Admin\Stock\Category\CategoryController;
@@ -67,7 +67,7 @@ Route::group(
                 //_______________________
                 // Setting
                 //_______________________
-                Route::resource('/settings',                    SettingController::class)->only(['index']);
+                Route::get('/settings',                         CompanyController::class)->name('setting.company');
                 Route::get('/profile',                          AdminProfileController::class)->name('setting.profile');
                 Route::get('/change-password',                  AdminChangePasswordController::class)->name('setting.change-password');
 

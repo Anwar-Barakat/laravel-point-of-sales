@@ -14,6 +14,7 @@ ul {
 
 .row-cards {
     margin-bottom: 1rem;
+    margin-top: unset;
 }
 
 button,

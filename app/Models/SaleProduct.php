@@ -24,7 +24,7 @@ class SaleProduct extends Model implements HasMedia
         'qty',
         'total_price',
         'added_by',
-        'company_code',
+        'company_id',
     ];
 
     const SALETYPE      = [1 => 'sectoral', 2 => 'half_wholesale', 3 => 'wholesale'];

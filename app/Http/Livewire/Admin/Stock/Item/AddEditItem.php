@@ -26,9 +26,9 @@ class AddEditItem extends Component
     public function mount(Item $item)
     {
         $this->item             = $item;
-        $this->parent_items     = Item::select('id', 'name')->where(['company_code' => get_auth_com()])->active()->get();
-        $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_code', get_auth_com())->active()->latest()->get();
-        $this->wholesale_units  = Unit::select('id', 'name')->where(['company_code' => get_auth_com(), 'status' => 'wholesale'])->active()->get();
+        $this->parent_items     = Item::select('id', 'name')->where(['company_id' => get_auth_com()])->active()->get();
+        $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_id', get_auth_com())->active()->latest()->get();
+        $this->wholesale_units  = Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'wholesale'])->active()->get();
     }
 
     public function updated($propertyName)
@@ -39,7 +39,7 @@ class AddEditItem extends Component
     public function updatedItemHasRetailUnit()
     {
         $this->retail_units = $this->item->has_retail_unit
-            ? Unit::select('id', 'name')->where(['company_code' => get_auth_com(), 'status' => 'retail'])->active()->get()
+            ? Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'retail'])->active()->get()
             : [];
     }
 
@@ -49,7 +49,7 @@ class AddEditItem extends Component
         $this->validate();
         try {
             $this->item['added_by']     = get_auth_id();
-            $this->item['company_code'] = get_auth_com();
+            $this->item['company_id'] = get_auth_com();
             $this->item->save();
 
             if ($this->image) {
@@ -78,7 +78,7 @@ class AddEditItem extends Component
                 'required',
                 'min:3',
                 Rule::unique('items', 'name')->ignore($this->item->id)->where(function ($query) {
-                    return $query->where('company_code', get_auth_com());
+                    return $query->where('company_id', get_auth_com());
                 })
             ],
 

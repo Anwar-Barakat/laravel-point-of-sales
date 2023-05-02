@@ -10,7 +10,7 @@ class TreasuryDelivery extends Model
     use HasFactory;
 
     protected $fillable = [
-        'company_code',
+        'company_id',
         'treasury_id',
         'treasury_delivery_id',
         'added_by',

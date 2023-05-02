@@ -20,6 +20,6 @@ class ItemBatch extends Model
         'expiration_date',
         'is_archieved',
         'added_by',
-        'company_code',
+        'company_id',
     ];
 }

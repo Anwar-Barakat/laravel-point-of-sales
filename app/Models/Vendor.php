@@ -17,7 +17,7 @@ class Vendor extends Model
         'current_balance',
         'category_id',
         'notes',
-        'company_code',
+        'company_id',
         'is_active',
         'added_by',
         'date',

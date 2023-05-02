@@ -215,7 +215,7 @@ return [
         //_______________________
         'company_name_ar'               => 'اسم الشركة بالعربي',
         'company_name_en'               => 'اسم الشركة بالانكليزي',
-        'company_code'                  => 'رمز الشركة',
+        'company_id'                  => 'رمز الشركة',
         'address'                       => 'العنوان',
         'mobile'                        => 'الهاتف',
         'is_active'                     => 'نشط',

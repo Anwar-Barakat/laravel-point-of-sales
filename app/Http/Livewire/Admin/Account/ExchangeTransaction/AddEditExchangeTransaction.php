@@ -23,7 +23,7 @@ class AddEditExchangeTransaction extends Component
     public function mount(TreasuryTransaction $transaction)
     {
         $this->transaction  = $transaction;
-        $this->accounts     = Account::with(['accountType:id,name'])->where(['company_code' => get_auth_com(), 'is_parent' => 0])->active()->get();
+        $this->accounts     = Account::with(['accountType:id,name'])->where(['company_id' => get_auth_com(), 'is_parent' => 0])->active()->get();
         $this->shiftTypes   = ShiftType::private()->active()->get();
     }
 
@@ -62,7 +62,7 @@ class AddEditExchangeTransaction extends Component
                     'is_approved'       => 1,
                     'is_account'        => 1,
                     'money_for_account' => $this->transaction->money,
-                    'company_code'      => get_auth_com(),
+                    'company_id'      => get_auth_com(),
                 ])->save();
 
                 has_open_shift()->treasury->increment('last_payment_exchange');
@@ -88,7 +88,7 @@ class AddEditExchangeTransaction extends Component
     public function render()
     {
         $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
-            ->where(['company_code' => get_auth_com()])
+            ->where(['company_id' => get_auth_com()])
             ->where('money', '<', '0')
             ->paginate(CUSTOM_PAGINATION);
 

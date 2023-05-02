@@ -123,7 +123,7 @@ class OrderApproval extends Component
                     'money'             => floatval(-$this->order->paid),
                     'money_for_account' => $this->order->paid,
                     'report'            => 'Disbursement for a purchase invoice from the vendor of the number holder #' . $this->order->vendor->id,
-                    'company_code'      => get_auth_com(),
+                    'company_id'      => get_auth_com(),
                 ]);
 
                 //________________________________________________
@@ -134,7 +134,7 @@ class OrderApproval extends Component
                 $this->order->approved_by               = get_auth_id();
                 $this->order->money_for_account         = floatval(-$this->order->cost_after_discount);
                 $this->order->treasury_transaction_id   = TreasuryTransaction::latest()->first()->id;
-                $this->order->company_code              = get_auth_com();
+                $this->order->company_id              = get_auth_com();
                 $this->order->save();
 
                 //________________________________________________
@@ -171,7 +171,7 @@ class OrderApproval extends Component
                         'store_id'          => $this->order->store->id,
                         'unit_id'           => $prod->item->parentUnit->id,
                         'unit_price'        => $unit_price,
-                        'company_code'      => get_auth_com(),
+                        'company_id'      => get_auth_com(),
                     ];
                     if ($prod->item->type == 2) {
                         $data['production_date']   = $prod->production_date;
@@ -210,7 +210,7 @@ class OrderApproval extends Component
                         'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
                         'qty_after_transaction'         => $qty_after_transaction . ' ' . $prod->item->parentUnit->name,
                         'added_by'                      => get_auth_id(),
-                        'company_code'                  => get_auth_com(),
+                        'company_id'                  => get_auth_com(),
                     ]);
 
                     //________________________________________________

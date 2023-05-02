@@ -45,7 +45,7 @@ return new class extends Migration
             $table->decimal('vendor_balance_before', 10, 2)->nullable();
             $table->decimal('vendor_balance_after', 10, 2)->nullable();
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
-            $table->integer('company_code');
+            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

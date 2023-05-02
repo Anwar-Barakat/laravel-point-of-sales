@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('is_active')->default(1);
             $table->string('status')->comment('either retails or wholesale');
-            $table->integer('company_code');
+            $table->foreignId('company_id');
 
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('updated_by')->nullable()->constrained('admins')->cascadeOnUpdate();
