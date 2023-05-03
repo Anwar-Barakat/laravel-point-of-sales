@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Stock\Unit;
 
-use App\Http\Requests\Admin\StoreUnitRequest;
-use App\Http\Requests\Admin\UpdateUnitRequest;
 use App\Models\Unit;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class UnitController extends Controller
 {
@@ -14,8 +13,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units  = Unit::latest()->paginate(CUSTOM_PAGINATION);
-        return view('admin.stocks.units.index', ['units' => $units]);
+        return view('admin.stocks.units.index');
     }
 
     /**
@@ -29,20 +27,8 @@ class UnitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUnitRequest $request)
+    public function store(Request $request)
     {
-        $auth   = auth()->guard('admin')->user();
-        if ($request->isMethod('post')) {
-            $data                   = $request->only(['is_active', 'status']);
-            $data['name']['ar']     = $request->name_ar;
-            $data['name']['en']     = $request->name_en;
-            $data['added_by']       = $auth->id;
-            $data['company_id']   = $auth->id;
-
-            Unit::create($data);
-            toastr()->success(__('msgs.created', ['name' => __('stock.unit')]));
-            return redirect()->route('admin.units.index');
-        }
     }
 
     /**
@@ -64,20 +50,8 @@ class UnitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUnitRequest $request, Unit $unit)
+    public function update(Request $request, Unit $unit)
     {
-        $auth   = auth()->guard('admin')->user();
-        if ($request->isMethod('put')) {
-            $data                   = $request->only(['is_active', 'status']);
-            $data['name']['ar']     = $request->name_ar;
-            $data['name']['en']     = $request->name_en;
-            $data['updated_by']     = $auth->id;
-            $data['company_id']   = $auth->id;
-
-            $unit->update($data);
-            toastr()->success(__('msgs.created', ['name' => __('stock.unit')]));
-            return redirect()->route('admin.units.index');
-        }
     }
 
     /**
@@ -85,8 +59,5 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        $unit->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('stock.unit')]));
-        return redirect()->back();
     }
 }

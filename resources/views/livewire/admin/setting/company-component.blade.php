@@ -12,7 +12,7 @@
                 </div>
             </div>
             <h3 class="card-title mt-4">{{ __('setting.business_profile') }}</h3>
-            <div class="row row-cards">
+            <div class="row row-cards mb-3">
                 <div class="col-12 col-lg-4 col-md-6">
                     <x-input-label class="form-label" :value="__('setting.company_name_ar')" />
                     <x-text-input type="text" class="form-control" wire:model="name_ar" required />
@@ -29,7 +29,7 @@
                     <x-input-error :messages="$errors->get('company.mobile')" class="mt-2" />
                 </div>
             </div>
-            <div class="row row-cards">
+            <div class="row row-cards mb-3">
                 <div class="col-md-12 col-lg-6">
                     <label class="form-label">
                         {{ __('setting.company_name_ar') }}
@@ -57,7 +57,7 @@
                     <x-input-error :messages="$errors->get('company.parent_vendor_id')" class="mt-2" />
                 </div>
             </div>
-            <div class="row row-cards">
+            <div class="row row-cards mb-3">
                 <div class="col-md-12 col-lg-6">
                     <label class="form-label">
                         {{ __('setting.parent_d_account') }}
@@ -72,7 +72,7 @@
                     <x-input-error :messages="$errors->get('company.parent_delegate_id')" class="mt-2" />
                 </div>
             </div>
-            <div class="row row-cards">
+            <div class="row row-cards mb-3">
                 <div class="col-md-12 col-lg-6">
                     <x-input-label class="form-label" :value="__('setting.address')" />
                     <textarea class="form-control" rows="3" wire:model="company.address" required></textarea>
@@ -84,7 +84,7 @@
                     <x-input-error :messages="$errors->get('company.alert_msg')" class="mt-2" />
                 </div>
             </div>
-            <div class="row row-cards">
+            <div class="row row-cards mb-3">
                 <div class="col-md-6">
                     <x-input-label class="form-label" :value="__('setting.logo')" />
                     <x-text-input type="file" class="form-control" wire:model="logo" />
