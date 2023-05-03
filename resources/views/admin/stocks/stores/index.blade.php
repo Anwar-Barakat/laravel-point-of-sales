@@ -83,6 +83,8 @@
             </div>
         </div>
 
+        <div class="card-footer">
+        </div>
         <!-- Add store modal -->
         @include('admin.stocks.stores.create')
     </div>

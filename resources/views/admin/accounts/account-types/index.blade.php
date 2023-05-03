@@ -7,7 +7,6 @@
         <div class="card-header d-flex align-items-center justify-content-between">
             <h3 class="card-title">{{ __('msgs.all', ['name' => __('account.account_types')]) }}</h3>
         </div>
-
         <div class="card-body">
             <div id="table-default" class="table-responsive">
                 <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
@@ -44,6 +43,8 @@
                     {{ $account_types->links('pagination::bootstrap-5') }}
                 </div>
             </div>
+        </div>
+        <div class="card-footer">
         </div>
     </div>
 </x-master-layout>

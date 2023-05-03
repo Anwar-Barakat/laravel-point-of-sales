@@ -10,5 +10,8 @@
         </div>
 
         @livewire('admin.setting.treasury.show-treasury')
+
+        <div class="card-footer">
+        </div>
     </div>
 </x-master-layout>

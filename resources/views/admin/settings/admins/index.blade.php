@@ -9,5 +9,8 @@
         </div>
 
         @livewire('admin.setting.admin.show-admin')
+
+        <div class="card-footer">
+        </div>
     </div>
 </x-master-layout>

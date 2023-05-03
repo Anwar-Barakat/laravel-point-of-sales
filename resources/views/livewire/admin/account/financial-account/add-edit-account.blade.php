@@ -3,14 +3,14 @@
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.account_name')" />
                         <x-text-input type="text" class="form-control" wire:model.debounce.350='account.name' />
                         <x-input-error :messages="$errors->get('account.name')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.account_type')" />
                         <select class="form-select" wire:model.debounce.350='account.account_type_id'>
@@ -22,7 +22,7 @@
                         <x-input-error :messages="$errors->get('account.account_type_id')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
                         <select class="form-select" wire:model.debounce.350='account.is_archived'>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('account.is_parent_account')" />
                         <select class="form-select" wire:model.debounce.350='account.is_parent'>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 @if ($parent_accounts)
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.parent_accounts')" />
                             <select class="form-select" wire:model.debounce.350='account.parent_id'>
@@ -63,7 +63,7 @@
             </div>
             @if (!$edit)
                 <div class="row row-cards">
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
                             <select class="form-select" wire:model.debounce.350='account.initial_balance_status'>
@@ -75,7 +75,7 @@
                             <x-input-error :messages="$errors->get('account.initial_balance_status')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
                             <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='account.initial_balance' />
@@ -86,7 +86,7 @@
             @endif
 
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
                         <textarea rows="3" class="form-control" wire:model.debounce.350='account.notes'></textarea>

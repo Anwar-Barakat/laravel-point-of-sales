@@ -72,6 +72,9 @@
             </div>
         </div>
 
+        <div class="card-footer">
+        </div>
+
         <!-- Add section modal -->
         @include('admin.stocks.sections.create')
     </div>

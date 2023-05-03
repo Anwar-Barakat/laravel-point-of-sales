@@ -21,7 +21,7 @@ class CollectTransactionSeeder extends Seeder
         $account    = Account::where('number', 8)->first(); // islamic bank
 
         TreasuryTransaction::create([
-            'money'             => 20000, // treasury is credit
+            'money'             => 20000, // treasury is debit
             'shift_id'          => $shift->id,
             'shift_type_id'     => 16, // Borrowing from a bank
             'admin_id'          => $admin->id,

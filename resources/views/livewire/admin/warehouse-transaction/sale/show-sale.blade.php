@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('stock.vendor')" />
+                        <x-input-label class="form-label" :value="__('stock.delegate')" />
                         <select class="form-select" wire:model='delegate_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Delegate::get() as $delegate)
@@ -190,5 +190,8 @@
                 {{ $sales->links('pagination::bootstrap-5') }}
             </div>
         </div>
+    </div>
+
+    <div class="card-footer">
     </div>
 </div>

@@ -34,7 +34,7 @@ return [
     'initial_balance_status'        => 'حالة الرصيد الأبتدائي',
     'current_balamce'               => 'الرصيد الحالي',
     'is_archived'                   => 'مؤرشف',
-
+    'amount'                        => 'المبلغ',
 
     //_______________________
     // Vendors
@@ -57,8 +57,8 @@ return [
     'transaction_date'          => 'تاريخ المعاملة',
     'shift_type'                => 'نوع التحويل',
     'report'                    => 'تقرير',
-    'counterpart_collection'    => 'تحصيل نظير',
-    'counterpart_exchange'      => 'صرف نظير',
+    'counterpart_collection'    => 'تحصيل نظير...',
+    'counterpart_exchange'      => 'صرف نظير...',
     'cash_collection_screen'    => 'شاشة تحصيل النقدية',
     'cash_exchange_screen'      => 'شاشة صرف النقدية',
     'click_here'                => 'إضغط هنا',

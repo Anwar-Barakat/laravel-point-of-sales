@@ -14,17 +14,30 @@ class AddEditExchangeTransaction extends Component
 {
     use WithPagination;
 
+    public $created_at,
+        $shift_type_id,
+        $treasury_id,
+        $admin_id,
+        $order_by = 'created_at',
+        $sort_by = 'desc',
+        $per_page = CUSTOM_PAGINATION;
+
+    public $tranasctions_from_date,
+        $tranasctions_to_date;
+
     public TreasuryTransaction $transaction;
 
     public $accounts = [],
-        $shiftTypes = [];
+        $shiftTypes = [],
+        $financial_account;
 
 
     public function mount(TreasuryTransaction $transaction)
     {
         $this->transaction  = $transaction;
         $this->accounts     = Account::with(['accountType:id,name'])->where(['company_id' => get_auth_com(), 'is_parent' => 0])->active()->get();
-        $this->shiftTypes   = ShiftType::private()->active()->get();
+        $this->shiftTypes   = ShiftType::private()->get();
+        $this->tranasctions_to_date = date('Y-m-d');
     }
 
     public function updated($fields)
@@ -34,8 +47,8 @@ class AddEditExchangeTransaction extends Component
 
     public function updatedTransactionAccountId()
     {
-        $account            = Account::with('accountType:id')->findOrFail($this->transaction->account_id);
-        $this->shiftTypes   = ShiftType::where(['account_type_id' => $account->accountType->id])->private()->get();
+        $this->financial_account    = Account::with('accountType:id,name')->findOrFail($this->transaction->account_id);
+        $this->shiftTypes           = ShiftType::where(['account_type_id' => $this->financial_account->accountType->id])->private()->get();
     }
 
     public function submit()
@@ -68,8 +81,8 @@ class AddEditExchangeTransaction extends Component
                 has_open_shift()->treasury->increment('last_payment_exchange');
             });
             update_account_balance($this->transaction->account);
-
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
+            $this->reset('transaction', 'account');
         } catch (\Throwable $th) {
             return redirect()->route('admin.treasury-transactions.create')->with(['error' => $th->getMessage()]);
         }
@@ -90,7 +103,12 @@ class AddEditExchangeTransaction extends Component
         $transactions       = TreasuryTransaction::with(['treasury:id,name', 'admin:id,name', 'shift_type:id,name'])
             ->where(['company_id' => get_auth_com()])
             ->where('money', '<', '0')
-            ->paginate(CUSTOM_PAGINATION);
+            ->when($this->shift_type_id,            fn ($q) => $q->where('shift_type_id', $this->shift_type_id))
+            ->when($this->treasury_id,              fn ($q) => $q->where('treasury_id', $this->treasury_id))
+            ->when($this->admin_id,                 fn ($q) => $q->where('admin_id', $this->admin_id))
+            ->when($this->tranasctions_from_date,   fn ($q) => $q->whereBetween('transaction_date', [$this->tranasctions_from_date, $this->tranasctions_to_date]))
+            ->orderBy($this->order_by, $this->sort_by)
+            ->paginate($this->per_page);
 
         return view('livewire.admin.account.exchange-transaction.add-edit-exchange-transaction', [
             'transactions'      => $transactions,

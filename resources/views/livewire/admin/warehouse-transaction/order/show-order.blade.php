@@ -6,7 +6,6 @@
         </a>
     </div>
 
-
     <div class="card-body">
         <div id="table-default" class="table-responsive">
             <div class="row row-cards">
@@ -168,7 +167,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">
+                            <td colspan="8">
                                 <x-blank-section :content="__('transaction.order')" :url="route('admin.orders.create')" />
                             </td>
                         </tr>
@@ -179,5 +178,8 @@
                 {{ $orders->links('pagination::bootstrap-5') }}
             </div>
         </div>
+    </div>
+
+    <div class="card-footer">
     </div>
 </div>

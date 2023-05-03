@@ -12,6 +12,8 @@
                 </a>
             </div>
             @livewire('admin.stock.item.show-item')
+            <div class="card-footer">
+            </div>
         </div>
     </div>
 

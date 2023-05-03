@@ -39,7 +39,7 @@
 
             @if (!$customer->account)
                 <div class="row row-cards">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
                             <select class="form-select" wire:model.debounce.350s='customer.initial_balance_status'>
@@ -51,7 +51,7 @@
                             <x-input-error :messages="$errors->get('customer.initial_balance_status')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
                             <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350s='customer.initial_balance' />

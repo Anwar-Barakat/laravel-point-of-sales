@@ -26,14 +26,17 @@ class Delegate extends Model
         'company_id',
     ];
 
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'LIKE', $term);
+        });
+    }
+
     public function scopeActive($query)
     {
         return $query->where(['is_active' => 1]);
-    }
-
-    public function category()
-    {
-        return $this->hasOne(Category::class);
     }
 
     public function account()

@@ -13,7 +13,7 @@ class DelegateController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.stocks.delegates.index');
     }
 
     /**

@@ -3,21 +3,21 @@
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row row-cards">
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.delegate_name')" />
                         <x-text-input type="text" class="form-control" wire:model='delegate.name' />
                         <x-input-error :messages="$errors->get('delegate.name')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('auth.email')" />
                         <x-text-input type="email" class="form-control" wire:model='delegate.email' placeholder="example@domain.com" />
                         <x-input-error :messages="$errors->get('delegate.email')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
                         <select class="form-select" wire:model='delegate.is_active'>
@@ -31,7 +31,7 @@
             </div>
             <div class="row row-cards">
                 @if (!$delegate->account)
-                    <div class="col-sm-12 col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
                             <select class="form-select" wire:model='delegate.initial_balance_status'>
@@ -43,7 +43,7 @@
                             <x-input-error :messages="$errors->get('delegate.initial_balance_status')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
                             <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='delegate.initial_balance' />
@@ -71,7 +71,7 @@
             <hr class="mt-4 mb-3 w-50">
             <h3 class="mb-3 text-blue">{{ __('stock.commission_value') }}</h3>
             <div class="row row-cards">
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.commission_type')" />
                         <select class="form-select" wire:model='delegate.commission_type'>
@@ -82,28 +82,28 @@
                         <x-input-error :messages="$errors->get('delegate.commission_type')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.commission_for_sectoral')" />
                         <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='delegate.commission_for_sectoral' />
                         <x-input-error :messages="$errors->get('delegate.commission_for_sectoral')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.commission_for_half_block')" />
                         <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='delegate.commission_for_half_block' />
                         <x-input-error :messages="$errors->get('delegate.commission_for_half_block')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.commission_for_block')" />
                         <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='delegate.commission_for_block' />
                         <x-input-error :messages="$errors->get('delegate.commission_for_block')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.commission_for_delayed_collect')" />
                         <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='delegate.commission_for_delayed_collect' />

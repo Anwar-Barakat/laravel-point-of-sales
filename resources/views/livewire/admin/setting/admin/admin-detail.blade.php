@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-md-6 col-lg-4">
+        <div class="col-6 col-lg-4">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
@@ -33,7 +33,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-12 col-lg-8" id="add-items">
+        <div class="col-12 col-lg-8" id="add-items">
             @livewire('admin.setting.treasury.add-edit-treasury', ['admin' => $admin])
         </div>
     </div>

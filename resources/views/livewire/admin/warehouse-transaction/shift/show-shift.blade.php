@@ -8,7 +8,6 @@
         @endif
     </div>
 
-
     <div class="card-body">
         <div id="table-default" class="table-responsive">
             <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
@@ -111,5 +110,8 @@
                 {{ $shifts->links('pagination::bootstrap-5') }}
             </div>
         </div>
+    </div>
+
+    <div class="card-footer">
     </div>
 </div>

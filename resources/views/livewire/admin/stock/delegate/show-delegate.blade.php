@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-        <h3 class="card-title">{{ __('msgs.all', ['name' => __('stock.customers')]) }}</h3>
-        <a href="{{ route('admin.customers.create') }}" class="btn btn-primary">
-            {{ __('msgs.create', ['name' => __('stock.customer')]) }}
+        <h3 class="card-title">{{ __('msgs.all', ['name' => __('stock.delegates')]) }}</h3>
+        <a href="{{ route('admin.delegates.create') }}" class="btn btn-primary">
+            {{ __('msgs.create', ['name' => __('stock.delegate')]) }}
         </a>
     </div>
 
@@ -20,7 +20,7 @@
                         <x-input-label class="form-label" :value="__('msgs.order_by')" />
                         <select class="form-select" wire:model='order_by'>
                             <option value="">{{ __('btns.select') }}</option>
-                            <option value="name">{{ __('stock.customer_name') }}</option>
+                            <option value="name">{{ __('stock.delegate_name') }}</option>
                             <option value="created_at">{{ __('msgs.created_at') }}</option>
                         </select>
                     </div>
@@ -52,47 +52,47 @@
             <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                 <thead>
                     <tr>
-                        <th> {{ __('stock.customer_name') }}</th>
+                        <th> {{ __('stock.delegate_name') }}</th>
                         <th> {{ __('account.account_number') }}</th>
-                        <th> {{ __('account.current_balamce') }}</th>
+                        <th>{{ __('account.current_balamce') }}</th>
                         <th>{{ __('partials.status') }}</th>
                         <th>{{ __('msgs.created_at') }}</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody class="table-tbody">
-                    @forelse ($customers as $customer)
+                    @forelse ($delegates as $delegate)
                         <tr>
-                            <td>{{ $customer->name }}</td>
+                            <td>{{ $delegate->name }}</td>
                             <td>
-                                <a href="{{ route('admin.accounts.show', ['account' => $customer->account]) }}">
+                                <a href="{{ route('admin.accounts.show', 'test') }}">
                                     <span class="badge bg-info-lt">
-                                        {{ $customer->account->number }}
+                                        {{ $delegate->account->number }}
                                     </span>
                                 </a>
                             </td>
                             <td App::getLocale()=='ar' ? style="direction: ltr" : '' class="text-center">
                                 <span>
-                                    {{ number_format($customer->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
-                                    {{ number_format($customer->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
-                                    {{ number_format($customer->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
-                                    <span class="badge badge-dark">{{ $customer->account->current_balance }}</span>
+                                    {{ number_format($delegate->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
+                                    {{ number_format($delegate->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
+                                    {{ number_format($delegate->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
+                                    <span class="badge badge-dark">{{ $delegate->account->current_balance }}</span>
                                 </span>
                             </td>
                             <td>
                                 <div>
-                                    <button wire:click='updateStatus({{ $customer->id }})' class="btn position-relative">
-                                        {{ $customer->is_active ? __('msgs.is_active') : __('msgs.not_active') }}
-                                        <span class="badge {{ $customer->is_active ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
+                                    <button wire:click='updateStatus({{ $delegate->id }})' class="btn position-relative">
+                                        {{ $delegate->is_active ? __('msgs.is_active') : __('msgs.not_active') }}
+                                        <span class="badge {{ $delegate->is_active ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
                                     </button>
                                 </div>
                             </td>
-                            <td> {{ $customer->created_at }} </td>
+                            <td> {{ $delegate->created_at }} </td>
                             <td>
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a href="{{ route('admin.customers.edit', ['customer' => $customer]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                        <a href="{{ route('admin.delegates.edit', ['delegate' => $delegate]) }}" class="dropdown-item d-flex align-items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -102,8 +102,7 @@
                                             <span>{{ __('btns.edit') }}</span>
                                         </a>
 
-                                        <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $customer->id }}">
-
+                                        <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $delegate->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M4 7l16 0" />
@@ -116,20 +115,20 @@
                                         </a>
                                     </div>
                                 </span>
-                                <x-modal-delete :id="$customer->id" :action="route('admin.customers.destroy', ['customer' => $customer])" />
+                                <x-modal-delete :id="$delegate->id" :action="route('admin.delegates.destroy', ['delegate' => $delegate])" />
                             </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="5">
-                                <x-blank-section :content="__('stock.customer')" :url="route('admin.customers.create')" />
+                                <x-blank-section :content="__('stock.delegate')" :url="route('admin.delegates.create')" />
                             </td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
             <div class="p-3 mt-2">
-                {{ $customers->links('pagination::bootstrap-5') }}
+                {{ $delegates->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

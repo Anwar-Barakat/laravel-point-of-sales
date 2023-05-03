@@ -69,6 +69,8 @@ return [
     'shift_movements'           => 'Treasuries shifts',
     'treasury_shifts'           => 'Treasury shifts',
     'approval_and_posting'      => 'Approval and posting of invoice',
+    'transactions_from_date'    => 'Transaction from date',
+    'transactions_to_date'      => 'Transaction to date',
 
 
     //_______________________

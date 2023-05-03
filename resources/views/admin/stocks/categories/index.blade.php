@@ -10,7 +10,6 @@
                 {{ __('msgs.create', ['name' => __('stock.category')]) }}
             </a>
         </div>
-
         <div class="card-body">
             <div id="table-default" class="table-responsive">
                 <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
@@ -92,6 +91,8 @@
                     {{ $categories->links('pagination::bootstrap-5') }}
                 </div>
             </div>
+        </div>
+        <div class="card-footer">
         </div>
     </div>
 </x-master-layout>

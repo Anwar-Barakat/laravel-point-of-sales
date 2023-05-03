@@ -64,7 +64,6 @@ if (!function_exists('update_account_balance')) {
                 + $balance
                 + $trans_balance;
             $account->update(['current_balance' => $balance]);
-            $account->vendor->update(['current_balance' => $balance]);
         } elseif ($account->accountType->id == 2) {
             // customer
             $balance = Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
@@ -72,7 +71,10 @@ if (!function_exists('update_account_balance')) {
                 + $balance
                 + $trans_balance;
             $account->update(['current_balance' => $balance]);
-            $account->customer->update(['current_balance' => $balance]);
+        } else {
+            $balance = $account->initial_balance
+                + $trans_balance;
+            $account->update(['current_balance' => $balance]);
         }
     }
 }

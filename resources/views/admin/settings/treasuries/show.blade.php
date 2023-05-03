@@ -5,49 +5,53 @@
 
 
     <div class="row">
-        <div class="col-md-6 col-lg-4">
+        <div class="col-6 col-lg-4">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
                 </div>
-                <table class="table card-table table-vcenter table-striped-columns">
-                    <thead>
-                        <tr>
-                            <th>{{ __('msgs.column') }}</th>
-                            <th colspan="2">{{ __('btns.details') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>{{ __('treasury.treasury_name') }}</th>
-                            <td>{{ $treasury->name }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('msgs.is_it_master') }}</th>
-                            <td>{{ $treasury->is_master ? __('msgs.master') : __('msgs.branch') }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('partials.status') }}</th>
-                            <td>{{ $treasury->is_active ? __('msgs.active') : __('msgs.not_active') }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('treasury.last_payment_exchange') }}</th>
-                            <td>{{ $treasury->last_payment_exchange }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('treasury.last_payment_collect') }}</th>
-                            <td>{{ $treasury->last_payment_collect }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('msgs.created_at') }}</th>
-                            <td>{{ \Carbon\Carbon::parse($treasury->created_at)->format('Y-m-d') }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('msgs.updated_at') }}</th>
-                            <td>{{ \Carbon\Carbon::parse($treasury->updated_at)->format('Y-m-d') }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div>
+                    <table class="table card-table table-vcenter table-striped-columns">
+                        <thead>
+                            <tr>
+                                <th>{{ __('msgs.column') }}</th>
+                                <th colspan="2">{{ __('btns.details') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{{ __('treasury.treasury_name') }}</th>
+                                <td>{{ $treasury->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('msgs.is_it_master') }}</th>
+                                <td>{{ $treasury->is_master ? __('msgs.master') : __('msgs.branch') }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('partials.status') }}</th>
+                                <td>{{ $treasury->is_active ? __('msgs.active') : __('msgs.not_active') }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('treasury.last_payment_exchange') }}</th>
+                                <td>{{ $treasury->last_payment_exchange }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('treasury.last_payment_collect') }}</th>
+                                <td>{{ $treasury->last_payment_collect }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('msgs.created_at') }}</th>
+                                <td>{{ \Carbon\Carbon::parse($treasury->created_at)->format('Y-m-d') }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('msgs.updated_at') }}</th>
+                                <td>{{ \Carbon\Carbon::parse($treasury->updated_at)->format('Y-m-d') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer border-top-0">
+                </div>
             </div>
         </div>
         <div class="col-md-12 col-lg-8">
@@ -71,6 +75,8 @@
                     </div>
                 </div>
                 @include('admin.settings.treasuries.treasury-deliveries.index')
+                <div class="card-footer text-end">
+                </div>
             </div>
         </div>
         <!-- Add treasury delivery modal -->

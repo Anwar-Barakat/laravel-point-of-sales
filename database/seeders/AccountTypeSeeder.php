@@ -67,7 +67,7 @@ class AccountTypeSeeder extends Seeder
             [
                 'name'                          => [
                     'ar'                        => 'مصروفات',
-                    'en'                        => 'expenses'
+                    'en'                        => 'expense'
                 ],
                 'related_to_internal_account'   => 0,
                 'added_by'                      => $admin->id,

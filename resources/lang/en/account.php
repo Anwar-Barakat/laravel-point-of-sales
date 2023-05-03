@@ -35,6 +35,7 @@ return [
     'initial_balance_status'        => 'Initial balance status',
     'current_balamce'               => 'Current balance',
     'is_archived'                   => 'Archived',
+    'amount'                        => 'Amount',
 
 
     //_______________________
@@ -58,8 +59,8 @@ return [
     'transaction_date'          => 'Transaction_date',
     'shift_type'                => 'Shift type',
     'report'                    => 'Report',
-    'counterpart_collection'    => 'Counterpart collection',
-    'counterpart_exchange'      => 'Counterpart exchange',
+    'counterpart_collection'    => 'Counterpart collection...',
+    'counterpart_exchange'      => 'Counterpart exchange...',
     'cash_collection_screen'    => 'Cash collection screen',
     'case_exchange_screen'      => 'Cash exchange screen',
     'click_here'                => 'Click here',

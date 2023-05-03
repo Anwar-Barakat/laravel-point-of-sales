@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Stock\Vendor;
+namespace App\Http\Livewire\Admin\Stock\Delegate;
 
-use App\Models\Vendor;
+use App\Models\Delegate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ShowVendor extends Component
+class ShowDelegate extends Component
 {
     use WithPagination;
 
@@ -17,19 +17,18 @@ class ShowVendor extends Component
 
     public function updateStatus($id)
     {
-        $vendor    = Vendor::findOrFail($id);
-        $vendor->update(['is_active' => !$vendor->is_active]);
+        $delegate    = Delegate::findOrFail($id);
+        $delegate->update(['is_active' => !$delegate->is_active]);
     }
 
     public function render()
     {
-        $vendors  = $this->getVendors();
-        return view('livewire.admin.stock.vendor.show-vendor', ['vendors' => $vendors]);
+        return view('livewire.admin.stock.delegate.show-delegate', ['delegates' => $this->getDelegates()]);
     }
 
-    public function getVendors()
+    public function getDelegates()
     {
-        return  Vendor::with(['account'])
+        return  Delegate::with(['account'])
             ->search(trim($this->name))
             ->orderBy($this->order_by, $this->sort_by)
             ->paginate($this->per_page);;

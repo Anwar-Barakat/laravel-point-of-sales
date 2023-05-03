@@ -63,7 +63,8 @@ return [
     'you_have_opened_shift'     => 'لديك الفعل تحويل خزينة مفتوحة سابقاً',
     'treasury_opened'           => 'الخزنة مستخدمة حالياً في تحويل خزينة آخر',
     'approval_and_posting'      => 'الموافقة على الفاتورة وترحيلها',
-
+    'transactions_from_date'    => 'المعاملات من تاريخ',
+    'transactions_to_date'      => 'المعاملات إلى تاريخ',
 
     //_______________________
     // Sales
