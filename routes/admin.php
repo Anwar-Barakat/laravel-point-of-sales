@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Setting\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\Setting\Treasury\TreasuryDelivery\TreasuryDeliveryController;
 use App\Http\Controllers\Admin\Stock\Category\CategoryController;
 use App\Http\Controllers\Admin\Stock\Customer\CustomerController;
+use App\Http\Controllers\Admin\Stock\Delegate\DelegateController;
 use App\Http\Controllers\Admin\Stock\Item\ItemController;
 use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
@@ -118,6 +119,10 @@ Route::group(
                 //_______________________
                 Route::resource('vendors',                      VendorController::class)->except('store', 'update');
 
+                //_______________________
+                // Delegates
+                //_______________________
+                Route::resource('delegates',                    DelegateController::class)->except('store', 'update');
 
 
                 //_______________________

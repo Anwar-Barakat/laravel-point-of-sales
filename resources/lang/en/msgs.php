@@ -45,6 +45,7 @@ return [
     'is_master'             => 'Is master',
     'is_active'             => 'Is active',
     'active'                => 'Active',
+    'at_least_ten_ch'       => 'At least 10 characters',
     'name_ar'               => 'Arabic name',
     'name_en'               => 'English name',
     'yes'                   => 'Yes',

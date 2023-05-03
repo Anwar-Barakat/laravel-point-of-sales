@@ -12,7 +12,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.items_cost')" />
-                                    <x-text-input type="number" class="form-control" wire:model='order.items_cost' readonly disabled />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.items_cost' readonly disabled />
                                     <x-input-error :messages="$errors->get('order.items_cost')" class="mt-2" />
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.tax')" />
-                                        <x-text-input type="number" class="form-control" wire:model='order.tax_value' />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.tax_value' />
                                         <x-input-error :messages="$errors->get('order.tax_value')" class="mt-2" />
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.items_cost') . ' + ' . __('transaction.tax')" />
-                                    <x-text-input type="number" class="form-control" wire:model='order.cost_before_discount' readonly disabled />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.cost_before_discount' readonly disabled />
                                     <x-input-error :messages="$errors->get('order.cost_before_discount')" class="mt-2" />
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.discount')" />
-                                        <x-text-input type="number" class="form-control" wire:model='order.discount_value' />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.discount_value' />
                                         <x-input-error :messages="$errors->get('order.discount_value')" class="mt-2" />
                                     </div>
                                 </div>
@@ -77,14 +77,14 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.treasury_available_balance')" />
-                                        <x-text-input type="number" class="form-control" :value="get_treasury_balance()" disabled readonly />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" :value="get_treasury_balance()" disabled readonly />
                                     </div>
                                 </div>
                             @endif
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.cost_after_discount')" />
-                                    <x-text-input type="number" class="form-control bg-info text-white" wire:model='order.cost_after_discount' readonly disabled />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control bg-info text-white" wire:model='order.cost_after_discount' readonly disabled />
                                     <x-input-error :messages="$errors->get('order.cost_after_discount')" class="mt-2" />
                                 </div>
                             </div>
@@ -108,14 +108,14 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.paid_to_the_supplier')" />
-                                    <input type="number" class="form-control" wire:model='order.paid' {{ $order->invoice_type == 0 ? 'readonly disabled' : '' }} />
+                                    <input type="number" placeholder="10.15" class="form-control" wire:model='order.paid' {{ $order->invoice_type == 0 ? 'readonly disabled' : '' }} />
                                     <x-input-error :messages="$errors->get('order.paid')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.remain_to_the_supplier')" />
-                                    <x-text-input type="number" class="form-control" wire:model='order.remains' readonly disabled />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.remains' readonly disabled />
                                 </div>
                             </div>
                         </div>

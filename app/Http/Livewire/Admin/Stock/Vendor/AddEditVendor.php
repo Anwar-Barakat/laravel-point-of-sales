@@ -35,7 +35,7 @@ class AddEditVendor extends Component
 
     public function submit()
     {
-        // $this->validate();
+        $this->validate();
         try {
             DB::beginTransaction();
             switch ($this->vendor->initial_balance_status) {
@@ -50,7 +50,7 @@ class AddEditVendor extends Component
                     break;
             }
 
-            $this->vendor['company_id']     = get_auth_com();
+            $this->vendor->company_id       = get_auth_com();
             $this->vendor->save();
 
             if (!$this->vendor->account)

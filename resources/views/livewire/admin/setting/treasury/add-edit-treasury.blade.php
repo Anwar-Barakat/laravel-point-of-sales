@@ -39,14 +39,14 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('treasury.last_payment_exchange')" />
-                                <x-text-input type="number" class="form-control" wire:model.debounce.500s='treasury.last_payment_exchange' required />
+                                <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='treasury.last_payment_exchange' required />
                                 <x-input-error :messages="$errors->get('treasury.last_payment_exchange')" class="mt-2" />
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('treasury.last_payment_collect')" />
-                                <x-text-input type="number" class="form-control" wire:model.debounce.500s='treasury.last_payment_collect' required />
+                                <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='treasury.last_payment_collect' required />
                                 <x-input-error :messages="$errors->get('treasury.last_payment_collect')" class="mt-2" />
                             </div>
                         </div>

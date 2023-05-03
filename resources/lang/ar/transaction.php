@@ -78,6 +78,7 @@ return [
     'number'                    => 'عدد',
     'specific_store_qty'        => 'الكميات في المخزن المحدد',
     'delegate'                  => 'مندوب',
+    'delegates'                 => 'المندوبين',
     'delegate_name'             => 'اسم المندوب',
     'paid_amount'               => 'المبلغ المدفوع',
     'remain_amount'             => 'المبلغ المُتبقي',

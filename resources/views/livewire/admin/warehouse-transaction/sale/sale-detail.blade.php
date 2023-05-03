@@ -175,14 +175,14 @@
                                 <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.qty')" />
-                                        <x-text-input type="number" class="form-control" wire:model='product.qty' wire:keyup='calcPrice' />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='product.qty' wire:keyup='calcPrice' />
                                         <x-input-error :messages="$errors->get('product.qty')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('stock.unit_price')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.unit_price' readonly disabled />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.unit_price' readonly disabled />
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@
                                 <div class="col-12 col-lg-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.grand_total')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.total_price' readonly disabled />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.total_price' readonly disabled />
                                     </div>
                                 </div>
                             </div>

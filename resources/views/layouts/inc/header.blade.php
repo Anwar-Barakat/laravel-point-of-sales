@@ -215,6 +215,11 @@
                                     <a class="dropdown-item {{ request()->routeIs('admin.vendors.index') ? 'active' : '' }}" href="{{ route('admin.vendors.index') }}"">
                                         {{ __('stock.vendors') }}
                                     </a>
+
+                                    <!-- delegates -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.delegates.index') ? 'active' : '' }}" href="{{ route('admin.delegates.index') }}"">
+                                        {{ __('transaction.delegates') }}
+                                    </a>
                                 </div>
                             </div>
                         </div>

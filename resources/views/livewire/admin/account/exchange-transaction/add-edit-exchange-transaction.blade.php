@@ -23,7 +23,7 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.treasury_available_balance')" />
-                                        <x-text-input type="number" class="form-control" :value="$treasuryBalance" readonly disabled />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" :value="$treasuryBalance" readonly disabled />
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                 <div class="col-sm-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.amount_exchanged')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='transaction.money' />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='transaction.money' />
                                         <x-input-error :messages="$errors->get('transaction.money')" class="mt-2" />
                                     </div>
                                 </div>

@@ -20,10 +20,9 @@ class Delegate extends Model
         'is_active',
         'commission_type',
         'commission_value',
-        'commission_value_for_sectoral',
-        'commission_value_for_half_block',
-        'commission_value_for_block',
-        'category_id',
+        'commission_for_sectoral',
+        'commission_for_half_block',
+        'commission_for_block',
         'company_id',
     ];
 

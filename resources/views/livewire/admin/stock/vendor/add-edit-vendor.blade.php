@@ -22,8 +22,8 @@
                         <x-input-label class="form-label" :value="__('setting.status')" />
                         <select class="form-select" wire:model.defer='vendor.is_active'>
                             <option value="">{{ __('btns.select') }}</option>
-                            <option value="1" {{ old('order.vendor_id') ? 'selected' : '' }}>{{ __('msgs.is_active') }}</option>
-                            <option value="0" {{ old('order.vendor_id') == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
+                            <option value="1" {{ old('order.is_active') ? 'selected' : '' }}>{{ __('msgs.is_active') }}</option>
+                            <option value="0" {{ old('order.is_active') == '0' ? 'selected' : '' }}>{{ __('msgs.not_active') }}</option>
                         </select>
                         <x-input-error :messages="$errors->get('vendor.is_active')" class="mt-2" />
                     </div>
@@ -68,7 +68,7 @@
                     <div class="col-sm-12 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
-                            <x-text-input type="number" class="form-control" wire:model.defer='vendor.initial_balance' />
+                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.defer='vendor.initial_balance' />
                             <x-input-error :messages="$errors->get('vendor.initial_balance')" class="mt-2" />
                         </div>
                     </div>
@@ -78,14 +78,14 @@
                 <div class="col-sm-12 col-lg-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.address')" />
-                        <textarea rows="3" class="form-control" wire:model.defer='vendor.address'></textarea>
+                        <textarea rows="3" class="form-control" wire:model.defer='vendor.address' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>
                         <x-input-error :messages="$errors->get('vendor.address')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="3" class="form-control" wire:model.defer='vendor.notes'></textarea>
+                        <textarea rows="3" class="form-control" wire:model.defer='vendor.notes' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>
                         <x-input-error :messages="$errors->get('vendor.notes')" class="mt-2" />
                     </div>
                 </div>

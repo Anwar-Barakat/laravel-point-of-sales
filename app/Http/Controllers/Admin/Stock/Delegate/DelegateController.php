@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Stock\Delegate;
 
-use App\Http\Requests\StoreDelegateRequest;
-use App\Http\Requests\UpdateDelegateRequest;
 use App\Models\Delegate;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class DelegateController extends Controller
 {
@@ -21,13 +21,13 @@ class DelegateController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stocks.delegates.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDelegateRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -45,13 +45,13 @@ class DelegateController extends Controller
      */
     public function edit(Delegate $delegate)
     {
-        //
+        return view('admin.stocks.delegates.edit', ['delegate' => $delegate]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDelegateRequest $request, Delegate $delegate)
+    public function update(Request $request, Delegate $delegate)
     {
         //
     }

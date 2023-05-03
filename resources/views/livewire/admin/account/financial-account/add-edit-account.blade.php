@@ -78,7 +78,7 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
-                            <x-text-input type="number" class="form-control" wire:model.debounce.350='account.initial_balance' />
+                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='account.initial_balance' />
                             <x-input-error :messages="$errors->get('account.initial_balance')" class="mt-2" />
                         </div>
                     </div>

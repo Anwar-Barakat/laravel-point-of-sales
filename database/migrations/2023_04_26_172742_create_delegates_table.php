@@ -23,11 +23,10 @@ return new class extends Migration
             $table->string('notes');
             $table->boolean('is_active')->default(1);
             $table->boolean('commission_type')->nullable()->comment('0 => percentage, 1 => fixed');
-            $table->decimal('commission_value', 10, 2)->nullable();
-            $table->decimal('commission_value_for_sectoral', 10, 2)->nullable();
-            $table->decimal('commission_value_for_half_block', 10, 2)->nullable();
-            $table->decimal('commission_value_for_block', 10, 2)->nullable();
-            $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
+            $table->decimal('commission_for_sectoral', 10, 2)->nullable();
+            $table->decimal('commission_for_half_block', 10, 2)->nullable();
+            $table->decimal('commission_for_block', 10, 2)->nullable();
+            $table->decimal('commission_for_delayed_collect', 10, 2)->nullable();
             $table->foreignId('company_id');
             $table->timestamps();
         });

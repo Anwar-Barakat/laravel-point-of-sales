@@ -121,13 +121,13 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.unit_price')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.unit_price' wire:keyup='calcPrice' />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.unit_price' wire:keyup='calcPrice' />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.qty')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.qty' wire:keyup='calcPrice' />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.qty' wire:keyup='calcPrice' />
                                     </div>
                                 </div>
                                 @if ($consuming)
@@ -147,7 +147,7 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.total_price')" />
-                                        <x-text-input type="number" class="form-control" wire:model.debounce.500s='product.total_price' readonly disabled />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.total_price' readonly disabled />
                                     </div>
                                 </div>
                             </div>

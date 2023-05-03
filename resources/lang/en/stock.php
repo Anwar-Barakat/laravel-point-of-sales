@@ -94,4 +94,19 @@ return [
     'vendor_name'     => 'Vendor name',
     'vendor_account'  => 'Vendor account',
 
+
+    //_______________________
+    // delegates
+    //_______________________
+    'delegate'                            => 'Delegate',
+    'delegates'                           => 'Delegates',
+    'delegate_name'                       => 'Delegate name',
+    'delegate_account'                    => 'Delegate account',
+    'commission_value'                    => 'Commission value',
+    'commission_type'                     => 'Commission type',
+    'commission_for_sectoral'             => 'Commission value for sectoral',
+    'commission_for_half_block'           => 'Commission value for half block',
+    'commission_for_block'                => 'Commission value for block',
+    'commission_for_delayed_collect'   => 'Commission value for delayed collection',
+
 ];

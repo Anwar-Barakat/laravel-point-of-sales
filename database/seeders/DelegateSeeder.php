@@ -21,7 +21,6 @@ class DelegateSeeder extends Seeder
     public function run(): void
     {
         $faker      = Factory::create();
-        $category   = Category::inRandomOrder()->active()->first();
         $admin      = Admin::where('email', 'admin@admin.com')->first();
 
         DB::table('delegates')->delete();
@@ -31,7 +30,6 @@ class DelegateSeeder extends Seeder
             'email'                     => 'delegate01@gmail.com',
             'address'                   => $faker->address(),
             'initial_balance_status'    => 1, // balanced
-            'category_id'               => $category->id,
             'notes'                     => $faker->sentence(10),
             'company_id'                => $admin->id,
         ]);

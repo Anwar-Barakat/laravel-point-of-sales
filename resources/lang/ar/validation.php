@@ -142,8 +142,9 @@ return [
     'uppercase'                     => 'The :attribute must be uppercase.',
     'url'                           => 'صيغة الرابط :attribute غير صحيحة',
     'uuid'                          => 'الحقل :attribute يجب ان ايكون رقم UUID صحيح.',
-    'discount_type_is_percent'      => 'يجب أن يكون أقل من 100 عندما يكون نوع الخصم بالنسبة المئوية.',
-    'tax_type_is_percent'           => 'يجب أن يكون أقل من 100 عندما يكون نوع الخصم بالنسبة المئوية.',
+    'discount_type_is_percent'      => 'يجب أن يكون أقل من 50 عندما يكون نوع الخصم بالنسبة المئوية.',
+    'commission_type_is_percent'    => 'يجب أن يكون أقل من 50 عندما يكون نوع الخصم بالنسبة المئوية.',
+    'tax_type_is_percent'           => 'يجب أن يكون أقل من 50 عندما يكون نوع الخصم بالنسبة المئوية.',
     'paid_smaller_than_cost'        => 'المدفوعات يجب ان تكون اقل او يساوي التكلفة الأجمالية',
     'discount_less_grand_total'     => 'لا يمكن ان يكون الخصم اكبر من المبلغ الأجمالي',
     'select_item_batch'             => 'من فضلك اختر الكمية من المخزن المحدد',
@@ -327,6 +328,17 @@ return [
         'sale_type'                     => 'نوع المبيع',
         'delegate_id'                   => 'مندوب',
 
+
+
+        //_______________________
+        // delegates
+        //_______________________
+        'commission_value'               => 'قيمة العمولة',
+        'commission_type'                => 'نوع العمولة',
+        'commission_for_sectoral'        => 'قيمة العمولة بالمبيعات قطاعي',
+        'commission_for_half_block'      => 'قيمة العمولة بالمبيعات نصف جملة',
+        'commission_for_block'           => 'قيمة العمولة بالمبيعات جملة',
+        'commission_for_delayed_collect' => 'قيمة العمولة في التحصيل الآجل',
     ],
 
 ];
