@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin\Stock\Item;
 
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\OrderProduct;
+use App\Models\SaleProduct;
 use App\Models\Unit;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -19,7 +21,8 @@ class AddEditItem extends Component
     public $categories         = [],
         $parent_items       = [],
         $wholesale_units    = [],
-        $retail_units       = [];
+        $retail_units       = [],
+        $item_used = false;
 
     public $image;
 
@@ -27,8 +30,13 @@ class AddEditItem extends Component
     {
         $this->item             = $item;
         $this->parent_items     = Item::select('id', 'name')->where(['company_id' => get_auth_com()])->active()->get();
-        $this->categories       = Category::with('subCategories:id,name')->select('id', 'name')->where('company_id', get_auth_com())->active()->latest()->get();
+        $this->categories       = Category::with('subCategories')->where(['company_id' => get_auth_com(), 'parent_id' => 0])->get();
         $this->wholesale_units  = Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'wholesale'])->active()->get();
+        $this->retail_units     = Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'retail'])->active()->get();
+
+        $item_order         = OrderProduct::where('item_id', $this->item->id)->count();
+        $item_sales         = SaleProduct::where('item_id', $this->item->id)->count();
+        $this->item_used    = $item_order > 0 || $item_sales > 0 ? true : false;
     }
 
     public function updated($propertyName)
@@ -61,7 +69,7 @@ class AddEditItem extends Component
             toastr()->success(__('msgs.submitted', ['name' => __('stock.item')]));
             return redirect()->route('admin.items.index');
         } catch (\Throwable $th) {
-            return redirect()->route('admin.items.create')->withErrors(['error' => $th->getMessage()]);
+            return redirect()->route('admin.items.create')->with(['error' => $th->getMessage()]);
         }
     }
 

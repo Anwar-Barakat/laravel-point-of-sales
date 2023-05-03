@@ -30,7 +30,7 @@ return new class extends Migration
             $table->decimal('retail_price_for_block', 10, 2)->nullable();
             $table->decimal('retail_price_for_half_block', 10, 2)->nullable();
 
-            $table->decimal('wholesale_cost_price', 10, 2)->nullable();
+            $table->decimal('wholesale_cost_price', 10, 2);
             $table->decimal('retail_cost_price', 10, 2)->nullable();
             $table->integer('retail_count_for_wholesale')->nullable();
 

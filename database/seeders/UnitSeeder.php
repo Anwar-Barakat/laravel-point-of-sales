@@ -72,8 +72,8 @@ class UnitSeeder extends Seeder
             ],
             [
                 'name'          => [
-                    'en'        => 'Cup Carton',
-                    'ar'        => 'كرتونة الأكواب'
+                    'en'        => 'Carton',
+                    'ar'        => 'كرتونة'
                 ],
                 'status'        => 'wholesale',
                 'company_id'  => $admin->company->id,
@@ -90,6 +90,24 @@ class UnitSeeder extends Seeder
             ],
             [
                 'name'          => [
+                    'en'        => 'Box',
+                    'ar'        => 'علبة'
+                ],
+                'status'        => 'retail',
+                'company_id'  => $admin->company->id,
+                'added_by'      => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'en'        => 'Piece',
+                    'ar'        => 'قطعة'
+                ],
+                'status'        => 'retail',
+                'company_id'  => $admin->company->id,
+                'added_by'      => $admin->id,
+            ],
+            [
+                'name'          => [
                     'en'        => 'Sachet',
                     'ar'        => 'الكيس'
                 ],
@@ -97,6 +115,16 @@ class UnitSeeder extends Seeder
                 'company_id'  => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
+            [
+                'name'          => [
+                    'en'        => 'Sachet',
+                    'ar'        => 'الكيس'
+                ],
+                'status'        => 'wholesale',
+                'company_id'  => $admin->company->id,
+                'added_by'      => $admin->id,
+            ],
+
         ];
 
         foreach ($units as $unit) {

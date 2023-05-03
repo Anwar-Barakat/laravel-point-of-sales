@@ -29,10 +29,10 @@ class AddEditUnit extends Component
     {
         $this->validate();
         try {
-            $orders_unit    = OrderProduct::where('unit_id', $this->unit->id)->count();
-            $sales_unit     = SaleProduct::where('unit_id', $this->unit->id)->count();
+            $unit_orders    = OrderProduct::where('unit_id', $this->unit->id)->count();
+            $unit_sales     = SaleProduct::where('unit_id', $this->unit->id)->count();
 
-            if ($orders_unit > 0 || $sales_unit > 0) {
+            if ($unit_orders > 0 || $unit_sales > 0) {
                 return redirect()->route('admin.units.index');
                 toastr()->error(__('msgs.something_went_wrong'));
             }

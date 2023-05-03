@@ -1,5 +1,68 @@
 <div class="card-body">
     <div id="table-default" class="table-responsive">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="mb-3">
+                    <x-input-label class="form-label" :value="__('msgs.search_by_name')" />
+                    <x-text-input class="form-control" placeholder="{{ __('btns.search') }}" wire:model="name" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="mb-3">
+                    <x-input-label class="form-label" :value="__('stock.item_type')" />
+                    <select class="form-select" wire:model='type'>
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach (App\Models\Item::ITEMTYPE as $key => $value)
+                            <option value="{{ $key }}">{{ __('stock.' . $value) }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="mb-3">
+                    <x-input-label class="form-label" :value="__('stock.category')" />
+                    <select class="form-select" wire:model='category_id'>
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach (App\Models\Category::all() as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="mb-3">
+                    <x-input-label class="form-label" :value="__('msgs.order_by')" />
+                    <select class="form-select" wire:model='order_by'>
+                        <option value="">{{ __('btns.select') }}</option>
+                        <option value="name">{{ __('stock.item_name') }}</option>
+                        <option value="created_at">{{ __('msgs.created_at') }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="mb-3">
+                    <x-input-label class="form-label" :value="__('msgs.per_page')" />
+                    <select class="form-select" wire:model='per_page'>
+                        <option value="">{{ __('btns.select') }}</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">10</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="mb-3">
+                    <x-input-label class="form-label" :value="__('msgs.sort_by')" />
+                    <select class="form-select" wire:model='sort_by'>
+                        <option value="">{{ __('btns.select') }}</option>
+                        <option value="asc">{{ __('msgs.asc') }}</option>
+                        <option value="desc">{{ __('msgs.desc') }}</option>
+                    </select>
+                    <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
+                </div>
+            </div>
+        </div>
+        <br>
         <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
             <thead>
                 <tr>
@@ -48,7 +111,8 @@
                             <span class="dropdown">
                                 <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.items.edit', $item) }}">
+
+                                    <a href="{{ route('admin.items.edit', ['item' => $item]) }}" class="dropdown-item d-flex align-items-center gap-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -57,6 +121,7 @@
                                         </svg>
                                         <span>{{ __('btns.edit') }}</span>
                                     </a>
+
                                     <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.items.show', ['item' => $item]) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-info" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />

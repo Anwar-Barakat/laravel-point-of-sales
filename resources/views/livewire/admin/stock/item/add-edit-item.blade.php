@@ -15,14 +15,14 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_name')" />
-                        <x-text-input type="text" class="form-control" wire:model.debounce.350='item.name' />
+                        <x-text-input type="text" class="form-control" wire:model.debounce.350s='item.name' />
                         <x-input-error :messages="$errors->get('item.name')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.is_active')" />
-                        <select class="form-select" wire:model.debounce.350='item.is_active'>
+                        <select class="form-select" wire:model.debounce.350s='item.is_active'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -33,7 +33,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_type')" />
-                        <select class="form-select" wire:model.debounce.350='item.type'>
+                        <select class="form-select" wire:model.debounce.350s='item.type'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Item::ITEMTYPE as $key => $value)
                                 <option value="{{ $key }}">{{ __('stock.' . $value) }}</option>
@@ -47,7 +47,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_category')" />
-                        <select class="form-select" wire:model.debounce.350="item.category_id">
+                        <select class="form-select" wire:model.debounce.350s="item.category_id">
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($categories)
                                 @foreach ($categories as $root)
@@ -69,7 +69,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_fixed_price')" />
-                        <select class="form-select" wire:model.debounce.350='item.has_fixed_price'>
+                        <select class="form-select" wire:model.debounce.350s='item.has_fixed_price'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('msgs.yes') }}</option>
                             <option value="0">{{ __('msgs.no') }}</option>
@@ -80,7 +80,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.parent_item')" />
-                        <select class="form-select" wire:model.debounce.350='item.parent_id'>
+                        <select class="form-select" wire:model.debounce.350s='item.parent_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="0">{{ __('stock.parent') }}</option>
                             @if ($parent_items->count() > 0)
@@ -99,10 +99,10 @@
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_unit')" />
-                        <select class="form-select" wire:model.debounce.350='item.wholesale_unit_id'>
+                        <select class="form-select" @if ($item_used) readonly disabled @else wire:model.debounce.350s='item.wholesale_unit_id' @endif>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($wholesale_units as $unit)
-                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                <option value="{{ $unit->id }}" {{ $item_used && $unit->id == $item->wholesale_unit_id ? 'selected' : '' }}>{{ $unit->name }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('item.wholesale_unit_id')" class="mt-2" />
@@ -111,52 +111,53 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_price_for_block')" />
-                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.wholesale_price_for_block' />
+                        <x-text-input type="number" placeholder="900.00" class="form-control" wire:model.debounce.350s='item.wholesale_price_for_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_block')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_price_for_half_block')" />
-                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.wholesale_price_for_half_block' />
+                        <x-text-input type="number" placeholder="950.00" class="form-control" wire:model.debounce.350s='item.wholesale_price_for_half_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_half_block')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_price')" />
-                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.wholesale_price' />
+                        <x-text-input type="number" placeholder="1000.00" class="form-control" wire:model.debounce.350s='item.wholesale_price' />
                         <x-input-error :messages="$errors->get('item.wholesale_price')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_cost_price')" />
-                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.wholesale_cost_price' />
+                        <x-text-input type="number" placeholder="17.00" class="form-control" wire:model.debounce.350s='item.wholesale_cost_price' />
                         <x-input-error :messages="$errors->get('item.wholesale_cost_price')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_retail_unit')" />
-                        <select class="form-select" wire:model.debounce.350='item.has_retail_unit'>
+                        <select class="form-select" @if ($item_used) readonly disabled @else wire:model.debounce.350s='item.has_retail_unit' @endif>
                             <option value="">{{ __('btns.select') }}</option>
-                            <option value="1">{{ __('msgs.yes') }}</option>
-                            <option value="0">{{ __('msgs.no') }}</option>
+                            <option value="1" {{ $item->has_retail_unit == '1' ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
+                            <option value="0" {{ $item->has_retail_unit == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>
                         </select>
                         <x-input-error :messages="$errors->get('item.has_retail_unit')" class="mt-2" />
                     </div>
                 </div>
             </div>
+
             @if (!empty($retail_units) || !empty($item['retail_unit_id']))
                 <div class="row row-cards">
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_unit')" />
-                            <select class="form-select" wire:model.debounce.350='item.retail_unit_id'>
+                            <select class="form-select" @if ($item_used) readonly disabled @else wire:model.debounce.350s='item.retail_unit_id' @endif>
                                 <option value="">{{ __('btns.select') }}</option>
                                 @foreach ($retail_units as $unit)
-                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    <option value="{{ $unit->id }}" {{ $item_used && $unit->id == $item->retail_unit_id ? 'selected' : '' }}>{{ $unit->name }}</option>
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('item.retail_unit_id')" class="mt-2" />
@@ -165,35 +166,35 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_price_for_block')" />
-                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.retail_price_for_block' />
+                            <x-text-input type="number" placeholder="90.00" class="form-control" wire:model.debounce.350s='item.retail_price_for_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_block')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_price_for_half_block')" />
-                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.retail_price_for_half_block' />
+                            <x-text-input type="number" placeholder="95.00" class="form-control" wire:model.debounce.350s='item.retail_price_for_half_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_half_block')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_price')" />
-                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.retail_price' />
+                            <x-text-input type="number" placeholder="100.00" class="form-control" wire:model.debounce.350s='item.retail_price' />
                             <x-input-error :messages="$errors->get('item.retail_price')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_cost_price')" />
-                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.retail_cost_price' />
+                            <x-text-input type="number" placeholder="10.00" class="form-control" wire:model.debounce.350s='item.retail_cost_price' />
                             <x-input-error :messages="$errors->get('item.retail_cost_price')" class="mt-2" />
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_count_for_wholesale')" />
-                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.350='item.retail_count_for_wholesale' />
+                            <input type="number" placeholder="10.00" class="form-control" @if (!$item_used) wire:model.debounce.350s='item.retail_count_for_wholesale' @else readonly disabled @endif>
                             <x-input-error :messages="$errors->get('item.retail_count_for_wholesale')" class="mt-2" />
                         </div>
                     </div>
@@ -205,7 +206,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <x-input-label class="form-label" :value="__('msgs.photo')" />
-                    <x-text-input type="file" class="form-control" wire:model.debounce.350='image' />
+                    <x-text-input type="file" class="form-control" wire:model.debounce.350s='image' />
                     <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
             </div>

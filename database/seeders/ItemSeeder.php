@@ -20,8 +20,9 @@ class ItemSeeder extends Seeder
         $admin          = Admin::where('email', 'admin@admin.com')->first();
         $hand_too_cat   = Category::where('name->en', 'Hand Tools')->active()->first()->id;
         $meat_cat       = Category::where('name->en', 'Meat & Freezers')->active()->first()->id;
+        $shoes_cat      = Category::where('name->en', 'Shoes')->active()->first()->id;
         $sachet_unit    = Unit::where('name->en', 'Sachet')->active()->first()->id;
-        $cups_unit      = Unit::where('name->en', 'Cup Carton')->active()->first()->id;
+        $carton_unit    = Unit::where('name->en', 'Carton')->active()->first()->id;
         $box_unit       = Unit::where('name->en', 'Box')->active()->first()->id;
 
         $items = [
@@ -30,17 +31,59 @@ class ItemSeeder extends Seeder
                 'type'                              => 1, // stored
                 'category_id'                       => $hand_too_cat,
                 'has_retail_unit'                   => true,
-                'wholesale_unit_id'                 => $cups_unit,
+                'wholesale_unit_id'                 => $carton_unit,
                 'wholesale_price'                   => 900,
                 'wholesale_price_for_half_block'    => 850,
                 'wholesale_price_for_block'         => 800,
+                'wholesale_cost_price'              => 17,
                 'retail_unit_id'                    => $box_unit,
                 'retail_price'                      => 90,
                 'retail_price_for_half_block'       => 85,
                 'retail_price_for_block'            => 80,
+                'retail_cost_price'                 => 11,
                 'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                      => $admin->company->id,
+                'company_id'                        => $admin->company->id,
+                'added_by'                          => $admin->id,
+            ],
+            [
+                'name'                              => 'Carton of white Nike sneakers',
+                'type'                              => 1, // stored
+                'category_id'                       => $shoes_cat,
+                'has_retail_unit'                   => true,
+                'wholesale_unit_id'                 => $carton_unit,
+                'wholesale_price'                   => 1200,
+                'wholesale_price_for_half_block'    => 1150,
+                'wholesale_price_for_block'         => 1100,
+                'wholesale_cost_price'              => 100,
+                'retail_unit_id'                    => $box_unit,
+                'retail_price'                      => 120,
+                'retail_price_for_half_block'       => 115,
+                'retail_price_for_block'            => 110,
+                'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
+                'retail_cost_price'                 => 15,
+                'has_fixed_price'                   => rand(0, 1),
+                'company_id'                        => $admin->company->id,
+                'added_by'                          => $admin->id,
+            ],
+            [
+                'name'                              => 'Carton of black Nike sneakers',
+                'type'                              => 1, // stored
+                'category_id'                       => $shoes_cat,
+                'has_retail_unit'                   => true,
+                'wholesale_unit_id'                 => $carton_unit,
+                'wholesale_price'                   => 1200,
+                'wholesale_price_for_half_block'    => 1150,
+                'wholesale_price_for_block'         => 1100,
+                'wholesale_cost_price'              => 100,
+                'retail_unit_id'                    => $box_unit,
+                'retail_price'                      => 120,
+                'retail_price_for_half_block'       => 115,
+                'retail_price_for_block'            => 110,
+                'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
+                'retail_cost_price'                 => 15,
+                'has_fixed_price'                   => rand(0, 1),
+                'company_id'                        => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -52,8 +95,9 @@ class ItemSeeder extends Seeder
                 'wholesale_price'                   => 900,
                 'wholesale_price_for_half_block'    => 850,
                 'wholesale_price_for_block'         => 800,
+                'wholesale_cost_price'              => 18,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                      => $admin->company->id,
+                'company_id'                        => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -65,8 +109,9 @@ class ItemSeeder extends Seeder
                 'wholesale_price'                   => 1100,
                 'wholesale_price_for_half_block'    => 1050,
                 'wholesale_price_for_block'         => 1000,
+                'wholesale_cost_price'              => 20,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                      => $admin->company->id,
+                'company_id'                        => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -78,8 +123,9 @@ class ItemSeeder extends Seeder
                 'wholesale_price'                   => 1000,
                 'wholesale_price_for_half_block'    => 950,
                 'wholesale_price_for_block'         => 900,
+                'wholesale_cost_price'              => 19,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                      => $admin->company->id,
+                'company_id'                        => $admin->company->id,
                 'added_by'                          => $admin->id,
             ],
         ];

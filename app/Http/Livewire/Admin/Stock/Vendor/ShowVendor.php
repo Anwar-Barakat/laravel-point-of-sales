@@ -32,6 +32,6 @@ class ShowVendor extends Component
         return  Vendor::with(['account'])
             ->search(trim($this->name))
             ->orderBy($this->order_by, $this->sort_by)
-            ->paginate($this->per_page);;
+            ->paginate($this->per_page);
     }
 }
