@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Stock\Unit;
 
+use App\Models\OrderProduct;
+use App\Models\SaleProduct;
 use App\Models\Unit;
 use Livewire\Component;
 
@@ -27,6 +29,14 @@ class AddEditUnit extends Component
     {
         $this->validate();
         try {
+            $orders_unit    = OrderProduct::where('unit_id', $this->unit->id)->count();
+            $sales_unit     = SaleProduct::where('unit_id', $this->unit->id)->count();
+
+            if ($orders_unit > 0 || $sales_unit > 0) {
+                return redirect()->route('admin.units.index');
+                toastr()->error(__('msgs.something_went_wrong'));
+            }
+
             $this->unit->name       = [
                 'ar'    => $this->name_ar,
                 'en'    => $this->name_en,
