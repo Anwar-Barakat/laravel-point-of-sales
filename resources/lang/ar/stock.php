@@ -35,6 +35,7 @@ return [
     'retail_price'                      => 'سعر التجزئة',
     'retail_price_for_block'            => 'سعر الجملة لوحدة قياس التجزئة',
     'retail_price_for_half_block'       => 'سعر النصف جملة لوحدة قياس التجزئة',
+    'transactions_on_item'              => 'المعاملات على الصنف',
 
     //_______________________
     // Stores

@@ -1,10 +1,16 @@
 <?php
 
 return [
+    'item_transaction_category'     => 'فئة حركة الصنف',
+    'item_transaction_type'         => 'نوع معاملة الصنف',
+    'qty_before_transaction'        => 'الكمية قبل المعاملة',
+    'qty_after_transaction'         => 'الكمية بعد المعاملة',
+    'all_stores'                    => 'جميع المخازن',
+
     //_______________________
     // Orders
     //_______________________
-    'warehouse_transactions'           => 'حركات المخازن',
+    'warehouse_transactions'        => 'معاملات المخازن',
     'purchase_invoices'         => 'فواتير المشتريات',
     'purchase_bills'            => 'فواتير المشتريات',
     'purchase_bill'             => 'فاتورة مشتريات',

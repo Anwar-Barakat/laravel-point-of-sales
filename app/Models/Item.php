@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -60,5 +61,10 @@ class Item extends Model implements HasMedia
     public function childUnit()
     {
         return $this->belongsTo(Unit::class, 'retail_unit_id');
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(ItemTransaction::class);
     }
 }

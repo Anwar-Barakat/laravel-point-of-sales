@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'item_transaction_category'     => 'Item transaction category',
+    'item_transaction_type'         => 'Item transaction type',
+    'qty_before_transaction'        => 'Qty before transaction',
+    'qty_after_transaction'         => 'Qty after transaction',
+    'all_stores'                    => 'All stores',
     //_______________________
     // Orders
     //_______________________
