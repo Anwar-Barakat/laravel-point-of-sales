@@ -45,6 +45,18 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>{{ __('stock.wholesale_qty') }}</th>
+                                <td>
+                                    {{ number_format($item->wholesale_qty, 0) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{ __('stock.retail_qty') }}</th>
+                                <td>
+                                    {{ number_format($item->retail_qty, 0) }}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>{{ __('stock.has_fixed_price') }}</th>
                                 <td>{{ $item->has_fixed_price ? __('msgs.yes') : __('msgs.no') }}</td>
                             </tr>
@@ -225,7 +237,7 @@
                             @empty
                                 <tr>
                                     <td colspan="10">
-                                        <x-blank-section :content="__('stock.item')" :url="'#add-items'" />
+                                        <x-blank-section :content="''" :url="'javascript:;'" />
                                     </td>
                                 </tr>
                             @endforelse

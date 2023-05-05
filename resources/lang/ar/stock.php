@@ -26,6 +26,8 @@ return [
     'wholesale_cost_price'  => 'سعر تكلفة الشراء للوحدة الرئيسية',
     'retail_cost_price'     => 'سعر تكلفة الشراء للوحدة التجزئة',
     'has_fixed_price'       => 'لديه سعر ثابت للفواتير؟',
+    'wholesale_qty'         => 'الكمية الأجمالي',
+    'retail_qty'            => 'الكمية بالتجزئة',
 
     'wholesale_retail_prices'           => 'أسعار الجمل والتجزئة',
     'retail_count_for_wholesale'        => 'عدد وحدات التجزئة في وحدة الرئيسية',

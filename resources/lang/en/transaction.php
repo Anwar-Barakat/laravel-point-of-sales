@@ -6,6 +6,7 @@ return [
     'qty_before_transaction'        => 'Qty before transaction',
     'qty_after_transaction'         => 'Qty after transaction',
     'all_stores'                    => 'All stores',
+
     //_______________________
     // Orders
     //_______________________
@@ -49,6 +50,10 @@ return [
     'cost_tax_discount'         => 'Total price of items + tax + discount',
     'payments_reminders'        => 'Payments and remainder',
     'already_approved'          => 'Order Has already Been Approved previous',
+
+    'general_order_return'      => 'General order return',
+    'general_orders_returns'    => 'General order returns',
+
 
 
     //_______________________

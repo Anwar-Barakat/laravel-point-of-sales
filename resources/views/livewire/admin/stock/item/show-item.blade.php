@@ -70,6 +70,7 @@
                     <th> {{ __('msgs.photo') }}</th>
                     <th> {{ __('stock.item_name') }}</th>
                     <th> {{ __('stock.item_type') }}</th>
+                    <th> {{ __('transaction.qty') }}</th>
                     <th> {{ __('stock.item_category') }}</th>
                     <th> {{ __('stock.parent_item') }}</th>
                     <th> {{ __('stock.parent_unit') }}</th>
@@ -94,6 +95,12 @@
                             <span class="badge bg-blue">
                                 {{ __('stock.' . App\Models\Item::ITEMTYPE[$item->type]) }}
                             </span>
+                        </td>
+                        <td class="text-center">
+                            <p class="badge bg-red-lt d-block mb-1">({{ number_format($item->wholesale_qty, 0) ?? '0' }}) {{ $item->parentUnit->name }}</p>
+                            @if ($item->childUnit)
+                                <p class="badge bg-red-lt">({{ number_format($item->retail_qty, 0) ?? '0' }}) {{ $item->childUnit->name ?? '-' }}</p>
+                            @endif
                         </td>
                         <td><span class="badge badge-outline text-blue">{{ $item->category->name }}</span></td>
                         <td>{{ $item->parentItem->name ?? '-' }}</td>

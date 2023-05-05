@@ -100,7 +100,6 @@ if (!function_exists('update_item_qty')) {
             $item->retail_qty         = fmod($item->all_retail_qty, $item->retail_count_for_wholesale); // 81 % 20 = 1
         } else
             $item->wholesale_qty      = $batches_qty;
-
         return $item;
     }
 }

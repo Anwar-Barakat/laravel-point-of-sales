@@ -48,6 +48,8 @@ return [
     'cost_tax_discount'         => 'مجموع سعر الاصناف + الضريبة + الخصم',
     'payments_reminders'        => 'المدفوعات والمُتبقي',
     'already_approved'          => 'تم إعتماد الطلب بنجاح سابقاً',
+    'general_order_return'      => 'مرتجع طلب عام',
+    'general_orders_returns'    => 'مرتجع المشتريات العام',
 
     //_______________________
     // Shifts

@@ -26,6 +26,8 @@ return [
     'wholesale_cost_price'  => 'Wholesale cost price',
     'retail_cost_price'     => 'Retail cost price',
     'has_fixed_price'       => 'Has fixed price for invoices?',
+    'wholesale_qty'         => 'Wholesale QTY',
+    'retail_qty'            => 'Retail QTY',
 
     'wholesale_retail_prices'           => 'Wholesales & Retails Prices',
     'retail_count_for_wholesale'        => 'Retail unit count for one wholesale',
@@ -36,6 +38,8 @@ return [
     'retail_price_for_block'            => 'Retail price for block',
     'retail_price_for_half_block'       => 'Retail price for block',
     'transactions_on_item'              => 'Transactions on the Item',
+
+
     //_______________________
     // Stores
     //_______________________

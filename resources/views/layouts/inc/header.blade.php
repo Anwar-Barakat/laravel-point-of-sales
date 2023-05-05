@@ -128,11 +128,6 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <!-- setting -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.setting.company') ? 'active' : '' }}" href="{{ route('admin.setting.company') }}">
-                                        {{ __('setting.settings') }}
-                                    </a>
-
                                     <!-- treasuries -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle {{ request()->routeIs('admin.treasuries.*') ? 'active' : '' }}" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -151,6 +146,13 @@
                                     <!-- admins -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.admins.index') ? 'active' : '' }}" href="{{ route('admin.admins.index') }}">
                                         {{ __('setting.admins') }}
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <!-- setting -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.setting.company') ? 'active' : '' }}" href="{{ route('admin.setting.company') }}">
+                                        {{ __('setting.settings') }}
                                     </a>
                                 </div>
                             </div>
@@ -305,6 +307,13 @@
                             <a class="dropdown-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
                                 {{ __('transaction.orders') }}
                             </a>
+
+                            <!-- general orders returns -->
+                            <a class="dropdown-item {{ request()->routeIs('admin.general-order-returns.*') ? 'active' : '' }}" href="{{ route('admin.general-order-returns.index') }}">
+                                {{ __('transaction.general_orders_returns') }}
+                            </a>
+
+                            <div class="dropdown-divider"></div>
 
                             <!-- sales -->
                             <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">

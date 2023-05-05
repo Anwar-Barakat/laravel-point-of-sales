@@ -1,8 +1,18 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
         <h3 class="card-title">{{ __('msgs.all', ['name' => __('transaction.purchase_bills')]) }}</h3>
-        <a href="{{ route('admin.orders.create') }}" class="btn btn-primary">
-            {{ __('msgs.create', ['name' => __('transaction.purchase_bill')]) }}
+        @php
+            if ($order_type == 1) {
+                $route = route('admin.orders.create');
+                $name = __('transaction.purchase_bill');
+            } elseif ($order_type == 3) {
+                $route = route('admin.general-order-returns.create');
+                $name = __('transaction.general_order_return');
+            }
+        @endphp
+
+        <a href="{{ $route }}"class="btn btn-primary">
+            {{ __('msgs.create', ['name' => $name]) }}
         </a>
     </div>
 
@@ -119,8 +129,15 @@
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
+                                        @php
+                                            if ($order_type == 1) {
+                                                $edit = route('admin.orders.edit', ['order' => $order]);
+                                            } elseif ($order_type == 3) {
+                                                $edit = route('admin.general-order-returns.edit', ['general_order_return' => $order]);
+                                            }
+                                        @endphp
                                         @if ($order->is_approved == 0)
-                                            <a href="{{ route('admin.orders.edit', ['order' => $order]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                            <a href="{{ $edit }}" class="dropdown-item d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />

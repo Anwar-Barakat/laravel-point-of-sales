@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
+use App\Http\Controllers\Admin\WarehouseTransaction\GeneralOrderReturn\GeneralOrderReturnController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
@@ -146,6 +147,7 @@ Route::group(
                 // Orders
                 //_______________________
                 Route::resource('orders',                       OrderController::class)->except('store', 'update');
+                Route::resource('general-order-returns',        GeneralOrderReturnController::class);
 
                 //_______________________
                 // Orders
