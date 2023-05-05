@@ -33,12 +33,7 @@ class AddEditOrder extends Component
     {
         $this->validate();
         try {
-            if (!$this->order_type === 1) {
-                toastr()->error(__('msgs.something_went_wrong'));
-                return redirect()->back();
-            }
-
-            $this->order['type']            = 1; // purchases
+            $this->order['type']            = $this->order_type;
             $this->order['account_id']      = $this->order->vendor->account->id;
             $this->order['added_by']        = get_auth_id();
             $this->order['company_id']      = get_auth_com();

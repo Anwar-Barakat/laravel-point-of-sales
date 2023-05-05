@@ -105,7 +105,7 @@
                 <tbody class="table-tbody">
                     @forelse ($orders as $order)
                         <tr>
-                            <td>{{ $order->id }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 <a href="{{ route('admin.vendors.show', ['vendor' => $order->vendor]) }}">
                                     <span class="badge bg-blue">

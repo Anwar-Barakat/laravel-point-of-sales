@@ -22,6 +22,12 @@
                             <td>{{ $order->id }}</td>
                         </tr>
                         <tr>
+                            <th>{{ __('transaction.order_type') }}</th>
+                            <td>
+                                <span class="badge bg-red-lt">{{ __('transaction.' . App\Models\Order::ORDERTYPE[$order->type]) }}</span>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>{{ __('transaction.invoice_type') }}</th>
                             <td>{{ $order->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</td>
                         </tr>

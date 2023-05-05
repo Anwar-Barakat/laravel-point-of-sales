@@ -15,6 +15,7 @@ class Order extends Model
     protected $guarded  = [];
 
     const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
+    const ORDERTYPE     = [1 => 'purchase', 3 => 'general_order_return'];
 
     public function addedBy(): BelongsTo
     {

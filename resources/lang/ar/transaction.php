@@ -14,8 +14,8 @@ return [
     'purchase_invoices'         => 'فواتير المشتريات',
     'purchase_bills'            => 'فواتير المشتريات',
     'purchase_bill'             => 'فاتورة مشتريات',
-    'orders'                    => 'الطلبات',
-    'order'                     => 'طلب',
+    'orders'                    => 'فواتير مشتريات',
+    'order'                     => 'فاتورة مشتريات',
     'cash'                      => 'كاش',
     'delayed'                   => 'مُؤجل',
     'return_on_the_same_pill'   => 'إرجاع على نفس الفاتورة',
@@ -32,6 +32,8 @@ return [
     'cost_after_discount'       => 'التكلفة بعد الخصم',
     'items_cost'                => 'تكلفة الأصناف',
     'grand_total'               => 'المبلغ الأجمالي',
+    'order_type'                => 'نوع طلب المشتريات',
+    'purchase'                  => 'مشتريات',
     'vendor_id'                 => 'المورد',
     'account_id'                => 'الحساب المالي',
     'invoice_type'              => 'نوع الفاتورة',
@@ -48,7 +50,7 @@ return [
     'cost_tax_discount'         => 'مجموع سعر الاصناف + الضريبة + الخصم',
     'payments_reminders'        => 'المدفوعات والمُتبقي',
     'already_approved'          => 'تم إعتماد الطلب بنجاح سابقاً',
-    'general_order_return'      => 'مرتجع طلب عام',
+    'general_order_return'      => 'مرتجع مشتريات عام',
     'general_orders_returns'    => 'مرتجع المشتريات العام',
 
     //_______________________

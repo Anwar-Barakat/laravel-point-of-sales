@@ -21,7 +21,7 @@ class GeneralOrderReturnController extends Controller
      */
     public function create()
     {
-        return view('admin.warehouse-transactions.general-order-returns.create');
+        return view('admin.warehouse-transactions.general-order-returns.create', ['order_type' => 3]);
     }
 
     /**
@@ -35,9 +35,9 @@ class GeneralOrderReturnController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(Order $general_order_return)
     {
-        //
+        return view('admin.warehouse-transactions.general-order-returns.show', ['order' => $general_order_return]);
     }
 
     /**

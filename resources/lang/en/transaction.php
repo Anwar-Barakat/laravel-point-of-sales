@@ -12,8 +12,8 @@ return [
     //_______________________
     'warehouse_transactions'    => 'Warehouse Transactions',
     'purchase_invoices'         => 'Purchase invoices',
-    'orders'                    => 'Orders',
-    'order'                     => 'Order',
+    'orders'                    => 'Purchase bills',
+    'order'                     => 'Purchase bill',
     'cash'                      => 'Cash',
     'delayed'                   => 'Delayed',
     'purchase'                  => 'Purchase',
@@ -33,7 +33,8 @@ return [
     'grand_total'               => 'Grand total',
     'purchase_bills'            => 'Purchase bills',
     'purchase_bill'             => 'Purchase bill',
-
+    'purchase'                  => 'Purchase',
+    'order_type'                => 'Order type',
     'vendor_id'                 => 'Vendor',
     'account_id'                => 'Account',
     'invoice_type'              => 'Invoice type',
