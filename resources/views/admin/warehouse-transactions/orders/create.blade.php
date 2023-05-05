@@ -6,7 +6,7 @@
 
     <div class="card">
         <div class="row g-0">
-            @livewire('admin.warehouse-transaction.order.add-edit-order')
+            @livewire('admin.warehouse-transaction.order.add-edit-order', ['order_type' => 1])
         </div>
     </div>
 

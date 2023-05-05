@@ -13,14 +13,15 @@ class AddEditOrder extends Component
 
     public $vendors = [],
         $stores = [];
-    public $order_type = 1;
+    public $order_type;
 
-    public function mount(Order $order)
+    public function mount(Order $order, $order_type)
     {
-        $this->order        = $order;
-        $this->order['invoice_date']  = date('Y-m-d');
-        $this->vendors      = Vendor::active()->where('company_id', get_auth_com())->get();
-        $this->stores       = Store::active()->where('company_id', get_auth_com())->get();
+        $this->order                = $order;
+        $this->order_type           = $order_type;
+        $this->order->invoice_date  = date('Y-m-d');
+        $this->vendors              = Vendor::active()->where('company_id', get_auth_com())->get();
+        $this->stores               = Store::active()->where('company_id', get_auth_com())->get();
     }
 
     public function updated($fields)
@@ -32,6 +33,11 @@ class AddEditOrder extends Component
     {
         $this->validate();
         try {
+            if (!$this->order_type === 1) {
+                toastr()->error(__('msgs.something_went_wrong'));
+                return redirect()->back();
+            }
+
             $this->order['type']            = 1; // purchases
             $this->order['account_id']      = $this->order->vendor->account->id;
             $this->order['added_by']        = get_auth_id();

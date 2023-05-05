@@ -66,4 +66,5 @@ return [
 
     'are_you_sure_about_deleting'   => 'Are you sure about deleting ?',
     'something_went_wrong'          => 'Something went wrong',
+    'order_has_items'               => ':name containing items',
 ];

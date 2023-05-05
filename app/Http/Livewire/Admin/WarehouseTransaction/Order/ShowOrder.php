@@ -28,6 +28,11 @@ class ShowOrder extends Component
         $this->order_type       = $order_type;
     }
 
+    public function delete(Order $order)
+    {
+        dd($order->orderProducts);
+    }
+
     public function render()
     {
         return view('livewire.admin.warehouse-transaction.order.show-order', ['orders' => $this->getOrders()]);

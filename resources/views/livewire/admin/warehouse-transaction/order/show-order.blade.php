@@ -3,16 +3,16 @@
         <h3 class="card-title">{{ __('msgs.all', ['name' => __('transaction.purchase_bills')]) }}</h3>
         @php
             if ($order_type == 1) {
-                $route = route('admin.orders.create');
-                $name = __('transaction.purchase_bill');
+                $create = route('admin.orders.create');
+                $create_name = __('transaction.purchase_bill');
             } elseif ($order_type == 3) {
-                $route = route('admin.general-order-returns.create');
-                $name = __('transaction.general_order_return');
+                $create = route('admin.general-order-returns.create');
+                $create_name = __('transaction.general_order_return');
             }
         @endphp
 
-        <a href="{{ $route }}"class="btn btn-primary">
-            {{ __('msgs.create', ['name' => $name]) }}
+        <a href="{{ $create }}"class="btn btn-primary">
+            {{ __('msgs.create', ['name' => $create_name]) }}
         </a>
     </div>
 
@@ -132,10 +132,13 @@
                                         @php
                                             if ($order_type == 1) {
                                                 $edit = route('admin.orders.edit', ['order' => $order]);
+                                                $delete = route('admin.orders.destroy', ['order' => $order]);
                                             } elseif ($order_type == 3) {
                                                 $edit = route('admin.general-order-returns.edit', ['general_order_return' => $order]);
+                                                $delete = route('admin.general-order-returns.destroy', ['general_order_return' => $order]);
                                             }
                                         @endphp
+
                                         @if ($order->is_approved == 0)
                                             <a href="{{ $edit }}" class="dropdown-item d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -148,38 +151,54 @@
                                             </a>
                                         @endif
 
-                                        <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.orders.show', ['order' => $order]) }}">
-                                            @if ($order->is_approved == 0)
+                                        @if ($order->is_approved == 0)
+                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.orders.show', ['order' => $order]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M12 5l0 14" />
                                                     <path d="M5 12l14 0" />
                                                 </svg>
                                                 <span>{{ __('transaction.add_items') }}</span>
-                                            @else
+                                            </a>
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $order->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M4 7l16 0" />
+                                                    <path d="M10 11l0 6" />
+                                                    <path d="M14 11l0 6" />
+                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                </svg>
+                                                <span>{{ __('btns.delete') }}</span>
+                                            </a>
+                                        @else
+                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.orders.show', ['order' => $order]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                                                     <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
                                                 </svg>
                                                 <span>{{ __('btns.details') }}</span>
-                                            @endif
-                                        </a>
+                                            </a>
+                                            <a href="javascript:;" class="dropdown-item d-flex align-items-center gap-1 cursor-not-allowed">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M3 3l18 18" />
+                                                    <path d="M4 7h3m4 0h9" />
+                                                    <path d="M10 11l0 6" />
+                                                    <path d="M14 14l0 3" />
+                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l.077 -.923" />
+                                                    <path d="M18.384 14.373l.616 -7.373" />
+                                                    <path d="M9 5v-1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                </svg>
+                                                <span>{{ __('btns.delete') }}</span>
+                                            </a>
+                                        @endif
 
-                                        <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $order->id }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M4 7l16 0" />
-                                                <path d="M10 11l0 6" />
-                                                <path d="M14 11l0 6" />
-                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                            </svg>
-                                            <span>{{ __('btns.delete') }}</span>
-                                        </a>
+
                                     </div>
                                 </span>
-                                <x-modal-delete :id="$order->id" :action="route('admin.orders.destroy', ['order' => $order])" />
+                                <x-modal-delete :id="$order->id" :action="$delete" />
                             </td>
                         </tr>
                     @empty

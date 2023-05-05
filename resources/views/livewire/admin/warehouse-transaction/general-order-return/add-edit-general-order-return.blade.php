@@ -49,11 +49,11 @@
                             {{ __('stock.store') }}
                             (<a href="{{ route('admin.stores.index') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
-                        <select class="form-select" wire:model.debounce.500s='order.store_id'>
+                        <select class="form-select" @if ($order->orderProducts) disabled readonly  @else wire:model.debounce.500s='order.store_id' @endif>
                             <option value="">{{ __('btns.select') }}</option>
                             @if ($stores)
                                 @foreach ($stores as $store)
-                                    <option value="{{ $store->id }}" {{ old('order.store_id') == $store->id ? 'selected' : '' }}>
+                                    <option value="{{ $store->id }}" {{ old('order.store_id', $order->store_id) == $store->id ? 'selected' : '' }}>
                                         {{ $store->name }}
                                     </option>
                                 @endforeach

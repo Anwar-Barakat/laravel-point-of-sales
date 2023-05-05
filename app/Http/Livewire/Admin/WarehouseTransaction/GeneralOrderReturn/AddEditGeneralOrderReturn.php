@@ -13,19 +13,26 @@ class AddEditGeneralOrderReturn extends Component
 
     public $vendors = [],
         $stores = [];
+    public $order_type;
 
-    public function mount(Order $order)
+    public function mount(Order $order, $order_type)
     {
-        $this->order  = $order;
-        $this->order['invoice_date']  = date('Y-m-d');
-        $this->vendors      = Vendor::active()->where('company_id', get_auth_com())->get();
-        $this->stores       = Store::active()->where('company_id', get_auth_com())->get();
+        $this->order                = $order;
+        $this->order_type           = $order_type;
+        $this->order->invoice_date  = date('Y-m-d');
+        $this->vendors              = Vendor::active()->where('company_id', get_auth_com())->get();
+        $this->stores               = Store::active()->where('company_id', get_auth_com())->get();
     }
 
     public function submit()
     {
         $this->validate();
         try {
+            if (!$this->order_type === 3) {
+                toastr()->error(__('msgs.something_went_wrong'));
+                return redirect()->back();
+            }
+
             $this->order['type']            = 3; // general order return
             $this->order['account_id']      = $this->order->vendor->account->id;
             $this->order['added_by']        = get_auth_id();

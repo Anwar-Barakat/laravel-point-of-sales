@@ -62,6 +62,18 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        if ($order->orderProducts->count() > 0) {
+            toastr()->error(__('msgs.order_has_items', ['name' => __('transaction.purchase_bill')]));
+            return redirect()->back();
+        }
+
+        if ($order->type == 1 && $order->is_approved == 1) {
+            toastr()->error(__('transaction.already_approved'));
+            return redirect()->back();
+        }
+
+        $order->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('transaction.purchase_bill')]));
+        return redirect()->back();
     }
 }

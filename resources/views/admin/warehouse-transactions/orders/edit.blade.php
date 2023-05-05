@@ -5,7 +5,10 @@
 
     <div class="card">
         <div class="row g-0">
-            @livewire('admin.warehouse-transaction.order.add-edit-order', ['order' => $order])
+            @livewire('admin.warehouse-transaction.order.add-edit-order', [
+                'order_type' => 1,
+                'order' => $order,
+            ])
         </div>
     </div>
 
