@@ -45,7 +45,7 @@ class GeneralOrderReturnController extends Controller
      */
     public function edit(Order $general_order_return)
     {
-        return view('admin.warehouse-transactions.general-order-returns.edit', ['order' => $general_order_return]);
+        return view('admin.warehouse-transactions.general-order-returns.edit', ['order' => $general_order_return, 'order_type' => 3]);
     }
 
     /**

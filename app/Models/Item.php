@@ -20,7 +20,7 @@ class Item extends Model implements HasMedia
 
     public function scopeActive($query)
     {
-        return $query->where(['is_active' => 1]);
+        return $query->where(['is_active' => 1, 'company_id' => get_auth_com()]);
     }
 
     public function scopeSearch($query, $term)

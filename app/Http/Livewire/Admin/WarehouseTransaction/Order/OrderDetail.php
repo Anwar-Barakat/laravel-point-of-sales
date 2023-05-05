@@ -23,6 +23,12 @@ class OrderDetail extends Component
 
     public $products = [];
 
+    protected $listeners = ['addNewOrder'];
+
+    public function addNewOrder(Order $order)
+    {
+        $this->order = $order;
+    }
 
     public function mount(Order $order, OrderProduct $product)
     {
@@ -56,7 +62,6 @@ class OrderDetail extends Component
             if ($this->order->is_approved == 0) {
                 DB::beginTransaction();
 
-
                 $this->product->fill([
                     'order_id'      => $this->order->id,
                     'added_by'      => get_auth_id(),
@@ -71,12 +76,13 @@ class OrderDetail extends Component
                 ])->save();
 
                 DB::commit();
+                $this->emit('addNewOrder', ['order' => $this->order]);
                 toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-                $this->reset('product');
+                $this->reset('product.item_id');
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('admin.orders.show', $this->order)->with(['error' => $th->getMessage()]);
+            // return redirect()->route('admin.orders.show', $this->order)->with(['error' => $th->getMessage()]);
         }
     }
 
@@ -90,10 +96,9 @@ class OrderDetail extends Component
 
     public function delete($id)
     {
-        $product            = OrderProduct::where(['id' => $id, 'order_id' => $this->order->id])->first();
-        $product->delete();
-        $this->getOrderProducts();
+        OrderProduct::where(['id' => $id, 'order_id' => $this->order->id, 'company_id' => get_auth_com()])->first()->delete();
         toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
+        $this->emit('addNewOrder', ['order' => $this->order]);
     }
 
     public function render()

@@ -17,6 +17,13 @@ class OrderApproval extends Component
 
     public $total;
 
+    protected $listeners = ['addNewOrder'];
+
+    public function addNewOrder(Order $order)
+    {
+        $this->order = $order;
+    }
+
     public function mount(Order $order)
     {
         $this->order = $order;
@@ -225,7 +232,7 @@ class OrderApproval extends Component
 
                 DB::commit();
                 toastr()->success(__('msgs.approved', ['name' => __('transaction.order')]));
-                return redirect()->route('admin.orders.index');
+                $this->emit('addNewOrder', ['order' => $this->order]);
             } else
                 toastr()->error(__('transaction.already_approved'));
         } catch (\Throwable $th) {
@@ -236,8 +243,7 @@ class OrderApproval extends Component
 
     public function render()
     {
-        $order = $this->order;
-        return view('livewire.admin.warehouse-transaction.order.order-approval', ['order' => $order]);
+        return view('livewire.admin.warehouse-transaction.order.order-approval', ['order' => $this->order]);
     }
 
     public function rules()

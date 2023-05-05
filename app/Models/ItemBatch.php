@@ -23,4 +23,10 @@ class ItemBatch extends Model
         'added_by',
         'company_id',
     ];
+
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
 }
