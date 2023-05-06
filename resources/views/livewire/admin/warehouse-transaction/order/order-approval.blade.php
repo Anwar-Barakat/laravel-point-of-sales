@@ -107,14 +107,23 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('transaction.paid_to_the_supplier')" />
+                                    @php
+                                        if ($order->type == 1) {
+                                            $paid = __('transaction.paid_to_the_supplier');
+                                            $remains = __('transaction.remain_to_the_supplier');
+                                        } elseif ($order->type == 3) {
+                                            $paid = __('transaction.collect_from_vendor');
+                                            $remains = __('transaction.remains_for_vendor');
+                                        }
+                                    @endphp
+                                    <x-input-label class="form-label" :value="$paid" />
                                     <input type="number" placeholder="10.15" class="form-control" wire:model='order.paid' {{ $order->invoice_type == 0 ? 'readonly disabled' : '' }} />
                                     <x-input-error :messages="$errors->get('order.paid')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
-                                    <x-input-label class="form-label" :value="__('transaction.remain_to_the_supplier')" />
+                                    <x-input-label class="form-label" :value="$remains" />
                                     <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.remains' readonly disabled />
                                 </div>
                             </div>

@@ -54,7 +54,8 @@ return [
 
     'general_order_return'      => 'General order return',
     'general_orders_returns'    => 'General order returns',
-
+    'collect_from_vendor'       => 'Collect from the vendor',
+    'remains_for_vendor'        => 'Remains for the vendor',
 
     'returned_qty'              => 'ٌReturned QTY',
 

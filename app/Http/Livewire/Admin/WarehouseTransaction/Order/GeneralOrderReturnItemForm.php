@@ -14,13 +14,9 @@ use Livewire\Component;
 class GeneralOrderReturnItemForm extends Component
 {
     public OrderProduct $product;
-
     public Order $order;
-
-    public $batches,
-        $batch,
-        $items,
-        $item,
+    public $batches, $batch,
+        $items, $item,
         $unit;
 
     protected $listeners = ['updateOrderItem'];
@@ -28,8 +24,7 @@ class GeneralOrderReturnItemForm extends Component
     public function updateOrderItem(OrderProduct $product)
     {
         $this->product  = $product;
-        $this->item     = $this->product->item;
-        $this->unit     = $this->product->unit;
+        $this->getItemAndUnit();
         $this->batches  = getBatches($this->product);
         $this->batch    = $this->product->item_batch;
     }
@@ -54,31 +49,27 @@ class GeneralOrderReturnItemForm extends Component
         $this->batches  = getBatches($this->product);
         $this->getItemAndUnit();
 
-        if ($this->product->item_id && $this->product->item_batch_id)
-            $this->getItemAndUnit();
-
         if ($this->product->item_batch_id) {
             $batch = $this->getItemBatch();
-
             $this->product->unit_price = $this->unit->status == 'wholesale'
                 ? $batch->unit_price
                 : $batch->unit_price / $this->product->item->retail_count_for_wholesale;
         }
 
-        if ($this->product->qty && $this->product->unit_price)
+        if ($this->product->qty >= 1 && $this->product->unit_price)
             $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function updatedProductItemBatchId()
     {
         $this->batch = $this->getItemBatch();
-        $this->product->total_price = (int)$this->product->qty * (float)$this->product->unit_price;
-
 
         $batch = $this->getItemBatch();
         $this->product->unit_price = $this->unit->status == 'wholesale'
             ? $batch->unit_price
             : $batch->unit_price / $this->product->item->retail_count_for_wholesale;
+
+        $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function calcPrice()
@@ -114,7 +105,7 @@ class GeneralOrderReturnItemForm extends Component
                 DB::commit();
                 $this->emit('updateOrderProducts', ['order' => $this->order]);
                 toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-                $this->reset('product.item_id');
+                $this->reset('product');
             }
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -133,9 +124,7 @@ class GeneralOrderReturnItemForm extends Component
             'product.item_id'           => [
                 'required',
                 Rule::unique('order_products', 'item_id')->where(function ($query) {
-                    return $query->where('company_id', get_auth_com())
-                        ->where('unit_id', $this->product->unit_id)
-                        ->where('order_id', $this->order->id);
+                    return $query->where(['order_id' => $this->order->id, 'unit_id' => $this->product->unit_id, 'company_id' => get_auth_com()]);
                 })->ignore($this->product->id)
             ],
             'product.item_batch_id'     => ['required', 'integer'],
@@ -153,7 +142,7 @@ class GeneralOrderReturnItemForm extends Component
 
     public function getItemAndUnit()
     {
-        $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
-        $this->unit             = Unit::select('id', 'name', 'status')->findOrFail($this->product->unit_id);
+        $this->item = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
+        $this->unit = Unit::select('id', 'name', 'status')->findOrFail($this->product->unit_id);
     }
 }

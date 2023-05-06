@@ -83,7 +83,6 @@ class SaleDetail extends Component
         }
 
         if (isset($batch->qty)) {
-
             $batchQty = $this->unit->status == 'wholesale' ? $batch->qty : $batch->qty * $this->item->retail_count_for_wholesale;
 
             if ($this->product->qty > $batchQty) {
@@ -100,31 +99,30 @@ class SaleDetail extends Component
         $this->validate();
         try {
             if ($this->product->is_approved == 0) {
-                $batch = ItemBatch::select('qty')->find($this->product->item_batch_id);
+                toastr()->error(__('validation.qty_not_available_now'));
+                return redirect()->back();
+            }
+            $batch = ItemBatch::select('qty')->find($this->product->item_batch_id);
 
-                if ($batch->qty > $this->product->qty && $batch->qty > 0) {
-                    DB::beginTransaction();
+            if ($batch->qty > $this->product->qty && $batch->qty > 0) {
+                DB::beginTransaction();
 
-                    $this->product->fill([
-                        'sale_id'       => $this->sale->id,
-                        'added_by'      => get_auth_id(),
-                        'company_id'  => get_auth_com(),
-                    ])->save();
+                $this->product->fill([
+                    'sale_id'       => $this->sale->id,
+                    'added_by'      => get_auth_id(),
+                    'company_id'  => get_auth_com(),
+                ])->save();
 
-                    $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_id', get_auth_com())->sum('total_price');
-                    $this->sale->fill([
-                        'items_cost'            => $totalPrices,
-                        'cost_before_discount'  => $totalPrices,
-                        'cost_after_discount'   => $totalPrices,
-                    ])->save();
+                $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_id', get_auth_com())->sum('total_price');
+                $this->sale->fill([
+                    'items_cost'            => $totalPrices,
+                    'cost_before_discount'  => $totalPrices,
+                    'cost_after_discount'   => $totalPrices,
+                ])->save();
 
-                    DB::commit();
-                    toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-                    $this->reset('product');
-                } else {
-                    toastr()->error(__('validation.qty_not_available_now'));
-                    return false;
-                }
+                DB::commit();
+                toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
+                $this->reset('product');
             }
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -156,9 +154,7 @@ class SaleDetail extends Component
                 'required',
                 'integer',
                 Rule::unique('sale_products', 'item_id')->where(function ($query) {
-                    return $query->where('company_id', get_auth_com())
-                        ->where('unit_id', $this->product->unit_id)
-                        ->where('sale_id', $this->sale->id);
+                    return $query->where(['sale_id' => $this->sale->id, 'unit_id' => $this->product->unit_id, 'company_id' => get_auth_com()]);
                 })->ignore($this->product->id)
             ],
             'product.item_batch_id'    => ['required', 'integer'],
@@ -179,11 +175,9 @@ class SaleDetail extends Component
             $this->item->wholesale_price_for_block,
         ];
 
-        if ($this->unit->status == 'wholesale') {
-            $index = $this->product->sale_type + 2;
-        } else {
-            $index = $this->product->sale_type - 1;
-        }
+        $index = $this->unit->status == 'wholesale'
+            ? $this->product->sale_type + 2
+            : $this->product->sale_type - 1;
 
         return $prices[$index];
     }
@@ -196,7 +190,7 @@ class SaleDetail extends Component
 
     public function getItemAndUnit()
     {
-        $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
-        $this->unit             = Unit::select('id', 'name', 'status')->findOrFail($this->product->unit_id);
+        $this->item = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
+        $this->unit = Unit::select('id', 'name', 'status')->findOrFail($this->product->unit_id);
     }
 }

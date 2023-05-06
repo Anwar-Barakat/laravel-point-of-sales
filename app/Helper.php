@@ -114,5 +114,5 @@ if (!function_exists('getBatches')) {
             ->when($prod->unit_id,     fn ($q) => $q->where(['unit_id'     => $prod->item->parentUnit->id]))
             ->when($prod->item->type == 2,      fn ($q) => $q->orderBy('production_date', 'asc'))
             ->latest()->get();
-    }   
+    }
 }

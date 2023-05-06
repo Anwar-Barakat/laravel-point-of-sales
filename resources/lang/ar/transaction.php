@@ -54,6 +54,8 @@ return [
     'general_orders_returns'    => 'مرتجع المشتريات العام',
 
     'returned_qty'              => 'الكمية المرتجعة',
+    'collect_from_vendor'       => 'المُحصل من المورد',
+    'remains_for_vendor'        => 'المتبقي للمورد',
 
 
     //_______________________
