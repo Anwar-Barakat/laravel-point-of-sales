@@ -57,16 +57,7 @@
         <div class="col-md-12 col-lg-8">
             <div class="card">
                 <div class="card-header d-grid">
-                    @if ($errors->any())
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <ul class="p-0 m-0 list-unstyled">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
+                    @include('layouts.errors-message')
                     <div class="w-100 d-flex align-items-center justify-content-between">
                         <h3 class="card-title">{{ __('treasury.treasury_will_delivery_to_master') }}</h3>
                         <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-treasury-delivery">

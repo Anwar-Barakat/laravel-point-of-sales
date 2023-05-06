@@ -75,6 +75,7 @@
             <div class="col-12 col-lg-8 mb-3 d-flex flex-column">
                 <div class="card">
                     <form wire:submit.prevent='submit'>
+                        @include('layouts.errors-message')
                         <div class="card-body">
                             <h3 class="mb-4 text-blue">{{ __('transaction.add_items') }}</h3>
                             <div class="row row-cards">

@@ -60,13 +60,13 @@ class SaleDetail extends Component
     {
         $this->item = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
         if ($this->product->item_id && $this->product->unit_id)
-            $this->batches  = $this->getBatches();
+            $this->batches  = getBatches($this->product);
     }
 
     public function updatedProductUnitId()
     {
         $this->getItemAndUnit();
-        $this->batches  = $this->getBatches();
+        $this->batches  = getBatches($this->product);
 
         if ($this->product->item_id && $this->product->sale_type)
             $this->product->unit_price = $this->getUnitPrice();
@@ -166,17 +166,6 @@ class SaleDetail extends Component
             'product.qty'              => ['required', 'integer', 'min:1'],
             'product.total_price'      => ['required', 'numeric', 'min:1'],
         ];
-    }
-
-    public function getBatches()
-    {
-        return ItemBatch::select('id', 'unit_price', 'qty', 'production_date', 'expiration_date')
-            ->where(['company_id'         => get_auth_com()])
-            ->when($this->product->item_id,     fn ($q) => $q->where(['item_id'     => $this->product->item_id]))
-            ->when($this->product->store_id,    fn ($q) => $q->where(['store_id'    => $this->product->store_id]))
-            ->when($this->product->unit_id,     fn ($q) => $q->where(['unit_id'     => $this->item->parentUnit->id]))
-            ->when($this->item->type == 2,      fn ($q) => $q->orderBy('production_date', 'asc'))
-            ->latest()->get();
     }
 
     public function getUnitPrice()

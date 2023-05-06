@@ -92,6 +92,7 @@ class OrderDetail extends Component
         $this->product          = $product;
         $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
         $this->emit('updateOrderProducts', ['order' => $this->order]);
+        $this->emit('updateOrderItem', ['product' => $product]);
     }
 
     public function delete($id)

@@ -1,8 +1,6 @@
 <div class="col d-flex flex-column">
     <form wire:submit.prevent='submit'>
-        @if ($errors->any())
-            {{ implode('', $errors->all('<div>:message</div>')) }}
-        @endif
+        @include('layouts.errors-message')
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row row-cards">

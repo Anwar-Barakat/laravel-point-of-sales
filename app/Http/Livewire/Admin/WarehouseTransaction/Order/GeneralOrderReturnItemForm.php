@@ -23,6 +23,17 @@ class GeneralOrderReturnItemForm extends Component
         $item,
         $unit;
 
+    protected $listeners = ['updateOrderItem'];
+
+    public function updateOrderItem(OrderProduct $product)
+    {
+        $this->product  = $product;
+        $this->item     = $this->product->item;
+        $this->unit     = $this->product->unit;
+        $this->batches  = getBatches($this->product);
+        $this->batch    = $this->product->item_batch;
+    }
+
     public function mount(Order $order, OrderProduct $product)
     {
         $this->order                = $order;
@@ -35,16 +46,24 @@ class GeneralOrderReturnItemForm extends Component
     {
         $this->item = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
         if ($this->product->item_id && $this->product->unit_id)
-            $this->batches  = $this->getBatches();
+            $this->batches  = getBatches($this->product);
     }
 
     public function updatedProductUnitId()
     {
+        $this->batches  = getBatches($this->product);
         $this->getItemAndUnit();
-        $this->batches  = $this->getBatches();
 
-        if ($this->product->item_id && $this->product->sale_type)
-            $this->product->unit_price = $this->getUnitPrice();
+        if ($this->product->item_id && $this->product->item_batch_id)
+            $this->getItemAndUnit();
+
+        if ($this->product->item_batch_id) {
+            $batch = $this->getItemBatch();
+
+            $this->product->unit_price = $this->unit->status == 'wholesale'
+                ? $batch->unit_price
+                : $batch->unit_price / $this->product->item->retail_count_for_wholesale;
+        }
 
         if ($this->product->qty && $this->product->unit_price)
             $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
@@ -52,9 +71,14 @@ class GeneralOrderReturnItemForm extends Component
 
     public function updatedProductItemBatchId()
     {
-        $this->batch                = $this->getItemBatch();
-        $this->product->unit_price  = $this->batch->unit_price;
+        $this->batch = $this->getItemBatch();
         $this->product->total_price = (int)$this->product->qty * (float)$this->product->unit_price;
+
+
+        $batch = $this->getItemBatch();
+        $this->product->unit_price = $this->unit->status == 'wholesale'
+            ? $batch->unit_price
+            : $batch->unit_price / $this->product->item->retail_count_for_wholesale;
     }
 
     public function calcPrice()
@@ -64,7 +88,6 @@ class GeneralOrderReturnItemForm extends Component
             toastr()->error(__('validation.qty_not_available_now'));
             $this->product->qty = 1;
         }
-
         $this->product->total_price = (int)$this->product->qty * (float)$this->product->unit_price;
     }
 
@@ -109,6 +132,11 @@ class GeneralOrderReturnItemForm extends Component
             'order.store_id'            => ['required', 'integer'],
             'product.item_id'           => [
                 'required',
+                Rule::unique('order_products', 'item_id')->where(function ($query) {
+                    return $query->where('company_id', get_auth_com())
+                        ->where('unit_id', $this->product->unit_id)
+                        ->where('order_id', $this->order->id);
+                })->ignore($this->product->id)
             ],
             'product.item_batch_id'     => ['required', 'integer'],
             'product.unit_id'           => ['required', 'integer'],
@@ -116,17 +144,6 @@ class GeneralOrderReturnItemForm extends Component
             'product.unit_price'        => ['required', 'numeric', 'between:1,9999'],
             'product.total_price'       => ['required'],
         ];
-    }
-
-
-    public function getBatches()
-    {
-        return ItemBatch::select('id', 'unit_price', 'qty', 'production_date', 'expiration_date')
-            ->where(['company_id'         => get_auth_com()])
-            ->when($this->product->item_id,     fn ($q) => $q->where(['item_id'     => $this->product->item_id]))
-            ->when($this->product->store_id,    fn ($q) => $q->where(['store_id'    => $this->product->store_id]))
-            ->when($this->product->unit_id,     fn ($q) => $q->where(['unit_id'     => $this->item->parentUnit->id]))
-            ->latest()->get();
     }
 
     public function getItemBatch()

@@ -4,17 +4,8 @@
             <h3 class="card-title">{{ __('transaction.add_items') }}</h3>
         </div>
         <form wire:submit.prevent='submit'>
-            @if ($errors->any())
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <ul class="p-0 m-0 list-unstyled">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
             <div class="card-body">
+                @include('layouts.errors-message')
                 <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -98,7 +89,7 @@
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('transaction.unit_price')" />
-                                <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.unit_price' readonly disabled />
+                                <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='product.unit_price' readonly disabled />
                             </div>
                         </div>
                     @endif
