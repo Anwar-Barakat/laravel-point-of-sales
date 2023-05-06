@@ -23,9 +23,9 @@ class OrderDetail extends Component
 
     public $products = [];
 
-    protected $listeners = ['addNewOrder'];
+    protected $listeners = ['updateOrderProducts'];
 
-    public function addNewOrder(Order $order)
+    public function updateOrderProducts(Order $order)
     {
         $this->order = $order;
     }
@@ -65,7 +65,7 @@ class OrderDetail extends Component
                 $this->product->fill([
                     'order_id'      => $this->order->id,
                     'added_by'      => get_auth_id(),
-                    'company_id'  => get_auth_com(),
+                    'company_id'    => get_auth_com(),
                 ])->save();
 
                 $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_id', get_auth_com())->sum('total_price');
@@ -76,13 +76,12 @@ class OrderDetail extends Component
                 ])->save();
 
                 DB::commit();
-                $this->emit('addNewOrder', ['order' => $this->order]);
+                $this->emit('updateOrderProducts', ['order' => $this->order]);
                 toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
                 $this->reset('product.item_id');
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            // return redirect()->route('admin.orders.show', $this->order)->with(['error' => $th->getMessage()]);
         }
     }
 
@@ -92,13 +91,26 @@ class OrderDetail extends Component
         $this->consuming        = $product->item->type == 2 ?  true : false;
         $this->product          = $product;
         $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
+        $this->emit('updateOrderProducts', ['order' => $this->order]);
     }
 
     public function delete($id)
     {
-        OrderProduct::where(['id' => $id, 'order_id' => $this->order->id, 'company_id' => get_auth_com()])->first()->delete();
+        if (!$this->order->is_approved == 0) {
+            toastr()->error(__('msgs.something_went_wrong'));
+            return redirect()->back();
+        }
+
+        $this->order->orderProducts()->findOrFail($id)->delete();
+        $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_id', get_auth_com())->sum('total_price');
+        $this->order->fill([
+            'items_cost'            => $totalPrices,
+            'cost_before_discount'  => $totalPrices,
+            'cost_after_discount'   => $totalPrices,
+        ])->save();
+
+        $this->emit('updateOrderProducts', ['order' => $this->order]);
         toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
-        $this->emit('addNewOrder', ['order' => $this->order]);
     }
 
     public function render()

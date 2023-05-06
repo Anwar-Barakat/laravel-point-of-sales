@@ -122,7 +122,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('partials.general_setting') }}
+                                {{ __('partials.settings') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
@@ -157,7 +157,7 @@
                                             <path d="M19 6.873a2 2 0 0 1 1 1.747v6.536a2 2 0 0 1 -1.029 1.748l-6 3.833a2 2 0 0 1 -1.942 0l-6 -3.833a2 2 0 0 1 -1.029 -1.747v-6.537a2 2 0 0 1 1.029 -1.748l6 -3.572a2.056 2.056 0 0 1 2 0l6 3.573h-.029z" />
                                             <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                         </svg>
-                                        {{ __('setting.settings') }}
+                                        {{ __('partials.profile') }}
                                     </a>
                                 </div>
                             </div>
@@ -247,7 +247,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('account.accounts') }}
+                                {{ __('partials.accounts') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
@@ -304,7 +304,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('transaction.warehouse_transactions') }}
+                                {{ __('partials.transactions') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">

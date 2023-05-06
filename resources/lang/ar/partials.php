@@ -10,6 +10,9 @@ return [
     'settings'      => 'الأعدادات',
     'logout'        => 'تسجيل الخروج',
     'by'            => 'من قبل',
+    'transactions'  => 'المعاملات',
+    'accounts'      => 'الحسابات',
+    'Profile'       => 'الملف الشخصي',
 
 
     //? Group Link

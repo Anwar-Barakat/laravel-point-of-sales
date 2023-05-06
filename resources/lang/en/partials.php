@@ -9,7 +9,10 @@ return [
     'profile'       => 'Profile',
     'settings'      => 'Settings',
     'logout'        => 'Logout',
+    'transactions'  => 'Trnsactions',
+    'accounts'      => 'Accounts',
     'by'            => 'By',
+    'Profile'       => 'Profile',
 
     //? Group Link
     'general_setting'   => 'General Setting',

@@ -4,6 +4,16 @@
             <h3 class="card-title">{{ __('transaction.add_items') }}</h3>
         </div>
         <form wire:submit.prevent='submit'>
+            @if ($errors->any())
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <ul class="p-0 m-0 list-unstyled">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="card-body">
                 <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                 <div class="row">
@@ -56,23 +66,23 @@
                                     {{ __('transaction.specific_store_qty') }}
                                     (<a href="{{ route('admin.orders.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('transaction.purchase_bill')]) }}">{{ __('msgs.add_new') }}</a>)
                                 </label>
-                                <select class="form-select" wire:model.defer='product.item_batch_id'>
+                                <select class="form-select" wire:model='product.item_batch_id'>
                                     <option value="">{{ __('btns.select') }}</option>
                                     @foreach ($batches as $batch)
-                                        @if ($batch->unit->status == 'retail')
+                                        @if ($unit->status == 'retail')
                                             @php
                                                 $qty = floatval($batch->qty) * floatval($item->retail_count_for_wholesale);
                                                 $price = floatval($item->retail_count_for_wholesale) != 0 ? floatval($batch->unit_price) / floatval($item->retail_count_for_wholesale) : 0;
                                             @endphp
                                             @if ($price > 0)
                                                 <option value="{{ $batch->id }}" {{ $qty == 0 ? 'readony disabled' : '' }}>
-                                                    {{ __('transaction.number') }} {{ $qty }} ({{ __('stock.unit') . ' : ' . $batch->unit->name }})
+                                                    {{ __('transaction.number') }} {{ $qty }} ({{ __('stock.unit') . ' : ' . $unit->name }})
                                                     - {{ __('stock.unit_price') . ' : ' . number_format($price, 0) }}
                                                 </option>
                                             @endif
                                         @else
                                             <option value="{{ $batch->id }}" {{ $batch->qty == 0 ? 'readony disabled' : '' }}>
-                                                {{ __('transaction.number') }} {{ number_format($batch->qty, 0) }} ({{ __('stock.unit') }} : {{ $batch->unit->name }})
+                                                {{ __('transaction.number') }} {{ number_format($batch->qty, 0) }} ({{ __('stock.unit') }} : {{ $unit->name }})
                                                 {{ $batch->production_date ? __('transaction.production_date') . ' : ' . $batch->production_date : '' }}
                                                 - {{ __('stock.unit_price') . ' : ' . number_format($batch->unit_price, 0) }}
                                             </option>
@@ -84,15 +94,17 @@
                         </div>
                     @endif
 
-                    <div class="col-12 col-md-6">
-                        <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('transaction.unit_price')" />
-                            <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.unit_price' wire:keyup='calcPrice' />
+                    @if ($batch)
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3">
+                                <x-input-label class="form-label" :value="__('transaction.unit_price')" />
+                                <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.unit_price' readonly disabled />
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="col-12 col-md-6">
                         <div class="mb-3">
-                            <x-input-label class="form-label" :value="__('transaction.qty')" />
+                            <x-input-label class="form-label" :value="__('transaction.returned_qty')" />
                             <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='product.qty' wire:keyup='calcPrice' />
                         </div>
                     </div>

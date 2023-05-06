@@ -17,9 +17,9 @@ class OrderApproval extends Component
 
     public $total;
 
-    protected $listeners = ['addNewOrder'];
+    protected $listeners = ['updateOrderProducts'];
 
-    public function addNewOrder(Order $order)
+    public function updateOrderProducts(Order $order)
     {
         $this->order = $order;
     }
@@ -232,7 +232,7 @@ class OrderApproval extends Component
 
                 DB::commit();
                 toastr()->success(__('msgs.approved', ['name' => __('transaction.order')]));
-                $this->emit('addNewOrder', ['order' => $this->order]);
+                $this->emit('updateOrderProducts', ['order' => $this->order]);
             } else
                 toastr()->error(__('transaction.already_approved'));
         } catch (\Throwable $th) {

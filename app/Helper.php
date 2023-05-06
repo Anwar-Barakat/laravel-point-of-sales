@@ -79,7 +79,7 @@ if (!function_exists('update_account_balance')) {
     }
 }
 
-if (!function_exists('batch_item_qty')) {
+if (!function_exists('item_batch_qty')) {
     function item_batch_qty(Item $item, $store_id = null)
     {
         return ItemBatch::where(['item_id' => $item->id, 'is_archieved' => 0, 'company_id' => get_auth_com()])

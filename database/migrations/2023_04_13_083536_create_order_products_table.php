@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('unit_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('item_batch_id')->nullable();
 
             $table->date('production_date')->nullable();
             $table->date('expiration_date')->nullable();

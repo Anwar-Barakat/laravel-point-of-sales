@@ -56,6 +56,7 @@ return [
     'general_orders_returns'    => 'General order returns',
 
 
+    'returned_qty'              => 'ٌReturned QTY',
 
     //_______________________
     // Shifts
