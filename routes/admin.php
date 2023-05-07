@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use App\Http\Controllers\Admin\WarehouseTransaction\GeneralOrderReturn\GeneralOrderReturnController;
+use App\Http\Controllers\Admin\WarehouseTransaction\ItemBalance\ItemBalanceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
@@ -137,7 +138,7 @@ Route::group(
                 Route::resource('accounts',                     AccountController::class)->except(['store', 'update']);
 
                 //_______________________
-                // collection transaction
+                // collect/exhange transaction
                 //_______________________
                 Route::get('collect-transactions',              CollectTransactionController::class)->name('collect-transactions');
                 Route::get('exchange-transactions',             ExchangeTransactionController::class)->name('exchange-transactions');
@@ -150,7 +151,7 @@ Route::group(
                 Route::resource('general-order-returns',        GeneralOrderReturnController::class);
 
                 //_______________________
-                // Orders
+                // sales
                 //_______________________
                 Route::resource('sales',                        SaleController::class);
 
@@ -159,6 +160,11 @@ Route::group(
                 // Shifts
                 //_______________________
                 Route::resource('shifts',                       ShiftController::class)->except('store', 'update');
+
+                //_______________________
+                // item balances
+                //_______________________
+                Route::view('item-balances',                    'admin.warehouse-transactions.item-balamces.index')->name('item.balances');
             });
         });
     }

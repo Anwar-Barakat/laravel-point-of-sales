@@ -67,4 +67,9 @@ class Item extends Model implements HasMedia
     {
         return $this->hasMany(ItemTransaction::class);
     }
+
+    public function item_batches(): HasMany
+    {
+        return $this->hasMany(ItemBatch::class, 'item_id');
+    }
 }

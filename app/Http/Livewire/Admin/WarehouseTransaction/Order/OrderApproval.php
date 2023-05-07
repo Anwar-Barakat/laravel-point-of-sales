@@ -153,17 +153,18 @@ class OrderApproval extends Component
                 'company_id'        => get_auth_com(),
             ]);
 
+
             //________________________________________________
             // 2- Approving the order
             //________________________________________________
-            if ($this->order->type === 1) {
+            if ($this->order->type == 1) {
                 $money_for_account = floatval(-$this->order->cost_after_discount);
 
                 //________________________________________________
                 // 3- Increment last payment exchange for treasury
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_exchange');
-            } elseif ($this->order->type === 3) {
+            } elseif ($this->order->type == 3) {
                 $money_for_account = $this->order->cost_after_discount;
 
                 //________________________________________________
@@ -189,41 +190,40 @@ class OrderApproval extends Component
             // 5- Transaction on store
             //________________________________________________
             $this->order->orderProducts->map(function ($prod) {
-                $ratio                  = $prod->item->retail_count_for_wholesale;
                 $qty_before_transaction = item_batch_qty($prod->item);
                 $store_qty_before_trans = item_batch_qty($prod->item, $this->order->store_id);
 
-
                 if ($prod->unit->status == 'retail') {
-                    $quantity   = $prod->qty / $ratio;
-                    $unit_price = $prod->unit_price * $ratio;
+                    $quantity   = $prod->qty / $prod->item->retail_count_for_wholesale;
+                    $unit_price = $prod->unit_price * $prod->item->retail_count_for_wholesale;
                 } else {
                     $quantity   = $prod->qty;
                     $unit_price = $prod->unit_price;
                 }
 
+
+
                 $data = [
-                    'item_id'           => $prod->item->id, // unit and prices
+                    'item_id'           => $prod->item->id,
                     'store_id'          => $this->order->store->id,
                     'unit_id'           => $prod->item->parentUnit->id,
                     'unit_price'        => $unit_price,
-                    'company_id'      => get_auth_com(),
+                    'company_id'        => get_auth_com(),
                 ];
                 if ($prod->item->type == 2) {
                     $data['production_date']   = $prod->production_date;
                     $data['expiration_date']   = $prod->expiration_date;
                 }
 
-
                 $batchExists = ItemBatch::where($data)->first();
 
-                if ($this->order->type == 1) :
-                    $batch_qty  = $batchExists->qty + $quantity;
-                elseif ($this->order->type == 3) :
-                    $batch_qty  = $batchExists->qty - $quantity;
-                endif;
-
                 if (isset($batchExists)) {
+                    if ($this->order->type == 1) :
+                        $batch_qty              = $batchExists->qty + $quantity;
+                    elseif ($this->order->type == 3) :
+                        $batch_qty  = $batchExists->qty - $quantity;
+                    endif;
+
                     $batchExists->update([
                         'qty'           => $batch_qty,
                         'total_price'   => $batchExists->unit_price * ($batch_qty)
@@ -239,16 +239,25 @@ class OrderApproval extends Component
                 //________________________________________________
                 // 6- Any transaction on item it must be stored
                 //________________________________________________
+
+                if ($this->order->type == 1) :
+                    $item_trans_report      = 'For purchases from the vendor ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id;
+                    $item_transaction_type  = 1; //purchases
+                elseif ($this->order->type == 3) :
+                    $item_trans_report      = 'For general order return to the vendor ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id;
+                    $item_transaction_type  = 3; //General Purchase Returns
+                endif;
+
                 $qty_after_transaction = item_batch_qty($prod->item);
                 $store_qty_after_trans = item_batch_qty($prod->item, $this->order->store_id);
                 ItemTransaction::create([
                     'item_transaction_category_id'  => 1,   // Transaction on purchases
-                    'item_transaction_type_id'      => 1,   //purchases
+                    'item_transaction_type_id'      => $item_transaction_type,
                     'item_id'                       => $prod->item_id,
                     'order_id'                      => $this->order->id,
                     'store_id'                      => $this->order->store_id,
                     'order_product_id'              => $prod->id,
-                    'report'                        => 'For purchases from the vendor ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id,
+                    'report'                        => $item_trans_report,
                     'store_qty_before_transaction'  => $store_qty_before_trans . ' ' . $prod->item->parentUnit->name,
                     'store_qty_after_transaction'   => $store_qty_after_trans . ' ' . $prod->item->parentUnit->name,
                     'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
@@ -262,7 +271,7 @@ class OrderApproval extends Component
                 //________________________________________________
                 $prod->item->wholesale_cost_price   = $unit_price;
 
-                $prod->item->retail_cost_price      = $prod->item->has_retail_unit ? $unit_price / $ratio : null;
+                $prod->item->retail_cost_price      = $prod->item->has_retail_unit ? $unit_price / $prod->item->retail_count_for_wholesale : null;
                 update_item_qty($prod->item);
                 $prod->item->save();
             });

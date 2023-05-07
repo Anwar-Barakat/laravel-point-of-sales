@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (!Auth::guard('admin')->attempt($credentials)) {
             toastr()->error(__('msgs.email_pass_not_valid'));
-            return redirect()->back();
+            return redirect()->route('admin.login.show');
         }
 
         Auth::guard('admin')->attempt($credentials);

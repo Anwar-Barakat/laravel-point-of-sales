@@ -100,4 +100,16 @@ return [
     'remain_amount'             => 'المبلغ المُتبقي',
     'invoices_from_date'        => 'الفواتير من تاريخ',
     'invoices_to_date'          => 'الفواتير إلى تاريخ ',
+
+
+
+    //_______________________
+    // Item balances
+    //_______________________
+    'item_balances'             => 'أرصدة الأصناف',
+    'stocks_qty'                => 'الكميات في المخازن',
+    'batch_number'              => 'رقم الباتش',
+    'for'                       => 'ل',
+    'wholesale_unit_price'      => 'سعر وحدة الجملة',
+    'retail_unit_price'         => 'سعر وحدة التجزئة',
 ];

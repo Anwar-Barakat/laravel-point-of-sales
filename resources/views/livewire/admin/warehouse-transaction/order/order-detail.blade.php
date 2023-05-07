@@ -76,7 +76,6 @@
                 <div class="card-footer border-top-0"></div>
             </div>
         </div>
-
         @if ($order->is_approved == 0 && $order->type === 1)
             <div class="col-12 col-lg-8 mb-3" id="add-items">
                 <div class="card mb-3">

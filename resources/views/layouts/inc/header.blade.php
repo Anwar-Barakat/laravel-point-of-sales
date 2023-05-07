@@ -308,27 +308,37 @@
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <!-- orders -->
-                            <a class="dropdown-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
-                                {{ __('transaction.orders') }}
-                            </a>
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <!-- purchases bills -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
+                                        {{ __('transaction.orders') }}
+                                    </a>
 
-                            <!-- general orders returns -->
-                            <a class="dropdown-item {{ request()->routeIs('admin.general-order-returns.*') ? 'active' : '' }}" href="{{ route('admin.general-order-returns.index') }}">
-                                {{ __('transaction.general_orders_returns') }}
-                            </a>
+                                    <!-- general orders returns -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.general-order-returns.*') ? 'active' : '' }}" href="{{ route('admin.general-order-returns.index') }}">
+                                        {{ __('transaction.general_orders_returns') }}
+                                    </a>
 
-                            <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider"></div>
 
-                            <!-- sales -->
-                            <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">
-                                {{ __('transaction.sales_invoices') }}
-                            </a>
+                                    <!-- sales -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">
+                                        {{ __('transaction.sales_invoices') }}
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-column">
+                                    <!-- shifts -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.shifts.*') ? 'active' : '' }}" href="{{ route('admin.shifts.index') }}">
+                                        {{ __('transaction.treasuries_shifts') }}
+                                    </a>
 
-                            <!-- shifts -->
-                            <a class="dropdown-item {{ request()->routeIs('admin.shifts.*') ? 'active' : '' }}" href="{{ route('admin.shifts.index') }}">
-                                {{ __('transaction.treasuries_shifts') }}
-                            </a>
+                                    <!-- item balances -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.item.balances') ? 'active' : '' }}" href="{{ route('admin.item.balances') }}">
+                                        {{ __('transaction.item_balances') }}
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </li>
 

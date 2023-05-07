@@ -51,12 +51,10 @@ return [
     'cost_tax_discount'         => 'Total price of items + tax + discount',
     'payments_reminders'        => 'Payments and remainder',
     'already_approved'          => 'Order Has already Been Approved previous',
-
     'general_order_return'      => 'General order return',
     'general_orders_returns'    => 'General order returns',
     'collect_from_vendor'       => 'Collect from the vendor',
     'remains_for_vendor'        => 'Remains for the vendor',
-
     'returned_qty'              => 'ٌReturned QTY',
 
     //_______________________
@@ -75,10 +73,8 @@ return [
     'my_shift'                  => 'My shift',
     'waiting_for_review'        => 'Waiting for review',
     'opened_shift'              => 'Shift opened',
-
     'you_have_opened_shift'     => 'You have already a shift opened',
     'treasury_opened'           => 'The selected treasury is currently used into another shift',
-
     'shift_movements'           => 'Treasuries shifts',
     'treasury_shifts'           => 'Treasury shifts',
     'approval_and_posting'      => 'Approval and posting of invoice',
@@ -105,4 +101,15 @@ return [
     'remain_amount'             => 'Remain amount',
     'invoices_from_date'        => 'Invoices from date',
     'invoices_to_date'          => 'Invoices to date',
+
+
+    //_______________________
+    // Item balances
+    //_______________________
+    'item_balances'             => 'Item balances',
+    'stocks_qty'                => 'Qty in Stocks',
+    'batch_number'              => 'Batch number',
+    'for'                       => 'for',
+    'wholesale_unit_price'      => 'Wholesale unit price',
+    'retail_unit_price'         => 'Retail unit price',
 ];

@@ -6,6 +6,7 @@
                         <h5 class="modal-title">{{ __('transaction.approval_and_posting') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    @include('layouts.errors-message')
                     <div class="modal-body">
                         <h3 class="mb-3 text-blue">{{ __('transaction.cost_tax_discount') }}</h3>
                         <div class="row">
