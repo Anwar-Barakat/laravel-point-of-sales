@@ -6,30 +6,24 @@
             <div class="card-body">
                 <div id="table-default" class="table-responsive">
                     <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('msgs.search_by_name')" />
-                                <x-text-input class="form-control" placeholder="{{ __('btns.search') }}" wire:model="name" />
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
-                            <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('stock.item_type')" />
-                                <select class="form-select" wire:model='type'>
+                                <x-input-label class="form-label" :value="__('stock.item_name')" />
+                                <select class="form-select" wire:model='item_id'>
                                     <option value="">{{ __('btns.select') }}</option>
-                                    @foreach (App\Models\Item::ITEMTYPE as $key => $value)
-                                        <option value="{{ $key }}">{{ __('stock.' . $value) }}</option>
+                                    @foreach (App\Models\Item::all() as $product)
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('stock.category')" />
-                                <select class="form-select" wire:model='category_id'>
+                                <x-input-label class="form-label" :value="__('stock.store')" />
+                                <select class="form-select" wire:model='store_id'>
                                     <option value="">{{ __('btns.select') }}</option>
-                                    @foreach (App\Models\Category::all() as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                    @foreach (App\Models\Store::all() as $store)
+                                        <option value="{{ $store->id }}">{{ $store->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -51,7 +45,7 @@
                                     <option value="">{{ __('btns.select') }}</option>
                                     <option value="5">5</option>
                                     <option value="10">10</option>
-                                    <option value="15">10</option>
+                                    <option value="15">15</option>
                                 </select>
                             </div>
                         </div>
@@ -106,8 +100,14 @@
                                                         {{ __('transaction.batch_number') }} #{{ $batch->id }} -
                                                         {{ __('stock.store') }} : <span class="text-bold text-gray-600">{{ $batch->store->name }}</span> -
                                                         {{ __('transaction.qty') }} :
-                                                        <span class="text-bold text-blue-600"> ({{ number_format($batch->qty, 0) }}){{ $batch->unit->name }}</span>
+                                                        <span class="text-bold text-blue-600"> ({{ number_format($batch->qty, 0) }} {{ $batch->unit->name }})</span>
                                                         <br>
+                                                        @if ($batch->production_date)
+                                                            {{ __('transaction.production_date') }} : <span class="text-green-600">({{ $batch->production_date }})</span> -
+                                                            {{ __('transaction.expiration_date') }} : <span class="text-red-600">({{ $batch->expiration_date }})</span>
+                                                            <br>
+                                                        @endif
+
                                                         @if ($batch->item->has_retail_unit)
                                                             {{ __('transaction.retail_unit_price') }} : <span class="text-cyan-600">({{ $batch->unit_price / $batch->item->retail_count_for_wholesale }} {{ __('transaction.for') }} {{ $batch->item->childUnit->name }})</span> -
                                                         @endif

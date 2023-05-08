@@ -112,4 +112,8 @@ return [
     'for'                       => 'ل',
     'wholesale_unit_price'      => 'سعر وحدة الجملة',
     'retail_unit_price'         => 'سعر وحدة التجزئة',
+    'batch_status'              => 'حالة الباتش',
+    'all_batches'               => 'جميع الباتشات',
+    'batches_with_qty'          => 'الباتشات التي تحوي كمية',
+    'empty_batches'             => 'الباتشات الفارغة',
 ];

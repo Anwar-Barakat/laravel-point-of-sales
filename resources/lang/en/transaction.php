@@ -112,4 +112,9 @@ return [
     'for'                       => 'for',
     'wholesale_unit_price'      => 'Wholesale unit price',
     'retail_unit_price'         => 'Retail unit price',
+    'batch_status'              => 'Batches status',
+    'all_batches'               => 'All batches',
+    'batches_with_qty'          => 'Batches that have qty',
+    'empty_batches'             => 'Eempty Batches',
+
 ];
