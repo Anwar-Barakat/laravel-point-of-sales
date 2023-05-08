@@ -5,7 +5,7 @@
             </div>
             <div class="card-body">
                 <div id="table-default" class="table-responsive">
-                    <div class="row">
+                    <div class="row row-cards">
                         <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('stock.item_name')" />
@@ -34,6 +34,7 @@
                                 <select class="form-select" wire:model='order_by'>
                                     <option value="">{{ __('btns.select') }}</option>
                                     <option value="name">{{ __('stock.item_name') }}</option>
+                                    <option value="wholesale_qty">{{ __('stock.wholesale_qty') }}</option>
                                     <option value="created_at">{{ __('msgs.created_at') }}</option>
                                 </select>
                             </div>
@@ -58,6 +59,20 @@
                                     <option value="desc">{{ __('msgs.desc') }}</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-cards">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
+                            <div class="mb-3">
+                                <x-input-label class="form-label" :value="__('transaction.production_from_date')" />
+                                <input type="date" class="form-control" wire:model='invoices_from_date'>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-3">
+                            <div class="mb-3">
+                                <x-input-label class="form-label" :value="__('transaction.production_to_date')" />
+                                <input type="date" class="form-control" wire:model='invoices_to_date'>
                             </div>
                         </div>
                     </div>

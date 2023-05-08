@@ -320,8 +320,6 @@
                                         {{ __('transaction.general_orders_returns') }}
                                     </a>
 
-                                    <div class="dropdown-divider"></div>
-
                                     <!-- sales -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">
                                         {{ __('transaction.sales_invoices') }}

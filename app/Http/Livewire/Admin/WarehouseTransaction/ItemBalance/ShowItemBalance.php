@@ -15,9 +15,19 @@ class ShowItemBalance extends Component
         $name,
         $store_id,
         $item_id,
-        $order_by = 'wholesale_qty',
+        $order_by = 'name',
+        $production_date,
         $sort_by = 'desc',
         $per_page = CUSTOM_PAGINATION;
+
+    public $production_from_date,
+        $production_to_date;
+
+    public function mount()
+    {
+        $this->production_to_date = date('Y-m-d');
+    }
+
 
     public function render()
     {
@@ -28,12 +38,14 @@ class ShowItemBalance extends Component
 
     public function getItems()
     {
-        return Item::with([
-            'childUnit', 'parentUnit', 'item_batches' => function ($query) {
-                return $query->when($this->store_id,             fn ($q) => $q->where('store_id', $this->store_id));
+        return Item::whereHas(
+            'item_batches',
+            function ($query) {
+                $query->when($this->store_id,               fn ($q) => $q->where('store_id', $this->store_id));
+                $query->when($this->item_id,                fn ($q) => $q->where('item_id', $this->item_id));
+                $query->when($this->production_from_date,   fn ($q) => $q->whereBetween('production_date', [$this->production_from_date, $this->production_to_date]));
             }
-
-        ])->where(['company_id' => get_auth_com()])
+        )->with(['childUnit', 'parentUnit', 'item_batches'])->where(['company_id' => get_auth_com()])
             ->search(trim($this->name))
             ->orderBy($this->order_by, $this->sort_by)
             ->when($this->item_id,              fn ($q) => $q->where('id', $this->item_id))

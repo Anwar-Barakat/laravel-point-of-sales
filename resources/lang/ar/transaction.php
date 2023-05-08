@@ -116,4 +116,6 @@ return [
     'all_batches'               => 'جميع الباتشات',
     'batches_with_qty'          => 'الباتشات التي تحوي كمية',
     'empty_batches'             => 'الباتشات الفارغة',
+    'production_from_date'      => 'تاريخ الإنتاج من التاريخ',
+    'production_to_date'        => 'تاريخ الإنتاج إلى التاريخ',
 ];
