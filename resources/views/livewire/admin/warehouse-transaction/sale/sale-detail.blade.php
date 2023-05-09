@@ -19,7 +19,19 @@
                     <tbody>
                         <tr>
                             <th>{{ __('transaction.sale_invoice') }}</th>
-                            <td>{{ $sale->id }}</td>
+                            <td>#{{ $sale->id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('transaction.sale_type') }}</th>
+                            <td>
+                                <span class="badge bg-red-lt">
+                                    @if ($sale->type == 1)
+                                        {{ __('transaction.sales') }}
+                                    @elseif($sale->type == 3)
+                                        {{ __('transaction.general_sale_return') }}
+                                    @endif
+                                </span>
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ __('transaction.invoice_type') }}</th>
@@ -114,7 +126,10 @@
                             <div class="row row-cards">
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-3">
-                                        <x-input-label class="form-label" :value="__('stock.item')" />
+                                        <label for="" class="form-label">
+                                            {{ __('stock.store') }}
+                                            (<a href="{{ route('admin.items.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('stock.item')]) }}">{{ __('msgs.add_new') }}</a>)
+                                        </label>
                                         <select class="form-select" wire:model='product.item_id'>
                                             <option value="">{{ __('btns.select') }}</option>
                                             @foreach ($items as $product)
@@ -141,40 +156,7 @@
                                 @endif
                             </div>
                             <div class="row row-cards">
-                                @if ($batches)
-                                    <div class="col-12 col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">
-                                                {{ __('transaction.specific_store_qty') }}
-                                                (<a href="{{ route('admin.orders.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('transaction.purchase_bill')]) }}">{{ __('msgs.add_new') }}</a>)
-                                            </label>
-                                            <select class="form-select" wire:model.defer='product.item_batch_id'>
-                                                <option value="">{{ __('btns.select') }}</option>
-                                                @foreach ($batches as $batch)
-                                                    @if ($unit->status == 'retail')
-                                                        @php
-                                                            $qty = floatval($batch->qty) * floatval($item->retail_count_for_wholesale);
-                                                            $price = floatval($item->retail_count_for_wholesale) != 0 ? floatval($batch->unit_price) / floatval($item->retail_count_for_wholesale) : 0;
-                                                        @endphp
-                                                        @if ($price > 0)
-                                                            <option value="{{ $batch->id }}" {{ $qty == 0 ? 'readony disabled' : '' }}>
-                                                                {{ __('transaction.number') }} {{ $qty }} ({{ __('stock.unit') . ' : ' . $unit->name }})
-                                                                - {{ __('stock.unit_price') . ' : ' . number_format($price, 0) }}
-                                                            </option>
-                                                        @endif
-                                                    @else
-                                                        <option value="{{ $batch->id }}" {{ $batch->qty == 0 ? 'readony disabled' : '' }}>
-                                                            {{ __('transaction.number') }} {{ number_format($batch->qty, 0) }} ({{ __('stock.unit') }} : {{ $unit->name }})
-                                                            {{ $batch->production_date ? __('transaction.production_date') . ' : ' . $batch->production_date : '' }}
-                                                            - {{ __('stock.unit_price') . ' : ' . number_format($batch->unit_price, 0) }}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                            <x-input-error :messages="$errors->get('product.item_batch_id')" class="mt-2" />
-                                        </div>
-                                    </div>
-                                @endif
+                                @include('livewire.admin.inc.batches')
                                 <div class="col-12 col-lg-3">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.qty')" />

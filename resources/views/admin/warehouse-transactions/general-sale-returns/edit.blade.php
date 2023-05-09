@@ -1,6 +1,9 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.edit', ['name' => __('transaction.sales_invoices')]))
-    @section('breadcrumbTitle', __('msgs.edit', ['name' => __('transaction.sales_invoices')]))
+    @php
+        $pageTitle = $sale_type == 3 ? __('transaction.' . App\Models\Sale::ORDERTYPE[3]) : __('transaction.sales');
+    @endphp
+    @section('pageTitle', __('msgs.edit', ['name' => $pageTitle]))
+    @section('breadcrumbTitle', __('msgs.edit', ['name' => $pageTitle]))
     @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
 
     <div class="card">

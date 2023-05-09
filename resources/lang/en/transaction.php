@@ -103,6 +103,7 @@ return [
     'invoices_to_date'          => 'Invoices to date',
     'general_sale_return'       => 'General sale return',
     'general_sales_returns'     => 'General sale returns',
+    'return_type'               => 'Return type',
 
 
     //_______________________

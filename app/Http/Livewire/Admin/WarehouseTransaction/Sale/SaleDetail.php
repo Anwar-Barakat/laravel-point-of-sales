@@ -26,9 +26,12 @@ class SaleDetail extends Component
         $items          = [];
     public $batches, $unit, $item;
 
-    public function mount(Sale $sale, SaleProduct $product)
+    public $sale_type;
+
+    public function mount(Sale $sale, SaleProduct $product, $sale_type)
     {
         $this->sale                 = $sale;
+        $this->sale_type            = $sale_type;
         $this->product              = $product;
         $this->product->qty         = 1;
         $this->customers            = Customer::active()->where('company_id', get_auth_com())->get();
@@ -44,7 +47,7 @@ class SaleDetail extends Component
     public function updatedProductStoreId()
     {
         if ($this->product->item_id && $this->product->unit_id)
-            $this->batches  = $this->getBatches();
+            $this->batches  = getBatches($this->product);
     }
 
     public function updatedProductSaleType()
@@ -61,6 +64,9 @@ class SaleDetail extends Component
         $this->item = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
         if ($this->product->item_id && $this->product->unit_id)
             $this->batches  = getBatches($this->product);
+
+        if ($this->item->type && $this->unit)
+            $this->product->unit_price = $this->getUnitPrice();
     }
 
     public function updatedProductUnitId()
@@ -98,32 +104,38 @@ class SaleDetail extends Component
     {
         $this->validate();
         try {
-            if ($this->product->is_approved == 0) {
-                toastr()->error(__('validation.qty_not_available_now'));
+            if (!$this->product->is_approved == 0) {
+                toastr()->error(__('transaction.already_approved'));
                 return redirect()->back();
             }
-            $batch = ItemBatch::select('qty')->find($this->product->item_batch_id);
 
-            if ($batch->qty > $this->product->qty && $batch->qty > 0) {
-                DB::beginTransaction();
-
-                $this->product->fill([
-                    'sale_id'       => $this->sale->id,
-                    'added_by'      => get_auth_id(),
-                    'company_id'  => get_auth_com(),
-                ])->save();
-
-                $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_id', get_auth_com())->sum('total_price');
-                $this->sale->fill([
-                    'items_cost'            => $totalPrices,
-                    'cost_before_discount'  => $totalPrices,
-                    'cost_after_discount'   => $totalPrices,
-                ])->save();
-
-                DB::commit();
-                toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-                $this->reset('product');
+            if ($this->sale->type == 1) {
+                $batch = ItemBatch::select('qty')->find($this->product->item_batch_id);
+                if ($batch->qty > $this->product->qty && $batch->qty > 0) {
+                    toastr()->error(__('validation.qty_not_available_now'));
+                    $this->product->qty = 1;
+                }
             }
+
+            DB::beginTransaction();
+
+            $this->product->fill([
+                'type'          => $this->sale_type,
+                'sale_id'       => $this->sale->id,
+                'added_by'      => get_auth_id(),
+                'company_id'    => get_auth_com(),
+            ])->save();
+
+            $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_id', get_auth_com())->sum('total_price');
+            $this->sale->fill([
+                'items_cost'            => $totalPrices,
+                'cost_before_discount'  => $totalPrices,
+                'cost_after_discount'   => $totalPrices,
+            ])->save();
+
+            DB::commit();
+            toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
+            $this->reset('product');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('admin.sales.show', $this->sale)->with(['error' => $th->getMessage()]);
@@ -135,7 +147,7 @@ class SaleDetail extends Component
         $product                = SaleProduct::with('item')->findOrFail($id);
         $this->product          = $product;
         $this->getItemAndUnit();
-        $this->batches          = $this->getBatches();
+        $this->batches          = getBatches($this->product);
     }
 
     public function render()

@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.details', ['name' => __('transaction.sale_invoice')]))
-    @section('breadcrumbTitle', __('msgs.details', ['name' => __('transaction.sale_invoice')]))
+    @section('pageTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\Order::ORDERTYPE[$sale->type])]))
+    @section('breadcrumbTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\Order::ORDERTYPE[$sale->type])]))
     @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
 
 

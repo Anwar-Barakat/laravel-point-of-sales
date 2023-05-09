@@ -4,6 +4,6 @@
     @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
 
 
-    @livewire('admin.warehouse-transaction.sale.sale-detail', ['sale' => $sale, 'sale_type' => 1])
+    @livewire('admin.warehouse-transaction.sale.sale-detail', ['sale' => $sale])
 
 </x-master-layout>

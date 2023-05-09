@@ -48,12 +48,14 @@ class AddEditSale extends Component
 
             if ($this->sale->type == 1) {
                 $name = __('transaction.sale_invoice');
+                $route = route('admin.sales.show', ['sale' => $this->sale]);
             } elseif ($this->sale->type == 3) {
                 $name = __('transaction.general_sale_return');
+                $route = route('admin.general-sale-returns.show', ['general_sale_return' => $this->sale]);
             }
 
             toastr()->success(__('msgs.submitted', ['name' => $name]));
-            return redirect()->route('admin.sales.index');
+            return redirect()->route($route);
         } catch (\Throwable $th) {
             return redirect()->route('admin.sales.create')->with(['error' => $th->getMessage()]);
         }

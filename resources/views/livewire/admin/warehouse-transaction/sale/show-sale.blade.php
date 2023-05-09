@@ -1,11 +1,20 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
         <h3 class="card-title">{{ __('msgs.all', ['name' => __('transaction.sales_invoices')]) }}</h3>
-        <a href="{{ route('admin.sales.create') }}" class="btn btn-primary">
-            {{ __('msgs.create', ['name' => __('transaction.sale_invoice')]) }}
+        @php
+            if ($sale_type == 1) {
+                $create = route('admin.sales.create');
+                $create_name = __('transaction.purchase_bill');
+            } elseif ($sale_type == 3) {
+                $create = route('admin.general-sale-returns.create');
+                $create_name = __('transaction.general_sale_return');
+            }
+        @endphp
+
+        <a href="{{ $create }}" class="btn btn-primary">
+            {{ __('msgs.create', ['name' => $create_name]) }}
         </a>
     </div>
-
 
     <div class="card-body">
         <div id="table-default" class="table-responsive">
@@ -131,8 +140,20 @@
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
+                                        @php
+                                            if ($sale_type == 1) {
+                                                $edit = route('admin.sales.edit', ['sale' => $sale]);
+                                                $show = route('admin.sales.show', ['sale' => $sale]);
+                                                $delete = route('admin.sales.destroy', ['sale' => $sale]);
+                                            } elseif ($sale_type == 3) {
+                                                $edit = route('admin.general-sale-returns.edit', ['general_sale_return' => $sale]);
+                                                $show = route('admin.general-sale-returns.show', ['general_sale_return' => $sale]);
+                                                $delete = route('admin.general-sale-returns.destroy', ['general_sale_return' => $sale]);
+                                            }
+                                        @endphp
+
                                         @if ($sale->is_approved == 0)
-                                            <a href="{{ route('admin.sales.edit', ['sale' => $sale]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                            <a href="{{ $edit }}" class="dropdown-item d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -143,7 +164,7 @@
                                             </a>
                                         @endif
 
-                                        <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.sales.show', ['sale' => $sale]) }}">
+                                        <a class="dropdown-item d-flex align-items-center gap-1" href="{{ $show }}">
                                             @if ($sale->is_approved == 0)
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -174,13 +195,13 @@
                                         </a>
                                     </div>
                                 </span>
-                                <x-modal-delete :id="$sale->id" :action="route('admin.sales.destroy', ['sale' => $sale])" />
+                                <x-modal-delete :id="$sale->id" :action="$delete" />
                             </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="6">
-                                <x-blank-section :content="__('transaction.sale_invoice')" :url="route('admin.sales.create')" />
+                                <x-blank-section :content="$create_name" :url="$create" />
                             </td>
                         </tr>
                     @endforelse

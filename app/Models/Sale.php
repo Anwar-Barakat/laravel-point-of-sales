@@ -13,6 +13,7 @@ class Sale extends Model
 
     protected $guarded  = [];
     const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
+    const SALETYPE      = [1 => 'sales', 3 => 'general_sale_return'];
 
     public function addedBy(): BelongsTo
     {
