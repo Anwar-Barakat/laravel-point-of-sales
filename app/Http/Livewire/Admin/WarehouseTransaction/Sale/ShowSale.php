@@ -20,9 +20,12 @@ class ShowSale extends Component
     public $invoices_from_date,
         $invoices_to_date;
 
-    public function mount()
+    public $sale_type;
+
+    public function mount($sale_type)
     {
         $this->invoices_to_date = date('Y-m-d');
+        $this->sale_type        = $sale_type;
     }
 
     public function render()
@@ -33,6 +36,7 @@ class ShowSale extends Component
     public function getSales()
     {
         return  Sale::with(['account', 'customer', 'delegate'])
+            ->where(['company_id' => get_auth_com(), 'type' => $this->sale_type])
             ->when($this->customer_id,          fn ($q) => $q->where('customer_id', $this->customer_id))
             ->when($this->delegate_id,          fn ($q) => $q->where('delegate_id', $this->delegate_id))
             ->when($this->invoices_from_date,   fn ($q) => $q->whereBetween('invoice_date', [$this->invoices_from_date, $this->invoices_to_date]))

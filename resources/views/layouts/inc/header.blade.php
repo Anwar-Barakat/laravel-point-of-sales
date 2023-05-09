@@ -324,6 +324,11 @@
                                     <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">
                                         {{ __('transaction.sales_invoices') }}
                                     </a>
+
+                                    <!-- general sales -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.general-sale-returns.*') ? 'active' : '' }}" href="{{ route('admin.general-sale-returns.index') }}">
+                                        {{ __('transaction.general_sales_returns') }}
+                                    </a>
                                 </div>
                                 <div class="dropdown-menu-column">
                                     <!-- shifts -->

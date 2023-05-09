@@ -33,13 +33,20 @@ class AddEditOrder extends Component
     {
         $this->validate();
         try {
-            $this->order['type']            = $this->order_type;
-            $this->order['account_id']      = $this->order->vendor->account->id;
-            $this->order['added_by']        = get_auth_id();
-            $this->order['company_id']      = get_auth_com();
+            $this->order->type            = $this->order_type;
+            $this->order->account_id      = $this->order->vendor->account->id;
+            $this->order->added_by        = get_auth_id();
+            $this->order->company_id      = get_auth_com();
 
             $this->order->save();
-            toastr()->success(__('msgs.submitted', ['name' => __('transaction.purchase_bill')]));
+
+            if ($this->order->type == 1) {
+                $name = __('transaction.purchase_bill');
+            } elseif ($this->order->type == 3) {
+                $name = __('transaction.general_order_return');
+            }
+
+            toastr()->success(__('msgs.submitted', ['name' => $name]));
             return redirect()->route('admin.orders.show', ['order' => $this->order]);
         } catch (\Throwable $th) {
             return redirect()->route('admin.orders.create')->with(['error' => $th->getMessage()]);

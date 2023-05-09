@@ -34,7 +34,7 @@ class EditCategory extends Component
         $this->is_active    = $this->category->is_active;
         $this->section_id   = $this->category->section_id;
         $this->description  = $this->category->description;
-        $this->categories   = Category::with('subCategories')->where(['section_id' => $this->section_id, 'parent_id' => 0])->get();
+        $this->categories   = Category::with('subCategories')->where(['section_id' => $this->section_id, 'parent_id' => 0])->where('id', '!=', $this->category->id)->get();
         // dd($this->categories);
         // dd($this->parent_id);
     }
@@ -46,7 +46,7 @@ class EditCategory extends Component
 
     public function updatedSectionId()
     {
-        $this->categories = Category::with('subCategories')->where(['section_id' => $this->section_id, 'parent_id' => 0])->get();
+        $this->categories = Category::with('subCategories')->where(['section_id' => $this->section_id, 'parent_id' => 0])->where('id', '!=', $this->category->id)->get();
     }
 
     public function update()

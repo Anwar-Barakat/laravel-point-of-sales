@@ -3,5 +3,5 @@
     @section('breadcrumbTitle', __('msgs.list', ['name' => __('transaction.sales_invoices')]))
     @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
 
-    @livewire('admin.warehouse-transaction.sale.show-sale', ['sale_type' => 1])
+    @livewire('admin.warehouse-transaction.sale.show-sale', ['sale_type' => 3])
 </x-master-layout>

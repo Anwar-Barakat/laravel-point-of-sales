@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('type')->default(1)->comment('1 => sales, 2 => return on the same pill, 3 => general returns');
             $table->boolean('invoice_type');
             $table->date('invoice_date');
             $table->boolean('is_approved')->default(0);

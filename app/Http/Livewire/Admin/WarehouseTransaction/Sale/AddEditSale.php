@@ -18,10 +18,13 @@ class AddEditSale extends Component
         $categories = [],
         $stores = [];
 
-    public function mount(Sale $sale)
+    public $sale_type;
+
+    public function mount(Sale $sale, $sale_type)
     {
         $this->sale         = $sale;
         $this->sale->invoice_date  = date('Y-m-d');
+        $this->sale_type  = $sale_type;
         $this->customers    = Customer::active()->where('company_id', get_auth_com())->get();
         $this->delegates    = Delegate::active()->where('company_id', get_auth_com())->get();
         $this->categories   = Category::with('subCategories')->where(['parent_id' => 0])->get();
@@ -37,12 +40,19 @@ class AddEditSale extends Component
     {
         $this->validate();
         try {
-            $this->sale->account_id      = $this->sale->customer->account->id;
-            $this->sale->added_by        = get_auth_id();
-            $this->sale->company_id    = get_auth_com();
+            $this->sale->type           = $this->sale_type;
+            $this->sale->account_id     = $this->sale->customer->account->id;
+            $this->sale->added_by       = get_auth_id();
+            $this->sale->company_id     = get_auth_com();
             $this->sale->save();
 
-            toastr()->success(__('msgs.submitted', ['name' => __('transaction.sale_invoice')]));
+            if ($this->sale->type == 1) {
+                $name = __('transaction.sale_invoice');
+            } elseif ($this->sale->type == 3) {
+                $name = __('transaction.general_sale_return');
+            }
+
+            toastr()->success(__('msgs.submitted', ['name' => $name]));
             return redirect()->route('admin.sales.index');
         } catch (\Throwable $th) {
             return redirect()->route('admin.sales.create')->with(['error' => $th->getMessage()]);

@@ -37,7 +37,7 @@ class GeneralOrderReturnController extends Controller
      */
     public function show(Order $general_order_return)
     {
-        return view('admin.warehouse-transactions.general-order-returns.show', ['order' => $general_order_return]);
+        return view('admin.warehouse-transactions.general-order-returns.show', ['order' => $general_order_return, 'order_type' => 3]);
     }
 
     /**

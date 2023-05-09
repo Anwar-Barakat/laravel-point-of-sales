@@ -101,6 +101,8 @@ return [
     'remain_amount'             => 'Remain amount',
     'invoices_from_date'        => 'Invoices from date',
     'invoices_to_date'          => 'Invoices to date',
+    'general_sale_return'       => 'General sale return',
+    'general_sales_returns'     => 'General sale returns',
 
 
     //_______________________

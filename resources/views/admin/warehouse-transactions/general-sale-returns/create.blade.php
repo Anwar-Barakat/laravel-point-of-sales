@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="row g-0">
-            @livewire('admin.warehouse-transaction.sale.add-edit-sale', ['sale_type' => 1])
+            @livewire('admin.warehouse-transaction.sale.add-edit-sale', ['sale_type' => 3])
         </div>
     </div>
 </x-master-layout>

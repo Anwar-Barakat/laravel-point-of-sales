@@ -4,7 +4,9 @@
             <h3 class="mb-4">{{ __('msgs.main_info') }}</h3>
             <div class="row">
                 <div class="col-12 m-auto mb-4">
-                    @if ($category->getFirstMediaUrl('categories', 'thumb'))
+                    @if ($image)
+                        <img src="{{ $image->temporaryUrl() }}" class="img img-thumbnail" height="300">
+                    @elseif ($category->getFirstMediaUrl('categories', 'thumb'))
                         <img src="{{ $category->getFirstMediaUrl('categories') }}" class="img img-thumbnail" alt="{{ $category->name }}">
                     @else
                         <img src="{{ asset('backend/static/banner-default.jpg') }}" class="img img-thumbnail" alt="{{ $category->name }}">

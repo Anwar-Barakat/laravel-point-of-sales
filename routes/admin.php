@@ -24,7 +24,7 @@ use App\Http\Controllers\Admin\Stock\Store\StoreController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use App\Http\Controllers\Admin\WarehouseTransaction\GeneralOrderReturn\GeneralOrderReturnController;
-use App\Http\Controllers\Admin\WarehouseTransaction\ItemBalance\ItemBalanceController;
+use App\Http\Controllers\Admin\WarehouseTransaction\GeneralSaleReturn\GeneralSaleReturnController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
@@ -154,6 +154,7 @@ Route::group(
                 // sales
                 //_______________________
                 Route::resource('sales',                        SaleController::class);
+                Route::resource('general-sale-returns',         GeneralSaleReturnController::class);
 
 
                 //_______________________
