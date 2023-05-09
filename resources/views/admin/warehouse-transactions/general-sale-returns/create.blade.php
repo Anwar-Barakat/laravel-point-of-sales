@@ -1,6 +1,6 @@
 <x-master-layout>
     @php
-        $pageTitle = $sale_type == 3 ? __('transaction.' . App\Models\Sale::ORDERTYPE[3]) : __('transaction.sales');
+        $pageTitle = $sale_type == 3 ? __('transaction.' . App\Models\Sale::SALETYPE[3]) : __('transaction.sales');
     @endphp
     @section('pageTitle', __('msgs.create', ['name' => $pageTitle]))
     @section('breadcrumbTitle', __('msgs.create', ['name' => $pageTitle]))

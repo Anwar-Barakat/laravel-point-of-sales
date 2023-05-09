@@ -45,7 +45,7 @@ class ItemTransactionTypeSeeder extends Seeder
             [
                 'id'            => 5,
                 'name'          => [
-                    'en'        => 'Sales Returns',
+                    'en'        => 'General Sales Returns',
                     'ar'        => 'مرتجع مبيعات',
                 ],
             ],

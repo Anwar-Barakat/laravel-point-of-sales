@@ -97,11 +97,6 @@ class OrderDetail extends Component
 
     public function delete($id)
     {
-        if (!$this->order->is_approved == 0) {
-            toastr()->error(__('msgs.something_went_wrong'));
-            return redirect()->back();
-        }
-
         $this->order->orderProducts()->findOrFail($id)->delete();
         $totalPrices = OrderProduct::where('order_id', $this->order->id)->where('company_id', get_auth_com())->sum('total_price');
         $this->order->fill([

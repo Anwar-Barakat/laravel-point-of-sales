@@ -19,6 +19,7 @@ class SaleProduct extends Model implements HasMedia
         'unit_price',
         'item_id',
         'store_id',
+        'item_batch_id',
         'production_date',
         'expiration_date',
         'qty',
@@ -42,5 +43,10 @@ class SaleProduct extends Model implements HasMedia
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class, 'unit_id');
+    }
+
+    public function item_batch(): BelongsTo
+    {
+        return $this->belongsTo(ItemBatch::class, 'item_batch_id');
     }
 }

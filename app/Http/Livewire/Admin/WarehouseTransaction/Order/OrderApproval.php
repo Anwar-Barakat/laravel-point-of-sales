@@ -157,21 +157,21 @@ class OrderApproval extends Component
             //________________________________________________
             // 2- Approving the order
             //________________________________________________
-            if ($this->order->type == 1) {
+            if ($this->order->type == 1) :
                 $money_for_account = floatval(-$this->order->cost_after_discount);
 
                 //________________________________________________
                 // 3- Increment last payment exchange for treasury
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_exchange');
-            } elseif ($this->order->type == 3) {
+            elseif ($this->order->type == 3) :
                 $money_for_account = $this->order->cost_after_discount;
 
                 //________________________________________________
                 // 3- Increment last payment collect for treasury
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_collect');
-            }
+            endif;
             $this->order->treasury_id               = has_open_shift()->treasury->id;
             $this->order->is_approved               = 1;
             $this->order->approved_by               = get_auth_id();
@@ -201,8 +201,6 @@ class OrderApproval extends Component
                     $unit_price = $prod->unit_price;
                 }
 
-
-
                 $data = [
                     'item_id'           => $prod->item->id,
                     'store_id'          => $this->order->store->id,
@@ -219,7 +217,7 @@ class OrderApproval extends Component
 
                 if (isset($batchExists)) {
                     if ($this->order->type == 1) :
-                        $batch_qty              = $batchExists->qty + $quantity;
+                        $batch_qty  = $batchExists->qty + $quantity;
                     elseif ($this->order->type == 3) :
                         $batch_qty  = $batchExists->qty - $quantity;
                     endif;

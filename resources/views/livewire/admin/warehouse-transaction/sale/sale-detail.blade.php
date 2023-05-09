@@ -127,7 +127,7 @@
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-3">
                                         <label for="" class="form-label">
-                                            {{ __('stock.store') }}
+                                            {{ __('stock.item') }}
                                             (<a href="{{ route('admin.items.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('stock.item')]) }}">{{ __('msgs.add_new') }}</a>)
                                         </label>
                                         <select class="form-select" wire:model='product.item_id'>
@@ -256,8 +256,8 @@
                                         </span>
                                     </td>
                                     <td>{{ $saleProduct->qty }}</td>
-                                    <td>{{ $saleProduct->production_date ?? '-' }}</td>
-                                    <td>{{ $saleProduct->expiration_date ?? '-' }}</td>
+                                    <td>{{ $saleProduct->item_batch->production_date ?? '-' }}</td>
+                                    <td>{{ $saleProduct->item_batch->expiration_date ?? '-' }}</td>
                                     <td class="bg-blue-500">{{ $saleProduct->total_price }}</td>
                                     @if (!$sale->is_approved == 1)
                                         <td>

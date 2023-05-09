@@ -28,6 +28,13 @@ class SaleDetail extends Component
 
     public $sale_type;
 
+    protected $listeners = ['updateSaleProducts'];
+
+    public function updateSaleProducts(Sale $sale)
+    {
+        $this->sale = $sale;
+    }
+
     public function mount(Sale $sale, SaleProduct $product, $sale_type)
     {
         $this->sale                 = $sale;
@@ -135,7 +142,7 @@ class SaleDetail extends Component
 
             DB::commit();
             toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-            $this->reset('product');
+            // $this->reset('product');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('admin.sales.show', $this->sale)->with(['error' => $th->getMessage()]);
@@ -150,9 +157,23 @@ class SaleDetail extends Component
         $this->batches          = getBatches($this->product);
     }
 
+    public function delete($id)
+    {
+        $this->sale->saleProducts()->findOrFail($id)->delete();
+        $totalPrices = SaleProduct::where('sale_id', $this->sale->id)->where('company_id', get_auth_com())->sum('total_price');
+        $this->sale->fill([
+            'items_cost'            => $totalPrices,
+            'cost_before_discount'  => $totalPrices,
+            'cost_after_discount'   => $totalPrices,
+        ])->save();
+
+        $this->emit('updateSaleProducts', ['sale' => $this->sale]);
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
+    }
+
     public function render()
     {
-        return view('livewire.admin.warehouse-transaction.sale.sale-detail', ['sale_products' => $this->getSaleProducts()]);
+        return view('livewire.admin.warehouse-transaction.sale.sale-detail', ['sale' => $this->sale, 'sale_products' => $this->getSaleProducts()]);
     }
 
     public function rules(): array
