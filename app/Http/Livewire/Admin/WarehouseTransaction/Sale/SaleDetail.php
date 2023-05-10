@@ -118,9 +118,10 @@ class SaleDetail extends Component
 
             if ($this->sale->type == 1) {
                 $batch = ItemBatch::select('qty')->find($this->product->item_batch_id);
-                if ($batch->qty > $this->product->qty && $batch->qty > 0) {
+                if ($batch->qty < $this->product->qty) {
                     toastr()->error(__('validation.qty_not_available_now'));
                     $this->product->qty = 1;
+                    return false;
                 }
             }
 

@@ -125,13 +125,13 @@ class SaleApproval extends Component
             endif;
 
 
-            $tranaction = TreasuryTransaction::create([
+            TreasuryTransaction::create([
                 'shift_type_id'     => $shift_type,
                 'shift_id'          => has_open_shift()->id,
                 'admin_id'          => get_auth_id(),
                 'treasury_id'       => has_open_shift()->treasury->id,
                 'sale_id'           => $this->sale->id,
-                'account_id'        => $this->sale->customer_id,
+                'account_id'        => $this->sale->account_id,
                 'is_approved'       => 1,
                 'is_account'        => 1,
                 'transaction_date'  => date('Y-m-d'),
@@ -153,7 +153,7 @@ class SaleApproval extends Component
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_collect');
             elseif ($this->sale->type == 3) :
-                $money_for_account = $this->sale->cost_after_discount;
+                $money_for_account = floatval(-$this->sale->cost_after_discount);
 
                 //________________________________________________
                 // 3- Increment last payment exchange for treasury
@@ -173,7 +173,7 @@ class SaleApproval extends Component
             //________________________________________________
             // 4- Update the customer account balance
             //________________________________________________
-            update_account_balance($this->sale->customer->account);
+            update_account_balance($this->sale->account);
 
             //________________________________________________
             // 5- Transaction on store
