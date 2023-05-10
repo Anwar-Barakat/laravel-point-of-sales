@@ -55,7 +55,7 @@ return [
 
     'returned_qty'              => 'الكمية المرتجعة',
     'collect_from_vendor'       => 'المُحصل من المورد',
-    'remains_for_vendor'        => 'المتبقي للمورد',
+    'remains_for_vendor'        => 'المتبقي من المورد',
     'return_type'               => ' نوع المرتجع',
 
 

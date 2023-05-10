@@ -99,11 +99,6 @@ class OrderApproval extends Component
                 return redirect()->back();
             }
 
-            $this->order->remains = $this->order->cost_after_discount - $this->order->paid;
-            if ($this->order->invoice_type == 0) {
-                $this->order->paid = $this->order->cost_after_discount;
-            }
-
             if (!has_open_shift()) {
                 toastr()->error(__('account.dont_have_open_shift'));
                 return redirect()->route('admin.shifts.create');
