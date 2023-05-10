@@ -23,7 +23,7 @@ class CollectTransactionSeeder extends Seeder
         TreasuryTransaction::create([
             'money'             => 20000, // treasury is debit
             'shift_id'          => $shift->id,
-            'shift_type_id'     => 16, // Borrowing from a bank
+            'shift_type_id'     => 15, // Borrowing from a bank
             'admin_id'          => $admin->id,
             'treasury_id'       => $shift->treasury->id,
             'payment'           => $shift->treasury->last_payment_exchange + 1,

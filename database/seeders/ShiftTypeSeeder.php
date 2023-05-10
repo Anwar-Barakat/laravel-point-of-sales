@@ -90,7 +90,7 @@ class ShiftTypeSeeder extends Seeder
             [
                 'id'                => 9,
                 'name'              => [
-                    'ar'            => 'تحصيل نظير مرتجع مشتربات الى مورد',
+                    'ar'            => 'تحصيل نظير مرتجع مشتريات الى مورد',
                     'en'            => 'Collection of a return counterpart purchased to a supplier',
                 ],
                 'in_screen'         => 1,

@@ -50,8 +50,8 @@ return [
     'cost_tax_discount'         => 'مجموع سعر الاصناف + الضريبة + الخصم',
     'payments_reminders'        => 'المدفوعات والمُتبقي',
     'already_approved'          => 'تم إعتماد الطلب بنجاح سابقاً',
-    'general_order_return'      => 'مرتجع مبيعات عام',
-    'general_orders_returns'    => 'مرتجع المبيعات العام',
+    'general_order_return'      => 'مرتجع مشتريات عام',
+    'general_orders_returns'    => 'مرتجع المشتريات العام',
 
     'returned_qty'              => 'الكمية المرتجعة',
     'collect_from_vendor'       => 'المُحصل من المورد',
@@ -102,8 +102,8 @@ return [
     'remain_amount'             => 'المبلغ المُتبقي',
     'invoices_from_date'        => 'الفواتير من تاريخ',
     'invoices_to_date'          => 'الفواتير إلى تاريخ ',
-    'general_sale_return'       => 'مرتجع مشتريات عام',
-    'general_sales_returns'     => 'مرتجع المشتريات العام',
+    'general_sale_return'       => 'مرتجع مبيع عام',
+    'general_sales_returns'     => 'مرتجع المبيعات العام',
 
 
     //_______________________

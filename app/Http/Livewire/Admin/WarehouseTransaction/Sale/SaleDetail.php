@@ -142,7 +142,8 @@ class SaleDetail extends Component
 
             DB::commit();
             toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-            // $this->reset('product');
+            $this->emit('updateSaleProducts', ['sale' => $this->sale]);
+            $this->reset('product');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('admin.sales.show', $this->sale)->with(['error' => $th->getMessage()]);

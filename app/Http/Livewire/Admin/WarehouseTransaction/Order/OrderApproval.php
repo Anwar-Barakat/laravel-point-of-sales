@@ -99,7 +99,6 @@ class OrderApproval extends Component
                 return redirect()->back();
             }
 
-            $this->remain_paid_price();
             $this->order->remains = $this->order->cost_after_discount - $this->order->paid;
             if ($this->order->invoice_type == 0) {
                 $this->order->paid = $this->order->cost_after_discount;
@@ -122,17 +121,17 @@ class OrderApproval extends Component
             //________________________________________________
 
             if ($this->order->type == 1) :
-                $shift_type = ShiftType::findOrFail(8)->id; // Disbursement for an invoice for purchases from a supplier
+                $shift_type = ShiftType::findOrFail(8)->id; // Disbursement for an invoice for purchases from a vendor
                 $payment    = has_open_shift()->last_payment_exchange + 1;
                 $money      = floatval(-$this->order->paid);
                 $report     = 'Disbursement for a purchase invoice from the vendor of the number holder #' . $this->order->vendor->id;
                 $name       = __('transaction.purchase_bill');
             elseif ($this->order->type == 3) :
 
-                $shift_type = ShiftType::findOrFail(9)->id; // Collection of a return counterpart purchased to a supplier
-                $payment = has_open_shift()->last_payment_collect + 1;
+                $shift_type = ShiftType::findOrFail(9)->id; // Collection of a return counterpart purchased to a vendor
+                $payment    = has_open_shift()->last_payment_collect + 1;
                 $money      = $this->order->paid;
-                $report     = 'Disbursement for a purchase invoice from the vendor of the number holder #' . $this->order->vendor->id;
+                $report     = 'Collection of a return counterpart purchased to a vendor of the number holder #' . $this->order->vendor->id;
                 $name       = __('transaction.general_order_return');
             endif;
 
@@ -142,7 +141,7 @@ class OrderApproval extends Component
                 'admin_id'          => get_auth_id(),
                 'treasury_id'       => has_open_shift()->treasury->id,
                 'order_id'          => $this->order->id,
-                'account_id'        => $this->order->vendor_id,
+                'account_id'        => $this->order->account_id,
                 'is_approved'       => 1,
                 'is_account'        => 1,
                 'transaction_date'  => date('Y-m-d'),
@@ -172,6 +171,7 @@ class OrderApproval extends Component
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_collect');
             endif;
+
             $this->order->treasury_id               = has_open_shift()->treasury->id;
             $this->order->is_approved               = 1;
             $this->order->approved_by               = get_auth_id();
@@ -180,10 +180,11 @@ class OrderApproval extends Component
             $this->order->company_id                = get_auth_com();
             $this->order->save();
 
+
             //________________________________________________
             // 4- Update the vendor account balance
             //________________________________________________
-            update_account_balance($this->order->vendor->account);
+            update_account_balance($this->order->account);
 
 
             //________________________________________________

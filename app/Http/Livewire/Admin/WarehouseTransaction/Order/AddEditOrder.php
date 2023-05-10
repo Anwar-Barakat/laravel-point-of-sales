@@ -41,13 +41,15 @@ class AddEditOrder extends Component
             $this->order->save();
 
             if ($this->order->type == 1) {
-                $name = __('transaction.purchase_bill');
+                $name   = __('transaction.purchase_bill');
+                $route  = route('admin.orders.show', ['order' => $this->order]);
             } elseif ($this->order->type == 3) {
                 $name = __('transaction.general_order_return');
+                $route  = route('admin.general-order-returns.show', ['general_order_return' => $this->order]);
             }
 
             toastr()->success(__('msgs.submitted', ['name' => $name]));
-            return redirect()->route('admin.orders.show', ['order' => $this->order]);
+            return redirect()->to($route);
         } catch (\Throwable $th) {
             return redirect()->route('admin.orders.create')->with(['error' => $th->getMessage()]);
         }

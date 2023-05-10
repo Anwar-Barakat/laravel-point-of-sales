@@ -80,7 +80,7 @@ class SaleApproval extends Component
     public function updatedSalePaid()
     {
         if ($this->sale->invoice_type == 1)
-            $this->sale->remains   = $this->sale->cost_after_discount - $this->sale->paid;
+            $this->sale->remains    = $this->sale->cost_after_discount - $this->sale->paid;
         else
             $this->remain_paid_price();
     }
@@ -94,10 +94,8 @@ class SaleApproval extends Component
                 return redirect()->back();
             }
 
-            $this->remain_paid_price();
-
             if ($this->sale->invoice_type == 0)
-                $this->sale->paid = $this->sale->cost_after_discount;
+                $this->sale->paid = $this->sale->cost_after_discount ?? $this->sale->paid;
 
             if (!has_open_shift()) {
                 toastr()->error(__('account.dont_have_open_shift'));
@@ -106,7 +104,7 @@ class SaleApproval extends Component
 
             if ($this->sale->type == 3 && $this->sale->what_paid > get_treasury_balance()) {
                 toastr()->error(__('account.not_enough_balance'));
-                $this->remain_paid_price();
+                $this->sale->paid = 0;
             }
 
             DB::beginTransaction();
@@ -120,13 +118,14 @@ class SaleApproval extends Component
                 $money              = $this->sale->paid;
                 $report             = 'Collecting a sales invoice from the customer name(' . $this->sale->customer->name . ') of the owner of the number #' . $this->sale->customer->id;
             elseif ($this->sale->type == 3) :
-                $shift_type         = ShiftType::findOrFail(5)->id; // Collection of sales revenue
+                $shift_type         = ShiftType::findOrFail(6)->id; // Collection of sales revenue
                 $payment            = has_open_shift()->last_payment_exchange + 1;
                 $money              = floatval(-$this->sale->paid);
                 $report             = 'Disbursement for a general sales returns for the customer name(' . $this->sale->customer->name . ') of the owner of the number #' . $this->sale->customer->id;
             endif;
 
-            TreasuryTransaction::create([
+
+            $tranaction = TreasuryTransaction::create([
                 'shift_type_id'     => $shift_type,
                 'shift_id'          => has_open_shift()->id,
                 'admin_id'          => get_auth_id(),
@@ -150,14 +149,14 @@ class SaleApproval extends Component
                 $money_for_account = $this->sale->cost_after_discount;
 
                 //________________________________________________
-                // 3- Increment last payment exchange for treasury
+                // 3- Increment last payment collect for treasury
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_collect');
             elseif ($this->sale->type == 3) :
-                $money_for_account = floatval(-$this->sale->cost_after_discount);
+                $money_for_account = $this->sale->cost_after_discount;
 
                 //________________________________________________
-                // 3- Increment last payment collect for treasury
+                // 3- Increment last payment exchange for treasury
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_exchange');
             endif;
@@ -238,7 +237,7 @@ class SaleApproval extends Component
                     'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
                     'qty_after_transaction'         => $qty_after_transaction . ' ' . $prod->item->parentUnit->name,
                     'added_by'                      => get_auth_id(),
-                    'company_id'                  => get_auth_com(),
+                    'company_id'                    => get_auth_com(),
                 ]);
 
                 //________________________________________________

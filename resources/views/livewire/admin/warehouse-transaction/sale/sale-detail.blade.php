@@ -86,7 +86,7 @@
         @if ($sale->is_approved == 0)
             <div class="col-12 col-lg-8 mb-3 d-flex flex-column">
                 <div class="card">
-                    <form wire:submit.prevent='submit'>
+                    <form wire:submit.prevent='submit' id="add-items">
                         <div class="card-body">
                             @include('layouts.errors-message')
                             <h3 class="mb-4 text-blue">{{ __('transaction.add_items') }}</h3>

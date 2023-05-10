@@ -59,16 +59,16 @@ if (!function_exists('update_account_balance')) {
         $trans_balance = TreasuryTransaction::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
         if ($account->accountType->id == 1) {
             // vendor
-            $balance = Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-            $balance = $account->vendor->initial_balance
-                + $balance
+            $order_balance  = Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+            $balance        = $account->vendor->initial_balance
+                + $order_balance
                 + $trans_balance;
             $account->update(['current_balance' => $balance]);
         } elseif ($account->accountType->id == 2) {
             // customer
-            $balance = Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-            $balance = $account->customer->initial_balance
-                + $balance
+            $sale_balance   = Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+            $balance        = $account->customer->initial_balance
+                + $sale_balance
                 + $trans_balance;
             $account->update(['current_balance' => $balance]);
         } else {

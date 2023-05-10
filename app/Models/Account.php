@@ -72,16 +72,16 @@ class Account extends Model
 
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     public function vendor(): BelongsTo
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(Vendor::class, 'vendor_id');
     }
 
     public function delegate(): BelongsTo
     {
-        return $this->belongsTo(Delegate::class);
+        return $this->belongsTo(Delegate::class, 'delegate_id');
     }
 }

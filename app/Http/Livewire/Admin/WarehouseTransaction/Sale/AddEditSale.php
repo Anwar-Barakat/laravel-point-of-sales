@@ -55,7 +55,7 @@ class AddEditSale extends Component
             }
 
             toastr()->success(__('msgs.submitted', ['name' => $name]));
-            return redirect()->route($route);
+            return redirect()->to($route);
         } catch (\Throwable $th) {
             return redirect()->route('admin.sales.create')->with(['error' => $th->getMessage()]);
         }
