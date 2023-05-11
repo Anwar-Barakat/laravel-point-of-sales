@@ -36,6 +36,9 @@ return [
     'current_balamce'               => 'Current balance',
     'is_archived'                   => 'Archived',
     'amount'                        => 'Amount',
+    'account_status'                => 'Account status',
+    'total_accounts_payable'        => 'Total Accounts Payable',
+    'total_accounts_receivable'     => 'Total Accounts Receivable',
 
 
     //_______________________

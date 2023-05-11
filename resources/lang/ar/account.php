@@ -35,6 +35,9 @@ return [
     'current_balamce'               => 'الرصيد الحالي',
     'is_archived'                   => 'مؤرشف',
     'amount'                        => 'المبلغ',
+    'account_status'                => 'حالة الحساب',
+    'total_accounts_payable'        => 'مجموع الحسابات الدائنة',
+    'total_accounts_receivable'     => 'مجموع الحسابات المدينين',
 
     //_______________________
     // Vendors

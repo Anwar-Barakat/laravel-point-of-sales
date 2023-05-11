@@ -81,12 +81,16 @@
                                 @endphp
                                 <div class="row row-cards">
                                     <div class="alert alert-{{ $alert }}" role="alert">
-                                        {{ __('account.account') . ': ' }}
-                                        {{ $financial_account->current_balance > 0 ? '(' . __('account.debit') . ')' : '' }}
-                                        {{ $financial_account->current_balance < 0 ? '(' . __('account.credit') . ')' : '' }}
-                                        {{ $financial_account->current_balance == 0 ? '(' . __('account.balanced') . ')' : '' }}
-                                        ,{{ __('account.amount') . ' : ' }}
-                                        {{ abs($financial_account->current_balance) }}
+                                        <h4 class="alert-heading">
+                                            {{ __('account.account') . ' : ' . $financial_account->name }}
+                                        </h4>
+                                        <p>
+                                            {{ $financial_account->current_balance > 0 ? '(' . __('account.debit') . ')' : '' }}
+                                            {{ $financial_account->current_balance < 0 ? '(' . __('account.credit') . ')' : '' }}
+                                            {{ $financial_account->current_balance == 0 ? '(' . __('account.balanced') . ')' : '' }}
+                                            ,{{ __('account.amount') . ' : ' }}
+                                            {{ abs($financial_account->current_balance) }}
+                                        </p>
                                     </div>
                                 </div>
                             @endif
