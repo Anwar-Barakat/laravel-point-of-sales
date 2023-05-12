@@ -22,6 +22,26 @@
                         <x-input-error :messages="$errors->get('sale.customer_id')" class="mt-2" />
                     </div>
                 </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('transaction.invoice_sale_type')" />
+                        <select class="form-select" wire:model.defer='sale.invoice_sale_type'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @foreach (App\Models\Sale::SALEINVOICETYPE as $key => $value)
+                                <option value="{{ $key }}">{{ __('transaction.' . $value) }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('sale.invoice_sale_type')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('transaction.invoice_date')" />
+                        <x-text-input type="date" class="form-control" wire:model.defer='sale.invoice_date' />
+                        <x-input-error :messages="$errors->get('sale.invoice_date')" class="mt-2" />
+                    </div>
+                </div>
                 <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoice_type')" />
@@ -32,13 +52,6 @@
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('sale.invoice_type')" class="mt-2" />
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('transaction.invoice_date')" />
-                        <x-text-input type="date" class="form-control" wire:model.defer='sale.invoice_date' />
-                        <x-input-error :messages="$errors->get('sale.invoice_date')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-12 col-md-4">

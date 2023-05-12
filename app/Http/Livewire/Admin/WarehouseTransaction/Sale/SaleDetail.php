@@ -40,6 +40,7 @@ class SaleDetail extends Component
         $this->sale                 = $sale;
         $this->sale_type            = $sale_type;
         $this->product              = $product;
+        $this->product->sale_type   = $this->sale->invoice_sale_type;
         $this->product->qty         = 1;
         $this->customers            = Customer::active()->where('company_id', get_auth_com())->get();
         $this->stores               = Store::active()->where('company_id', get_auth_com())->get();
@@ -55,15 +56,6 @@ class SaleDetail extends Component
     {
         if ($this->product->item_id && $this->product->unit_id)
             $this->batches  = getBatches($this->product);
-    }
-
-    public function updatedProductSaleType()
-    {
-        if ($this->product->item_id && $this->product->unit_id)
-            $this->product->unit_price = $this->getUnitPrice();
-
-        if ($this->product->unit_price)
-            $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function updatedProductItemId()
@@ -111,6 +103,7 @@ class SaleDetail extends Component
     {
         $this->validate();
         try {
+            $this->product->sale_type   = $this->sale->invoice_sale_type;
             if (!$this->product->is_approved == 0) {
                 toastr()->error(__('transaction.already_approved'));
                 return redirect()->back();

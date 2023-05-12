@@ -69,12 +69,13 @@ class AddEditSale extends Component
     public function rules(): array
     {
         return [
-            'sale.customer_id'     => ['required', 'integer'],
-            'sale.invoice_type'    => ['required', 'boolean'],
-            'sale.invoice_date'    => ['required', 'date'],
-            'sale.category_id'     => ['required', 'integer'],
-            'sale.delegate_id'     => ['required', 'integer'],
-            'sale.notes'           => ['required', 'min:10'],
+            'sale.customer_id'          => ['required', 'integer'],
+            'sale.invoice_type'         => ['required', 'boolean'],
+            'sale.invoice_sale_type'    => ['required', 'in:1,2,3'],
+            'sale.invoice_date'         => ['required', 'date'],
+            'sale.category_id'          => ['required', 'integer'],
+            'sale.delegate_id'          => ['required', 'integer'],
+            'sale.notes'                => ['required', 'min:10'],
         ];
     }
 }

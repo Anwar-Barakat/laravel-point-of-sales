@@ -71,6 +71,13 @@ if (!function_exists('update_account_balance')) {
                 + $sale_balance
                 + $trans_balance;
             $account->update(['current_balance' => $balance]);
+        } elseif ($account->accountType->id == 3) {
+            // delegate
+            $sale_balance   = Sale::where(['delegate_id' => $account->delegate->id, 'company_id' => get_auth_com()])->sum('commission_value');
+            $balance        = $account->initial_balance
+                + $sale_balance
+                + $trans_balance;
+            $account->update(['current_balance' => $balance]);
         } else {
             $balance = $account->current_balance
                 + $trans_balance;

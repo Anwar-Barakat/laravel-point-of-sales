@@ -26,12 +26,17 @@ class DelegateSeeder extends Seeder
         DB::table('delegates')->delete();
 
         $delegate = Delegate::create([
-            'name'                      => 'delegate 1',
-            'email'                     => 'delegate01@gmail.com',
-            'address'                   => $faker->address(),
-            'initial_balance_status'    => 1, // balanced
-            'notes'                     => $faker->sentence(10),
-            'company_id'                => $admin->id,
+            'name'                              => 'delegate 1',
+            'email'                             => 'delegate01@gmail.com',
+            'address'                           => $faker->address(),
+            'initial_balance_status'            => 1, // balanced
+            'notes'                             => $faker->sentence(10),
+            'company_id'                        => $admin->id,
+            'commission_type'                   => 0,
+            'commission_for_sectoral'           => 10,
+            'commission_for_half_block'         => 5,
+            'commission_for_block'              => 2.5,
+            'commission_for_delayed_collect'    => 0,
         ]);
 
         Account::create([

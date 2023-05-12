@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('type')->default(1)->comment('1 => sales, 2 => return on the same pill, 3 => general returns');
-            $table->boolean('invoice_type');
+            $table->tinyInteger('invoice_sale_type')->comment('1 => sectoral, 2 => half_wholesale, 3 => wholesale');
+            $table->boolean('invoice_type')->comment('0 => cash, 1 => delayed');
             $table->date('invoice_date');
             $table->boolean('is_approved')->default(0);
             $table->foreignId('approved_by')->nullable()->constrained('admins')->cascadeOnUpdate();
@@ -25,6 +26,9 @@ return new class extends Migration
             $table->decimal('tax_value', 10, 2)->default(0);
             $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
             $table->decimal('discount_value', 10, 2)->default(0);
+
+            $table->boolean('commission_type')->nullable();
+            $table->float('commission_value', 10, 2)->default(0);
 
             $table->decimal('items_cost', 10, 2)->default(0); // all items costs
             $table->decimal('cost_before_discount', 10, 2)->default(0);

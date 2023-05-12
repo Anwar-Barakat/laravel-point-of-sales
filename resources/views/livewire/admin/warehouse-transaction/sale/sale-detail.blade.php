@@ -41,10 +41,7 @@
                             <th>{{ __('stock.customer_name') }}</th>
                             <td>{{ $sale->customer->name }}</td>
                         </tr>
-                        <tr>
-                            <th>{{ __('transaction.delegate_name') }}</th>
-                            <td>{{ $sale->delegate->name }}</td>
-                        </tr>
+
                         <tr>
                             <th>{{ __('transaction.invoice_number') }}</th>
                             <td>{{ $sale->account->number }}</td>
@@ -55,7 +52,9 @@
                         </tr>
                         <tr>
                             <th>{{ __('transaction.tax') }}</th>
-                            <td>{{ $sale->tax_value ?? '-' }}</td>
+                            <td>
+                                {{ $sale->tax_value ?? '-' }}
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ __('transaction.cost_before_discount') }}</th>
@@ -63,15 +62,44 @@
                         </tr>
                         <tr>
                             <th>{{ __('transaction.discount') }}</th>
-                            <td>{{ $sale->discount_value ?? '-' }}</td>
+                            <td>
+                                {{ $sale->discount_value ?? '-' }}
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ __('transaction.grand_total') }}</th>
                             <td>{{ $sale->cost_after_discount ?? '0' }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('msgs.created_at') }}</th>
-                            <td>{{ $sale->created_at }}</td>
+                            <th>{{ __('transaction.delegate_name') }}</th>
+                            <td>{{ $sale->delegate->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('stock.commission_value') }}</th>
+                            <td class="flex items-center justify-between gap-1">
+                                <span>{{ abs($sale->commission_value) ?? '0' }}</span>
+
+                                @php
+                                    $commission = 0;
+                                    if ($sale->invoice_sale_type == 1) {
+                                        $commission = $sale->delegate->commission_for_sectoral;
+                                    } elseif ($sale->invoice_sale_type == 2) {
+                                        $commission = $sale->delegate->commission_for_half_block;
+                                    } elseif ($sale->invoice_sale_type == 3) {
+                                        $commission = $sale->delegate->commission_for_block;
+                                    }
+                                @endphp
+                                @if ($commission > 0)
+                                    <span class="badge badge-info">
+                                        {{ $commission }}
+                                        {{ $sale->commission_type == 0 ? '%' : '$' }}
+                                    </span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('transaction.invoice_date') }}</th>
+                            <td>{{ $sale->invoice_date }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('msgs.added_by') }}</th>
@@ -112,7 +140,7 @@
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.sale_type')" />
-                                        <select class="form-select" wire:model='product.sale_type'>
+                                        <select class="form-select" wire:model.defer='product.sale_type' readonly disabled>
                                             <option value="">{{ __('btns.select') }}</option>
                                             @foreach (App\Models\SALEPRODUCT::SALETYPE as $key => $value)
                                                 <option value="{{ $key }}">{{ __('transaction.' . $value) }}</option>
@@ -160,7 +188,6 @@
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.qty')" />
                                         <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='product.qty' wire:keyup='calcPrice' />
-                                        <x-input-error :messages="$errors->get('product.qty')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-3">
@@ -210,7 +237,6 @@
                 </div>
             </div>
         @endif
-
     </div>
 
     <div class="row mt-3">

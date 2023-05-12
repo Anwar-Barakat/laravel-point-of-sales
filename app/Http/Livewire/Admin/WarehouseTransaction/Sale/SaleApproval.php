@@ -14,6 +14,8 @@ class SaleApproval extends Component
 {
     public Sale $sale;
 
+    public $commission;
+
     protected $listeners = ['updateSaleProducts'];
 
     public function updateSaleProducts(Sale $sale)
@@ -162,6 +164,23 @@ class SaleApproval extends Component
             endif;
 
 
+            switch ($this->sale->invoice_sale_type) {
+                case 1:
+                    $commission = $this->sale->delegate->commission_for_sectoral;
+                    break;
+                case 2:
+                    $commission = $this->sale->delegate->commission_for_half_block;
+                    break;
+                case 3:
+                    $commission = $this->sale->delegate->commission_for_block;
+                    break;
+            }
+
+            $this->sale->commission_value = $this->sale->delegate->commission_type == 0
+                ? (($commission * $this->sale->cost_after_discount) / 100) * (-1)
+                : $commission * (-1);
+
+            $this->sale->commission_type            = $this->sale->delegate->commission_type;
             $this->sale->treasury_id                = has_open_shift()->treasury->id;
             $this->sale->is_approved                = 1;
             $this->sale->approved_by                = get_auth_id();
@@ -171,8 +190,10 @@ class SaleApproval extends Component
             $this->sale->save();
 
             //________________________________________________
-            // 4- Update the customer account balance
+            // 4- Update the customer & delegate balance
             //________________________________________________
+            update_account_balance($this->sale->delegate->account);
+
             update_account_balance($this->sale->account);
 
             //________________________________________________
@@ -248,6 +269,7 @@ class SaleApproval extends Component
                 update_item_qty($prod->item);
                 $prod->item->save();
             });
+
 
             DB::commit();
             toastr()->success(__('msgs.approved', ['name' => __('transaction.sale_invoice')]));

@@ -104,7 +104,7 @@ return [
     'invoices_to_date'          => 'الفواتير إلى تاريخ ',
     'general_sale_return'       => 'مرتجع مبيع عام',
     'general_sales_returns'     => 'مرتجع المبيعات العام',
-
+    'invoice_sale_type'         => 'نوع فاتورة البيع',
 
     //_______________________
     // Item balances

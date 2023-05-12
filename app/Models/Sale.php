@@ -11,9 +11,10 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $guarded  = [];
-    const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
-    const SALETYPE      = [1 => 'sales', 3 => 'general_sale_return'];
+    protected $guarded      = [];
+    const INVOICETYPE       = [0 => 'cash', 1 => 'delayed'];
+    const SALETYPE          = [1 => 'sales', 3 => 'general_sale_return'];
+    const SALEINVOICETYPE   = [1 => 'sectoral', 2 => 'half_wholesale', 3 => 'wholesale'];
 
     public function addedBy(): BelongsTo
     {
