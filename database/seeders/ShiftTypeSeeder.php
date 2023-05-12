@@ -49,7 +49,7 @@ class ShiftTypeSeeder extends Seeder
                     'en'            => 'Collecting money from a financial account',
                 ],
                 'in_screen'         => 1,
-                'account_type_id'   => AccountType::where(['name->en' => 'expense'])->first()->id,
+                'account_type_id'   => AccountType::where(['name->en' => 'general'])->first()->id,
             ],
             [
                 'id'                => 5,

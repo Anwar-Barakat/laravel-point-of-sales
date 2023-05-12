@@ -33,7 +33,7 @@
                 <div class="col-md-12 col-lg-6">
                     <label class="form-label">
                         {{ __('setting.company_name_ar') }}
-                        <span class="text-azure-500">( {{ $company->parentCustomer->account->number ?? '-' }} )</span>
+                        <span class="text-azure-500">( {{ $company->parentCustomer->number ?? '-' }} )</span>
                     </label>
                     <select wire:model='company.parent_customer_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>
@@ -46,7 +46,7 @@
                 <div class="col-md-12 col-lg-6">
                     <label class="form-label">
                         {{ __('setting.parent_v_account') }}
-                        <span class="text-azure-500">( {{ $company->parentVendor->account->number ?? '-' }} )</span>
+                        <span class="text-azure-500">( {{ $company->parentVendor->number ?? '-' }} )</span>
                     </label>
                     <select wire:model='company.parent_vendor_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>
@@ -61,7 +61,7 @@
                 <div class="col-md-12 col-lg-6">
                     <label class="form-label">
                         {{ __('setting.parent_d_account') }}
-                        <span class="text-azure-500">( {{ $company->parentDelegate->account->number ?? '-' }} )</span>
+                        <span class="text-azure-500">( {{ $company->parentDelegate->number ?? '-' }} )</span>
                     </label>
                     <select wire:model='company.parent_delegate_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>

@@ -44,16 +44,16 @@ class Company extends Model implements HasMedia
 
     public function parentVendor(): BelongsTo
     {
-        return $this->belongsTo(Vendor::class, 'parent_vendor_id');
+        return $this->belongsTo(Account::class, 'parent_vendor_id');
     }
 
     public function parentCustomer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'parent_customer_id');
+        return $this->belongsTo(Account::class, 'parent_customer_id');
     }
 
     public function parentDelegate(): BelongsTo
     {
-        return $this->belongsTo(Delegate::class, 'parent_delegate_id');
+        return $this->belongsTo(Account::class, 'parent_delegate_id');
     }
 }

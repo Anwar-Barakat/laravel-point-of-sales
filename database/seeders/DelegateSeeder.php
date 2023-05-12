@@ -43,7 +43,7 @@ class DelegateSeeder extends Seeder
             'name'                      => 'Delegate 1',
             'account_type_id'           => AccountType::where('name->en', 'delegate')->first()->id,
             'is_parent'                 => 1,
-            'parent_id'                 => 0,
+            'is_parent'                 => 0,
             'parent_id'                 => $admin->company->parent_delegate_id, // Parent Delegates
             'number'                    => uniqid(),
             'initial_balance_status'    => 1, // balanced
