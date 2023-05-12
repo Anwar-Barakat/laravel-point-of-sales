@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\GeneralOrderReturn\GeneralOr
 use App\Http\Controllers\Admin\WarehouseTransaction\GeneralSaleReturn\GeneralSaleReturnController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
+use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -155,6 +156,7 @@ Route::group(
                 //_______________________
                 Route::resource('sales',                        SaleController::class);
                 Route::resource('general-sale-returns',         GeneralSaleReturnController::class);
+                Route::get('sale-invoice/{sale}',               SaleInvoiceController::class)->name('sales.invoice');
 
 
                 //_______________________

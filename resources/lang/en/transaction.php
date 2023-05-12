@@ -105,8 +105,10 @@ return [
     'general_sales_returns'     => 'General sale returns',
     'return_type'               => 'Return type',
     'invoice_sale_type'         => 'Invoice sale type',
-
-
+    'invoice'                   => 'Invoice',
+    'date'                      => 'Date',
+    'total_amount'              => 'Total amount',
+    'final_price'               => 'Grand amount',
 
     //_______________________
     // Item balances

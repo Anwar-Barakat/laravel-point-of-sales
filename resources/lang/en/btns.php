@@ -13,4 +13,5 @@ return [
     'search'        => 'Search',
     'details'       => 'Details',
     'approval'      => 'Approval',
+    'print'         => 'Print',
 ];

@@ -42,10 +42,9 @@ class SaleApproval extends Component
 
     public function updatedSaleTaxValue()
     {
-        if ($this->sale->tax_type == 0)
-            $taxAmount = ($this->sale->items_cost * floatval($this->sale->tax_value)) / 100;
-        else
-            $taxAmount = floatval($this->sale->tax_value);
+        $taxAmount = $this->sale->tax_type == 0
+            ? ($this->sale->items_cost * floatval($this->sale->tax_value)) / 100
+            : floatval($this->sale->tax_value);
 
         $this->sale->cost_before_discount  = $this->sale->items_cost + $taxAmount;
         $this->sale->cost_after_discount   = $this->sale->cost_before_discount;
@@ -276,7 +275,7 @@ class SaleApproval extends Component
             $this->emit('updateSaleProducts', ['sale' => $this->sale]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('admin.sales.show', ['sale' => $this->sale])->with(['error' => $th->getMessage()]);
+            return redirect()->route('admin.general-sale-returns.index')->with(['error' => $th->getMessage()]);
         }
     }
 
@@ -290,7 +289,7 @@ class SaleApproval extends Component
         return [
             'sale.items_cost'               => ['required'],
             'sale.tax_type'                 => ['nullable', 'boolean'],
-            'sale.tax_value'                => ['nullable', 'numeric', function ($value) {
+            'sale.tax_value'                => ['nullable', 'integer', function ($value) {
                 if ($this->sale->tax_type  == '0' && $this->sale->tax_value  >= 100) {
                     toastr()->error(__('validation.tax_type_is_percent'));
                     $this->sale->tax_value = 0;

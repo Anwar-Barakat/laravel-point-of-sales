@@ -17,6 +17,7 @@ class Company extends Model implements HasMedia
 
     protected $fillable = [
         'name',
+        'email',
         'alert_msg',
         'address',
         'mobile',
@@ -28,7 +29,6 @@ class Company extends Model implements HasMedia
     ];
 
     public $translatable    = ['name'];
-
 
     public function registerMediaConversions(Media $media = null): void
     {

@@ -27,6 +27,7 @@ class CompanySeeder extends Seeder
                 'ar'    => 'حلول للكمبيوتر',
                 'en'    => 'Computer Solving',
             ],
+            'email'                 => 'company@gmail.com',
             'alert_msg'             => $faker->sentence(10),
             'address'               => $faker->address(),
             'mobile'                => $faker->phoneNumber(),

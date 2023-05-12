@@ -47,7 +47,8 @@ class AddEditCollectTransaction extends Component
     public function updatedTransactionAccountId()
     {
         $this->financial_account    = Account::with('accountType:id,name')->findOrFail($this->transaction->account_id);
-        $this->shiftTypes           = ShiftType::where(['account_type_id' => $this->financial_account->accountType->id])->collect()->get();
+        $this->shiftTypes           = ShiftType::where(['account_type_id' => $this->financial_account->accountType->id])
+            ->orWhere('account_type_id', 6)->collect()->get(); // general shift types
     }
 
     public function submit()

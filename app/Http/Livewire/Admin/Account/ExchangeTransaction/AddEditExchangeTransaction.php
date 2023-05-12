@@ -48,7 +48,8 @@ class AddEditExchangeTransaction extends Component
     public function updatedTransactionAccountId()
     {
         $this->financial_account    = Account::with('accountType:id,name')->findOrFail($this->transaction->account_id);
-        $this->shiftTypes           = ShiftType::where(['account_type_id' => $this->financial_account->accountType->id])->private()->get();
+        $this->shiftTypes           = ShiftType::where(['account_type_id' => $this->financial_account->accountType->id])
+            ->orWhere('account_type_id', 6)->private()->get();
     }
 
     public function submit()

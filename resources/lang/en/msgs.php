@@ -67,4 +67,5 @@ return [
     'are_you_sure_about_deleting'   => 'Are you sure about deleting ?',
     'something_went_wrong'          => 'Something went wrong',
     'order_has_items'               => ':name containing items',
+    'thanks_for_sale_from_us'       => 'Thank you very much for doing business with us. We look forward to working with you again!',
 ];

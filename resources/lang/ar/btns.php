@@ -13,4 +13,6 @@ return [
     'search'        => 'بحث',
     'details'       => 'تفاصيل',
     'approval'      => 'إعتماد',
+    'print'         => 'طباعة',
+
 ];

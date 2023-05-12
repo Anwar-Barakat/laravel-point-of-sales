@@ -62,5 +62,7 @@ return [
     'are_you_sure_about_deleting'   => 'هل أنت متأكد من عملية الحذف',
     'something_went_wrong'          => 'حدث خطأ ما',
     'order_has_items'               => ':name تحتوي أصناف',
+    'thanks_for_sale_from_us'       => ' شكراً لك كثيراً لقيامك بأعمال تجارية معنا. نحن ننطلع أن تعمل معنا مرة أخرى.',
+
 
 ];

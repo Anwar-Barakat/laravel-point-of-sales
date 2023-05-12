@@ -105,6 +105,10 @@ return [
     'general_sale_return'       => 'مرتجع مبيع عام',
     'general_sales_returns'     => 'مرتجع المبيعات العام',
     'invoice_sale_type'         => 'نوع فاتورة البيع',
+    'invoice'                   => 'الفاتورة',
+    'date'                      => 'التاريخ',
+    'total_amount'              => 'المجموع',
+    'final_price'               => 'السعر النهائي',
 
     //_______________________
     // Item balances
