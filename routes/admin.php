@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use App\Http\Controllers\Admin\WarehouseTransaction\GeneralOrderReturn\GeneralOrderReturnController;
 use App\Http\Controllers\Admin\WarehouseTransaction\GeneralSaleReturn\GeneralSaleReturnController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
+use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
@@ -150,6 +151,7 @@ Route::group(
                 //_______________________
                 Route::resource('orders',                       OrderController::class)->except('store', 'update');
                 Route::resource('general-order-returns',        GeneralOrderReturnController::class);
+                Route::get('order-invoice/{order}',             OrderInvoiceController::class)->name('orders.invoice');
 
                 //_______________________
                 // sales

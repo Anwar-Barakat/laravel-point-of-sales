@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\SALE::SALETYPE[$sale->type])]))
-    @section('breadcrumbTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\SALE::SALETYPE[$sale->type])]))
+    @section('pageTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\Order::ORDERTYPE[$order->type])]))
+    @section('breadcrumbTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\Order::ORDERTYPE[$order->type])]))
     @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
 
     <div class="page-body">
@@ -23,26 +23,25 @@
                             </address>
                         </div>
                         <div class="col-6 text-end">
-                            <p class="h3">{{ __('transaction.the_customer') }}</p>
+                            <p class="h3">{{ __('stock.vendor') }}</p>
                             <address>
-                                {{ $sale->customer->name }} <br>
-                                {{ $sale->customer->address }}<br>
-                                {{ $sale->customer->email }}
+                                {{ $order->vendor->name }} <br>
+                                {{ $order->vendor->address }}<br>
+                                {{ $order->vendor->email }}
                             </address>
                         </div>
                         <div class="col-12 my-5">
                             @php
-                                if ($sale->type == 1) {
+                                if ($order->type == 1) {
                                     $type = __('transaction.sale_invoice');
-                                } elseif ($sale->type == 3) {
+                                } elseif ($order->type == 3) {
                                     $type = __('transaction.general_sale_return');
                                 }
                             @endphp
-                            <h1>{{ $type . ' #' . $sale->id }}</h1>
-                            <h2>{{ __('transaction.date') . ': ' . $sale->invoice_date }}</h2>
-                            <h2>{{ __('transaction.sale_type') . ': ' . __('transaction.' . App\Models\Sale::SALEINVOICETYPE[$sale->invoice_sale_type]) }}</h2>
-                            <h2>{{ __('transaction.paid_amount') . ': ' . $sale->paid }}</h2>
-                            <h2>{{ __('transaction.remain_amount') . ': ' . $sale->remains }}</h2>
+                            <h1>{{ $type . ' #' . $order->id }}</h1>
+                            <h2>{{ __('transaction.date') . ': ' . $order->invoice_date }}</h2>
+                            <h2>{{ __('transaction.paid_amount') . ': ' . $order->paid }}</h2>
+                            <h2>{{ __('transaction.remain_amount') . ': ' . $order->remains }}</h2>
                         </div>
                     </div>
                     <table class="table table-transparent table-responsive">
@@ -55,7 +54,7 @@
                                 <th class="text-end">{{ __('transaction.total_amount') }}</th>
                             </tr>
                         </thead>
-                        @foreach ($sale->saleProducts as $product)
+                        @foreach ($order->orderProducts as $product)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>
@@ -64,7 +63,6 @@
                                         <div class="text-muted">{{ __('transaction.production_date') . ' : ' }} {{ $product->production_date }}</div>
                                         <div class="text-muted">{{ __('transaction.expiration_date') . ' : ' }} {{ $product->expiration_date }}</div>
                                     @endif
-                                    <div class="text-muted">{{ __('stock.store') . ': ' . $product->store->name }}</div>
                                 </td>
                                 <td class="text-center">{{ $product->qty }}
                                 </td>
@@ -72,29 +70,30 @@
                                 <td class="text-end">{{ $product->total_price }}</td>
                             </tr>
                         @endforeach
+
                         <tr>
                             <td colspan="4" class="strong text-end">{{ __('transaction.total_price') }}</td>
-                            <td class="text-end">{{ $sale->items_cost }}</td>
+                            <td class="text-end">{{ $order->items_cost }}</td>
                         </tr>
                         <tr>
                             <td colspan="4" class="strong text-end">{{ __('transaction.tax') }}</td>
                             <td class="text-end">
-                                {{ $sale->tax_type == 0 ? '%' : '$' }}{{ $sale->tax_value }}
+                                {{ $order->tax_type == 0 ? '%' : '$' }}{{ $order->tax_value }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" class="strong text-end">{{ __('transaction.cost_before_discount') }}</td>
-                            <td class="text-end">{{ $sale->cost_before_discount }}</td>
+                            <td class="text-end">{{ $order->cost_before_discount }}</td>
                         </tr>
                         <tr>
-                            <td colspan="4" class="font-weight-bold strong text-end">{{ __('transaction.discount') }}</td>
+                            <td colspan="4" class="strong text-end">{{ __('transaction.discount') }}</td>
                             <td class="text-end">
-                                {{ $sale->discount_type == 0 ? '%' : '$' }}{{ $sale->discount_value }}
+                                {{ $order->discount_type == 0 ? '%' : '$' }}{{ $order->discount_value }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4" class="font-weight-bold text-uppercase text-end">{{ __('transaction.final_price') }}</td>
-                            <td class="font-weight-bold text-end">{{ $sale->cost_after_discount }}</td>
+                            <td class="font-weight-bold text-end">{{ $order->cost_after_discount }}</td>
                         </tr>
                     </table>
                     <p class="text-muted text-center mt-5">{{ __('msgs.thanks_for_sale_from_us') }}</p>

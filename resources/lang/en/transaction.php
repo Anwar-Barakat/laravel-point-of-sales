@@ -109,7 +109,7 @@ return [
     'date'                      => 'Date',
     'total_amount'              => 'Total amount',
     'final_price'               => 'Grand amount',
-
+    'the_customer'              => 'The customer',
     //_______________________
     // Item balances
     //_______________________

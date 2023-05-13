@@ -109,6 +109,7 @@ return [
     'date'                      => 'التاريخ',
     'total_amount'              => 'المجموع',
     'final_price'               => 'السعر النهائي',
+    'the_customer'              => 'العميل',
 
     //_______________________
     // Item balances
