@@ -86,7 +86,6 @@
                     </p>
                 </div>
             @endif
-
             <br>
             <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                 <thead>

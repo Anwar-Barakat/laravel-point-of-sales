@@ -18,6 +18,17 @@
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-2">
                     <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('account.account_status')" />
+                        <select class="form-select" wire:model='account_status'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="1">{{ __('account.balanced') }}</option>
+                            <option value="2">{{ __('account.credit') }}</option>
+                            <option value="3">{{ __('account.debit') }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.order_by')" />
                         <select class="form-select" wire:model='order_by'>
                             <option value="">{{ __('btns.select') }}</option>
@@ -49,6 +60,21 @@
                     </div>
                 </div>
             </div>
+            @if ($total_balances)
+                @php
+                    $alert = $total_balances < 0 ? 'danger' : 'success';
+                @endphp
+                <div class="alert alert-danger mt-2" role="alert">
+                    <h4 class="alert-heading">
+                        {{ $total_balances < 0 ? __('account.total_accounts_payable') : '' }}
+                        {{ $total_balances > 0 ? __('account.total_accounts_receivable') : '' }}
+                    </h4>
+                    <p>
+                        {{ __('account.amount') . ' : ' }}
+                        {{ abs($total_balances) }}
+                    </p>
+                </div>
+            @endif
             <br>
             <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
                 <thead>
@@ -127,7 +153,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">
+                            <td colspan="7">
                                 <x-blank-section :content="__('stock.vendor')" :url="route('admin.vendors.create')" />
                             </td>
                         </tr>
