@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Report\Vendor\VendorReportController;
 use App\Http\Controllers\Admin\Setting\Admin\AdminController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
+use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -159,7 +161,7 @@ Route::group(
                 Route::resource('sales',                        SaleController::class);
                 Route::resource('general-sale-returns',         GeneralSaleReturnController::class);
                 Route::get('sale-invoice/{sale}',               SaleInvoiceController::class)->name('sales.invoice');
-
+                Route::get('/sale-invoice-pdf/{sale}',          SaleInvoicePdfController::class)->name('sales.invoice.pdf');
 
                 //_______________________
                 // Shifts
@@ -170,6 +172,12 @@ Route::group(
                 // item balances
                 //_______________________
                 Route::view('item-balances',                    'admin.warehouse-transactions.item-balamces.index')->name('item.balances');
+
+
+                //_______________________
+                // Vendors reports
+                //_______________________
+                Route::get('vendors-reports',                   [VendorReportController::class, 'index'])->name('vendors.reports');
             });
         });
     }

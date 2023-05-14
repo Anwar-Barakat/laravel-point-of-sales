@@ -24,42 +24,27 @@
                     </svg>
                 </a>
                 <div class="nav-item dropdown d-none d-md-flex me-3">
-                    <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
+                    <a href="javascript:;" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                            <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                            <path d="M4 5h7" />
+                            <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+                            <path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
+                            <path d="M12 20l4 -9l4 9" />
+                            <path d="M19.1 18h-6.2" />
                         </svg>
-                        <span class="badge bg-red"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Last updates</h3>
-                            </div>
-                            <div class="list-group list-group-flush list-group-hoverable">
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto"><span class="status-dot status-dot-animated bg-red d-block"></span></div>
-                                        <div class="col text-truncate">
-                                            <a href="#" class="text-body d-block">Example 1</a>
-                                            <div class="d-block text-muted text-truncate mt-n1">
-                                                Change deprecated html tags to text decoration classes (#29604)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="#" class="list-group-item-actions">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                @if ($properties['native'] == 'العربية')
+                                    <span class="flag flag-country-sy me-1"></span>
+                                @else
+                                    <span class="flag flag-country-um me-1"></span>
+                                @endif
+                                <span> {{ $properties['native'] }}</span>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -88,29 +73,9 @@
         <div class="collapse navbar-collapse" id="navbar-menu">
             <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                 <ul class="navbar-nav">
-                    <!-- _______________________
-                    Dashboard
-                    _______________________ !-->
-                    <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-title">
-                                {{ __('partials.home') }}
-                            </span>
-                        </a>
-                    </li>
-
-                    <!-- _______________________
+                    <!---------------------------
                     General Setting
-                    _______________________!-->
+                    -------------------------!-->
                     <li class="nav-item dropdown {{ request()->routeIs('admin.treasuries.*') || request()->routeIs('admin.settings.*') || request()->routeIs('admin.admins.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -128,6 +93,20 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('partials.home') }}
+                                        </span>
+                                    </a>
                                     <!-- treasuries -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle {{ request()->routeIs('admin.treasuries.*') ? 'active' : '' }}" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -164,9 +143,9 @@
                         </div>
                     </li>
 
-                    <!-- _______________________
+                    <!---------------------------
                     Stocks
-                    _______________________!-->
+                    -------------------------!-->
                     <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') || request()->routeIs('admin.customers.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -232,9 +211,9 @@
                         </div>
                     </li>
 
-                    <!-- _______________________
+                    <!---------------------------
                     Accounts
-                    _______________________!-->
+                     -------------------------!-->
                     <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') || request()->routeIs('admin.collect-transactions') || request()->routeIs('admin.exchange-transactions') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -288,9 +267,9 @@
                         </div>
                     </li>
 
-                    <!-- _______________________
+                    <!---------------------------
                     Movements Stocks
-                    _______________________!-->
+                    -------------------------!-->
                     <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') || request()->routeIs('admin.shifts.*') || request()->routeIs('admin.sales.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -345,36 +324,47 @@
                         </div>
                     </li>
 
-                    <!-- _______________________
-                    Languages
-                    _______________________!-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                    <!---------------------------
+                    Reports
+                    -------------------------!-->
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.treasuries.*') || request()->routeIs('admin.settings.*') || request()->routeIs('admin.admins.*') ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M4 5h7" />
-                                    <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-                                    <path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
-                                    <path d="M12 20l4 -9l4 9" />
-                                    <path d="M19.1 18h-6.2" />
+                                    <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                    <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                    <path d="M9 17v-5" />
+                                    <path d="M12 17v-1" />
+                                    <path d="M15 17v-3" />
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                {{ __('partials.languages') }}
+                                {{ __('report.reports') }}
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                <a rel="alternate" hreflang="{{ $localeCode }}" class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    @if ($properties['native'] == 'العربية')
-                                        <span class="flag flag-country-sy me-1"></span>
-                                    @else
-                                        <span class="flag flag-country-um me-1"></span>
-                                    @endif
-                                    <span> {{ $properties['native'] }}</span>
-                                </a>
-                            @endforeach
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="{{ route('admin.vendors.reports') }}">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697"></path>
+                                                <path d="M18 12v-5a2 2 0 0 0 -2 -2h-2"></path>
+                                                <path d="M8 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+                                                <path d="M8 11h4"></path>
+                                                <path d="M8 15h3"></path>
+                                                <path d="M16.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"></path>
+                                                <path d="M18.5 19.5l2.5 2.5"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('report.reports_of', ['name' => __('stock.vendors')]) }}
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 </ul>

@@ -5,25 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @if (App::getLocale() == 'ar')
-        <link href="{{ asset('backend/dist/css/tabler.rtl.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/tabler-flags.rtl.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/tabler-payments.rtl.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/tabler-vendors.rtl.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/demo.rtl.min.css') }}" rel="stylesheet" />
-        <style>
-            body {
-                direction: rtl !important;
-            }
-        </style>
-    @else
-        <link href="{{ asset('backend/dist/css/tabler.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/tabler-flags.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('backend/dist/css/demo.min.css') }}" rel="stylesheet" />
-    @endif
+    <title>{{ __('transaction.sale_invoice') }}</title>
+
+    <link href="{{ asset('backend/dist/css/tabler.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('backend/dist/css/tabler-flags.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('backend/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('backend/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('backend/dist/css/demo.min.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -37,7 +25,7 @@
                                 <div class="col-6">
                                     <p class="h3">{{ __('setting.company') }}</p>
                                     <address>
-                                        {{ $company->name }}<br>
+                                        {{ $company->getTranslation('name', 'en') }}<br>
                                         {{ $company->address }}<br>
                                         {{ $company->email }}
                                     </address>
@@ -73,7 +61,7 @@
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>
                                             <p class="strong mb-1">{{ $product->item->name }}</p>
-                                            <div class="text-muted">{{ __('stock.store') . ': ' . $product->store->name }}</div>
+                                            <div class="text-muted">{{ __('stock.store') . ': ' . $product->store->getTranslation('name', 'en') }}</div>
                                         </td>
                                         <td class="text-center">{{ $product->qty }}
                                         </td>
@@ -104,8 +92,6 @@
                                         {{ $sale->discount_type == 0 ? '%' : '$' }}
                                     </td>
                                 </tr>
-
-
                                 <tr>
                                     <td colspan="4" class="font-weight-bold text-uppercase text-end">{{ __('transaction.final_price') }}</td>
                                     <td class="font-weight-bold text-end">{{ $sale->cost_after_discount }}</td>
