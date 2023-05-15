@@ -17,7 +17,8 @@ class SaleInvoicePdfController extends Controller
     public function __invoke(Sale $sale)
     {
         $company = Auth::guard('admin')->user()->company;
-        $pdf = Pdf::loadView('admin.warehouse-transactions.sales.print', ['sale' => $sale, 'company' => $company]);
+        // return view('admin.warehouse-transactions.sales.print', ['sale' => $sale, 'company' => $company]);
+        $pdf = Pdf::loadView('admin.warehouse-transactions.sales.print', ['sale' => $sale, 'company' => $company])->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->download(Carbon::now()->format('d-m-Y') . "-invoice#$sale->id.pdf");
     }
 }

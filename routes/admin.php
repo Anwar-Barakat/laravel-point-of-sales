@@ -161,7 +161,6 @@ Route::group(
                 Route::resource('sales',                        SaleController::class);
                 Route::resource('general-sale-returns',         GeneralSaleReturnController::class);
                 Route::get('sale-invoice/{sale}',               SaleInvoiceController::class)->name('sales.invoice');
-                Route::get('/sale-invoice-pdf/{sale}',          SaleInvoicePdfController::class)->name('sales.invoice.pdf');
 
                 //_______________________
                 // Shifts
@@ -182,3 +181,9 @@ Route::group(
         });
     }
 );
+Route::group(['middleware' => 'admin'], function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/sale-invoice-pdf/{sale}',          SaleInvoicePdfController::class)->name('sales.invoice.pdf');
+        Route::get('/sale-invoice-pdf/{sale}',          SaleInvoicePdfController::class)->name('sales.invoice.pdf');
+    });
+});

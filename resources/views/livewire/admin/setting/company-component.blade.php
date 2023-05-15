@@ -7,7 +7,7 @@
                     @if ($company->getFirstMediaUrl('company_logo'))
                         <img src="{{ $company->getFirstMediaUrl('company_logo') }}" alt="{{ $company->name }}" class="img img-thumbnail" width="200">
                     @else
-                        <img src="{{ asset('backend/static/avatars/default-logo.jpg.webp') }}" alt="">
+                        <img src="{{ asset('backend/static/square-default-image.jpeg') }}" alt="">
                     @endif
                 </div>
             </div>
