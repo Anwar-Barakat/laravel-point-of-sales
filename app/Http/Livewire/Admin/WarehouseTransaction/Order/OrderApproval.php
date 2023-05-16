@@ -122,7 +122,6 @@ class OrderApproval extends Component
                 $report     = 'Disbursement for a purchase invoice from the vendor of the number holder #' . $this->order->vendor->id;
                 $name       = __('transaction.purchase_bill');
             elseif ($this->order->type == 3) :
-
                 $shift_type = ShiftType::findOrFail(9)->id; // Collection of a return counterpart purchased to a vendor
                 $payment    = has_open_shift()->last_payment_collect + 1;
                 $money      = $this->order->paid;

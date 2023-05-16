@@ -9,6 +9,7 @@ return [
     'accounts'          => 'الحسابات',
     'account_type'      => 'نوع الحساب',
 
+    'monetory_transactions'         => 'معاملات النقدية',
     'added_from_accounts_screen'    => 'لا, يضاف من شاشة الحسابات',
     'added_from_its_screen'         => 'نعم, يضاف من شاشته',
     'related_to_internal_account'   => 'متعلق بالحساب الداخلي',

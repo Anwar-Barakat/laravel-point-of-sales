@@ -21,8 +21,7 @@ class DisplayReport extends Component
         $company,
         $purchases,
         $general_purchase_returns,
-        $collect_transactions,
-        $exchange_transactions;
+        $transactions;
 
     public function mount()
     {
@@ -56,13 +55,9 @@ class DisplayReport extends Component
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 
-        $this->collect_transactions     = TreasuryTransaction::with(['shift', 'shift_type:id,name'])->byAccountAndCompany($this->vendor->account)
-            ->select('money_for_account', 'report', 'transaction_date')->where('money', '>', 0)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->exchange_transactions    = TreasuryTransaction::with(['shift', 'shift_type:id,name'])->byAccountAndCompany($this->vendor->account)
-            ->select('money_for_account', 'report', 'transaction_date')->where('money', '<', 0)
+        $this->transactions     = TreasuryTransaction::with(['shift_type:id,name', 'treasury:id,name'])
+            ->where('money_for_account', '<>', 0)
+            ->byAccountAndCompany($this->vendor->account)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 

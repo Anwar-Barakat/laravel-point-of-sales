@@ -9,6 +9,7 @@ return [
     'accounts'          => 'Accounts',
     'account_type'      => 'Account type',
 
+    'monetory_transactions'         => 'Monetroy transactions',
     'added_from_accounts_screen'    => 'No, Added from the Accounts screen',
     'added_from_its_screen'         => 'Yes, Added from Its screen',
     'related_to_internal_account'   => 'Related to internal account',

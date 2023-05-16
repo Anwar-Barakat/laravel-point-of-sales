@@ -125,7 +125,6 @@ class SaleApproval extends Component
                 $report             = 'Disbursement for a general sales returns for the customer name(' . $this->sale->customer->name . ') of the owner of the number #' . $this->sale->customer->id;
             endif;
 
-
             TreasuryTransaction::create([
                 'shift_type_id'     => $shift_type,
                 'shift_id'          => has_open_shift()->id,
@@ -289,7 +288,7 @@ class SaleApproval extends Component
         return [
             'sale.items_cost'               => ['required'],
             'sale.tax_type'                 => ['nullable', 'boolean'],
-            'sale.tax_value'                => ['nullable', 'integer', function ($value) {
+            'sale.tax_value'                => ['nullable', 'numeric', function ($value) {
                 if ($this->sale->tax_type  == '0' && $this->sale->tax_value  >= 100) {
                     toastr()->error(__('validation.tax_type_is_percent'));
                     $this->sale->tax_value = 0;
@@ -300,7 +299,7 @@ class SaleApproval extends Component
             'sale.discount_value'           => ['nullable', 'numeric'],
             'sale.cost_after_discount'      => ['required'],
             'sale.invoice_type'             => ['required'],
-            'sale.paid'                     => ['required', 'numeric', function () {
+            'sale.paid'                     => ['numeric', function () {
                 if ($this->sale->paid > $this->sale->cost_after_discount) {
                     toastr()->error(__('validation.paid_smaller_than_cost'));
                     $this->sale->paid = 0;
