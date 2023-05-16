@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\TreasuryTransaction;
 use App\Models\Vendor;
 use Livewire\Component;
+use Psy\Command\HistoryCommand;
 
 class DisplayReport extends Component
 {
@@ -16,7 +17,9 @@ class DisplayReport extends Component
         $reports_from_date,
         $reports_to_date;
 
-    public $purchases,
+    public
+        $company,
+        $purchases,
         $general_purchase_returns,
         $collect_transactions,
         $exchange_transactions;
@@ -40,10 +43,11 @@ class DisplayReport extends Component
     public function submit()
     {
         $this->validate();
-        $this->purchases                = Order::where('vendor_id', $this->vendor->id)->where('type', 1)->get();
-        $this->general_purchase_returns = Order::where('vendor_id', $this->vendor->id)->where('type', 3)->get();
-        $this->collect_transactions     = TreasuryTransaction::where('account_id', $this->vendor->account->id)->where('money', '<', 0)->get();
-        $this->exchange_transactions    = TreasuryTransaction::where('account_id', $this->vendor->account->id)->where('money', '>', 0)->get();
+        $this->purchases                = Order::where('vendor_id', $this->vendor->id)->where(['type' => 1, 'company_id' => get_auth_com()])->get();
+        $this->general_purchase_returns = Order::where('vendor_id', $this->vendor->id)->where(['type' => 3, 'company_id' => get_auth_com()])->get();
+        $this->collect_transactions     = TreasuryTransaction::where(['account_id' => $this->vendor->account->id, 'company_id' => get_auth_com()])->where('money', '>', 0)->get();
+        $this->exchange_transactions    = TreasuryTransaction::where(['account_id' => $this->vendor->account->id, 'company_id' => get_auth_com()])->where('money', '<', 0)->get();
+        $this->company =  auth()->guard('admin')->user()->company;
     }
 
     public function render()

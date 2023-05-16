@@ -12,4 +12,6 @@ return [
     'monetory_statement_during_a_period'            => 'كشف حساب النقدية خلال فترة',
     'reports_from_date'     => 'التقارير من تاريخ',
     'reports_to_date'       => 'التقارير إلى تاريخ',
+    'numbers_of'            => 'عدد :name',
+    ''
 ];

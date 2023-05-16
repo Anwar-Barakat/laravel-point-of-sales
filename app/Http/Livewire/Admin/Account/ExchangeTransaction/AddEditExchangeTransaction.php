@@ -85,7 +85,7 @@ class AddEditExchangeTransaction extends Component
             toastr()->success(__('msgs.submitted', ['name' => __('account.treasury_transaction')]));
             $this->reset('transaction', 'account');
         } catch (\Throwable $th) {
-            return redirect()->route('admin.treasury-transactions.create')->with(['error' => $th->getMessage()]);
+            return redirect()->route('admin.exchange-transactions')->with(['error' => $th->getMessage()]);
         }
     }
 

@@ -12,4 +12,6 @@ return [
     'monetory_statement_during_a_period'            => 'Monetory statement during a period',
     'reports_from_date'     => 'reports from date',
     'reports_to_date'       => 'reports to date',
+    'numbers_of'            => ':name numbers',
+
 ];
