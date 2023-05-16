@@ -6,7 +6,8 @@ return [
     'qty_before_transaction'        => 'الكمية قبل المعاملة',
     'qty_after_transaction'         => 'الكمية بعد المعاملة',
     'all_stores'                    => 'جميع المخازن',
-
+    'approved'                      => 'مُعتمدة',
+    'not_approved'                  => 'غير مُعتمدة',
     //_______________________
     // Orders
     //_______________________

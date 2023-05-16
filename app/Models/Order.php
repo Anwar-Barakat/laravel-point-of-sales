@@ -17,6 +17,11 @@ class Order extends Model
     const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
     const ORDERTYPE     = [1 => 'purchase', 3 => 'general_order_return'];
 
+    public function scopeByTypeAndCompany($query, $type)
+    {
+        return $query->where(['type' => $type, 'company_id' => get_auth_com()]);
+    }
+
     public function addedBy(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'added_by');

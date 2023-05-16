@@ -12,8 +12,8 @@ class TreasuryTransaction extends Model
 
     protected $fillable = [
         'shift_type_id',
-        'shift_id',
         'admin_id',
+        'shift_id',
         'treasury_id',
         'order_id',
         'account_id',
@@ -26,6 +26,11 @@ class TreasuryTransaction extends Model
         'report',
         'company_id',
     ];
+
+    public function scopeByAccountAndCompany($query, $account)
+    {
+        return $query->where(['account_id' => $account->id, 'company_id' => get_auth_com()]);
+    }
 
     public function account(): BelongsTo
     {

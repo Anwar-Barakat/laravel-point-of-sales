@@ -94,6 +94,7 @@ return [
     // Vendors
     //_______________________
     'vendor'          => 'Vendor',
+    'the_vendor'      => 'The vendor',
     'vendors'         => 'Vendors',
     'vendor_name'     => 'Vendor name',
     'vendor_account'  => 'Vendor account',

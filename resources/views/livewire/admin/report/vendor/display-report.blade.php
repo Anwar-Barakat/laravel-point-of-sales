@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent='submit'>
+    <form wire:submit.prevent='submit' id="add-reports">
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h3 class="card-title">{{ __('msgs.all', ['name' => __('report.reports_of', ['name' => __('account.vendors')])]) }}</h3>
@@ -76,6 +76,9 @@
         <div class="page-body">
             <div class="container-xl">
                 <div class="card card-lg">
+                    <div class="card-header">
+                        <h3 class="card-title text-blue">{{ __('msgs.details', ['name' => __('stock.the_vendor')]) }}</h3>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">
@@ -92,121 +95,80 @@
                                     {{ $company->email }}
                                 </address>
                             </div>
-                            {{-- <div class="col-6 text-end">
-                                <p class="h3">{{ __('transaction.the_customer') }}</p>
+                            <div class="col-6 text-end">
+                                <p class="h3">{{ __('stock.vendor') }}</p>
                                 <address>
-                                    {{ $sale->customer->name }} <br>
-                                    {{ $sale->customer->address }}<br>
-                                    {{ $sale->customer->email }}
+                                    {{ $vendor->name }} <br>
+                                    {{ $vendor->address }}<br>
+                                    {{ $vendor->email }}
+                                    {{ $vendor->mobile }}
                                 </address>
-                            </div> --}}
+                            </div>
                             <div class="col-12 my-5">
 
                                 {{-- <h1>{{ $type . ' #' . $sale->id }}</h1>
-                                <h2>{{ __('transaction.date') . ': ' . $sale->invoice_date }}</h2>
-                                <h2>{{ __('transaction.sale_type') . ': ' . __('transaction.' . App\Models\Sale::SALEINVOICETYPE[$sale->invoice_sale_type]) }}</h2>
-                                <h2>{{ __('transaction.paid_amount') . ': ' . $sale->paid }}</h2>
-                                <h2>{{ __('transaction.remain_amount') . ': ' . $sale->remains }}</h2> --}}
+                            <h2>{{ __('transaction.date') . ': ' . $sale->invoice_date }}</h2>
+                            <h2>{{ __('transaction.sale_type') . ': ' . __('transaction.' . App\Models\Sale::SALEINVOICETYPE[$sale->invoice_sale_type]) }}</h2>
+                            <h2>{{ __('transaction.paid_amount') . ': ' . $sale->paid }}</h2>
+                            <h2>{{ __('transaction.remain_amount') . ': ' . $sale->remains }}</h2> --}}
                             </div>
                         </div>
-                        <table id="dataTables" class="table table-vcenter table-mobile-md card-table table-striped">
-                            <tbody class="table-tbody">
-                                <tr>
-                                    <td>{{ __('stock.vendor_name') }}</td>
-                                    <td>{{ $vendor->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('account.account_number') }}</td>
-                                    <td><span class="badge bg-info-lt">{{ $vendor->account->number }}</span></td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('account.initial_balance') }}</td>
-                                    <td>{{ $vendor->account->initial_balance }}</td>
-                                </tr>
-                                <tr App::getLocale()=='ar' ? style="direction: ltr; text-align:right" : ''>
-                                    <td>{{ __('account.current_balamce') }}</td>
-                                    <td>
-                                        <span>
-                                            {{ number_format($vendor->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
-                                            {{ number_format($vendor->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
-                                            {{ number_format($vendor->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
-                                            <span class="badge badge-dark">{{ $vendor->account->current_balance }}</span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('report.numbers_of', ['name' => __('transaction.purchase_bills')]) }}</td>
-                                    <td>({{ $purchases->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($purchases->sum('money_for_account')) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('report.numbers_of', ['name' => __('transaction.general_orders_returns')]) }}</td>
-                                    <td>({{ $general_purchase_returns->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($general_purchase_returns->sum('money_for_account')) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('account.collect_transactions') }}</td>
-                                    <td>{{ $collect_transactions->sum('money_for_account') }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('account.exchange_transactions') }}</td>
-                                    <td>{{ $exchange_transactions->sum('money_for_account') }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table table-transparent table-responsive">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th>{{ __('stock.item') }}</th>
-                                    <th class="text-center">{{ __('transaction.qty') }}</th>
-                                    <th class="text-end">{{ __('stock.unit_price') }}</th>
-                                    <th class="text-end">{{ __('transaction.total_amount') }}</th>
-                                </tr>
-                            </thead>
-                            {{-- @foreach ($sale->saleProducts as $product)
-                                <tr>
-                                    <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>
-                                        <p class="strong mb-1">{{ $product->item->name }}</p>
-                                        @if ($product->production_date)
-                                            <div class="text-muted">{{ __('transaction.production_date') . ' : ' }} {{ $product->production_date }}</div>
-                                            <div class="text-muted">{{ __('transaction.expiration_date') . ' : ' }} {{ $product->expiration_date }}</div>
-                                        @endif
-                                        <div class="text-muted">{{ __('stock.store') . ': ' . $product->store->name }}</div>
-                                    </td>
-                                    <td class="text-center">{{ $product->qty }}
-                                    </td>
-                                    <td class="text-end">{{ $product->unit_price }}</td>
-                                    <td class="text-end">{{ $product->total_price }}</td>
-                                </tr>
-                            @endforeach --}}
-                            {{-- <tr>
-                                <td colspan="4" class="strong text-end">{{ __('transaction.total_price') }}</td>
-                                <td class="text-end">{{ $sale->items_cost }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="strong text-end">{{ __('transaction.tax') }}</td>
-                                <td class="text-end">
-                                    {{ $sale->tax_type == 0 ? '%' : '$' }}{{ $sale->tax_value }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="strong text-end">{{ __('transaction.cost_before_discount') }}</td>
-                                <td class="text-end">{{ $sale->cost_before_discount }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="font-weight-bold strong text-end">{{ __('transaction.discount') }}</td>
-                                <td class="text-end">
-                                    {{ $sale->discount_type == 0 ? '%' : '$' }}{{ $sale->discount_value }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">{{ __('transaction.final_price') }}</td>
-                                <td class="font-weight-bold text-end">{{ $sale->cost_after_discount }}</td>
-                            </tr> --}}
-                        </table>
+
+                        <div class="card-body">
+                            <table id="dataTables" class="table table-vcenter table-mobile-md card-table table-striped">
+                                <tbody class="table-tbody">
+                                    <tr>
+                                        <td>{{ __('stock.vendor_name') }}</td>
+                                        <td>{{ $vendor->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('msgs.created_at') }}</td>
+                                        <td>{{ $vendor->created_at->format('Y-M-d') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('account.account_number') }}</td>
+                                        <td><span class="badge bg-info-lt">{{ $vendor->account->number }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('account.initial_balance') }}</td>
+                                        <td>{{ $vendor->account->initial_balance }}</td>
+                                    </tr>
+                                    <tr App::getLocale()=='ar' ? style="direction: ltr; text-align:right" : ''>
+                                        <td>{{ __('account.current_balamce') }}</td>
+                                        <td>
+                                            <span>
+                                                {{ number_format($vendor->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
+                                                {{ number_format($vendor->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
+                                                {{ number_format($vendor->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
+                                                <span class="badge badge-dark">{{ $vendor->account->current_balance }}</span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('report.numbers_of', ['name' => __('transaction.purchase_bills')]) }}</td>
+                                        <td>({{ $purchases->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($purchases->sum('money_for_account')) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('report.numbers_of', ['name' => __('transaction.general_orders_returns')]) }}</td>
+                                        <td>({{ $general_purchase_returns->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($general_purchase_returns->sum('money_for_account')) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('account.collect_transactions') }}</td>
+                                        <td>{{ $collect_transactions->sum('money_for_account') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('account.exchange_transactions') }}</td>
+                                        <td>{{ $exchange_transactions->sum('money_for_account') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        {{--
                         <p class="text-muted text-center mt-5">{{ __('msgs.thanks_for_sale_from_us') }}</p>
-                        {{-- <div class="mt-4 text-center">
-                            <a class="btn btn-info" href="{{ route('admin.sales.invoice.pdf', ['sale' => $sale]) }}">
+                        <div class="mt-4 text-center">
+                            <a class="btn btn-info print-btn" href="javascript:;" onclick="window.print()">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
@@ -216,6 +178,86 @@
                                 {{ __('btns.print') }}
                             </a>
                         </div> --}}
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text-blue">{{ __('transaction.purchase_bills') }}</h3>
+                    </div>
+                    <div class="card-body">
+
+
+                        <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th> {{ __('partials.status') }}</th>
+                                    <th>{{ __('transaction.invoice_type') }}</th>
+                                    <th>{{ __('transaction.invoice_date') }}</th>
+                                    <th>{{ __('transaction.paid_amount') }}</th>
+                                    <th>{{ __('transaction.remain_amount') }}</th>
+                                    <th>{{ __('transaction.total_price') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                @forelse ($purchases as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->is_approved ? __('transaction.approved') : __('transaction.not_approved') }}</td>
+                                        <td>{{ $order->invoice_type ? __('transaction.delayed') : __('transaction.cash') }} </td>
+                                        <td>{{ $order->invoice_date }}</td>
+                                        <td>{{ $order->paid }}</td>
+                                        <td>{{ $order->remains }}</td>
+                                        <td><span class="text-gray-600">{{ $order->cost_after_discount }}</span></td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">
+                                            {{ __('msgs.not_found') }}
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text-blue">{{ __('transaction.general_orders_returns') }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="dataTables" class="table table-vcenter table-mobile-md card-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th> {{ __('partials.status') }}</th>
+                                    <th>{{ __('transaction.invoice_type') }}</th>
+                                    <th>{{ __('transaction.invoice_date') }}</th>
+                                    <th>{{ __('transaction.paid_amount') }}</th>
+                                    <th>{{ __('transaction.remain_amount') }}</th>
+                                    <th>{{ __('transaction.total_price') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                @forelse ($general_purchase_returns as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->is_approved ? __('transaction.approved') : __('transaction.not_approved') }}</td>
+                                        <td>{{ $order->invoice_type ? __('transaction.delayed') : __('transaction.cash') }} </td>
+                                        <td>{{ $order->invoice_date }}</td>
+                                        <td>{{ $order->paid }}</td>
+                                        <td>{{ $order->remains }}</td>
+                                        <td><span class="text-gray-600">{{ $order->cost_after_discount }}</span></td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">
+                                            {{ __('msgs.not_found') }}
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ return [
     'qty_before_transaction'        => 'Qty before transaction',
     'qty_after_transaction'         => 'Qty after transaction',
     'all_stores'                    => 'All stores',
+    'approved'                      => 'Approved',
+    'not_approved'                  => 'Not approved',
 
     //_______________________
     // Orders
@@ -110,6 +112,7 @@ return [
     'total_amount'              => 'Total amount',
     'final_price'               => 'Grand amount',
     'the_customer'              => 'The customer',
+
     //_______________________
     // Item balances
     //_______________________

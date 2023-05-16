@@ -15,6 +15,7 @@ return [
     'parent_item'           => 'الصنف الأب',
     'parent'                => 'أب',
 
+
     'barcode'               => 'باركود',
     'item_name'             => 'اسم الصنف',
     'item_type'             => 'نوع الصنف',
@@ -28,6 +29,7 @@ return [
     'has_fixed_price'       => 'لديه سعر ثابت للفواتير؟',
     'wholesale_qty'         => 'الكمية الأجمالي',
     'retail_qty'            => 'الكمية بالتجزئة',
+
 
     'wholesale_retail_prices'           => 'أسعار الجمل والتجزئة',
     'retail_count_for_wholesale'        => 'عدد وحدات التجزئة في وحدة الرئيسية',
@@ -94,6 +96,7 @@ return [
     // Vendors
     //_______________________
     'vendor'            => 'مورد',
+    'the_vendor'        => 'المورد',
     'vendors'           => 'الموردين',
     'vendor_name'       => 'اسم المورد',
     'vendor_account'    => 'حساب المورد',

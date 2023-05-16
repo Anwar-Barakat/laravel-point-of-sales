@@ -32,7 +32,7 @@ class DisplayReport extends Component
     public function updatedVendorId()
     {
         $this->vendor = Vendor::findOrFail($this->vendor_id);
-        $this->reports_from_date = $this->vendor->created_at->format('Y-m-d');
+        // $this->reports_from_date = $this->vendor->created_at->format('Y-m-d');
     }
 
     public function updatedReportType()
@@ -43,10 +43,29 @@ class DisplayReport extends Component
     public function submit()
     {
         $this->validate();
-        $this->purchases                = Order::where('vendor_id', $this->vendor->id)->where(['type' => 1, 'company_id' => get_auth_com()])->get();
-        $this->general_purchase_returns = Order::where('vendor_id', $this->vendor->id)->where(['type' => 3, 'company_id' => get_auth_com()])->get();
-        $this->collect_transactions     = TreasuryTransaction::where(['account_id' => $this->vendor->account->id, 'company_id' => get_auth_com()])->where('money', '>', 0)->get();
-        $this->exchange_transactions    = TreasuryTransaction::where(['account_id' => $this->vendor->account->id, 'company_id' => get_auth_com()])->where('money', '<', 0)->get();
+        $this->vendor->load('account');
+        $this->purchases                = Order::byTypeAndCompany(1)
+            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
+            ->where('vendor_id', $this->vendor->id)
+            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
+            ->get();
+
+        $this->general_purchase_returns = Order::byTypeAndCompany(3)
+            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
+            ->where('vendor_id', $this->vendor->id)
+            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
+            ->get();
+
+        $this->collect_transactions     = TreasuryTransaction::with(['shift', 'shift_type:id,name'])->byAccountAndCompany($this->vendor->account)
+            ->select('money_for_account', 'report', 'transaction_date')->where('money', '>', 0)
+            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
+            ->get();
+
+        $this->exchange_transactions    = TreasuryTransaction::with(['shift', 'shift_type:id,name'])->byAccountAndCompany($this->vendor->account)
+            ->select('money_for_account', 'report', 'transaction_date')->where('money', '<', 0)
+            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
+            ->get();
+
         $this->company =  auth()->guard('admin')->user()->company;
     }
 
