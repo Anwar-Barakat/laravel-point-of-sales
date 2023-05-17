@@ -16,6 +16,11 @@ class Sale extends Model
     const SALETYPE          = [1 => 'sales', 3 => 'general_sale_return'];
     const SALEINVOICETYPE   = [1 => 'sectoral', 2 => 'half_wholesale', 3 => 'wholesale'];
 
+    public function scopeByTypeAndCompany($query, $type)
+    {
+        return $query->where(['type' => $type, 'company_id' => get_auth_com()]);
+    }
+
     public function addedBy(): BelongsTo
     {
         return $this->belongsTo(Admin::class, 'added_by');

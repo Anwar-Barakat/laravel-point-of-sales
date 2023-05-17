@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Report\Vendor;
+namespace App\Http\Controllers\Admin\Report\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class VendorReportController extends Controller
+class CustomerReportController extends Controller
 {
     /**
      * Handle the incoming request.
      */
     public function __invoke(Request $request)
     {
-        return view('admin.reports.vendors.index');
+        return view('admin.reports.customers.index');
     }
 }

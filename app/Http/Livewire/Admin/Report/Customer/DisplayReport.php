@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Report\Vendor;
+namespace App\Http\Livewire\Admin\Report\Customer;
 
-use App\Models\Order;
+use App\Models\Customer;
+use App\Models\Sale;
 use App\Models\TreasuryTransaction;
-use App\Models\Vendor;
 use Livewire\Component;
-use Psy\Command\HistoryCommand;
 
 class DisplayReport extends Component
 {
-    public $vendor,
-        $vendor_id,
+    public $customer,
+        $customer_id,
         $report_type,
         $date = false,
         $reports_from_date,
         $reports_to_date;
 
     public $company,
-        $purchases,
-        $general_purchase_returns,
+        $sales,
+        $general_sale_returns,
         $transactions;
 
     public function mount()
@@ -27,9 +26,9 @@ class DisplayReport extends Component
         $this->reports_to_date = date('Y-m-d');
     }
 
-    public function updatedVendorId()
+    public function updatedCustomerId()
     {
-        $this->vendor = Vendor::findOrFail($this->vendor_id);
+        $this->customer = Customer::findOrFail($this->customer_id);
     }
 
     public function updatedReportType()
@@ -40,22 +39,22 @@ class DisplayReport extends Component
     public function submit()
     {
         $this->validate();
-        $this->vendor->load('account');
-        $this->purchases                = Order::with('orderProducts')->byTypeAndCompany(1)
+        $this->customer->load('account');
+        $this->sales                = Sale::with('saleProducts')->byTypeAndCompany(1)
             ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
-            ->where('vendor_id', $this->vendor->id)
+            ->where('customer_id', $this->customer->id)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 
-        $this->general_purchase_returns = Order::with('orderProducts')->byTypeAndCompany(3)
+        $this->general_sale_returns = Sale::with('saleProducts')->byTypeAndCompany(3)
             ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
-            ->where('vendor_id', $this->vendor->id)
+            ->where('customer_id', $this->customer->id)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 
         $this->transactions     = TreasuryTransaction::with(['shift_type:id,name', 'treasury:id,name'])
             ->where('money_for_account', '<>', 0)
-            ->byAccountAndCompany($this->vendor->account)
+            ->byAccountAndCompany($this->customer->account)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 
@@ -64,19 +63,19 @@ class DisplayReport extends Component
 
     public function render()
     {
-        return view('livewire.admin.report.vendor.display-report', ['vendors' => $this->getVendors()]);
+        return view('livewire.admin.report.customer.display-report', ['customers' => $this->getCustomers()]);
     }
 
     public function rules()
     {
         return [
-            'vendor_id'     => ['required'],
+            'customer_id'   => ['required'],
             'report_type'   => ['required', 'in:1,2,3,4,5']
         ];
     }
 
-    public function getVendors()
+    public function getCustomers()
     {
-        return Vendor::latest()->get();
+        return Customer::latest()->get();
     }
 }

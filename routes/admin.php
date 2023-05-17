@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Report\Customer\CustomerReportController;
 use App\Http\Controllers\Admin\Report\Vendor\VendorReportController;
 use App\Http\Controllers\Admin\Setting\Admin\AdminController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
@@ -174,13 +175,16 @@ Route::group(
 
 
                 //_______________________
-                // Vendors reports
+                // reports
                 //_______________________
-                Route::get('vendors-reports',                   [VendorReportController::class, 'index'])->name('vendors.reports');
+                Route::get('vendors-reports',                   VendorReportController::class)->name('vendors.reports');
+                Route::get('customers-reports',                 CustomerReportController::class)->name('customers.reports');
             });
         });
     }
 );
+
+
 Route::group(['middleware' => 'admin'], function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/sale-invoice-pdf/{sale}',          SaleInvoicePdfController::class)->name('sales.invoice.pdf');
