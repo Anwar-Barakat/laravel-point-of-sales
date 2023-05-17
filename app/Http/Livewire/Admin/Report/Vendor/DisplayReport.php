@@ -43,13 +43,13 @@ class DisplayReport extends Component
     {
         $this->validate();
         $this->vendor->load('account');
-        $this->purchases                = Order::byTypeAndCompany(1)
+        $this->purchases                = Order::with('orderProducts')->byTypeAndCompany(1)
             ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
             ->where('vendor_id', $this->vendor->id)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 
-        $this->general_purchase_returns = Order::byTypeAndCompany(3)
+        $this->general_purchase_returns = Order::with('orderProducts')->byTypeAndCompany(3)
             ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
             ->where('vendor_id', $this->vendor->id)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))

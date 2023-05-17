@@ -1,6 +1,6 @@
 @media print {
-    .add-reports,
-    .print-btn {
+    .print-btn,
+    #report-form {
         display: none;
     }
 }
