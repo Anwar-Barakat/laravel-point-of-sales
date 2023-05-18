@@ -2,7 +2,7 @@
     <form wire:submit.prevent='submit' id="report-form">
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h3 class="card-title">{{ __('msgs.all', ['name' => __('report.reports_of', ['name' => __('stock.customers')])]) }}</h3>
+                <h3 class="card-title">{{ __('msgs.all', ['name' => __('report.reports_of', ['name' => __('stock.delegates')])]) }}</h3>
             </div>
 
             <div class="card-body">
@@ -10,14 +10,14 @@
                     <div class="row row-cards">
                         <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('stock.customer')" />
-                                <select class="form-select" wire:model='customer_id' required>
+                                <x-input-label class="form-label" :value="__('stock.delegate')" />
+                                <select class="form-select" wire:model='delegate_id' required>
                                     <option value="">{{ __('btns.select') }}</option>
-                                    @foreach ($customers as $customer)
-                                        <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                    @foreach ($delegates as $delegate)
+                                        <option value="{{ $delegate->id }}">{{ $delegate->name }}</option>
                                     @endforeach
                                 </select>
-                                <x-input-error :messages="$errors->get('customer_id')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('delegate_id')" class="mt-2" />
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-3">
@@ -28,8 +28,7 @@
                                     <option value="1">{{ __('report.total_account_statement') }}</option>
                                     <option value="2">{{ __('report.detailed_statement_of_account_within_a_period') }}</option>
                                     <option value="3">{{ __('report.sales_account_statement_within_a_period') }}</option>
-                                    <option value="4">{{ __('report.sales_return_statement_within_a_period') }}</option>
-                                    <option value="5">{{ __('report.monetory_statement_during_a_period') }}</option>
+                                    <option value="4">{{ __('report.monetory_statement_during_a_period') }}</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('report_type')" class="mt-2" />
                             </div>
@@ -72,7 +71,7 @@
 
     </form>
 
-    @if ($purchases || $transactions || $general_purchase_returns)
+    @if ($sales || $transactions)
         <div class="mt-4">
             <div class="card card-lg border-b-0">
                 <h1 class="text-center mt-3 text-blue card-title">
@@ -83,13 +82,11 @@
                     @elseif($report_type == 3)
                         {{ __('report.sales_account_statement_within_a_period') }}
                     @elseif($report_type == 4)
-                        {{ __('report.sales_return_statement_within_a_period') }}
-                    @elseif($report_type == 5)
                         {{ __('report.monetory_statement_during_a_period') }}
                     @endif
                 </h1>
                 <div class="card-header">
-                    <h3 class="card-title text-blue">{{ __('msgs.details', ['name' => __('stock.customer')]) }}</h3>
+                    <h3 class="card-title text-blue">{{ __('msgs.details', ['name' => __('stock.delegate')]) }}</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -108,12 +105,12 @@
                             </address>
                         </div>
                         <div class="col-6 text-end">
-                            <p class="h3">{{ __('stock.customer') }}</p>
+                            <p class="h3">{{ __('stock.delegate') }}</p>
                             <address>
-                                {{ $customer->name }} <br>
-                                {{ $customer->address }}<br>
-                                {{ $customer->email }}
-                                {{ $customer->mobile }}
+                                {{ $delegate->name }} <br>
+                                {{ $delegate->address }}<br>
+                                {{ $delegate->email }}
+                                {{ $delegate->mobile }}
                             </address>
                         </div>
                     </div>
@@ -122,39 +119,35 @@
                         <table id="dataTables" class="table table-vcenter table-mobile-md card-table table-striped">
                             <tbody class="table-tbody">
                                 <tr>
-                                    <td>{{ __('stock.customer_name') }}</td>
-                                    <td>{{ $customer->name }}</td>
+                                    <td>{{ __('stock.delegate_name') }}</td>
+                                    <td>{{ $delegate->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>{{ __('msgs.created_at') }}</td>
-                                    <td>{{ $customer->created_at->format('Y-M-d') }}</td>
+                                    <td>{{ $delegate->created_at->format('Y-M-d') }}</td>
                                 </tr>
                                 <tr>
                                     <td>{{ __('account.account_number') }}</td>
-                                    <td><span class="badge bg-info-lt">{{ $customer->account->number }}</span></td>
+                                    <td><span class="badge bg-info-lt">{{ $delegate->account->number }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>{{ __('account.initial_balance') }}</td>
-                                    <td>{{ $customer->account->initial_balance }}</td>
+                                    <td>{{ $delegate->account->initial_balance }}</td>
                                 </tr>
                                 <tr App::getLocale()=='ar' ? style="direction: ltr; text-align:right" : ''>
                                     <td>{{ __('account.current_balamce') }}</td>
                                     <td>
                                         <span>
-                                            {{ number_format($customer->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
-                                            {{ number_format($customer->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
-                                            {{ number_format($customer->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
-                                            <span class="badge badge-dark">{{ $customer->account->current_balance }}</span>
+                                            {{ number_format($delegate->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
+                                            {{ number_format($delegate->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
+                                            {{ number_format($delegate->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
+                                            <span class="badge badge-dark">{{ $delegate->account->current_balance }}</span>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>{{ __('report.numbers_of', ['name' => __('transaction.sales_invoices')]) }}</td>
-                                    <td>({{ $sales->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($sales->sum('money_for_account')) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ __('report.numbers_of', ['name' => __('transaction.general_sales_returns')]) }}</td>
-                                    <td>({{ $general_sale_returns->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($general_sale_returns->sum('money_for_account')) }}</td>
+                                    <td>({{ $sales->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($sales->sum('commission_value')) }}</td>
                                 </tr>
                                 <tr>
                                     <td>{{ __('account.collect_transactions') }}</td>
@@ -207,6 +200,7 @@
                                                 <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $sale->paid }}</span></span> -
                                                 <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $sale->remains }}</span></span> -
                                                 <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $sale->cost_after_discount }}</span></span>.
+                                                (<span>{{ __('stock.commission_value') . ' : ' }} <span class="text-orange-500">{{ abs($sale->commission_value) }}</span></span>)
                                                 <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
                                                     <thead>
                                                         <tr>
@@ -245,68 +239,9 @@
                 @endif
             @endisset
 
-            @isset($general_sale_returns)
-                @if ($report_type == 4 || $report_type == 1 || $report_type == 2)
-                    <div class="card card-lg border-b-0">
-                        <div class="card-header">
-                            <h3 class="card-title text-blue">{{ __('transaction.general_sales_returns') }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="accordion" id="accordion-example">
-                                @forelse ($general_sale_returns as $key => $sale)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading-1">
-                                            <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $sale->id }}" aria-expanded="true">
-                                                {{ __('transaction.sale_invoice') }} #{{ $sale->id }}
-                                            </button>
-                                        </h2>
-                                        <div id="collapse-{{ $sale->id }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" data-bs-parent="#accordion-example">
-                                            <div class="accordion-body pt-0">
-                                                <span>{{ __('transaction.invoice_date') . ' : ' }} <span class="text-gray-500">{{ $sale->invoice_date }}</span></span> -
-                                                <span>{{ __('transaction.invoice_type') . ' : ' }} {{ $sale->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</span> -
-                                                <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $sale->paid }}</span></span> -
-                                                <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $sale->remains }}</span></span> -
-                                                <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $sale->cost_after_discount }}</span></span>.
-                                                <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th> {{ __('stock.item') }}</th>
-                                                            <th> {{ __('stock.unit') }}</th>
-                                                            <th>{{ __('transaction.qty') }}</th>
-                                                            <th>{{ __('stock.unit_price') }}</th>
-                                                            <th>{{ __('transaction.total_price') }}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="table-tbody">
-                                                        @forelse ($sale->saleProducts as $product)
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $product->item->name }}</td>
-                                                            <td>{{ $product->unit->name }}</td>
-                                                            <td>{{ $product->qty }}</td>
-                                                            <td>{{ $product->unit_price }}</td>
-                                                            <td>{{ $product->total_price }}</td>
-                                                        @empty
-                                                            <td colspan="6">{{ __('msgs.not_found') }}</td>
-                                                        @endforelse
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <h3 class="text-center">
-                                        {{ __('msgs.not_found') }}
-                                    </h3>
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endisset
 
             @isset($transactions)
-                @if ($report_type == 5 || $report_type == 1 || $report_type == 2)
+                @if ($report_type == 4 || $report_type == 1 || $report_type == 2)
                     <div class="card card-lg border-b-0">
                         <div class="card-header">
                             <h3 class="card-title text-blue">{{ __('account.monetory_transactions') }}</h3>

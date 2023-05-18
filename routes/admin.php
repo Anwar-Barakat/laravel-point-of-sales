@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordRestLinkController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Report\Customer\CustomerReportController;
+use App\Http\Controllers\Admin\Report\Delegate\DelegateReportController;
 use App\Http\Controllers\Admin\Report\Vendor\VendorReportController;
 use App\Http\Controllers\Admin\Setting\Admin\AdminController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
@@ -179,6 +180,7 @@ Route::group(
                 //_______________________
                 Route::get('vendors-reports',                   VendorReportController::class)->name('vendors.reports');
                 Route::get('customers-reports',                 CustomerReportController::class)->name('customers.reports');
+                Route::get('delegates-reports',                 DelegateReportController::class)->name('delegates.reports');
             });
         });
     }

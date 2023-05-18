@@ -72,7 +72,7 @@
 
     </form>
 
-    @if ($purchases || $transactions)
+    @if ($purchases || $transactions || $general_purchase_returns)
         <div class="mt-4">
             <div class="card card-lg border-b-0">
                 <h1 class="text-center mt-3 text-blue card-title">
@@ -305,7 +305,7 @@
                 @endif
             @endisset
 
-            @isset($general_purchase_returns)
+            @isset($transactions)
                 @if ($report_type == 5 || $report_type == 1 || $report_type == 2)
                     <div class="card card-lg border-b-0">
                         <div class="card-header">
