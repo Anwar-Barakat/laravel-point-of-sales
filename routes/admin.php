@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -90,6 +91,11 @@ Route::group(
                 // Admins
                 //_______________________
                 Route::resource('admins',                       AdminController::class);
+
+                //_______________________
+                // Services
+                //_______________________
+                Route::resource('services',                     ServiceController::class)->only('index', 'create', 'edit');
 
 
                 //_______________________

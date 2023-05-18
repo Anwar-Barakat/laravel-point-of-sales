@@ -76,7 +76,7 @@
                     <!---------------------------
                     General Setting
                     -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.treasuries.*') || request()->routeIs('admin.settings.*') || request()->routeIs('admin.admins.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.treasuries.*') || request()->routeIs('admin.settings.*') || request()->routeIs('admin.admins.*') || request()->routeIs('admin.services.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -93,9 +93,9 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
+                                    <!-- dashboard -->
                                     <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                 <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
@@ -107,10 +107,44 @@
                                             {{ __('partials.home') }}
                                         </span>
                                     </a>
+
+                                    <!-- services -->
+                                    <a class="dropdown-item" href="{{ route('admin.services.index') }}">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-24-hours" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path>
+                                                <path d="M4 13a8.094 8.094 0 0 0 3 5.24"></path>
+                                                <path d="M11 15h2a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-1a1 1 0 0 0 -1 1v1a1 1 0 0 0 1 1h2"></path>
+                                                <path d="M17 15v2a1 1 0 0 0 1 1h1"></path>
+                                                <path d="M20 15v6"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('setting.services') }}
+                                        </span>
+                                    </a>
+
                                     <!-- treasuries -->
                                     <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle {{ request()->routeIs('admin.treasuries.*') ? 'active' : '' }}" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                            {{ __('treasury.treasuries') }}
+                                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-packages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M7 16.5l-5 -3l5 -3l5 3v5.5l-5 3z"></path>
+                                                    <path d="M2 13.5v5.5l5 3"></path>
+                                                    <path d="M7 16.545l5 -3.03"></path>
+                                                    <path d="M17 16.5l-5 -3l5 -3l5 3v5.5l-5 3z"></path>
+                                                    <path d="M12 19l5 3"></path>
+                                                    <path d="M17 16.5l5 -3"></path>
+                                                    <path d="M12 13.5v-5.5l-5 -3l5 -3l5 3v5.5"></path>
+                                                    <path d="M7 5.03v5.455"></path>
+                                                    <path d="M12 8l5 -3"></path>
+                                                </svg>
+                                            </span>
+                                            <span class="nav-link-title">
+                                                {{ __('treasury.treasuries') }}
+                                            </span>
                                         </a>
                                         <div class="dropdown-menu">
                                             <a href="{{ route('admin.treasuries.index') }}" class="dropdown-item {{ request()->routeIs('admin.treasuries.index') ? 'active' : '' }}">
@@ -124,7 +158,16 @@
 
                                     <!-- admins -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.admins.index') ? 'active' : '' }}" href="{{ route('admin.admins.index') }}">
-                                        {{ __('setting.admins') }}
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06"></path>
+                                                <path d="M15 19l2 2l4 -4"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('setting.admins') }}
+                                        </span>
                                     </a>
 
                                     <div class="dropdown-divider"></div>
@@ -149,13 +192,11 @@
                     <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') || request()->routeIs('admin.customers.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M3 21l18 0" />
-                                    <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
-                                    <path d="M5 21l0 -10.15" />
-                                    <path d="M19 21l0 -10.15" />
-                                    <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-warehouse" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 21v-13l9 -4l9 4v13"></path>
+                                    <path d="M13 13h4v8h-10v-6h6"></path>
+                                    <path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3"></path>
                                 </svg>
                             </span>
                             <span class="nav-link-title">
@@ -327,7 +368,7 @@
                     <!---------------------------
                     Reports
                     -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.treasuries.*') || request()->routeIs('admin.settings.*') || request()->routeIs('admin.admins.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.vendors.reports') || request()->routeIs('admin.customers.reports') || request()->routeIs('admin.delegates.reports') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -346,7 +387,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="{{ route('admin.vendors.reports') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.vendors.reports') ? 'active' : '' }}" href="{{ route('admin.vendors.reports') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -363,7 +404,7 @@
                                             {{ __('report.reports_of', ['name' => __('stock.vendors')]) }}
                                         </span>
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.customers.reports') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.customers.reports') ? 'active' : '' }}" href="{{ route('admin.customers.reports') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -380,7 +421,7 @@
                                             {{ __('report.reports_of', ['name' => __('stock.customers')]) }}
                                         </span>
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.delegates.reports') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.delegates.reports') ? 'active' : '' }}" href="{{ route('admin.delegates.reports') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

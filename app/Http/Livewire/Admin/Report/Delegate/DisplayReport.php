@@ -41,7 +41,7 @@ class DisplayReport extends Component
         $this->delegate->load('account');
         $this->sales                = Sale::with('saleProducts')->byTypeAndCompany(1)
             ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account', 'commission_value')
-            ->where('delegate_id', $this->delegate->id)
+            ->where('delegate_id', $this->delegate->id)->where('commission_value', '<', 0)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 

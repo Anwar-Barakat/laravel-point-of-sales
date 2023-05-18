@@ -37,4 +37,13 @@ return [
     'admin'                 => 'admin',
 
 
+    //_______________________
+    // Services
+    //_______________________
+    'services'                  => 'Services',
+    'service'                   => 'Service',
+    'service_name'              => 'Service name'
+
+
+
 ];
