@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\ServiceOrder;
+use App\Models\ServiceInvoice;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class ServiceOrderPolicy
+class ServiceInvoicePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class ServiceOrderPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, ServiceOrder $serviceOrder): bool
+    public function view(User $user, ServiceInvoice $ServiceInvoice): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class ServiceOrderPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, ServiceOrder $serviceOrder): bool
+    public function update(User $user, ServiceInvoice $ServiceInvoice): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class ServiceOrderPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, ServiceOrder $serviceOrder): bool
+    public function delete(User $user, ServiceInvoice $ServiceInvoice): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class ServiceOrderPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, ServiceOrder $serviceOrder): bool
+    public function restore(User $user, ServiceInvoice $ServiceInvoice): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class ServiceOrderPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, ServiceOrder $serviceOrder): bool
+    public function forceDelete(User $user, ServiceInvoice $ServiceInvoice): bool
     {
         //
     }

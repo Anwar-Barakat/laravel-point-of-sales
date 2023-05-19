@@ -311,7 +311,7 @@
                     <!---------------------------
                     Movements Stocks
                     -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') || request()->routeIs('admin.shifts.*') || request()->routeIs('admin.sales.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') || request()->routeIs('admin.shifts.*') || request()->routeIs('admin.sales.*') || request()->routeIs('admin.services-invoices.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -348,6 +348,11 @@
                                     <!-- general sales -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.general-sale-returns.*') ? 'active' : '' }}" href="{{ route('admin.general-sale-returns.index') }}">
                                         {{ __('transaction.general_sales_returns') }}
+                                    </a>
+
+                                    <!-- services invoices -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.services-invoices.*') ? 'active' : '' }}" href="{{ route('admin.services-invoices.index') }}">
+                                        {{ __('transaction.services_invoices') }}
                                     </a>
                                 </div>
                                 <div class="dropdown-menu-column">

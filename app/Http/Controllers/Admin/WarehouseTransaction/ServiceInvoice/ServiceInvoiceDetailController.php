@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice;
 
-use App\Models\Service;
+
+use App\Models\ServiceInvoiceDetail;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ServiceController extends Controller
+class ServiceInvoiceDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.settings.services.index');
+        //
     }
 
     /**
@@ -20,7 +22,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.settings.services.create');
+        //
     }
 
     /**
@@ -34,7 +36,7 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
+    public function show(ServiceInvoiceDetail $ServiceInvoiceDetail)
     {
         //
     }
@@ -42,15 +44,15 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Service $service)
+    public function edit(ServiceInvoiceDetail $ServiceInvoiceDetail)
     {
-        return view('admin.settings.services.edit', ['service' => $service]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, ServiceInvoiceDetail $ServiceInvoiceDetail)
     {
         //
     }
@@ -58,10 +60,8 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy(ServiceInvoiceDetail $ServiceInvoiceDetail)
     {
-        $service->delete();
-        toastr()->info(__('msgs.deleted', ['name' => __('setting.service')]));
-        return redirect()->back();
+        //
     }
 }

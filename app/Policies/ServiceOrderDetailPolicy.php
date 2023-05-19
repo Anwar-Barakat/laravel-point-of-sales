@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\ServiceOrderDetail;
+use App\Models\ServiceInvoiceDetail;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class ServiceOrderDetailPolicy
+class ServiceInvoiceDetailPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class ServiceOrderDetailPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, ServiceOrderDetail $serviceOrderDetail): bool
+    public function view(User $user, ServiceInvoiceDetail $ServiceInvoiceDetail): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class ServiceOrderDetailPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, ServiceOrderDetail $serviceOrderDetail): bool
+    public function update(User $user, ServiceInvoiceDetail $ServiceInvoiceDetail): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class ServiceOrderDetailPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, ServiceOrderDetail $serviceOrderDetail): bool
+    public function delete(User $user, ServiceInvoiceDetail $ServiceInvoiceDetail): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class ServiceOrderDetailPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, ServiceOrderDetail $serviceOrderDetail): bool
+    public function restore(User $user, ServiceInvoiceDetail $ServiceInvoiceDetail): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class ServiceOrderDetailPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, ServiceOrderDetail $serviceOrderDetail): bool
+    public function forceDelete(User $user, ServiceInvoiceDetail $ServiceInvoiceDetail): bool
     {
         //
     }

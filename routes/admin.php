@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Setting\Admin\AdminController;
 use App\Http\Controllers\Admin\Setting\AdminChangePasswordController;
 use App\Http\Controllers\Admin\Setting\AdminProfileController;
 use App\Http\Controllers\Admin\Setting\CompanyController;
+use App\Http\Controllers\Admin\Setting\Service\ServiceController;
 use App\Http\Controllers\Admin\Setting\Treasury\TreasuryController;
 use App\Http\Controllers\Admin\Setting\Treasury\TreasuryDelivery\TreasuryDeliveryController;
 use App\Http\Controllers\Admin\Stock\Category\CategoryController;
@@ -33,8 +34,8 @@ use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfController;
+use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
-use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -169,6 +170,12 @@ Route::group(
                 Route::resource('sales',                        SaleController::class);
                 Route::resource('general-sale-returns',         GeneralSaleReturnController::class);
                 Route::get('sale-invoice/{sale}',               SaleInvoiceController::class)->name('sales.invoice');
+
+
+                //_______________________
+                // services invoices
+                //_______________________
+                Route::resource('services-invoices',            ServiceInvoiceController::class);
 
                 //_______________________
                 // Shifts

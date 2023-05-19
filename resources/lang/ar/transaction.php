@@ -127,4 +127,11 @@ return [
     'empty_batches'             => 'الباتشات الفارغة',
     'production_from_date'      => 'تاريخ الإنتاج من التاريخ',
     'production_to_date'        => 'تاريخ الإنتاج إلى التاريخ',
+
+
+    //_______________________
+    // Service Invoices
+    //_______________________
+    'service_invoice'           => 'فاتورة الخدمة',
+    'services_invoices'         => 'فواتير الخدمات',
 ];

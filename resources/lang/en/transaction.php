@@ -128,4 +128,11 @@ return [
     'empty_batches'             => 'Eempty Batches',
     'production_from_date'      => 'Production date from date',
     'production_to_date'        => 'Production date to date',
+
+
+    //_______________________
+    // Service Invoices
+    //_______________________
+    'service_invoice'           => 'Service invoice',
+    'services_invoices'         => 'Services invoices',
 ];
