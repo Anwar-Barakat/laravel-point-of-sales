@@ -6,7 +6,7 @@
 
     <div class="card">
         <div class="row g-0">
-
+            <livewire:admin.warehouse-transaction.service-invoice.add-edit-service-invoice>
         </div>
     </div>
 

@@ -11,6 +11,8 @@ class ServiceInvoice extends Model
 
     protected $guarded = [];
 
+    const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
+
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id');

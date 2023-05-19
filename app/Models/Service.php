@@ -25,4 +25,9 @@ class Service extends Model
             $query->where('name', 'LIKE', $term);
         });
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where(['is_active' => 1, 'company_id' => get_auth_com()]);
+    }
 }
