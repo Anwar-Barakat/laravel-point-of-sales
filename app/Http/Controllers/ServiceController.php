@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreServiceRequest;
-use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
+use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
@@ -13,7 +12,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.settings.services.index');
     }
 
     /**
@@ -21,13 +20,13 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.settings.services.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreServiceRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -45,13 +44,13 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('admin.settings.services.edit', ['service' => $service]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateServiceRequest $request, Service $service)
+    public function update(Request $request, Service $service)
     {
         //
     }
@@ -61,6 +60,8 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('setting.service')]));
+        return redirect()->back();
     }
 }

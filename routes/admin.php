@@ -95,13 +95,13 @@ Route::group(
                 //_______________________
                 // Services
                 //_______________________
-                Route::resource('services',                     ServiceController::class)->only('index', 'create', 'edit');
+                Route::resource('services',                     ServiceController::class)->only('index', 'create', 'edit', 'destroy');
 
 
                 //_______________________
                 // Sections
                 //_______________________
-                Route::resource('sections',                     SectionController::class)->except(['create', 'show', 'edit']);
+                Route::resource('sections',                     SectionController::class)->except(['store', 'update', 'destroy']);
 
                 //_______________________
                 // Categories

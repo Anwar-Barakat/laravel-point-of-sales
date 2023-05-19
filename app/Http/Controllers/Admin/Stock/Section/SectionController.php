@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Stock\Section;
 
-use App\Http\Requests\Admin\StoreSectionRequest;
-use App\Http\Requests\Admin\UpdateSectionRequest;
 use App\Models\Section;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
@@ -14,8 +13,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $sections  = Section::with(['addedBy'])->latest()->paginate(CUSTOM_PAGINATION);
-        return view('admin.stocks.sections.index', ['sections' => $sections]);
+        return view('admin.stocks.sections.index');
     }
 
     /**
@@ -23,27 +21,14 @@ class SectionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stocks.sections.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSectionRequest $request)
+    public function store(Request $request)
     {
-        $data   = $request->only(['name_ar', 'name_en', 'is_active']);
-        $auth   = auth()->guard('admin')->user();
-
-        Section::create([
-            'name'          => [
-                'ar'    => $data['name_ar'],
-                'en'    => $data['name_en'],
-            ],
-            'is_active'     => $data['is_active'],
-            'added_by'      => $auth->id,
-        ]);
-        toastr()->success(__('msgs.created', ['name' => __('stock.section')]));
-        return redirect()->route('admin.sections.index');
     }
 
     /**
@@ -59,27 +44,14 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        //
+        return view('admin.stocks.sections.edit', ['section' => $section]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSectionRequest $request, Section $section)
+    public function update(Request $request, Section $section)
     {
-        $data   = $request->only(['name_ar', 'name_en', 'is_active']);
-        $auth   = auth()->guard('admin')->user();
-
-        $section->update([
-            'name'          => [
-                'ar'    => $data['name_ar'],
-                'en'    => $data['name_en'],
-            ],
-            'is_active'     => $data['is_active'],
-            'updated_by'    => $auth->id,
-        ]);
-        toastr()->success(__('msgs.created', ['name' => __('stock.section')]));
-        return redirect()->route('admin.sections.index');
     }
 
     /**

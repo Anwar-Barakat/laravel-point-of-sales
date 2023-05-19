@@ -43,5 +43,9 @@ return [
     //_______________________
     'services'                  => 'الخدمات',
     'service'                   => 'خدمة',
-    'service_name'              => 'اسم الخدمة'
+    'service_name'              => 'اسم الخدمة',
+    'service_type'              => 'نوع الخدمة',
+    'internal_services'         => 'خدمات داخلية',
+    'external_services'         => 'خدمات خارجية',
+    'must_be_in_english'        => ':name يجب أن يكون باللغة الأنكليزية',
 ];

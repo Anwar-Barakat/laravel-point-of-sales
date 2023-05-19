@@ -1,7 +1,7 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.create', ['name' => __('account.account')]))
-    @section('breadcrumbTitle', __('msgs.create', ['name' => __('account.account')]))
-    @section('breadcrumbSubtitle', __('account.accounts'))
+    @section('pageTitle', __('msgs.create', ['name' => __('stock.category')]))
+    @section('breadcrumbTitle', __('msgs.create', ['name' => __('stock.category')]))
+    @section('breadcrumbSubtitle', __('partials.stocks'))
 
 
     <div class="card">

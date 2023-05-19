@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Admin\Stock\Unit;
 
 use App\Models\Unit;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowUnit extends Component
 {
+    use WithPagination;
+
     public function updateStatus($id)
     {
         $unit  = Unit::findOrFail($id);

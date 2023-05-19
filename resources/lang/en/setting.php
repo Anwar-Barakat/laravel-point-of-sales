@@ -42,8 +42,10 @@ return [
     //_______________________
     'services'                  => 'Services',
     'service'                   => 'Service',
-    'service_name'              => 'Service name'
-
-
+    'service_name'              => 'Service name',
+    'service_type'              => 'Service type',
+    'internal_services'         => 'Internal services',
+    'external_services'         => 'External services',
+    'must_be_in_english'        => ':name  must be in english',
 
 ];

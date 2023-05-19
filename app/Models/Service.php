@@ -15,4 +15,6 @@ class Service extends Model
         'is_active',
         'company_id',
     ];
+
+    const SERTICETYPE = [0 => 'internal_services', 1 => 'external_services'];
 }
