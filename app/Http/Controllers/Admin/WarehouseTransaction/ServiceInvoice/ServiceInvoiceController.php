@@ -45,6 +45,7 @@ class ServiceInvoiceController extends Controller
      */
     public function edit(ServiceInvoice $services_invoice)
     {
+        $services_invoice->load('account');
         return view('admin.warehouse-transactions.service-invoices.edit', ['services_invoice' => $services_invoice]);
     }
 

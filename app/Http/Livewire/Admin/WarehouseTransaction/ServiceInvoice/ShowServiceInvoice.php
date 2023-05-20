@@ -36,7 +36,7 @@ class ShowServiceInvoice extends Component
     public function getServiceInvoices()
     {
 
-        return  ServiceInvoice::with(['account', 'service'])
+        return  ServiceInvoice::with(['account:id,name,number'])
             ->where(['company_id' => get_auth_com()])
             ->when($this->service_type,         fn ($q) => $q->where('service_type', $this->service_type))
             ->when($this->account_id,           fn ($q) => $q->where('account_id', $this->account_id))

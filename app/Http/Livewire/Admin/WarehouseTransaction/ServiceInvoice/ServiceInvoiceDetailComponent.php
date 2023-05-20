@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\WarehouseTransaction\ServiceInvoice;
 use App\Models\Service;
 use App\Models\ServiceInvoice;
 use App\Models\ServiceInvoiceDetail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -19,12 +20,12 @@ class ServiceInvoiceDetailComponent extends Component
 
     public $services = [];
 
-    // protected $listeners = ['updateInvoiceServices'];
+    protected $listeners = ['updateInvoiceServices'];
 
-    // public function updateInvoiceServices(ServiceInvoice $invoice)
-    // {
-    //     $this->invoice = $invoice;
-    // }
+    public function updateInvoiceServices(ServiceInvoice $invoice)
+    {
+        $this->invoice = $invoice;
+    }
 
     public function mount(ServiceInvoice $invoice, ServiceInvoiceDetail $service)
     {
@@ -44,10 +45,21 @@ class ServiceInvoiceDetailComponent extends Component
         $this->validate();
         try {
             if ($this->invoice->is_approved == 0) {
-                $this->service->service_invoice_id  = $this->invoice->id;
-                $this->service->company_id          = get_auth_com();
-                $this->service->save();
+                DB::beginTransaction();
 
+                $this->service->fill([
+                    'service_invoice_id'    => $this->invoice->id,
+                    'added_by'              => get_auth_id(),
+                    'company_id'            => get_auth_com(),
+                ])->save();
+
+                $totalPrices = ServiceInvoiceDetail::where('service_invoice_id', $this->invoice->id)->where('company_id', get_auth_com())->sum('total');
+                $this->invoice->fill([
+                    'cost_before_discount'  => $totalPrices,
+                    'cost_after_discount'   => $totalPrices,
+                ])->save();
+
+                DB::commit();
                 $this->emit('updateInvoiceServices', ['invoice' => $this->invoice]);
                 toastr()->success(__('msgs.added', ['name' => __('setting.service')]));
                 $this->reset('service');
@@ -57,9 +69,30 @@ class ServiceInvoiceDetailComponent extends Component
         }
     }
 
+    public function edit(ServiceInvoiceDetail $service)
+    {
+        $this->service = $service;
+    }
+
+    public function delete(ServiceInvoiceDetail $service)
+    {
+        $service->delete();
+        $totalPrices = ServiceInvoiceDetail::where('service_invoice_id', $this->invoice->id)->where('company_id', get_auth_com())->sum('total');
+        $this->invoice->fill([
+            'cost_before_discount'  => $totalPrices,
+            'cost_after_discount'   => $totalPrices,
+        ])->save();
+
+
+        $service->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('setting.service')]));
+    }
+
     public function render()
     {
-        return view('livewire.admin.warehouse-transaction.service-invoice.service-invoice-detail-component', ['serviceInvoiceDetails' => $this->getServiceInvoiceDetails()]);
+        return view('livewire.admin.warehouse-transaction.service-invoice.service-invoice-detail-component', [
+            'details' => $this->getServiceInvoiceDetails()
+        ]);
     }
 
     public function rules(): array

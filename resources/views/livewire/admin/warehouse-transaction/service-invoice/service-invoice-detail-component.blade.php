@@ -26,14 +26,18 @@
                             <td>{{ $invoice->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('transaction.invoice_number') }}</th>
-                            <td>{{ $invoice->account->number }}</td>
-                        </tr>
-                        <tr>
                             <th>{{ __('setting.service_type') }}</th>
                             <td>
                                 <span class="badge bg-red-lt">{{ __('setting.' . App\Models\Service::SERTICETYPE[$invoice->service_type]) }}</span>
                             </td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('account.account_number') }}</th>
+                            <td>{{ $invoice->account->number }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('account.account_name') }}</th>
+                            <td>{{ $invoice->account->name }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('transaction.tax') }}</th>
@@ -155,22 +159,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($serviceInvoiceDetails as $serviceInvoiceDetail)
+                            @forelse ($details as $detail)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <span class="badge bg-blue">
-                                            {{ $serviceInvoiceDetail->service->name }}
+                                            {{ $detail->service->name }}
                                         </span>
                                     </td>
-                                    <td>{{ $serviceInvoiceDetail->total }}</td>
+                                    <td>{{ $detail->total }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-sm" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('msgs.notes') }}" data-bs-content="{{ $serviceInvoiceDetail->notes }}">{{ __('account.click_here') }}</button>
+                                        <button type="button" class="btn btn-sm" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('msgs.notes') }}" data-bs-content="{{ $detail->notes }}">{{ __('account.click_here') }}</button>
                                     </td>
                                     @if (!$invoice->is_approved == 1)
                                         <td>
                                             <div class="btn-list flex-nowrap justify-content-center">
-                                                <a wire:click.prevent="edit({{ $serviceInvoiceDetail->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                                <a wire:click.prevent="edit({{ $detail }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -178,7 +182,7 @@
                                                         <path d="M16 5l3 3" />
                                                     </svg>
                                                 </a>
-                                                <a wire:click.prevent="delete({{ $serviceInvoiceDetail->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                                <a wire:click.prevent="delete({{ $detail }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M4 7l16 0" />
@@ -202,9 +206,9 @@
                             @endforelse
                         </tbody>
                     </table>
-                    @if ($serviceInvoiceDetails->count() > 0)
+                    @if ($details->count() > 0)
                         <div class="p-3 mt-2">
-                            {{ $serviceInvoiceDetails->links('pagination::bootstrap-5') }}
+                            {{ $details->links('pagination::bootstrap-5') }}
                         </div>
                     @endif
                 </div>

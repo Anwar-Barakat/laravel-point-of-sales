@@ -11,8 +11,8 @@
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-4 col-lg-3">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('msgs.service_by')" />
-                        <select class="form-select" wire:model='service_by'>
+                        <x-input-label class="form-label" :value="__('msgs.order_by')" />
+                        <select class="form-select" wire:model='order_by'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="created_at">{{ __('msgs.created_at') }}</option>
                             <option value="invoice_date">{{ __('transaction.invoice_date') }}</option>
@@ -72,6 +72,7 @@
                     <tr>
                         <th>#</th>
                         <th> {{ __('setting.service_type') }}</th>
+                        <th> {{ __('account.account_name') }}</th>
                         <th> {{ __('account.account_number') }}</th>
                         <th>{{ __('transaction.invoice_type') }}</th>
                         <th>{{ __('transaction.invoice_date') }}</th>
@@ -87,8 +88,11 @@
                                 <span class="badge bg-{{ $services_invoice->service_type == 0 ? 'blue' : 'green' }}">{{ __('setting.' . App\Models\Service::SERTICETYPE[$services_invoice->service_type]) }}</span>
                             </td>
                             <td>
+                                <span class="badge badge-outline text-blue">{{ $services_invoice->account->name }}</span>
+                            </td>
+                            <td>
                                 <a href="{{ route('admin.accounts.show', ['account' => $services_invoice->account]) }}">
-                                    <span class="badge bg-green-lt">
+                                    <span class="badge bg-info-lt">
                                         {{ $services_invoice->account->number }}
                                     </span>
                                 </a>

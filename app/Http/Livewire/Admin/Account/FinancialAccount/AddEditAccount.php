@@ -49,7 +49,9 @@ class AddEditAccount extends Component
     {
         $this->validate();
         try {
-            $this->account->number            = uniqid();
+            if (!$this->account->number)
+                $this->account->number            = uniqid();
+
             $this->account->company_id        = get_auth_com();
 
             switch ($this->account->initial_balance_status) {

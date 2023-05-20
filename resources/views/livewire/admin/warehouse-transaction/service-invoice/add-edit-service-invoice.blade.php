@@ -9,7 +9,7 @@
                             {{ __('setting.service_type') }}
                             (<a href="{{ route('admin.services.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('setting.service')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
-                        <select class="form-select" wire:model.debounce.500s='invoice.service_type'>
+                        <select class="form-select" wire:model.debounce.500s='invoice.service_type' {{ $invoice->serviceInvoiceDetails->count() > 0 ? 'disabled readonly' : '' }}>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="0">{{ __('setting.internal_services') }}</option>
                             <option value="1">{{ __('setting.external_services') }}</option>
