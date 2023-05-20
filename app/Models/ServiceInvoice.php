@@ -23,4 +23,9 @@ class ServiceInvoice extends Model
     {
         return $this->belongsTo(Account::class, 'account_id');
     }
+
+    public function serviceInvoiceDetails()
+    {
+        return $this->hasMany(ServiceInvoiceDetail::class);
+    }
 }

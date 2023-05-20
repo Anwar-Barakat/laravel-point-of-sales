@@ -80,30 +80,30 @@
                     </tr>
                 </thead>
                 <tbody class="table-tbody">
-                    @forelse ($service_invoices as $service_invoice)
+                    @forelse ($services_invoices as $services_invoice)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <span class="badge bg-{{ $service_invoice->service_type == 0 ? 'blue' : 'green' }}">{{ __('setting.' . App\Models\Service::SERTICETYPE[$service_invoice->service_type]) }}</span>
+                                <span class="badge bg-{{ $services_invoice->service_type == 0 ? 'blue' : 'green' }}">{{ __('setting.' . App\Models\Service::SERTICETYPE[$services_invoice->service_type]) }}</span>
                             </td>
                             <td>
-                                <a href="{{ route('admin.accounts.show', ['account' => $service_invoice->account]) }}">
+                                <a href="{{ route('admin.accounts.show', ['account' => $services_invoice->account]) }}">
                                     <span class="badge bg-green-lt">
-                                        {{ $service_invoice->account->number }}
+                                        {{ $services_invoice->account->number }}
                                     </span>
                                 </a>
                             </td>
 
-                            <td>{{ $service_invoice->invoice_type ? __('transaction.delayed') : __('transaction.cash') }} </td>
-                            <td>{{ $service_invoice->invoice_date }}</td>
+                            <td>{{ $services_invoice->invoice_type ? __('transaction.delayed') : __('transaction.cash') }} </td>
+                            <td>{{ $services_invoice->invoice_date }}</td>
                             <td>
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
 
 
-                                        @if ($service_invoice->is_approved == 0)
-                                            <a href="{{ route('admin.services-invoices.edit', ['services_invoice' => $service_invoice]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                        @if ($services_invoice->is_approved == 0)
+                                            <a href="{{ route('admin.services-invoices.edit', ['services_invoice' => $services_invoice]) }}" class="dropdown-item d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -113,15 +113,15 @@
                                                 <span>{{ __('btns.edit') }}</span>
                                             </a>
 
-                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.services-invoices.show', ['services_invoice' => $service_invoice]) }}">
+                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.services-invoices.show', ['services_invoice' => $services_invoice]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M12 5l0 14" />
                                                     <path d="M5 12l14 0" />
                                                 </svg>
-                                                <span>{{ __('transaction.add_items') }}</span>
+                                                <span>{{ __('transaction.add_services') }}</span>
                                             </a>
-                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $service_invoice->id }}">
+                                            <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $services_invoice->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M4 7l16 0" />
@@ -133,7 +133,7 @@
                                                 <span>{{ __('btns.delete') }}</span>
                                             </a>
                                         @else
-                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.services-invoices.show', ['services_invoice' => $service_invoice]) }}">
+                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.services-invoices.show', ['services_invoice' => $services_invoice]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -141,7 +141,7 @@
                                                 </svg>
                                                 <span>{{ __('btns.details') }}</span>
                                             </a>
-                                            <a class="dropdown-item d-flex align-items-center gap-1" {{-- href="{{ route('admin.services.invoice', ['service' => $service_invoice]) }}" --}}>
+                                            <a class="dropdown-item d-flex align-items-center gap-1" {{-- href="{{ route('admin.services.invoice', ['service' => $services_invoice]) }}" --}}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-info" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -177,7 +177,7 @@
                                         @endif
                                     </div>
                                 </span>
-                                {{-- <x-modal-delete :id="$service_invoice-id" :action="$delete" /> --}}
+                                {{-- <x-modal-delete :id="$services_invoice-id" :action="$delete" /> --}}
                             </td>
                         </tr>
                     @empty
@@ -190,7 +190,7 @@
                 </tbody>
             </table>
             <div class="p-3 mt-2">
-                {{ $service_invoices->links('pagination::bootstrap-5') }}
+                {{ $services_invoices->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>

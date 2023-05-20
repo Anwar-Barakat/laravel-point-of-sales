@@ -35,17 +35,17 @@ class ServiceInvoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ServiceInvoice $ServiceInvoice)
+    public function show(ServiceInvoice $services_invoice)
     {
-        //
+        return view('admin.warehouse-transactions.service-invoices.show', ['services_invoice' => $services_invoice]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ServiceInvoice $ServiceInvoice)
+    public function edit(ServiceInvoice $services_invoice)
     {
-        return view('admin.warehouse-transactions.service-invoices.edit', ['ServiceInvoice' => $ServiceInvoice]);
+        return view('admin.warehouse-transactions.service-invoices.edit', ['services_invoice' => $services_invoice]);
     }
 
     /**

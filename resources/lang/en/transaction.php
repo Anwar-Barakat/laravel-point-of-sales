@@ -135,4 +135,6 @@ return [
     //_______________________
     'service_invoice'           => 'Service invoice',
     'services_invoices'         => 'Services invoices',
+    'add_services'              => 'Add services',
+
 ];

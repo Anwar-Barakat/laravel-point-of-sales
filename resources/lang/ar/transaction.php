@@ -134,4 +134,5 @@ return [
     //_______________________
     'service_invoice'           => 'فاتورة الخدمة',
     'services_invoices'         => 'فواتير الخدمات',
+    'add_services'              => 'إضافة خدمات',
 ];
