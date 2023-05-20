@@ -14,18 +14,17 @@ class ServiceInvoiceDetailComponent extends Component
     use WithPagination;
 
     public ServiceInvoice $invoice;
+
     public ServiceInvoiceDetail $service;
 
-    public $services = [], $item;
+    public $services = [];
 
-    public $consuming = false;
+    // protected $listeners = ['updateInvoiceServices'];
 
-    protected $listeners = ['updateOrderProducts'];
-
-    public function updateOrderProducts(ServiceInvoice $invoice)
-    {
-        $this->invoice = $invoice;
-    }
+    // public function updateInvoiceServices(ServiceInvoice $invoice)
+    // {
+    //     $this->invoice = $invoice;
+    // }
 
     public function mount(ServiceInvoice $invoice, ServiceInvoiceDetail $service)
     {
@@ -44,15 +43,17 @@ class ServiceInvoiceDetailComponent extends Component
     {
         $this->validate();
         try {
-            if ($this->order->is_approved == 0) {
-
+            if ($this->invoice->is_approved == 0) {
+                $this->service->service_invoice_id  = $this->invoice->id;
+                $this->service->company_id          = get_auth_com();
                 $this->service->save();
 
-                $this->emit('updateOrderProducts', ['order' => $this->order]);
-                toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-                $this->reset('product.item_id');
+                $this->emit('updateInvoiceServices', ['invoice' => $this->invoice]);
+                toastr()->success(__('msgs.added', ['name' => __('setting.service')]));
+                $this->reset('service');
             }
         } catch (\Throwable $th) {
+            return redirect()->route('admin.services-invoices.show', ['services_invoice' => $this->invoice])->with(['error' => $th->getMessage()]);
         }
     }
 
@@ -68,7 +69,7 @@ class ServiceInvoiceDetailComponent extends Component
                 'required',
                 Rule::unique('service_invoice_details', 'service_id')->ignore($this->service->id)
             ],
-            'service.total_price'       => ['required'],
+            'service.total'             => ['required', 'numeric', 'between:1,9999'],
             'service.notes'             => ['required', 'min:10'],
         ];
     }
