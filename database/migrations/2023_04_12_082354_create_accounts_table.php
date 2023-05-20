@@ -24,13 +24,13 @@ return new class extends Migration
             $table->decimal('current_balance', 10, 2)->default(0);
 
             $table->string('notes');
-            $table->foreignId('company_id');
             $table->boolean('is_archived')->default(0);
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
 
             $table->foreignId('customer_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('vendor_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('delegate_id')->nullable();
+            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

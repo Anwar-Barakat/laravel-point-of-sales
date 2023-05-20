@@ -22,7 +22,7 @@ class CompanyComponent extends Component
         $this->company = $company;
         $this->name_ar = $company->getTranslation('name', 'ar');
         $this->name_en = $company->getTranslation('name', 'en');
-        $this->parent_accounts = Account::where('company_id', get_auth_com())->parent()->get();
+        $this->parent_accounts  = Account::active()->parent()->get();
     }
 
     public function updated($fields)

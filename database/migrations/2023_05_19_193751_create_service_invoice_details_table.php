@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('service_invoice_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_order_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('service_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('service_invoice_id')->constrained()->cascadeOnUpdate();
             $table->string('notes');
             $table->decimal('total', 10, 2);
             $table->foreignId('company_id')->constrained()->cascadeOnUpdate();

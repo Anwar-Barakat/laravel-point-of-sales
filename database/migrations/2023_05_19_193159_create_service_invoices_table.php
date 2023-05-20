@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('service_invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->cascadeOnUpdate();
+            $table->boolean('service_type')->comment('0 => internal, 1 => external');
 
             $table->boolean('invoice_type');
             $table->date('invoice_date');

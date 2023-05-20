@@ -47,7 +47,7 @@ class Account extends Model
 
     public function scopeActive($query)
     {
-        return $query->where(['is_archived' => '0']);
+        return $query->where(['is_archived' => '0', 'company_id' => get_auth_com()]);
     }
 
     public function scopeParent($query)

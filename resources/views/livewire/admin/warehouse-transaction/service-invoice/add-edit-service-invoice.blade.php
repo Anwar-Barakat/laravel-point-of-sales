@@ -5,14 +5,16 @@
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('setting.services')" />
-                        <select class="form-select" wire:model.debounce.500s='invoice.service_id'>
+                        <label for="" class="form-label">
+                            {{ __('setting.service_type') }}
+                            (<a href="{{ route('admin.services.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('setting.service')]) }}">{{ __('msgs.add_new') }}</a>)
+                        </label>
+                        <select class="form-select" wire:model.debounce.500s='invoice.service_type'>
                             <option value="">{{ __('btns.select') }}</option>
-                            @foreach ($services as $service)
-                                <option value="{{ $service->id }}">{{ $service->name }} ({{ __('setting.' . App\Models\Service::SERTICETYPE[$service->type]) }})</option>
-                            @endforeach
+                            <option value="0">{{ __('setting.internal_services') }}</option>
+                            <option value="1">{{ __('setting.external_services') }}</option>
                         </select>
-                        <x-input-error :messages="$errors->get('invoice.service_id')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('invoice.service_type')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-3">
@@ -38,7 +40,10 @@
             <div class="row row-cards">
                 <div class="col-sm-12 col-md-6">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.accounts')" />
+                        <label for="" class="form-label">
+                            {{ __('account.accounts') }}
+                            (<a href="{{ route('admin.accounts.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('account.account')]) }}">{{ __('msgs.add_new') }}</a>)
+                        </label>
                         <select class="form-select" wire:model.debounce.500s='invoice.account_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($accounts as $account)

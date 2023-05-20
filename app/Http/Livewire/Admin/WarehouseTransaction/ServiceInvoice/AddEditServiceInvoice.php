@@ -18,13 +18,27 @@ class AddEditServiceInvoice extends Component
     {
         $this->invoice                  = $invoice;
         $this->invoice->invoice_date    = date('Y-m-d');
-        $this->services                 = Service::active()->get();
         $this->accounts                 = Account::with(['accountType:id,name'])->select('id', 'name', 'account_type_id')->active()->get();
     }
 
     public function updated($fields)
     {
         return $this->validateOnly($fields);
+    }
+
+    public function submit()
+    {
+        $this->validate();
+        try {
+            $this->invoice->added_by        = get_auth_id();
+            $this->invoice->company_id      = get_auth_com();
+            $this->invoice->save();
+
+            toastr()->success(__('msgs.submitted', ['name' => __('transaction.service_invoice')]));
+            return redirect()->route('admin.services-invoices.index');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.services-invoices.index')->with(['error' => $th->getMessage()]);
+        }
     }
 
     public function render()
@@ -35,7 +49,7 @@ class AddEditServiceInvoice extends Component
     public function rules(): array
     {
         return [
-            'invoice.service_id'      => ['required', 'integer'],
+            'invoice.service_type'    => ['required', 'boolean'],
             'invoice.account_id'      => ['required', 'integer'],
             'invoice.invoice_type'    => ['required', 'boolean'],
             'invoice.invoice_date'    => ['required', 'date'],

@@ -34,7 +34,7 @@ class AddEditCollectTransaction extends Component
     public function mount(TreasuryTransaction $transaction)
     {
         $this->transaction  = $transaction;
-        $this->accounts     = Account::where(['company_id' => get_auth_com(), 'is_parent' => 0])->active()->get();
+        $this->accounts     = Account::where(['is_parent' => 0])->active()->get();
         $this->shiftTypes   = ShiftType::collect()->active()->get();
         $this->tranasctions_to_date = date('Y-m-d');
     }
