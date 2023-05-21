@@ -21,6 +21,6 @@ class ServiceInvoice extends Model
 
     public function serviceInvoiceDetails()
     {
-        return $this->hasMany(ServiceInvoiceDetail::class);
+        return $this->hasMany(ServiceInvoiceDetail::class)->with('service:id,name');
     }
 }

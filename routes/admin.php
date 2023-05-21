@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfController;
+use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceBillController;
 use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
 use Illuminate\Support\Facades\Route;
@@ -175,7 +176,8 @@ Route::group(
                 //_______________________
                 // services invoices
                 //_______________________
-                Route::resource('services-invoices',            ServiceInvoiceController::class);
+                Route::resource('services-invoices',                ServiceInvoiceController::class);
+                Route::get('services-invoice-bill/{services_invoice}',   ServiceInvoiceBillController::class)->name('services-invoices.invoice');
 
                 //_______________________
                 // Shifts

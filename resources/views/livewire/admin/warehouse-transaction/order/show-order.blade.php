@@ -19,7 +19,7 @@
     <div class="card-body">
         <div id="table-default" class="table-responsive">
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.order_by')" />
                         <select class="form-select" wire:model='order_by'>
@@ -29,7 +29,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.vendor')" />
                         <select class="form-select" wire:model='vendor_id'>
@@ -40,7 +40,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.store')" />
                         <select class="form-select" wire:model='store_id'>
@@ -51,7 +51,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.per_page')" />
                         <select class="form-select" wire:model='per_page'>
@@ -62,7 +62,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.sort_by')" />
                         <select class="form-select" wire:model='sort_by'>
@@ -75,13 +75,13 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoices_from_date')" />
                         <input type="date" class="form-control" wire:model='invoices_from_date'>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoices_to_date')" />
                         <input type="date" class="form-control" wire:model='invoices_to_date'>

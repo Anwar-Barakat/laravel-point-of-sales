@@ -19,7 +19,7 @@ return [
     'cash'                      => 'Cash',
     'delayed'                   => 'Delayed',
     'purchase'                  => 'Purchase',
-    'return_on_the_same_pill'   => 'Return on the same pill',
+    'return_on_the_same_bill'   => 'Return on the same bill',
     'return_on_general'         => 'Return on general',
     'order_id'                  => 'Order id',
     'invoice_number'            => 'Invoice number',

@@ -3,7 +3,7 @@
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <label for="" class="form-label">
                             {{ __('stock.vendor_name') }}
@@ -22,7 +22,7 @@
                         <x-input-error :messages="$errors->get('order.vendor_id')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoice_type')" />
                         <select class="form-select" wire:model.debounce.500s='order.invoice_type'>
@@ -34,7 +34,7 @@
                         <x-input-error :messages="$errors->get('order.invoice_type')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoice_date')" />
                         <x-text-input type="date" class="form-control" wire:model.debounce.500s='order.invoice_date' />
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <label for="" class="form-label">
                             {{ __('stock.store') }}
@@ -65,7 +65,7 @@
             </div>
 
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
                         <textarea rows="3" class="form-control" wire:model.debounce.500s='order.notes'></textarea>

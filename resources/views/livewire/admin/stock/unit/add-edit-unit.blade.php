@@ -5,21 +5,21 @@
                 <div class="card-body">
                     <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                     <div class="row row-cards">
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.name_ar')" />
                                 <x-text-input type="text" class="form-control" placeholder="متر" wire:model.defer='name_ar' required />
                                 <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.name_en')" />
                                 <x-text-input type="text" class="form-control" placeholder="meter" wire:model.defer='name_en' required />
                                 <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('setting.status')" />
                                 <select class="form-select" wire:model.defer='unit.is_active'>
@@ -30,7 +30,7 @@
                                 <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('stock.unit')" />
                                 <select class="form-select" wire:model.defer='unit.status'>

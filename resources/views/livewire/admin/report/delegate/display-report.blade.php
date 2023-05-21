@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div id="table-default" class="table-responsive">
                     <div class="row row-cards">
-                        <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('stock.delegate')" />
                                 <select class="form-select" wire:model='delegate_id' required>
@@ -20,7 +20,7 @@
                                 <x-input-error :messages="$errors->get('delegate_id')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('report.report_type')" />
                                 <select class="form-select" wire:model='report_type' required>
@@ -34,13 +34,13 @@
                             </div>
                         </div>
                         @if ($date)
-                            <div class="col-sm-12 col-md-4 col-lg-3">
+                            <div class="col-12 col-md-4 col-lg-3">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('report.reports_from_date')" />
                                     <input type="date" class="form-control" wire:model='reports_from_date'>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-4 col-lg-3">
+                            <div class="col-12 col-md-4 col-lg-3">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('report.reports_to_date')" />
                                     <input type="date" class="form-control" wire:model='reports_to_date'>

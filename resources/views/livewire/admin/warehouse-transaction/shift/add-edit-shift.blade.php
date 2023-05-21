@@ -4,7 +4,7 @@
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('treasury.treasury')" />
                         <select class="form-select" wire:model.debounce.500s='shift.treasury_id'>

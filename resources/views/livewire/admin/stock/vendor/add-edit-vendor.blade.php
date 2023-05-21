@@ -3,21 +3,21 @@
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.vendor_name')" />
                         <x-text-input type="text" class="form-control" wire:model.defer='vendor.name' />
                         <x-input-error :messages="$errors->get('vendor.name')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('auth.email')" />
                         <x-text-input type="email" class="form-control" wire:model.defer='vendor.email' />
                         <x-input-error :messages="$errors->get('vendor.email')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.status')" />
                         <select class="form-select" wire:model.defer='vendor.is_active'>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.category')" />
                         <select class="form-select" wire:model.defer='vendor.category_id'>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 @if (!$vendor->account)
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance_status')" />
                             <select class="form-select" wire:model='vendor.initial_balance_status'>
@@ -65,7 +65,7 @@
                             <x-input-error :messages="$errors->get('vendor.initial_balance_status')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('account.initial_balance')" />
                             <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.defer='vendor.initial_balance' />
@@ -75,14 +75,14 @@
                 @endif
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-lg-6">
+                <div class="col-12 col-lg-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.address')" />
                         <textarea rows="3" class="form-control" wire:model.defer='vendor.address' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>
                         <x-input-error :messages="$errors->get('vendor.address')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
                         <textarea rows="3" class="form-control" wire:model.defer='vendor.notes' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>

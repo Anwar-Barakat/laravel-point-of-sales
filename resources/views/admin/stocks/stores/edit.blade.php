@@ -10,24 +10,24 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="col-12 col-lg-6 mb-3">
                             <x-input-label class="form-label" :value="__('stock.store_ar')" />
                             <x-text-input type="text" name="name_ar" class="form-control" placeholder="{{ __('msgs.name_ar') }}" :value="$store->getTranslation('name', 'ar')" required />
                             <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
                         </div>
-                        <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="col-12 col-lg-6 mb-3">
                             <x-input-label class="form-label" :value="__('stock.store_en')" />
                             <x-text-input type="text" name="name_en" class="form-control" placeholder="{{ __('msgs.name_en') }}" :value="$store->getTranslation('name', 'en')" required />
                             <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="col-12 col-lg-6 mb-3">
                             <x-input-label class="form-label" :value="__('setting.address')" />
                             <x-text-input type="text" name="address" class="form-control" placeholder="{{ __('setting.address') }}" :value="old('address', $store->address)" required />
                             <x-input-error :messages="$errors->get('address')" class="mt-2" />
                         </div>
-                        <div class="col-sm-12 col-lg-6 mb-3">
+                        <div class="col-12 col-lg-6 mb-3">
                             <x-input-label class="form-label" :value="__('setting.mobile')" />
                             <x-text-input type="text" name="mobile" class="form-control" placeholder="{{ __('setting.mobile') }}" :value="old('mobile', $store->mobile)" required />
                             <x-input-error :messages="$errors->get('mobile')" class="mt-2" />

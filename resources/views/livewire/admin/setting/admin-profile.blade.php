@@ -4,7 +4,7 @@
         <div class="card-body">
             <h2 class="mb-4">{{ __('msgs.edit', ['name' => __('partials.profile')]) }}</h2>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         @if (auth()->guard('admin')->user()->getFirstMediaUrl('admin_avatar'))
                             <img src="{{ auth()->guard('admin')->user()->getFirstMediaUrl('admin_avatar') }}" alt="{{ auth()->guard('admin')->user()->company->name }}" class="img img-thumbnail" width="200">
@@ -15,14 +15,14 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('auth.email')" />
                         <x-text-input type="text" class="form-control" disabled="diabled" placeholder="{{ __('auth.email') }}" wire:model='email' required />
 
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('auth.name')" />
                         <x-text-input type="text" class="form-control" placeholder="{{ __('auth.name') }}" wire:model='name' required />

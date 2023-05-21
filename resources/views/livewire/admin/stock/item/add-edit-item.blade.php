@@ -3,7 +3,7 @@
         <div class="card-body">
             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
             <div class="row">
-                <div class="col-sm-12 col-md-6 m-auto mb-4">
+                <div class="col-12 col-md-6 m-auto mb-4">
                     @if ($item->getFirstMediaUrl('items'))
                         <img src="{{ $item->getFirstMediaUrl('items') }}" alt="{{ $item->name }}">
                     @else
@@ -12,14 +12,14 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_name')" />
                         <x-text-input type="text" class="form-control" wire:model.debounce.350s='item.name' />
                         <x-input-error :messages="$errors->get('item.name')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.is_active')" />
                         <select class="form-select" wire:model.debounce.350s='item.is_active'>
@@ -30,7 +30,7 @@
                         <x-input-error :messages="$errors->get('item.is_active')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_type')" />
                         <select class="form-select" wire:model.debounce.350s='item.type'>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.item_category')" />
                         <select class="form-select" wire:model.debounce.350s="item.category_id">
@@ -66,7 +66,7 @@
                         <x-input-error :messages="$errors->get('item.category_id')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_fixed_price')" />
                         <select class="form-select" wire:model.debounce.350s='item.has_fixed_price'>
@@ -77,7 +77,7 @@
                         <x-input-error :messages="$errors->get('item.has_fixed_price')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.parent_item')" />
                         <select class="form-select" wire:model.debounce.350s='item.parent_id'>
@@ -96,7 +96,7 @@
             <hr class="mt-4 mb-3 w-50">
             <h4 class="mb-4 text-blue">{{ __('stock.wholesale_retail_prices') }}</h4>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_unit')" />
                         <select class="form-select" @if ($item_used) readonly disabled @else wire:model.debounce.350s='item.wholesale_unit_id' @endif>
@@ -108,35 +108,35 @@
                         <x-input-error :messages="$errors->get('item.wholesale_unit_id')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_price_for_block')" />
                         <x-text-input type="number" placeholder="900.00" class="form-control" wire:model.debounce.350s='item.wholesale_price_for_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_block')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_price_for_half_block')" />
                         <x-text-input type="number" placeholder="950.00" class="form-control" wire:model.debounce.350s='item.wholesale_price_for_half_block' />
                         <x-input-error :messages="$errors->get('item.wholesale_price_for_half_block')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_price')" />
                         <x-text-input type="number" placeholder="1000.00" class="form-control" wire:model.debounce.350s='item.wholesale_price' />
                         <x-input-error :messages="$errors->get('item.wholesale_price')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.wholesale_cost_price')" />
                         <x-text-input type="number" placeholder="17.00" class="form-control" wire:model.debounce.350s='item.wholesale_cost_price' />
                         <x-input-error :messages="$errors->get('item.wholesale_cost_price')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_retail_unit')" />
                         <select class="form-select" @if ($item_used) readonly disabled @else wire:model.debounce.350s='item.has_retail_unit' @endif>
@@ -151,7 +151,7 @@
 
             @if (!empty($retail_units) || !empty($item['retail_unit_id']))
                 <div class="row row-cards">
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_unit')" />
                             <select class="form-select" @if ($item_used) readonly disabled @else wire:model.debounce.350s='item.retail_unit_id' @endif>
@@ -163,35 +163,35 @@
                             <x-input-error :messages="$errors->get('item.retail_unit_id')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_price_for_block')" />
                             <x-text-input type="number" placeholder="90.00" class="form-control" wire:model.debounce.350s='item.retail_price_for_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_block')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_price_for_half_block')" />
                             <x-text-input type="number" placeholder="95.00" class="form-control" wire:model.debounce.350s='item.retail_price_for_half_block' />
                             <x-input-error :messages="$errors->get('item.retail_price_for_half_block')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_price')" />
                             <x-text-input type="number" placeholder="100.00" class="form-control" wire:model.debounce.350s='item.retail_price' />
                             <x-input-error :messages="$errors->get('item.retail_price')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_cost_price')" />
                             <x-text-input type="number" placeholder="10.00" class="form-control" wire:model.debounce.350s='item.retail_cost_price' />
                             <x-input-error :messages="$errors->get('item.retail_cost_price')" class="mt-2" />
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-12 col-md-4">
                         <div class="mb-3">
                             <x-input-label class="form-label" :value="__('stock.retail_count_for_wholesale')" />
                             <input type="number" placeholder="10.00" class="form-control" @if (!$item_used) wire:model.debounce.350s='item.retail_count_for_wholesale' @else readonly disabled @endif>
@@ -204,7 +204,7 @@
             <hr class="mt-4 mb-3 w-50">
             <h4 class="mb-4  text-blue">{{ __('msgs.attachements') }}</h4>
             <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4">
                     <x-input-label class="form-label" :value="__('msgs.photo')" />
                     <x-text-input type="file" class="form-control" wire:model.debounce.350s='image' />
                     <x-input-error :messages="$errors->get('image')" class="mt-2" />

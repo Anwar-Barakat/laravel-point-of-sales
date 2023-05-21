@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="row-cards">
-                                <div class="col-sm-12 col-12">
+                                <div class="col-12 col-12">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('msgs.notes')" />
                                         <textarea rows="3" class="form-control" wire:model.defer='service.notes' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>

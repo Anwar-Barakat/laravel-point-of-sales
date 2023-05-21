@@ -9,7 +9,7 @@
     <div class="card-body">
         <div id="table-default" class="table-responsive">
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.order_by')" />
                         <select class="form-select" wire:model='order_by'>
@@ -19,7 +19,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('setting.service_type')" />
                         <select class="form-select" wire:model='service_type'>
@@ -29,7 +29,18 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('account.account')" />
+                        <select class="form-select" wire:model='account_id'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            @foreach ($accounts as $account)
+                                <option value="{{ $account->id }}">{{ $account->name }} ({{ $account->accountType->name }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.per_page')" />
                         <select class="form-select" wire:model='per_page'>
@@ -40,7 +51,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-2">
+                <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.sort_by')" />
                         <select class="form-select" wire:model='sort_by'>
@@ -53,13 +64,13 @@
                 </div>
             </div>
             <div class="row row-cards">
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoices_from_date')" />
                         <input type="date" class="form-control" wire:model='invoices_from_date'>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoices_to_date')" />
                         <input type="date" class="form-control" wire:model='invoices_to_date'>
@@ -145,7 +156,7 @@
                                                 </svg>
                                                 <span>{{ __('btns.details') }}</span>
                                             </a>
-                                            <a class="dropdown-item d-flex align-items-center gap-1" {{-- href="{{ route('admin.services.invoice', ['service' => $services_invoice]) }}" --}}>
+                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.services-invoices.invoice', ['services_invoice' => $services_invoice]) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-info" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M14 3v4a1 1 0 0 0 1 1h4" />

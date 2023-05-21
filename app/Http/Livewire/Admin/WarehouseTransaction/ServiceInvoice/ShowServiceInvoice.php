@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\WarehouseTransaction\ServiceInvoice;
 
+use App\Models\Account;
 use App\Models\ServiceInvoice;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -20,11 +21,12 @@ class ShowServiceInvoice extends Component
     public $invoices_from_date,
         $invoices_to_date;
 
-    public $order_type;
+    public $accounts;
 
     public function mount()
     {
         $this->invoices_to_date = date('Y-m-d');
+        $this->accounts         = Account::active()->get();
     }
 
     public function render()

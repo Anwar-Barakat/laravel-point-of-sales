@@ -7,20 +7,20 @@
                         <div class="card-body">
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                             <div class="row row-cards">
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.transaction_date')" />
                                         <x-text-input type="date" class="form-control" wire:model.debounce.500s='transaction.transaction_date' />
                                         <x-input-error :messages="$errors->get('transaction.transaction_date')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('treasury.treasury')" />
                                         <x-text-input type="text" class="form-control" :value="has_open_shift()->treasury->name" readonly disabled />
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.treasury_available_balance')" />
                                         <x-text-input type="number" placeholder="10.15" class="form-control" :value="$treasuryBalance" readonly disabled />
@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <div class="row row-cards">
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.account')" />
                                         <select class="form-select" wire:model='transaction.account_id' id="select-tags-advanced">
@@ -40,7 +40,7 @@
                                         <x-input-error :messages="$errors->get('transaction.account_id')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.shift_type')" />
                                         <select class="form-select" wire:model='transaction.shift_type_id' id="select-tags-advanced">
@@ -52,7 +52,7 @@
                                         <x-input-error :messages="$errors->get('transaction.shift_type_id')" class="mt-2" />
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
+                                <div class="col-12 col-md-4">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('account.amount_exchanged')" />
                                         <x-text-input type="number" placeholder="10.15" class="form-control" wire:model.debounce.500s='transaction.money' />
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="row row-cards">
-                                <div class="col-sm-12 col-md-6">
+                                <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('dash.report')" />
                                         <textarea rows="3" class="form-control" wire:model.debounce.500s='transaction.report' placeholder="{{ __('account.counterpart_exchange') }}"></textarea>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row-cards">
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.order_by')" />
                                 <select class="form-select" wire:model='order_by'>
@@ -132,7 +132,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('account.shift_type')" />
                                 <select class="form-select" wire:model='shift_type_id'>
@@ -143,7 +143,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('treasury.treasury')" />
                                 <select class="form-select" wire:model='treasury_id'>
@@ -154,7 +154,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('setting.admin')" />
                                 <select class="form-select" wire:model='admin_id'>
@@ -165,7 +165,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.per_page')" />
                                 <select class="form-select" wire:model='per_page'>
@@ -176,7 +176,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.sort_by')" />
                                 <select class="form-select" wire:model='sort_by'>
@@ -189,13 +189,13 @@
                         </div>
                     </div>
                     <div class="row row-cards">
-                        <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('transaction.transactions_from_date')" />
                                 <input type="date" class="form-control" wire:model='tranasctions_from_date'>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('transaction.transactions_to_date')" />
                                 <input type="date" class="form-control" wire:model='tranasctions_to_date'>

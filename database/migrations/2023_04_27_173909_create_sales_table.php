@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->default(1)->comment('1 => sales, 2 => return on the same pill, 3 => general returns');
+            $table->tinyInteger('type')->default(1)->comment('1 => sales, 2 => return on the same bill, 3 => general returns');
             $table->tinyInteger('invoice_sale_type')->comment('1 => sectoral, 2 => half_wholesale, 3 => wholesale');
             $table->boolean('invoice_type')->comment('0 => cash, 1 => delayed');
             $table->date('invoice_date');

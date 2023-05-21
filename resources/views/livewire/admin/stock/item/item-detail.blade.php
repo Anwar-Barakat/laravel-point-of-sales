@@ -137,7 +137,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row row-cards">
-                        <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('transaction.item_transaction_type')" />
                                 <select class="form-select" wire:model='item_transaction_type_id'>
@@ -148,7 +148,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('transaction.item_transaction_category')" />
                                 <select class="form-select" wire:model='item_transaction_category_id'>
@@ -159,7 +159,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('stock.store')" />
                                 <select class="form-select" wire:model='store_id'>
@@ -170,7 +170,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('setting.admin')" />
                                 <select class="form-select" wire:model='admin_id'>
@@ -181,7 +181,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-1">
+                        <div class="col-12 col-md-4 col-lg-1">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.per_page')" />
                                 <select class="form-select" wire:model='per_page'>
@@ -192,7 +192,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <div class="mb-3">
                                 <x-input-label class="form-label" :value="__('msgs.sort_by')" />
                                 <select class="form-select" wire:model='sort_by'>

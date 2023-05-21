@@ -19,7 +19,7 @@ return [
     'order'                     => 'فاتورة مشتريات',
     'cash'                      => 'كاش',
     'delayed'                   => 'مُؤجل',
-    'return_on_the_same_pill'   => 'إرجاع على نفس الفاتورة',
+    'return_on_the_same_bill'   => 'إرجاع على نفس الفاتورة',
     'return_on_general'         => 'إرجاع للأساس',
     'order_id'                  => 'رقم الطلب',
     'invoice_number'            => 'رقم الفاتورة',
