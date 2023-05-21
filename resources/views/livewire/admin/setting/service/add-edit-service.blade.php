@@ -7,9 +7,16 @@
                     <div class="row row-cards">
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="mb-3">
-                                <x-input-label class="form-label" :value="__('setting.service_name')" />
-                                <x-text-input type="text" class="form-control" wire:model.debounce.500s='service.name' :value="old('filter.name')" required placeholder="{{ __('setting.must_be_in_english', ['name' => __('setting.service_name')]) }}" />
-                                <x-input-error :messages="$errors->get('service.name')" class="mt-2" />
+                                <x-input-label class="form-label" :value="__('msgs.name_ar')" />
+                                <x-text-input type="text" class="form-control" placeholder="'طباعة" wire:model='name_ar' required />
+                                <x-input-error :messages="$errors->get('name_ar')" class="mt-2" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="mb-3">
+                                <x-input-label class="form-label" :value="__('msgs.name_en')" />
+                                <x-text-input type="text" class="form-control" placeholder="Print" wire:model='name_en' required />
+                                <x-input-error :messages="$errors->get('name_en')" class="mt-2" />
                             </div>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4">

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Service;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,12 +14,25 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        $services = [
+        $admin      = Admin::where('email', 'admin@admin.com')->first();
+        $services   = [
             [
-                'name'          => 'Print',
-                'type'          => 1,
-                'company_id'    => get_auth_com(),
+                'name'          => [
+                    'ar'    => 'طباعة',
+                    'en'    => 'Print'
+                ],
+                'type'          => 0,
+                'company_id'    => $admin->company->id,
             ],
+            [
+                'name'          => [
+                    'ar'    => 'تركيب كميرات',
+                    'en'    => 'Placing Cameras'
+                ],
+                'type'          => 1,
+                'company_id'    => $admin->company->id,
+            ],
+
         ];
 
         foreach ($services as $service) {

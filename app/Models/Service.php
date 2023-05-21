@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Service extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'name',
@@ -15,6 +16,8 @@ class Service extends Model
         'is_active',
         'company_id',
     ];
+
+    public $translatable    = ['name'];
 
     const SERTICETYPE = [0 => 'internal_services', 1 => 'external_services'];
 
