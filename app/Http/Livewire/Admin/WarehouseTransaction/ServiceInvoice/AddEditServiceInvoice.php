@@ -42,7 +42,7 @@ class AddEditServiceInvoice extends Component
             $this->invoice->save();
 
             toastr()->success(__('msgs.submitted', ['name' => __('transaction.service_invoice')]));
-            return redirect()->route('admin.services-invoices.index');
+            return redirect()->route('admin.services-invoices.show', ['services_invoice' => $this->invoice]);
         } catch (\Throwable $th) {
             return redirect()->route('admin.services-invoices.index')->with(['error' => $th->getMessage()]);
         }

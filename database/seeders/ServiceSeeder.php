@@ -18,7 +18,7 @@ class ServiceSeeder extends Seeder
                 'name'          => 'Print',
                 'type'          => 1,
                 'company_id'    => get_auth_com(),
-            ]
+            ],
         ];
 
         foreach ($services as $service) {

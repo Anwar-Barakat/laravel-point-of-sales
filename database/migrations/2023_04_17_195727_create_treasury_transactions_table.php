@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('order_id')->nullable()->constrained()->cascadeOnUpdate();
+            $table->foreignId('sale_id')->nullable();
+            $table->foreignId('service_id')->nullable();
             $table->foreignId('account_id')->nullable()->constrained()->cascadeOnUpdate();
 
             $table->boolean('is_account');

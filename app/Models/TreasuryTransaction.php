@@ -16,6 +16,8 @@ class TreasuryTransaction extends Model
         'shift_id',
         'treasury_id',
         'order_id',
+        'sale_id',
+        'service_id',
         'account_id',
         'is_account',
         'is_approved',

@@ -20,9 +20,9 @@ class ServiceInvoiceDetailComponent extends Component
 
     public $services = [];
 
-    protected $listeners = ['updateInvoiceServices'];
+    protected $listeners = ['updateServicesInvoice'];
 
-    public function updateInvoiceServices(ServiceInvoice $invoice)
+    public function updateServicesInvoice(ServiceInvoice $invoice)
     {
         $this->invoice = $invoice;
     }
@@ -61,7 +61,7 @@ class ServiceInvoiceDetailComponent extends Component
                 ])->save();
 
                 DB::commit();
-                $this->emit('updateInvoiceServices', ['invoice' => $this->invoice]);
+                $this->emit('updateServicesInvoice', ['invoice' => $this->invoice]);
                 toastr()->success(__('msgs.added', ['name' => __('setting.service')]));
                 $this->reset('service');
             }
@@ -102,7 +102,10 @@ class ServiceInvoiceDetailComponent extends Component
         return [
             'service.service_id'           => [
                 'required',
-                Rule::unique('service_invoice_details', 'service_id')->ignore($this->service->id)
+                Rule::unique('service_invoice_details', 'service_id')->where(function ($query) {
+                    return $query->where('company_id', get_auth_com())
+                        ->where('service_invoice_id', $this->invoice->id);
+                })->ignore($this->service->id)
             ],
             'service.total'             => ['required', 'numeric', 'between:1,9999'],
             'service.notes'             => ['required', 'min:10'],
