@@ -48,7 +48,7 @@ return [
     'expiration_date'           => 'تاريخ انتهاء الصلاحية',
     'paid_to_the_supplier'      => 'المدفوع للمورد',
     'remain_to_the_supplier'    => 'المُتبقي للمورد',
-    'cost_tax_discount'         => 'مجموع سعر الاصناف + الضريبة + الخصم',
+    'items_tax_discount'         => 'مجموع سعر الاصناف + الضريبة + الخصم',
     'payments_reminders'        => 'المدفوعات والمُتبقي',
     'already_approved'          => 'تم إعتماد الطلب بنجاح سابقاً',
     'general_order_return'      => 'مرتجع مشتريات عام',
@@ -135,4 +135,7 @@ return [
     'service_invoice'           => 'فاتورة الخدمة',
     'services_invoices'         => 'فواتير الخدمات',
     'add_services'              => 'إضافة خدمات',
+    'services_cost'             => 'تكلفة الخدمات',
+    'services_tax_discount'     => 'مجموع سعر الخدمات + الضريبة + الخصم',
+
 ];

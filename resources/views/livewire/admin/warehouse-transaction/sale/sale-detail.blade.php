@@ -35,7 +35,11 @@
                         </tr>
                         <tr>
                             <th>{{ __('transaction.invoice_type') }}</th>
-                            <td>{{ $sale->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</td>
+                            <td>
+                                <span class="badge {{ $sale->invoice_type == 0 ? 'bg-red-lt' : 'bg-green-lt' }}">
+                                    {{ $sale->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}
+                                </span>
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ __('stock.customer_name') }}</th>

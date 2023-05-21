@@ -50,7 +50,7 @@ return [
     'expiration_date'           => 'Expiration date',
     'paid_to_the_vendor'        => 'Paid to the vendor',
     'remain_to_the_vendor'      => 'Remain to the vendor',
-    'cost_tax_discount'         => 'Total price of items + tax + discount',
+    'items_tax_discount'        => 'Total price of items + tax + discount',
     'payments_reminders'        => 'Payments and remainder',
     'already_approved'          => 'Order Has already Been Approved previous',
     'general_order_return'      => 'General order return',
@@ -136,5 +136,7 @@ return [
     'service_invoice'           => 'Service invoice',
     'services_invoices'         => 'Services invoices',
     'add_services'              => 'Add services',
+    'services_cost'             => 'Services Cost',
+    'services_tax_discount'     => 'Total price of services + tax + discount',
 
 ];

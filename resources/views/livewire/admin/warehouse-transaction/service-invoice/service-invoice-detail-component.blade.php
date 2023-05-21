@@ -7,7 +7,7 @@
                     @if ($invoice->is_approved == 0 && $invoice->serviceInvoiceDetails->count() > 0)
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approval-modal">{{ __('btns.approval') }}</button>
                     @endif
-                    {{-- @livewire('admin.warehouse-transaction.order.order-approval', ['order' => $order]) --}}
+                    @livewire('admin.warehouse-transaction.service-invoice.service-invoice-approval', ['invoice' => $invoice])
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>
@@ -23,7 +23,11 @@
                         </tr>
                         <tr>
                             <th>{{ __('transaction.invoice_type') }}</th>
-                            <td>{{ $invoice->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</td>
+                            <td>
+                                <span class="badge {{ $invoice->invoice_type == 0 ? 'bg-red-lt' : 'bg-green-lt' }}">
+                                    {{ $invoice->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}
+                                </span>
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ __('setting.service_type') }}</th>
@@ -38,6 +42,10 @@
                         <tr>
                             <th>{{ __('account.account_name') }}</th>
                             <td>{{ $invoice->account->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('transaction.services_cost') }}</th>
+                            <td>{{ $invoice->services_cost ?? '0' }}</td>
                         </tr>
                         <tr>
                             <th>{{ __('transaction.tax') }}</th>

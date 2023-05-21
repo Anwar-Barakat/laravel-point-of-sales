@@ -29,7 +29,11 @@
                         </tr>
                         <tr>
                             <th>{{ __('transaction.invoice_type') }}</th>
-                            <td>{{ $order->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</td>
+                            <td>
+                                <span class="badge {{ $order->invoice_type == 0 ? 'bg-red-lt' : 'bg-green-lt' }}">
+                                {{ $order->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}
+                                </span>
+                            </td>
                         </tr>
                         <tr>
                             <th>{{ __('stock.vendor_name') }}</th>

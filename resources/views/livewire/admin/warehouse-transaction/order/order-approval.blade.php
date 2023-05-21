@@ -8,7 +8,7 @@
                     </div>
                     @include('layouts.errors-message')
                     <div class="modal-body">
-                        <h3 class="mb-3 text-blue">{{ __('transaction.cost_tax_discount') }}</h3>
+                        <h3 class="mb-3 text-blue">{{ __('transaction.items_tax_discount') }}</h3>
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">

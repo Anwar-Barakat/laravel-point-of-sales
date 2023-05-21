@@ -26,10 +26,17 @@ class AddEditServiceInvoice extends Component
         return $this->validateOnly($fields);
     }
 
+    public function updatedInvoiceServiceType()
+    {
+        $this->invoice->invoice_type = $this->invoice->service_type == 0 ? 0 : 1;
+    }
+
     public function submit()
     {
         $this->validate();
         try {
+            $this->invoice->invoice_type = $this->invoice->service_type == 0 ? 0 : 1;
+
             $this->invoice->added_by        = get_auth_id();
             $this->invoice->company_id      = get_auth_com();
             $this->invoice->save();

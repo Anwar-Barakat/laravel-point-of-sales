@@ -55,6 +55,7 @@ class ServiceInvoiceDetailComponent extends Component
 
                 $totalPrices = ServiceInvoiceDetail::where('service_invoice_id', $this->invoice->id)->where('company_id', get_auth_com())->sum('total');
                 $this->invoice->fill([
+                    'services_cost'         => $totalPrices,
                     'cost_before_discount'  => $totalPrices,
                     'cost_after_discount'   => $totalPrices,
                 ])->save();
@@ -79,6 +80,7 @@ class ServiceInvoiceDetailComponent extends Component
         $service->delete();
         $totalPrices = ServiceInvoiceDetail::where('service_invoice_id', $this->invoice->id)->where('company_id', get_auth_com())->sum('total');
         $this->invoice->fill([
+            'services_cost'         => $totalPrices,
             'cost_before_discount'  => $totalPrices,
             'cost_after_discount'   => $totalPrices,
         ])->save();

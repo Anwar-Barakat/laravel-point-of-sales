@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('discount_type')->nullable()->comment('0 => percentage, 1 => fixed');
             $table->decimal('discount_value', 10, 2)->default(0);
 
+            $table->decimal('services_cost', 10, 2)->default(0);
             $table->decimal('cost_before_discount', 10, 2)->default(0);
             $table->decimal('cost_after_discount', 10, 2)->default(0);
 
