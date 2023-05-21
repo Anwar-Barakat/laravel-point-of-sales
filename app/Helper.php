@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\ItemBatch;
 use App\Models\Order;
 use App\Models\Sale;
+use App\Models\ServiceInvoice;
 use App\Models\Shift;
 use App\Models\TreasuryTransaction;
 use Illuminate\Support\Facades\Auth;
@@ -56,33 +57,23 @@ if (!function_exists('update_account_balance')) {
 
     function update_account_balance(Account $account)
     {
-        $trans_balance = TreasuryTransaction::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+        $balance    = $account->initial_balance;
+
+        $balance    += TreasuryTransaction::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+        $balance    += ServiceInvoice::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+
         if ($account->accountType->id == 1) {
             // vendor
-            $order_balance  = Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-            $balance        = $account->initial_balance
-                + $order_balance
-                + $trans_balance;
-            $account->update(['current_balance' => $balance]);
+            $balance    += Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
         } elseif ($account->accountType->id == 2) {
             // customer
-            $sale_balance   = Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-            $balance        = $account->initial_balance
-                + $sale_balance
-                + $trans_balance;
-            $account->update(['current_balance' => $balance]);
+            $balance    += Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
         } elseif ($account->accountType->id == 3) {
             // delegate
-            $sale_balance   = Sale::where(['delegate_id' => $account->delegate->id, 'company_id' => get_auth_com()])->sum('commission_value');
-            $balance        = $account->initial_balance
-                + $sale_balance
-                + $trans_balance;
-            $account->update(['current_balance' => $balance]);
-        } else {
-            $balance = $account->current_balance
-                + $trans_balance;
-            $account->update(['current_balance' => $balance]);
+            $balance    += Sale::where(['delegate_id' => $account->delegate->id, 'company_id' => get_auth_com()])->sum('commission_value');
         }
+
+        $account->update(['current_balance' => $balance]);
     }
 }
 

@@ -222,7 +222,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">
+                            <td colspan="8">
                                 <x-blank-section :content="$create_name" :url="$create" />
                             </td>
                         </tr>
