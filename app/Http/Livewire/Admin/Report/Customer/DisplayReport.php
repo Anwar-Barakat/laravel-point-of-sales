@@ -17,6 +17,7 @@ class DisplayReport extends Component
         $reports_to_date;
 
     public $company,
+        $account,
         $sales,
         $general_sale_returns,
         $transactions;
@@ -29,6 +30,7 @@ class DisplayReport extends Component
     public function updatedCustomerId()
     {
         $this->customer = Customer::findOrFail($this->customer_id);
+        $this->account  = $this->customer->account;
     }
 
     public function updatedReportType()

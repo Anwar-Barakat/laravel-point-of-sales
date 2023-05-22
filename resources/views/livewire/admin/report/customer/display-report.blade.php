@@ -131,21 +131,16 @@
                                 </tr>
                                 <tr>
                                     <td>{{ __('account.account_number') }}</td>
-                                    <td><span class="badge bg-info-lt">{{ $customer->account->number }}</span></td>
+                                    <td><span class="badge bg-info-lt">{{ $account->number }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>{{ __('account.initial_balance') }}</td>
-                                    <td>{{ $customer->account->initial_balance }}</td>
+                                    <td>{{ $account->initial_balance }}</td>
                                 </tr>
                                 <tr App::getLocale()=='ar' ? style="direction: ltr; text-align:right" : ''>
                                     <td>{{ __('account.current_balamce') }}</td>
                                     <td>
-                                        <span>
-                                            {{ number_format($customer->account->current_balance, 1) > 0 ? '(' . __('account.debit') . ')' : '' }}
-                                            {{ number_format($customer->account->current_balance, 2) < 0 ? '(' . __('account.credit') . ')' : '' }}
-                                            {{ number_format($customer->account->current_balance, 2) == 0 ? '(' . __('account.balanced') . ')' : '' }}
-                                            <span class="badge badge-dark">{{ $customer->account->current_balance }}</span>
-                                        </span>
+                                        @include('layouts.balance-status', ['account' => $account])
                                     </td>
                                 </tr>
                                 <tr>

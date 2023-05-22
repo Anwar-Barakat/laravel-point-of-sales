@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Report\Vendor;
 
 use App\Models\Order;
+use App\Models\ServiceInvoice;
 use App\Models\TreasuryTransaction;
 use App\Models\Vendor;
 use Livewire\Component;
@@ -11,6 +12,7 @@ use Psy\Command\HistoryCommand;
 class DisplayReport extends Component
 {
     public $vendor,
+        $account,
         $vendor_id,
         $report_type,
         $date = false,
@@ -20,6 +22,7 @@ class DisplayReport extends Component
     public $company,
         $purchases,
         $general_purchase_returns,
+        $services,
         $transactions;
 
     public function mount()
@@ -29,7 +32,8 @@ class DisplayReport extends Component
 
     public function updatedVendorId()
     {
-        $this->vendor = Vendor::findOrFail($this->vendor_id);
+        $this->vendor   = Vendor::findOrFail($this->vendor_id);
+        $this->account  = $this->vendor->account;
     }
 
     public function updatedReportType()
@@ -40,7 +44,6 @@ class DisplayReport extends Component
     public function submit()
     {
         $this->validate();
-        $this->vendor->load('account');
         $this->purchases                = Order::with('orderProducts')->byTypeAndCompany(1)
             ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
             ->where('vendor_id', $this->vendor->id)
@@ -50,6 +53,12 @@ class DisplayReport extends Component
         $this->general_purchase_returns = Order::with('orderProducts')->byTypeAndCompany(3)
             ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
             ->where('vendor_id', $this->vendor->id)
+            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
+            ->get();
+
+        $this->services = ServiceInvoice::with('serviceInvoiceDetails')
+            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
+            ->where('account_id', $this->vendor->account->id)
             ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
             ->get();
 
@@ -71,12 +80,12 @@ class DisplayReport extends Component
     {
         return [
             'vendor_id'     => ['required'],
-            'report_type'   => ['required', 'in:1,2,3,4,5']
+            'report_type'   => ['required', 'in:1,2,3,4,5,6']
         ];
     }
 
     public function getVendors()
     {
-        return Vendor::latest()->get();
+        return Vendor::with('account')->latest()->get();
     }
 }

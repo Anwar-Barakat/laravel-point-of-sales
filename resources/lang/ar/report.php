@@ -8,6 +8,7 @@ return [
     'reports_from_date'     => 'التقارير من تاريخ',
     'reports_to_date'       => 'التقارير إلى تاريخ',
     'numbers_of'            => 'عدد :name',
+    'services_of'           => 'خدمات ال:name',
 
     'total_account_statement'                       => 'كشف حساب إجمالي',
     'detailed_statement_of_account_within_a_period' => 'كشف حساب تفصيلي خلال فترة',
