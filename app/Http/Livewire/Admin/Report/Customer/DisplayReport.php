@@ -20,6 +20,7 @@ class DisplayReport extends Component
         $account,
         $sales,
         $general_sale_returns,
+        $services,
         $transactions;
 
     public function mount()
@@ -41,26 +42,11 @@ class DisplayReport extends Component
     public function submit()
     {
         $this->validate();
-        $this->customer->load('account');
-        $this->sales                = Sale::with('saleProducts')->byTypeAndCompany(1)
-            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
-            ->where('customer_id', $this->customer->id)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->general_sale_returns = Sale::with('saleProducts')->byTypeAndCompany(3)
-            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
-            ->where('customer_id', $this->customer->id)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->transactions     = TreasuryTransaction::with(['shift_type:id,name', 'treasury:id,name'])
-            ->where('money_for_account', '<>', 0)
-            ->byAccountAndCompany($this->customer->account)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->company =  auth()->guard('admin')->user()->company;
+        $this->sales                = get_account_sales(1, $this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->general_sale_returns = get_account_sales(3, $this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->transactions         = get_account_transactions($this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->services             = get_account_services($this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->company              = auth()->guard('admin')->user()->company;
     }
 
     public function render()

@@ -30,6 +30,7 @@
                                     <option value="3">{{ __('report.sales_account_statement_within_a_period') }}</option>
                                     <option value="4">{{ __('report.sales_return_statement_within_a_period') }}</option>
                                     <option value="5">{{ __('report.monetory_statement_during_a_period') }}</option>
+                                    <option value="6">{{ __('report.services_of', ['name' => __('stock.customer')]) }}</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('report_type')" class="mt-2" />
                             </div>
@@ -72,7 +73,7 @@
 
     </form>
 
-    @if ($purchases || $transactions || $general_purchase_returns)
+    @if ($sales || $transactions || $general_sale_returns || $services)
         <div class="mt-4">
             <div class="card card-lg border-b-0">
                 <h1 class="text-center mt-3 text-blue card-title">
@@ -86,6 +87,8 @@
                         {{ __('report.sales_return_statement_within_a_period') }}
                     @elseif($report_type == 5)
                         {{ __('report.monetory_statement_during_a_period') }}
+                    @elseif($report_type == 6)
+                        {{ __('report.services_of', ['name' => __('stock.customer')]) }}
                     @endif
                 </h1>
                 <div class="card-header">
@@ -180,171 +183,221 @@
                 </div>
             </div>
 
-            @isset($sales)
-                @if ($report_type == 3 || $report_type == 1 || $report_type == 2)
-                    <div class="card card-lg border-b-0">
-                        <div class="card-header">
-                            <h3 class="card-title text-blue">{{ __('transaction.sales_invoices') }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="accordion" id="accordion-example">
-                                @forelse ($sales as $key => $sale)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading-1">
-                                            <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $sale->id }}" aria-expanded="true">
-                                                {{ __('transaction.sale_invoice') }} #{{ $sale->id }}
-                                            </button>
-                                        </h2>
-                                        <div id="collapse-{{ $sale->id }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" data-bs-parent="#accordion-example">
-                                            <div class="accordion-body pt-0">
-                                                <span>{{ __('transaction.invoice_date') . ' : ' }} <span class="text-gray-500">{{ $sale->invoice_date }}</span></span> -
-                                                <span>{{ __('transaction.invoice_type') . ' : ' }} {{ $sale->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</span> -
-                                                <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $sale->paid }}</span></span> -
-                                                <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $sale->remains }}</span></span> -
-                                                <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $sale->cost_after_discount }}</span></span>.
-                                                <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th> {{ __('stock.item') }}</th>
-                                                            <th> {{ __('stock.unit') }}</th>
-                                                            <th>{{ __('transaction.qty') }}</th>
-                                                            <th>{{ __('stock.unit_price') }}</th>
-                                                            <th>{{ __('transaction.total_price') }}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="table-tbody">
-                                                        @forelse ($sale->saleProducts as $product)
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $product->item->name }}</td>
-                                                            <td>{{ $product->unit->name }}</td>
-                                                            <td>{{ $product->qty }}</td>
-                                                            <td>{{ $product->unit_price }}</td>
-                                                            <td>{{ $product->total_price }}</td>
-                                                        @empty
-                                                            <td colspan="6">{{ __('msgs.not_found') }}</td>
-                                                        @endforelse
-                                                    </tbody>
-                                                </table>
-                                            </div>
+            @if ($sales && ($report_type == 3 || $report_type == 1 || $report_type == 2))
+                <div class="card card-lg border-b-0">
+                    <div class="card-header">
+                        <h3 class="card-title text-blue">{{ __('transaction.sales_invoices') }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="accordion-example">
+                            @forelse ($sales as $key => $sale)
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading-1">
+                                        <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $sale->id }}" aria-expanded="true">
+                                            {{ __('transaction.sale_invoice') }} #{{ $sale->id }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse-{{ $sale->id }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" data-bs-parent="#accordion-example">
+                                        <div class="accordion-body pt-0">
+                                            <span>{{ __('transaction.invoice_date') . ' : ' }} <span class="text-gray-500">{{ $sale->invoice_date }}</span></span> -
+                                            <span>{{ __('transaction.invoice_type') . ' : ' }} {{ $sale->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</span> -
+                                            <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $sale->paid }}</span></span> -
+                                            <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $sale->remains }}</span></span> -
+                                            <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $sale->cost_after_discount }}</span></span>.
+                                            <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th> {{ __('stock.item') }}</th>
+                                                        <th> {{ __('stock.unit') }}</th>
+                                                        <th>{{ __('transaction.qty') }}</th>
+                                                        <th>{{ __('stock.unit_price') }}</th>
+                                                        <th>{{ __('transaction.total_price') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-tbody">
+                                                    @forelse ($sale->saleProducts as $product)
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $product->item->name }}</td>
+                                                        <td>{{ $product->unit->name }}</td>
+                                                        <td>{{ $product->qty }}</td>
+                                                        <td>{{ $product->unit_price }}</td>
+                                                        <td>{{ $product->total_price }}</td>
+                                                    @empty
+                                                        <td colspan="6">{{ __('msgs.not_found') }}</td>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                @empty
-                                    <h3 class="text-center">
-                                        {{ __('msgs.not_found') }}
-                                    </h3>
-                                @endforelse
-                            </div>
+                                </div>
+                            @empty
+                                <h3 class="text-center">
+                                    {{ __('msgs.not_found') }}
+                                </h3>
+                            @endforelse
                         </div>
                     </div>
-                @endif
-            @endisset
+                </div>
+            @endif
 
-            @isset($general_sale_returns)
-                @if ($report_type == 4 || $report_type == 1 || $report_type == 2)
-                    <div class="card card-lg border-b-0">
-                        <div class="card-header">
-                            <h3 class="card-title text-blue">{{ __('transaction.general_sales_returns') }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="accordion" id="accordion-example">
-                                @forelse ($general_sale_returns as $key => $sale)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading-1">
-                                            <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $sale->id }}" aria-expanded="true">
-                                                {{ __('transaction.sale_invoice') }} #{{ $sale->id }}
-                                            </button>
-                                        </h2>
-                                        <div id="collapse-{{ $sale->id }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" data-bs-parent="#accordion-example">
-                                            <div class="accordion-body pt-0">
-                                                <span>{{ __('transaction.invoice_date') . ' : ' }} <span class="text-gray-500">{{ $sale->invoice_date }}</span></span> -
-                                                <span>{{ __('transaction.invoice_type') . ' : ' }} {{ $sale->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</span> -
-                                                <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $sale->paid }}</span></span> -
-                                                <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $sale->remains }}</span></span> -
-                                                <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $sale->cost_after_discount }}</span></span>.
-                                                <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th> {{ __('stock.item') }}</th>
-                                                            <th> {{ __('stock.unit') }}</th>
-                                                            <th>{{ __('transaction.qty') }}</th>
-                                                            <th>{{ __('stock.unit_price') }}</th>
-                                                            <th>{{ __('transaction.total_price') }}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="table-tbody">
-                                                        @forelse ($sale->saleProducts as $product)
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $product->item->name }}</td>
-                                                            <td>{{ $product->unit->name }}</td>
-                                                            <td>{{ $product->qty }}</td>
-                                                            <td>{{ $product->unit_price }}</td>
-                                                            <td>{{ $product->total_price }}</td>
-                                                        @empty
-                                                            <td colspan="6">{{ __('msgs.not_found') }}</td>
-                                                        @endforelse
-                                                    </tbody>
-                                                </table>
-                                            </div>
+            @if ($general_sale_returns && ($report_type == 4 || $report_type == 1 || $report_type == 2))
+                <div class="card card-lg border-b-0">
+                    <div class="card-header">
+                        <h3 class="card-title text-blue">{{ __('transaction.general_sales_returns') }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="accordion-example">
+                            @forelse ($general_sale_returns as $key => $sale)
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading-1">
+                                        <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $sale->id }}" aria-expanded="true">
+                                            {{ __('transaction.sale_invoice') }} #{{ $sale->id }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse-{{ $sale->id }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" data-bs-parent="#accordion-example">
+                                        <div class="accordion-body pt-0">
+                                            <span>{{ __('transaction.invoice_date') . ' : ' }} <span class="text-gray-500">{{ $sale->invoice_date }}</span></span> -
+                                            <span>{{ __('transaction.invoice_type') . ' : ' }} {{ $sale->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</span> -
+                                            <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $sale->paid }}</span></span> -
+                                            <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $sale->remains }}</span></span> -
+                                            <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $sale->cost_after_discount }}</span></span>.
+                                            <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th> {{ __('stock.item') }}</th>
+                                                        <th> {{ __('stock.unit') }}</th>
+                                                        <th>{{ __('transaction.qty') }}</th>
+                                                        <th>{{ __('stock.unit_price') }}</th>
+                                                        <th>{{ __('transaction.total_price') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-tbody">
+                                                    @forelse ($sale->saleProducts as $product)
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $product->item->name }}</td>
+                                                        <td>{{ $product->unit->name }}</td>
+                                                        <td>{{ $product->qty }}</td>
+                                                        <td>{{ $product->unit_price }}</td>
+                                                        <td>{{ $product->total_price }}</td>
+                                                    @empty
+                                                        <td colspan="6">{{ __('msgs.not_found') }}</td>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                @empty
-                                    <h3 class="text-center">
-                                        {{ __('msgs.not_found') }}
-                                    </h3>
-                                @endforelse
-                            </div>
+                                </div>
+                            @empty
+                                <h3 class="text-center">
+                                    {{ __('msgs.not_found') }}
+                                </h3>
+                            @endforelse
                         </div>
                     </div>
-                @endif
-            @endisset
+                </div>
+            @endif
 
-            @isset($transactions)
-                @if ($report_type == 5 || $report_type == 1 || $report_type == 2)
-                    <div class="card card-lg border-b-0">
-                        <div class="card-header">
-                            <h3 class="card-title text-blue">{{ __('account.monetory_transactions') }}</h3>
+            @if ($services && ($report_type == 6 || $report_type == 1 || $report_type == 2))
+                <div class="card card-lg border-b-0">
+                    <div class="card-header">
+                        <h3 class="card-title text-blue">{{ __('transaction.services_invoices') }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="accordion-example">
+                            @forelse ($services as $key => $service)
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading-1">
+                                        <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $service->id }}" aria-expanded="true">
+                                            {{ __('transaction.service_invoice') }} #{{ $service->id }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse-{{ $service->id }}" class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" data-bs-parent="#accordion-example">
+                                        <div class="accordion-body pt-0">
+                                            <span>{{ __('transaction.invoice_date') . ' : ' }} <span class="text-gray-500">{{ $service->invoice_date }}</span></span> -
+                                            <span>{{ __('transaction.invoice_type') . ' : ' }} {{ $service->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}</span> -
+                                            <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $service->paid }}</span></span> -
+                                            <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $service->remains }}</span></span> -
+                                            <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $service->cost_after_discount }}</span></span>.
+                                            {{-- <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-red-500">{{ __('setting.' . App\Models\Service::SERTICETYPE[$service->service_type]) }}</span></span>. --}}
+
+                                            <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th> {{ __('setting.service') }}</th>
+                                                        <th>{{ __('transaction.total_price') }}</th>
+                                                        <th> {{ __('msgs.notes') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-tbody">
+                                                    @forelse ($service->serviceInvoiceDetails as $detail)
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $detail->service->name }}</td>
+                                                        <td>{{ $detail->total }}</td>
+                                                        <td>{{ $detail->notes }}</td>
+                                                    @empty
+                                                        <td colspan="4">{{ __('msgs.not_found') }}</td>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <h3 class="text-center">
+                                    {{ __('msgs.not_found') }}
+                                </h3>
+                            @endforelse
                         </div>
-                        <div class="card-body">
-                            <table id="dataTables" class="table table-vcenter table-mobile-md card-table table-striped">
-                                <thead>
+                    </div>
+                </div>
+            @endif
+
+            @if ($transactions && ($report_type == 5 || $report_type == 1 || $report_type == 2))
+                <div class="card card-lg border-b-0">
+                    <div class="card-header">
+                        <h3 class="card-title text-blue">{{ __('account.monetory_transactions') }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="dataTables" class="table table-vcenter table-mobile-md card-table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ __('account.transaction_date') }}</th>
+                                    <th>{{ __('treasury.treasury') }}</th>
+                                    <th> {{ __('account.shift_type') }}</th>
+                                    <th>{{ __('account.amount') }}</th>
+                                    <th>{{ __('report.report') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-tbody">
+                                @forelse ($transactions as $trans)
                                     <tr>
-                                        <th>#</th>
-                                        <th>{{ __('account.transaction_date') }}</th>
-                                        <th>{{ __('treasury.treasury') }}</th>
-                                        <th> {{ __('account.shift_type') }}</th>
-                                        <th>{{ __('account.amount') }}</th>
-                                        <th>{{ __('report.report') }}</th>
+                                        <td>{{ $trans->id }}</td>
+                                        <td>{{ $trans->transaction_date }}</td>
+                                        <td>{{ $trans->treasury->name }}</td>
+                                        <td><span class="badge bg-green">{{ $trans->shift_type->name }} </span></td>
+                                        <td>
+                                            {{ abs($trans->money_for_account) }}
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('account.report') }}" data-bs-content="{{ $trans->report }}">{{ __('account.click_here') }}</button>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody class="table-tbody">
-                                    @forelse ($transactions as $trans)
-                                        <tr>
-                                            <td>{{ $trans->id }}</td>
-                                            <td>{{ $trans->transaction_date }}</td>
-                                            <td>{{ $trans->treasury->name }}</td>
-                                            <td><span class="badge bg-green">{{ $trans->shift_type->name }} </span></td>
-                                            <td>
-                                                {{ abs($trans->money_for_account) }}
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('account.report') }}" data-bs-content="{{ $trans->report }}">{{ __('account.click_here') }}</button>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="8" class="text-center">
-                                                {{ __('msgs.not_found') }}
-                                            </td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">
+                                            {{ __('msgs.not_found') }}
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
-                @endif
-            @endisset
+                </div>
+            @endif
         </div>
     @endif
 </div>

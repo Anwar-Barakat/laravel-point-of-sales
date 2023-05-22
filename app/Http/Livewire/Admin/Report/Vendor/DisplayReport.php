@@ -2,9 +2,6 @@
 
 namespace App\Http\Livewire\Admin\Report\Vendor;
 
-use App\Models\Order;
-use App\Models\ServiceInvoice;
-use App\Models\TreasuryTransaction;
 use App\Models\Vendor;
 use Livewire\Component;
 use Psy\Command\HistoryCommand;
@@ -44,31 +41,11 @@ class DisplayReport extends Component
     public function submit()
     {
         $this->validate();
-        $this->purchases                = Order::with('orderProducts')->byTypeAndCompany(1)
-            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
-            ->where('vendor_id', $this->vendor->id)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->general_purchase_returns = Order::with('orderProducts')->byTypeAndCompany(3)
-            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
-            ->where('vendor_id', $this->vendor->id)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->services = ServiceInvoice::with('serviceInvoiceDetails')
-            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
-            ->where('account_id', $this->vendor->account->id)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->transactions     = TreasuryTransaction::with(['shift_type:id,name', 'treasury:id,name'])
-            ->where('money_for_account', '<>', 0)
-            ->byAccountAndCompany($this->vendor->account)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->company =  auth()->guard('admin')->user()->company;
+        $this->purchases                = get_account_orders(1, $this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->general_purchase_returns = get_account_orders(3, $this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->services                 = get_account_services($this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->transactions             = get_account_transactions($this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->company                  = auth()->guard('admin')->user()->company;
     }
 
     public function render()

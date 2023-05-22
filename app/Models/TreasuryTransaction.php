@@ -29,11 +29,6 @@ class TreasuryTransaction extends Model
         'company_id',
     ];
 
-    public function scopeByAccountAndCompany($query, $account)
-    {
-        return $query->where(['account_id' => $account->id, 'company_id' => get_auth_com()]);
-    }
-
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class, 'account_id');

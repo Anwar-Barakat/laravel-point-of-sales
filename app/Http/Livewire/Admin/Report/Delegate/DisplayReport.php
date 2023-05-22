@@ -10,6 +10,7 @@ use Livewire\Component;
 class DisplayReport extends Component
 {
     public $delegate,
+        $account,
         $delegate_id,
         $report_type,
         $date = false,
@@ -18,6 +19,7 @@ class DisplayReport extends Component
 
     public $company,
         $sales,
+        $services,
         $transactions;
 
     public function mount()
@@ -28,6 +30,7 @@ class DisplayReport extends Component
     public function updatedDelegateId()
     {
         $this->delegate = Delegate::findOrFail($this->delegate_id);
+        $this->account  = $this->delegate->account;
     }
 
     public function updatedReportType()
@@ -38,20 +41,10 @@ class DisplayReport extends Component
     public function submit()
     {
         $this->validate();
-        $this->delegate->load('account');
-        $this->sales                = Sale::with('saleProducts')->byTypeAndCompany(1)
-            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account', 'commission_value')
-            ->where('delegate_id', $this->delegate->id)->where('commission_value', '<', 0)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('invoice_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->transactions     = TreasuryTransaction::with(['shift_type:id,name', 'treasury:id,name'])
-            ->where('money_for_account', '<>', 0)
-            ->byAccountAndCompany($this->delegate->account)
-            ->when($this->reports_from_date, fn ($q) => $q->whereBetween('transaction_date', [$this->reports_from_date, $this->reports_to_date]))
-            ->get();
-
-        $this->company =  auth()->guard('admin')->user()->company;
+        $this->sales                = get_account_sales(1, $this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->transactions         = get_account_transactions($this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->services             = get_account_services($this->account->id, $this->reports_from_date, $this->reports_to_date);
+        $this->company              = auth()->guard('admin')->user()->company;
     }
 
     public function render()
