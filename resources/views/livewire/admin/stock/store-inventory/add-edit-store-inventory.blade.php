@@ -43,8 +43,8 @@
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.notes')" />
-                        <textarea rows="3" class="form-control" wire:model.debounce.500s='invoice.notes' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>
-                        <x-input-error :messages="$errors->get('invoice.notes')" class="mt-2" />
+                        <textarea rows="3" class="form-control" wire:model.debounce.500s='inventory.notes' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>
+                        <x-input-error :messages="$errors->get('inventory.notes')" class="mt-2" />
                     </div>
                 </div>
             </div>

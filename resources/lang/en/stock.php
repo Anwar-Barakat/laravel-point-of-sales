@@ -129,7 +129,7 @@ return [
     'weekly_inventory'          => 'Weekly inventory',
     'monthly_inventory'         => 'Monthly inventory',
     'annual_inventory'          => 'Annual inventory',
-
-
+    'inventory_from_date'       => 'Inventory from date',
+    'inventory_to_date'         => 'Invento to date',
 
 ];

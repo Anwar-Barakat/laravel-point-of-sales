@@ -11,8 +11,7 @@ class ShowServiceInvoice extends Component
 {
     use WithPagination;
 
-    public $created_at,
-        $account_id,
+    public $account_id,
         $service_type,
         $order_by = 'created_at',
         $sort_by = 'desc',

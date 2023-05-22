@@ -10,8 +10,7 @@ class AddEditStoreInventory extends Component
 {
     public StoreInventory $inventory;
 
-    public $stores    = [],
-        $accounts       = [];
+    public $stores    = [];
 
     public function mount(StoreInventory $inventory)
     {
@@ -23,6 +22,22 @@ class AddEditStoreInventory extends Component
     public function updated($fields)
     {
         return $this->validateOnly($fields);
+    }
+
+    public function submit()
+    {
+        $this->validate();
+        try {
+            $this->inventory->inventory_date    = date('Y-m-d');
+            $this->inventory->added_by          = get_auth_id();
+            $this->inventory->company_id        = get_auth_com();
+            $this->inventory->save();
+
+            toastr()->success(__('msgs.submitted', ['name' => __('stock.store_inventory')]));
+            return redirect()->route('admin.stores-inventories.show', ['stores_inventory' => $this->inventory]);
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.stores-inventories.index')->with(['error' => $th->getMessage()]);
+        }
     }
 
     public function render()

@@ -129,4 +129,6 @@ return [
     'weekly_inventory'          => 'الجرد الاسبوعي',
     'monthly_inventory'         => 'الجرد الشهري',
     'annual_inventory'          => 'الجرد السنوي',
+    'inventory_from_date'       => 'الجرد من تاريخ',
+    'inventory_to_date'         => 'الجرد إلى تاريخ',
 ];

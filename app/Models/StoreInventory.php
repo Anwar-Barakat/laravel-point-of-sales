@@ -20,5 +20,15 @@ class StoreInventory extends Model
         'company_id',
     ];
 
-    const INVENTORYTYPE = [1 => 'daily_inventry', 2 => 'weekly_inventry', 3 => 'monthly_inventry', 4 => 'yearly_inventry'];
+    const INVENTORYTYPE = [1 => 'daily_inventory', 2 => 'weekly_inventory', 3 => 'monthly_inventory', 4 => 'annual_inventory'];
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
+    public function addedBy()
+    {
+        return $this->belongsTo(Admin::class, 'added_by');
+    }
 }

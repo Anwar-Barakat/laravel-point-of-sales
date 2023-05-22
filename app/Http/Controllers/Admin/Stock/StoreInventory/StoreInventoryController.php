@@ -37,7 +37,7 @@ class StoreInventoryController extends Controller
      */
     public function show(StoreInventory $storeInventory)
     {
-        return view('admin.stocks.stores-inventories.show', ['inventory' => $storeInventory]);
+        return view('admin.stocks.stores-inventories.show', ['storeInventory' => $storeInventory]);
     }
 
     /**
@@ -45,7 +45,7 @@ class StoreInventoryController extends Controller
      */
     public function edit(StoreInventory $storeInventory)
     {
-        return view('admin.stocks.stores-inventories.edit', ['inventory' => $storeInventory]);
+        return view('admin.stocks.stores-inventories.edit', ['storeInventory' => $storeInventory]);
     }
 
     /**
