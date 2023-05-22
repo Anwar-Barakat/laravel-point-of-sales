@@ -66,7 +66,7 @@ return [
     'counterpart_collection'    => 'Counterpart collection...',
     'counterpart_exchange'      => 'Counterpart exchange...',
     'cash_collection_screen'    => 'Cash collection screen',
-    'case_exchange_screen'      => 'Cash exchange screen',
+    'cash_exchange_screen'      => 'Cash exchange screen',
     'click_here'                => 'Click here',
 
 

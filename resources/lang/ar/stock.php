@@ -115,4 +115,18 @@ return [
     'commission_for_block'           => 'قيمة العمولة بالمبيعات جملة',
     'commission_for_delayed_collect' => 'قيمة العمولة في التحصيل الآجل',
 
+
+    //_______________________
+    // Stores Inventories
+    //_______________________
+    'stores_inventories'        => 'جرد المخازن',
+    'store_inventory'           => 'جرد المخزن',
+    'is_closed'                 => 'مغلق',
+    'total_inventory'           => 'إجمالي الجرد',
+    'inventory_type'            => 'نوع الجرد',
+    'inventory_date'            => 'تاريخ الجرد',
+    'daily_inventory'           => 'الجرد اليومي',
+    'weekly_inventory'          => 'الجرد الاسبوعي',
+    'monthly_inventory'         => 'الجرد الشهري',
+    'annual_inventory'          => 'الجرد السنوي',
 ];

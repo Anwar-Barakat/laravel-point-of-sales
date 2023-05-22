@@ -103,15 +103,33 @@ return [
     //_______________________
     // delegates
     //_______________________
-    'delegate'                            => 'Delegate',
-    'delegates'                           => 'Delegates',
-    'delegate_name'                       => 'Delegate name',
-    'delegate_account'                    => 'Delegate account',
-    'commission_value'                    => 'Commission value',
-    'commission_type'                     => 'Commission type',
-    'commission_for_sectoral'             => 'Commission value for sectoral',
-    'commission_for_half_block'           => 'Commission value for half block',
-    'commission_for_block'                => 'Commission value for block',
-    'commission_for_delayed_collect'   => 'Commission value for delayed collection',
+    'delegate'                          => 'Delegate',
+    'delegates'                         => 'Delegates',
+    'delegate_name'                     => 'Delegate name',
+    'delegate_account'                  => 'Delegate account',
+    'commission_value'                  => 'Commission value',
+    'commission_type'                   => 'Commission type',
+    'commission_for_sectoral'           => 'Commission value for sectoral',
+    'commission_for_half_block'         => 'Commission value for half block',
+    'commission_for_block'              => 'Commission value for block',
+    'commission_for_delayed_collect'    => 'Commission value for delayed collection',
+
+
+
+    //_______________________
+    // Stores Inventories
+    //_______________________
+    'stores_inventories'        => 'Stores inventories',
+    'store_inventory'           => 'Store inventory',
+    'is_closed'                 => 'Is closed',
+    'total_inventory'           => 'Total inventory',
+    'inventory_type'            => 'Inventory type',
+    'inventory_date'            => 'Inventory date',
+    'daily_inventory'           => 'Daily inventory',
+    'weekly_inventory'          => 'Weekly inventory',
+    'monthly_inventory'         => 'Monthly inventory',
+    'annual_inventory'          => 'Annual inventory',
+
+
 
 ];

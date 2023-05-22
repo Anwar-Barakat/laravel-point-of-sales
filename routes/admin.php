@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\Stock\Delegate\DelegateController;
 use App\Http\Controllers\Admin\Stock\Item\ItemController;
 use App\Http\Controllers\Admin\Stock\Section\SectionController;
 use App\Http\Controllers\Admin\Stock\Store\StoreController;
+use App\Http\Controllers\Admin\Stock\StoreInventory\StoreInventoryController;
 use App\Http\Controllers\Admin\Stock\Unit\UnitController;
 use App\Http\Controllers\Admin\Stock\Vendor\VendorController;
 use App\Http\Controllers\Admin\WarehouseTransaction\GeneralOrderReturn\GeneralOrderReturnController;
@@ -111,7 +112,7 @@ Route::group(
                 Route::resource('categories',                   CategoryController::class)->except(['store', 'show', 'update']);
 
                 //_______________________
-                // Stoes
+                // Stores
                 //_______________________
                 Route::resource('stores',                       StoreController::class)->except(['create', 'show', 'edit']);
 
@@ -124,6 +125,11 @@ Route::group(
                 // Items
                 //_______________________
                 Route::resource('items',                        ItemController::class)->except(['store', 'update']);
+
+                //_______________________
+                // store inventory
+                //_______________________
+                Route::resource('stores-inventories',            StoreInventoryController::class)->except(['store', 'update']);
 
                 //_______________________
                 // Customers

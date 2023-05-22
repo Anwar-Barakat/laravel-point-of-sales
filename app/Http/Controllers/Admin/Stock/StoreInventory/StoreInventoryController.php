@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Stock\StoreInventory;
 
-use App\Http\Requests\StoreStoreInventoryRequest;
-use App\Http\Requests\UpdateStoreInventoryRequest;
 use App\Models\StoreInventory;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class StoreInventoryController extends Controller
 {
@@ -13,7 +13,7 @@ class StoreInventoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.stocks.stores-inventories.index');
     }
 
     /**
@@ -21,13 +21,13 @@ class StoreInventoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stocks.stores-inventories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStoreInventoryRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -37,7 +37,7 @@ class StoreInventoryController extends Controller
      */
     public function show(StoreInventory $storeInventory)
     {
-        //
+        return view('admin.stocks.stores-inventories.show', ['inventory' => $storeInventory]);
     }
 
     /**
@@ -45,13 +45,13 @@ class StoreInventoryController extends Controller
      */
     public function edit(StoreInventory $storeInventory)
     {
-        //
+        return view('admin.stocks.stores-inventories.edit', ['inventory' => $storeInventory]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStoreInventoryRequest $request, StoreInventory $storeInventory)
+    public function update(Request $request, StoreInventory $storeInventory)
     {
         //
     }

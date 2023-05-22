@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('new_qty');
             $table->integer('subtract')->comment('the difference between old and new qty');
             $table->boolean('is_closed')->default(0);
-            $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
+            $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();
         });
     }

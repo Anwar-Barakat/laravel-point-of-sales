@@ -189,7 +189,7 @@
                     <!---------------------------
                     Stocks
                     -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') || request()->routeIs('admin.customers.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') || request()->routeIs('admin.customers.*') || request()->routeIs('admin.delegates.*') || request()->routeIs('admin.vendors.*') || request()->routeIs('admin.stores-inventories.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-warehouse" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -207,28 +207,48 @@
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
                                     <!-- sections -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.sections.index') ? 'active' : '' }}" href="{{ route('admin.sections.index') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.sections.*') ? 'active' : '' }}" href="{{ route('admin.sections.index') }}">
                                         {{ __('stock.sections') }}
                                     </a>
 
                                     <!-- categories -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}"">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}" href="{{ route('admin.categories.index') }}"">
                                         {{ __('stock.categories') }}
                                     </a>
 
                                     <!-- units -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.units.index') ? 'active' : '' }}" href="{{ route('admin.units.index') }}"">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.units.*') ? 'active' : '' }}" href="{{ route('admin.units.index') }}"">
                                         {{ __('stock.units') }}
                                     </a>
 
                                     <!-- stores -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.stores.index') ? 'active' : '' }}" href="{{ route('admin.stores.index') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.stores.*') ? 'active' : '' }}" href="{{ route('admin.stores.index') }}">
                                         {{ __('stock.stores') }}
                                     </a>
 
                                     <!-- items -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.items.index') ? 'active' : '' }}" href="{{ route('admin.items.index') }}"">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.items.*') ? 'active' : '' }}" href="{{ route('admin.items.index') }}"">
                                         {{ __('stock.items') }}
+                                    </a>
+
+                                    <!-- items -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.stores-inventories.*') ? 'active' : '' }}" href="{{ route('admin.stores-inventories.index') }}"">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-forklift" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M5 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                                <path d="M14 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                                <path d="M7 17l5 0"></path>
+                                                <path d="M3 17v-6h13v6"></path>
+                                                <path d="M5 11v-4h4"></path>
+                                                <path d="M9 11v-6h4l3 6"></path>
+                                                <path d="M22 15h-3v-10"></path>
+                                                <path d="M16 13l3 0"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('stock.stores_inventories') }}
+                                        </span>
                                     </a>
                                 </div>
 
@@ -296,28 +316,37 @@
 
                                     <!-- collection monetary screen -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.collect-transactions') ? 'active' : '' }}" href="{{ route('admin.collect-transactions') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-desktop-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M13.5 16h-9.5a1 1 0 0 1 -1 -1v-10a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v7.5"></path>
-                                            <path d="M19 22v-6"></path>
-                                            <path d="M22 19l-3 -3l-3 3"></path>
-                                            <path d="M7 20h5"></path>
-                                            <path d="M9 16v4"></path>
-                                        </svg>
-                                        {{ __('account.cash_collection_screen') }}
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-desktop-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M13.5 16h-9.5a1 1 0 0 1 -1 -1v-10a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v7.5"></path>
+                                                <path d="M19 22v-6"></path>
+                                                <path d="M22 19l-3 -3l-3 3"></path>
+                                                <path d="M7 20h5"></path>
+                                                <path d="M9 16v4"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('account.cash_collection_screen') }}
+                                        </span>
                                     </a>
 
                                     <!-- exchangeing monetary screen -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.exchange-transactions') ? 'active' : '' }}" href="{{ route('admin.exchange-transactions') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-desktop-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M13.5 16h-9.5a1 1 0 0 1 -1 -1v-10a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v7.5"></path>
-                                            <path d="M7 20h5"></path>
-                                            <path d="M9 16v4"></path>
-                                            <path d="M19 16v6"></path>
-                                            <path d="M22 19l-3 3l-3 -3"></path>
-                                        </svg>
-                                        {{ __('account.cash_exchange_screen') }}
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-desktop-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M13.5 16h-9.5a1 1 0 0 1 -1 -1v-10a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v7.5"></path>
+                                                <path d="M7 20h5"></path>
+                                                <path d="M9 16v4"></path>
+                                                <path d="M19 16v6"></path>
+                                                <path d="M22 19l-3 3l-3 -3"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('account.cash_exchange_screen') }}
+                                        </span>
+
                                     </a>
                                 </div>
                             </div>
