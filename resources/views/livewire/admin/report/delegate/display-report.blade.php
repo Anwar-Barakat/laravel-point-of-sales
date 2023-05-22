@@ -148,6 +148,10 @@
                                     <td>({{ $sales->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($sales->sum('commission_value')) }}</td>
                                 </tr>
                                 <tr>
+                                    <td>{{ __('report.numbers_of', ['name' => __('transaction.services_invoices')]) }}</td>
+                                    <td>({{ $services->count() }}) - {{ __('account.amount') . ': ' }} {{ abs($services->sum('money_for_account')) }}</td>
+                                </tr>
+                                <tr>
                                     <td>{{ __('account.collect_transactions') }}</td>
                                     <td>{{ $transactions->where('money', '>', 0)->sum('money_for_account') }}</td>
                                 </tr>
@@ -256,7 +260,7 @@
                                             <span>{{ __('transaction.paid_amount') . ' : ' }} <span class="text-green-500">{{ $service->paid }}</span></span> -
                                             <span>{{ __('transaction.remain_amount') . ' : ' }} <span class="text-red-500">{{ $service->remains }}</span></span> -
                                             <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-blue-500">{{ $service->cost_after_discount }}</span></span>.
-                                            {{-- <span>{{ __('transaction.total_price') . ' : ' }} <span class="text-red-500">{{ __('setting.' . App\Models\Service::SERTICETYPE[$service->service_type]) }}</span></span>. --}}
+                                            <span>({{ __('setting.service_type') . ' : ' }} <span class="text-red-500">{{ __('setting.' . App\Models\Service::SERTICETYPE[$service->service_type]) }}</span>)</span>.
 
                                             <table id="dataTables" class="table table-vcenter table-mobile-md card-table mt-3">
                                                 <thead>

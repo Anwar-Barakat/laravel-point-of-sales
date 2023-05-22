@@ -37,7 +37,7 @@ if (!function_exists('get_account_services')) {
     function get_account_services($account_id, $fromDate, $toDate)
     {
         $query = ServiceInvoice::with('serviceInvoiceDetails')
-            ->select('id', 'is_approved', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
+            ->select('id', 'is_approved', 'service_type', 'invoice_type', 'invoice_date', 'cost_after_discount', 'paid', 'remains', 'money_for_account')
             ->where(['account_id' => $account_id, 'company_id' => get_auth_com()]);
 
         if ($fromDate)
