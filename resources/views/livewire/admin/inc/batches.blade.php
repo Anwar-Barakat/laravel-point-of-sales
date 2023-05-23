@@ -3,11 +3,15 @@
         <div class="mb-3">
             <label for="" class="form-label">
                 {{ __('transaction.specific_store_qty') }}
-                (<a href="{{ route('admin.orders.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('transaction.purchase_bill')]) }}">{{ __('msgs.add_new') }}</a>)
             </label>
             <select class="form-select" wire:model.defer='product.item_batch_id'>
                 <option value="">{{ __('btns.select') }}</option>
                 @foreach ($batches as $batch)
+                    @php
+                        if (!isset($unit)) {
+                            $unit = $batch->unit;
+                        }
+                    @endphp
                     @if ($unit->status == 'retail')
                         @php
                             $qty = floatval($batch->qty) * floatval($item->retail_count_for_wholesale);

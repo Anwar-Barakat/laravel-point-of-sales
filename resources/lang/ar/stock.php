@@ -133,4 +133,11 @@ return [
     'inventory_to_date'         => 'الجرد إلى تاريخ',
     'closed'                    => 'مغلق',
     'opened'                    => 'مفتوح',
+    'inventory_number'          => 'رقم الجرد',
+    'qty_in_system'             => 'الكمية في النظام',
+    'new_qty'                   => 'الكمية الجديدة',
+    'subtract'                  => 'الكمية في النظام - الكمية الجديدة',
+    'qty_in_batch'              => 'الكمية في الباتش',
+    'add_all_items_in_store'    => 'إضافة جميع الأصناف في المخزن',
+
 ];

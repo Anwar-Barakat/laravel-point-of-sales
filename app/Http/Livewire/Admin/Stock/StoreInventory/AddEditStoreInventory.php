@@ -40,7 +40,6 @@ class AddEditStoreInventory extends Component
                 return false;
             }
 
-
             if (!$this->inventory->is_closed == 0) {
                 toastr()->error(__('msgs.something_went_wrong'));
                 return redirect()->back();

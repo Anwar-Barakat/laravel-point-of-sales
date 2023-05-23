@@ -133,4 +133,10 @@ return [
     'inventory_to_date'         => 'Invento to date',
     'closed'                    => 'Closed',
     'opened'                    => 'opened',
+    'inventory_number'          => 'Inventory number',
+    'qty_in_system'             => 'QTY in system',
+    'new_qty'                   => 'New QTY',
+    'subtract'                  => 'Qty in system - New QTY',
+    'qty_in_batch'              => 'QTY in batch',
+    'add_all_items_in_store'    => 'Add all items into store',
 ];

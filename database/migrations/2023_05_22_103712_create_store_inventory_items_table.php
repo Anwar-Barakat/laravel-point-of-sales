@@ -20,6 +20,12 @@ return new class extends Migration
             $table->integer('old_qty');
             $table->integer('new_qty');
             $table->integer('subtract')->comment('the difference between old and new qty');
+            $table->decimal('unit_price', 10, 2);
+            $table->decimal('total_price', 10, 2);
+
+            $table->date('production_date')->nullable();
+            $table->date('expiration_date')->nullable();
+
             $table->boolean('is_closed')->default(0);
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();
