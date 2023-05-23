@@ -35,17 +35,17 @@ class StoreInventoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StoreInventory $storeInventory)
+    public function show(StoreInventory $stores_inventory)
     {
-        return view('admin.stocks.stores-inventories.show', ['storeInventory' => $storeInventory]);
+        return view('admin.stocks.stores-inventories.show', ['stores_inventory' => $stores_inventory]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StoreInventory $storeInventory)
+    public function edit(StoreInventory $stores_inventory)
     {
-        return view('admin.stocks.stores-inventories.edit', ['storeInventory' => $storeInventory]);
+        return view('admin.stocks.stores-inventories.edit', ['stores_inventory' => $stores_inventory]);
     }
 
     /**
@@ -59,8 +59,14 @@ class StoreInventoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StoreInventory $storeInventory)
+    public function destroy(StoreInventory $stores_inventory)
     {
-        //
+        if ($stores_inventory->storeInventoryItems->count() > 0) {
+            toastr()->error(__('msgs.order_has_items', ['name' => __('stock.store_inventory')]));
+            return false;
+        }
+        $stores_inventory->delete();
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.store_inventory')]));
+        return redirect()->back();
     }
 }

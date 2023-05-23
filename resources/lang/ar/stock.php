@@ -131,4 +131,6 @@ return [
     'annual_inventory'          => 'الجرد السنوي',
     'inventory_from_date'       => 'الجرد من تاريخ',
     'inventory_to_date'         => 'الجرد إلى تاريخ',
+    'closed'                    => 'مغلق',
+    'opened'                    => 'مفتوح',
 ];

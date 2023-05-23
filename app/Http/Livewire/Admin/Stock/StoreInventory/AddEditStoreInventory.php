@@ -28,6 +28,24 @@ class AddEditStoreInventory extends Component
     {
         $this->validate();
         try {
+            $inventoryType = StoreInventory::where(['is_closed' => 0, 'store_id' => $this->inventory->store_id, 'company_id' => get_auth_com(), 'inventory_type' => $this->inventory->inventory_type])->where('id', '!=', $this->inventory->id)->first();
+            if ($inventoryType) {
+                toastr()->error(__('validation.invetory_type_exists'));
+                return false;
+            }
+
+            $inventoryOpen = StoreInventory::where(['is_closed' => 0, 'store_id' => $this->inventory->store_id, 'company_id' => get_auth_com()])->where('id', '!=', $this->inventory->id)->first();
+            if ($inventoryOpen) {
+                toastr()->error(__('validation.there_is_an_open_inventory'));
+                return false;
+            }
+
+
+            if (!$this->inventory->is_closed == 0) {
+                toastr()->error(__('msgs.something_went_wrong'));
+                return redirect()->back();
+            }
+
             $this->inventory->inventory_date    = date('Y-m-d');
             $this->inventory->added_by          = get_auth_id();
             $this->inventory->company_id        = get_auth_com();

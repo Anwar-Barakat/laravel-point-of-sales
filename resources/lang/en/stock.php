@@ -131,5 +131,6 @@ return [
     'annual_inventory'          => 'Annual inventory',
     'inventory_from_date'       => 'Inventory from date',
     'inventory_to_date'         => 'Invento to date',
-
+    'closed'                    => 'Closed',
+    'opened'                    => 'opened',
 ];

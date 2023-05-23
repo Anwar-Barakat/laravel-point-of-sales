@@ -125,6 +125,8 @@ return [
     'discount_less_grand_total'     => 'The discount cannot be greater than the total amount',
     'select_item_batch'             => 'Please, select the item batch',
     'qty_not_available_now'         => 'Quantity unavailable in the store now',
+    'there_is_an_open_inventory'    => 'There is an open inventory order for this store',
+    'invetory_type_exists'          => 'Inventroy type already exists for this store',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

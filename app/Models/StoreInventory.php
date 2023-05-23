@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StoreInventory extends Model
 {
@@ -19,7 +20,7 @@ class StoreInventory extends Model
         'added_by',
         'company_id',
     ];
-
+    
     const INVENTORYTYPE = [1 => 'daily_inventory', 2 => 'weekly_inventory', 3 => 'monthly_inventory', 4 => 'annual_inventory'];
 
     public function store()
@@ -30,5 +31,10 @@ class StoreInventory extends Model
     public function addedBy()
     {
         return $this->belongsTo(Admin::class, 'added_by');
+    }
+
+    public function storeInventoryItems(): HasMany
+    {
+        return $this->hasMany(StoreInventoryItem::class);
     }
 }

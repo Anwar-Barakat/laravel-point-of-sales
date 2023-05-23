@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="row g-0">
-            <livewire:admin.stock.store-inventory.add-edit-store-inventory :inventory='$inventory'>
+            <livewire:admin.stock.store-inventory.add-edit-store-inventory :inventory='$stores_inventory'>
         </div>
     </div>
 

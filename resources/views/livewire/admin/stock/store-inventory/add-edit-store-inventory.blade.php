@@ -13,7 +13,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.inventory_type')" />
-                        <select class="form-select" wire:model='inventory.inventory_type'>
+                        <select class="form-select" wire:model.defer='inventory.inventory_type'>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1">{{ __('stock.daily_inventory') }}</option>
                             <option value="2">{{ __('stock.weekly_inventory') }}</option>
