@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('notes');
 
             $table->boolean('is_closed')->default(0);
+            $table->date('closed_at')->nullable();
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
             $table->timestamps();
         });

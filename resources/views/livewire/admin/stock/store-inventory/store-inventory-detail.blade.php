@@ -57,19 +57,31 @@
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                             <div class="row row-cards">
                                 <div class="row row-cards">
-                                    @include('livewire.admin.inc.batches', ['batches' => $batches])
-                                    @if ($batch)
-                                        <div class="col-12 col-md-6">
-                                            <div class="mb-3">
-                                                <x-input-label class="form-label" :value="__('stock.batch_qty')" />
-                                                <x-text-input type="number" class="form-control" wire:model="product.old_qty" readonly disabled />
-                                                <x-input-error :messages="$errors->get('product.old_qty')" class="mt-2" />
-                                            </div>
+                                    <div class="col-12 col-md-6 ">
+                                        <div class="mb-3">
+                                            <x-input-label class="form-label" :value="__('stock.item_name')" />
+                                            <select class="form-select" wire:model='product.item_id'>
+                                                <option value="">{{ __('btns.select') }}</option>
+                                                @foreach ($items as $ele)
+                                                    <option value="{{ $ele->id }}">{{ $ele->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-input-error :messages="$errors->get('inventory.item_id')" class="mt-2" />
                                         </div>
-                                    @endif
+                                    </div>
+                                    @include('livewire.admin.inc.batches', ['batches' => $batches])
                                 </div>
                             </div>
                             <div class="row row-cards">
+                                @if ($batch)
+                                    <div class="col-12 col-md-6">
+                                        <div class="mb-3">
+                                            <x-input-label class="form-label" :value="__('stock.batch_qty')" />
+                                            <x-text-input type="number" class="form-control" wire:model="product.old_qty" readonly disabled />
+                                            <x-input-error :messages="$errors->get('product.old_qty')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('stock.new_qty')" />
@@ -146,23 +158,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($inventoryItems as $item)
+                            @forelse ($inventoryItems as $product)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->item_batch->id }}</td>
-                                    <td><span class="badge bg-blue">{{ $item->item->name }}</span></td>
-                                    <td>{{ $item->old_qty }}</td>
-                                    <td>{{ $item->new_qty }}</td>
-                                    <td>{{ $item->subtract }}</td>
-                                    <td>{{ $item->unit_price }}</td>
-                                    <td>{{ $item->total_price }}</td>
+                                    <td>{{ $product->item_batch->id }}</td>
+                                    <td><span class="badge bg-blue">{{ $product->item->name }}</span></td>
+                                    <td>{{ $product->old_qty }}</td>
+                                    <td>{{ $product->new_qty }}</td>
+                                    <td>{{ $product->subtract }}</td>
+                                    <td>{{ $product->unit_price }}</td>
+                                    <td>{{ $product->total_price }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-sm" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('msgs.notes') }}" data-bs-content="{{ $item->notes }}">{{ __('account.click_here') }}</button>
+                                        <button type="button" class="btn btn-sm" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('msgs.notes') }}" data-bs-content="{{ $product->notes }}">{{ __('account.click_here') }}</button>
                                     </td>
-                                    @if ($inventory->is_closed == 0)
+                                    @if ($product->is_closed == 0)
                                         <td>
                                             <div class="btn-list flex-nowrap justify-content-center">
-                                                <a wire:click.prevent="edit({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('btns.edit') }}">
+                                                <a wire:click.prevent="edit({{ $product }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('btns.edit') }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -170,7 +182,7 @@
                                                         <path d="M16 5l3 3" />
                                                     </svg>
                                                 </a>
-                                                <a wire:click.prevent="edit({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('stock.approving_and_reply') }}">
+                                                <a wire:click.prevent="approve({{ $product }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('stock.approving_and_reply') }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-info" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M12 3a7 7 0 0 1 7 7v4l-3 -3" />
@@ -180,7 +192,7 @@
                                                         <path d="M8 15.545l5 -3.03" />
                                                     </svg>
                                                 </a>
-                                                <a wire:click.prevent="delete({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('btns.delete') }}">
+                                                <a wire:click.prevent="delete({{ $product }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('btns.delete') }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M4 7l16 0" />
@@ -191,6 +203,11 @@
                                                     </svg>
                                                 </a>
                                             </div>
+                                        </td>
+                                    @else
+                                        <td class="d-flex gap-1 items-center">
+                                            <span class="mb-1">{{ __('stock.relyed_date') }}</span>
+                                            <span class="badge bg-red-lt d-inline-block">{{ $product->closed_at }}</span>
                                         </td>
                                     @endif
                                 </tr>

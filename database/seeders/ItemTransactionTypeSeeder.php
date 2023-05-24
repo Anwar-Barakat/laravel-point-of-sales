@@ -112,6 +112,13 @@ class ItemTransactionTypeSeeder extends Seeder
                     'ar'        => 'رد انتاج تام من خط التصنيع',
                 ],
             ],
+            [
+                'id'            => 15,
+                'name'          => [
+                    'en'        => 'Stores inventory',
+                    'ar'        => 'جرد المخازن',
+                ],
+            ],
         ];
 
         foreach ($types as $type) {

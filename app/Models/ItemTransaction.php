@@ -19,6 +19,8 @@ class ItemTransaction extends Model
         'order_product_id',
         'sale_id',
         'sale_product_id',
+        'store_inventory_id',
+        'store_inventory_item_id',
         'report',
         'store_qty_before_transaction',
         'store_qty_after_transaction',

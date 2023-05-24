@@ -146,5 +146,6 @@ return [
     'the_reason_for_the_increase_or_decrease'   => 'سبب الزيادة او النقصان',
     'items_added_to_the'                        => 'الأصناف المضافة إلى ال:name',
     'approving_and_reply'                       => 'الموافقة والترحيل',
+    'relyed_date'                               => 'تاريخ الأعتماد والترحيل'
 
 ];
