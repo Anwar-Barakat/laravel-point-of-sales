@@ -34,6 +34,10 @@
                             <td>{{ $inventory->store->name }}</td>
                         </tr>
                         <tr>
+                            <th>{{ __('stock.total_batches') }}</th>
+                            <td>{{ $inventoryItems->sum('total_price') }}</td>
+                        </tr>
+                        <tr>
                             <th>{{ __('msgs.created_at') }}</th>
                             <td>{{ $inventory->created_at }}</td>
                         </tr>
@@ -46,36 +50,40 @@
             <div class="col-12 col-lg-8 mb-3" id="add-items">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h3 class="card-title">{{ __('transaction.add_items') }}</h3>
+                        <h3 class="card-title">{{ __('stock.add_items_to_inventory') }}</h3>
                     </div>
                     <form wire:submit.prevent='submit'>
                         <div class="card-body">
                             <h3 class="mb-4 text-blue">{{ __('msgs.main_info') }}</h3>
                             <div class="row row-cards">
-                                @include('layouts.errors-message')
                                 <div class="row row-cards">
-                                    <div class="col-12 col-md-6">
-                                        <div class="mb-3">
-                                            <x-input-label class="form-label" :value="__('stock.add_all_items_in_store')" />
-                                            <select class="form-select" wire:model='add_all'>
-                                                <option value="">{{ __('btns.select') }}</option>
-                                                <option value="0">{{ __('msgs.no') }}</option>
-                                                <option value="1">{{ __('msgs.yes') }}</option>
-                                            </select>
-                                            <x-input-error :messages="$errors->get('add_all')" class="mt-2" />
+                                    @include('livewire.admin.inc.batches', ['batches' => $batches])
+                                    @if ($batch)
+                                        <div class="col-12 col-md-6">
+                                            <div class="mb-3">
+                                                <x-input-label class="form-label" :value="__('stock.batch_qty')" />
+                                                <x-text-input type="number" class="form-control" wire:model="product.old_qty" readonly disabled />
+                                                <x-input-error :messages="$errors->get('product.old_qty')" class="mt-2" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    @if ($add_all == false)
-                                        @include('livewire.admin.inc.batches', ['batches' => $batches])
                                     @endif
                                 </div>
                             </div>
-                            <div class="row-cards">
+                            <div class="row row-cards">
+                                <div class="col-12 col-md-6">
+                                    <div class="mb-3">
+                                        <x-input-label class="form-label" :value="__('stock.new_qty')" />
+                                        <x-text-input type="number" class="form-control" wire:model.defer="product.new_qty" placeholder="13" />
+                                        <x-input-error :messages="$errors->get('product.new_qty')" class="mt-2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-cards">
                                 <div class="col-12 col-12">
                                     <div class="mb-3">
-                                        <x-input-label class="form-label" :value="__('msgs.notes')" />
-                                        {{-- <textarea rows="3" class="form-control" wire:model.defer='product.notes' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea> --}}
-                                        {{-- <x-input-error :messages="$errors->get('product.notes')" class="mt-2" /> --}}
+                                        <x-input-label class="form-label" :value="__('stock.the_reason_for_the_increase_or_decrease')" />
+                                        <textarea rows="3" class="form-control" wire:model.defer='product.notes' placeholder="{{ __('msgs.at_least_ten_ch') }}"></textarea>
+                                        <x-input-error :messages="$errors->get('product.notes')" class="mt-2" />
                                     </div>
                                 </div>
                             </div>

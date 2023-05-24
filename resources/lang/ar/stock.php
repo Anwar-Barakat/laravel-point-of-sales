@@ -139,5 +139,8 @@ return [
     'subtract'                  => 'الكمية في النظام - الكمية الجديدة',
     'qty_in_batch'              => 'الكمية في الباتش',
     'add_all_items_in_store'    => 'إضافة جميع الأصناف في المخزن',
-
+    'total_batches'             => 'إجمالي الباتشات',
+    'batch_qty'                 => 'الكمية في الباتش',
+    'add_items_to_inventory'    => 'إضافة عناصر للجرد',
+    'the_reason_for_the_increase_or_decrease'   => 'سبب الزيادة او النقصان',
 ];

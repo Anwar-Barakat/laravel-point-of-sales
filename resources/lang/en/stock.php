@@ -139,4 +139,9 @@ return [
     'subtract'                  => 'Qty in system - New QTY',
     'qty_in_batch'              => 'QTY in batch',
     'add_all_items_in_store'    => 'Add all items into store',
+    'total_batches'             => 'total batches',
+    'batch_qty'                 => 'QTY in batches',
+    'add_items_to_inventory'    => 'Add items to inventory',
+    'the_reason_for_the_increase_or_decrease'   => 'The reason for the increase or decrease',
+
 ];

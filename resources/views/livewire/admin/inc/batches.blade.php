@@ -4,7 +4,7 @@
             <label for="" class="form-label">
                 {{ __('transaction.specific_store_qty') }}
             </label>
-            <select class="form-select" wire:model.defer='product.item_batch_id'>
+            <select class="form-select" wire:model='product.item_batch_id'>
                 <option value="">{{ __('btns.select') }}</option>
                 @foreach ($batches as $batch)
                     @php

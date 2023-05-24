@@ -23,6 +23,7 @@ class StoreInventoryItem extends Model
         'production_date',
         'expiration_date',
         'is_closed',
+        'notes',
         'added_by',
     ];
 

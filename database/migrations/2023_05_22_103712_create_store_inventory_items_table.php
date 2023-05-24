@@ -25,6 +25,7 @@ return new class extends Migration
 
             $table->date('production_date')->nullable();
             $table->date('expiration_date')->nullable();
+            $table->string('notes');
 
             $table->boolean('is_closed')->default(0);
             $table->foreignId('added_by')->constrained('admins')->cascadeOnUpdate();
