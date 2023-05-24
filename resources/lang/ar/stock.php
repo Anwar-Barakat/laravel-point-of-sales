@@ -120,7 +120,7 @@ return [
     // Stores Inventories
     //_______________________
     'stores_inventories'        => 'جرد المخازن',
-    'store_inventory'           => 'جرد المخزن',
+    'store_inventory'           => 'جرد مخزني',
     'is_closed'                 => 'مغلق',
     'total_inventory'           => 'إجمالي الجرد',
     'inventory_type'            => 'نوع الجرد',

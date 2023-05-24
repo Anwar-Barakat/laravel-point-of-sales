@@ -146,6 +146,5 @@ return [
     'the_reason_for_the_increase_or_decrease'   => 'The reason for the increase or decrease',
     'items_added_to_the'                        => 'Items added to the :name',
     'approving_and_reply'                       => 'Apprving and repaly',
-    'relyed_date'                               => 'relayed date'
-
+    'relyed_date'                               => 'relayed date',
 ];

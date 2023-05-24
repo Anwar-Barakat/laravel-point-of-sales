@@ -63,7 +63,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         if ($order->orderProducts->count() > 0) {
-            toastr()->error(__('msgs.order_has_items', ['name' => __('transaction.purchase_bill')]));
+            toastr()->error(__('msgs.has_items', ['name' => __('transaction.purchase_bill')]));
             return redirect()->back();
         }
 

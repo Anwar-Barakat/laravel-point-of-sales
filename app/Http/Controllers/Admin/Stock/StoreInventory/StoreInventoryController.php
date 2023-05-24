@@ -62,8 +62,8 @@ class StoreInventoryController extends Controller
     public function destroy(StoreInventory $stores_inventory)
     {
         if ($stores_inventory->storeInventoryItems->count() > 0) {
-            toastr()->error(__('msgs.order_has_items', ['name' => __('stock.store_inventory')]));
-            return false;
+            toastr()->error(__('msgs.has_items', ['name' => __('stock.store_inventory')]));
+            return redirect()->back();
         }
         $stores_inventory->delete();
         toastr()->info(__('msgs.deleted', ['name' => __('stock.store_inventory')]));

@@ -225,13 +225,15 @@
                                     <a class="dropdown-item {{ request()->routeIs('admin.stores.*') ? 'active' : '' }}" href="{{ route('admin.stores.index') }}">
                                         {{ __('stock.stores') }}
                                     </a>
+                                </div>
+                                <div class="dropdown-menu-column">
 
                                     <!-- items -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.items.*') ? 'active' : '' }}" href="{{ route('admin.items.index') }}"">
                                         {{ __('stock.items') }}
                                     </a>
 
-                                    <!-- items -->
+                                    <!-- store inventory -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.stores-inventories.*') ? 'active' : '' }}" href="{{ route('admin.stores-inventories.index') }}"">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-forklift" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -249,23 +251,6 @@
                                         <span class="nav-link-title">
                                             {{ __('stock.stores_inventories') }}
                                         </span>
-                                    </a>
-                                </div>
-
-                                <div class="dropdown-menu-column">
-                                    <!-- customers -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.customers.index') ? 'active' : '' }}" href="{{ route('admin.customers.index') }}"">
-                                        {{ __('stock.customers') }}
-                                    </a>
-
-                                    <!-- vendors -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.vendors.index') ? 'active' : '' }}" href="{{ route('admin.vendors.index') }}"">
-                                        {{ __('stock.vendors') }}
-                                    </a>
-
-                                    <!-- delegates -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.delegates.index') ? 'active' : '' }}" href="{{ route('admin.delegates.index') }}"">
-                                        {{ __('transaction.delegates') }}
                                     </a>
                                 </div>
                             </div>
@@ -299,21 +284,27 @@
                                     </a>
 
                                     <!-- financial accounts -->
-                                    <div class="dropend">
-                                        <a class="dropdown-item dropdown-toggle {{ request()->routeIs('admin.accounts.*') ? 'active' : '' }}" href="javascript:;" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                            {{ __('account.accounts') }}
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a href="{{ route('admin.accounts.index') }}" class="dropdown-item {{ request()->routeIs('admin.accounts.index') ? 'active' : '' }}">
-                                                {{ __('msgs.list', ['name' => __('account.accounts')]) }}
-                                            </a>
-                                            <a href="{{ route('admin.accounts.create') }}" class="dropdown-item {{ request()->routeIs('admin.accounts.create') ? 'active' : '' }}">
-                                                {{ __('msgs.create', ['name' => __('account.account')]) }}
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item {{ request()->routeIs('admin.accounts.index') ? 'active' : '' }}" href="{{ route('admin.accounts.index') }}">
+                                        {{ __('account.accounts') }}
+                                    </a>
 
+                                    <!-- customers -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.customers.index') ? 'active' : '' }}" href="{{ route('admin.customers.index') }}"">
+                                        {{ __('stock.customers') }}
+                                    </a>
+
+                                    <!-- vendors -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.vendors.index') ? 'active' : '' }}" href="{{ route('admin.vendors.index') }}"">
+                                        {{ __('stock.vendors') }}
+                                    </a>
+
+                                    <!-- delegates -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.delegates.index') ? 'active' : '' }}" href="{{ route('admin.delegates.index') }}"">
+                                        {{ __('transaction.delegates') }}
+                                    </a>
+                                </div>
+
+                                <div class="dropdown-menu-column">
                                     <!-- collection monetary screen -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.collect-transactions') ? 'active' : '' }}" href="{{ route('admin.collect-transactions') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -346,8 +337,8 @@
                                         <span class="nav-link-title">
                                             {{ __('account.cash_exchange_screen') }}
                                         </span>
-
                                     </a>
+
                                 </div>
                             </div>
                         </div>
