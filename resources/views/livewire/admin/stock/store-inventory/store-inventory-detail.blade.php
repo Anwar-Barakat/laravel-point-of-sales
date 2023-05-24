@@ -125,7 +125,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header w-100 d-flex align-items-center justify-content-between">
-                    <h3 class="card-title">{{ __('stock.items') }}</h3>
+                    <h3 class="card-title">{{ __('stock.items_added_to_the', ['name' => __('stock.store_inventory')]) }}</h3>
                 </div>
                 <div>
                     <table class="table card-table table-vcenter table-striped-columns">
@@ -162,7 +162,7 @@
                                     @if ($inventory->is_closed == 0)
                                         <td>
                                             <div class="btn-list flex-nowrap justify-content-center">
-                                                <a wire:click.prevent="edit({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                                <a wire:click.prevent="edit({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('btns.edit') }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -170,7 +170,17 @@
                                                         <path d="M16 5l3 3" />
                                                     </svg>
                                                 </a>
-                                                <a wire:click.prevent="delete({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                                <a wire:click.prevent="edit({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('stock.approving_and_reply') }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-info" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M12 3a7 7 0 0 1 7 7v4l-3 -3" />
+                                                        <path d="M22 11l-3 3" />
+                                                        <path d="M8 15.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
+                                                        <path d="M3 12.5v5.5l5 3" />
+                                                        <path d="M8 15.545l5 -3.03" />
+                                                    </svg>
+                                                </a>
+                                                <a wire:click.prevent="delete({{ $item }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center" title="{{ __('btns.delete') }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M4 7l16 0" />

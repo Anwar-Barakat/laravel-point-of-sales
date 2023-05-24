@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Stock\StoreInventory;
 use App\Models\ItemBatch;
 use App\Models\StoreInventory;
 use App\Models\StoreInventoryItem;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -40,12 +41,7 @@ class StoreInventoryDetail extends Component
     {
         $this->validate();
         try {
-            $batchExists = StoreInventoryItem::where(['store_inventory_id' => $this->inventory->id, 'item_batch_id' => $this->batch->id, 'item_id' => $this->batch->item_id])->first();
-            if ($batchExists) {
-                toastr()->error(__('msgs.exists', ['name' => __('validation.attributes.item_batch_id')]));
-                return false;
-            }
-            
+
             $this->product->store_inventory_id  = $this->inventory->id;
             $this->product->item_id             = $this->batch->item_id;
             $this->product->unit_id             = $this->batch->unit_id;
@@ -58,16 +54,23 @@ class StoreInventoryDetail extends Component
             $this->product->added_by            = get_auth_id();
             $this->product->save();
 
-            $index = array_search($this->batch, $this->batches);
-            dd($index);
-            if ($index !== false)
-                array_splice($this->batches, $index, 1);
-
-
-
             toastr()->success(__('msgs.submitted', ['name' => __('stock.store_inventory')]));
         } catch (\Throwable $th) {
             return redirect()->route('admin.stores-inventories.show', ['stores_inventory' => $this->inventory])->with(['error' => $th->getMessage()]);
+        }
+    }
+
+    public function edit(StoreInventoryItem $product)
+    {
+        $this->product = $product;
+        $this->batch   = ItemBatch::find($this->product->item_batch_id);
+    }
+
+    public function delete(StoreInventoryItem $product)
+    {
+        if ($product->is_closed == 0) {
+            $product->delete();
+            toastr()->info(__('msgs.deleted', ['name' => __('stock.store_inventory')]));
         }
     }
 
@@ -79,7 +82,10 @@ class StoreInventoryDetail extends Component
     public function rules()
     {
         return [
-            'product.item_batch_id'     => ['required', 'integer'],
+            'product.item_batch_id'     => [
+                'required', 'integer',
+                Rule::unique('store_inventory_items', 'item_batch_id')->ignore($this->product->id)
+            ],
             'product.notes'             => ['required', 'min:3', 'max:255'],
             'product.old_qty'           => ['integer'],
             'product.new_qty'           => ['required', 'integer']

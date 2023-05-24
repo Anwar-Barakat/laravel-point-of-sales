@@ -142,5 +142,9 @@ return [
     'total_batches'             => 'إجمالي الباتشات',
     'batch_qty'                 => 'الكمية في الباتش',
     'add_items_to_inventory'    => 'إضافة عناصر للجرد',
+
     'the_reason_for_the_increase_or_decrease'   => 'سبب الزيادة او النقصان',
+    'items_added_to_the'                        => 'الأصناف المضافة إلى ال:name',
+    'approving_and_reply'                       => 'الموافقة والترحيل',
+
 ];

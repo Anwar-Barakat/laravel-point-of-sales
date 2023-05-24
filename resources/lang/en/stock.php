@@ -142,6 +142,10 @@ return [
     'total_batches'             => 'total batches',
     'batch_qty'                 => 'QTY in batches',
     'add_items_to_inventory'    => 'Add items to inventory',
+
     'the_reason_for_the_increase_or_decrease'   => 'The reason for the increase or decrease',
+    'items_added_to_the'                        => 'Items added to the :name',
+    'approving_and_reply'                       => 'Apprving and repaly',
+
 
 ];
