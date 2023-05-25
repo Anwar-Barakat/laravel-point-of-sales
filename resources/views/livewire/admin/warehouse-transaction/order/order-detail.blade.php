@@ -106,6 +106,7 @@
                                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
                                             @endforeach
                                         </select>
+                                        <x-input-error :messages="$errors->get('product.item_id')" class="mt-2" />
                                     </div>
                                 </div>
                                 @if ($item)

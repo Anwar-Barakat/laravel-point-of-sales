@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\GeneralOrderReturn\GeneralOr
 use App\Http\Controllers\Admin\WarehouseTransaction\GeneralSaleReturn\GeneralSaleReturnController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController;
+use App\Http\Controllers\Admin\WarehouseTransaction\ProductionLine\ProductionLineController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfController;
@@ -194,6 +195,11 @@ Route::group(
                 // item balances
                 //_______________________
                 Route::view('item-balances',                    'admin.warehouse-transactions.item-balamces.index')->name('item.balances');
+
+                //_______________________
+                // Shifts
+                //_______________________
+                Route::resource('production-lines',             ProductionLineController::class)->except('store', 'update');
 
 
                 //_______________________

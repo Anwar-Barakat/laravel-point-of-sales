@@ -15,7 +15,7 @@ class OrderDetail extends Component
     use WithPagination;
 
     public Order $order;
-    public OrderProduct $product;
+    public  $product;
 
     public $items = [], $item;
 
@@ -33,7 +33,7 @@ class OrderDetail extends Component
     public function mount(Order $order, OrderProduct $product)
     {
         $this->order                = $order;
-        $this->product              = $product;
+        $this->product              = $product ?? new OrderProduct();
         $this->order->invoice_date  = date('Y-m-d');
         $this->product->qty         = 1;
         $this->order->is_approved   == 0 ?  $this->items = Item::select('id', 'name')->active()->get() : [];
@@ -78,7 +78,8 @@ class OrderDetail extends Component
                 DB::commit();
                 $this->emit('updateOrderProducts', ['order' => $this->order]);
                 toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
-                $this->reset('product.item_id');
+                $this->reset('product');
+                $this->product = new OrderProduct();
             }
         } catch (\Throwable $th) {
             DB::rollBack();

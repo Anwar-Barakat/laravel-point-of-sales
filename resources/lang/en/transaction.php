@@ -139,4 +139,16 @@ return [
     'services_cost'             => 'Services Cost',
     'services_tax_discount'     => 'Total price of services + tax + discount',
 
+
+    //_______________________
+    // Production lines
+    //_______________________
+    'production_lines'          => 'Production lines',
+    'production_line'           => 'Production line',
+    'in_process'                => 'In process',
+    'approved_and_implemented'  => 'Approved and implemented',
+    'finished'                  => 'Is finished',
+    'rejected'                  => 'Rejected',
+    'production_plan'           => 'Production plan',
+    'production_plan_date'      => 'Production plan date',
 ];

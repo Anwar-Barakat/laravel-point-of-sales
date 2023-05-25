@@ -8,6 +8,7 @@ return [
     'all_stores'                    => 'جميع المخازن',
     'approved'                      => 'مُعتمدة',
     'not_approved'                  => 'غير مُعتمدة',
+
     //_______________________
     // Orders
     //_______________________
@@ -138,4 +139,15 @@ return [
     'services_cost'             => 'تكلفة الخدمات',
     'services_tax_discount'     => 'مجموع سعر الخدمات + الضريبة + الخصم',
 
+    //_______________________
+    // Production lines
+    //_______________________
+    'production_lines'          => 'خطوط الإنتاج',
+    'production_line'           => 'خط إنتاج',
+    'in_process'                => 'تحت المعالجة',
+    'approved_and_implemented'  => 'تمت الموافقة عليها وتنفيذها',
+    'finished'                  => 'منتهي',
+    'rejected'                  => 'مرفوض',
+    'production_plan'           => 'خطة الإنتاج',
+    'production_plan_date'      => 'تاريخ خطة الإنتاج',
 ];

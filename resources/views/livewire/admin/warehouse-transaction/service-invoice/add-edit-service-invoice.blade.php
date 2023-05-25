@@ -21,7 +21,7 @@
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.invoice_date')" />
                         <x-text-input type="date" class="form-control" wire:model.debounce.500s='invoice.invoice_date' />
-                        <x-input-error :messages="$errors->get('vednor.invoice_date')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('invoice.invoice_date')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-3">
