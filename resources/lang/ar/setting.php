@@ -29,6 +29,7 @@ return [
     'parent_c_account'      => 'الحساب الأب للعملاء',
     'parent_v_account'      => 'الحساب الأب للموردين',
     'parent_d_account'      => 'الحساب الأب للمندوبين',
+    'parent_p_account'      => 'الحساب الأب لخطوط الأنتاج',
     'treasury_type'         => 'نوع الخزنة',
 
     //_______________________

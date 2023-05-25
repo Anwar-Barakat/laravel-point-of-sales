@@ -22,8 +22,8 @@ return new class extends Migration
             $table->foreignId('order_product_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('sale_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('sale_product_id')->nullable()->constrained()->cascadeOnUpdate();
-            $table->foreignId('store_inventory_id')->nullable()->constrained()->cascadeOnUpdate();
-            $table->foreignId('store_inventory_item_id')->nullable()->constrained()->cascadeOnUpdate();
+            $table->foreignId('store_inventory_id')->nullable();
+            $table->foreignId('store_inventory_item_id')->nullable();
 
             $table->string('report');
             $table->string('store_qty_before_transaction');

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\WarehouseTransaction\ProductionLine;
 
 use App\Models\ProductionLine;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 
 class AddEditProductionLine extends Component
@@ -28,6 +29,7 @@ class AddEditProductionLine extends Component
             $this->production_line->company_id  = get_auth_com();
             $this->production_line->save();
             toastr()->success(__('msgs.submitted', ['name' => __('transaction.production_line')]));
+
             $this->reset('production_line');
         } catch (\Throwable $th) {
             return redirect()->route('admin.production-lines.index')->with(['error' => $th->getMessage()]);

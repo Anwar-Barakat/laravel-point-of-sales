@@ -88,13 +88,20 @@ class AccountSeeder extends Seeder
                 'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,
             ],
-
             [
                 'name'              => 'Water Invoices',
                 'number'            => 9,
                 'is_parent'         => 0,
                 'parent_id'         => 6, // Expenses
                 'account_type_id'   => AccountType::where('name->en', 'expense')->first()->id,
+                'notes'             => $faker->sentence(10),
+                'company_id'        => $admin->company->id,
+                'added_by'          => $admin->id,
+            ],
+            [
+                'name'              => 'Parent Production Lines',
+                'number'            => 10,
+                'account_type_id'   => AccountType::where('name->en', 'production_line')->first()->id,
                 'notes'             => $faker->sentence(10),
                 'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,

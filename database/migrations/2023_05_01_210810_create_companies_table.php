@@ -23,6 +23,8 @@ return new class extends Migration
             $table->foreignId('parent_customer_id')->nullable();
             $table->foreignId('parent_vendor_id')->nullable();
             $table->foreignId('parent_delegate_id')->nullable();
+            $table->foreignId('parent_production_line_id')->nullable();
+
             $table->foreignId('admin_id')->constrained()->cascadeOnUpdate();
             $table->timestamps();
         });

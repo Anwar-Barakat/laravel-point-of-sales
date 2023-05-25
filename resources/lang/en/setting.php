@@ -28,6 +28,7 @@ return [
     'parent_c_account'      => 'The parent customers account',
     'parent_v_account'      => 'The parent vendors account',
     'parent_d_account'      => 'The parent delegates account',
+    'parent_p_account'      => 'The parent production lines account',
     'treasury_type'         => 'Treasury type',
 
     //_______________________

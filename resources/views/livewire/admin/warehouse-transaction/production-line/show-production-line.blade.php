@@ -96,7 +96,7 @@
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        @if ($production_line->is_approved == 0)
+                                        @if ($production_line->is_closed == 0)
                                             <a href="{{ route('admin.production-lines.edit', ['production_line' => $production_line]) }}" class="dropdown-item d-flex align-items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />

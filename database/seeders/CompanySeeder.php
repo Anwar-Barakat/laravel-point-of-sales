@@ -27,14 +27,15 @@ class CompanySeeder extends Seeder
                 'ar'    => 'حلول للكمبيوتر',
                 'en'    => 'Computer Solving',
             ],
-            'email'                 => 'company@gmail.com',
-            'alert_msg'             => $faker->sentence(10),
-            'address'               => $faker->address(),
-            'mobile'                => $faker->phoneNumber(),
-            'admin_id'              => $admin->id,
-            'parent_customer_id'    => 1,
-            'parent_vendor_id'      => 2,
-            'parent_delegate_id'    => 3,
+            'email'                         => 'company@gmail.com',
+            'alert_msg'                     => $faker->sentence(10),
+            'address'                       => $faker->address(),
+            'mobile'                        => $faker->phoneNumber(),
+            'admin_id'                      => $admin->id,
+            'parent_customer_id'            => 1,
+            'parent_vendor_id'              => 2,
+            'parent_delegate_id'            => 3,
+            'parent_production_line_id'     => 10,
         ]);
     }
 }

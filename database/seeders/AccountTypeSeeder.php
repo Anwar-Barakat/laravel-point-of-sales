@@ -50,8 +50,8 @@ class AccountTypeSeeder extends Seeder
             ],
             [
                 'name'                          => [
-                    'ar'                        => 'موظف',
-                    'en'                        => 'employee'
+                    'ar'                        => 'خط إنتاج',
+                    'en'                        => 'production_line'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,
@@ -84,6 +84,14 @@ class AccountTypeSeeder extends Seeder
                 'name'                          => [
                     'ar'                        => 'رأس المال',
                     'en'                        => 'capital'
+                ],
+                'related_to_internal_account'   => 0,
+                'added_by'                      => $admin->id,
+            ],
+            [
+                'name'                          => [
+                    'ar'                        => 'موظف',
+                    'en'                        => 'employee'
                 ],
                 'related_to_internal_account'   => 0,
                 'added_by'                      => $admin->id,

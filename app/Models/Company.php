@@ -26,6 +26,7 @@ class Company extends Model implements HasMedia
         'parent_customer_id',
         'parent_vendor_id',
         'parent_delegate_id',
+        'parent_production_line_id'
     ];
 
     public $translatable    = ['name'];
@@ -55,5 +56,10 @@ class Company extends Model implements HasMedia
     public function parentDelegate(): BelongsTo
     {
         return $this->belongsTo(Account::class, 'parent_delegate_id');
+    }
+
+    public function parentProductionLine(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'parent_production_line_id');
     }
 }

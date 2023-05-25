@@ -31,49 +31,6 @@
             </div>
             <div class="row row-cards mb-3">
                 <div class="col-md-12 col-lg-6">
-                    <label class="form-label">
-                        {{ __('setting.company_name_ar') }}
-                        <span class="text-azure-500">( {{ $company->parentCustomer->number ?? '-' }} )</span>
-                    </label>
-                    <select wire:model='company.parent_customer_id' class="form-control">
-                        <option value="">{{ __('btns.select') }}</option>
-                        @foreach ($parent_accounts as $account)
-                            <option value="{{ $account->id }}">{{ $account->name }}</option>
-                        @endforeach
-                    </select>
-                    <x-input-error :messages="$errors->get('parent_customer_id')" class="mt-2" />
-                </div>
-                <div class="col-md-12 col-lg-6">
-                    <label class="form-label">
-                        {{ __('setting.parent_v_account') }}
-                        <span class="text-azure-500">( {{ $company->parentVendor->number ?? '-' }} )</span>
-                    </label>
-                    <select wire:model='company.parent_vendor_id' class="form-control">
-                        <option value="">{{ __('btns.select') }}</option>
-                        @foreach ($parent_accounts as $account)
-                            <option value="{{ $account->id }}">{{ $account->name }}</option>
-                        @endforeach
-                    </select>
-                    <x-input-error :messages="$errors->get('company.parent_vendor_id')" class="mt-2" />
-                </div>
-            </div>
-            <div class="row row-cards mb-3">
-                <div class="col-md-12 col-lg-6">
-                    <label class="form-label">
-                        {{ __('setting.parent_d_account') }}
-                        <span class="text-azure-500">( {{ $company->parentDelegate->number ?? '-' }} )</span>
-                    </label>
-                    <select wire:model='company.parent_delegate_id' class="form-control">
-                        <option value="">{{ __('btns.select') }}</option>
-                        @foreach ($parent_accounts as $account)
-                            <option value="{{ $account->id }}">{{ $account->name }}</option>
-                        @endforeach
-                    </select>
-                    <x-input-error :messages="$errors->get('company.parent_delegate_id')" class="mt-2" />
-                </div>
-            </div>
-            <div class="row row-cards mb-3">
-                <div class="col-md-12 col-lg-6">
                     <x-input-label class="form-label" :value="__('setting.address')" />
                     <textarea class="form-control" rows="3" wire:model="company.address" required></textarea>
                     <x-input-error :messages="$errors->get('company.address')" class="mt-2" />
@@ -91,6 +48,65 @@
                     <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                 </div>
             </div>
+            <hr class="mt-4 mb-3 w-50">
+            <h4 class="mb-4 text-blue">{{ __('account.accounts') }}</h4>
+            <div class="row row-cards mb-3">
+                <div class="col-md-12 col-lg-6">
+                    <label class="form-label">
+                        {{ __('setting.parent_c_account') }}
+                        <span class="text-green-500">( {{ $company->parentCustomer->number ?? '-' }} )</span>
+                    </label>
+                    <select wire:model='company.parent_customer_id' class="form-control">
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach ($parent_accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('parent_customer_id')" class="mt-2" />
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <label class="form-label">
+                        {{ __('setting.parent_v_account') }}
+                        <span class="text-green-500">( {{ $company->parentVendor->number ?? '-' }} )</span>
+                    </label>
+                    <select wire:model='company.parent_vendor_id' class="form-control">
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach ($parent_accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('company.parent_vendor_id')" class="mt-2" />
+                </div>
+            </div>
+            <div class="row row-cards mb-3">
+                <div class="col-md-12 col-lg-6">
+                    <label class="form-label">
+                        {{ __('setting.parent_d_account') }}
+                        <span class="text-green-500">( {{ $company->parentDelegate->number ?? '-' }} )</span>
+                    </label>
+                    <select wire:model='company.parent_delegate_id' class="form-control">
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach ($parent_accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('company.parent_delegate_id')" class="mt-2" />
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <label class="form-label">
+                        {{ __('setting.parent_p_account') }}
+                        <span class="text-green-500">( {{ $company->parentProductionLine->number ?? '-' }} )</span>
+                    </label>
+                    <select wire:model='company.parent_production_line_id' class="form-control">
+                        <option value="">{{ __('btns.select') }}</option>
+                        @foreach ($parent_accounts as $account)
+                            <option value="{{ $account->id }}">{{ $account->name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('company.parent_production_line_id')" class="mt-2" />
+                </div>
+            </div>
+
         </div>
         <div class="card-footer bg-transparent mt-auto">
             <div class="btn-list justify-content-between">

@@ -19,9 +19,9 @@ class CompanyComponent extends Component
 
     public function mount(Company $company)
     {
-        $this->company = $company;
-        $this->name_ar = $company->getTranslation('name', 'ar');
-        $this->name_en = $company->getTranslation('name', 'en');
+        $this->company          = $company;
+        $this->name_ar          = $company->getTranslation('name', 'ar');
+        $this->name_en          = $company->getTranslation('name', 'en');
         $this->parent_accounts  = Account::active()->parent()->get();
     }
 
@@ -60,15 +60,16 @@ class CompanyComponent extends Component
     public function rules(): array
     {
         return [
-            'name_ar' => ['required', 'string', 'min:3'],
-            'name_en' => ['required', 'string', 'min:3'],
-            'company.address' => ['required', 'min:3'],
-            'company.mobile' => ['required'],
-            'company.parent_customer_id' => ['required', 'integer'],
-            'company.parent_vendor_id' => ['required', 'integer'],
-            'company.parent_delegate_id' => ['required', 'integer'],
-            'company.alert_msg' => ['required'],
-            'logo' => ['nullable', 'image', 'max:1024', 'mimes:jpeg,png,jpg,svg'],
+            'name_ar'                               => ['required', 'string', 'min:3'],
+            'name_en'                               => ['required', 'string', 'min:3'],
+            'company.address'                       => ['required', 'min:3'],
+            'company.mobile'                        => ['required'],
+            'company.parent_customer_id'            => ['required', 'integer'],
+            'company.parent_vendor_id'              => ['required', 'integer'],
+            'company.parent_delegate_id'            => ['required', 'integer'],
+            'company.parent_production_line_id'     => ['required', 'integer'],
+            'company.alert_msg'                     => ['required'],
+            'logo'                                  => ['nullable', 'image', 'max:1024', 'mimes:jpeg,png,jpg,svg'],
         ];
     }
 }
