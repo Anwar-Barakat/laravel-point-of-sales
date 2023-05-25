@@ -33,7 +33,6 @@ class ShowServiceInvoice extends Component
         return view('livewire.admin.warehouse-transaction.service-invoice.show-service-invoice', ['services_invoices' => $this->getServiceInvoices()]);
     }
 
-
     public function getServiceInvoices()
     {
 

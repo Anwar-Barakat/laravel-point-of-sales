@@ -11,6 +11,7 @@ class ProductionLine extends Model
 
     protected $fillable = [
         'plan',
+        'plan_date',
         'is_approved',
         'approved_by',
         'approved_at',
