@@ -51,7 +51,7 @@ class AddEditCustomer extends Component
                     break;
             }
 
-            $this->customer['company_id']       = get_auth_com();
+            $this->customer->company_id         = get_auth_com();
             $this->customer->save();
 
             if (!$this->customer->account)

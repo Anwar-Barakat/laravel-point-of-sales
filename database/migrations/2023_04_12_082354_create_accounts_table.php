@@ -30,6 +30,8 @@ return new class extends Migration
             $table->foreignId('customer_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('vendor_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('delegate_id')->nullable();
+            $table->foreignId('production_line_id')->nullable();
+
             $table->foreignId('company_id');
             $table->timestamps();
         });
