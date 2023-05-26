@@ -189,7 +189,7 @@
                     <!---------------------------
                     Stocks
                     -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') || request()->routeIs('admin.customers.*') || request()->routeIs('admin.delegates.*') || request()->routeIs('admin.vendors.*') || request()->routeIs('admin.stores-inventories.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.sections.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.stores.*') || request()->routeIs('admin.items.*') || request()->routeIs('admin.stores-inventories.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-warehouse" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -270,7 +270,7 @@
                     <!---------------------------
                     Accounts
                      -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') || request()->routeIs('admin.collect-transactions') || request()->routeIs('admin.exchange-transactions') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.account-types.*') || request()->routeIs('admin.financial-accounts.*') || request()->routeIs('admin.collect-transactions') || request()->routeIs('admin.exchange-transactions') || request()->routeIs('admin.customers.*') || request()->routeIs('admin.delegates.*') || request()->routeIs('admin.vendors.*') || request()->routeIs('admin.workshops.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -333,7 +333,7 @@
                                             </svg>
                                         </span>
                                         <span class="nav-link-title">
-                                            {{ __('stock.customers') }}
+                                            {{ __('account.accounts_of', ['name' => __('stock.customers')]) }}
                                         </span>
                                     </a>
 
@@ -349,7 +349,7 @@
                                             </svg>
                                         </span>
                                         <span class="nav-link-title">
-                                            {{ __('stock.vendors') }}
+                                            {{ __('account.accounts_of', ['name' => __('stock.vendors')]) }}
                                         </span>
                                     </a>
 
@@ -365,7 +365,23 @@
                                             </svg>
                                         </span>
                                         <span class="nav-link-title">
-                                            {{ __('transaction.delegates') }}
+                                            {{ __('account.accounts_of', ['name' => __('stock.delegates')]) }}
+                                        </span>
+                                    </a>
+
+                                    <!-- workshops -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.workshops.index') ? 'active' : '' }}" href="{{ route('admin.workshops.index') }}"">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-dollar" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h3"></path>
+                                                <path d="M21 15h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5"></path>
+                                                <path d="M19 21v1m0 -8v1"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('account.accounts_of', ['name' => __('account.workshops')]) }}
                                         </span>
                                     </a>
                                 </div>

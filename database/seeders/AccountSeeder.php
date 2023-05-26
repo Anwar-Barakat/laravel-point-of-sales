@@ -101,7 +101,7 @@ class AccountSeeder extends Seeder
             [
                 'name'              => 'Parent Production Lines',
                 'number'            => 10,
-                'account_type_id'   => AccountType::where('name->en', 'production_line')->first()->id,
+                'account_type_id'   => AccountType::where('name->en', 'workshop')->first()->id,
                 'notes'             => $faker->sentence(10),
                 'company_id'        => $admin->company->id,
                 'added_by'          => $admin->id,

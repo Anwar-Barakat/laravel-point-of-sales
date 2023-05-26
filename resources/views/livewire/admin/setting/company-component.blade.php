@@ -95,15 +95,15 @@
                 <div class="col-md-12 col-lg-6">
                     <label class="form-label">
                         {{ __('setting.parent_p_account') }}
-                        <span class="text-green-500">( {{ $company->parentProductionLine->number ?? '-' }} )</span>
+                        <span class="text-green-500">( {{ $company->parentWorkshop->number ?? '-' }} )</span>
                     </label>
-                    <select wire:model='company.parent_production_line_id' class="form-control">
+                    <select wire:model='company.parent_workshop_id' class="form-control">
                         <option value="">{{ __('btns.select') }}</option>
                         @foreach ($parent_accounts as $account)
                             <option value="{{ $account->id }}">{{ $account->name }}</option>
                         @endforeach
                     </select>
-                    <x-input-error :messages="$errors->get('company.parent_production_line_id')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('company.parent_workshop_id')" class="mt-2" />
                 </div>
             </div>
 

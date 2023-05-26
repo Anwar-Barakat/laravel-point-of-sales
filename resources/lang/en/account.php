@@ -51,7 +51,6 @@ return [
     //_______________________
     // treasury transation
     //_______________________
-
     'collect_transactions'      => 'Collect transactions',
     'collect_transaction'       => 'Collect transaction',
     'exchange_transactions'     => 'Exchange transactions',
@@ -68,10 +67,18 @@ return [
     'cash_collection_screen'    => 'Cash collection screen',
     'cash_exchange_screen'      => 'Cash exchange screen',
     'click_here'                => 'Click here',
-
+    'accounts_of'               => 'Accounts of :name',
 
 
     'treasury_available_balance'    => 'Treasury available balance',
     'dont_have_open_shift'          => 'You don\'t have an open shift to be able to deal with treasury transaction',
     'not_enough_balance'            => 'There is not enough balance in the safe at the moment',
+
+
+    //_______________________
+    // workshops
+    //_______________________
+    'workshops'                 => 'Workshops',
+    'workshop'                  => 'Workshop',
+    'workshop_name'             => 'Workshop name',
 ];

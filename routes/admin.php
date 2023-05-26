@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Account\AccountType\AccountTypeController;
 use App\Http\Controllers\Admin\Account\CollectTransaction\CollectTransactionController;
 use App\Http\Controllers\Admin\Account\ExchangeTransaction\ExchangeTransactionController;
 use App\Http\Controllers\Admin\Account\FinancialAccount\AccountController;
+use App\Http\Controllers\Admin\Account\Workshop\WorkshopController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -146,6 +147,11 @@ Route::group(
                 // Delegates
                 //_______________________
                 Route::resource('delegates',                    DelegateController::class)->except('store', 'update');
+
+                //_______________________
+                // Workshops
+                //_______________________
+                Route::resource('workshops',                    WorkshopController::class)->except('store', 'update');
 
 
                 //_______________________

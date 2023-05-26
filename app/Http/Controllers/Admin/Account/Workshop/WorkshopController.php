@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Account\Workshop;
 
-use App\Http\Requests\StoreWorkshopRequest;
-use App\Http\Requests\UpdateWorkshopRequest;
+
 use App\Models\Workshop;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class WorkshopController extends Controller
 {
@@ -13,7 +14,7 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.accounts.workshops.index');
     }
 
     /**
@@ -21,13 +22,13 @@ class WorkshopController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.accounts.workshops.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkshopRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -45,13 +46,13 @@ class WorkshopController extends Controller
      */
     public function edit(Workshop $workshop)
     {
-        //
+        return view('admin.accounts.workshops.edit', ['workshop' => $workshop]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateWorkshopRequest $request, Workshop $workshop)
+    public function update(Request $request, Workshop $workshop)
     {
         //
     }

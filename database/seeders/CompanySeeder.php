@@ -35,7 +35,7 @@ class CompanySeeder extends Seeder
             'parent_customer_id'            => 1,
             'parent_vendor_id'              => 2,
             'parent_delegate_id'            => 3,
-            'parent_production_line_id'     => 10,
+            'parent_workshop_id'     => 10,
         ]);
     }
 }

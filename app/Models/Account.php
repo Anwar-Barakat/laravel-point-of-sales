@@ -28,6 +28,7 @@ class Account extends Model
         'customer_id',
         'vendor_id',
         'delegate_id',
+        'workshop_id',
     ];
 
     const INITIALBANALNCESTATUS = [1 => 'balanced', 2 => 'credit', 3 => 'debit'];

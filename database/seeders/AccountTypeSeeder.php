@@ -50,8 +50,8 @@ class AccountTypeSeeder extends Seeder
             ],
             [
                 'name'                          => [
-                    'ar'                        => 'خط إنتاج',
-                    'en'                        => 'production_line'
+                    'ar'                        => 'ورشة عمل',
+                    'en'                        => 'workshop'
                 ],
                 'related_to_internal_account'   => 1,
                 'added_by'                      => $admin->id,

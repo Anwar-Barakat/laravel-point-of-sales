@@ -66,10 +66,18 @@ return [
     'cash_collection_screen'    => 'شاشة تحصيل النقدية',
     'cash_exchange_screen'      => 'شاشة صرف النقدية',
     'click_here'                => 'إضغط هنا',
+    'accounts_of'               => 'حسابات :name',
 
 
     'treasury_available_balance'    => 'رصيد الخزينة المتوفر',
     'dont_have_open_shift'          => 'ليس لديك مناوبة مفتوحة لتتمكن من التعامل مع معاملات الخزينة',
     'not_enough_balance'            => 'لا يوجد رصيد كافي في الخزنة حالياً',
+
+    //_______________________
+    // workshops
+    //_______________________
+    'workshops'                 => 'ورش عمل',
+    'workshop'                  => 'ورشة عمل',
+    'workshop_name'             => 'اسم ورشة العمل',
 
 ];

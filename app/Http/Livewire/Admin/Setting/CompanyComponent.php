@@ -67,7 +67,7 @@ class CompanyComponent extends Component
             'company.parent_customer_id'            => ['required', 'integer'],
             'company.parent_vendor_id'              => ['required', 'integer'],
             'company.parent_delegate_id'            => ['required', 'integer'],
-            'company.parent_production_line_id'     => ['required', 'integer'],
+            'company.parent_workshop_id'     => ['required', 'integer'],
             'company.alert_msg'                     => ['required'],
             'logo'                                  => ['nullable', 'image', 'max:1024', 'mimes:jpeg,png,jpg,svg'],
         ];
