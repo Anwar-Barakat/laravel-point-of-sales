@@ -36,6 +36,13 @@ class ItemTransactionCategorySeeder extends Seeder
                     'ar'        => 'حركة على المخازن',
                 ],
             ],
+            [
+                'id'            => 4,
+                'name'          => [
+                    'en'        => 'Transaction on workshops',
+                    'ar'        => 'حركة على ورش العمل',
+                ],
+            ],
         ];
 
         foreach ($categories as $category) {

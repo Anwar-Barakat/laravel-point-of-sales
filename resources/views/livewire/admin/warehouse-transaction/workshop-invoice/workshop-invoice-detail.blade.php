@@ -4,10 +4,11 @@
             <div class="card">
                 <div class="card-header flex justify-content-between items-center">
                     <h3 class="card-title">{{ __('msgs.main_info') }}</h3>
-                    @if ($invoice->is_approved == 0 && $workshopItems->count() > 0)
+                    @if ($invoice->is_approved == 0 && $workshopInvoiceItems->count() > 0)
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approval-modal">{{ __('btns.approval') }}</button>
                     @endif
-                    {{-- @livewire('admin.warehouse-transaction.sale.sale-approval', ['sale' => $sale]) --}}
+
+                    @livewire('admin.warehouse-transaction.workshop-invoice.workshop-invoice-approval', ['invoice' => $invoice])
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>
@@ -205,7 +206,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($workshopItems as $product)
+                            @forelse ($workshopInvoiceItems as $product)
                                 <tr>
                                     <td>{{ $product->id }}</td>
                                     <td>
@@ -261,9 +262,9 @@
                             @endforelse
                         </tbody>
                     </table>
-                    @if ($workshopItems->count() > 0)
+                    @if ($workshopInvoiceItems->count() > 0)
                         <div class="p-3 mt-2">
-                            {{ $workshopItems->links('pagination::bootstrap-5') }}
+                            {{ $workshopInvoiceItems->links('pagination::bootstrap-5') }}
                         </div>
                     @endif
                 </div>

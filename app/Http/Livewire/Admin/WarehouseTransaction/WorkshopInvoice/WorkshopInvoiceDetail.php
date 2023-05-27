@@ -154,7 +154,7 @@ class WorkshopInvoiceDetail extends Component
 
     public function render()
     {
-        return view('livewire.admin.warehouse-transaction.workshop-invoice.workshop-invoice-detail', ['workshopItems' => $this->getWorkshopItems()]);
+        return view('livewire.admin.warehouse-transaction.workshop-invoice.workshop-invoice-detail', ['workshopInvoiceItems' => $this->getWorkshopInvoiceItems()]);
     }
 
     public function rules(): array
@@ -176,7 +176,7 @@ class WorkshopInvoiceDetail extends Component
     }
 
 
-    public function getWorkshopItems()
+    public function getWorkshopInvoiceItems()
     {
         return WorkshopInvoiceItem::where('workshop_invoice_id', $this->invoice->id)
             ->where('company_id', get_auth_com())->paginate(CUSTOM_PAGINATION - 5);

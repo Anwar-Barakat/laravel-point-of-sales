@@ -87,7 +87,7 @@ class ItemTransactionTypeSeeder extends Seeder
             [
                 'id'            => 11,
                 'name'          => [
-                    'en'        => 'Disbursement of raw materials for the manufacturing line',
+                    'en'        => 'Disbursement of raw materials for the production line',
                     'ar'        => 'صرف خامات لخط التصنيع',
                 ],
             ],

@@ -17,7 +17,6 @@ if (!function_exists('get_unit_price')) {
 }
 
 if (!function_exists('getBatches')) {
-
     function getBatches($prod, $item = null)
     {
         return ItemBatch::select('id', 'unit_price', 'qty', 'production_date', 'expiration_date')
@@ -27,5 +26,26 @@ if (!function_exists('getBatches')) {
             ->when($prod->unit_id,     fn ($q) => $q->where(['unit_id'     => $prod->item->parentUnit->id]))
             ->when($prod->item->type == 2,      fn ($q) => $q->orderBy('production_date', 'asc'))
             ->latest()->get();
+    }
+}
+
+
+// Apprving Invoice Methods
+
+
+if (!function_exists('get_tax_value')) {
+    function get_tax_value($invoice)
+    {
+        return $invoice->tax_type == 0
+            ? ($invoice->items_cost * floatval($invoice->tax_value)) / 100
+            : floatval($invoice->tax_value);
+    }
+}
+if (!function_exists('get_discount_value')) {
+    function get_discount_value($invoice)
+    {
+        return $invoice->discount_type == 0
+            ? (floatval($invoice->items_cost) * floatval($invoice->discount_value)) / 100
+            : floatval($invoice->discount_value);
     }
 }
