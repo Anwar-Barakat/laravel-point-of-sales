@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('workshop_invoices', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->comment('1 => exchnage of raw materials, 2 => general exchange of raw materials return');
+            $table->tinyInteger('type')->comment('1 =>  Raw material exchange, 2 => Return for exchange of raw materials');
 
             $table->boolean('invoice_type');
             $table->date('invoice_date');

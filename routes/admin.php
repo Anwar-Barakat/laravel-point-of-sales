@@ -40,6 +40,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfControlle
 use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceBillController;
 use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
+use App\Http\Controllers\Admin\WarehouseTransaction\WorkshopInvoice\WorkshopInvoiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -152,7 +153,7 @@ Route::group(
                 // Workshops
                 //_______________________
                 Route::resource('workshops',                    WorkshopController::class)->except('store', 'update');
-
+                Route::resource('workshop-invoices',            WorkshopInvoiceController::class)->except('store', 'update');
 
                 //_______________________
                 // Account types

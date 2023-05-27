@@ -157,8 +157,10 @@ return [
     //_______________________
     // workshop invoices
     //_______________________
-    'rawـmaterial_exchange' => 'Raw material exchange',
+    'workshops_invoices'                    => 'workshops invoices',
+    'workshops_invoice'                     => 'workshop invoice',
+    'rawـmaterial_exchange'                 => 'Raw material exchange',
+    'return_for_exchange_of_raw_materials'  => 'Return for exchange of raw materials',
 
-    'rawـmaterial_exchange' => 'صرف مواد خام',
 
 ];

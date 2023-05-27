@@ -150,4 +150,14 @@ return [
     'rejected'                  => 'مرفوض',
     'production_plan'           => 'خطة الإنتاج',
     'production_plan_date'      => 'تاريخ خطة الإنتاج',
+
+
+
+    //_______________________
+    // workshop invoices
+    //_______________________
+    'workshops_invoices'                    => 'فواتير ورش العمل',
+    'workshop_invoice'                      => 'فاتورة ورشة العمل',
+    'rawـmaterial_exchange'                 => 'صرف مواد خام',
+    'return_for_exchange_of_raw_materials'  => 'مرتجع لصرف مواد خام',
 ];

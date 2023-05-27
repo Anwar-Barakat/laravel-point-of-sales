@@ -14,7 +14,7 @@ class WorkshopInvoice extends Model
     protected $guarded  = [];
 
     const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
-    const WORKSHOPTYPE  = [1 => 'exchange_of_raw_materials', 2 => 'general_exchange_of_raw_materials_return'];
+    const WORKSHOPTYPE  = [1 => 'rawـmaterial_exchange', 2 => 'return_for_exchange_of_raw_materials'];
 
     public function scopeByTypeAndCompany($query, $type)
     {

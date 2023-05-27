@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\WarehouseTransaction\WorkshopInvoice;
 
-use App\Http\Requests\StoreWorkshopInvoiceRequest;
-use App\Http\Requests\UpdateWorkshopInvoiceRequest;
+
 use App\Models\WorkshopInvoice;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class WorkshopInvoiceController extends Controller
 {
@@ -13,7 +14,7 @@ class WorkshopInvoiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.warehouse-transactions.workshop-invoices.index');
     }
 
     /**
@@ -21,13 +22,13 @@ class WorkshopInvoiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.warehouse-transactions.workshop-invoices.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkshopInvoiceRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,23 +36,23 @@ class WorkshopInvoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(WorkshopInvoice $workshopInvoice)
+    public function show(WorkshopInvoice $workshop_invoice)
     {
-        //
+        return view('admin.warehouse-transactions.workshop-invoices.show', ['workshop_invoice' => $workshop_invoice]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WorkshopInvoice $workshopInvoice)
+    public function edit(WorkshopInvoice $workshop_invoice)
     {
-        //
+        return view('admin.warehouse-transactions.workshop-invoices.edit', ['workshop_invoice' => $workshop_invoice]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateWorkshopInvoiceRequest $request, WorkshopInvoice $workshopInvoice)
+    public function update(Request $request, WorkshopInvoice $workshopInvoice)
     {
         //
     }

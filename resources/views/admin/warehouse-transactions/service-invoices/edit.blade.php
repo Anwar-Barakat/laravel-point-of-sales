@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="row g-0">
-            <livewire:admin.warehouse-transaction.service-invoice.add-edit-service-invoice :invoice='$services_invoice'>
+            @livewire('admin.warehouse-transaction.service-invoice.add-edit-service-invoice', ['invoice' => $services_invoice])
         </div>
     </div>
 
