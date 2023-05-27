@@ -15,9 +15,9 @@ class WorkshopInvoice extends Model
 
     const INVOICETYPE   = [0 => 'cash', 1 => 'delayed'];
 
-    public function scopeByTypeAndCompany($query, $type)
+    public function scopeActive($query)
     {
-        return $query->where(['type' => $type, 'company_id' => get_auth_com()]);
+        return $query->where(['company_id' => get_auth_com()]);
     }
 
     public function addedBy(): BelongsTo
@@ -28,6 +28,11 @@ class WorkshopInvoice extends Model
     public function workshop(): BelongsTo
     {
         return $this->belongsTo(Workshop::class, 'workshop_id');
+    }
+
+    public function production_line(): BelongsTo
+    {
+        return $this->belongsTo(ProductionLine::class, 'production_line_id');
     }
 
     public function store(): BelongsTo
