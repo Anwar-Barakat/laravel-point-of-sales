@@ -25,19 +25,14 @@ class WorkshopInvoice extends Model
         return $this->belongsTo(Admin::class, 'added_by');
     }
 
-    public function vendor(): BelongsTo
+    public function workshop(): BelongsTo
     {
-        return $this->belongsTo(Vendor::class, 'vendor_id');
+        return $this->belongsTo(Workshop::class, 'workshop_id');
     }
 
     public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class, 'store_id');
-    }
-
-    public function account(): BelongsTo
-    {
-        return $this->belongsTo(Account::class, 'account_id');
     }
 
     public function workshopItems(): HasMany

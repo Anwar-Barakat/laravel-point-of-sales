@@ -35,7 +35,7 @@ class Workshop extends Model
 
     public function scopeActive($query)
     {
-        return $query->where(['is_active' => 1]);
+        return $query->where(['is_active' => 1, 'company_id' => get_auth_com()]);
     }
 
     public function account()

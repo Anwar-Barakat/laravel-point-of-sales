@@ -59,13 +59,13 @@
                                     {{ __('account.accounts_of', ['name' => __('account.workshops')]) }}
                                     (<a href="{{ route('admin.workshops.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('account.account')]) }}">{{ __('msgs.add_new') }}</a>)
                                 </label>
-                                <select class="form-select" wire:model.debounce.500s='invoice.account_id'>
+                                <select class="form-select" wire:model.debounce.500s='invoice.workshop_id'>
                                     <option value="">{{ __('btns.select') }}</option>
-                                    @foreach ($accounts as $account)
-                                        <option value="{{ $account->id }}">{{ $account->name }}</option>
+                                    @foreach ($workshops as $workshop)
+                                        <option value="{{ $workshop->id }}">{{ $workshop->name }}</option>
                                     @endforeach
                                 </select>
-                                <x-input-error :messages="$errors->get('invoice.account_id')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('invoice.workshop_id')" class="mt-2" />
                             </div>
                         </div>
                     </div>

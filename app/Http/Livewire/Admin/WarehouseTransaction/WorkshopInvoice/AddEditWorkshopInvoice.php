@@ -15,7 +15,7 @@ class AddEditWorkshopInvoice extends Component
 
     public $production_lines    = [],
         $stores       = [],
-        $accounts       = [];
+        $workshops       = [];
 
     public function mount(WorkshopInvoice $invoice)
     {
@@ -23,9 +23,7 @@ class AddEditWorkshopInvoice extends Component
         $this->invoice->invoice_date    = date('Y-m-d');
         $this->stores                   = Store::select('id', 'name')->active()->get();
         $this->production_lines         = ProductionLine::select('id', 'plan')->closed()->get();
-        $this->accounts                 = Account::whereHas('accountType', function ($q) {
-            $q->where('name->en', 'workshop');
-        })->active()->get();
+        $this->workshops                = Workshop::active()->get();
     }
 
     public function updated($fields)
@@ -43,7 +41,7 @@ class AddEditWorkshopInvoice extends Component
             $this->invoice->save();
 
             toastr()->success(__('msgs.submitted', ['name' => __('transaction.service_invoice')]));
-            return redirect()->route('admin.workshop-invoices.show', ['services_invoice' => $this->invoice]);
+            return redirect()->route('admin.workshop-invoices.show', ['workshop_invoice' => $this->invoice]);
         } catch (\Throwable $th) {
             return redirect()->route('admin.workshops.index')->with(['error' => $th->getMessage()]);
         }
@@ -58,7 +56,7 @@ class AddEditWorkshopInvoice extends Component
     {
         return [
             'invoice.production_line_id'    => ['required', 'integer'],
-            'invoice.account_id'            => ['required', 'integer'],
+            'invoice.workshop_id'           => ['required', 'integer'],
             'invoice.store_id'              => ['required', 'integer'],
             'invoice.invoice_date'          => ['required', 'date'],
             'invoice.notes'                 => ['required', 'min:10'],

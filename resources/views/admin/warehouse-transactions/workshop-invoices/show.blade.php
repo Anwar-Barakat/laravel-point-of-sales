@@ -1,6 +1,7 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\Order::ORDERTYPE[$order->type])]))
-    @section('breadcrumbTitle', __('msgs.details', ['name' => __('transaction.' . App\Models\Order::ORDERTYPE[$order->type])]))
-    @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
+    @section('pageTitle', __('msgs.details', ['name' => __('transaction.workshop_invoice')]))
+    @section('breadcrumbTitle', __('msgs.details', ['name' => __('transaction.workshop_invoice')]))
+    @section('breadcrumbSubtitle', __('transaction.workshops_invoices'))
 
+    @livewire('admin.warehouse-transaction.workshop-invoice.workshop-invoice-detail', ['invoice' => $workshop_invoice])
 </x-master-layout>
