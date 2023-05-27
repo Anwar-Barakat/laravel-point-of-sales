@@ -151,4 +151,14 @@ return [
     'rejected'                  => 'Rejected',
     'production_plan'           => 'Production plan',
     'production_plan_date'      => 'Production plan date',
+
+
+
+    //_______________________
+    // workshop invoices
+    //_______________________
+    'rawـmaterial_exchange' => 'Raw material exchange',
+
+    'rawـmaterial_exchange' => 'صرف مواد خام',
+
 ];
