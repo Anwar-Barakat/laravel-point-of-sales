@@ -85,7 +85,7 @@
                             <td>{{ $production_line->plan_date }}</td>
                             <td>
                                 <div>
-                                    <button wire:click='updateStatus({{ $production_line->id }})' class="btn position-relative">
+                                    <button wire:click='updateStatus({{ $production_line }})' class="btn position-relative {{ $production_line->is_closed == 1 ? ' pointer-events-none' : '' }}">
                                         {{ $production_line->is_closed ? __('stock.closed') : __('stock.opened') }}
                                         <span class="badge {{ $production_line->is_closed ? 'bg-red' : 'bg-green' }} badge-notification badge-blink"></span>
                                     </button>
@@ -96,25 +96,16 @@
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>
                                     <div class="dropdown-menu dropdown-menu-end">
+                                        <a href="{{ route('admin.production-lines.edit', ['production_line' => $production_line]) }}" class="dropdown-item d-flex align-items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                <path d="M16 5l3 3" />
+                                            </svg>
+                                            <span>{{ __('btns.edit') }}</span>
+                                        </a>
                                         @if ($production_line->is_closed == 0)
-                                            <a href="{{ route('admin.production-lines.edit', ['production_line' => $production_line]) }}" class="dropdown-item d-flex align-items-center gap-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                                    <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                                    <path d="M16 5l3 3" />
-                                                </svg>
-                                                <span>{{ __('btns.edit') }}</span>
-                                            </a>
-
-                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.production-lines.show', ['production_line' => $production_line]) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 5l0 14" />
-                                                    <path d="M5 12l14 0" />
-                                                </svg>
-                                                <span>{{ __('transaction.add_services') }}</span>
-                                            </a>
                                             <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $production_line->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -127,25 +118,6 @@
                                                 <span>{{ __('btns.delete') }}</span>
                                             </a>
                                         @else
-                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.production-lines.show', ['production_line' => $production_line]) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
-                                                </svg>
-                                                <span>{{ __('btns.details') }}</span>
-                                            </a>
-                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.production-lines.invoice', ['production_line' => $production_line]) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-info" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                                                    <path d="M9 7l1 0" />
-                                                    <path d="M9 13l6 0" />
-                                                    <path d="M13 17l2 0" />
-                                                </svg>
-                                                <span>{{ __('transaction.invoice') }}</span>
-                                            </a>
                                             <a href="javascript:;" class="dropdown-item d-flex align-items-center gap-1 cursor-not-allowed">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />

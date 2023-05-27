@@ -21,4 +21,9 @@ class ProductionLine extends Model
         'closed_at',
         'company_id',
     ];
+
+    public function scopeClosed($query)
+    {
+        return $query->where(['is_closed' => 1, 'company_id' => get_auth_com()]);
+    }
 }

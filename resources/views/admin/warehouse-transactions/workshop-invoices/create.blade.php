@@ -1,13 +1,7 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.create', ['name' => __('transaction.purchase_bill')]))
-    @section('breadcrumbTitle', __('msgs.create', ['name' => __('transaction.purchase_bill')]))
-    @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
+    @section('pageTitle', __('msgs.create', ['name' => __('transaction.workshop_invoice')]))
+    @section('breadcrumbTitle', __('msgs.create', ['name' => __('transaction.workshop_invoice')]))
+    @section('breadcrumbSubtitle', __('transaction.workshops_invoices'))
 
-
-    <div class="card">
-        <div class="row g-0">
-            <livewire:admin.warehouse-transaction.service-invoice.add-edit-service-invoice>
-        </div>
-    </div>
-
+    @livewire('admin.warehouse-transaction.workshop-invoice.add-edit-workshop-invoice')
 </x-master-layout>

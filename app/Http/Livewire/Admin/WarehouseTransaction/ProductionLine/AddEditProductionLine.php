@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class AddEditProductionLine extends Component
 {
-    public  $production_line;
+    public  ProductionLine $production_line;
 
     public function mount(ProductionLine $production_line)
     {
@@ -29,8 +29,7 @@ class AddEditProductionLine extends Component
             $this->production_line->company_id  = get_auth_com();
             $this->production_line->save();
             toastr()->success(__('msgs.submitted', ['name' => __('transaction.production_line')]));
-
-            $this->reset('production_line');
+            return redirect()->route('admin.production-lines.index');
         } catch (\Throwable $th) {
             return redirect()->route('admin.production-lines.index')->with(['error' => $th->getMessage()]);
         }

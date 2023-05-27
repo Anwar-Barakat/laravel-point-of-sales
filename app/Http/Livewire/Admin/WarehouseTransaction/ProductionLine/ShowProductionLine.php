@@ -24,6 +24,12 @@ class ShowProductionLine extends Component
         $this->production_from_date = date('Y-m-d');
     }
 
+    public function updateStatus(ProductionLine $production_line)
+    {
+        if ($production_line->is_closed == 0)
+            $production_line->update(['is_closed' => !$production_line->is_clsoed]);
+    }
+
     public function render()
     {
         return view('livewire.admin.warehouse-transaction.production-line.show-production-line', ['production_lines' => $this->getProductionLines()]);

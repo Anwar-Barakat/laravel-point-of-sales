@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('workshop_invoices', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->comment('1 =>  Raw material exchange, 2 => Return for exchange of raw materials');
-
             $table->boolean('invoice_type');
             $table->date('invoice_date');
             $table->boolean('is_approved')->default(0);
@@ -37,7 +35,6 @@ return new class extends Migration
 
 
             $table->foreignId('production_line_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('vendor_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('account_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();

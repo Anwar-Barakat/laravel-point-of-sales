@@ -1,6 +1,6 @@
 <x-master-layout>
-    @section('pageTitle', __('msgs.list', ['name' => __('transaction.purchase_bills')]))
-    @section('breadcrumbTitle', __('msgs.list', ['name' => __('transaction.purchase_bills')]))
-    @section('breadcrumbSubtitle', __('transaction.warehouse_transactions'))
+    @section('pageTitle', __('msgs.list', ['name' => __('transaction.workshops_invoices')]))
+    @section('breadcrumbTitle', __('msgs.list', ['name' => __('transaction.workshops_invoices')]))
+    @section('breadcrumbSubtitle', __('transaction.workshops_invoices'))
 
 </x-master-layout>
