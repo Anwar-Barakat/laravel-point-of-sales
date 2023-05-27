@@ -5,7 +5,14 @@ use App\Models\ItemBatch;
 if (!function_exists('calc_total_price')) {
     function calc_total_price($product)
     {
-        return $product->total_price = intval($product->qty) * floatval($product->unit_price);;
+        return $product->total_price = intval($product->qty) * floatval($product->unit_price);
+    }
+}
+
+if (!function_exists('get_unit_price')) {
+    function get_unit_price($unit, $batch)
+    {
+        return $unit->status == 'retail' ? $batch->unit_price / $batch->item->retail_count_for_wholesale : $batch->unit_price;
     }
 }
 

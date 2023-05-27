@@ -9,6 +9,7 @@ use App\Models\Unit;
 use App\Models\Workshop;
 use App\Models\WorkshopInvoice;
 use App\Models\WorkshopInvoiceItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -20,7 +21,7 @@ class WorkshopInvoiceDetail extends Component
     use WithPagination;
 
     public WorkshopInvoice $invoice;
-    public WorkshopInvoiceItem $product;
+    public $product;
 
     public $stores         = [],
         $items          = [];
@@ -67,13 +68,17 @@ class WorkshopInvoiceDetail extends Component
     {
         $this->getItemAndUnit();
         $this->batches  = getBatches($this->product);
-        calc_total_price($this->product);
+
+        if ($this->batch) {
+            $this->product->unit_price = get_unit_price($this->unit, $this->batch);
+            calc_total_price($this->product);
+        }
     }
 
     public function updatedProductItemBatchId($value)
     {
         $this->batch = ItemBatch::findOrFail($value);
-        $this->product->unit_price = $this->batch->unit_price;
+        $this->product->unit_price = get_unit_price($this->unit, $this->batch);
         calc_total_price($this->product);
     }
 
@@ -96,6 +101,57 @@ class WorkshopInvoiceDetail extends Component
             calc_total_price($this->product);
     }
 
+    public function submit()
+    {
+        $this->validate();
+        try {
+            DB::beginTransaction();
+
+            $this->product->fill([
+                'workshop_invoice_id'   => $this->invoice->id,
+                'added_by'              => get_auth_id(),
+                'company_id'            => get_auth_com(),
+            ])->save();
+
+            $totalPrices = WorkshopInvoiceItem::where('workshop_invoice_id', $this->invoice->id)->where('company_id', get_auth_com())->sum('total_price');
+            $this->invoice->fill([
+                'items_cost'            => $totalPrices,
+                'cost_before_discount'  => $totalPrices,
+                'cost_after_discount'   => $totalPrices,
+            ])->save();
+
+            DB::commit();
+            toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
+            $this->emit('updateWorkshopProducts', ['invoice' => $this->invoice]);
+            $this->reset('product');
+            $this->product =  new WorkshopInvoiceItem();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('admin.workshop-invoices.show', ['workshop_invoice' => $this->invoice])->with(['error' => $th->getMessage()]);
+        }
+    }
+
+    public function edit(WorkshopInvoiceItem $product)
+    {
+        $this->product          = $product;
+        $this->batches          = getBatches($this->product);
+        $this->getItemAndUnit();
+    }
+
+    public function delete(WorkshopInvoiceItem $product)
+    {
+        $product->delete();
+        $totalPrices = WorkshopInvoiceItem::where('workshop_invoice_id', $this->invoice->id)->where('company_id', get_auth_com())->sum('total_price');
+        $this->invoice->fill([
+            'items_cost'            => $totalPrices,
+            'cost_before_discount'  => $totalPrices,
+            'cost_after_discount'   => $totalPrices,
+        ])->save();
+
+        $this->emit('updateWorkshopProducts', ['invoice' => $this->invoice]);
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
+    }
+
     public function render()
     {
         return view('livewire.admin.warehouse-transaction.workshop-invoice.workshop-invoice-detail', ['workshopItems' => $this->getWorkshopItems()]);
@@ -104,7 +160,6 @@ class WorkshopInvoiceDetail extends Component
     public function rules(): array
     {
         return [
-            'product.store_id'         => ['required', 'integer'],
             'product.unit_id'          => ['required', 'integer'],
             'product.item_id'          => [
                 'required',

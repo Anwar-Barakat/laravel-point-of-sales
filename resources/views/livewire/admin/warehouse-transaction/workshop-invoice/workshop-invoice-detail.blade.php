@@ -85,21 +85,10 @@
                             <div class="row row-cards">
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-3">
-                                        <label for="" class="form-label">
-                                            {{ __('stock.store') }}
-                                            (<a href="{{ route('admin.stores.index') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
-                                        </label>
-                                        <select class="form-select" wire:model='product.store_id'>
-                                            <option value="">{{ __('btns.select') }}</option>
-                                            @if ($stores)
-                                                @foreach ($stores as $store)
-                                                    <option value="{{ $store->id }}" {{ old('product.store_id') == $store->id ? 'selected' : '' }}>
-                                                        {{ $store->name }}
-                                                    </option>
-                                                @endforeach
-                                            @endif
+                                        <x-input-label class="form-label" :value="__('stock.store')" />
+                                        <select class="form-select" disabled readonly>
+                                            <option value="">{{ $invoice->store->name }}</option>
                                         </select>
-                                        <x-input-error :messages="$errors->get('product.store_id')" class="mt-2" />
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +197,6 @@
                                 <th>{{ __('stock.item_type') }}</th>
                                 <th>{{ __('stock.unit') }}</th>
                                 <th>{{ __('stock.unit_price') }}</th>
-                                <th>{{ __('transaction.sale_type') }}</th>
                                 <th>{{ __('transaction.qty') }}</th>
                                 <th>{{ __('transaction.production_date') }}</th>
                                 <th>{{ __('transaction.expiration_date') }}</th>
@@ -217,37 +205,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($workshopItems as $saleProduct)
+                            @forelse ($workshopItems as $product)
                                 <tr>
-                                    <td>{{ $saleProduct->id }}</td>
+                                    <td>{{ $product->id }}</td>
                                     <td>
-                                        @if ($saleProduct->item->getFirstMediaUrl('items'))
-                                            <img src="{{ $saleProduct->item->getFirstMediaUrl('items') }}" class="img img-thumbnail" alt="{{ $saleProduct->item->name }}" width="80">
+                                        @if ($product->item->getFirstMediaUrl('items'))
+                                            <img src="{{ $product->item->getFirstMediaUrl('items') }}" class="img img-thumbnail" alt="{{ $product->item->name }}" width="80">
                                         @else
-                                            <img src="{{ asset('backend/static/default-show-product.png') }}" class="img img-thumbnail" alt="{{ $saleProduct->item->name }}" width="80">
+                                            <img src="{{ asset('backend/static/default-show-product.png') }}" class="img img-thumbnail" alt="{{ $product->item->name }}" width="80">
                                         @endif
                                     </td>
-                                    <td>{{ $saleProduct->item->name }}</td>
+                                    <td>{{ $product->item->name }}</td>
                                     <td>
                                         <span class="badge bg-blue">
-                                            {{ __('stock.' . App\Models\Item::ITEMTYPE[$saleProduct->item->type]) }}
+                                            {{ __('stock.' . App\Models\Item::ITEMTYPE[$product->item->type]) }}
                                         </span>
                                     </td>
-                                    <td> <span class="badge bg-blue-lt">{{ $saleProduct->unit->name }}</span></td>
-                                    <td>{{ $saleProduct->unit_price }}</td>
-                                    <td>
-                                        <span class="badge bg-azure-lt">
-                                            {{ __('transaction.' . App\Models\SaleProduct::SALETYPE[$saleProduct->sale_type]) }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $saleProduct->qty }}</td>
-                                    <td>{{ $saleProduct->item_batch->production_date ?? '-' }}</td>
-                                    <td>{{ $saleProduct->item_batch->expiration_date ?? '-' }}</td>
-                                    <td class="bg-blue-500">{{ $saleProduct->total_price }}</td>
+                                    <td> <span class="badge bg-blue-lt">{{ $product->unit->name }}</span></td>
+                                    <td>{{ $product->unit_price }}</td>
+                                    <td>{{ $product->qty }}</td>
+                                    <td>{{ $product->item_batch->production_date ?? '-' }}</td>
+                                    <td>{{ $product->item_batch->expiration_date ?? '-' }}</td>
+                                    <td class="bg-blue-500">{{ $product->total_price }}</td>
                                     @if (!$invoice->is_approved == 1)
                                         <td>
                                             <div class="btn-list flex-nowrap justify-content-center">
-                                                <a wire:click.prevent="edit({{ $saleProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                                <a wire:click.prevent="edit({{ $product }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -255,7 +238,7 @@
                                                         <path d="M16 5l3 3" />
                                                     </svg>
                                                 </a>
-                                                <a wire:click.prevent="delete({{ $saleProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
+                                                <a wire:click.prevent="delete({{ $product }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M4 7l16 0" />
