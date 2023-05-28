@@ -30,7 +30,7 @@ class ProductReceiveDetailComponent extends Component
     public function mount(ProductReceive $invoice, ProductReceiveDetail $product)
     {
         $this->invoice                  = $invoice;
-        $this->product                  = $product;
+        $this->product                  = $product ?? new ProductReceiveDetail();
         $this->invoice->invoice_date    = date('Y-m-d');
         $this->product->qty             = 1;
         $this->invoice->is_approved     == 0 ?  $this->items = Item::select('id', 'name')->active()->get() : [];
@@ -74,11 +74,32 @@ class ProductReceiveDetailComponent extends Component
                 $this->emit('updateProductsReceiveDetail', ['invoice' => $this->invoice]);
                 toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
                 $this->reset('product');
-                $this->product = new ProductReceive();
+                $this->product =  ProductReceiveDetail::make();
             }
         } catch (\Throwable $th) {
             DB::rollBack();
         }
+    }
+
+    public function edit(ProductReceiveDetail $product)
+    {
+        $this->product          = $product;
+        $this->item             = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
+        $this->emit('updateProductsReceiveDetail', ['invoice' => $this->invoice]);
+    }
+
+    public function delete(ProductReceiveDetail $product)
+    {
+        $product->delete();
+        $totalPrices = ProductReceiveDetail::where('product_receive_id', $this->invoice->id)->where('company_id', get_auth_com())->sum('total_price');
+        $this->invoice->fill([
+            'items_cost'            => $totalPrices,
+            'cost_before_discount'  => $totalPrices,
+            'cost_after_discount'   => $totalPrices,
+        ])->save();
+
+        $this->emit('updateProductsReceiveDetail', ['invoice' => $this->invoice]);
+        toastr()->info(__('msgs.deleted', ['name' => __('stock.item')]));
     }
 
     public function render()
