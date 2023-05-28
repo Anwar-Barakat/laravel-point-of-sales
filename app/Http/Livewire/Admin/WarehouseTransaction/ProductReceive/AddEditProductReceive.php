@@ -3,26 +3,24 @@
 namespace App\Http\Livewire\Admin\WarehouseTransaction\ProductReceive;
 
 use App\Models\ProductionLine;
-use App\Models\ProductRecieve;
+use App\Models\ProductReceive;
 use App\Models\Store;
 use App\Models\Workshop;
 use Livewire\Component;
 
 class AddEditProductReceive extends Component
 {
-    public ProductRecieve $invoice;
+    public ProductReceive $invoice;
 
     public $production_lines    = [],
-        $stores       = [],
-        $workshops       = [];
+        $stores       = [];
 
-    public function mount(ProductRecieve $invoice)
+    public function mount(ProductReceive $invoice)
     {
         $this->invoice                  = $invoice;
         $this->invoice->invoice_date    = date('Y-m-d');
         $this->stores                   = Store::select('id', 'name')->active()->get();
         $this->production_lines         = ProductionLine::select('id', 'plan')->closed()->get();
-        $this->workshops                = Workshop::active()->get();
     }
 
     public function updated($fields)
@@ -56,7 +54,6 @@ class AddEditProductReceive extends Component
     {
         return [
             'invoice.production_line_id'    => ['required', 'integer'],
-            'invoice.workshop_id'           => ['required', 'integer'],
             'invoice.store_id'              => ['required', 'integer'],
             'invoice.invoice_date'          => ['required', 'date'],
             'invoice.notes'                 => ['required', 'min:10'],

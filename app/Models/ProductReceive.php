@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ProductRecieve extends Model
+class ProductReceive extends Model
 {
     use HasFactory;
 
@@ -42,6 +42,6 @@ class ProductRecieve extends Model
 
     public function productsReceiveDetail(): HasMany
     {
-        return $this->hasMany(ProductRecieveDetail::class);
+        return $this->hasMany(ProductReceiveDetail::class, 'product_receive_id');
     }
 }

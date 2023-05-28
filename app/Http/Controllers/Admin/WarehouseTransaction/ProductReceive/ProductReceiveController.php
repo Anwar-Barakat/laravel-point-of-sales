@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\WarehouseTransaction\ProductReceive;
 
-use App\Models\ProductRecieve;
+use App\Models\ProductReceive;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProductRecieveController extends Controller
+class ProductReceiveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,23 +35,23 @@ class ProductRecieveController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProductRecieve $product_recieve)
+    public function show(ProductReceive $products_receive)
     {
-        return view('admin.warehouse-transactions.products-receive.show', ['product_recieve' => $product_recieve]);
+        return view('admin.warehouse-transactions.products-receive.show', ['products_receive' => $products_receive]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductRecieve $product_recieve)
+    public function edit(ProductReceive $products_receive)
     {
-        return view('admin.warehouse-transactions.products-receive.edit', ['product_recieve' => $product_recieve]);
+        return view('admin.warehouse-transactions.products-receive.edit', ['products_receive' => $products_receive]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductRecieve $productRecieve)
+    public function update(Request $request, ProductReceive $ProductReceive)
     {
         //
     }
@@ -59,7 +59,7 @@ class ProductRecieveController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductRecieve $productRecieve)
+    public function destroy(ProductReceive $ProductReceive)
     {
         //
     }

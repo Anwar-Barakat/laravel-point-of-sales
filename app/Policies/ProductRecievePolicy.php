@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\ProductRecieve;
+use App\Models\ProductReceive;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class ProductRecievePolicy
+class ProductReceivePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class ProductRecievePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, ProductRecieve $productRecieve): bool
+    public function view(User $user, ProductReceive $ProductReceive): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class ProductRecievePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, ProductRecieve $productRecieve): bool
+    public function update(User $user, ProductReceive $ProductReceive): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class ProductRecievePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, ProductRecieve $productRecieve): bool
+    public function delete(User $user, ProductReceive $ProductReceive): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class ProductRecievePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, ProductRecieve $productRecieve): bool
+    public function restore(User $user, ProductReceive $ProductReceive): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class ProductRecievePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, ProductRecieve $productRecieve): bool
+    public function forceDelete(User $user, ProductReceive $ProductReceive): bool
     {
         //
     }

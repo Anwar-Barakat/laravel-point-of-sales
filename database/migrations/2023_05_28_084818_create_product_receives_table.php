@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_recieves', function (Blueprint $table) {
+        Schema::create('product_receives', function (Blueprint $table) {
             $table->id();
             $table->boolean('invoice_type');
             $table->date('invoice_date');
@@ -35,7 +35,6 @@ return new class extends Migration
 
 
             $table->foreignId('production_line_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('workshop_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_id')->nullable()->constrained()->cascadeOnUpdate();
             $table->foreignId('treasury_transaction_id')->nullable();
@@ -51,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_recieves');
+        Schema::dropIfExists('product_receives');
     }
 };

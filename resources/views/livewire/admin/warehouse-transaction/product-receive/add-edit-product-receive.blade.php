@@ -53,21 +53,6 @@
                                 <x-input-error :messages="$errors->get('invoice.store_id')" class="mt-2" />
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="mb-3">
-                                <label for="" class="form-label">
-                                    {{ __('account.accounts_of', ['name' => __('account.workshops')]) }}
-                                    (<a href="{{ route('admin.workshops.create') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('account.account')]) }}">{{ __('msgs.add_new') }}</a>)
-                                </label>
-                                <select class="form-select" wire:model.debounce.500s='invoice.workshop_id'>
-                                    <option value="">{{ __('btns.select') }}</option>
-                                    @foreach ($workshops as $workshop)
-                                        <option value="{{ $workshop->id }}">{{ $workshop->name }}</option>
-                                    @endforeach
-                                </select>
-                                <x-input-error :messages="$errors->get('invoice.workshop_id')" class="mt-2" />
-                            </div>
-                        </div>
                     </div>
                     <div class="row row-cards">
                         <div class="col-12 col-md-6">

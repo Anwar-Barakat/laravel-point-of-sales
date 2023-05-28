@@ -34,7 +34,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\GeneralSaleReturn\GeneralSal
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\ProductionLine\ProductionLineController;
-use App\Http\Controllers\Admin\WarehouseTransaction\ProductReceive\ProductRecieveController;
+use App\Http\Controllers\Admin\WarehouseTransaction\ProductReceive\ProductReceiveController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfController;
@@ -198,7 +198,7 @@ Route::group(
                 //_______________________
                 // products recieve
                 //_______________________
-                Route::resource('products-receive',                         ProductRecieveController::class)->only(['index', 'create', 'edit', 'show']);
+                Route::resource('products-receive',                         ProductReceiveController::class)->except(['store', 'update']);
 
                 //_______________________
                 // Shifts
