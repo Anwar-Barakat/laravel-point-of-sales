@@ -13,7 +13,8 @@ class AddEditProductReceive extends Component
     public ProductReceive $invoice;
 
     public $production_lines    = [],
-        $stores       = [];
+        $stores       = [],
+        $workshops       = [];
 
     public function mount(ProductReceive $invoice)
     {
@@ -21,6 +22,7 @@ class AddEditProductReceive extends Component
         $this->invoice->invoice_date    = date('Y-m-d');
         $this->stores                   = Store::select('id', 'name')->active()->get();
         $this->production_lines         = ProductionLine::select('id', 'plan')->closed()->get();
+        $this->workshops                = Workshop::active()->select('id', 'name')->closed()->get();
     }
 
     public function updated($fields)
@@ -54,6 +56,7 @@ class AddEditProductReceive extends Component
     {
         return [
             'invoice.production_line_id'    => ['required', 'integer'],
+            'invoice.workshop_id'           => ['required', 'integer'],
             'invoice.store_id'              => ['required', 'integer'],
             'invoice.invoice_date'          => ['required', 'date'],
             'invoice.notes'                 => ['required', 'min:10'],

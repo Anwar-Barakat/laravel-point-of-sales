@@ -101,7 +101,7 @@ class ProductReceiveApproval extends Component
                 'admin_id'              => get_auth_id(),
                 'treasury_id'           => has_open_shift()->treasury->id,
                 'product_receive_id'    => $this->invoice->id,
-                'account_id'            => 1,
+                'account_id'            => $this->invoice->workshop->account->id,
                 'is_approved'           => 1,
                 'is_account'            => 1,
                 'transaction_date'      => date('Y-m-d'),
@@ -134,7 +134,7 @@ class ProductReceiveApproval extends Component
             //________________________________________________
             // 4- Update the vendor account balance
             //________________________________________________
-            // update_account_balance($this->invoice->account);
+            update_account_balance($this->invoice->workshop->account);
 
 
             //________________________________________________

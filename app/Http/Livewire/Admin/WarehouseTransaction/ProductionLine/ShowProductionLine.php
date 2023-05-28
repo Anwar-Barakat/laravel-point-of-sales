@@ -12,6 +12,7 @@ class ShowProductionLine extends Component
 
     public
         $is_closed,
+        $is_approved,
         $order_by = 'created_at',
         $sort_by = 'desc',
         $per_page = CUSTOM_PAGINATION;
@@ -30,6 +31,12 @@ class ShowProductionLine extends Component
             $production_line->update(['is_closed' => !$production_line->is_clsoed]);
     }
 
+    public function updateApproval(ProductionLine $production_line)
+    {
+        if ($production_line->is_approved == 0)
+            $production_line->update(['is_approved' => !$production_line->is_approved]);
+    }
+
     public function render()
     {
         return view('livewire.admin.warehouse-transaction.production-line.show-production-line', ['production_lines' => $this->getProductionLines()]);
@@ -40,7 +47,8 @@ class ShowProductionLine extends Component
 
         return  ProductionLine::where(['company_id' => get_auth_com()])
             ->when($this->is_closed,            fn ($q) => $q->where('is_closed', $this->is_closed))
-            ->when($this->production_to_date,  fn ($q) => $q->whereBetween('plan_date', [$this->production_from_date, $this->production_to_date]))
+            ->when($this->is_approved,          fn ($q) => $q->where('is_approved', $this->is_approved))
+            ->when($this->production_to_date,   fn ($q) => $q->whereBetween('plan_date', [$this->production_from_date, $this->production_to_date]))
             ->orderBy($this->order_by, $this->sort_by)
             ->paginate($this->per_page);
     }

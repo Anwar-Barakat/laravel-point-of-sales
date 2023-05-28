@@ -150,6 +150,7 @@ return [
     'rejected'                  => 'مرفوض',
     'production_plan'           => 'خطة الإنتاج',
     'production_plan_date'      => 'تاريخ خطة الإنتاج',
+    'is_approved'               => 'هل موافق عليه',
 
 
 

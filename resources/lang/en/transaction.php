@@ -151,6 +151,7 @@ return [
     'rejected'                  => 'Rejected',
     'production_plan'           => 'Production plan',
     'production_plan_date'      => 'Production plan date',
+    'is_approved'               => 'is approved',
 
 
 

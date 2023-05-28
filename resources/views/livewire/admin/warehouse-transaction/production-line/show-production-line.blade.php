@@ -31,6 +31,16 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
+                        <x-input-label class="form-label" :value="__('transaction.approved')" />
+                        <select class="form-select" wire:model='is_closed'>
+                            <option value="">{{ __('btns.select') }}</option>
+                            <option value="1">{{ __('transaction.approved') }}</option>
+                            <option value="0">{{ __('transaction.not_approved') }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2">
+                    <div class="mb-3">
                         <x-input-label class="form-label" :value="__('msgs.per_page')" />
                         <select class="form-select" wire:model='per_page'>
                             <option value="">{{ __('btns.select') }}</option>
@@ -74,6 +84,7 @@
                         <th> {{ __('transaction.production_plan') }}</th>
                         <th> {{ __('transaction.production_plan_date') }}</th>
                         <th> {{ __('partials.status') }}</th>
+                        <th> {{ __('transaction.is_approved') }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -83,6 +94,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $production_line->plan }}</td>
                             <td>{{ $production_line->plan_date }}</td>
+
                             <td>
                                 <div>
                                     <button wire:click='updateStatus({{ $production_line }})' class="btn position-relative {{ $production_line->is_closed == 1 ? ' pointer-events-none' : '' }}">
@@ -91,7 +103,14 @@
                                     </button>
                                 </div>
                             </td>
-
+                            <td>
+                                <div>
+                                    <button wire:click='updateApproval({{ $production_line }})' class="btn position-relative {{ $production_line->is_approved == 1 ? ' pointer-events-none' : '' }}">
+                                        {{ $production_line->is_approved ? __('transaction.approved') : __('transaction.not_approved') }}
+                                        <span class="badge {{ $production_line->is_approved ? 'bg-green' : 'bg-red' }} badge-notification badge-blink"></span>
+                                    </button>
+                                </div>
+                            </td>
                             <td>
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">{{ __('btns.actions') }}</button>

@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
             DelegateSeeder::class,
 
             ServiceSeeder::class,
+            WorkshopSeeder::class,
+            ProductionLineSeeder::class,
         ]);
     }
 }
