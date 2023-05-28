@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\GeneralSaleReturn\GeneralSal
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\ProductionLine\ProductionLineController;
+use App\Http\Controllers\Admin\WarehouseTransaction\ProductReceive\ProductRecieveController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfController;
@@ -77,144 +78,150 @@ Route::group(
             Route::group(['middleware' => 'admin'], function () {
                 Route::fallback(fn () =>  redirect()->route('admin.dashboard'));
 
-                Route::get('/logout',                           LogoutController::class)->name('logout');
-                Route::get('/dashboard',                        DashboardController::class)->name('dashboard');
+                Route::get('/logout',                                       LogoutController::class)->name('logout');
+                Route::get('/dashboard',                                    DashboardController::class)->name('dashboard');
 
                 //_______________________
                 // Setting
                 //_______________________
-                Route::get('/settings',                         CompanyController::class)->name('setting.company');
-                Route::get('/profile',                          AdminProfileController::class)->name('setting.profile');
-                Route::get('/change-password',                  AdminChangePasswordController::class)->name('setting.change-password');
+                Route::get('/settings',                                     CompanyController::class)->name('setting.company');
+                Route::get('/profile',                                      AdminProfileController::class)->name('setting.profile');
+                Route::get('/change-password',                              AdminChangePasswordController::class)->name('setting.change-password');
 
                 //_______________________
                 // Treasuries
                 //_______________________
-                Route::resource('treasuries',                   TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
-                Route::resource('treasury-deliveries',          TreasuryDeliveryController::class)->only(['store', 'destroy']);
+                Route::resource('treasuries',                               TreasuryController::class)->only(['index', 'create', 'show', 'edit']);
+                Route::resource('treasury-deliveries',                      TreasuryDeliveryController::class)->only(['store', 'destroy']);
 
                 //_______________________
                 // Admins
                 //_______________________
-                Route::resource('admins',                       AdminController::class);
+                Route::resource('admins',                                   AdminController::class);
 
                 //_______________________
                 // Services
                 //_______________________
-                Route::resource('services',                     ServiceController::class)->only('index', 'create', 'edit', 'destroy');
+                Route::resource('services',                                 ServiceController::class)->only('index', 'create', 'edit', 'destroy');
 
 
                 //_______________________
                 // Sections
                 //_______________________
-                Route::resource('sections',                     SectionController::class)->except(['store', 'update', 'destroy']);
+                Route::resource('sections',                                 SectionController::class)->except(['store', 'update', 'destroy']);
 
                 //_______________________
                 // Categories
                 //_______________________
-                Route::resource('categories',                   CategoryController::class)->except(['store', 'show', 'update']);
+                Route::resource('categories',                               CategoryController::class)->except(['store', 'show', 'update']);
 
                 //_______________________
                 // Stores
                 //_______________________
-                Route::resource('stores',                       StoreController::class)->except(['create', 'show', 'edit']);
+                Route::resource('stores',                                   StoreController::class)->except(['create', 'show', 'edit']);
 
                 //_______________________
                 // Units
                 //_______________________
-                Route::resource('units',                        UnitController::class)->except(['show']);
+                Route::resource('units',                                    UnitController::class)->except(['show']);
 
                 //_______________________
                 // Items
                 //_______________________
-                Route::resource('items',                        ItemController::class)->except(['store', 'update']);
+                Route::resource('items',                                    ItemController::class)->except(['store', 'update']);
 
                 //_______________________
                 // store inventory
                 //_______________________
-                Route::resource('stores-inventories',            StoreInventoryController::class)->except(['store', 'update']);
+                Route::resource('stores-inventories',                       StoreInventoryController::class)->except(['store', 'update']);
 
                 //_______________________
                 // Customers
                 //_______________________
-                Route::resource('customers',                    CustomerController::class)->except('store', 'update');
+                Route::resource('customers',                                CustomerController::class)->except('store', 'update');
 
                 //_______________________
                 // Vendors
                 //_______________________
-                Route::resource('vendors',                      VendorController::class)->except('store', 'update');
+                Route::resource('vendors',                                  VendorController::class)->except('store', 'update');
 
                 //_______________________
                 // Delegates
                 //_______________________
-                Route::resource('delegates',                    DelegateController::class)->except('store', 'update');
+                Route::resource('delegates',                                DelegateController::class)->except('store', 'update');
 
                 //_______________________
                 // Workshops
                 //_______________________
-                Route::resource('workshops',                    WorkshopController::class)->except('store', 'update');
-                Route::resource('workshop-invoices',            WorkshopInvoiceController::class)->except('store', 'update');
+                Route::resource('workshops',                                WorkshopController::class)->except('store', 'update');
+                Route::resource('workshop-invoices',                        WorkshopInvoiceController::class)->except('store', 'update');
 
                 //_______________________
                 // Account types
                 //_______________________
-                Route::resource('account-types',                AccountTypeController::class)->only(['index']);
+                Route::resource('account-types',                            AccountTypeController::class)->only(['index']);
 
                 //_______________________
                 // Accounts
                 //_______________________
-                Route::resource('accounts',                     AccountController::class)->except(['store', 'update']);
+                Route::resource('accounts',                                 AccountController::class)->except(['store', 'update']);
 
                 //_______________________
                 // collect/exhange transaction
                 //_______________________
-                Route::get('collect-transactions',              CollectTransactionController::class)->name('collect-transactions');
-                Route::get('exchange-transactions',             ExchangeTransactionController::class)->name('exchange-transactions');
+                Route::get('collect-transactions',                          CollectTransactionController::class)->name('collect-transactions');
+                Route::get('exchange-transactions',                         ExchangeTransactionController::class)->name('exchange-transactions');
 
 
                 //_______________________
                 // Orders
                 //_______________________
-                Route::resource('orders',                       OrderController::class)->except('store', 'update');
-                Route::resource('general-order-returns',        GeneralOrderReturnController::class);
-                Route::get('order-invoice/{order}',             OrderInvoiceController::class)->name('orders.invoice');
+                Route::resource('orders',                                   OrderController::class)->except('store', 'update');
+                Route::resource('general-order-returns',                    GeneralOrderReturnController::class);
+                Route::get('order-invoice/{order}',                         OrderInvoiceController::class)->name('orders.invoice');
 
                 //_______________________
                 // sales
                 //_______________________
-                Route::resource('sales',                        SaleController::class);
-                Route::resource('general-sale-returns',         GeneralSaleReturnController::class);
-                Route::get('sale-invoice/{sale}',               SaleInvoiceController::class)->name('sales.invoice');
+                Route::resource('sales',                                    SaleController::class);
+                Route::resource('general-sale-returns',                     GeneralSaleReturnController::class);
+                Route::get('sale-invoice/{sale}',                           SaleInvoiceController::class)->name('sales.invoice');
 
 
                 //_______________________
                 // services invoices
                 //_______________________
-                Route::resource('services-invoices',                ServiceInvoiceController::class);
-                Route::get('services-invoice-bill/{services_invoice}',   ServiceInvoiceBillController::class)->name('services-invoices.invoice');
+                Route::resource('services-invoices',                        ServiceInvoiceController::class);
+                Route::get('services-invoice-bill/{services_invoice}',      ServiceInvoiceBillController::class)->name('services-invoices.invoice');
+
+
+                //_______________________
+                // products recieve
+                //_______________________
+                Route::resource('products-receive',                         ProductRecieveController::class)->only(['index', 'create', 'edit', 'show']);
 
                 //_______________________
                 // Shifts
                 //_______________________
-                Route::resource('shifts',                       ShiftController::class)->except('store', 'update');
+                Route::resource('shifts',                                   ShiftController::class)->except('store', 'update');
 
                 //_______________________
                 // item balances
                 //_______________________
-                Route::view('item-balances',                    'admin.warehouse-transactions.item-balamces.index')->name('item.balances');
+                Route::view('item-balances',                                'admin.warehouse-transactions.item-balamces.index')->name('item.balances');
 
                 //_______________________
                 // Shifts
                 //_______________________
-                Route::resource('production-lines',             ProductionLineController::class)->except('store', 'update');
+                Route::resource('production-lines',                         ProductionLineController::class)->except('store', 'update');
 
 
                 //_______________________
                 // reports
                 //_______________________
-                Route::get('vendors-reports',                   VendorReportController::class)->name('vendors.reports');
-                Route::get('customers-reports',                 CustomerReportController::class)->name('customers.reports');
-                Route::get('delegates-reports',                 DelegateReportController::class)->name('delegates.reports');
+                Route::get('vendors-reports',                               VendorReportController::class)->name('vendors.reports');
+                Route::get('customers-reports',                             CustomerReportController::class)->name('customers.reports');
+                Route::get('delegates-reports',                             DelegateReportController::class)->name('delegates.reports');
             });
         });
     }

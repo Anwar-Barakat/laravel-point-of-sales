@@ -163,4 +163,12 @@ return [
     'return_for_exchange_of_raw_materials'  => 'Return for exchange of raw materials',
 
 
+    //_______________________
+    // product receive
+    //_______________________
+    'products_receive_from_production_line' => 'products receive from production lines',
+    'products_receive'                      => 'products receive',
+    'product_receive'                       => 'product receive',
+
+
 ];

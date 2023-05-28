@@ -160,4 +160,12 @@ return [
     'workshop_invoice'                      => 'فاتورة ورشة عمل',
     'rawـmaterial_exchange'                 => 'صرف مواد خام',
     'return_for_exchange_of_raw_materials'  => 'مرتجع لصرف مواد خام',
+
+
+    //_______________________
+    // product receive
+    //_______________________
+    'products_receive_from_production_line' => 'استلام المنتجات من خطوط الإنتاج',
+    'products_receive'                      => 'استلام منتجات',
+    'product_receive'                       => 'استلام منتج',
 ];
