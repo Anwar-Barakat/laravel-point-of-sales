@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_recieve_items', function (Blueprint $table) {
+        Schema::create('product_recieve_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('workshop_invoice_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_recieve_items');
+        Schema::dropIfExists('product_recieve_details');
     }
 };

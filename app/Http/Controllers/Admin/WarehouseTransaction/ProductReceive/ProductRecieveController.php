@@ -13,7 +13,7 @@ class ProductRecieveController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.warehouse-transactions.products-receive.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class ProductRecieveController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.warehouse-transactions.products-receive.create');
     }
 
     /**
@@ -35,17 +35,17 @@ class ProductRecieveController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProductRecieve $productRecieve)
+    public function show(ProductRecieve $product_recieve)
     {
-        //
+        return view('admin.warehouse-transactions.products-receive.show', ['product_recieve' => $product_recieve]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductRecieve $productRecieve)
+    public function edit(ProductRecieve $product_recieve)
     {
-        //
+        return view('admin.warehouse-transactions.products-receive.edit', ['product_recieve' => $product_recieve]);
     }
 
     /**

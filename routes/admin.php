@@ -219,8 +219,8 @@ Route::group(
                 //_______________________
                 // reports
                 //_______________________
-                Route::get('vendors-reports',                               VendorReportController::class)->name('vendors.reports');
-                Route::get('customers-reports',                             CustomerReportController::class)->name('customers.reports');
+                Route::get('vendors-reports',                               VendorReportController::class)->name('reports.vendors');
+                Route::get('customers-reports',                             CustomerReportController::class)->name('reports.customers');
                 Route::get('delegates-reports',                             DelegateReportController::class)->name('delegates.reports');
             });
         });

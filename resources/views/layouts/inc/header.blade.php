@@ -611,7 +611,7 @@
                                     </a>
 
                                     <!-- products receive -->
-                                    <a class="dropdown-item {{ request()->routeIs('admin.production-lines.*') ? 'active' : '' }}" href="{{ route('admin.production-lines.index') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.products-receive.*') ? 'active' : '' }}" href="{{ route('admin.products-receive.index') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -667,7 +667,7 @@
                     <!---------------------------
                     Reports
                     -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.vendors.reports') || request()->routeIs('admin.customers.reports') || request()->routeIs('admin.delegates.reports') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.reports.vendors') || request()->routeIs('admin.reports.customers') || request()->routeIs('admin.delegates.reports') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -686,7 +686,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item {{ request()->routeIs('admin.vendors.reports') ? 'active' : '' }}" href="{{ route('admin.vendors.reports') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.reports.vendors') ? 'active' : '' }}" href="{{ route('admin.reports.vendors') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -703,7 +703,7 @@
                                             {{ __('report.reports_of', ['name' => __('stock.vendors')]) }}
                                         </span>
                                     </a>
-                                    <a class="dropdown-item {{ request()->routeIs('admin.customers.reports') ? 'active' : '' }}" href="{{ route('admin.customers.reports') }}">
+                                    <a class="dropdown-item {{ request()->routeIs('admin.reports.customers') ? 'active' : '' }}" href="{{ route('admin.reports.customers') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

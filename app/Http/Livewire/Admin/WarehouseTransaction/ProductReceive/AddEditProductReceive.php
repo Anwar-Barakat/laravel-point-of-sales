@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Admin\WarehouseTransaction\WorkshopInvoice;
+namespace App\Http\Livewire\Admin\WarehouseTransaction\ProductReceive;
 
-use App\Models\Account;
 use App\Models\ProductionLine;
+use App\Models\ProductRecieve;
 use App\Models\Store;
 use App\Models\Workshop;
-use App\Models\WorkshopInvoice;
 use Livewire\Component;
 
-class AddEditWorkshopInvoice extends Component
+class AddEditProductReceive extends Component
 {
-    public WorkshopInvoice $invoice;
+    public ProductRecieve $invoice;
 
     public $production_lines    = [],
         $stores       = [],
         $workshops       = [];
 
-    public function mount(WorkshopInvoice $invoice)
+    public function mount(ProductRecieve $invoice)
     {
         $this->invoice                  = $invoice;
         $this->invoice->invoice_date    = date('Y-m-d');
@@ -41,16 +40,17 @@ class AddEditWorkshopInvoice extends Component
             $this->invoice->save();
 
             toastr()->success(__('msgs.submitted', ['name' => __('transaction.service_invoice')]));
-            return redirect()->route('admin.workshop-invoices.show', ['workshop_invoice' => $this->invoice]);
+            return redirect()->route('admin.products-receive.show', ['products_receive' => $this->invoice]);
         } catch (\Throwable $th) {
-            return redirect()->route('admin.workshop-invoices.index')->with(['error' => $th->getMessage()]);
+            return redirect()->route('admin.products-receive.index')->with(['error' => $th->getMessage()]);
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.warehouse-transaction.workshop-invoice.add-edit-workshop-invoice');
+        return view('livewire.admin.warehouse-transaction.product-receive.add-edit-product-receive');
     }
+
 
     public function rules(): array
     {
