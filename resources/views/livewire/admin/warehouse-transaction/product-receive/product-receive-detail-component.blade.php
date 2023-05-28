@@ -8,7 +8,7 @@
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approval-modal">{{ __('btns.approval') }}</button>
                     @endif
 
-                    {{-- @livewire('admin.warehouse-transaction.workshop-invoice.workshop-invoice-approval', ['invoice' => $invoice]) --}}
+                    @livewire('admin.warehouse-transaction.product-receive.product-receive-approval', ['invoice' => $invoice])
                 </div>
                 <table class="table card-table table-vcenter table-striped-columns">
                     <thead>

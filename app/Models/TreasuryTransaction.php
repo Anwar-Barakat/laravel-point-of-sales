@@ -19,6 +19,7 @@ class TreasuryTransaction extends Model
         'sale_id',
         'service_id',
         'account_id',
+        'product_receive_id',
         'is_account',
         'is_approved',
         'transaction_date',
