@@ -31,11 +31,11 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('account.workshop')" />
-                        <select class="form-select" wire:model='workshop_id'>
+                        <x-input-label class="form-label" :value="__('stock.store')" />
+                        <select class="form-select" wire:model='store_id'>
                             <option value="">{{ __('btns.select') }}</option>
-                            @foreach (App\Models\Workshop::get() as $workshop)
-                                <option value="{{ $workshop->id }}">{{ $workshop->name }}</option>
+                            @foreach (App\Models\Store::get() as $store)
+                                <option value="{{ $store->id }}">{{ $store->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -83,6 +83,7 @@
                     <tr>
                         <th>#</th>
                         <th> {{ __('transaction.production_line') }}</th>
+                        <th> {{ __('stock.store') }}</th>
                         <th>{{ __('transaction.invoice_type') }}</th>
                         <th>{{ __('transaction.invoice_date') }}</th>
                         <th>{{ __('transaction.total_price') }}</th>
@@ -96,6 +97,11 @@
                             <td>
                                 <span class="badge bg-blue-lt">
                                     {{ $invoice->production_line->plan }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-green-lt">
+                                    {{ $invoice->store->name }}
                                 </span>
                             </td>
                             <td>

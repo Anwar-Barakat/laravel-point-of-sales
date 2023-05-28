@@ -12,7 +12,7 @@ class ShowProductReceive extends Component
 
     public $created_at,
         $production_line_id,
-        $workshop_id,
+        $store_id,
         $order_by = 'created_at',
         $sort_by = 'desc',
         $per_page = CUSTOM_PAGINATION;
@@ -32,9 +32,9 @@ class ShowProductReceive extends Component
 
     public function getProductsReceives()
     {
-        return  ProductReceive::with(['workshop:id,name', 'production_line:id,plan'])->active()
+        return  ProductReceive::with(['production_line:id,plan'])->active()
             ->when($this->production_line_id,   fn ($q) => $q->where('production_line_id', $this->production_line_id))
-            ->when($this->workshop_id,          fn ($q) => $q->where('workshop_id', $this->workshop_id))
+            ->when($this->store_id,             fn ($q) => $q->where('store_id', $this->store_id))
             ->when($this->invoices_from_date,   fn ($q) => $q->whereBetween('invoice_date', [$this->invoices_from_date, $this->invoices_to_date]))
             ->orderBy($this->order_by, $this->sort_by)
             ->paginate($this->per_page);

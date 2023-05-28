@@ -11,7 +11,7 @@ class ProductReceiveDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'workshop_invoice_id',
+        'product_receive_id',
         'item_id',
         'unit_id',
         'item_batch_id',

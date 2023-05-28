@@ -25,11 +25,6 @@ class ProductReceive extends Model
         return $this->belongsTo(Admin::class, 'added_by');
     }
 
-    public function workshop(): BelongsTo
-    {
-        return $this->belongsTo(Workshop::class, 'workshop_id');
-    }
-
     public function production_line(): BelongsTo
     {
         return $this->belongsTo(ProductionLine::class, 'production_line_id');
