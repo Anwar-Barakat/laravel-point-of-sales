@@ -139,7 +139,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('stock.has_retail_unit')" />
-                        <select class="form-select" @if ($item_used) readonly disabled @else wire:model.debounce.350s='item.has_retail_unit' @endif>
+                        <select class="form-select" @if ($item_used) readonly disabled @else wire:model='item.has_retail_unit' @endif>
                             <option value="">{{ __('btns.select') }}</option>
                             <option value="1" {{ $item->has_retail_unit == '1' ? 'selected' : '' }}>{{ __('msgs.yes') }}</option>
                             <option value="0" {{ $item->has_retail_unit == '0' ? 'selected' : '' }}>{{ __('msgs.no') }}</option>
@@ -149,7 +149,7 @@
                 </div>
             </div>
 
-            @if (!empty($retail_units) || !empty($item['retail_unit_id']))
+            @if ($item->has_retail_unit == 1)
                 <div class="row row-cards">
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="mb-3">

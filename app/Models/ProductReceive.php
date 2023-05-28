@@ -30,6 +30,11 @@ class ProductReceive extends Model
         return $this->belongsTo(ProductionLine::class, 'production_line_id');
     }
 
+    public function workshop(): BelongsTo
+    {
+        return $this->belongsTo(Workshop::class, 'workshop_id')->with('account');
+    }
+
     public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class, 'store_id');

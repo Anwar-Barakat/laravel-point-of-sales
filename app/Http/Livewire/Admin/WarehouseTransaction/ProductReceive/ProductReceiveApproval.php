@@ -223,7 +223,7 @@ class ProductReceiveApproval extends Component
 
     public function render()
     {
-        return view('livewire.admin.warehouse-transaction.product-receive.product-receive-approval', ['invoice' => $this->invoice]);
+        return view('livewire.admin.warehouse-transaction.inc.approval-form', ['invoice' => $this->invoice]);
     }
 
     public function rules()

@@ -26,4 +26,9 @@ class ProductionLine extends Model
     {
         return $query->where(['is_closed' => 1, 'company_id' => get_auth_com()]);
     }
+
+    public function scopeApproved($query)
+    {
+        return $query->where(['is_approved' => 1, 'company_id' => get_auth_com()]);
+    }
 }

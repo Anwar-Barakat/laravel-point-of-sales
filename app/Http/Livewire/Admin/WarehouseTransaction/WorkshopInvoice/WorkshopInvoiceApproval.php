@@ -95,7 +95,7 @@ class WorkshopInvoiceApproval extends Component
                 'admin_id'          => get_auth_id(),
                 'treasury_id'       => has_open_shift()->treasury->id,
                 'sale_id'           => $this->invoice->id,
-                'account_id'        => $this->invoice->workshop->account->id,
+                'account_id'        => $this->invoice->account_id,
                 'is_approved'       => 1,
                 'is_account'        => 1,
                 'transaction_date'  => date('Y-m-d'),
@@ -109,7 +109,6 @@ class WorkshopInvoiceApproval extends Component
             //________________________________________________
             // 2- Approving the sale
             //________________________________________________
-            $money_for_account = floatval(-$this->invoice->cost_after_discount);
 
             //________________________________________________
             // 3- Increment last payment exchange for treasury
@@ -120,7 +119,7 @@ class WorkshopInvoiceApproval extends Component
             $this->invoice->treasury_id                = has_open_shift()->treasury->id;
             $this->invoice->is_approved                = 1;
             $this->invoice->approved_by                = get_auth_id();
-            $this->invoice->money_for_account          = $money_for_account;
+            $this->invoice->money_for_account          = floatval(-$this->invoice->cost_after_discount);
             $this->invoice->treasury_transaction_id    = TreasuryTransaction::latest()->first()->id;
             $this->invoice->company_id                 = get_auth_com();
             $this->invoice->save();

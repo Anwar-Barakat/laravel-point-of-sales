@@ -46,8 +46,8 @@
                                 </label>
                                 <select class="form-select" wire:model.debounce.500s='invoice.workshop_id'>
                                     <option value="">{{ __('btns.select') }}</option>
-                                    @foreach ($stores as $store)
-                                        <option value="{{ $store->id }}">{{ $store->name }}</option>
+                                    @foreach ($workshops as $workshop)
+                                        <option value="{{ $workshop->id }}">{{ $workshop->name }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('invoice.workshop_id')" class="mt-2" />

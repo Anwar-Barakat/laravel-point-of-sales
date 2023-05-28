@@ -32,6 +32,14 @@ class ServiceSeeder extends Seeder
                 'type'          => 1,
                 'company_id'    => $admin->company->id,
             ],
+            [
+                'name'          => [
+                    'ar'    => 'صيانة خط الانتاج',
+                    'en'    => 'Production line maintenance '
+                ],
+                'type'          => 1,
+                'company_id'    => $admin->company->id,
+            ],
 
         ];
 

@@ -1,6 +1,12 @@
 <?php
 
+use App\Models\Account;
 use App\Models\ItemBatch;
+use App\Models\Order;
+use App\Models\ProductReceive;
+use App\Models\Sale;
+use App\Models\ServiceInvoice;
+use App\Models\TreasuryTransaction;
 
 if (!function_exists('calc_total_price')) {
     function calc_total_price($product)
@@ -26,6 +32,32 @@ if (!function_exists('getBatches')) {
             ->when($prod->unit_id,     fn ($q) => $q->where(['unit_id'     => $prod->item->parentUnit->id]))
             ->when($prod->item->type == 2,      fn ($q) => $q->orderBy('production_date', 'asc'))
             ->latest()->get();
+    }
+}
+
+if (!function_exists('update_account_balance')) {
+
+    function update_account_balance(Account $account)
+    {
+        $balance    = $account->initial_balance;
+
+        $balance    += TreasuryTransaction::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+        $balance    += ServiceInvoice::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+
+        if ($account->accountType->id == 1) {
+            // vendor
+            $balance    += Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+        } elseif ($account->accountType->id == 2) {
+            // customer
+            $balance    += Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+        } elseif ($account->accountType->id == 3) {
+            // delegate
+            $balance    += Sale::where(['delegate_id' => $account->delegate->id, 'company_id' => get_auth_com()])->sum('commission_value');
+        } elseif ($account->accountType->id == 5) {
+            // workshop
+            $balance    += ProductReceive::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
+        }
+        $account->update(['current_balance' => $balance]);
     }
 }
 

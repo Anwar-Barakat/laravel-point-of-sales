@@ -207,7 +207,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="5">
                                         <x-blank-section :content="__('stock.item')" :url="'#add-items'" />
                                     </td>
                                 </tr>

@@ -29,10 +29,11 @@ class AddEditItem extends Component
     public function mount(Item $item)
     {
         $this->item             = $item;
-        $this->parent_items     = Item::select('id', 'name')->where(['company_id' => get_auth_com()])->active()->get();
-        $this->categories       = Category::with('subCategories')->where(['company_id' => get_auth_com(), 'parent_id' => 0])->get();
-        $this->wholesale_units  = Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'wholesale'])->active()->get();
-        $this->retail_units     = Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'retail'])->active()->get();
+        $this->parent_items     = Item::select('id', 'name')->active()->get();
+        $this->categories       = Category::with('subCategories')->activeParent()->get();
+        $this->wholesale_units  = Unit::select('id', 'name')->where(['status' => 'wholesale'])->active()->get();
+        $this->retail_units     = $this->item->has_retail_unit ?
+            Unit::select('id', 'name')->where(['status' => 'retail'])->active()->get() : [];
 
         $item_order         = OrderProduct::where('item_id', $this->item->id)->count();
         $item_sales         = SaleProduct::where('item_id', $this->item->id)->count();

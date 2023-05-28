@@ -21,8 +21,8 @@ class AddEditProductReceive extends Component
         $this->invoice                  = $invoice;
         $this->invoice->invoice_date    = date('Y-m-d');
         $this->stores                   = Store::select('id', 'name')->active()->get();
-        $this->production_lines         = ProductionLine::select('id', 'plan')->closed()->get();
-        $this->workshops                = Workshop::active()->select('id', 'name')->closed()->get();
+        $this->production_lines         = ProductionLine::select('id', 'plan')->approved()->get();
+        $this->workshops                = Workshop::active()->select('id', 'name')->get();
     }
 
     public function updated($fields)
@@ -35,6 +35,7 @@ class AddEditProductReceive extends Component
         $this->validate();
         try {
             $this->invoice->invoice_type    = 1;
+            $this->invoice->account_id      = $this->invoice->workshop->account->id;
             $this->invoice->added_by        = get_auth_id();
             $this->invoice->company_id      = get_auth_com();
             $this->invoice->save();

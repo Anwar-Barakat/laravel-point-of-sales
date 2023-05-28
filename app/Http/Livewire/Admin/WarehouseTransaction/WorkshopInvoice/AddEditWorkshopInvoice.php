@@ -36,6 +36,7 @@ class AddEditWorkshopInvoice extends Component
         $this->validate();
         try {
             $this->invoice->invoice_type    = 1;
+            $this->invoice->account_id      = $this->invoice->workshop->account->id;
             $this->invoice->added_by        = get_auth_id();
             $this->invoice->company_id      = get_auth_com();
             $this->invoice->save();

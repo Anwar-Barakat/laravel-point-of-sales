@@ -1,11 +1,7 @@
 <?php
 
-use App\Models\Account;
 use App\Models\Item;
 use App\Models\ItemBatch;
-use App\Models\Order;
-use App\Models\Sale;
-use App\Models\ServiceInvoice;
 use App\Models\Shift;
 use App\Models\TreasuryTransaction;
 use Illuminate\Support\Facades\Auth;
@@ -49,30 +45,6 @@ if (!function_exists('get_transaction')) {
     function get_transaction()
     {
         return TreasuryTransaction::where(['company_id' => get_auth_com(), 'shift_id' => has_open_shift()->id])->first();
-    }
-}
-
-if (!function_exists('update_account_balance')) {
-
-    function update_account_balance(Account $account)
-    {
-        $balance    = $account->initial_balance;
-
-        $balance    += TreasuryTransaction::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-        $balance    += ServiceInvoice::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-
-        if ($account->accountType->id == 1) {
-            // vendor
-            $balance    += Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-        } elseif ($account->accountType->id == 2) {
-            // customer
-            $balance    += Sale::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
-        } elseif ($account->accountType->id == 3) {
-            // delegate
-            $balance    += Sale::where(['delegate_id' => $account->delegate->id, 'company_id' => get_auth_com()])->sum('commission_value');
-        }
-
-        $account->update(['current_balance' => $balance]);
     }
 }
 

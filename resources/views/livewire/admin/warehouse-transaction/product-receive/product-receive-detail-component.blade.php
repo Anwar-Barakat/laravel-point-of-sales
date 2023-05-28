@@ -35,6 +35,16 @@
                             <td>{{ $invoice->invoice_date }}</td>
                         </tr>
                         <tr>
+                            <th>{{ __('account.workshop_name') }}</th>
+                            <td>
+                                <span class="badge badge-outline text-purple">{{ $invoice->workshop->name }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ __('account.account_number') }}</th>
+                            <td>{{ $invoice->workshop->account->number }}</td>
+                        </tr>
+                        <tr>
                             <th>{{ __('stock.store') }}</th>
                             <td>{{ $invoice->store->name }}</td>
                         </tr>
