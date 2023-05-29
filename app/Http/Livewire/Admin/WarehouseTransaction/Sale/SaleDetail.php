@@ -19,7 +19,7 @@ class SaleDetail extends Component
     use WithPagination;
 
     public Sale $sale;
-    public SaleProduct $product;
+    public $product;
 
     public $customers   = [],
         $stores         = [],
@@ -39,12 +39,12 @@ class SaleDetail extends Component
     {
         $this->sale                 = $sale;
         $this->sale_type            = $sale_type;
-        $this->product              = $product;
+        $this->product              = $product ?? new SaleProduct();
         $this->product->sale_type   = $this->sale->invoice_sale_type;
         $this->product->qty         = 1;
         $this->customers            = Customer::active()->where('company_id', get_auth_com())->get();
         $this->stores               = Store::active()->where('company_id', get_auth_com())->get();
-        $this->items                = Item::active()->get();
+        $this->items                = Item::active()->where('category_id', $this->sale->category_id)->get();
     }
 
     public function updated($fields)
@@ -90,7 +90,7 @@ class SaleDetail extends Component
         if (isset($batch->qty)) {
             $batchQty = $this->unit->status == 'wholesale' ? $batch->qty : $batch->qty * $this->item->retail_count_for_wholesale;
 
-            if ($this->product->qty > $batchQty) {
+            if ($this->product->qty > $batchQty && $this->sale->type == 1) {
                 toastr()->error(__('validation.qty_not_available_now'));
                 $this->product->qty = 1;
             }
@@ -138,6 +138,7 @@ class SaleDetail extends Component
             toastr()->success(__('msgs.added', ['name' => __('stock.item')]));
             $this->emit('updateSaleProducts', ['sale' => $this->sale]);
             $this->reset('product');
+            $this->product = new SaleProduct();
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->route('admin.sales.show', $this->sale)->with(['error' => $th->getMessage()]);
@@ -176,7 +177,6 @@ class SaleDetail extends Component
         return [
             'product.store_id'         => ['required', 'integer'],
             'product.sale_type'        => ['required', 'in:1,2,3'],
-            'product.store_id'         => ['required', 'integer'],
             'product.unit_id'          => ['required', 'integer'],
             'product.item_id'          => [
                 'required',

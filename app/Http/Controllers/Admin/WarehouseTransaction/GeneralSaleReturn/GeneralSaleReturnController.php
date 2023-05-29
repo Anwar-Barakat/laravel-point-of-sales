@@ -45,7 +45,7 @@ class GeneralSaleReturnController extends Controller
      */
     public function edit(Sale $general_sale_return)
     {
-        return view('admin.warehouse-transactions.general-sale-returns.show', ['sale' => $general_sale_return, 'sale_type' => 3]);
+        return view('admin.warehouse-transactions.general-sale-returns.edit', ['sale' => $general_sale_return, 'sale_type' => 3]);
     }
 
     /**

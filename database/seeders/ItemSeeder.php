@@ -21,6 +21,7 @@ class ItemSeeder extends Seeder
         $hand_too_cat   = Category::where('name->en', 'Hand Tools')->active()->first()->id;
         $meat_cat       = Category::where('name->en', 'Meat & Freezers')->active()->first()->id;
         $shoes_cat      = Category::where('name->en', 'Shoes')->active()->first()->id;
+        $cotton_cat     = Category::where('name->en', 'Cottons')->active()->first()->id;
         $sachet_unit    = Unit::where('name->en', 'Sachet(25kg)')->active()->first()->id;
         $carton_unit    = Unit::where('name->en', 'Carton')->active()->first()->id;
         $box_unit       = Unit::where('name->en', 'Box')->active()->first()->id;
@@ -131,7 +132,7 @@ class ItemSeeder extends Seeder
             [
                 'name'                              => 'Cottons',
                 'type'                              => 1, // stored
-                'category_id'                       => $meat_cat,
+                'category_id'                       => $cotton_cat,
                 'has_retail_unit'                   => false,
                 'wholesale_unit_id'                 => $sachet_unit,
                 'wholesale_price'                   => 500,

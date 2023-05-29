@@ -31,7 +31,7 @@
                                         </label>
                                         <select class="form-select" wire:model='product.item_id'>
                                             <option value="">{{ __('btns.select') }}</option>
-                                            @forelse ($products as $product)
+                                            @forelse ($items as $product)
                                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
                                             @endforeach
                                         </select>

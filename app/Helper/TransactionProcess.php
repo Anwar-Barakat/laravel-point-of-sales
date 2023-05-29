@@ -26,7 +26,7 @@ if (!function_exists('getBatches')) {
     function getBatches($prod, $item = null)
     {
         return ItemBatch::select('id', 'unit_price', 'qty', 'production_date', 'expiration_date')
-            ->where(['company_id'         => get_auth_com()])
+            ->where(['company_id'         => get_auth_com()])->where('qty', '>', 0)
             ->when($prod->item_id,     fn ($q) => $q->where(['item_id'     => $prod->item_id]))
             ->when($prod->store_id,    fn ($q) => $q->where(['store_id'    => $prod->store_id]))
             ->when($prod->unit_id,     fn ($q) => $q->where(['unit_id'     => $prod->item->parentUnit->id]))
@@ -44,6 +44,7 @@ if (!function_exists('update_account_balance')) {
         $balance    += TreasuryTransaction::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
         $balance    += ServiceInvoice::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
 
+
         if ($account->accountType->id == 1) {
             // vendor
             $balance    += Order::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
@@ -57,6 +58,7 @@ if (!function_exists('update_account_balance')) {
             // workshop
             $balance    += ProductReceive::where(['account_id' => $account->id, 'company_id' => get_auth_com()])->sum('money_for_account');
         }
+
         $account->update(['current_balance' => $balance]);
     }
 }

@@ -37,7 +37,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order->load(['addedBy:id,name', 'vendor:id,name', 'account:id,name,number', 'orderProducts', 'store:id,name']);
+        $order->load(['addedBy:id,name', 'vendor:id,name,category_id', 'account:id,name,number', 'orderProducts', 'store:id,name']);
         return view('admin.warehouse-transactions.orders.show', ['order' => $order]);
     }
 

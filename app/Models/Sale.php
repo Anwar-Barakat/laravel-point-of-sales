@@ -41,9 +41,9 @@ class Sale extends Model
         return $this->belongsTo(Delegate::class, 'delegate_id');
     }
 
-    public function store(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(Store::class, 'store_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function saleProducts(): HasMany
