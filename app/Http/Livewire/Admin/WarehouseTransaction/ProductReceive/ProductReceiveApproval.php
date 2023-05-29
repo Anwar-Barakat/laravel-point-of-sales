@@ -43,8 +43,7 @@ class ProductReceiveApproval extends Component
 
     public function updatedInvoiceTaxValue()
     {
-        $taxAmount                              = get_tax_value($this->invoice);
-        $this->invoice->cost_before_discount    = $this->invoice->items_cost + $taxAmount;
+        $this->invoice->cost_before_discount    = $this->invoice->items_cost + get_tax_value($this->invoice);
         $this->invoice->cost_after_discount     = $this->invoice->cost_before_discount;
         $this->remain_paid_price();
     }

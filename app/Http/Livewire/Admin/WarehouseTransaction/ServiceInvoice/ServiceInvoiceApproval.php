@@ -41,12 +41,7 @@ class ServiceInvoiceApproval extends Component
 
     public function updatedInvoiceTaxValue()
     {
-        if ($this->invoice->tax_type == 0)
-            $taxAmount = ($this->invoice->services_cost * floatval($this->invoice->tax_value)) / 100;
-        else
-            $taxAmount = floatval($this->invoice->tax_value);
-
-        $this->invoice->cost_before_discount  = $this->invoice->services_cost + $taxAmount;
+        $this->invoice->cost_before_discount  = $this->invoice->services_cost + get_tax_value($this->invoice);
         $this->invoice->cost_after_discount   = $this->invoice->cost_before_discount;
         $this->remain_paid_price();
     }
@@ -64,19 +59,9 @@ class ServiceInvoiceApproval extends Component
                 ? __('validation.discount_less_grand_total')
                 : __('validation.tax_type_is_percent'));
         }
-        $discountAmount = $this->calculateDiscountAmount();
-
+        $discountAmount = get_discount_value($this->invoice);
         $this->invoice->cost_after_discount = $this->invoice->cost_before_discount - $discountAmount;
-
         $this->remain_paid_price();
-    }
-
-    public function calculateDiscountAmount()
-    {
-        // Calculate the discount amount based on the discount type
-        return $this->invoice->discount_type == 0
-            ? ($this->invoice->services_cost * floatval($this->invoice->discount_value)) / 100
-            : floatval($this->invoice->discount_value);
     }
 
     public function updatedInvoicePaid()

@@ -61,7 +61,7 @@
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <a href="#" class="dropdown-item">{{ __('partials.status') }}</a>
                     <a href="{{ route('admin.setting.profile') }}" class="dropdown-item">{{ __('partials.profile') }}</a>
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider m-0"></div>
                     <a href="{{ route('admin.setting.company') }}" class="dropdown-item">{{ __('partials.settings') }}</a>
                     <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('admin-logout').submit();">{{ __('partials.logout') }}</a>
                     <form id="admin-logout" action="{{ route('admin.logout') }}" style="display: none;">
@@ -171,7 +171,7 @@
                                         </span>
                                     </a>
 
-                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider m-0"></div>
 
                                     <!-- setting -->
                                     <a class="dropdown-item flex items-center gap-1 {{ request()->routeIs('admin.setting.company') ? 'active' : '' }}" href="{{ route('admin.setting.company') }}">
@@ -366,7 +366,7 @@
                                         </span>
                                     </a>
 
-                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider m-0"></div>
 
                                     <!-- customers -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.customers.index') ? 'active' : '' }}" href="{{ route('admin.customers.index') }}"">
@@ -524,7 +524,7 @@
                                         </span>
                                     </a>
 
-                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider m-0"></div>
 
                                     <!-- sales -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}" href="{{ route('admin.sales.index') }}">
@@ -574,7 +574,7 @@
                                         </span>
                                     </a>
 
-                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider m-0"></div>
 
                                     <!-- production lines -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.production-lines.*') ? 'active' : '' }}" href="{{ route('admin.production-lines.index') }}">

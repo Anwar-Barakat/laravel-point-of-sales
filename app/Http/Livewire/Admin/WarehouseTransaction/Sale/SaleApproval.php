@@ -42,11 +42,7 @@ class SaleApproval extends Component
 
     public function updatedSaleTaxValue()
     {
-        $taxAmount = $this->sale->tax_type == 0
-            ? ($this->sale->items_cost * floatval($this->sale->tax_value)) / 100
-            : floatval($this->sale->tax_value);
-
-        $this->sale->cost_before_discount  = $this->sale->items_cost + $taxAmount;
+        $this->sale->cost_before_discount  = $this->sale->items_cost + get_tax_value($this->sale);
         $this->sale->cost_after_discount   = $this->sale->cost_before_discount;
         $this->remain_paid_price();
     }
@@ -65,17 +61,9 @@ class SaleApproval extends Component
                 : __('validation.tax_type_is_percent'));
         }
 
-        $discountAmount = $this->calculateDiscountAmount();
+        $discountAmount = get_discount_value($this->invoice);
         $this->sale->cost_after_discount = $this->sale->cost_before_discount - $discountAmount;
         $this->remain_paid_price();
-    }
-
-    public function calculateDiscountAmount()
-    {
-        // Calculate the discount amount based on the discount type
-        return $this->sale->discount_type == 0
-            ? (floatval($this->sale->items_cost) * floatval($this->sale->discount_value)) / 100
-            : floatval($this->sale->discount_value);
     }
 
     public function updatedSalePaid()
