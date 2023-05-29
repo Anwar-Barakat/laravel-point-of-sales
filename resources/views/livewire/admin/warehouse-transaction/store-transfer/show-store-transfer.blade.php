@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-header d-flex align-items-center justify-content-between">
-        <h3 class="card-title">{{ __('msgs.all', ['name' => __('transaction.transfers')]) }}</h3>
+        <h3 class="card-title">{{ __('msgs.all', ['name' => __('transaction.store_transfers')]) }}</h3>
         <a href="{{ route('admin.store-transfers.create') }}"class="btn btn-primary">
-            {{ __('msgs.create', ['name' => __('transaction.transfer')]) }}
+            {{ __('msgs.create', ['name' => __('transaction.store_transfer')]) }}
         </a>
     </div>
 
@@ -129,6 +129,14 @@
                                             <span>{{ __('btns.edit') }}</span>
                                         </a>
                                         @if ($transfer->is_approved == 0)
+                                            <a class="dropdown-item d-flex align-items-center gap-1" href="{{ route('admin.store-transfers.show', ['store_transfer' => $transfer]) }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text text-primary∂" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 5l0 14" />
+                                                    <path d="M5 12l14 0" />
+                                                </svg>
+                                                <span>{{ __('transaction.add_items') }}</span>
+                                            </a>
                                             <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $transfer->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />

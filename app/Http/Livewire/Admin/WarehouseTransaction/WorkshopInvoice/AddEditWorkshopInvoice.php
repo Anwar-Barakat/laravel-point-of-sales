@@ -22,7 +22,7 @@ class AddEditWorkshopInvoice extends Component
         $this->invoice                  = $invoice;
         $this->invoice->invoice_date    = date('Y-m-d');
         $this->stores                   = Store::select('id', 'name')->active()->get();
-        $this->production_lines         = ProductionLine::select('id', 'plan')->closed()->get();
+        $this->production_lines         = ProductionLine::select('id', 'plan')->approved()->get();
         $this->workshops                = Workshop::active()->get();
     }
 

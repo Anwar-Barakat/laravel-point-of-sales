@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\GeneralSaleReturn\GeneralSal
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Order\OrderInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\ProductionLine\ProductionLineController;
+use App\Http\Controllers\Admin\WarehouseTransaction\ProductReceive\ProductReceiveBillController;
 use App\Http\Controllers\Admin\WarehouseTransaction\ProductReceive\ProductReceiveController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoiceController;
@@ -42,6 +43,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoic
 use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
 use App\Http\Controllers\Admin\WarehouseTransaction\StoreTransfer\StoreTransferController;
+use App\Http\Controllers\Admin\WarehouseTransaction\WorkshopInvoice\WorkshopInvoiceBillController;
 use App\Http\Controllers\Admin\WarehouseTransaction\WorkshopInvoice\WorkshopInvoiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -156,6 +158,7 @@ Route::group(
                 //_______________________
                 Route::resource('workshops',                                WorkshopController::class)->except('store', 'update');
                 Route::resource('workshop-invoices',                        WorkshopInvoiceController::class)->except('store', 'update');
+                Route::get('workshop-invoices-bill/{invoice}',              WorkshopInvoiceBillController::class)->name('workshop-invoices.bill');
 
                 //_______________________
                 // Account types
@@ -200,6 +203,7 @@ Route::group(
                 // products recieve
                 //_______________________
                 Route::resource('products-receive',                         ProductReceiveController::class)->except(['store', 'update']);
+                Route::get('products-receive-bill/{invoice}',               ProductReceiveBillController::class)->name('products-receive.bill');
 
                 //_______________________
                 // Shifts
