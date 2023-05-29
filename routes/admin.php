@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\WarehouseTransaction\Sale\SaleInvoicePdfControlle
 use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceBillController;
 use App\Http\Controllers\Admin\WarehouseTransaction\ServiceInvoice\ServiceInvoiceController;
 use App\Http\Controllers\Admin\WarehouseTransaction\Shift\ShiftController;
+use App\Http\Controllers\Admin\WarehouseTransaction\StoreTransfer\StoreTransferController;
 use App\Http\Controllers\Admin\WarehouseTransaction\WorkshopInvoice\WorkshopInvoiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -214,6 +215,11 @@ Route::group(
                 // Shifts
                 //_______________________
                 Route::resource('production-lines',                         ProductionLineController::class)->except('store', 'update');
+
+                //_______________________
+                // store transfers
+                //_______________________
+                Route::resource('store-transfers',                          StoreTransferController::class)->except('store', 'update');
 
 
                 //_______________________

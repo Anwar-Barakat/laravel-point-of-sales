@@ -172,4 +172,11 @@ return [
     'product_receive'                       => 'product receive',
 
 
+    //_______________________
+    // Store transfer
+    //_______________________
+    'store_transfers'           => 'store transfers',
+    'store_transfer'            => 'store transfer',
+    'transfer_date'             => 'Transfer date',
+
 ];

@@ -169,4 +169,12 @@ return [
     'products_receive_from_production_line' => 'استلام المنتجات من خطوط الإنتاج',
     'products_receive'                      => 'استلام منتجات',
     'product_receive'                       => 'استلام منتج',
+
+
+    //_______________________
+    // Store transfer
+    //_______________________
+    'store_transfers'           => 'تحويلات المخازن',
+    'store_transfer'            => 'تحويل مخزني',
+    'transfer_date'             => 'تاريخ التحويل',
 ];

@@ -476,7 +476,7 @@
                     <!---------------------------
                     Movements Stocks
                     -------------------------!-->
-                    <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') || request()->routeIs('admin.shifts.*') || request()->routeIs('admin.sales.*') || request()->routeIs('admin.services-invoices.*') || request()->routeIs('admin.production-lines.*') || request()->routeIs('admin.workshop-invoices.*') || request()->routeIs('admin.products-receive.*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ request()->routeIs('admin.orders.*') || request()->routeIs('admin.shifts.*') || request()->routeIs('admin.sales.*') || request()->routeIs('admin.services-invoices.*') || request()->routeIs('admin.production-lines.*') || request()->routeIs('admin.workshop-invoices.*') || request()->routeIs('admin.products-receive.*') || request()->routeIs('admin.store-transfers.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-warehouse" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -630,12 +630,14 @@
                                     <!-- shifts -->
                                     <a class="dropdown-item {{ request()->routeIs('admin.shifts.*') ? 'active' : '' }}" href="{{ route('admin.shifts.index') }}">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-transform" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-transfer-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M3 6a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
-                                                <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3"></path>
-                                                <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3"></path>
-                                                <path d="M15 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                                <path d="M17 3v6"></path>
+                                                <path d="M10 18l-3 3l-3 -3"></path>
+                                                <path d="M7 21v-18"></path>
+                                                <path d="M20 6l-3 -3l-3 3"></path>
+                                                <path d="M17 21v-2"></path>
+                                                <path d="M17 15v-2"></path>
                                             </svg>
                                         </span>
                                         <span class="nav-link-title">
@@ -657,6 +659,22 @@
                                         </span>
                                         <span class="nav-link-title">
                                             {{ __('transaction.item_balances') }}
+                                        </span>
+                                    </a>
+
+                                    <!-- store transfers -->
+                                    <a class="dropdown-item {{ request()->routeIs('admin.store-transfers.*') ? 'active' : '' }}" href="{{ route('admin.store-transfers.index') }}">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-transform" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M3 6a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                                <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3"></path>
+                                                <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3"></path>
+                                                <path d="M15 18a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            {{ __('transaction.store_transfers') }}
                                         </span>
                                     </a>
                                 </div>
