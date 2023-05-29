@@ -34,7 +34,7 @@ class GeneralOrderReturnItemForm extends Component
         $this->order                = $order;
         $this->product              = $product;
         $this->product->qty         = 1;
-        $this->order->is_approved   == 0 ?  $this->items = Item::select('id', 'name')->active()->get() : [];
+        $this->order->is_approved   == 0 ?  $this->items = Item::select('id', 'name')->active()->where('category_id', $this->order->vendor->category->id)->get() : [];
     }
 
     public function updatedProductItemId()

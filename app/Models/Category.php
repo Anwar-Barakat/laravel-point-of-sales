@@ -36,12 +36,12 @@ class Category extends Model implements HasMedia
 
     public function scopeActive($query)
     {
-        return $query->where(['is_active' => 1, 'company_id' => get_auth_com()]);
+        return $query->where(['is_active' => 1]);
     }
 
     public function scopeActiveParent($query)
     {
-        return $query->where(['parent_id' => 0, 'is_active' => 1, 'company_id' => get_auth_com()]);
+        return $query->where(['parent_id' => 0, 'is_active' => 1]);
     }
 
     public function addedBy()

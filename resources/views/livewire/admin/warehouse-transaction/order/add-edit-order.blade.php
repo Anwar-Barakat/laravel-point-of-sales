@@ -14,7 +14,7 @@
                             @if ($vendors)
                                 @foreach ($vendors as $vendor)
                                     <option value="{{ $vendor->id }}" {{ old('order.vendor_id') == $vendor->id ? 'selected' : '' }}>
-                                        {{ $vendor->name }}
+                                        {{ $vendor->name }} ({{ $vendor->category->name }})
                                     </option>
                                 @endforeach
                             @endif

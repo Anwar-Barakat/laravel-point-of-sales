@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Admin\WarehouseTransaction\Order;
 
-use App\Models\Item;
 use App\Models\ItemBatch;
 use App\Models\ItemTransaction;
 use App\Models\Order;
@@ -13,22 +12,22 @@ use Livewire\Component;
 
 class OrderApproval extends Component
 {
-    public Order $order;
+    public Order $invoice;
 
     public $total;
 
     protected $listeners = ['updateOrderProducts'];
 
-    public function updateOrderProducts(Order $order)
+    public function updateOrderProducts(Order $invoice)
     {
-        $this->order = $order;
+        $this->invoice = $invoice;
         $this->remain_paid_price();
     }
 
-    public function mount(Order $order)
+    public function mount(Order $invoice)
     {
-        $this->order = $order;
-        $this->total = $this->order->cost_after_discount;
+        $this->invoice  = $invoice;
+        $this->total    = $this->invoice->cost_after_discount;
         $this->remain_paid_price();
     }
 
@@ -37,55 +36,40 @@ class OrderApproval extends Component
         return $this->validateOnly($fields);
     }
 
-    public function updatedOrderInvoiceType()
+    public function updatedInvoiceInvoiceType()
     {
         $this->remain_paid_price();
     }
 
-    public function updatedOrderTaxValue()
+    public function updatedInvoiceTaxValue()
     {
-        if ($this->order->tax_type == 0)
-            $taxAmount = ($this->order->items_cost * floatval($this->order->tax_value)) / 100;
-        else
-            $taxAmount = floatval($this->order->tax_value);
-
-        $this->order->cost_before_discount  = $this->order->items_cost + $taxAmount;
-        $this->order->cost_after_discount   = $this->order->cost_before_discount;
+        $this->invoice->cost_before_discount  = $this->invoice->items_cost + get_tax_value($this->invoice);
+        $this->invoice->cost_after_discount   = $this->invoice->cost_before_discount;
         $this->remain_paid_price();
     }
 
-    public function updatedOrderDiscountValue()
+    public function updatedInvoiceDiscountValue()
     {
-        if (($this->order->discount_type == 1 && $this->order->discount_value > $this->order->cost_after_discount) ||
-            ($this->order->discount_type == 0 && $this->order->discount_value >= 100)
+        if (($this->invoice->discount_type == 1 && $this->invoice->discount_value > $this->invoice->cost_after_discount) ||
+            ($this->invoice->discount_type == 0 && $this->invoice->discount_value >= 100)
         ) {
-            $this->order->discount_value = 0;
-            $this->order->cost_after_discount = $this->order->cost_before_discount;
-            $this->order->paid = $this->order->cost_after_discount;
+            $this->invoice->discount_value = 0;
+            $this->invoice->cost_after_discount = $this->invoice->cost_before_discount;
+            $this->invoice->paid = $this->invoice->cost_after_discount;
 
-            toastr()->error($this->order->discount_type == 1
+            toastr()->error($this->invoice->discount_type == 1
                 ? __('validation.discount_less_grand_total')
                 : __('validation.tax_type_is_percent'));
         }
-        $discountAmount = $this->calculateDiscountAmount();
-
-        $this->order->cost_after_discount = $this->order->cost_before_discount - $discountAmount;
-
+        $discountAmount = get_discount_value($this->invoice);
+        $this->invoice->cost_after_discount = $this->invoice->cost_before_discount - $discountAmount;
         $this->remain_paid_price();
     }
 
-    public function calculateDiscountAmount()
+    public function updatedInvoicePaid()
     {
-        // Calculate the discount amount based on the discount type
-        return $this->order->discount_type == 0
-            ? ($this->order->items_cost * floatval($this->order->discount_value)) / 100
-            : floatval($this->order->discount_value);
-    }
-
-    public function updatedOrderPaid()
-    {
-        if ($this->order->invoice_type)
-            $this->order->remains   = $this->order->cost_after_discount - $this->order->paid;
+        if ($this->invoice->invoice_type)
+            $this->invoice->remains   = $this->invoice->cost_after_discount - $this->invoice->paid;
         else
             $this->remain_paid_price();
     }
@@ -94,7 +78,7 @@ class OrderApproval extends Component
     {
         $this->validate();
         try {
-            if (!$this->order->is_approved == 0) {
+            if (!$this->invoice->is_approved == 0) {
                 toastr()->error(__('transaction.already_approved'));
                 return redirect()->back();
             }
@@ -104,9 +88,9 @@ class OrderApproval extends Component
                 return redirect()->route('admin.shifts.create');
             }
 
-            if (get_treasury_balance() < $this->order->paid) {
+            if (get_treasury_balance() < $this->invoice->paid) {
                 toastr()->error(__('account.not_enough_balance'));
-                $this->order->paid = 0;
+                $this->invoice->paid = 0;
             }
 
             DB::beginTransaction();
@@ -115,17 +99,17 @@ class OrderApproval extends Component
             // 1- Monetary Transaction
             //________________________________________________
 
-            if ($this->order->type == 1) :
+            if ($this->invoice->type == 1) :
                 $shift_type = ShiftType::findOrFail(8)->id; // Disbursement for an invoice for purchases from a vendor
                 $payment    = has_open_shift()->last_payment_exchange + 1;
-                $money      = floatval(-$this->order->paid);
-                $report     = 'Disbursement for a purchase invoice from the vendor of the number holder #' . $this->order->vendor->id;
+                $money      = floatval(-$this->invoice->paid);
+                $report     = 'Disbursement for a purchase invoice from the vendor of the number holder #' . $this->invoice->vendor->id;
                 $name       = __('transaction.purchase_bill');
-            elseif ($this->order->type == 3) :
+            elseif ($this->invoice->type == 3) :
                 $shift_type = ShiftType::findOrFail(9)->id; // Collection of a return counterpart purchased to a vendor
                 $payment    = has_open_shift()->last_payment_collect + 1;
-                $money      = $this->order->paid;
-                $report     = 'Collection of a return counterpart purchased to a vendor of the number holder #' . $this->order->vendor->id;
+                $money      = $this->invoice->paid;
+                $report     = 'Collection of a return counterpart purchased to a vendor of the number holder #' . $this->invoice->vendor->id;
                 $name       = __('transaction.general_order_return');
             endif;
 
@@ -134,8 +118,8 @@ class OrderApproval extends Component
                 'shift_id'          => has_open_shift()->id,
                 'admin_id'          => get_auth_id(),
                 'treasury_id'       => has_open_shift()->treasury->id,
-                'order_id'          => $this->order->id,
-                'account_id'        => $this->order->account_id,
+                'order_id'          => $this->invoice->id,
+                'account_id'        => $this->invoice->account_id,
                 'is_approved'       => 1,
                 'is_account'        => 1,
                 'transaction_date'  => date('Y-m-d'),
@@ -150,15 +134,15 @@ class OrderApproval extends Component
             //________________________________________________
             // 2- Approving the order
             //________________________________________________
-            if ($this->order->type == 1) :
-                $money_for_account = floatval(-$this->order->cost_after_discount);
+            if ($this->invoice->type == 1) :
+                $money_for_account = floatval(-$this->invoice->cost_after_discount);
 
                 //________________________________________________
                 // 3- Increment last payment exchange for treasury
                 //________________________________________________
                 has_open_shift()->treasury->increment('last_payment_exchange');
-            elseif ($this->order->type == 3) :
-                $money_for_account = $this->order->cost_after_discount;
+            elseif ($this->invoice->type == 3) :
+                $money_for_account = $this->invoice->cost_after_discount;
 
                 //________________________________________________
                 // 3- Increment last payment collect for treasury
@@ -166,27 +150,27 @@ class OrderApproval extends Component
                 has_open_shift()->treasury->increment('last_payment_collect');
             endif;
 
-            $this->order->treasury_id               = has_open_shift()->treasury->id;
-            $this->order->is_approved               = 1;
-            $this->order->approved_by               = get_auth_id();
-            $this->order->money_for_account         = $money_for_account;
-            $this->order->treasury_transaction_id   = TreasuryTransaction::latest()->first()->id;
-            $this->order->company_id                = get_auth_com();
-            $this->order->save();
+            $this->invoice->treasury_id               = has_open_shift()->treasury->id;
+            $this->invoice->is_approved               = 1;
+            $this->invoice->approved_by               = get_auth_id();
+            $this->invoice->money_for_account         = $money_for_account;
+            $this->invoice->treasury_transaction_id   = TreasuryTransaction::latest()->first()->id;
+            $this->invoice->company_id                = get_auth_com();
+            $this->invoice->save();
 
 
             //________________________________________________
             // 4- Update the vendor account balance
             //________________________________________________
-            update_account_balance($this->order->account);
+            update_account_balance($this->invoice->account);
 
 
             //________________________________________________
             // 5- Transaction on store
             //________________________________________________
-            $this->order->orderProducts->map(function ($prod) {
+            $this->invoice->orderProducts->map(function ($prod) {
                 $qty_before_transaction = item_batch_qty($prod->item);
-                $store_qty_before_trans = item_batch_qty($prod->item, $this->order->store_id);
+                $store_qty_before_trans = item_batch_qty($prod->item, $this->invoice->store_id);
 
                 if ($prod->unit->status == 'retail') {
                     $quantity   = $prod->qty / $prod->item->retail_count_for_wholesale;
@@ -198,7 +182,7 @@ class OrderApproval extends Component
 
                 $data = [
                     'item_id'           => $prod->item->id,
-                    'store_id'          => $this->order->store->id,
+                    'store_id'          => $this->invoice->store->id,
                     'unit_id'           => $prod->item->parentUnit->id,
                     'unit_price'        => $unit_price,
                     'company_id'        => get_auth_com(),
@@ -211,9 +195,9 @@ class OrderApproval extends Component
                 $batchExists = ItemBatch::where($data)->first();
 
                 if (isset($batchExists)) {
-                    if ($this->order->type == 1) :
+                    if ($this->invoice->type == 1) :
                         $batch_qty  = $batchExists->qty + $quantity;
-                    elseif ($this->order->type == 3) :
+                    elseif ($this->invoice->type == 3) :
                         $batch_qty  = $batchExists->qty - $quantity;
                     endif;
 
@@ -233,22 +217,22 @@ class OrderApproval extends Component
                 // 6- Any transaction on item it must be stored
                 //________________________________________________
 
-                if ($this->order->type == 1) :
-                    $item_trans_report      = 'For purchases from the vendor ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id;
+                if ($this->invoice->type == 1) :
+                    $item_trans_report      = 'For purchases from the vendor ' . $this->invoice->vendor->name . ' for the invoice number #' . $this->invoice->id;
                     $item_transaction_type  = 1; //purchases
-                elseif ($this->order->type == 3) :
-                    $item_trans_report      = 'For general order return to the vendor ' . $this->order->vendor->name . ' for the invoice number #' . $this->order->id;
+                elseif ($this->invoice->type == 3) :
+                    $item_trans_report      = 'For general order return to the vendor ' . $this->invoice->vendor->name . ' for the invoice number #' . $this->invoice->id;
                     $item_transaction_type  = 3; //General Purchase Returns
                 endif;
 
                 $qty_after_transaction = item_batch_qty($prod->item);
-                $store_qty_after_trans = item_batch_qty($prod->item, $this->order->store_id);
+                $store_qty_after_trans = item_batch_qty($prod->item, $this->invoice->store_id);
                 ItemTransaction::create([
                     'item_transaction_category_id'  => 1,   // Transaction on purchases
                     'item_transaction_type_id'      => $item_transaction_type,
                     'item_id'                       => $prod->item_id,
-                    'order_id'                      => $this->order->id,
-                    'store_id'                      => $this->order->store_id,
+                    'order_id'                      => $this->invoice->id,
+                    'store_id'                      => $this->invoice->store_id,
                     'order_product_id'              => $prod->id,
                     'report'                        => $item_trans_report,
                     'store_qty_before_transaction'  => $store_qty_before_trans . ' ' . $prod->item->parentUnit->name,
@@ -270,47 +254,47 @@ class OrderApproval extends Component
 
             DB::commit();
             toastr()->success(__('msgs.approved', ['name' => $name]));
-            $this->emit('updateOrderProducts', ['order' => $this->order]);
+            $this->emit('updateOrderProducts', ['invoice' => $this->invoice]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->route('admin.orders.show', ['order' => $this->order])->with(['error' => $th->getMessage()]);
+            return redirect()->route('admin.orders.show', ['order' => $this->invoice])->with(['error' => $th->getMessage()]);
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.warehouse-transaction.order.order-approval', ['order' => $this->order]);
+        return view('livewire.admin.warehouse-transaction.order.order-approval', ['invoice' => $this->invoice]);
     }
 
     public function rules()
     {
         return [
-            'order.items_cost'              => ['required'],
-            'order.tax_type'                => ['nullable', 'boolean'],
-            'order.tax_value'               => ['nullable', 'numeric', function ($value) {
-                if ($this->order->tax_type  == '0' && $this->order->tax_value  >= 100) {
+            'invoice.items_cost'              => ['required'],
+            'invoice.tax_type'                => ['nullable', 'boolean'],
+            'invoice.tax_value'               => ['nullable', 'numeric', function ($value) {
+                if ($this->invoice->tax_type  == '0' && $this->invoice->tax_value  >= 100) {
                     toastr()->error(__('validation.tax_type_is_percent'));
-                    $this->order->tax_value = 0;
+                    $this->invoice->tax_value = 0;
                 }
             }],
-            'order.cost_before_discount'    => ['required'],
-            'order.discount_type'           => ['nullable', 'boolean'],
-            'order.discount_value'          => ['nullable', 'numeric'],
-            'order.cost_after_discount'     => ['required'],
-            'order.invoice_type'            => ['required'],
-            'order.paid'               => ['required', 'numeric', function () {
-                if ($this->order->paid > $this->order->cost_after_discount) {
+            'invoice.cost_before_discount'    => ['required'],
+            'invoice.discount_type'           => ['nullable', 'boolean'],
+            'invoice.discount_value'          => ['nullable', 'numeric'],
+            'invoice.cost_after_discount'     => ['required'],
+            'invoice.invoice_type'            => ['required'],
+            'invoice.paid'               => ['required', 'numeric', function () {
+                if ($this->invoice->paid > $this->invoice->cost_after_discount) {
                     toastr()->error(__('validation.paid_smaller_than_cost'));
-                    $this->order->paid = 0;
+                    $this->invoice->paid = 0;
                 }
             }],
-            'order.remains'             => ['required'],
+            'invoice.remains'             => ['required'],
         ];
     }
 
     private function remain_paid_price()
     {
-        $this->order->paid      = $this->order->invoice_type == 0 ? $this->order->cost_after_discount : 0;
-        $this->order->remains   = $this->order->invoice_type == 0 ? 0 :  $this->order->cost_after_discount;
+        $this->invoice->paid      = $this->invoice->invoice_type == 0 ? $this->invoice->cost_after_discount : 0;
+        $this->invoice->remains   = $this->invoice->invoice_type == 0 ? 0 :  $this->invoice->cost_after_discount;
     }
 }

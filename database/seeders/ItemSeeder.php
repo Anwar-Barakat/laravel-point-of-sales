@@ -21,7 +21,7 @@ class ItemSeeder extends Seeder
         $hand_too_cat   = Category::where('name->en', 'Hand Tools')->active()->first()->id;
         $meat_cat       = Category::where('name->en', 'Meat & Freezers')->active()->first()->id;
         $shoes_cat      = Category::where('name->en', 'Shoes')->active()->first()->id;
-        $sachet_unit    = Unit::where('name->en', 'Sachet')->active()->first()->id;
+        $sachet_unit    = Unit::where('name->en', 'Sachet(25kg)')->active()->first()->id;
         $carton_unit    = Unit::where('name->en', 'Carton')->active()->first()->id;
         $box_unit       = Unit::where('name->en', 'Box')->active()->first()->id;
 
@@ -43,7 +43,7 @@ class ItemSeeder extends Seeder
                 'retail_cost_price'                 => 11,
                 'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                        => $admin->company->id,
+                'company_id'                        => $admin->company_id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -63,7 +63,7 @@ class ItemSeeder extends Seeder
                 'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
                 'retail_cost_price'                 => 15,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                        => $admin->company->id,
+                'company_id'                        => $admin->company_id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -83,7 +83,7 @@ class ItemSeeder extends Seeder
                 'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
                 'retail_cost_price'                 => 15,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                        => $admin->company->id,
+                'company_id'                        => $admin->company_id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -97,7 +97,7 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_block'         => 800,
                 'wholesale_cost_price'              => 18,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                        => $admin->company->id,
+                'company_id'                        => $admin->company_id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -111,7 +111,7 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_block'         => 1000,
                 'wholesale_cost_price'              => 20,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                        => $admin->company->id,
+                'company_id'                        => $admin->company_id,
                 'added_by'                          => $admin->id,
             ],
             [
@@ -125,7 +125,21 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_block'         => 900,
                 'wholesale_cost_price'              => 19,
                 'has_fixed_price'                   => rand(0, 1),
-                'company_id'                        => $admin->company->id,
+                'company_id'                        => $admin->company_id,
+                'added_by'                          => $admin->id,
+            ],
+            [
+                'name'                              => 'Cottons',
+                'type'                              => 1, // stored
+                'category_id'                       => $meat_cat,
+                'has_retail_unit'                   => false,
+                'wholesale_unit_id'                 => $sachet_unit,
+                'wholesale_price'                   => 500,
+                'wholesale_price_for_half_block'    => 450,
+                'wholesale_price_for_block'         => 400,
+                'wholesale_cost_price'              => 12,
+                'has_fixed_price'                   => rand(0, 1),
+                'company_id'                        => $admin->company_id,
                 'added_by'                          => $admin->id,
             ],
         ];

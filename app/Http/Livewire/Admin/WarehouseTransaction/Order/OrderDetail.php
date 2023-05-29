@@ -21,8 +21,6 @@ class OrderDetail extends Component
 
     public $consuming = false;
 
-    public $products = [];
-
     protected $listeners = ['updateOrderProducts'];
 
     public function updateOrderProducts(Order $order)
@@ -36,7 +34,7 @@ class OrderDetail extends Component
         $this->product              = $product ?? new OrderProduct();
         $this->order->invoice_date  = date('Y-m-d');
         $this->product->qty         = 1;
-        $this->order->is_approved   == 0 ?  $this->items = Item::select('id', 'name')->active()->get() : [];
+        $this->order->is_approved   == 0 ?  $this->items = Item::select('id', 'name')->active()->where('category_id', $this->order->vendor->category->id)->get() : [];
     }
 
     public function calcPrice()

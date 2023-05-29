@@ -35,7 +35,7 @@
                         <select class="form-select" wire:model='vendor_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Vendor::get() as $vendor)
-                                <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                <option value="{{ $vendor->id }}">{{ $vendor->name }} ({{ $vendor->category->name }})</option>
                             @endforeach
                         </select>
                     </div>

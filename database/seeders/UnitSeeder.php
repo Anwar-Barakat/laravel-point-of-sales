@@ -108,17 +108,8 @@ class UnitSeeder extends Seeder
             ],
             [
                 'name'          => [
-                    'en'        => 'Sachet',
-                    'ar'        => 'الكيس'
-                ],
-                'status'        => 'wholesale',
-                'company_id'  => $admin->company->id,
-                'added_by'      => $admin->id,
-            ],
-            [
-                'name'          => [
-                    'en'        => 'Sachet',
-                    'ar'        => 'الكيس'
+                    'en'        => 'Sachet(25kg)',
+                    'ar'        => 'الكيس 25 كيلوغرام'
                 ],
                 'status'        => 'wholesale',
                 'company_id'  => $admin->company->id,

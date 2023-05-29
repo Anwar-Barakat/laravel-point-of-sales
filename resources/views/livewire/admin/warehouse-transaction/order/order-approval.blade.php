@@ -6,34 +6,33 @@
                         <h5 class="modal-title">{{ __('transaction.approval_and_posting') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    @include('layouts.errors-message')
                     <div class="modal-body">
                         <h3 class="mb-3 text-blue">{{ __('transaction.items_tax_discount') }}</h3>
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.items_cost')" />
-                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.items_cost' readonly disabled />
-                                    <x-input-error :messages="$errors->get('order.items_cost')" class="mt-2" />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='invoice.items_cost' readonly disabled />
+                                    <x-input-error :messages="$errors->get('invoice.items_cost')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.tax_type')" />
-                                    <select class="form-select" wire:model='order.tax_type'>
+                                    <select class="form-select" wire:model='invoice.tax_type'>
                                         <option value="">{{ __('btns.select') }}</option>
                                         <option value="0">{{ __('transaction.percentage') }}</option>
                                         <option value="1">{{ __('transaction.fixed') }}</option>
                                     </select>
-                                    <x-input-error :messages="$errors->get('order.tax_type')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('invoice.tax_type')" class="mt-2" />
                                 </div>
                             </div>
-                            @if ($order->tax_type != null)
+                            @if ($invoice->tax_type != null)
                                 <div class="col-lg-4 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.tax')" />
-                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.tax_value' />
-                                        <x-input-error :messages="$errors->get('order.tax_value')" class="mt-2" />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='invoice.tax_value' />
+                                        <x-input-error :messages="$errors->get('invoice.tax_value')" class="mt-2" />
                                     </div>
                                 </div>
                             @endif
@@ -42,27 +41,27 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.items_cost') . ' + ' . __('transaction.tax')" />
-                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.cost_before_discount' readonly disabled />
-                                    <x-input-error :messages="$errors->get('order.cost_before_discount')" class="mt-2" />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='invoice.cost_before_discount' readonly disabled />
+                                    <x-input-error :messages="$errors->get('invoice.cost_before_discount')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.discount_type')" />
-                                    <select class="form-select" wire:model='order.discount_type'>
+                                    <select class="form-select" wire:model='invoice.discount_type'>
                                         <option value="">{{ __('btns.select') }}</option>
                                         <option value="0">{{ __('transaction.percentage') }}</option>
                                         <option value="1">{{ __('transaction.fixed') }}</option>
                                     </select>
-                                    <x-input-error :messages="$errors->get('order.discount_type')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('invoice.discount_type')" class="mt-2" />
                                 </div>
                             </div>
-                            @if ($order->discount_type != null)
+                            @if ($invoice->discount_type != null)
                                 <div class="col-lg-4 col-md-6">
                                     <div class="mb-3">
                                         <x-input-label class="form-label" :value="__('transaction.discount')" />
-                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.discount_value' />
-                                        <x-input-error :messages="$errors->get('order.discount_value')" class="mt-2" />
+                                        <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='invoice.discount_value' />
+                                        <x-input-error :messages="$errors->get('invoice.discount_value')" class="mt-2" />
                                     </div>
                                 </div>
                             @endif
@@ -85,8 +84,8 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.cost_after_discount')" />
-                                    <x-text-input type="number" placeholder="10.15" class="form-control bg-info text-white" wire:model='order.cost_after_discount' readonly disabled />
-                                    <x-input-error :messages="$errors->get('order.cost_after_discount')" class="mt-2" />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control bg-info text-white" wire:model='invoice.cost_after_discount' readonly disabled />
+                                    <x-input-error :messages="$errors->get('invoice.cost_after_discount')" class="mt-2" />
                                 </div>
                             </div>
                         </div>
@@ -97,35 +96,35 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="__('transaction.invoice_type')" />
-                                    <select class="form-select" wire:model='order.invoice_type'>
+                                    <select class="form-select" wire:model='invoice.invoice_type'>
                                         <option value="">{{ __('btns.select') }}</option>
                                         @foreach (App\Models\Order::INVOICETYPE as $key => $value)
                                             <option value="{{ $key }}">{{ __('transaction.' . $value) }}</option>
                                         @endforeach
                                     </select>
-                                    <x-input-error :messages="$errors->get('order.invoice_type')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('invoice.invoice_type')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     @php
-                                        if ($order->type == 1) {
+                                        if ($invoice->type == 1) {
                                             $paid = __('transaction.paid_to_the_supplier');
                                             $remains = __('transaction.remain_to_the_supplier');
-                                        } elseif ($order->type == 3) {
+                                        } elseif ($invoice->type == 3) {
                                             $paid = __('transaction.collect_from_vendor');
                                             $remains = __('transaction.remains_for_vendor');
                                         }
                                     @endphp
                                     <x-input-label class="form-label" :value="$paid" />
-                                    <input type="number" placeholder="10.15" class="form-control" wire:model='order.paid' {{ $order->invoice_type == 0 ? 'readonly disabled' : '' }} />
-                                    <x-input-error :messages="$errors->get('order.paid')" class="mt-2" />
+                                    <input type="number" placeholder="10.15" class="form-control" wire:model='invoice.paid' {{ $invoice->invoice_type == 0 ? 'readonly disabled' : '' }} />
+                                    <x-input-error :messages="$errors->get('invoice.paid')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <x-input-label class="form-label" :value="$remains" />
-                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='order.remains' readonly disabled />
+                                    <x-text-input type="number" placeholder="10.15" class="form-control" wire:model='invoice.remains' readonly disabled />
                                 </div>
                             </div>
                         </div>
