@@ -11,6 +11,7 @@ class StoreTransfer extends Model
 
     protected $fillable = [
         'transfer_date',
+        'is_approved',
         'notes',
         'items_cost',
         'from_store',

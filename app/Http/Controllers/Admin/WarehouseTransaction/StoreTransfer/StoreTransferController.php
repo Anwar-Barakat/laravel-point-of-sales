@@ -14,7 +14,7 @@ class StoreTransferController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.warehouse-transactions.store-transfers.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreTransferController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.warehouse-transactions.store-transfers.create');
     }
 
     /**
@@ -36,17 +36,17 @@ class StoreTransferController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StoreTransfer $storeTransfer)
+    public function show(StoreTransfer $store_transfer)
     {
-        //
+        return view('admin.warehouse-transactions.store-transfers.show', ['store_transfer' => $store_transfer]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StoreTransfer $storeTransfer)
+    public function edit(StoreTransfer $store_transfer)
     {
-        //
+        return view('admin.warehouse-transactions.store-transfers.edit', ['store_transfer' => $store_transfer]);
     }
 
     /**

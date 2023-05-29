@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('transfer_date');
             $table->string('notes');
+            $table->boolean('is_approved')->default(0);
             $table->decimal('items_cost', 10, 2)->default(0); // all items costs
             $table->foreignId('from_store')->constrained('stores')->cascadeOnUpdate();
             $table->foreignId('to_store')->constrained('stores')->cascadeOnUpdate();

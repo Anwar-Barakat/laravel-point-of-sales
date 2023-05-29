@@ -178,5 +178,9 @@ return [
     'store_transfers'           => 'store transfers',
     'store_transfer'            => 'store transfer',
     'transfer_date'             => 'Transfer date',
+    'store_transmitter'         => 'Store transmitter',
+    'store_receiver'            => 'Store receiver',
+    'select_another_store'      => 'Please, select another store',
 
+    'already_previous_transfer_order'   => 'An unapproved previous transfer order already exists',
 ];

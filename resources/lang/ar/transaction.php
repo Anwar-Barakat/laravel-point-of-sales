@@ -177,4 +177,10 @@ return [
     'store_transfers'           => 'تحويلات المخازن',
     'store_transfer'            => 'تحويل مخزني',
     'transfer_date'             => 'تاريخ التحويل',
+    'store_transmitter'         => 'المخزن المُرسل',
+    'store_receiver'            => 'المخزن المُستلم',
+    'select_another_store'      => 'من فضلك, اختر مخزن آخر',
+
+    'already_previous_transfer_order'   => 'يوجد بالفعل أمر نقل سابق غير معتمد',
+
 ];
