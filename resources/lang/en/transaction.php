@@ -126,8 +126,8 @@ return [
     'all_batches'               => 'All batches',
     'batches_with_qty'          => 'Batches that have qty',
     'empty_batches'             => 'Eempty Batches',
-    'production_from_date'      => 'Production date from date',
-    'production_to_date'        => 'Production date to date',
+    'production_from_date'      => 'Production from date',
+    'production_to_date'        => 'Production to date',
 
 
     //_______________________

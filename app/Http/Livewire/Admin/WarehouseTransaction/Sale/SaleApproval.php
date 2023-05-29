@@ -165,15 +165,9 @@ class SaleApproval extends Component
                         break;
                 }
 
-                $this->sale->commission_value = $this->sale->delegate->commission_type == 0
+                $commission_value = $this->sale->delegate->commission_type == 0
                     ? (($commission * $this->sale->cost_after_discount) / 100) * (-1)
                     : $commission * (-1);
-
-                //________________________________________________
-                // 4- Update the delegate balance
-                //________________________________________________
-                update_account_balance($this->sale->delegate->account);
-
 
             elseif ($this->sale->type == 3) :
                 $money_for_account = floatval(-$this->sale->cost_after_discount);
@@ -186,6 +180,7 @@ class SaleApproval extends Component
 
 
             $this->sale->commission_type            = $this->sale->delegate->commission_type;
+            $this->sale->commission_value           = $commission_value;
             $this->sale->treasury_id                = has_open_shift()->treasury->id;
             $this->sale->is_approved                = 1;
             $this->sale->approved_by                = get_auth_id();
@@ -194,11 +189,12 @@ class SaleApproval extends Component
             $this->sale->company_id                 = get_auth_com();
             $this->sale->save();
 
-
             //________________________________________________
-            // 4- Update the customer balance
+            // 4- Update the customer & delegate balance
             //________________________________________________
             update_account_balance($this->sale->account);
+
+            update_account_balance($this->sale->delegate->account);
 
 
             //________________________________________________

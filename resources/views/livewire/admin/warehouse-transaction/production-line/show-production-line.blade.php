@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('transaction.production_from_date')" />
+                        <x-input-label class="form-label" :value="__('transaction.production_to_date')" />
                         <input type="date" class="form-control" wire:model='production_to_date'>
                     </div>
                 </div>

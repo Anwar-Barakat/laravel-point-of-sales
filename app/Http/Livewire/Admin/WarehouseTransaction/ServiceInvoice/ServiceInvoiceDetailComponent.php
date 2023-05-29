@@ -16,7 +16,7 @@ class ServiceInvoiceDetailComponent extends Component
 
     public ServiceInvoice $invoice;
 
-    public ServiceInvoiceDetail $service;
+    public  $service;
 
     public $services = [];
 
@@ -30,7 +30,7 @@ class ServiceInvoiceDetailComponent extends Component
     public function mount(ServiceInvoice $invoice, ServiceInvoiceDetail $service)
     {
         $this->invoice                  = $invoice;
-        $this->service                  = $service;
+        $this->service                  = $service ?? new ServiceInvoiceDetail();
         $this->invoice->invoice_date    = date('Y-m-d');
         $this->invoice->is_approved     == 0 ?  $this->services = Service::select('id', 'name')->where('type', $this->invoice->service_type)->active()->get() : [];
     }
@@ -64,6 +64,7 @@ class ServiceInvoiceDetailComponent extends Component
                 $this->emit('updateServicesInvoice', ['invoice' => $this->invoice]);
                 toastr()->success(__('msgs.added', ['name' => __('setting.service')]));
                 $this->reset('service');
+                $this->service = ServiceInvoiceDetail::make();
             }
         } catch (\Throwable $th) {
             return redirect()->route('admin.services-invoices.show', ['services_invoice' => $this->invoice])->with(['error' => $th->getMessage()]);

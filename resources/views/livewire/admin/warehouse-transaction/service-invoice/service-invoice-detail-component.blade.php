@@ -9,66 +9,7 @@
                     @endif
                     @livewire('admin.warehouse-transaction.service-invoice.service-invoice-approval', ['invoice' => $invoice])
                 </div>
-                <table class="table card-table table-vcenter table-striped-columns">
-                    <thead>
-                        <tr>
-                            <th>{{ __('msgs.column') }}</th>
-                            <th colspan="2">{{ __('btns.details') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>{{ __('transaction.invoice_number') }}</th>
-                            <td>{{ $invoice->id }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('transaction.invoice_type') }}</th>
-                            <td>
-                                <span class="badge {{ $invoice->invoice_type == 0 ? 'bg-red-lt' : 'bg-green-lt' }}">
-                                    {{ $invoice->invoice_type ? __('transaction.delayed') : __('transaction.cash') }}
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('setting.service_type') }}</th>
-                            <td>
-                                <span class="badge bg-red-lt">{{ __('setting.' . App\Models\Service::SERTICETYPE[$invoice->service_type]) }}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('account.account_number') }}</th>
-                            <td>{{ $invoice->account->number }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('account.account_name') }}</th>
-                            <td>{{ $invoice->account->name }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('transaction.services_cost') }}</th>
-                            <td>{{ $invoice->services_cost ?? '0' }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('transaction.tax') }}</th>
-                            <td>{{ $invoice->tax_value ?? '-' }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('transaction.cost_before_discount') }}</th>
-                            <td>{{ $invoice->cost_before_discount ?? '0' }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('transaction.discount') }}</th>
-                            <td>{{ $invoice->discount_value ?? '-' }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('transaction.grand_total') }}</th>
-                            <td>{{ $invoice->cost_after_discount ?? '0' }}</td>
-                        </tr>
-                        <tr>
-                            <th>{{ __('msgs.created_at') }}</th>
-                            <td>{{ $invoice->created_at }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @include('livewire.admin.warehouse-transaction.service-invoice.inc.main-detail', ['invoice' => $invoice])
                 <div class="card-footer border-top-0"></div>
             </div>
         </div>
@@ -153,73 +94,7 @@
                 <div class="card-header w-100 d-flex align-items-center justify-content-between">
                     <h3 class="card-title">{{ __('stock.items') }}</h3>
                 </div>
-                <div>
-                    <table class="table card-table table-vcenter table-striped-columns">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>{{ __('setting.service') }}</th>
-                                <th>{{ __('transaction.total_amount') }}</th>
-                                <th>{{ __('msgs.notes') }}</th>
-                                @if (!$invoice->is_approved == 1)
-                                    <th></th>
-                                @endif
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($details as $detail)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        <span class="badge bg-blue">
-                                            {{ $detail->service->name }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $detail->total }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm" data-bs-placement="top" data-bs-toggle="popover" title="{{ __('msgs.notes') }}" data-bs-content="{{ $detail->notes }}">{{ __('account.click_here') }}</button>
-                                    </td>
-                                    @if (!$invoice->is_approved == 1)
-                                        <td>
-                                            <div class="btn-list flex-nowrap justify-content-center">
-                                                <a wire:click.prevent="edit({{ $detail }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                                        <path d="M16 5l3 3" />
-                                                    </svg>
-                                                </a>
-                                                <a wire:click.prevent="delete({{ $detail }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 text-danger" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M4 7l16 0" />
-                                                        <path d="M10 11l0 6" />
-                                                        <path d="M14 11l0 6" />
-                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                    </svg>
-                                                </a>
-
-                                            </div>
-                                        </td>
-                                    @endif
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5">
-                                        <x-blank-section :content="__('stock.item')" :url="'#add-items'" />
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                    @if ($details->count() > 0)
-                        <div class="p-3 mt-2">
-                            {{ $details->links('pagination::bootstrap-5') }}
-                        </div>
-                    @endif
-                </div>
+                @include('livewire.admin.warehouse-transaction.service-invoice.inc.display-services', ['details' => $details])
                 <div class="card-footer border-top-0">
                 </div>
             </div>
