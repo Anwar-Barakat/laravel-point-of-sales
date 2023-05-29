@@ -180,7 +180,8 @@ return [
     'store_transmitter'         => 'المخزن المُرسل',
     'store_receiver'            => 'المخزن المُستلم',
     'select_another_store'      => 'من فضلك, اختر مخزن آخر',
-
+    'transfer_from_date'        => 'التحويل من تاريخ',
+    'transfer_to_date'          => 'التحويل إلى تاريخ',
     'already_previous_transfer_order'   => 'يوجد بالفعل أمر نقل سابق غير معتمد',
 
 ];
