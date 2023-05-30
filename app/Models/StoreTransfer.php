@@ -29,4 +29,9 @@ class StoreTransfer extends Model
     {
         return $this->belongsTo(Store::class, 'to_store');
     }
+
+    public function addedBy()
+    {
+        return $this->belongsTo(Admin::class, 'added_by');
+    }
 }

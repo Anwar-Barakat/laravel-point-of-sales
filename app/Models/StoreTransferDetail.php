@@ -13,7 +13,7 @@ class StoreTransferDetail extends Model
         'store_transfer_id',
         'item_id',
         'unit_id',
-        'from_item_batch',
+        'item_batch_id',
         'to_item_batch',
         'production_date',
         'expiration_date',
@@ -22,15 +22,39 @@ class StoreTransferDetail extends Model
         'total_price',
         'added_by',
         'company_id',
+        'is_approved',
+        'approved_at',
+        'approved_by',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
 
     public function fromItemBatch()
     {
-        return $this->belongsTo(ItemBatch::class, 'from_item_batch');
+        return $this->belongsTo(ItemBatch::class, 'item_batch_id');
     }
 
     public function toItemBatch()
     {
         return $this->belongsTo(ItemBatch::class, 'to_item_batch');
     }
+
+    public function addedBy()
+    {
+        return $this->belongsTo(Admin::class, 'added_by');
+    }
+
+    public function approvedBy()
+    {
+        return $this->belongsTo(Admin::class, 'approved_by');
+    }
+
 }

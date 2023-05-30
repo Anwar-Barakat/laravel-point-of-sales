@@ -16,8 +16,6 @@ use Livewire\WithPagination;
 
 class WorkshopInvoiceDetail extends Component
 {
-
-
     use WithPagination;
 
     public WorkshopInvoice $invoice;

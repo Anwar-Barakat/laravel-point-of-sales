@@ -195,6 +195,15 @@ class ShiftTypeSeeder extends Seeder
                 'in_screen'         => 0,
                 'account_type_id'   => AccountType::where(['name->en' => 'general'])->first()->id,
             ],
+            [
+                'id'                => 21,
+                'name'              => [
+                    'ar'            => 'صرف منتجات كتحويل بين المخازن',
+                    'en'            => 'Disbursement of products as transfer between stores',
+                ],
+                'in_screen'         => 0,
+                'account_type_id'   => AccountType::where(['name->en' => 'general'])->first()->id,
+            ],
         ];
 
         foreach ($types as $type) {

@@ -90,7 +90,7 @@ class OrderApproval extends Component
 
             if (get_treasury_balance() < $this->invoice->paid) {
                 toastr()->error(__('account.not_enough_balance'));
-                $this->invoice->paid = 0;
+                return false;
             }
 
             DB::beginTransaction();

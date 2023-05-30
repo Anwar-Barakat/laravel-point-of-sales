@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('store_transfer_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('item_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('unit_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('from_item_batch')->constrained('item_batches')->cascadeOnUpdate();
-            $table->foreignId('to_item_batch')->constrained('item_batches')->cascadeOnUpdate();
+            $table->foreignId('item_batch_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('to_item_batch')->nullable()->constrained('item_batches')->cascadeOnUpdate();
 
             $table->date('production_date')->nullable();
             $table->date('expiration_date')->nullable();
@@ -25,6 +25,9 @@ return new class extends Migration
             $table->integer('qty')->default(1);
             $table->decimal('unit_price', 10, 2);
             $table->decimal('total_price', 10, 2);
+            $table->boolean('is_approved')->default(0);
+            $table->date('approved_at')->nullable();
+            $table->foreignId('approved_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('company_id');
             $table->timestamps();
