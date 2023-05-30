@@ -205,8 +205,8 @@
                                     <td> <span class="badge bg-blue-lt">{{ $product->unit->name }}</span></td>
                                     <td>{{ $product->unit_price }}</td>
                                     <td>{{ $product->qty }}</td>
-                                    <td>{{ $product->item_batch->production_date ?? '-' }}</td>
-                                    <td>{{ $product->item_batch->expiration_date ?? '-' }}</td>
+                                    <td>{{ $product->fromItemBatch->production_date ?? '-' }}</td>
+                                    <td>{{ $product->fromItemBatch->expiration_date ?? '-' }}</td>
                                     <td class="bg-blue-500">{{ $product->total_price }}</td>
                                     @if (!$transfer->is_approved == 1)
                                         <td>

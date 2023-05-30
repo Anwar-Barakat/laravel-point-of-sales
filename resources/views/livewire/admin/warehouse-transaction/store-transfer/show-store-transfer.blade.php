@@ -32,7 +32,7 @@
                 <div class="col-12 col-md-4 col-lg-2">
                     <div class="mb-3">
                         <x-input-label class="form-label" :value="__('transaction.store_transmitter')" />
-                        <select class="form-select" wire:model='from_store'>
+                        <select class="form-select" wire:model='store_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach (App\Models\Store::get() as $store)
                                 <option value="{{ $store->id }}">{{ $store->name }}</option>

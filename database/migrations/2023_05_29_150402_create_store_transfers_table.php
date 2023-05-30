@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('notes');
             $table->boolean('is_approved')->default(0);
             $table->decimal('items_cost', 10, 2)->default(0); // all items costs
-            $table->foreignId('from_store')->constrained('stores')->cascadeOnUpdate();
+            $table->foreignId('store_id')->constrained()->cascadeOnUpdate();
             $table->foreignId('to_store')->constrained('stores')->cascadeOnUpdate();
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();
             $table->foreignId('company_id');

@@ -21,7 +21,7 @@ class AddEditStoreTransfer extends Component
 
     public function updatedTransferToStore($value)
     {
-        if ($this->transfer->from_store == $value) {
+        if ($this->transfer->store_id == $value) {
             $this->transfer->to_store = '';
             toastr()->error(__('transaction.select_another_store'));
         }
@@ -31,7 +31,7 @@ class AddEditStoreTransfer extends Component
     {
         $this->validate();
         try {
-            $transferExists = StoreTransfer::where(['from_store' => $this->transfer->from_store, 'to_store' => $this->transfer->to_store, 'is_approved' => 0])->first();
+            $transferExists = StoreTransfer::where(['store_id' => $this->transfer->store_id, 'to_store' => $this->transfer->to_store, 'is_approved' => 0])->first();
             if ($transferExists) {
                 toastr()->error(__('transaction.already_previous_transfer_order'));
                 return false;
@@ -57,7 +57,7 @@ class AddEditStoreTransfer extends Component
     {
         return [
             'transfer.transfer_date'    => ['required', 'date'],
-            'transfer.from_store'       => ['required', 'integer'],
+            'transfer.store_id'       => ['required', 'integer'],
             'transfer.to_store'         => ['required', 'integer'],
             'transfer.notes'            => ['required', 'min:10', 'max:255'],
         ];

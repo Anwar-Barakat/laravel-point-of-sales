@@ -36,7 +36,7 @@ class StoreTransferDetailComponent extends Component
     {
         $this->item = Item::with(['parentUnit', 'childUnit'])->findOrFail($this->product->item_id);
         if ($this->product->item_id && $this->product->unit_id)
-            $this->batches  = getBatches($this->product);
+            $this->batches  = getBatches($this->product, $this->transfer->store_id);
 
         if ($this->batch)
             $this->product->unit_price = $this->batch->unit_price;
@@ -45,7 +45,7 @@ class StoreTransferDetailComponent extends Component
     public function updatedProductUnitId()
     {
         $this->getItemAndUnit();
-        $this->batches  = getBatches($this->product);
+        $this->batches  = getBatches($this->product, $this->transfer->store_id);
     }
 
     public function updatedProductItemBatchId($value)
@@ -102,7 +102,7 @@ class StoreTransferDetailComponent extends Component
     public function edit(StoreTransferDetail $product)
     {
         $this->product          = $product;
-        $this->batches          = getBatches($this->product);
+        $this->batches          = getBatches($this->product, $this->transfer->store_id);
         $this->getItemAndUnit();
     }
 
@@ -140,7 +140,6 @@ class StoreTransferDetailComponent extends Component
 
             $batchExists = ItemBatch::where($data)->first();
 
-
             if (isset($batchExists)) {
                 $batch_qty  = $batchExists->qty + $quantity;
                 $batchExists->update([
@@ -164,7 +163,10 @@ class StoreTransferDetailComponent extends Component
             $prod->approved_by      = get_auth_id();
             $prod->save();
 
-
+            $oldBatch               = ItemBatch::findOrFail($prod->item_batch_id);
+            $oldBatch->qty          -= $prod->qty;
+            $oldBatch->total_price  = $oldBatch->qty * $oldBatch->unit_price;
+            $oldBatch->save();
 
             //________________________________________________
             // 3- Any transaction on item it must be stored
@@ -188,6 +190,14 @@ class StoreTransferDetailComponent extends Component
                 'added_by'                      => get_auth_id(),
                 'company_id'                    => get_auth_com(),
             ]);
+
+            //________________________________________________
+            // 4- Update Item qty & prices in items table
+            //________________________________________________
+            $prod->item->wholesale_cost_price   = $unit_price;
+            $prod->item->retail_cost_price      = $prod->item->has_retail_unit ? $unit_price / $prod->item->retail_count_for_wholesale : null;
+            update_item_qty($prod->item);
+            $prod->item->save();
 
             DB::commit();
         } catch (\Throwable $th) {

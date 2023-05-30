@@ -16,13 +16,13 @@
                             {{ __('transaction.store_transmitter') }}
                             (<a href="{{ route('admin.stores.index') }}" class="text underline text-blue-500" title="{{ __('msgs.create', ['name' => __('stock.store')]) }}">{{ __('msgs.add_new') }}</a>)
                         </label>
-                        <select class="form-select" wire:model='transfer.from_store'>
+                        <select class="form-select" wire:model='transfer.store_id'>
                             <option value="">{{ __('btns.select') }}</option>
                             @foreach ($stores as $store)
                                 <option value="{{ $store->id }}">{{ $store->name }}</option>
                             @endforeach
                         </select>
-                        <x-input-error :messages="$errors->get('transfer.from_store')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('transfer.store_id')" class="mt-2" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">

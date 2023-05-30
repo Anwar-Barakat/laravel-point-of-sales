@@ -14,7 +14,7 @@ class StoreTransfer extends Model
         'is_approved',
         'notes',
         'items_cost',
-        'from_store',
+        'store_id',
         'to_store',
         'added_by',
         'company_id',
@@ -22,7 +22,7 @@ class StoreTransfer extends Model
 
     public function fromStore()
     {
-        return $this->belongsTo(Store::class, 'from_store');
+        return $this->belongsTo(Store::class, 'store_id');
     }
 
     public function toStore()

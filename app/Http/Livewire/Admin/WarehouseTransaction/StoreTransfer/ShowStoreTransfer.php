@@ -11,7 +11,7 @@ class ShowStoreTransfer extends Component
     use WithPagination;
 
     public
-        $from_store,
+        $store_id,
         $to_store,
         $is_approved,
         $order_by   = 'transfer_date',
@@ -33,7 +33,7 @@ class ShowStoreTransfer extends Component
 
     public function getStoreTransfers()
     {
-        return  StoreTransfer::when($this->from_store, fn ($q) => $q->where('from_store', $this->from_store))
+        return  StoreTransfer::when($this->store_id, fn ($q) => $q->where('store_id', $this->store_id))
             ->when($this->to_store, fn ($q) => $q->where('to_store', $this->to_store))
             ->when($this->is_approved, fn ($q) => $q->where('is_approved', $this->is_approved))
             ->when($this->transfer_to_date, fn ($q) => $q->whereBetween('transfer_date', [$this->transfer_from_date, $this->transfer_to_date]))
