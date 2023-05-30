@@ -22,13 +22,6 @@ class StoreTransferDetailComponent extends Component
     public $items = [], $item, $unit;
     public $batches = [], $batch;
 
-    protected $listeners = ['updateStoreTransfer'];
-
-    public function updateStoreTransfer(StoreTransfer $transfer)
-    {
-        $this->transfer = $transfer;
-    }
-
     public function mount(StoreTransfer $transfer, StoreTransferDetail $product)
     {
         $this->transfer                 = $transfer;
@@ -101,11 +94,44 @@ class StoreTransferDetailComponent extends Component
 
             DB::commit();
             toastr()->success(__('msgs.added', ['name' => __('transaction.store_transfer')]));
-            $this->emit('updateStoreTransfer', ['transfer' => $this->transfer]);
             $this->reset('product');
             $this->product =  new StoreTransferDetail();
         } catch (\Throwable $th) {
             DB::rollBack();
+            return redirect()->route('admin.store-transfers.show', ['store_transfer' => $this->transfer])->with(['error' => $th->getMessage()]);
+        }
+    }
+
+    public function edit(StoreTransferDetail $product)
+    {
+        $this->product          = $product;
+        $batch = ItemBatch::findOrFail($product->item_batch_id);
+        $batch->qty           += $this->product->qty;
+        $batch->total_price   = $batch->qty * $batch->unit_price;
+        $batch->save();
+
+        $this->batches          = getBatches($this->product);
+        $this->getItemAndUnit();
+    }
+
+    public function delete(StoreTransferDetail $product)
+    {
+        try {
+            $batch = ItemBatch::findOrFail($product->item_batch_id);
+            DB::beginTransaction();
+            $batch->qty           = $batch->qty + $product->qty;
+            $batch->total_price   = $batch->qty * $batch->unit_price;
+            $batch->save();
+
+            $product->delete();
+
+            $totalPrices = StoreTransferDetail::where('store_transfer_id', $this->transfer->id)->where('company_id', get_auth_com())->sum('total_price');
+            $this->transfer->fill(['items_cost' => $totalPrices])->save();
+
+
+            DB::commit();
+            toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));
+        } catch (\Throwable $th) {
             return redirect()->route('admin.store-transfers.show', ['store_transfer' => $this->transfer])->with(['error' => $th->getMessage()]);
         }
     }
