@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\WarehouseTransaction\StoreTransfer;
 
 use App\Models\Item;
 use App\Models\ItemBatch;
+use App\Models\ItemTransaction;
 use App\Models\StoreTransfer;
 use App\Models\StoreTransferDetail;
 use App\Models\Unit;
@@ -88,10 +89,6 @@ class StoreTransferDetailComponent extends Component
             $totalPrices    = StoreTransferDetail::where('store_transfer_id', $this->transfer->id)->where('company_id', get_auth_com())->sum('total_price');
             $this->transfer->fill(['items_cost' => $totalPrices])->save();
 
-            $this->batch->qty           -= $this->product->qty;
-            $this->batch->total_price   = $this->batch->qty * $this->batch->unit_price;
-            $this->batch->save();
-
             DB::commit();
             toastr()->success(__('msgs.added', ['name' => __('transaction.store_transfer')]));
             $this->reset('product');
@@ -105,29 +102,108 @@ class StoreTransferDetailComponent extends Component
     public function edit(StoreTransferDetail $product)
     {
         $this->product          = $product;
-        $batch = ItemBatch::findOrFail($product->item_batch_id);
-        $batch->qty           += $this->product->qty;
-        $batch->total_price   = $batch->qty * $batch->unit_price;
-        $batch->save();
-
         $this->batches          = getBatches($this->product);
         $this->getItemAndUnit();
+    }
+
+    public function approve(StoreTransferDetail $prod)
+    {
+        try {
+            DB::beginTransaction();
+
+            //________________________________________________
+            // 1- Transaction on store
+            //________________________________________________
+            $qty_before_transaction = item_batch_qty($prod->item);
+            $store_qty_before_trans = item_batch_qty($prod->item, $this->transfer->to_store);
+
+            if ($prod->unit->status == 'retail') {
+                $quantity   = $prod->qty / $prod->item->retail_count_for_wholesale;
+                $unit_price = $prod->unit_price * $prod->item->retail_count_for_wholesale;
+            } else {
+                $quantity   = $prod->qty;
+                $unit_price = $prod->unit_price;
+            }
+
+
+            $data = [
+                'item_id'           => $prod->item->id,
+                'store_id'          => $this->transfer->to_store,
+                'unit_id'           => $prod->item->parentUnit->id,
+                'unit_price'        => $unit_price,
+                'company_id'        => get_auth_com(),
+            ];
+            if ($prod->item->type == 2) {
+                $data['production_date']   = $prod->production_date;
+                $data['expiration_date']   = $prod->expiration_date;
+            }
+
+            $batchExists = ItemBatch::where($data)->first();
+
+
+            if (isset($batchExists)) {
+                $batch_qty  = $batchExists->qty + $quantity;
+                $batchExists->update([
+                    'qty'           => $batch_qty,
+                    'total_price'   => $batchExists->unit_price * ($batch_qty)
+                ]);
+            } else {
+                $data['added_by']       = get_auth_id();
+                $data['qty']            = $quantity;
+                $data['total_price']    = $unit_price * $quantity;
+                ItemBatch::create($data);
+            }
+
+
+            //________________________________________________
+            // 2- approving on products transferring
+            //________________________________________________
+            $prod->to_item_batch    = $batchExists->id ?? ItemBatch::latest()->first()->id;
+            $prod->is_approved      = 1;
+            $prod->approved_at      = date('Y-m-d');
+            $prod->approved_by      = get_auth_id();
+            $prod->save();
+
+
+
+            //________________________________________________
+            // 3- Any transaction on item it must be stored
+            //________________________________________________
+            $item_trans_report      = "Transfer movement between the {$this->transfer->fromStore->name} store and the {$this->transfer->toStore->name} store";
+
+            $qty_after_transaction = item_batch_qty($prod->item);
+            $store_qty_after_trans = item_batch_qty($prod->item, $this->transfer->to_store);
+            ItemTransaction::create([
+                'item_transaction_category_id'  => 3, // Transaction on store
+                'item_transaction_type_id'      => 8, // Transfer between stores
+                'item_id'                       => $prod->item_id,
+                'store_transfer_id'             => $this->transfer->id,
+                'store_transfer_detail_id'      => $prod->id,
+                'store_id'                      => $this->transfer->to_store,
+                'report'                        => $item_trans_report,
+                'store_qty_before_transaction'  => $store_qty_before_trans . ' ' . $prod->item->parentUnit->name,
+                'store_qty_after_transaction'   => $store_qty_after_trans . ' ' . $prod->item->parentUnit->name,
+                'qty_before_transaction'        => $qty_before_transaction . ' ' . $prod->item->parentUnit->name,
+                'qty_after_transaction'         => $qty_after_transaction . ' ' . $prod->item->parentUnit->name,
+                'added_by'                      => get_auth_id(),
+                'company_id'                    => get_auth_com(),
+            ]);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('admin.store-transfers.show', ['store_transfer' => $this->transfer])->with(['error' => $th->getMessage()]);
+        }
     }
 
     public function delete(StoreTransferDetail $product)
     {
         try {
-            $batch = ItemBatch::findOrFail($product->item_batch_id);
             DB::beginTransaction();
-            $batch->qty           = $batch->qty + $product->qty;
-            $batch->total_price   = $batch->qty * $batch->unit_price;
-            $batch->save();
-
             $product->delete();
 
             $totalPrices = StoreTransferDetail::where('store_transfer_id', $this->transfer->id)->where('company_id', get_auth_com())->sum('total_price');
             $this->transfer->fill(['items_cost' => $totalPrices])->save();
-
 
             DB::commit();
             toastr()->info(__('msgs.deleted', ['name' => __('stock.items')]));

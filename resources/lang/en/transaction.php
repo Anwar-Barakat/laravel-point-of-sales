@@ -184,6 +184,7 @@ return [
     'transfer_from_date'        => 'Transfer from date',
     'transfer_to_date'          => 'Transfer to date',
     'store_transfer_number'     => 'store transfer number',
+    'approved_date'             => 'Approved date',
 
     'already_previous_transfer_order'   => 'An unapproved previous transfer order already exists',
 ];

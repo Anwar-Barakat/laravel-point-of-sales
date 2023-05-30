@@ -33,6 +33,9 @@ return new class extends Migration
             $table->foreignId('product_receive_id')->nullable();
             $table->foreignId('product_receive_detail_id')->nullable();
 
+            $table->foreignId('store_transfer_id')->nullable();
+            $table->foreignId('store_transfer_detail_id')->nullable();
+
             $table->string('report');
             $table->string('store_qty_before_transaction');
             $table->string('store_qty_after_transaction');

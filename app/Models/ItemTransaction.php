@@ -10,30 +10,7 @@ class ItemTransaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'item_transaction_category_id',
-        'item_transaction_type_id',
-        'item_id',
-        'store_id',
-        'order_id',
-        'order_product_id',
-        'sale_id',
-        'sale_product_id',
-        'store_inventory_id',
-        'store_inventory_item_id',
-        'workshop_invoice_id',
-        'workshop_invoice_item_id',
-        'product_receive_id',
-        'product_receive_detail_id',
-        'report',
-        'store_qty_before_transaction',
-        'store_qty_after_transaction',
-        'qty_before_transaction',
-        'qty_after_transaction',
-        'added_by',
-        'company_id',
-    ];
-
+    protected $guarded = [];
 
     public function transaction_category(): BelongsTo
     {
