@@ -58,7 +58,14 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>
-                                    <p class="strong mb-1">{{ $product->item->name }}</p>
+                                    <div class="strong mb-1">
+                                        {{ $product->item->name }}
+                                        <div class="mt-3">
+                                            @php
+                                                echo DNS1D::getBarcodeHTML($product->item->barcode, 'C39');
+                                            @endphp
+                                        </div>
+                                    </div>
                                     @if ($product->production_date)
                                         <div class="text-muted">{{ __('transaction.production_date') . ' : ' }} {{ $product->production_date }}</div>
                                         <div class="text-muted">{{ __('transaction.expiration_date') . ' : ' }} {{ $product->expiration_date }}</div>

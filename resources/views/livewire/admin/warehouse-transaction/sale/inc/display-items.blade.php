@@ -44,9 +44,9 @@
                     <td>{{ $saleProduct->item_batch->production_date ?? '-' }}</td>
                     <td>{{ $saleProduct->item_batch->expiration_date ?? '-' }}</td>
                     <td class="bg-blue-500">{{ $saleProduct->total_price }}</td>
-                    @if (!$sale->is_approved == 1)
-                        <td>
-                            <div class="btn-list flex-nowrap justify-content-center">
+                    <td>
+                        <div class="btn-list flex-nowrap justify-content-center">
+                            @if (!$sale->is_approved == 1)
                                 <a wire:click.prevent="edit({{ $saleProduct->id }})" href="javascript:;" class="btn d-flex justify-content-center align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon text-success m-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -65,9 +65,20 @@
                                         <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                     </svg>
                                 </a>
-                            </div>
-                        </td>
-                    @endif
+                            @endif
+                            <a href="#" class="btn d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#barcode{{ $saleProduct->item->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon m-0 icon-tabler icon-tabler-scan" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M4 7v-1a2 2 0 0 1 2 -2h2"></path>
+                                    <path d="M4 17v1a2 2 0 0 0 2 2h2"></path>
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v1"></path>
+                                    <path d="M16 20h2a2 2 0 0 0 2 -2v-1"></path>
+                                    <path d="M5 12l14 0"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <x-barcode-modal :id="$saleProduct->item->id" :name="$saleProduct->item->name" :barcode="$saleProduct->item->barcode" />
+                    </td>
                 </tr>
             @empty
                 <tr>
