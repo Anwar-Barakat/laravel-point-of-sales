@@ -67,7 +67,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> {{ __('msgs.photo') }}</th>
+                    <th class="w-3"> {{ __('msgs.photo') }}</th>
                     <th> {{ __('stock.item_name') }}</th>
                     <th> {{ __('stock.item_type') }}</th>
                     <th> {{ __('transaction.qty') }}</th>
@@ -90,7 +90,9 @@
                                 <img src="{{ asset('backend/static/default-show-product.png') }}" class="img img-thumbnail" alt="{{ $item->name }}" width="80">
                             @endif
                         </td>
-                        <td>{{ $item->name }}</td>
+                        <td>
+                            {{ $item->name }}
+                        </td>
                         <td>
                             <span class="badge bg-blue">
                                 {{ __('stock.' . App\Models\Item::ITEMTYPE[$item->type]) }}
@@ -141,6 +143,36 @@
                                         </svg>
                                         <span>{{ __('btns.details') }}</span>
                                     </a>
+
+                                    <a href="#" class="dropdown-item d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#barcode{{ $item->id }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-scan" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 7v-1a2 2 0 0 1 2 -2h2"></path>
+                                            <path d="M4 17v1a2 2 0 0 0 2 2h2"></path>
+                                            <path d="M16 4h2a2 2 0 0 1 2 2v1"></path>
+                                            <path d="M16 20h2a2 2 0 0 0 2 -2v-1"></path>
+                                            <path d="M5 12l14 0"></path>
+                                        </svg>
+                                        <span>{{ __('stock.barcode') }}</span>
+                                    </a>
+                                </div>
+                                <div class="modal modal-blur fade" id="barcode{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">{{ $item->name }} {{ __('stock.barcode') }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @php
+                                                    echo DNS1D::getBarcodeHTML($item->barcode, 'C39');
+                                                @endphp
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </span>
                         </td>

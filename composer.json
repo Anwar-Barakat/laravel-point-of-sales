@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.12",
         "mcamara/laravel-localization": "^1.8",
+        "milon/barcode": "^10.0",
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-translatable": "^6.3",
         "yoeunes/toastr": "^2.3"

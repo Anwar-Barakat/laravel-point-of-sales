@@ -57,6 +57,9 @@ class AddEditItem extends Component
     {
         $this->validate();
         try {
+            if (!$this->item->barcode)
+                $this->item->barcode = uniqid();
+
             $this->item['added_by']     = get_auth_id();
             $this->item['company_id'] = get_auth_com();
             $this->item->save();

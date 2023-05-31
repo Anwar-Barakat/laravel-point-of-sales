@@ -26,7 +26,16 @@
                               <img src="{{ asset('backend/static/default-show-product.png') }}" class="img img-thumbnail" alt="{{ $product->item->name }}" width="80">
                           @endif
                       </td>
-                      <td>{{ $product->item->name }}</td>
+                      <td>
+                          <span>
+                              {{ $product->item->name }}
+                          </span>
+                          <p>{{ $item->barcode }}
+                              @php
+                                  echo DNS1D::getBarcodeHTML($item->barcode, 'C39');
+                              @endphp
+                          </p>
+                      </td>
                       <td>
                           <span class="badge bg-blue">
                               {{ __('stock.' . App\Models\Item::ITEMTYPE[$product->item->type]) }}

@@ -29,6 +29,7 @@ class ItemSeeder extends Seeder
         $items = [
             [
                 'name'                              => 'Glass Cups',
+                'barcode'                           => uniqid(),
                 'type'                              => 1, // stored
                 'category_id'                       => $hand_too_cat,
                 'has_retail_unit'                   => true,
@@ -49,6 +50,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'name'                              => 'Carton of white Nike sneakers',
+                'barcode'                           => uniqid(),
                 'type'                              => 1, // stored
                 'category_id'                       => $shoes_cat,
                 'has_retail_unit'                   => true,
@@ -69,6 +71,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'name'                              => 'Carton of black Nike sneakers',
+                'barcode'                           => uniqid(),
                 'type'                              => 1, // stored
                 'category_id'                       => $shoes_cat,
                 'has_retail_unit'                   => true,
@@ -89,6 +92,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'name'                              => 'Chicken Meat',
+                'barcode'                           => uniqid(),
                 'type'                              => 2, // consuming
                 'category_id'                       => $meat_cat,
                 'has_retail_unit'                   => false,
@@ -103,6 +107,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'name'                              => 'Lamb',
+                'barcode'                           => uniqid(),
                 'type'                              => 2, // consuming
                 'category_id'                       => $meat_cat,
                 'has_retail_unit'                   => false,
@@ -117,6 +122,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'name'                              => 'Beef',
+                'barcode'                           => uniqid(),
                 'type'                              => 2, // consuming
                 'category_id'                       => $meat_cat,
                 'has_retail_unit'                   => false,
@@ -131,6 +137,7 @@ class ItemSeeder extends Seeder
             ],
             [
                 'name'                              => 'Cottons',
+                'barcode'                           => uniqid(),
                 'type'                              => 1, // stored
                 'category_id'                       => $cotton_cat,
                 'has_retail_unit'                   => false,

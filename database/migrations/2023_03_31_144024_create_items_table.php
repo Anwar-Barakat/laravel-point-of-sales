@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('barcode')->unique();
             $table->tinyInteger('type')->comment('1 => stored, 2 => consuming, 3 => protection');
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
             $table->boolean('is_active')->default(1);
