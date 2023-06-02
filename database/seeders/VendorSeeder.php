@@ -21,7 +21,7 @@ class VendorSeeder extends Seeder
     public function run(): void
     {
         $faker          = Factory::create();
-        $hand_too_cat   = Category::select('id')->where('name->en', 'Hand Tools')->active()->first()->id;
+        $hand_too_cat   = Category::select('id')->where('name->en', 'Hardware')->active()->first()->id;
         $meat_cat       = Category::select('id')->where('name->en', 'Meat & Freezers')->active()->first()->id;
         $shoes_cat      = Category::select('id')->where('name->en', 'Shoes')->active()->first()->id;
         $cotton_cat     = Category::select('id')->where('name->en', 'Cottons')->active()->first()->id;

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->tinyInteger('type')->comment('1 => stored, 2 => consuming, 3 => protection');
             $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
             $table->boolean('is_active')->default(1);
-            $table->bigInteger('parent_id')->default(0);
 
             $table->boolean('has_retail_unit')->default(0);
             $table->foreignId('wholesale_unit_id')->constrained('units')->cascadeOnUpdate();
@@ -37,9 +36,9 @@ return new class extends Migration
 
             $table->decimal('wholesale_qty')->nullable();
             $table->decimal('retail_qty')->nullable();
-            $table->decimal('all_retail_qty')->nullable()->comment('all qty in retail unit ');
+            $table->decimal('all_retail_qty')->nullable();
 
-            $table->boolean('has_fixed_price')->default(1)->comment('Does it has fixed price for invoices?');
+            $table->boolean('has_fixed_price')->default(0);
             $table->foreignId('company_id');
 
             $table->foreignId('added_by')->nullable()->constrained('admins')->cascadeOnUpdate();

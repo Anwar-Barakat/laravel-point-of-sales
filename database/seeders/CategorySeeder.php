@@ -25,9 +25,10 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 'name'          => [
-                    'ar'    => 'احذية',
-                    'en'    => 'Shoes',
+                    'ar'    => 'قمصان',
+                    'en'    => 'Shirts',
                 ],
+                'parent_id'     => 0,
                 'company_id'    => $admin->company_id,
                 'description'   => $faker->sentence(20),
                 'parent_id'     => 0,
@@ -37,8 +38,20 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name'          => [
-                    'ar'    => 'قمصان',
-                    'en'    => 'Shirts',
+                    'ar'    => 'قمصان رجالية',
+                    'en'    => 'Men Shirts',
+                ],
+                'parent_id'     => 1,
+                'company_id'    => $admin->company_id,
+                'description'   => $faker->sentence(20),
+                'section_id'    => $men_section,
+                'added_by'      => $admin->id,
+                'updated_by'    => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'ar'    => 'احذية',
+                    'en'    => 'Shoes',
                 ],
                 'company_id'    => $admin->company_id,
                 'description'   => $faker->sentence(20),
@@ -85,8 +98,8 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name'          => [
-                    'ar'    => 'الأدوات اليدوية',
-                    'en'    => 'Hand Tools',
+                    'ar'    => 'الأدوات منزلية',
+                    'en'    => 'Hardware',
                 ],
                 'company_id'    => $admin->company_id,
                 'description'   => $faker->sentence(20),

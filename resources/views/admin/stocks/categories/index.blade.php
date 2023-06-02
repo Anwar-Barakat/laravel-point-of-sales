@@ -80,7 +80,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="0">
+                                <td colspan="8">
                                     <x-blank-section :content="__('stock.category')" :url="route('admin.categories.create')" />
                                 </td>
                             </tr>

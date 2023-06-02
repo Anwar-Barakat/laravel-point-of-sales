@@ -77,21 +77,6 @@
                         <x-input-error :messages="$errors->get('item.has_fixed_price')" class="mt-2" />
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="mb-3">
-                        <x-input-label class="form-label" :value="__('stock.parent_item')" />
-                        <select class="form-select" wire:model.debounce.350s='item.parent_id'>
-                            <option value="">{{ __('btns.select') }}</option>
-                            <option value="0">{{ __('stock.parent') }}</option>
-                            @if ($parent_items->count() > 0)
-                                @foreach ($parent_items as $parent)
-                                    <option value="{{ $parent->id }}">{{ $parent->name }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                        <x-input-error :messages="$errors->get('item.parent_id')" class="mt-2" />
-                    </div>
-                </div>
             </div>
             <hr class="mt-4 mb-3 w-50">
             <h4 class="mb-4 text-blue">{{ __('stock.wholesale_retail_prices') }}</h4>

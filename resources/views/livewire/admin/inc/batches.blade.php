@@ -14,20 +14,20 @@
                     @endphp
                     @if ($unit->status == 'retail')
                         @php
-                            $qty = floatval($batch->qty) * floatval($item->retail_count_for_wholesale);
+                            $qty = $batch->qty * $item->retail_count_for_wholesale;
                             $price = floatval($item->retail_count_for_wholesale) != 0 ? floatval($batch->unit_price) / floatval($item->retail_count_for_wholesale) : 0;
                         @endphp
                         @if ($price > 0)
                             <option value="{{ $batch->id }}" {{ $qty == 0 ? 'readony disabled' : '' }}>
                                 {{ __('transaction.number') }} {{ $qty }} ({{ __('stock.unit') . ' : ' . $unit->name }})
-                                - {{ __('stock.unit_price') . ' : ' . number_format($price, 0) }}
+                                - {{ __('stock.unit_price') . ' : ' . $price }}
                             </option>
                         @endif
                     @else
                         <option value="{{ $batch->id }}" {{ $batch->qty == 0 ? 'readony disabled' : '' }}>
-                            {{ __('transaction.number') }} {{ number_format($batch->qty, 0) }} ({{ __('stock.unit') }} : {{ $unit->name }})
+                            {{ __('transaction.number') }} {{ $batch->qty }} ({{ __('stock.unit') }} : {{ $unit->name }})
                             {{ $batch->production_date ? __('transaction.production_date') . ' : ' . $batch->production_date : '' }}
-                            - {{ __('stock.unit_price') . ' : ' . number_format($batch->unit_price, 0) }}
+                            - {{ __('stock.unit_price') . ' : ' . $batch->unit_price }}
                         </option>
                     @endif
                 @endforeach

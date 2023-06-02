@@ -63,18 +63,21 @@ class GeneralOrderReturnItemForm extends Component
     public function updatedProductItemBatchId()
     {
         $this->batch = $this->getItemBatch();
-
-        $batch = $this->getItemBatch();
         $this->product->unit_price = $this->unit->status == 'wholesale'
-            ? $batch->unit_price
-            : $batch->unit_price / $this->product->item->retail_count_for_wholesale;
+            ? $this->batch->unit_price
+            : $this->batch->unit_price / $this->product->item->retail_count_for_wholesale;
 
         $this->product->total_price = intval($this->product->qty) * floatval($this->product->unit_price);
     }
 
     public function calcPrice()
     {
-        $qty = item_batch_qty($this->product->item, $this->order->store_id);
+        $batch = $this->getItemBatch();
+
+        $qty = $this->unit->status == 'wholesale'
+            ? $batch->qty
+            : $batch->qty * $this->product->item->retail_count_for_wholesale;
+
         if ($qty < $this->product->qty) {
             toastr()->error(__('validation.qty_not_available_now'));
             $this->product->qty = 1;

@@ -30,7 +30,7 @@ class AddEditItem extends Component
     {
         $this->item             = $item;
         $this->parent_items     = Item::select('id', 'name')->where(['company_id' => get_auth_com()])->active()->get();
-        $this->categories       = Category::with('subCategories')->where(['company_id' => get_auth_com(), 'parent_id' => 0])->get();
+        $this->categories       = Category::with('subCategories')->activeParent()->where(['company_id' => get_auth_com()])->get();
         $this->wholesale_units  = Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'wholesale'])->active()->get();
         $this->retail_units     = $this->item->has_retail_unit ?
             Unit::select('id', 'name')->where(['company_id' => get_auth_com(), 'status' => 'retail'])->active()->get() : [];
@@ -97,7 +97,6 @@ class AddEditItem extends Component
             'item.is_active'                        => ['required', 'boolean'],
             'item.type'                             => ['required', 'in:1,2,3'],
             'item.category_id'                      => ['required', 'integer'],
-            'item.parent_id'                        => ['required', 'integer'],
             'item.has_fixed_price'                  => ['required', 'boolean'],
             'item.has_retail_unit'                  => ['required', 'boolean'],
             'item.wholesale_unit_id'                => ['required', 'integer'],
