@@ -4,4 +4,6 @@
 
 
     @livewire('admin.dashboard-component')
+
+    @livewire('admin.dashboard-count-component')
 </x-master-layout>
