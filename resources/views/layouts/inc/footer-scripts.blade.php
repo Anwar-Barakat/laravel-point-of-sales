@@ -8,6 +8,7 @@
 <!-- Tabler Core -->
 <script src="{{ asset('backend/dist/js/tabler.min.js') }}" defer></script>
 @stack('scripts')
+@yield('javascripts')
 
 <livewire:scripts />
 <script src="{{ asset('backend/dist/js/demo.min.js') }}" defer></script>

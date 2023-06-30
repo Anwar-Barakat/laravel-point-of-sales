@@ -104,7 +104,7 @@
                      <div class="subheader">{{ __('transaction.services_invoices') }}</div>
                      <div class="ms-auto lh-1">
                          <div class="dropdown">
-                             <select class="form-select border-0" id="" wire:model='workshop_invoice_filter'>
+                             <select class="form-select border-0" id="" wire:model='service_filter'>
                                  <option value="1">{{ __('dash.last_7_days') }}</option>
                                  <option value="2">{{ __('dash.last_month') }}</option>
                                  <option value="3">{{ __('dash.last_3_months') }}</option>

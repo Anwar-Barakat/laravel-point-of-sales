@@ -8,4 +8,6 @@ return [
     'waiting_payment'   => 'Waiting payments',
     'purchases'         => 'Purchases',
     'has_shipped'       => 'Has shipped',
+    'orders_by_month'   => 'Orders by month',
+    'sales_by_month'    => 'Sales by month',
 ];

@@ -8,5 +8,6 @@ return [
     'waiting_payment'   => 'في انتظار الدفع',
     'purchases'         => 'المشتريات',
     'has_shipped'       => 'شُحنت',
-
+    'orders_by_month'   => 'المشتريات خلال الشهر',
+    'sales_by_month'    => 'المبيعات خلال الشهر',
 ];
