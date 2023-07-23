@@ -13,8 +13,8 @@ class ShowItem extends Component
     public $name,
         $type,
         $category_id,
-        $order_by   = 'name',
-        $sort_by    = 'asc',
+        $order_by   = 'created_at',
+        $sort_by    = 'desc',
         $per_page   = CUSTOM_PAGINATION;
 
 

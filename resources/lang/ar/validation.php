@@ -336,7 +336,7 @@ return [
         //_______________________
         'commission_value'               => 'قيمة العمولة',
         'commission_type'                => 'نوع العمولة',
-        'commission_for_sectoral'        => 'قيمة العمولة بالمبيعات قطاعي',
+        'commission_for_sectoral'        => 'قيمة العمولة بالمبيعات مفرق',
         'commission_for_half_block'      => 'قيمة العمولة بالمبيعات نصف جملة',
         'commission_for_block'           => 'قيمة العمولة بالمبيعات جملة',
         'commission_for_delayed_collect' => 'قيمة العمولة في التحصيل الآجل',

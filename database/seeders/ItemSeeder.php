@@ -22,9 +22,11 @@ class ItemSeeder extends Seeder
         $meat_cat       = Category::where('name->en', 'Meat & Freezers')->active()->first()->id;
         $shoes_cat      = Category::where('name->en', 'Shoes')->active()->first()->id;
         $cotton_cat     = Category::where('name->en', 'Cottons')->active()->first()->id;
+        $shirts_cat     = Category::where('name->en', 'Shirts')->active()->first()->id;
         $sachet_unit    = Unit::where('name->en', 'Sachet(25kg)')->active()->first()->id;
         $carton_unit    = Unit::where('name->en', 'Carton')->active()->first()->id;
         $box_unit       = Unit::where('name->en', 'Box')->active()->first()->id;
+        $serial_unit    = Unit::where('name->en', 'Serial')->active()->first()->id;
 
         $items = [
             [
@@ -49,7 +51,7 @@ class ItemSeeder extends Seeder
                 'added_by'                          => $admin->id,
             ],
             [
-                'name'                              => 'Carton of white Nike sneakers',
+                'name'                              => 'White Nike sneakers',
                 'barcode'                           => uniqid(),
                 'type'                              => 1, // stored
                 'category_id'                       => $shoes_cat,
@@ -70,7 +72,7 @@ class ItemSeeder extends Seeder
                 'added_by'                          => $admin->id,
             ],
             [
-                'name'                              => 'Carton of black Nike sneakers',
+                'name'                              => 'Black Nike sneakers',
                 'barcode'                           => uniqid(),
                 'type'                              => 1, // stored
                 'category_id'                       => $shoes_cat,
@@ -146,6 +148,27 @@ class ItemSeeder extends Seeder
                 'wholesale_price_for_half_block'    => 600,
                 'wholesale_price_for_block'         => 500,
                 'wholesale_cost_price'              => 400,
+                'has_fixed_price'                   => rand(0, 1),
+                'company_id'                        => $admin->company_id,
+                'added_by'                          => $admin->id,
+            ],
+            [
+                'name'                              => 'Men White T-Shirt',
+                'barcode'                           => uniqid(),
+                'type'                              => 1, // stored
+                'category_id'                       => $shirts_cat,
+                'has_retail_unit'                   => true,
+                'wholesale_unit_id'                 => $carton_unit,
+                'wholesale_price'                   => 50,
+                'wholesale_price_for_half_block'    => 55,
+                'wholesale_price_for_block'         => 60,
+                'wholesale_cost_price'              => 40,
+                'retail_unit_id'                    => $serial_unit,
+                'retail_price'                      => 5,
+                'retail_price_for_half_block'       => 5.5,
+                'retail_price_for_block'            => 6,
+                'retail_cost_price'                 => 4,
+                'retail_count_for_wholesale'        => 10, // Carton contains 10 boxes
                 'has_fixed_price'                   => rand(0, 1),
                 'company_id'                        => $admin->company_id,
                 'added_by'                          => $admin->id,

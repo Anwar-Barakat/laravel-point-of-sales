@@ -22,7 +22,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'كيلوغرام'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -31,7 +31,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'الغرام'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -40,7 +40,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'اللتر'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -49,7 +49,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'الدرزن'
                 ],
                 'status'        => 'wholesale',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -58,7 +58,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'طبق ١ كيلوغرام'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -67,7 +67,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'طبق ٩٠ غرام'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -76,7 +76,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'كرتونة'
                 ],
                 'status'        => 'wholesale',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -85,7 +85,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'علبة'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -94,7 +94,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'علبة'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -103,7 +103,7 @@ class UnitSeeder extends Seeder
                     'ar'        => 'قطعة'
                 ],
                 'status'        => 'retail',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
             [
@@ -112,7 +112,16 @@ class UnitSeeder extends Seeder
                     'ar'        => 'الكيس 25 كيلوغرام'
                 ],
                 'status'        => 'wholesale',
-                'company_id'  => $admin->company->id,
+                'company_id'    => $admin->company->id,
+                'added_by'      => $admin->id,
+            ],
+            [
+                'name'          => [
+                    'en'        => 'Serial',
+                    'ar'        => 'سيريال'
+                ],
+                'status'        => 'retail',
+                'company_id'    => $admin->company->id,
                 'added_by'      => $admin->id,
             ],
 

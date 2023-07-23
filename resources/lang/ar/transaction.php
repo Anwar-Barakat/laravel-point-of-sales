@@ -92,7 +92,7 @@ return [
     'sales_invoices'            => 'فواتير المبيعات',
     'sale_invoice'              => 'فاتورة مبيعات',
     'sale_type'                 => 'نوع البيع',
-    'sectoral'                  => 'قطاعي',
+    'sectoral'                  => 'مفرق',
     'half_wholesale'            => 'نصف جملة',
     'wholesale'                 => 'جملة',
     'number'                    => 'عدد',

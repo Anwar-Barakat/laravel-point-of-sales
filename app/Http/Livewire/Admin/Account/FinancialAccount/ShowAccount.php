@@ -12,9 +12,9 @@ class ShowAccount extends Component
 
     public $name,
         $account_status,
-        $order_by   = 'name',
+        $order_by   = 'created_at',
         $total_balances,
-        $sort_by    = 'asc',
+        $sort_by    = 'desc',
         $account_type_id,
         $per_page   = CUSTOM_PAGINATION;
 

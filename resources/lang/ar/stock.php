@@ -24,22 +24,26 @@ return [
     'retail_unit'           => 'وحدة تجزئة',
     'wholesale_unit'        => 'وحدة جملة',
     'cost_price'            => 'سعر التكلفة',
-    'wholesale_cost_price'  => 'سعر تكلفة الشراء للوحدة الرئيسية',
-    'retail_cost_price'     => 'سعر تكلفة الشراء للوحدة التجزئة',
     'has_fixed_price'       => 'لديه سعر ثابت للفواتير؟',
     'wholesale_qty'         => 'الكمية الأجمالي',
     'retail_qty'            => 'الكمية بالتجزئة',
 
 
-    'wholesale_retail_prices'           => 'أسعار الجمل والتجزئة',
-    'retail_count_for_wholesale'        => 'عدد وحدات التجزئة في وحدة الرئيسية',
-    'wholesale_price'                   => 'سعر الجملة',
-    'wholesale_price_for_block'         => 'سعر الجملة لوحدة قياس الرئيسية',
-    'wholesale_price_for_half_block'    => 'سعر النصف جملة لوحدة قياس الرئيسية',
-    'retail_price'                      => 'سعر التجزئة',
-    'retail_price_for_block'            => 'سعر الجملة لوحدة قياس التجزئة',
-    'retail_price_for_half_block'       => 'سعر النصف جملة لوحدة قياس التجزئة',
-    'transactions_on_item'              => 'المعاملات على الصنف',
+    'wholesale_retail_prices'                   => 'أسعار الجمل والتجزئة',
+    'wholesale_price'                           => 'سعر الجملة',
+    'retail_price'                              => 'سعر التجزئة',
+    'retail_count_for_wholesale'                => 'عدد وحدات التجزئة في وحدة الرئيسية',
+
+    'wholesale_price_for_the_main_unit'         => 'سعر الجملة للوحدة الرئيسية',
+    'half_wholesale_price_for_the_main_unit'    => 'سعر النصف جملة للوحدة الرئيسية',
+    'retail_price_for_main_unit'                => 'سعر المفرق للوحدة الرئيسية',
+    'wholesale_cost_price'                      => 'سعر تكلفة الشراء للوحدة الرئيسية',
+
+    'wholesale_price_for_the_child_unit'        => 'سعر الجملة لوحدة قياس الأبن',
+    'half_wholesale_price_for_the_child_unit'   => 'سعر النصف جملة للوحدة الأبن',
+    'retail_price_for_the_child_unit'           => 'سعر المفرق للوحدة الأبن',
+    'retail_cost_price'                         => 'سعر تكلفة الشراء للوحدة الأبن',
+    'transactions_on_item'                      => 'المعاملات على الصنف',
 
     //_______________________
     // Stores
@@ -110,7 +114,7 @@ return [
     'delegate_account'               => 'حساب المندوب',
     'commission_value'               => 'قيمة العمولة',
     'commission_type'                => 'نوع العمولة',
-    'commission_for_sectoral'        => 'قيمة العمولة بالمبيعات قطاعي',
+    'commission_for_sectoral'        => 'قيمة العمولة بالمبيعات مفرق',
     'commission_for_half_block'      => 'قيمة العمولة بالمبيعات نصف جملة',
     'commission_for_block'           => 'قيمة العمولة بالمبيعات جملة',
     'commission_for_delayed_collect' => 'قيمة العمولة في التحصيل الآجل',

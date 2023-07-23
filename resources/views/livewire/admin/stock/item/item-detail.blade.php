@@ -79,8 +79,8 @@
                             <tr>
                                 <th>{{ __('stock.wholesale_unit') }}</th>
                                 <th>{{ __('stock.wholesale_price') }}</th>
-                                <th>{{ __('stock.wholesale_price_for_half_block') }}</th>
-                                <th>{{ __('stock.wholesale_price_for_block') }}</th>
+                                <th>{{ __('stock.half_wholesale_price_for_the_main_unit') }}</th>
+                                <th>{{ __('stock.wholesale_price_for_the_main_unit') }}</th>
                                 <th>{{ __('stock.wholesale_cost_price') }}</th>
                             </tr>
                         </thead>
@@ -108,8 +108,8 @@
                                 <tr>
                                     <th>{{ __('stock.retail_unit') }}</th>
                                     <th>{{ __('stock.retail_price') }}</th>
-                                    <th>{{ __('stock.retail_price_for_half_block') }}</th>
-                                    <th>{{ __('stock.retail_price_for_block') }}</th>
+                                    <th>{{ __('stock.half_wholesale_price_for_the_child_unit') }}</th>
+                                    <th>{{ __('stock.wholesale_price_for_the_child_unit') }}</th>
                                     <th>{{ __('stock.retail_cost_price') }}</th>
                                 </tr>
                             </thead>

@@ -23,21 +23,29 @@ return [
     'retail_unit'           => 'Retail unit',
     'wholesale_unit'        => 'Wholesale unit',
     'has_retail_unit'       => 'Item Has retails unit?',
-    'wholesale_cost_price'  => 'Wholesale cost price',
-    'retail_cost_price'     => 'Retail cost price',
     'has_fixed_price'       => 'Has fixed price for invoices?',
     'wholesale_qty'         => 'Wholesale QTY',
     'retail_qty'            => 'Retail QTY',
 
-    'wholesale_retail_prices'           => 'Wholesales & Retails Prices',
-    'retail_count_for_wholesale'        => 'Retail unit count for one wholesale',
-    'wholesale_price'                   => 'Wholesale price',
-    'wholesale_price_for_block'         => 'Wholesale price for block',
-    'wholesale_price_for_half_block'    => 'Wholesale price for half block',
-    'retail_price'                      => 'Retail price',
-    'retail_price_for_block'            => 'Retail price for block',
-    'retail_price_for_half_block'       => 'Retail price for block',
-    'transactions_on_item'              => 'Transactions on the Item',
+    'wholesale_retail_prices'                   => 'Wholesales & Retails Prices',
+    'retail_count_for_wholesale'                => 'Retail unit count for one wholesale',
+    'wholesale_price'                           => 'Wholesale price',
+    'retail_price'                              => 'Retail price',
+
+    'wholesale_price_for_the_main_unit'         => 'Wholesale price for the main unit',
+    'half_wholesale_price_for_the_main_unit'    => 'Half wholesale price for the main unit',
+    'retail_price_for_main_unit'                => 'Retail price for the main unit',
+    'wholesale_cost_price'                      => 'Cost price for the main unit',
+
+    'wholesale price unit of measure son'       => 'wholesale price unit of measure son',
+    'wholesale price unit of measure son'       => 'wholesale price unit of measure son',
+    'wholesale price unit of measure son'       => 'wholesale price unit of measure son',
+
+    'wholesale_price_for_the_child_unit'        => 'Wholesale price for the child unit',
+    'half_wholesale_price_for_the_child_unit'   => 'Half wholesale price for the child unit',
+    'retail_price_for_the_child_unit'           => 'Retail price for the child unit',
+    'retail_cost_price'                         => 'Cost price for the child unit',
+    'transactions_on_item'                      => 'Transactions on the Item',
 
 
     //_______________________
